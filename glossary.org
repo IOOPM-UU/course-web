@@ -1,0 +1,110 @@
+#+title: Glossary
+* Common
+** Backlog
+*TODO*
+** Signature 
+The signature of a function or method is its name and types of
+parameters and return types. For example, the signature of the
+function ~atoi()~ is ~int atoi(const char *nptr)~ (written using
+the syntax of a function prototype). This signature denotes that
+the function ~atoi()~ takes one parameter, a pointer to a constant
+string (i.e., that will only be read, not modified) and returns an
+integer.
+** Refactoring
+Simply put, refactoring is the act of changing the structure of a
+piece of code without changing its behaviour. A classic example of
+refactoring is breaking out some behaviour from a function /f/,
+and turning it into another function /g/, and calling /g/ from /f/
+in place of the behaviour. This change preserves the semantics of
+the code, but now the code is more readable because /f/ is shorter
+and more high-level because it is expressed in terms of /g/, which
+should be understandable from the name /g/ rather than having to
+read the source for /g/. 
+
+Refactoring needs a good selection of tests so that one can make
+reasonably sure that a change did not accidentally alter
+behaviour. 
+
+There are books on refactoring patterns (the example above is an
+instance of /extract function/) that explain how to gradually
+improve source for maintainability etc., and tools that automate
+many patterns. For example, by selecting the lines that need to be
+extracted and extracting them and automatically inserting a call
+to the extracted function etc. 
+* Java
+* C
+** Assertions
+The C language has nice support for /assertions/, which is
+essentially a way to check that a certain property holds at some
+point in the program, and otherwise crash. Assertions are good for
+documenting assumptions, preconditions and postconditions in your
+program. (We are going to cover this when we discuss defensive
+programming in class.)
+
+Including =assert.h= in your by program brings in the ~assert()~
+function, that takes as argument a boolean value and crashes if
+this value is ~false~. Here is a typical use of ~assert()~:
+
+#+BEGIN_SRC c
+void string_copy(char *to, char *from)
+{
+  assert(to != NULL);
+  assert(from != NULL);
+  assert(to != from);
+  ...
+}
+#+END_SRC
+
+What this will do is make sure that ~to~ and ~false~ are not
+~NULL~, and do not alias when we hit the ~...~ line (because
+otherwise we would have crashed). This allows us to program to
+those assumptions, which will simplify the code.
+
+The assertions are documentations (that should correspond to
+documentation of the interface of this function) that you actually
+have to pass in actual strings as source and destination to the
+function. On a crash, the line of the crash will tell us exactly
+what condition was not satisfied.
+
+You can compile your program in such a way that assertions are
+removed (for example if you worry about the overhead of having
+assertions in production code) by adding a =-dNDEBUG= flag to the
+compilation.
+
+*Do feel encouraged to use assertions* in your code to document
+assumptions and your own understanding of the code. For example,
+you can add ~assert(false)~ to a line of code that you think will
+never be executed, so that you will have a crash if it ever turns
+out that your understanding was wrong.
+** Function Prototype
+In C, a function prototype is a signature of a function used to
+inform the C compiler of the existence of the function ahead of
+its definition. Because the C compiler is a one-pass compiler that
+reads source files just once, from top to bottom, function
+prototypes are necessary to allow a function /f/ to call a
+function /g/ that is defined /below g/ in the source file:
+
+#+BEGIN_SRC c
+double f(double arg)
+{
+  return g(arg, 2.0);
+}
+
+double g(double base, double exp)
+{
+  return pow(base, exp);
+}
+#+END_SRC
+
+An attempt at compiling this will fail, because C does not know
+/g/ at the time of its calling inside /f/. The solution is to
+forward declare the existence of /g/ by adding a function
+prototype at the top of the file, so that /g/ can be freely called
+from anywhere in the file:
+
+#+BEGIN_SRC c
+double g(double base, double exp);
+
+... // as before 
+#+END_SRC
+

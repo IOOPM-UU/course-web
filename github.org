@@ -1,0 +1,252 @@
+#+title: Basic Git and GitHub on IOOPM 
+
+#+begin_note
+This document is in no way attempting to replace any of the
+excellent git guides out there (like [[https://git-scm.com/book/en/v2/][this one]]). The purpose of
+this document is to serve as a /starting point/ for how to
+interact with git -- if you get stuck, get an error, or want to
+get fancy -- you probably need to start looking elsewhere.
+#+end_note
+
+If you do not remember what version control is, or git, please
+start by reading [[https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control#ch01-getting-started][this]] and then [[https://git-scm.com/book/en/v2/Getting-Started-Git-Basics][this]]. If you want some basic help
+in installing git, look [[https://git-scm.com/book/en/v2/Getting-Started-Installing-Git][here]].
+* How to Get a GitHub Account for the Course
+*TODO* refer to http://wrigstad.com/ioopm/github.php
+* Setting up Git for Your Account
+If you haven't used git before on your machine, you need to tell
+git your user name and email address, which is part of every git
+commit. Use your *real name* and *student email address*:
+#+BEGIN_SRC 
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+#+END_SRC
+Following this, set up =emacs= to be your default editor for
+writing commit messages (etc.) like so:
+#+BEGIN_SRC 
+$ git config --global core.editor emacs
+#+END_SRC
+If you do not want to use emacs, or skip this step, the system's
+default editor will be used, which can vary depending on what OS
+you are using. 
+* Working With Your Git/GitHub Repository
+** Checking Out the Repository for the First Time
+Checking out your repository for the first time will create a
+directory on your machine called =ioopm= (unless you rename it).
+This directory should hold all your work during this course. All
+the hand-ins happen through your git repository.
+
+There will be one or more /local copies/ of your repository (one
+for each machine where you are working, counting all thin clients
+as a single machine since they are just mirrors for accessing the
+same file system), and one /remote copy/ on the GitHub servers. 
+
+The idea is to *pull* changes from the server and integrate them
+with your local copy, work locally on the local copy, and *add* a
+set of edits into a *commit* that represents some sensible,
+ideally coherent change to the code (e.g. implement feature X or
+add test for Y). Commits are *pushed* to the server so that we can
+pull them into another local copy, or accidentally destroy the
+local copy without losing work. When you work with others,
+multiple people can be pushing commits to the server while you are
+working on your local copy. To identify key commits, e.g.,
+finishing an assignment, we *tag* these commits. 
+
+If you use version control correctly, most commits will not be
+tagged, because most commits will be a small improvement, inching
+towards feature completeness (or whatever the goal).
+
+** Pushing Local Commits to GitHub
+If you haven't made a local commit yet, and wish to update GitHub
+with your local changes, read under Making a Commit first, and
+then go back here.
+
+If everything is set up correctly, i.e., you have cloned the
+repository according to the instructions, pushing your local
+commits to the server is as easy as pie:
+#+BEGIN_SRC 
+$ git push 
+#+END_SRC
+This should write a message to the terminal saying things went
+fine. However, in the event that things have changed on the
+server, your push is going to fail.
+
+In that case, you are going to pull the changes from the server to
+your local repository and merge those with your changes *before*
+you can commit. Note that if someone pushes to the server again in
+the meantime, you are going to have to pull those changes too,
+etc.
+
+The section on Downloading Updates from GitHub to Your Local
+Machine covers how to pull changes from the server.
+** Making a Commit
+To make a commit, you must first add the files to be committed.
+Instructions for that is found under Adding Files.
+
+Once you have added the files in your commit, you can go ahead and
+make the commit. This means taking a snapshot of the current state
+of the added files. Here is an example of what this might look like:
+#+BEGIN_SRC 
+$ git commit -m "...a good commit message..."
+#+END_SRC
+It is a requirement to write a commit message for each commit. If
+you omit the comment, one of two things will happen: either git
+will abort with an angry message, or it will fire up an editor in
+which you can write your message. If you try to write an empty
+message, it will complain and abort.
+
+The reason for being so anal about the commit message is that it
+is important. It is quite common to want to look at the history of
+commits to search for e.g. where some bug might have been
+introduced. Unless there is a good high-level description, which
+ideally should be less than 50 characters and on a single line,
+the history is going to be even harder to navigate.
+
+Here is an example from a git repo. These messages are not
+particularly good, but vastly superior to no messages or
+stupidities like "foo" and "changed some files".
+
+#+BEGIN_SRC 
+2017-06-04 22:41 Tobias Wrigstad     o [development] Added coin flip
+2017-06-07 13:03 Kiko                M─┐ {origin/development} {origin/HEAD} Merge pull
+2017-06-01 16:42 EliasC              │ o Add implicit constructor call in main class
+2017-05-09 15:10 Karolina Nikamo     │ o desugar method calls, default params and fixes
+2017-05-02 11:25 Casper Strömberg    │ o initial impl. of default params working
+2017-05-01 22:03 Lowe Fredriksson    │ o pdefault=Nothing in awaitParam to make the com
+2017-05-01 20:48 Karolina Nikamo     │ o started with default parameters
+2017-04-07 12:08 Casper Strömberg    │ o Parsing and input default fields to AST
+2017-06-02 12:07 EliasC              o │ Fix bug when printing non-sugared strings (#81
+2017-06-01 00:15 Kiko                o─┘ cast print (#811)
+2017-05-30 15:01 helanhalvan         o Adding Pedestrian simulation stress test (#794)
+#+END_SRC
+
+Here are some opinons about how to write commit messages:
+1. [[https://chris.beams.io/posts/git-commit/][How to Write a Git Commit Message]]
+2. [[https://medium.com/@andrewhowdencom/anatomy-of-a-good-commit-message-acd9c4490437][Anatomy of a "Good" commit message]]
+3. [[https://code.likeagirl.io/useful-tips-for-writing-better-git-commit-messages-808770609503][Useful Tips for writing better Git commit messages]]
+
+The last link, for example, contains this list of rules:
+
+1. Separate subject from body with a blank line
+2. Limit the subject line to 50 characters
+3. Capitalize the subject line
+4. Do not end the subject line with a period
+5. Use the imperative mood in the subject line
+6. Wrap the body at 72 characters
+7. Use the body to explain /what/ and /why/ vs. /how/
+
+** Adding Files 
+Add files using the =git add= command in the terminal:
+#+BEGIN_SRC 
+$ git add list.h list.c
+#+END_SRC
+This is often referred to as /staging/ in Git parlance. 
+
+#+begin_important
+*DO NOT* add generated files like =a.out= or =list.o= etc. These
+are easy to generate from the source files when/if you want them.
+Such files tend to be quite specific for the system where they
+were built, and it may well be that an =a.out= executable that
+works on machine A does not work on machine B. By not making these
+files globally visible, you can avoid many strange errors.
+
+Also, do not backup temporary files and backup files from Emacs
+ending with a =~= etc. Since we are using a version control
+system, there is no need for additional backup files.
+
+If you are on macOS, you may have strange files called e.g.
+=.DS_store= and =__MAC_OS= etc. Don't commit those either. They do
+not belong in a repository.
+#+end_important
+
+** Tagging a Commit
+Git allows us to tag a commit as a special mark. For example, we
+might mark a certain commit as Release 4.3.1 so that we can go
+back to this particular release in the future if needed, e.g., to
+fix a bug or retrofit a security patch or whatever. 
+
+On the course, we are going to use tags to mark finished
+assignments and also discrete labelled steps in assignment one
+(for example).
+
+To list all tags for a git repo, simply write =git tag=. In the
+beginning, you will have no tags. 
+
+To tag a commit, a so-called [[https://git-scm.com/book/en/v2/Git-Basics-Tagging][lightweight tag]] will do fine. To tag
+the current commit =assignment1_done=, meaning that we can check
+it out to get a working assignment 1, simply do the following:
+
+#+BEGIN_SRC 
+$ git tag assignment1_done
+#+END_SRC
+
+Note that, by default, =git push= does not transfer tags to remote
+servers! Thus, as a final step to tagging your commits, you must
+explicitly push tags: =git push origin <tagname>= where
+=<tagname>= is e.g., =assignment1_done=, etc.
+
+If you realise that mistagged something, or you later find a bug
+so that you want another commit to be the finished assignment one,
+use a versioning scheme where you create a new tag but add =_v1=
+to its end. Thus, we can have the following:
+
+#+BEGIN_SRC 
+$ git tag 
+assignment1_step0
+...
+assignment1_step14
+assignment1_done
+assignment1_done_v1
+assignment1_done_v2
+$
+#+END_SRC
+
+In this case, =assignment1_done_v2= will count as the finished
+assignment one as it has the highest version number.
+** Pulling Updates from GitHub to Your Local Machine
+In git parlance we talk about fetching and pulling changes. For
+simplicity, we are only talking about pulling here, which
+essentially means fetching and subsequently integrating the
+changes with your local copy. 
+
+When you pull changes from the server, you have two options: merge
+and rebase. A nice introduction to these can be found [[https://git-scm.com/book/en/v2/Git-Branching-Rebasing#_rebase_rebase][here]].
+
+Merge looks like this:
+#+BEGIN_SRC 
+$ git pull 
+#+END_SRC
+It will pull the changes from the server and merge them with your
+local changes. If there are conflicting edits that cannot be
+resolved automatically, you will have to resolve these manually,
+and the resolved changes will eventually be contained in a commit
+of its own. Thus, it is likely that if you do =git pull=, you will
+end up creating an additional commit if things have moved on the
+server.
+
+Rebase looks like this:
+#+BEGIN_SRC 
+$ git pull --rebase
+#+END_SRC
+When you pull with the =--rebase= flag, git will download the
+change set and insert it in the commit history /before/ your
+commit. Essentially pretending that you made these edits "on top"
+of the current state on the server. If all goes well in the merge,
+the git history stays a straight line, making it easier to travel
+back in time and still have working and sensible code. 
+
+There are pros and cons with both ways of integrating changes, but
+the way we are going to use git on this course, I would recommend
+to always use =git pull --rebase=.
+
+
+
+#+LANGUAGE: en
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./css/htmlize.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./css/readtheorg.css"/>
+
+#+HTML_HEAD: <script src="./js/jquery.min.js"></script>
+#+HTML_HEAD: <script src="./js/bootstrap.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="./js/jquery.stickytableheaders.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="./js/readtheorg.js"></script>
+

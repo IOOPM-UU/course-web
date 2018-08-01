@@ -1,0 +1,7 @@
+needs to explain basic makefiles or point to something about basic makefiles
+
+
+make 
+dependencies
+make test
+make valgrind 

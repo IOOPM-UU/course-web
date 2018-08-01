@@ -1,0 +1,3 @@
+Needs to explain the basic compiler flags
+
+gcc -pedantic -Wall -g -o -c -lm -lcunit 
