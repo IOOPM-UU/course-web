@@ -1,0 +1,141 @@
+#+title: Imperative and Object-Oriented Programming Methodology
+#+include: "./setup.org" 
+
+#+begin_note
+This page is not yet updated for 2018.
+#+end_note
+
+#+begin_note
+Note: I am in the process of translating the material for this
+course from Swedish to English. The reason for this is to be able
+to have non-Swedish speaking TAs on this course. Rather than delay
+things or offer only a single project, I have elected to mix
+Swedish and English where I did not have the time to rewrite old
+material.
+#+end_note
+
+#+begin_important
+If you are visiting this page for the first time, you should
+probably [[file:about.org][read the page about the course first]].
+#+end_important
+
+* Lecture Schedule with Slides
+Note that without exception, all lectures start at 10:15 and are scheduled to end at 12:00. 
+** Phase 1 (Imperative Programming)
+| Contents | Date                                                                                                                                                                   |
+|----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 3/9      | Grundläggande datatyper (inkl. arrayer), deklaration, uttryck och satser (inkl. loopar). Funktioner. Introduktion till standard-I/O och grundläggande stränghantering. |
+|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/1][A1]] ([[http://auportal.herokuapp.com/achievements/13][F13]], [[http://auportal.herokuapp.com/achievements/15][G15]])                                                                                                                    |
+| 6/9      | Poster och unioner. Typnamnsdefinitioner. Funktionspekare. Separatkompilering och headerfiler.                                                                         |
+|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/3][A3]], [[http://auportal.herokuapp.com/achievements/9][D9]], [[http://auportal.herokuapp.com/achievements/15][G15]], [[http://auportal.herokuapp.com/achievements/16][G16]], ([[http://auportal.herokuapp.com/achievements/22][I22]]), [[http://auportal.herokuapp.com/achievements/30][K30]].                                                                                                    |
+| 10/9     | Introduktion till resten av kursen. Skillnad mellan funktionell och imperativ programmering. SIMPLE. Det agila upplägget.                                              |
+|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/7][C7]]                                                                                                                               |
+| 13/9     | Dynamisk minnesallokering. Pekare.                                                                                                                                     |
+|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/10][E10]], [[http://auportal.herokuapp.com/achievements/20][H20]], [[http://auportal.herokuapp.com/achievements/26][J26]], [[http://auportal.herokuapp.com/achievements/27][J27]], [[http://auportal.herokuapp.com/achievements/38][M38]]                                                                                                          |
+| 17/9     | Hur strukturerar man? Top-down, bottom-up. Lagertänkande.                                                                                                              |
+|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/41][N41]], [[http://auportal.herokuapp.com/achievements/45][P45]]                                                                                                                         |
+| 19/9     | Automatisering (Make, scripting).                                                                                                                                      |
+|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/55][T55]], [[http://auportal.herokuapp.com/achievements/57][U57]], [[http://auportal.herokuapp.com/achievements/58][V58]]                                                                                                                    |
+| 24/9     | Introduction to testing with CUnit                                                                                                                                     |
+|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/18][G18]], [[http://auportal.herokuapp.com/achievements/49][Q49]], [[http://auportal.herokuapp.com/achievements/50][Q50]]                                                                                                                    |
+| 27/9     | Recap: Pekare, arrayer. Dynamiska arrayer. Pekararrayer.                                                                                                               |
+|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/10][E10]], [[http://auportal.herokuapp.com/achievements/20][H20]], [[http://auportal.herokuapp.com/achievements/26][J26]], [[http://auportal.herokuapp.com/achievements/36][M36]]                                                                                                               |
+| 1/10     | Länkade strukturer och iteratorer.                                                                                                                                     |
+|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/27][J27]], [[http://auportal.herokuapp.com/achievements/37][M37]], [[http://auportal.herokuapp.com/achievements/39][M39]]                                                                                                                    |
+| 4/10     | Const, Preprocessorn, Coupling & Cohesion                                                                                                                              |
+|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: TBA                                                                                                                              |
+| 8/10     | Defensiv programmering. Läsbar kod.                                                                                                                                    |
+|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/22][I22]], [[http://auportal.herokuapp.com/achievements/45][P45]]                                                                                                                         |
+| 11/10    | Preprocessorn. Bitmanipulering. Optimering.                                                                                                                            |
+|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/42][O42]], [[http://auportal.herokuapp.com/achievements/43][O43]], [[http://auportal.herokuapp.com/achievements/44][O44]]                                                                                                                    |
+| 15/10    | /Backup/                                                                                                                                                               |
+| 18/10    | Prepping for code exam                                                                                                                                                 |
+** Phase 2 (Object-Oriented Programming)
+| Date  | Contents                                                                                         |
+|-------+--------------------------------------------------------------------------------------------------|
+| 25/10 | Introduktion till objektorientering.                                                             |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/java/][Handouts and resources]].                                                                          |
+| 26/19 | Översikt: skräpsamling, undantagshantering, JVM:en, JIT-kompilering.                             |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/java/][Handouts and resources]].                                                                          |
+| 29/10 | Ett första objektorienterat program                                                              |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/java/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/2][A2]], [[http://auportal.herokuapp.com/achievements/37][M37]], [[http://auportal.herokuapp.com/achievements/40][N40]]                                               |
+| 1/11  | Objektorienterad analys och design. Konstruktorer. Instantiering, referenser, klassvariabler.    |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/java/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/2][A2]], [[http://auportal.herokuapp.com/achievements/4][B4]], [[http://auportal.herokuapp.com/achievements/5][B5]], [[http://auportal.herokuapp.com/achievements/6][B6]], [[http://auportal.herokuapp.com/achievements/8][C8]], [[http://auportal.herokuapp.com/achievements/19][H19]], [[http://auportal.herokuapp.com/achievements/20][H20]], [[http://auportal.herokuapp.com/achievements/21][H21]], [[http://auportal.herokuapp.com/achievements/11][E11]], [[http://auportal.herokuapp.com/achievements/12][E12]], [[http://auportal.herokuapp.com/achievements/30][K30]], [[http://auportal.herokuapp.com/achievements/31][K31]], [[http://auportal.herokuapp.com/achievements/32][K32]] |
+| 5/11  | Arv och klasshierarkier. Överlagring. Overriding.                                                |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/java/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/2][A2]], [[http://auportal.herokuapp.com/achievements/4][B4]], [[http://auportal.herokuapp.com/achievements/5][B5]], [[http://auportal.herokuapp.com/achievements/6][B6]], [[http://auportal.herokuapp.com/achievements/8][C8]], [[http://auportal.herokuapp.com/achievements/19][H19]], [[http://auportal.herokuapp.com/achievements/20][H20]], [[http://auportal.herokuapp.com/achievements/21][H21]], [[http://auportal.herokuapp.com/achievements/11][E11]], [[http://auportal.herokuapp.com/achievements/12][E12]], [[http://auportal.herokuapp.com/achievements/30][K30]], [[http://auportal.herokuapp.com/achievements/31][K31]], [[http://auportal.herokuapp.com/achievements/32][K32]] |
+| 8/11  | Överlagring av konstruktorer. Abstrakta klasser. Interface. Genericitet.                         |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/java/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/2][A2]], [[http://auportal.herokuapp.com/achievements/4][B4]], [[http://auportal.herokuapp.com/achievements/5][B5]], [[http://auportal.herokuapp.com/achievements/6][B6]], [[http://auportal.herokuapp.com/achievements/8][C8]], [[http://auportal.herokuapp.com/achievements/19][H19]], [[http://auportal.herokuapp.com/achievements/20][H20]], [[http://auportal.herokuapp.com/achievements/21][H21]], [[http://auportal.herokuapp.com/achievements/11][E11]], [[http://auportal.herokuapp.com/achievements/12][E12]], [[http://auportal.herokuapp.com/achievements/30][K30]], [[http://auportal.herokuapp.com/achievements/31][K31]], [[http://auportal.herokuapp.com/achievements/32][K32]] |
+| 12/11 | Identitet och ekvivalens. Inkapsling. Inre och nästlade klasser. Wrapperklasser.                 |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/java/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/2][A2]], [[http://auportal.herokuapp.com/achievements/15][G15]], [[http://auportal.herokuapp.com/achievements/16][G16]], [[http://auportal.herokuapp.com/achievements/17][G17]]                                          |
+| 15/11 | Testing of Object-Oriented Programs                                                              |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/java/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/18][G18]], [[http://auportal.herokuapp.com/achievements/46][P46]], [[http://auportal.herokuapp.com/achievements/49][Q49]], [[http://auportal.herokuapp.com/achievements/50][Q50]], [[http://auportal.herokuapp.com/achievements/51][Q51]]                                    |
+| 19/11 | Statisk vs. dynamisk bindning. Profilering. Refactoring. JIT-kompilering. Bytecode.              |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/java/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/40][N40]], [[http://auportal.herokuapp.com/achievements/41][N41]], [[http://auportal.herokuapp.com/achievements/42][O42]], [[http://auportal.herokuapp.com/achievements/43][O43]], [[http://auportal.herokuapp.com/achievements/44][O44]]                                    |
+| 22/11 | Garbage collection in-depth, and its relation to resource management.                            |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/java/][Handouts and resources]].                                                                          |
+| 26/11 | /Backup/                                                                                         |
+| 29/11 | /Backup/                                                                                         |
+| 3/12  | Prepping for code exam                                                                           |
+
+TBA in 2018: Guest lecture from Oracle JVM engineers.
+
+** Phase 3 (Methodology and Tools)
+| Date  | Contents                                 |
+|-------+------------------------------------------|
+| 10/12 | Project presentations, software projects |
+| 18/1  | Retrospective & guest lecture            |
+
+
+* Deadlines 
+Deadlines and important dates in chronological order. Read [[file:about.org#orgc68375c][here]] about soft and hard deadlines.
+
+| Date         | Deadline                   | Comment                                   |
+|--------------+----------------------------+-------------------------------------------|
+| 14/9         | Groupie Assignment         |                                           |
+| 14/9         | C Bootstrap                | Prerequisite for starting on Assignment 1 |
+| 5/10         | Assignment 1 (Soft)        |                                           |
+| 19/10        | Assignment 1 (Hard)        |                                           |
+| 19/10        | Assignment 2 (Soft)        |                                           |
+| 24/10        | Coding Exam 1              |                                           |
+| 26/10        | Assignment 2 (Hard)        |                                           |
+| 26/10        | Java Bootstrap             | Prerequisite for starting on Assignment 2 |
+| 16/11        | Assignment 3 (Soft)        |                                           |
+| 30/11        | Assignment 3 (Hard)        |                                           |
+| 30/11        | Assignment 4 (Soft)        |                                           |
+| 1/12         | Last day to hand in essay  |                                           |
+| 11/12        | Assignment 4 (Hard)        |                                           |
+| 11/12        | Coding Exam 2              |                                           |
+| 13/12        | Last possibility to do X62 |                                           |
+| 19/12        | Coding Exam 3              |                                           |
+| December     | Essay feedback seminars    | *Mandatory presence for essay writers*    |
+| 14/1 2019    | Project (Hard)             |                                           |
+| 16/1 2019    | C7 deadline                |                                           |
+| 16-18/1 2019 | Project Seminars           | *Mandatory presence for all*              |
+
+* Assignments and Hand-Ins
+Note that assignments mostly act as drivers to learn concepts and produce evidence for demonstrating mastery of achivements.
+
+| What                          | Start | End       |
+|-------------------------------+-------+-----------|
+| [[file:assignments/c-bootstrap.org][C bootstrap exercises]]         | 3/9   | 14/9      |
+| [[file:assignments/assignment1.org][Assignment 1 (C)]]              | 17/9  | 5/10      |
+| [[file:assignments/assignment2.org][Assignment 2 (C)]]              | 8/10  | 19/10     |
+| [[file:assignments/java-bootstrap.org][Java bootstrap exercises]]      | 22/10 | 26/10     |
+| [[file:assignments/assignment3.org][Assignment 1 (Java)]]           | 29/10 | 16/11     |
+| [[file:assignments/assignment4.org][Assignment 2 (Java)]]           | 19/11 | 30/11     |
+| [[file:projects/projects.org][Project assignment -- Phase 3]] | 3/12  | 14/1 2019 |
+* Resources
+** How IOOPM Works
+See [[file:about.org][this page]].
+** The SIMPLE Methodology
+See [[file:simple.org][this page]].
+** The Coding Exam 
+See [[file:code-exam.org][this page]].
+** Contact Information
+| Name             | Function                | Email                       | Office |
+|------------------+-------------------------+-----------------------------+--------|
+| [[http://wrigstad.com][Tobias Wrigstad]]  | Head Teacher            | =tobias.wrigstad@it.uu.se=  |   1356 |
+| Gustaf Borgström | Head Teaching Assistant | =gustaf.borgstrom@it.uu.se= |   1258 |
+** FAQ
+A minimal FAQ is [[file:about.org][available]].
+** TODO Links

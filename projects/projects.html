@@ -1,0 +1,1178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-08-02 tor 00:21 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Course Project</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Tobias Wrigstad" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="/home/stw/t/ioopm/2018/site/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/home/stw/t/ioopm/2018/site/css/readtheorg.css"/>
+<script src="/home/stw/t/ioopm/2018/site/js/jquery.min.js"></script>
+<script src="/home/stw/t/ioopm/2018/site/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/home/stw/t/ioopm/2018/site/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/home/stw/t/ioopm/2018/site/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Course Project</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org632d309">1. Why a Project?</a></li>
+<li><a href="#orge96761d">2. Process</a>
+<ul>
+<li><a href="#org3694ac8">2.1. How to work</a></li>
+<li><a href="#orgce46b57">2.2. How Not To Work</a></li>
+</ul>
+</li>
+<li><a href="#orga1d153a">3. Project Infrastructure and Constraints</a>
+<ul>
+<li><a href="#orgace4899">3.1. Time: Lower bound, upper bound</a></li>
+<li><a href="#org0c613fd">3.2. Resources: The Team</a></li>
+<li><a href="#orgc1cfa0f">3.3. Resources: The Coach</a></li>
+<li><a href="#orgf63137c">3.4. Failing to Hand In Something Remotely Satisfactory</a></li>
+<li><a href="#org334f1de">3.5. Failing to Hand in Something Satisfactory</a></li>
+</ul>
+</li>
+<li><a href="#org0709e00">4. What to Hand In</a>
+<ul>
+<li><a href="#orgbe8b059">4.1. The Code</a></li>
+<li><a href="#org52baa2e">4.2. The Tests</a></li>
+<li><a href="#org339028e">4.3. Integrations with Existing Code</a></li>
+<li><a href="#orgba2f41a">4.4. Design Documentation</a></li>
+<li><a href="#org5d6e090">4.5. Team Retrospective</a></li>
+<li><a href="#orgbcc8f14">4.6. Individual Reflection</a></li>
+<li><a href="#org11bfcb7">4.7. Test Report</a></li>
+<li><a href="#org920b5f6">4.8. Code Quality Report</a></li>
+<li><a href="#org073f4ed">4.9. Deviations</a></li>
+</ul>
+</li>
+<li><a href="#org827af9d">5. Process Requirements</a>
+<ul>
+<li><a href="#org026165c">5.1. Trello (or similar)</a></li>
+<li><a href="#orga0b8758">5.2. GitHub for Version Control, Issue Tracking and Pull Requests</a></li>
+<li><a href="#orgd5d62a6">5.3. Tools for Making Good Code</a></li>
+</ul>
+</li>
+<li><a href="#orga20e0c5">6. Final Seminar</a>
+<ul>
+<li><a href="#org7ea3f5e">6.1. Do we need slides?</a></li>
+</ul>
+</li>
+<li><a href="#org6ffef03">7. Nutshell Summaries of the two Projects</a>
+<ul>
+<li><a href="#org9831b30">7.1. Project One</a></li>
+<li><a href="#org3459500">7.2. Project Two</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org632d309" class="outline-2">
+<h2 id="org632d309"><span class="section-number-2">1</span> Why a Project?</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The IOOPM project serves several goals, but mainly, it serves as
+an introduction to the inherent problems of software development.
+So far on the course, and in previous courses like PKD, we have
+focussed on <i>programming</i>, in the sense of "cutting code". Our main
+problems have been getting things to run, figthing compilers and
+libraries, chasing double deallocations or memory leaks, or
+understanding why a particular method call did not get dispatched
+in a way we intended. These are <i>problems in the small</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> &#x2013; now it is
+time to face problems in the large<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.
+</p>
+
+<p>
+The main challenge of software development is <i>not</i> programming &#x2013;
+it is understanding specification, communicating with other
+members of the team, customers and problem owners, dealing with
+design decisions of the past that turned out not to be as future
+proof as intended, estimating time, fighting motivational issues,
+and delivering on time and on budget with acceptable quality, not
+just once, but consistently. This is, as it turns out, quite a
+tall order.
+</p>
+
+<p>
+While the domain of the projects was picked to serve a learning
+purpose, the main goal of the project is <b>not</b> to learn more
+programming, but to put programming to work in a larger context,
+and deliver in a way that is sustainable<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>.
+</p>
+
+<p>
+What this means is that during the project you should be thinking
+consistently about these things:
+</p>
+
+<ul class="org-ul">
+<li>How can we as a team be reasonably sure to deliver what we set
+out to deliver at a date we committed to?</li>
+<li>How can we load-balance the workload so that no one is
+overwhelmed?</li>
+<li>How can we be sure that we are delivering the right thing?</li>
+<li>How do we make sure that the thing we are delivering works
+correctly?</li>
+<li>How do we communicate effectively in the team?</li>
+<li>How do we deal effectively with team members that are
+demotivated, angry, stressed about things outside of the
+project, in a way that is sustainable?</li>
+<li>How do we ensure that the team is working smoothly? (E.g.,
+making sure that the team is a team, that people are not working
+against each others, that no small cabals are formed, etc.)</li>
+</ul>
+
+<p>
+And more personally about:
+</p>
+
+<ul class="org-ul">
+<li>How do I function in a team? Where are my strengths and weaknesses?</li>
+<li>How should I try to adapt the way I work to work better in a team?</li>
+<li>What motivates me? What demotivates me? How do I stay motivated in a project?</li>
+<li>How good am I at estimating how long a task will take? What is the process
+that produce my estimations?</li>
+<li>What role do I want to play in a team?</li>
+</ul>
+
+<p>
+Because the goal of the project is to understand and reflect on
+the software development process, the main requirement for passing
+and failing is not whether you manage to complete the project or
+not. **What I request is that you all do your best effort to
+complete the project, in a sustainable way, and without chucking
+all the principles of good software development just to be able to
+demo something at the end.**
+</p>
+
+<p>
+In practise that means that if you are able to hand something in
+that only implements a subset of the requested functionality, but
+that is solid enough for others to build on, you are probably not
+going to fail. However, this should not come as a surprise to your
+coach<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>! You
+must efficiently communicate with your coach so that he or she
+knows what to expect from your final deliverable, or we will
+expect that you have completed the entire specification.
+</p>
+
+<p>
+In the likely event that you think anything about the project
+specification is vague, know that it is your responsibility to
+untangle it. This includes details in the specification as well
+as requirements to pass this part of the course. Also, in either
+case, you cannot rely on getting answers that satisfy you.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge96761d" class="outline-2">
+<h2 id="orge96761d"><span class="section-number-2">2</span> Process</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org3694ac8" class="outline-3">
+<h3 id="org3694ac8"><span class="section-number-3">2.1</span> How to work</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+This is impossible to describe, but here are some suggestions:
+</p>
+<ul class="org-ul">
+<li>Work in sprints, ideally more than two</li>
+<li>No coding in the first day and last two days of the project</li>
+<li>Doing a bad job of dividing tasks will hurt the project</li>
+<li>Don't be afraid to revise plans/tasks/alottment/etc.</li>
+<li>Take 5 minutes to sync daily, even of workdays where you only work on other things (like other courses)</li>
+<li>Spend time on "group norming and forming" &#x2013; have a kick-off, celebrate your wins (and your losses)</li>
+<li>Avoid making this mistake: "I'm not a coder so I better work on something that does not involve programming"</li>
+<li>Don't panic!</li>
+<li>Don't go dark &#x2013; keep your coach informed about progress</li>
+<li>If you don't understand X<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>, create a task force of 1&#x2013;2
+people to learn about X and educate the others</li>
+<li>When setting goals, try hard to make the goals measurable (how else will you know if you have met them?)</li>
+<li>Risk taking is less risky when combined with time-boxing</li>
+<li>Strong opinions does not make one right</li>
+<li>Don't buy a single person's whole design &#x2013; share ownership of ideas, decision power, etc.</li>
+<li>Assigning roles and responsibilities is a really good idea, but
+such things only work if everyone in the team cooperates and e.g. gives the project manager more power</li>
+<li>Don't lie about your abilities</li>
+<li>Don't lie about (lack of) progress</li>
+<li>If you mess up &#x2013; don't try to cover it up! For example, if you
+forget to record time measurements &#x2013; don't fudge them
+afterwards because you are supposed to. What will you learn from
+that?</li>
+<li>If you see a team member struggling without speaking up, help that person come clean</li>
+<li>Any process is better than no process</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgce46b57" class="outline-3">
+<h3 id="orgce46b57"><span class="section-number-3">2.2</span> How Not To Work</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Historically on this course, there has been a tendency to focus on
+optimisations, and following specifications to the letter from the
+start. <b><b>This is a really bad idea.</b></b> As has been regurgitated since
+day one on this course, don't over-engineer your designs and
+implementations from the start as you simply do not have enough
+information or understanding of the problem at that point.
+</p>
+
+<p>
+Example: it used to be the case that the project description was
+phrased in terms of, "implement <i>X</i>, here is how to do it by
+bit-manipulation to save memory." <i>This was purposely a setup!</i>
+The right way to go about this is to first do <i>X</i> in the simplest
+possible way. That allows testing, integration, etc. and
+benchmarking how much memory would actually be saved using the
+bit-manipulation implementation! Lots of student groups got stuck
+on trying to both understand <i>X</i> and the bit-manipulation <i>at the
+same time</i>, causing the entire project to be delayed or at times
+even fail because without <i>X</i>, the it was impossible to get anything
+else working<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup>.
+</p>
+
+<p>
+Planning is hard and cannot be learned from a book! If your
+approach is to work as hard as possible from the start and then
+harder (or less hard) when you get closer to the deadline, you are
+not doing it right. Unless you have a plan, you cannot deviate,
+and you'll have a hard time communicating to us what our
+expectations should be of your team's final deliverable. Start by
+making a plan, and see how it goes. Maybe you will learn that you
+have a tendency to think that things are simpler than they are. Or
+that you have a tendency to not realise that physical meetings
+take time, or that it may be hard to get 20 solid hours of coding
+done in a 40 hour week! Having expectations and refining them are
+key. Flying blind is not.
+</p>
+
+<p>
+This course is not about teaching you the right way to develop
+software in teams, but about giving you an understanding of the
+importance of the whole field of software engineering. Later
+courses will give you better tools and techniques, but unless you
+reflect on things now<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>, you'll get less out of those
+courses later!
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga1d153a" class="outline-2">
+<h2 id="orga1d153a"><span class="section-number-2">3</span> Project Infrastructure and Constraints</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgace4899" class="outline-3">
+<h3 id="orgace4899"><span class="section-number-3">3.1</span> Time: Lower bound, upper bound</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+The project may start at December 4th, but not earlier. The
+project will be handed in no later than 24 hours <i>before</i> the
+seminar. For example, if your team's seminar is on the 11th of
+January at 15:00, the strict deadline is January 10th, at 15:00.
+<b>This is a strict deadline which may not be renegotiated.</b>
+The time slots for the seminars will be announced on the course
+web site or Piazza in December.
+</p>
+
+<p>
+We expect that you take some time off during Christmas and New
+Year. The definition of <i>some time</i> is up to you. For example, in
+2017, there are exactly four holidays (December 25 and 26, 1st and
+5th of January), in addition to weekends. Feel free to handle this
+in whatever way you want, as long as you get the work done.
+</p>
+
+<p>
+In the past, I have had several panic calls from project members
+who feel that most of the team is AWOL and does not care during
+the holidays, and feel obligated to work around the clock to move
+things forward. This causes tension in the team, is bad for
+quality, and simply serves to perpetuate an already bad situation.
+<i>As a team, you are responsible for making sure this does not
+happen.</i> Take responsibility for the well-being of your fellow
+team members.
+</p>
+
+<p>
+You are invited to reach out to me as often as you need during
+Christmas and New Year. I might be travelling, but working.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org0c613fd" class="outline-3">
+<h3 id="org0c613fd"><span class="section-number-3">3.2</span> Resources: The Team</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Each team will be about 6 people. You may choose to work however
+you like in this team. You may use pair programming, or not. You
+may choose to only work together, all at the same time at the
+University, or completely distributed, or a mix.
+</p>
+
+<p>
+Since team members have signed up for the project, this means they
+have also signed the statement of intent, promising to pull their
+weight. Any team member that falls back on this promise can be
+"voted of the Island". Talk to Tobias if the need arises.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgc1cfa0f" class="outline-3">
+<h3 id="orgc1cfa0f"><span class="section-number-3">3.3</span> Resources: The Coach</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Varje team får en coach tilldelad sig, för att få hjälp och svara
+på frågor. Dessa anslås på kursens webbsida/Piazza i samband med
+grupperna. Tidigt under projektets gång bör teamet ha ett möte med
+coachen. Vid detta första möte skall teamet presentera sin tänkta
+(partiella?) högnivådesign för coachen, samt sin planering, d.v.s.
+hur systemet är uppdelat i delsystem, gränssnittet mellan
+delsystemen, hur delsystemen är fördelade över programmeringspar,
+och några första grova deadlines.
+</p>
+
+<p>
+Teamet ansvarar för att boka ett avstämningsmöte med sin coach
+någon gång under projektets gång. Vid detta möte skall teamet kort
+rapportera om hur arbetet fortskrider, om man räknar med att bli
+klar i tid, eventuella stora problem, etc. Vid behov kan
+ytterligare möten bokas. <b><b>Vid problem skall man i första hand kontakta sin coach.</b></b>
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgf63137c" class="outline-3">
+<h3 id="orgf63137c"><span class="section-number-3">3.4</span> Failing to Hand In Something Remotely Satisfactory</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+A team that fails to hand anything in that is remotely
+satisfactory will be failed. Each team member will be given a new
+opportunity next year, as part of a different team.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org334f1de" class="outline-3">
+<h3 id="org334f1de"><span class="section-number-3">3.5</span> Failing to Hand in Something Satisfactory</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+A team that fails to hand anything in that is satisfactory will be
+given an opportunity to fix their problems. We will negotiate a
+new deadline, negotiate demands of the final deliverable, and go
+from there.
+</p>
+
+<p>
+Notably, satisfaction is tied to expectations. This means
+surprising your coach (and other examiners) by handing in
+something very poor is a harder fail than an expected, equally
+poor delivery.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0709e00" class="outline-2">
+<h2 id="org0709e00"><span class="section-number-2">4</span> What to Hand In</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The entire hand-in should be contained in the team's GitHub
+repository. The repository should have the following structure
+(see below for additional explaination):
+</p>
+
+<pre class="example">
+.
+├── demo/
+├── doc/
+│   └── design.md # note markdown format
+├── makefile # top-level makefile
+├── proj/
+│   ├── code_quality_report.md
+│   ├── deviations.md
+│   ├── individual_reflection.md
+│   ├── team_reflection.md
+│   └── test_report.md
+├── src/
+└── test/
+</pre>
+</div>
+<div id="outline-container-orgbe8b059" class="outline-3">
+<h3 id="orgbe8b059"><span class="section-number-3">4.1</span> The Code</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+The code (excluding demo code and tests) should be placed in
+<code>./src</code> in the repo. You can have whatever structure under this
+directory. It should be possible to build the code using the
+top-level make file<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup>.
+</p>
+
+<p>
+Note that files with extension .md are supposed to use <a href="https://daringfireball.net/projects/markdown/syntax">markdown
+format</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org52baa2e" class="outline-3">
+<h3 id="org52baa2e"><span class="section-number-3">4.2</span> The Tests</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Unit tests, integration tests, etc. are placed in <code>./test</code>. It
+should be possible to run these with <code>make test</code> and <code>make memtest</code> with the top-level makefile.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org339028e" class="outline-3">
+<h3 id="org339028e"><span class="section-number-3">4.3</span> Integrations with Existing Code</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Both projects ask for integration with existing code. Such code
+should be placed in <code>./demo</code>. The top-level makefile should allow
+building this code and link it with the code in <code>./src</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgba2f41a" class="outline-3">
+<h3 id="orgba2f41a"><span class="section-number-3">4.4</span> Design Documentation</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+In the file <code>./doc/design.md</code>, describe the design of the system at
+a high level. You must start with a high-level description using
+some graphical notation and accompanying text. The purpose of this
+document is to serve as a starting point for someone that wants to
+understand the implementation.
+</p>
+
+<p>
+This file, together with <code>./proj/deviations.md</code> (and, naturally the
+code) will be used by the examiner to convince him/herself that
+you pass Y68.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org5d6e090" class="outline-3">
+<h3 id="org5d6e090"><span class="section-number-3">4.5</span> Team Retrospective</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+In a relatively short text write a team retrospective in which you
+reflect on how the team has worked together. <b><b>A report template
+<a href="project-report.html">is found here</a>.</b></b> Using this template, you will be asked to reflect
+on the questions listed at the top of this document, but also
+about:
+</p>
+
+<ul class="org-ul">
+<li>The communication between team members and with people outside the team</li>
+<li>The cooperation between team members</li>
+<li>The coordination between team members with respect to technical tasks</li>
+<li>How the programming tasks were divided, distributed, carried
+out, load-balanced, etc. &#x2013; if you used pair programming how did
+that go? Did you use it for everything?</li>
+<li>How did you go about planning? Were your plans mostly followed?</li>
+<li>How did decision making happen?</li>
+<li>What process did you follow, why and how did that go?</li>
+<li>What are they key lessons learned? (Both negative and positive!)</li>
+</ul>
+
+<p>
+In a separate section of this document, diskutera arbetet med pull
+requests (PRs) och löpande granskning av kod som går in i
+''master''. Vad ledde detta till? Var det endast merarbete eller
+tjänade det något till? Hur fungerade färgglada diffar på GitHub
+som stöd för att se vad som ändrats? Hur ofta knuffades en PR
+tillbaka för förändringar (eller liknande) innan den fick
+merge:as? Hur många PR gjordes? Låg de länge i snitt? Arbetade
+alla par lika med PR? Vad fungerade? Vad fungerade inte?
+</p>
+
+<p>
+Sammanställ också samtliga gruppmedlemmars tidsloggar och ta fram
+en gemensam sammanställning av tidsåtgång och fördelning över
+olika kategorier<sup><a id="fnr.9" class="footref" href="#fn.9">9</a></sup>. Denna skall
+visualiseras som ett pie chart.
+</p>
+
+<p>
+The team retrospective goes into a file in <code>proj</code> called
+<code>team_reflection.md</code>.
+</p>
+
+<p>
+This file should convince the examiner that you pass Y64.
+The text on pull requests, together with the actual pull request
+log on GitHub, should convince the examiner that you pass Y66.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbcc8f14" class="outline-3">
+<h3 id="orgbcc8f14"><span class="section-number-3">4.6</span> Individual Reflection</h3>
+<div class="outline-text-3" id="text-4-6">
+<p>
+Varje projektmedlem skall skriva en kort självreflektion<sup><a id="fnr.10" class="footref" href="#fn.10">10</a></sup> om sin
+prestation. Vilka är dina styrkor och svagheter i ett
+projektarbete? Vilka egenskaper bör du förstärka och vilka behöver
+du bli bättre på? Titta på listan av individuella frågor i början
+av detta dokument.
+</p>
+
+<ul class="org-ul">
+<li>Hur fungerar du i ett team? Faller du in i ett särskilt mönster,
+eller tar du återkommande en särskild roll?</li>
+<li>Får du ut något av att jobba i en grupp, eller jobbar du helst
+ensam?</li>
+<li>Jämför hur mycket du lärt dig under projektarbetet kontra
+kursens övriga delar, och fundera över hur du bäst lär dig
+saker.</li>
+<li>Hur har det gått att logga arbetstid?</li>
+<li>"Biggest fail" och "biggest win", dvs. det största problem som
+du stötte på och det smartaste eller bästa du gjorde.</li>
+</ul>
+
+<p>
+All individual reflections go into a file in <code>proj</code> called
+<code>individual_reflections.md</code>.
+</p>
+
+<p>
+This file should convince the examiner that each team member
+passes Y67.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org11bfcb7" class="outline-3">
+<h3 id="org11bfcb7"><span class="section-number-3">4.7</span> Test Report</h3>
+<div class="outline-text-3" id="text-4-7">
+<p>
+In the file <code>proj/test_report.md</code>, explain how you are testing
+your project on three levels:
+</p>
+<ul class="org-ul">
+<li>Unit testing</li>
+<li>Integration testing</li>
+<li>Regression testing</li>
+</ul>
+<p>
+And how you have automated these things. Include a graphical
+overview of the code coverage. List your 6 most nasty bugs by
+linking to their issue pages on GitHub.
+</p>
+
+<p>
+This file, together with the GitHub issue log, should convince the
+examiner that you pass Y69.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org920b5f6" class="outline-3">
+<h3 id="org920b5f6"><span class="section-number-3">4.8</span> Code Quality Report</h3>
+<div class="outline-text-3" id="text-4-8">
+<p>
+In the file <code>./proj/code_quality_report.md</code>, your job is to
+convince the examiner that the code passes Y65. You can go about
+this in any way that you like that is helpful to the reviewer.
+Helpful <i>saves time</i>, meaning that blanket statements such as
+"just look at all the code" are not good enough<sup><a id="fnr.11" class="footref" href="#fn.11">11</a></sup>. The
+examiner wants to know to that <i>you think you have written good
+code</i> and <i>why you think that the code is good</i>!
+</p>
+
+<p>
+Note that Y65 requires <i>consistently good quality</i> meaning that
+you cannot concentrate on code quality in just a few places, point
+to them as good examples in the report, and expect to pass.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org073f4ed" class="outline-3">
+<h3 id="org073f4ed"><span class="section-number-3">4.9</span> Deviations</h3>
+<div class="outline-text-3" id="text-4-9">
+<p>
+In <code>./proj/deviations.md</code>, describe all deviations from the full
+specification. For every feature <i>X</i> that you do not deliver,
+explain <i>why</i> you do not deliver it, how the feature could be
+integrated in the future in your system, and sketch the high-level
+design.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org827af9d" class="outline-2">
+<h2 id="org827af9d"><span class="section-number-2">5</span> Process Requirements</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+You can use whatever process you like, as long as you pick one and
+stick to it. Recommendations are to follow some agile methodology
+like Scrum or Kanban, but I'm fine with you trying to bite off the
+Rationale Unified Process or doing a bad old waterfall. You don't
+have time to learn a complicated process, so quickly pick
+something that you can grasp fast. There is no right choice &#x2013;
+whatever you pick, it will form the basis for your more mature
+understanding later.
+</p>
+</div>
+
+
+<div id="outline-container-org026165c" class="outline-3">
+<h3 id="org026165c"><span class="section-number-3">5.1</span> Trello (or similar)</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+You are required to use <a href="http://trello.com">Trello</a> to manage tasks &#x2013; unless you find
+a better tool. You get to define what better means, and that means
+<i>in writing</i> in the final project report. Do invite your coach to
+your Trello board.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga0b8758" class="outline-3">
+<h3 id="orga0b8758"><span class="section-number-3">5.2</span> GitHub for Version Control, Issue Tracking and Pull Requests</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Under projektet skall ni använda er av <a href="http://github.com">GitHub</a> för att
+versionshantera koden. Ni kommer att få ett privat konto på
+Github, som ni <b>måste</b> använda. Av uppenbara och fuskrelaterade
+skäl får koden inte göras publik eller delas med andra utanför
+teamet (undantaget coachen och kursledningen). Versionshistoriken
+på Github visar om versionshantering använts på ett vettigt sätt.
+</p>
+
+<p>
+Github har ett utmärkt stöd för <a href="https://guides.github.com/features/issues/">issue tracking</a>, d.v.s.
+buggrapporter och diskussioner kring buggar som ni skall använda.
+Spårbarhet är oerhört viktigt i systemutveckling, så använd en
+issue tracker/bug tracker, även om alla sitter i samma rum!
+</p>
+
+<p>
+All integration av kod med projektets <i>main branch</i> skall ske via
+så-kallade <a href="https://help.github.com/categories/collaborating-with-issues-and-pull-requests/">pull requests</a>, där någon ber om att få sina ändringar
+merge:ade med projektet. I samband med varje pull request skall
+någon form av granskning ske. Är koden bra nog för att integreras?
+Har den test? Har den rimlig dokumentation? Är den förståelig? Har
+författaren städat koden ordentligt? När koden väl är inne i
+systemet är den svår att bli av med, så ta tillfället i akt att
+skapa en projektkultur där endast <i>bra pull requests accepteras</i>.
+</p>
+
+<p>
+<b><b>TODO</b></b>
+</p>
+
+<ul class="org-ul">
+<li>Tipsa om att bygga en checklista för hur PRs skall gå till baserat på kodgranskningsprotokoll</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd5d62a6" class="outline-3">
+<h3 id="orgd5d62a6"><span class="section-number-3">5.3</span> Tools for Making Good Code</h3>
+<div class="outline-text-3" id="text-5-3">
+<ul class="org-ul">
+<li>You are required to use <code>valgrind</code> to check for memory errors.
+You will be asked to run e.g. <code>make memtest</code> at the final
+seminar and show the absence of error for a non-trivial program.</li>
+<li>You are required to write unit tests in some existing unit test
+framework, like CUnit. You will be asked to run e.g. <code>make test</code>
+at the final seminar to show automated tests running. In
+combination with running <code>make test</code>, you will also be asked to
+provide <i>test coverage metrics</i> using e.g. <a href="https://gcc.gnu.org/onlinedocs/gcc/Gcov.html">gcov</a>, and reason
+about good your tests are. Automating this process is a good
+idea!</li>
+<li>Code formatting tools (not a strict requirement). Please use a
+code formatting tool like <code>astyle</code> or similar to ensure that
+code formatting is consistent.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga20e0c5" class="outline-2">
+<h2 id="orga20e0c5"><span class="section-number-2">6</span> Final Seminar</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Note: Obligatorisk närvaro / attending the seminar is mandatory.
+</p>
+
+<p>
+The final seminars are divided intro several slots. Historically,
+each slot is 90 minutes, but it may vary with the number of
+students taking the course, the availability of examiners etc.
+</p>
+
+<p>
+<i>Each group will participate in one slot only.</i> Each group is
+expected to present their project. This is expected to take 25-30
+minutes. An additional 30 mimnutes per slot is reserved for
+questions, feedback and general discussion.
+</p>
+
+<p>
+The presentation should touch on the following:
+</p>
+
+<ol class="org-ol">
+<li>The program
+<ul class="org-ul">
+<li>What is implemented and not?</li>
+<li>What works and what does not work?</li>
+<li>Show your tests and demonstrate running the tests</li>
+<li>If possible/applicable: run performance tests</li>
+<li>If possible: show the running demonstrator application (typically lagerhanterare 2)</li>
+<li>What simplifications did you do?</li>
+<li>How did you set the cascade limit and to what?</li>
+<li>How did you tackle hard problems?</li>
+<li>What are you most satisfied about your implementation?</li>
+<li>What is the ugliest hack in your implementation?</li>
+</ul></li>
+<li>The process
+<ul class="org-ul">
+<li>How did you organise your work?</li>
+<li>How has working together worked out?</li>
+<li>What is the experience from working with pull requests?</li>
+<li>How did you solve soft problems (e.g., key person fell ill, etc.)</li>
+<li>How much time did it all take and how was it distributed?</li>
+<li>Has logging time worked out well? Why/why not? Experiences?</li>
+</ul></li>
+<li>Planning
+<ul class="org-ul">
+<li>How did you approach planning?</li>
+<li>Did your plans work out?</li>
+<li>How did you handled wrong planning?</li>
+</ul></li>
+<li>Show the plan for the implementation of all that is missing
+<ul class="org-ul">
+<li>Based on your time log so far, estimate how much time that would take to do</li>
+</ul></li>
+</ol>
+
+<p>
+The presentation is not a role-playing game, so don't pretend that
+there is an audience that does not know what the project is etc.
+</p>
+</div>
+
+<div id="outline-container-org7ea3f5e" class="outline-3">
+<h3 id="org7ea3f5e"><span class="section-number-3">6.1</span> Do we need slides?</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+Jag fick frågan om man borde/måste ha en powerpoint-presentation på seminariet.
+</p>
+
+<p>
+Måste: nej.
+Borde: definitivt.
+</p>
+
+<p>
+Det är svårt att strukturera en presentation (det borde vara uppenbart för alla som
+sett mig föreläsa 100 gånger under kursen&#x2026;) och en powerpoint &#x2013; speciellt en som
+man har kört igenom 1-2 gånger i förväg &#x2013; tenderar att göra presentationen 10x
+bättre. Det är lätt att visa visualiseringar, kod i läsbar och stor font, etc.
+</p>
+
+<p>
+Det är ert seminarium så ni får göra som ni vill men det är bra
+att använda tiden väl till att berätta om allt viktigt som kanske
+inte står att läsa/går att utläsa ur inlämningen.
+</p>
+
+<p>
+Tänk så här: jag vill att ni skall bli godkända! Jag kommer att leta efter bevis på
+att ni har fått ut tillräckligt mycket av det jag vill att ni skall få ut av projektet,
+och har ni det så blir ni godkända (om bara det ni levererar inte är helt otjänligt).
+</p>
+
+<p>
+Om allt har kraschat och brunnit i slutet: ägna inte nätterna till att släcka bränder,
+utan titta noga på det som kraschar och brinner och försök att hitta lärdomen i det.
+Målet är inte att bevisa för någon att ni redan kan detta &#x2013; målet är att ni skall möta
+svårigheterna och problemen med mjukvaruutveckling i grupp i en miljö där kostnaden för
+att allt kraschar och brinner är låg.
+</p>
+
+<p>
+Minns min långa rant om hållbarhet. Om ni är vakna 72 timmar i sträck för att släcka
+bränder, hur skall ni då orka med nya kursstarter? Då kommer en liten rest på en liten
+del av dokumentationen att kännas oöverstiglig.
+</p>
+
+<p>
+Och ni kommer inte orka gå på kurspuben eller sista föreläsningen.
+</p>
+
+<p>
+Det betyder alltså att även om ni definitivt borde ha en powerpoint men inte har det
+så kanske det är bäst ändå att inte ha någon. Beroende på allt annat.
+</p>
+
+<p>
+Hur lång är en projektrapport? Hur långt är ett snöre? Aaah!
+</p>
+
+<p>
+Puh. Vi ses på seminarierna!
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6ffef03" class="outline-2">
+<h2 id="org6ffef03"><span class="section-number-2">7</span> Nutshell Summaries of the two Projects</h2>
+<div class="outline-text-2" id="text-7">
+<div class="note">
+<p>
+Note that the project specifications are subject to change at any moment.
+</p>
+
+</div>
+
+<p>
+If nothing else is stated, then the projects are required to work
+on Linux X86 64 bit, Ubuntu 16.04 (which is what the department
+provides). Note that developing on Windows or macOS and deploying
+on Linux is very very brittle in C. In those cases, use a virtual
+Linux environment for testing.
+</p>
+</div>
+
+<div id="outline-container-org9831b30" class="outline-3">
+<h3 id="org9831b30"><span class="section-number-3">7.1</span> Project One</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+Implement a simple system that helps programmers manage memory in
+C applications using a <i>reference counting scheme</i> where reference
+counts are managed <i>manually</i> through an API<sup><a id="fnr.12" class="footref" href="#fn.12">12</a></sup> that you provide. This project involves
+(among other things) wrapping <code>malloc()</code> to install an object
+header in each memory allocation, which is hidden from users,
+which stores a reference count for that object, and possibly other
+things.
+</p>
+
+<p>
+The full project description is <a href="project1.html">here</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3459500" class="outline-3">
+<h3 id="org3459500"><span class="section-number-3">7.2</span> Project Two</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+Implement a system that <i>automatically</i> manages memory using a
+<i>tracing-based scheme</i> based on Bartlett's compacting conservative
+collector. In this system, programmers may define their own heaps
+and when a heap is full, garbage collection will be triggered and
+memory scanned for garbage. This involves scanning the stack of
+your application to find all possible pointers into that heap,
+which requires a bit of low-level trickery.
+</p>
+
+<p>
+The full project description is <a href="project2.html">here</a>.
+</p>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara">By
+which I do not mean that they are small problems!</div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara">Admittedly, for a quite
+small large.</div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara">Sustainable includes
+that you are supposed to work in a way that is reasonable to
+expect of you without destroying you if you were to do it for a
+couple of years.</div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara">The role of the coach will be described below.</div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara">Where X can be stack traversal,
+pull requests or Scrum, or&#x2026;</div></div>
+
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara">One could successfully argue that this is a
+testament to my failure as a lecturer to hammer in the importance
+of getting something working before optimising. One could also
+successfully argue that students follow specifications too
+slavishly. One could also argue that optimisations have a certain
+attraction to some people. Etc.</div></div>
+
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7">7</a></sup> <div class="footpara">Meaning, your focus is on the finished
+product, not on the actual project.</div></div>
+
+<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8">8</a></sup> <div class="footpara">By top-level make file is meant a make
+file at the top-level, that is the root of the directory
+structure. Feel free to have many makefiles for building things,
+and use them in the top-level makefile to accomplish its work.</div></div>
+
+<div class="footdef"><sup><a id="fn.9" class="footnum" href="#fnr.9">9</a></sup> <div class="footpara">The categories should include at least
+design, documentation, meetings, implementation, review of pull
+requests, and testing. Testing should not include unit testing,
+but integration testing and regression testing.</div></div>
+
+<div class="footdef"><sup><a id="fn.10" class="footnum" href="#fnr.10">10</a></sup> <div class="footpara">About
+1000&#x2013;1500 characters. Note &#x2013; all character counts in this
+document are to be interpreted as "as outputted by the <code>wc</code> command".</div></div>
+
+<div class="footdef"><sup><a id="fn.11" class="footnum" href="#fnr.11">11</a></sup> <div class="footpara">Discussing
+each function individually also would not save time&#x2026;</div></div>
+
+<div class="footdef"><sup><a id="fn.12" class="footnum" href="#fnr.12">12</a></sup> <div class="footpara">A fancy word for
+library, if you will.</div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Tobias Wrigstad</p>
+<p class="date">Created: 2018-08-02 tor 00:21</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

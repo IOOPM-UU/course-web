@@ -1,0 +1,534 @@
+#+title: How the IOOPM Course Works
+#+include: "./setup.org" 
+
+*TODO* link to SPLASH-E paper
+
+* TODO Changes from 2017
+- Presentation
+- Inluppar
+- mer? 
+* Kursöversikt
+** Faser och sprintar
+Kursen är uppdelad i tre faser, fas 1, 2 och 3. Fas 1 och 2
+behandlar imperativ programmering exemplifierad med C respektive
+objekt-orienterad programmering exemplifierad med Java. I dessa
+faser arbetar du i ett kodpar med en annan person. Mellan varje
+inlämningsuppgift kommer du att rotera partner. Fas 3 är ett
+projektarbete med 4-6 personer.
+
+- Fas 1 och 2 är indelade i 2 sprintar vardera. Varje sprint är 2 eller 3 veckor lång (se deadlines). 
+- Indelningen av fas 3 i sprintar samt sprintarnas längd bestäms av projektgruppen. 
+
+Varje sprint har ett antal uppgifter knutna till sig. För varje
+sprint inom samma fas växer kraven på uppgifterna som också blir
+mer komplicerade, och du får fler uppgifter att välja mellan. För
+att bli godkänd på kursen måste du göra minst en uppgift per
+sprint.
+** Inlämningsuppgifter, mål och redovisning
+För att bli godkänd på kursen kommer du att behöva demonstrera att
+du uppnått alla kursmål (detta gäller på alla kurser). För att
+göra det tydligare arbetar vi med att separera inlämningsuppgifter
+från de kursmål de (är tänkta att) examinerar. Det betyder att
+syftet med att göra en inlämningsuppgift inte är att "skriva ett
+program som..." utan att koppla programmet mot kursens mål och
+använda programmen som du skriver för att visa att du uppnått
+målen.
+
+Du utgår alltså från (helst färdiga, men även ofärdiga) uppgifter
+när du redovisar mål, och det skall finnas en tydlig koppling till
+uppgiften eller någon föreslagen utökning till uppgiften. Det
+ingår i uppgiften (eller egentligen i hela kursupplägget) att
+förstå mappningen från uppgift (eller del av uppgift) till
+lämpliga mål. Vi ger dock förslag, men färre och färre ju längre
+in i kursen vi kommer. Det räcker inte med att bara följa
+förslagen för att bli godkänd, utan du måste själv ta reda
+på/förstå vilka mål du bör redovisa när.
+
+Målen redovisar du i stort sett uteslutande på labbarna (ca 8
+timmar varje vecka). Till labbarna kan du också gå för att få
+hjälp. Försök att alltid redovisa mål i sammanhängande klumpar.
+** Om kursmålen
+För varje mål anges vilken nivå målet ligger på och hur det kan
+redovisas. Totalt finns 36 mål på nivå 3, 18 mål på nivå 4 och 8
+mål på nivå 5. Utöver dessa finns 4 mål som avser inluppar och 6
+mål för projektet. Du förväntas bocka av mål löpande under kursens
+gång. För att bli godkänd på kursen måste alla inluppsmål och
+projektmål vara godkända. För att få betyget 3 på kursen måste
+samtliga mål på nivå 3 vara uppfyllda, för betygen 4 måste
+samtliga mål på nivå 3 och 4 vara uppfyllda och för betyget 5
+måste samtliga mål vara uppfyllda. Observera att det inte finns en
+linjär relation mellan antalet mål och tidsåtgång -- och många mål
+kan bockas av samtidigt och inom ramarna för samma uppgift.
+
+Notera att du förväntas att själv söka efter information, både i
+de länkar och bokreferenser som finns i kursmaterialet, men också
+fritt med hjälp av t.ex. Google och Wikipedia. Föreläsningarnas
+syfte är att måla en övergripande bild och introducera viktiga
+koncept och ibland även göra praktiska övningar. Screencasts
+används för mer detaljerade utvikningar om mindre ämnen. Förslag
+på kursböcker finns på kursens webbsida, men det finns ingen
+specifik bok som vi följer under kursens gång.
+** Arbetsgrupper och programmeringspar
+Under kursens gång kommer du att ingå i en framslumpad arbetsgrupp
+med ca 10-12 personer. Dessa grupper byggs successivt upp under
+kursens första vecka i takt med att vi får namnen på alla
+registrerade studenter från IT-kansliet. Ur arbetsgruppen får ni
+fritt skapa kodpar om två personer med kravet att man måste rotera
+mellan varje inlämningsuppgift och att man inte får ha samma
+partner mer än en gång under fas 1 och 2. Anledningen till att du
+själv skall välja par beror på att du i möjligaste mån vill arbeta
+med någon annan i samma grupp med liknande intressen och
+ambitioner. I projektet kommer vi att bilda projektgrupper av två
+programmeringspar. (Möjligen tre.)
+
+Du kommer att göra i stort sett allt arbete på denna kurs
+tillsammans med någon annan i ett programmeringspar. Ni kommer
+också i regel att redovisa tillsammans, oavsett om dessa
+redovisningar sker i labbsal eller på annat sätt. Alla
+redovisningar ger dock individuella godkänt/underkänt och det är
+möjligt för studenterna A och B att redovisa för målen X, Y och Z
+varav endast B redovisar Z och endast A blir godkänd på X.
+** Parprogrammering på IOOPM
+Den bakomliggande orsaken till att parprogrammering är
+obligatorisk är att parprogrammering (och andra tekniker för att
+uppnå liknande effekt med avseende på kunskapsspridning,
+granskning, etc.) inte bara tenderar att resultera i bättre kod än
+kod som produceras av en enskild, utan också förbättrar
+inlärningen. Genom att prata tvingas man sätta ord på vad man gör,
+och reflektera. Ibland försöka förklara något som man själv inte
+förstår fullt, etc. Det stimulerar framförallt djuplärningen -- du
+kommer alltså i mindre utsträckning att glömma bort allt efter att
+kursen är slut.
+
+Det finns många olika varianter av parprogrammering. Tanken på
+IOOPM är att det vid varje tillfälle skall vara en person som är
+“driver” i bemärkelsen att man sitter vid tangentbordet, och att
+man skall byta driver mycket ofta, minst en gång var 30:e minut,
+men helst mycket oftare. Det kan vara en god idé att byta vid
+logiska enheter, t.ex. man byter när en funktion blir klar. Det är
+också bra om inte samma person skriver funktionen f och dess
+tester. Senare i kursen kan man parallelisera arbetet med att
+skriva test och funktion, men man bör ändå stämma av regelbundet
+(säg var 10:e minut) och sitta brevid varandra.
+
+Det är en väldigt dålig ide att dela upp en uppgift i två delar
+och göra hälften var eftersom båda medlemmarna i ett kodpar måste
+får individuellt godkänt på alla mål vid redovisning. När
+examinatorn frågar en enskild person om ett mål och pekar på en
+del av koden måste den kunna ge ett bra svar. Att säga "jag skrev
+inte just den biten" är inte ett acceptabelt svar. Om man vill
+dela på arbete måste man synka löpande och arbeta mer aktivt med
+kunskapsöverföring.
+*** Omaka par
+Om en person i paret upplevs som expert och en som novis är det
+bra att vädra det tidigt (ibland upplever båda att den andre är
+experten...). Om så är fallet är det viktigt att man ändå byter
+regelbundet och att båda utför samma typ av arbete. Om novisen
+sitter i baksätet kommer hen nämligen inte att lära sig lika
+mycket vilket manifesterar sig på kursen genom att man inte klarar
+kodprovet och därmed inte kursen.
+
+Som nämnt ovan går det utmärkt att ha ett par där en (A) siktar på
+ett högre betyg än en annan (B). Det kan t.ex. manifestera sig
+genom att A gör vissa utökningar på egen hand, eller vissa
+redovisningar på egen hand.
+*** Parprogrammering på distans
+Om man har svårt att sitta tillsammans och koda i fysisk
+bemärkelse kan man använda bra online-verktyg. Man kan t.ex. ha
+motsvarande Skype igång, en chatt uppe, använda GitHubs issue
+tracker, etc. för att minska avståndet och synka. Det är bra att
+använda klienten med en historik som man kan gå tillbaka i när man
+måste felsöka eller hitta bakomliggande orsaker till missförstånd,
+etc.
+** Uppföljningsmöten
+En gång per sprint kommer du att kallas till ett kort
+uppföljningsmöte där du (och din labbpartner) får presentera hur
+det går för er i den pågående sprinten. Där kan ni visa vad ni har
+gjort hittills och vad ni planerar att göra resten av sprinten.
+Tanken med dessa möten är att ni ska kunna få hjälp att hålla en
+lämplig styrfart genom kursen och att komma loss om ni har kört
+fast. Om ni är osäkra på vilka mål som passar med er uppgift kan
+får ni diskutera saken med en assistent och ett annat
+programmeringspar. Information om hur uppföljningsmötena går till
+kommer på första mötet.
+** Labbar
++begin_important
+Notera!!! Labbar på denna kurs avser tid att redovisa och få hjälp
+med programmering. Observera att den mesta programmeringen sker
+utanför schemalagd tid!
++end_important
+
+Hela kursens finns det ungefär 8 timmar schemalagd i datorsalar
+per vecka, s.k. labbtillfällen. Deltagande vid dessa tillfällen är
+inte obligatoriskt (förutom inledande 6 labbar). Vid dessa
+tillfällen finns det möjlighet att få handledning och också
+möjlighet att redovisa mål (förutom inledande 6 labbar).
+
+För att få hjälp under en labb måste du skriva upp dig på en tavla
+i den största labbsalen där labben sker.
+** Att redovisa under en labb
+För att redovisa under en labb använder du [[http://auportal.herokuapp.com/][AU-portalen]]. Under
+"Dashboard" kan du välja vilka mål du vill redovisa (notera att du
+måste vara inloggad). När du skickat in din ansökan om att
+redovisa syns den i vårt system, och så fort det finns en ledig
+assistent kommer hen till dig för att ta din redovisning.
+Assistenterna kommer bara ta redovisningar som anmälts under
+schemalagd handledningstid.
+
+Efter att du redovisat kommer assistenten att bocka av de mål du
+framgångsrikt redovisat och signera rapporten. Om du misslyckades
+med att redovisa ett mål kan du få rest eller bara inte bli
+godkänd. Rest betyder att du kan försöka redovisa igen så fort du
+fixat till de småfel assen pekat ut; annars måste du vänta till
+nästa labbtillfälle. I det senare fallet kommer systemet inte
+tillåta dig att försöka redovisa samma mål igen inom 24 timmar.
+
+*Senare i kursen kommer systemet automatiskt att lägga till
+ytterligare ett mål till redovisningen när du anmäler dig* (ett
+s.k. repetitionsmål). Detta blir synligt för dig i samband med att
+systemet visar din plats i redovisningskön. Det extra målet väljs
+från mål som du tidigare har bockat av, och tanken är att du under
+redovisningen ska relatera det målet till de andra målen du
+presenterar. Om det mål som lades till inte är relevant duger det
+utmärkt om man kan sakligt redogöra för varför ("Java har inga
+pekare, alltså är det inte relevant att prata om pekararitmetik").
+Syftet med att tvingas återbesöka ett redan avbockat mål är för
+att stimulera till att hålla goda vanor och kunskaper vid liv!
+*** Hur mycket får man redovisa vid ett givet tillfälle?
+Man får redovisa max 4 godkända mål vid varje labbtillfälle
+(typiskt 25-30 labbar under kursen initialt planerat, förutom 6
+uppstartslabbar de första två veckorna). Det extra mål som
+systemet lägger till själv räknas inte in bland dessa.
+
+Kodprovet kan inte användas för att redovisa mål. 
+** Betyg
+Målen har en betygsnivå kopplad till sig. Mål på högre nivå
+omfattar de på lägre nivå. Man kan inte byta ut ett mål på en
+högre nivå mot ett mål på en lägre nivå (det vore inte vettigt).
+
+- För att få betyget tre måste man klara av /alla/ mål på nivå 3.
+- För att få betyget fyra måste man klara av /alla/ mål på nivå 3 och 4.
+- För att få betyget fyra måste man klara av /alla/ mål på nivå 3, 4 och 5.
+** Högskolepoäng och kursfordringar
+Kursen ger totalt 20 hp uppdelat på fem delar:
+
+- 2.5 hp för kodprovets imperativa del (C)
+- 2.5 hp för kodprovets objektorienterade del (Java)
+- 5 hp för inluppar 1 avklarad
+- 5 hp för inluppar 2 avklarad
+- 5 hp för projektet avklarat
+
+Observera att om man klarar av alla mål på nivå 3 och uppfyller
+alla krav på projektuppgiften får man 15 HP (alla utom kodprovet).
+
+*** Definitionen inluppar 1 avklarad
+
+- Två av Z-målen (inlupp 1--4) avbockade.
+- 14 avbockade mål på nivå 3 (man kan inte använda samma mål i flera faser)
+- Inga eftersläpande repetitionsmål
+
+*** Definitionen inluppar 2 avklarad
+
+- Resterande två av Z-målen (inlupp 1--4) avbockade.
+- 14 avbockade mål på nivå 3 (man kan inte använda samma mål i flera faser)
+- Inga eftersläpande repetitionsmål
+
+*** Definitionen projektet avklarat
+
+- Målen Y64--Y69 uppfyllda, *och därutöver*
+- 4 avbockade mål på nivå 3 (man kan inte använda samma mål i flera faser)
+- Inga eftersläpande repetitionsmål
+
+
+* Arbetsflöde under kursen
+Kursens upplägg härmar avsiktligt lättrörliga eller agila
+processer, främst Kanban och Scrum. Under projektdelen (fas 3)
+skall du och din projektgrupp själva lägga upp en plan, följa upp
+och revidera den, etc. Fram till dess kommer ni att öva genom att
+arbeta på motsvarande sätt med kursen. Vi betraktar kursen som ett
+projekt vars slutmål är att du skall vara godkänd med det betyg
+som du siktar på.
+** Steg 1: Sätt ditt personliga mål
+Vilket betyg vill du ha? Du styr själv vilket betyg du vill uppnå
+-- vilken nivå av insikt vill du nå, etc.? Målen på nivå 4 och 5
+speglar djupare insikter eller högre kvalitet med avseende på
+olika kursmål. Om du vill nå betyget 3, 4 eller 5 måste du
+bestämma dig för det och aktivt arbeta för att nå dit. Fatta ett
+beslut. Du kan ändra dig senare. För att minska stressen kan du
+redan nu planera in en tidpunkt (t.ex. 1:a oktober) för att
+eventuellt revidera beslutet.
+** Steg 2: Styrfart
+Hur blir man godkänd på en kurs? Man kan inte arbeta på att "bli
+godkänd", det är för flummigt och abstrakt. Man måste bryta ned
+detta "problem" i mindre beståndsdelar (delproblem) och kanske
+även bryta ned dessa ytterligare för att nå tillräckligt konkreta
+proble/uppgifter som faktiskt går att tackla.
+
+Du har redan fattat beslut om vilket betyg du vill ha. Då vet du
+också vilka mål du måste klara av. Det är dina hyfsat konkreta
+uppgifter.
+
+*Exempel:* Låt säga att du satsar på betyg 7 och att det omfattar
+totalt 42 mål. Du tittar igenom målen och ser att 8 är knutna till
+projektet. Ytterligare 4 mål verkar rimliga att redovisa i samband
+med projektet (så vitt du förstår) eller via andra aktiviteter. Då
+kvarstår 30 mål som skall redovisas under fas 1 och 2.
+
+Det är totalt 5 sprintar under fas 1 och 2. 30 genom 5 är 6. Det
+betyder att du måste klara av 6 mål varje sprint för att ha 12
+kvar när projektet börjar.
+
+6 är den styrfart (velocity) som du skall ha i snitt per sprint
+för att komma i mål. Det betyder 3 mål per vecka och i snitt 1,5
+mål per labbtillfälle. Det är ganska troligt att du inte kommer
+att redovisa 1,5 mål varje labbtillfälle, eller ens 3 mål varje
+vecka. Verkligheten fungerar ofta så att vi gör framsteg på flera
+saker, och sedan klarar av många på ett bräde. Om du gjorde en
+graf där Y-axeln var antal återstående mål och X-axeln var tiden
+skulle det "idealiska" vara en rät linje med start i (0,30) och
+slut i (5,0). Verklighetens kurva kommer att se annorlunda ut.
+
+En graf av detta slag kallas för en burndown chart, och du kommer
+att göra många sådana under kursens gång. En burndown chart är
+enkel och ger direkt en känsla för om det "går bra" eller inte --
+kommer jag till slut att komma i mål på utsatt tid? 
+
+#+CAPTION: Exempel på burndown chart.
+https://upload.wikimedia.org/wikipedia/commons/0/05/SampleBurndownChart.png
+
+I exemplet planerar vi utifrån förutsättningen att alla mål tar
+lika lång tid. Det är naturligtvis inte sant. Ett mer raffinerat
+sätt att planera tar varje uppgift (mål i detta fall) och
+tilldelar det ett antal "story points", som är ett relativt mått
+på hur lång tid man tror att den kommer att ta. Då kanske de 30
+målen skulle motsvara 65 story points, och då skulle vår styrfart
+vara 13 istället för 6 (som motsvarar samma arbete, bara uttryckt
+i en annan enhet). Om man också för varje avklarad uppgift matar
+in dess "faktiska story points" får man återkoppling på sin egen
+skattning och kan justera för att man tenderar att underskatta
+svårigheter, etc. Man kan också planera med arbetstimmar istället
+för story points.
+
+För dig som tycker att det mesta på kursen är nytt kan det vara
+vanskligt att försöka avgöra om ett visst mål är värt 1 eller 3
+story points. Då är det bättre att planera i enheten avklarade
+mål, åtminstone till en början.
+** Steg 3: Vad skall jag göra denna sprint?
+Så länge vi håller styrfarten behöver vi inte planera för vad vi
+skall göra resten av projektet (kursen), utan kan fokusera på den
+aktuella sprinten. Varje sprint skall du göra en inlämningsuppgift
+och det är utifrån den uppgiften du skall redovisa mål.
+
+Detaljplanering är alltså att bestämma sig för inlämningsuppgift
+och mål. Man kan börja i båda ändor: vilka mål har jag kvar och
+vilken uppgift verkar passa bäst, eller vilka uppgifter finns det
+och vilka mål verkar passa bra för dem? I början av kursen har man
+många mål och få uppgifter så då lämpar det sig bättre att börja
+med att bestämma uppgift först. Förmodligen är det en bra idé att
+vara halvklar med uppgiften innan man funderar över vilka mål man
+kan redovisa utifrån den. (Uppgifterna är designade utifrån målen
+och man kan alltid få hjälp med den mappningen senare. Det finns
+ingen anledning att stressa över detta!)
+
+Under första sprinten finns det bara en uppgift att välja mellan:
+lagerhanteringssystemet. Det gör det lätt att "välja". Om du
+följer SIMPLE-metodiken uppmuntrar den dig att göra en nedbrytning
+av specifikationen av uppgiften i delproblem etc., precis som
+kursen. Det betyder att du kan göra en separat plan för
+implementationen av lagerhanteringssystemet, som inte behöver bry
+sig om mål om du inte vill. Du kanske bryter ned
+lagerhanteringssystemet i 52 deluppgifter. Du och din partner
+lägger upp ett arbetsschema med 25 timmar under sprinten. Styrfart
+52/25 = 2 deluppgifter per timme. Ett annat alternativ är att
+blanda mål och deluppgifter i samma plan.
+
+Att lära sig att planera och följa upp planen är också en del av
+kursen så stressa inte över att det tar tid att göra. Det får ta
+tid. Det är också okej att man inte lyckas med sin plan hela tiden
+-- du är ju här för att öva. Om du inte är ärlig mot dig själv och
+andra i din planering lär du dig ingenting och vinner heller
+ingenting.
+** Steg 4: Uppföljning
+#+begin_note
+This information is outdated (2018)
+#+end_note
+
+En gång varje sprint skall du gå på ett uppföljningsmöte. Till
+detta möte skall du ta med dig åtminstone:
+
+- Planeringen för den aktuella sprinten (inlämningsuppgiften)
+- Burndown chart för den aktuella sprinten (inlämningsuppgiften)
+- Burndown chart för måluppfyllnad hela kursen
+
+Under uppföljningsmötet kommer vi att gå igenom den aktuella
+sprinten (hur har du planerat = vilka deluppgifter har du
+identifierat, vad har du klarat av, vad har du för styrfart, etc.)
+och takten för måluppfyllnad för hela kursen.
+
+Tips! Om du använder Trello för planering, och någon annan digital
+tjänst för att rita burndown-charts så kan ni använda assistentens
+(eller din egen) laptop för att visa allting ovan. Vi
+tillhandahåller ett Google spreadsheet för att generera
+burndown-charts för kursen. Du kan kopiera eller ladda hem det för
+att få en skrivbar version.
+
+På mötet närvarar en assistent och två kodpar, och varje par får
+tio minuter var på sig att presentera sina framsteg. Börja med att
+visa planeringen för den aktuella sprinten. Vilken uppgift jobbar
+ni med, vad har ni gjort, vad tänker ni göra härnäst? Fråga gärna
+om ni är osäkra på något i er egen planering. Om det andra paret
+jobbar med samma uppgift har de kanske också kommentarer eller
+tips! Visa sedan båda era burndown charts för den aktuella
+sprinten och förklara vilka mål ni har tagit och vilka ni planerar
+att ta. Återigen kan det andra paret också komma med tips på
+passande mål! Avsluta med att visa era burndown charts för hela
+kursen och säg något om er nuvarande styrfart.
+
+OBS! Uppföljningsmötet är inte till för att "sätta dit" någon som
+det går dåligt för, utan för att hjälpa dig att komma vidare om
+det går dåligt! Assistenten är på din sida och har som uppgift att
+leda dig i rätt riktning innan det är för sent. Du lurar bara dig
+själv om du fejkar dina framsteg eller undviker mötena. Även om
+det känns som att det går bra för dig kan uppföljningsmötet också
+vara ett sätt att bekräfta att din planering är realistisk. Om du
+siktar på ett högre betyg kan du också få hjälp att hitta mål som
+passar din nuvarande uppgift.
+
+Schemat för varje sprints uppföljningsmöte kommer att postas i
+Piazza. Där kommer det också finnas instruktioner för att lämna in
+burndown-charts (och annan planering) om du vill visa något på
+assistentens laptop.
+** Steg 5: Revidera planen
+Ditt burndown chart visar trenden -- vad har du för styrfart, och
+kommer du att nå ditt mål? Kanske blir du sjuk en vecka och tappar
+därmed styrfart och måste planera in att komma ikapp? Kanske går
+det bättre än vad du trodde och du får smak på att sikta på ett
+högre betyg? Eller tvärtom.
+
+I slutet av varje sprint är det läge att göra en liten kort
+postmortem som sammanfattar hur det gick och hur verkligheten
+avvek från din plan. Det är högst personliga reflektioner som kan
+hjälpa dig att planera bättre nästa gång. Är du tidsoptimist? Etc.
+** Verktygsstöd: Trello
+Vi rekommenderar att du använder ett verktyg för att hantera ditt
+arbete. Trello är ett gratis verktyg för att arbeta med
+Scrum-liknande processer. I Trello hanterar du listor med
+uppgifter på ett "bräde" och flyttar uppgifter mellan olika listor
+för att hålla reda på vad som är klart, vad som ligger i din
+backlog, vilka uppgifter som just nu utförs etc. Trello funkar bra
+både för individuellt arbete och grupparbete.
+
+Vi har skapat två bräden som du kan kopiera. Bräde ett innehåller
+kursens alla mål i kategorierna TODO 3, TODO 4, TODO 5, Doing,
+Next och Done som du kan kopiera och använda för din planering.
+Det går dessutom att koppla Trello till tjänster som genererar
+burndown chart för dig. Bräde två är ett utkast till plan för det
+första lagerhanteringsystemet. Det är inte komplett, utan tjänar
+till att hjälpa dig att komma igång.
+
+Du hittar våra Trello-bräden [[https://trello.com/ioopm][här]]
+.
+* Träning i skriftlig framställning
+Universitetskanslerämbetet åligger oss att träna studenter i
+skriftlig framställning. Oavsett detta är det ofta [[http://gotocon.com/dl/goto-aar-2013/slides/CristinaVideiraLopes_ExercisesInStyle.pdf][liten skillnad
+mellan att programmera och att skriva text]] eftersom [[https://mitpress.mit.edu/sicp/front/node3.html][kod skrivs så
+att andra programmerare skall kunna läsa den, inte främst för att
+exekveras]].
+
+På denna kurs tränar vi skriftlig framställning i projektrapporten
+(man kan alltså få underkänt för att den är undermålig), men också
+via en essä (för nivå 4/5). Du kan läsa om den bland målen.
+* TODO Träning i att hålla presentationer
+Universitetskanslerämbetet åligger oss att träna studenter i att
+hålla presentationer. Oavsett detta är det extremt viktigt att
+kunna hålla presentationer, på många olika nivåer. På ett ståmöte
+behöver man kunna sammafatta hur arbetet med en viss del av
+systemet går på 30-60 sekunder. På en anställningsintervju kanske
+man måste kunna presentera en lösning av ett problem eller hur man
+felsöker ett visst sorts fel i ett system. På en
+utvecklarkonferens måste man kunna förmedla kunskap eller
+entusiasm kring något som man arbetar med. I ett möte kring en
+ISO-standard måste man kunna argumentera för den lösning som man
+tror är den bästa på ett väl förberett sätt. Etc.
+
+*TODO*
+- Redovisningar
+- Diskussion av skriftlig framställning
+- Projektgrupper
+- Gruppmöten
+# På denna kurs tränar vi presentation i två steg. Först skall du
+# hålla en individuell presentation och få återkoppling på den.
+# Vissa av er kommer att hålla ytterligare en individuell
+# presentation, och slutligen kommer du att göra en gemensam
+# presentation med din projektgrupp i kursens slut. Tanken är att
+# den sista gemensamma redovisningen är den stora och att du skall
+# få tillfälle att träna och få återkoppling innan dess.
+* Deadlines
+** Hur funkar deadlines?
+De flesta inlämningsuppgifter har två deadlines, en mjuk och en
+hård. Den mjuka deadlinen avser det datum då vi tycker att du bör
+ha redovisat en uppgift. Den hårda deadlinen avser det datum då du
+måste ha redovisat. Den hårda deadlinen ligger alltid en eller två
+veckor efter den mjuka, och ofta i samband med en annan deadline.
+** Att missa en hård deadline
+Ett kodpar som missar en hård deadline blir kallad till ett
+uppföljningsmöte med obligatorisk närvaro för att diskutera
+anledningen och eventuella påföljder. Undvik att missa hårda
+deadlines!
+* FAQ
+*Q*: Jag har delar av IOOPM från *före* 2013 kvar! Hur skall jag
+göra? *A*: Om du läste kursen innan den gjordes om 2013 så ska du
+göra olika saker beroende på vad du har kvar. Oavsett vad bör du
+börja med att skicka ett mejl till Tobias och berätta vad du har
+kvar, och att du har för avsikt att bli klar med kursen i år.
+
+Om du har kvar enstaka inlämningsuppgifter i C (två eller färre)
+eller Java (två eller färre) så kan du göra dem nu. Ha alltid med
+uppgiftsbeskrivningen eftersom årets assistenter kanske inte vet
+vad en uppgift gick ut på. Saknar man fler än två uppgifter i C
+(eller Java) måste man göra om hela Fas 1 (eller Fas 2). Samma
+krav för att klara av kursen gäller som för nuvarande studenter.
+
+Om du har kvar någon av tentorna kommer examineringen ske i två
+steg. Först implementerar du en av kursens senare
+inlämningsuppgifter -- C-tentan motsvaras av Lagerhanteraren 2.0
+(notera att uppgiften bygger på en tidigare uppgift som du får
+implementera också), Java-tentan av valfri uppgift från sprint 5.
+Du hittar kraven för uppgifterna här. När du är klar (och har
+meddelat det) kommer du att kallas till en muntlig examination där
+du får relatera din kod till några av kursens mål.
+
+Vid redovisning kommer vi att gå igenom slumpvis valda mål som du
+måste kunna diskutera utifrån din lösning. Du skall klara av fem
+mål av upp till sju.
+
+*Q*: Hur anmäler jag mig till kodprovet?
+*A*: Det kommer en länk till anmälan i ett meddelande i Piazza. Detta meddelande skickas också vidare till din studentadress.
+
+*Q*: Vilken grupp är jag med i?
+*A*: Grupperna postas i Piazza och uppdateras löpande. Vi får uppgifter om registrerade studenter stötvis vid terminens början och det går därför knackigt ibland att bli instoppad i en grupp.
+
+*Q*: Jag är inte med i någon grupp!
+*A*: Maila [[mailto:gustaf.borgstrom@it.uu.se][Gustaf]].
+
+*Q*: Jag har inte något login i AU-portalen!
+*A*: Maila [[mailto:gustaf.borgstrom@it.uu.se][Gustaf]].
+
+*Q*: Jag har inte tillgång till Piazza!
+*A*: Maila [[mailto:gustaf.borgstrom@it.uu.se][Gustaf]].
+
+*Q*: Hur länge gäller delresultat på kursen som inte har rapporterats in i LADOK/UPPDOK?
+*A*: Avklarade kodprovsfrågor gäller till nästa kurstillfälle. Vad gäller enskilda mål gör vi en fall-för-fall-bedömning. Om du saknar färre än 10 mål från föregående tillfälle får du normalt tillgodoräkna dig dina tagna mål nästa år (= starta med dem avklarade). Läs mer här
+
+*Q*: Får man komma förbi er på rummet och fråga?
+*A*: Ja! Tobias sitter (2018) i rum 1356. 
+
+*Q*: Räknas det som fusk att hjälpa en annan student som kört fast med programmeringen?
+*A*: Att hjälpa någon som kört fast att komma vidare räknas inte som fusk. Vi uppmuntrar till samarbete och framförallt till diskussion kring hur man kan lösa ett problem. Att skriva någon annans kod åt dem är inte att hjälpa dem! Att dela sin lösning med någon annan (utöver vad som krävs av uppgifter i kursen) räknas som fusk! Att passivt dela sin lösning på GitHub (etc.) är inte förbjudet så länge som ingen plagierar den.
+
+*Q*: Jag är borta under en labb! Vad gör jag?
+*A*: Förutom de första 6 labbarna som startar upp kursen är labbar inte obligatoriska. Du skall gå på labbar för att redovisa. Initialt har vi planerat in ca 30 labbar, så om du missar någon spelar det ingen roll.
+
+*Q*: Jag har en idé -- vill ni höra den?
+*A*: [[mailto:ioopm-suggestions@wrigstad.com][JA]]! 
+

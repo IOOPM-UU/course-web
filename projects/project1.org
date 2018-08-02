@@ -1,0 +1,290 @@
+#+title: Project 1
+#+include: "../setup.org" 
+
+
+* Introduction and Domain
+
+This project is about /manual memory management/ in C. The are
+several reasons for choosing this domain for the class project:
+
+1. We do not get to work enough on it before in the course
+2. It is at a suitable level of abstraction for a project in C
+3. It forces you to really get comfortable with pointers, which
+   is one of the hardest concepts in programming
+
+The goal of this project is to develop a C library for managing
+memory in arbitrary C programs. Traditionally, C programs use
+~malloc()~[fn::And friends ~calloc()~ and ~realloc()~.] and
+~free()~ to reserve and return memory.
+
+This approach is hard in the sense that there is nothing that
+helps a programmer to make the call when some memory can safely be
+returned to the system. Failing to return memory will cause leaks
+which will eventually make programs crash and burn. Returning
+memory too early will instead cause programs to corrupt memory
+(because technically we have two objects overlapping in memory).
+Returning the same memory multiple times with ~free()~ tends to
+lead to hard crashes. /In short, manual memory management is an
+unforgiving undertaking./
+
+
+* Functional Requirements
+
+** Reference Counting
+
+The system you are implementing should support reference counting.
+This means that each object has an associated counter that tracks
+the number of pointers to that object. When an object is created,
+its reference count is 0. Its count can subsequently be
+manipulated by the functions ~retain()~ and ~release()~ which
+increments respectively decrements a reference count by 1.
+
+If ~release()~ is called on an object with a reference count of 1,
+the object is considered garbage and shall be free'd.
+
+Calling ~retain()~ and ~release()~ on ~NULL~ is supported and
+should simply be ignored.
+
+For simplicity, we will only count pointers on the heap. If an
+object is allocated and never ~retained()~, it can be deleted by
+calling ~deallocate()~. Calling ~deallocate()~ on an object with a
+non-zero reference count is an error.
+
+** Destructors
+
+The system you are implementing should support destructor functions.
+This means that each object (may) have one associated function that
+is called /right before/ the object's memory is free'd.
+
+Destructors are useful for resource management, including freeing
+complicated data structures. For example, consider a linked list.
+The destructor for a link should be a function that calls
+~release()~ on the link's ~next~ pointer[fn::And also on its
+element, if that is an object pointer.]. Similarly, the destructor
+for the list head calls ~release()~ on both ~first~ and ~last~.
+
+** Dealing with Cascading Frees
+
+Consider the linked list example above: if implemented naively,
+freeing a very large linked list (think millions of elements) will
+at best cause the program to spend many consecutive cycles on
+freeing links, and at worst cause the program to run out of stack
+space. Neither behaviour is acceptable.
+
+The system you are implementing must avoid both these pathological
+cases, by supporting setting an upper limit on how many objects
+are free'd at once (~set_cascade_limit()~).
+
+To avoid oversubscribing to memory, you can delay outstanding
+free's until next allocation. When freeing in conjunction with
+allocation, the cascade limit must be respected as usual, unless
+the amount of memory free'd is less than the bytes requested for
+allocation. In that case, your system is allowed to free objects
+until the requested number of bytes have been free'd or there are
+no more objects to free.
+
+To reduce memory pressure, the system should also provide a
+~cleanup()~ function that free's all objects whose reference count
+is 0, regardless of the cascade limit.
+
+
+** Complete Header File
+
+#+CAPTION: =refmem.h=
+#+BEGIN_SRC c
+#pragma once
+
+typedef void obj;
+typedef void(*function1_t)(obj *);
+
+void retain(obj *);
+void release(obj *);
+size_t rc(obj *);
+obj *allocate(size_t bytes, function1_t destructor);
+obj *allocate_array(size_t elements, size_t elem_size, function1_t destructor);
+void deallocate(obj *);
+void set_cascade_limit(size_t);
+size_t get_cascade_limit();
+void cleanup();
+void shutdown();
+#+END_SRC
+
+The function ~rc()~ returns an object's reference count. The
+~allocate()~ function is the equivalent of ~malloc()~ and takes a
+function pointer to a destructor function, possibly ~NULL~. The
+~allocate_array()~ function is the equivalent of ~calloc()~ and
+too takes a function pointer to a destructor function, possibly
+~NULL~, which is called for each non-~NULL~ element. The function
+~deallocate()~ is the equivalent of ~free()~ but is only allowed
+to be called on objects ~p~ for which ~rc(p)~ = ~0~. Calling
+~deallocate()~ on an object runs its destructor (if any).
+
+**Note:** You are allowed[fn::Or possibly more correct: /expected
+to/. It is possible to request memory from the system directly,
+but that would complicate this project considerably.] to call
+~malloc()~, ~calloc()~ and ~free()~ under the hood to allocate and
+return memory. Think of these as low-level functions whose
+existence you are /hiding/ from your users.
+
+** Dealing With Reference Count Overflow
+
+Naturally, the size of the reference counter is an important
+design choice. For example, choosing an 8 bit integer, we keep the
+memory overhead small but are then only allowed 255 incoming
+references to each object[fn::Is that enough? How does one find
+out?]. Choose the size of your reference counter wisely and
+/document the choice/ and explain how your system handles (or not)
+reference counter overflow.
+
+* Non-Functional Requirements
+
+Naturally your program must not leak memory or have other memory
+bugs or bugs in general.
+
+** Amortising the Memory Management Overhead over Program Run-Time
+
+Amortising the memory management overhead over the program
+run-time means that the cost of managing memory is distributed
+relatively evenly over the the program's execution. Contrast this
+with automatic garbage collectors that suspend the program
+completely to manage memory from time to time.
+
+You achieve this by properly respecting the cascade limit (see
+above).
+
+
+** Memory Efficiency
+
+You may only use a constant factor of memory overhead in your
+implementation, relative to ~malloc()~ / ~calloc()~. For example,
+a program that uses /B/ bytes of memory with ~malloc()~ /
+~calloc()~ may only use /k/ * /B/ bytes using your system.
+Additionally, /k/ may not be larger than 2.
+
+You must hand in a convincing proof/back-of-envelope calculation
+that explains why your implementation satisfies this
+requirement[fn::It can be expected that your system needs a few
+data structures set up even before the first allocation, so for
+programs that do not use lots of memory, you are going to have /k/
+> 2. Thus, we relax the requirement to say /must approach k = 2 as
+the number of allocation grow/. Yes, I buried this relaxation in a
+margin note to stress the importance of reading specifications
+closely. Contratuations!].
+
+For the sake of the calculation, you may assume that no allocation
+is smaller than 8 bytes[fn::For other reason, it is not clear that
+it makes sense to allocate less than 8 bytes even for a smaller
+request, but that is an orthogonal issue.], but you may *not*
+assume a limit on the number of allocations made by programs using
+the system, nor a limit on the amount of live objects or the
+amount of (logical) garbage.
+
+Keeping memory overhead low is important, but *ignore that* in
+your first prototype. Solve the problem of getting something up
+and running first, then figure out how to optimise. Here are some
+tricks you can use to keep memory overhead small. These may or may
+not be usable together:
+
+1) Use a small scalar value for your reference count.
+2) When an object is garbage, you can reuse its memory --
+   including its reference counter -- to store whetever you want.
+3) If the number of destructors is small, there might be a more
+   compact representation to store them than through a pointer.
+
+Try to make the simplest and smallest number of optimisations
+needed to satisfy the requirements. Remember that keeping the code
+readable is of paramount importance! Don't go XOR'ing pointers or
+anything until you actually need to[fn::Where needing to must be
+proven empirically by testing a prototype of the system.].
+
+
+** Validation and Verification
+
+Since you are providing a low-level service on top of which many
+other services are expected to build, your implementation must be
+/rock solid/. You must provide a comprehensive set of tests that
+demonstrate the stability of your system, and the fulfilment of
+its specification. Use a combination of =CUnit= and =valgrind= to
+harden your implementation.
+
+You must document code coverage for your tests.
+
+
+* Demonstration
+
+As additional proof that your implementation is correct, you will
+provide a version of a successfully demonstrated Z101 program,
+adapted to use your memory management system. This involves using
+~retain()~ and ~release()~ sensibly throughout the program.
+
+You are required to change your tree and list libraries so that
+trees and lists storing object pointer elements call ~retain()~ on
+the elements on insertion (etc.). Naturally, removing an object
+pointer element from a list will call ~release()~ on it.
+
+
+* Simplifications and Assumptions
+
+You may have to make assumptions about the programs that your
+system supports. All such assumptions must be carefully
+documented. Any upper limit on reference count values, for example,
+fall under this category.
+
+
+* Example Use
+
+This program creates a chain of two linked cells, ensures that
+their reference counts are both 1, and then releases the first
+cell. Since that cell holds the first one, both cells should be
+free'd as a side-effect. You should be able to run this program
+with =valgrind= and find zero memory errors.
+
+#+CAPTION: =example.c=
+#+BEGIN_SRC c
+#include "refmem.h"
+#include <assert.h>
+
+struct cell
+{
+  struct cell *cell;
+  int i;
+  char *string;
+};
+
+void cell_destructor(obj c)
+{
+  release(((struct cell *) c)->cell);
+}
+
+int main(void)
+{
+  struct cell *c = allocate(sizeof(struct cell), cell_destructor);
+  assert(rc(c) == 0);
+  retain(c);
+  assert(rc(c) == 1);
+
+  c->cell = allocate(sizeof(struct cell), cell_destructor);
+  assert(rc(c->cell) == 0);
+  retain(c->cell);
+  assert(rc(c->cell) == 1);
+
+  c->cell->cell = NULL;
+
+  release(c);
+
+  return 0;
+}
+#+END_SRC
+
+* Getting Technical Help
+
+Naturally, you are allowed to ask for technical help (as well as
+help on anything else).
+
+# * TODOs
+# ** Bucket allocation
+# ** Divide memory into bucketed chunks with bitmaps
+# ** Add a reference count to each object
+# ** Deal with cascading free
+# ** Support for returning fully free chunks
+

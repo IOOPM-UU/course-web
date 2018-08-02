@@ -1,0 +1,431 @@
+#+title: Genomgång kodprov oktober 2017
+#+INCLUDE: "head.org"
+#+LANGUAGE: sv
+
+* Introduktion
+
+
+Det skulle visa sig att kodprovet var svårare än jag trodde -- av
+tre skäl:
+
+1. För många rörliga delar gjorde att rättningen tog lång tid
+2. Många har antingen missat eller missförstått shelves-trädet,
+   vilket har lett till många krångliga lösningar
+3. Minneshanteringslogiken är svårare än avsett
+
+
+* Uppgiften
+
+Programmet som delades ut skapade en mycket enkel databas som var
+väldigt lik de databaser som förekommit i lagerhanterarna. Tanken
+var att upprepa ett problem som alla som följt kursen borde ha
+stångats med på något plan. Programmet hade en event-loop som
+frågade efter tre saker:
+
+1. Namn på en vara
+2. Namn på en hylla
+3. Ett antal
+
+Denna event-loop upprepades så länge användaren svarade "ja" på
+frågan "Fler?". Om svaret "nej" gavs avslutades programmet med en
+utskrift av databasen.
+
+Varje /unik/ vara som matades in stoppades in i databasen med
+varans namn som nyckel och som värdet en länkad lista vars element
+var hyllor. Ponera följande inmatning:
+
+1. Varan "A", hyllan "B" antal 2
+2. Varan "C", hyllan "B" antal 3
+3. Varan "A", hyllan "B" antal 4
+
+Denna inmatning ledde i det utdelade programmet till en databas
+med två nycklar (varor), "A" och "C". Den länkade listan för "A"
+hade två element "B" med 2 varor och "B" med 4 varor, totalt 6.
+Den länkade listan för "C" hade ett element "B" med 3 varor. Så
+här såg det ut i terminalen:
+
+#+BEGIN_SRC
+A
+        B: 2    B: 4    Total: 6
+C
+        B: 3    Total: 3
+#+END_SRC
+
+Uppgiften gick ut på att förändra programmet så att inmatningar av
+samma vara på samma hylla **slogs ihop**, och att inmatningen av
+en vara på en hylla där en annan vara redan låg **ignorerades**.
+Förväntad utdata för körningen ovan skulle därför vara:
+
+#+BEGIN_SRC
+A
+        B: 6    Total: 6
+C
+        Total: 0
+#+END_SRC
+
+I syfte att göra uppgiften enklare fanns det, utöver databasen
+~db~ som var implementerad som ett träd, ytterligare ett träd,
+~shelves~ som var en avbildning av hyllnamn på namn på de varor
+som ockuperade hyllorna. I exemplet ovan skulle vi endast lägga
+till någonting i ~shelves~ /en/ gång: nyckeln "B" och värdet "A",
+dvs. "hyllan B innehåller varor av typen A".
+
+Så här stod det i varje kodprov:
+
+#+BEGIN_QUOTE
+**Ledning:** För att hålla koll på vilka hyllor som är i bruk
+används trädet ~shelves~ som sparar vilka hyllor som hör till
+vilken vara.
+#+END_QUOTE
+
+
+
+** Skillnad mellan proven på förmiddagen och eftermiddagen
+
+Skillnaden mellan proven på förmiddagen och eftermiddagen var att
+i det ena provet tillhandahöll listan en /extern iterator/ för att
+söka efter hyllor, och i det andra provet en /intern iterator/. I
+ena provet gick det att iterera över en lista t.ex. så här:
+
+#+BEGIN_SRC c
+iter_t *iter = list_iterator(list);
+while (iter_has_next(iter))
+  {
+    ... = iter_next(iter);
+    ...
+  }
+iter_delete(iter);
+#+END_SRC
+
+Och i det andra t.ex. så här:
+
+#+BEGIN_SRC c
+int shelf_cmp(void *shelf, void *shelf_name)
+{
+  shelf_t *s = shelf;
+  return strcmp(s->name, (char *)shelf_name) == 0;
+}
+
+shelf_t found = list_find(list, shelf_cmp, some_name);
+#+END_SRC
+
+Det kan tyckas lite meckigare att skapa en funktion och använda
+funktionspekare, men denna lösning kräver ingen minneshantering
+och har färre rader kod, så jag bedömde dem därför som likvärdiga.
+
+
+* Lösningsförslag
+
+Låt VN1, HN och A vara varunamn, hyllnamn och antal -- inmatat enligt ovan.
+
+1. Använd ~tree_get_key(shelves, HN)~ för att få ut ett varunamn VN2.
+2. Om VN2 är ~NULL~ så är hyllan ~VN2~ inte i bruk någonstans, och
+   vi behöver inte göra någonting.
+3. Om VN1 och VN2 inte är lika[fn::Notera att jämförelsen skall
+   göra med hjälp av ~strcmp(VN1, VN2)~, inte ~VN1 == VN2~.], gör
+   ingenting eftersom vi skall ignorera detta indata.
+4. Om VN1 och VN2 är lika[fn::Se föregående fotnot!], hitta
+   använd ~tree_get_key(db, VN1)~ för att få ut listan L av hyllor
+   som VN1 förekommer på. Iterera genom listan med den interna
+   eller externa iteratorn för att hitta H -- hyllan vars namn är HN.
+5. Om H inte kan hittas skapar vi en ny hylla med HN och A och
+   lägger till den i L[fn::Detta görs redan i programmet och det
+   går att falla tillbaka på denna logik.].
+6. Om H hittas, modifiera dess antal med A.
+
+
+** Minneshantering
+
+Ovanstående kompliceras som sagt något av manuell minneshantering.
+I alla fall där vi behåller VN eller HN i någon datatstruktur
+måste VN och HN hållas vid liv och frigöras först när programmet
+tar slut. I de fall där VN och HN inte sparas måste strängarna
+frigöras för att undvika minnesläckage[fn::Har du löst uppgiften
+korrekt modulo minneshanteringen har du fått rest.]
+
+Det utdelade programmet gör följande uppstädning vid avslut:
+
+#+BEGIN_SRC c
+  /// Tear down
+  tree_apply(db, delete_lists, NULL);
+  tree_delete(db);
+  tree_delete(shelves);
+#+END_SRC
+
+Den första raden tar bort allt minne i alla listor i trädet ~db~.
+Den andra raden tar bort trädet ~db~. Den sista raden tar bort
+trädet ~shelves~ men dess innehåll tas aldrig bort. Beroende på
+vad som stoppas in i ~shelves~ i en lösning kan olika förändringar
+av denna logik komma på fråga. En enkel lösningen som jag använder
+i lösningsförslaget nedan är att skapa kopior av strängarna och
+/utöka logiken/ för att ta städa bort ~shelves~.
+
+
+** Implementation av steg 4 ovan
+
+#+BEGIN_SRC c
+shelf_t *find_shelf_for_good(tree_t *db, char *good_name, char *shelf_name)
+{
+  list_t *shelves = tree_get(db, good_name);
+  iter_t *iter = list_iterator(shelves);
+
+  while (iter_has_next(iter))
+    {
+      shelf_t *shelf = iter_next(iter);
+      if (strcmp(shelf->name, shelf_name) == 0)
+        {
+          iter_delete(iter); /// Många har glömt denna iter_delete()!
+          return shelf;
+        }
+    }
+  iter_delete(iter);
+
+  // Not found!
+  return NULL;
+}
+#+END_SRC
+
+
+** Konkret lösningsförslag 1/2
+
+Först visar jag en lösning som läcker minne.
+#+BEGIN_SRC c
+  do
+    {
+      if (answer) free(answer);
+
+      char *goods_name = ask_question_string("Mata in namnet på en vara:");
+      char *shelf_name = ask_question_string("Mata in namnet på en hylla:");
+      int amount = ask_question_int("Mata in ett antal:");
+
+      list_t *list = tree_get(db, goods_name);
+
+      /// Steg 1: Kolla om shelf_name redan har använts för någon tidigare vara
+      char *owner = tree_get(shelves, shelf_name);
+      /// Om det fanns en tidigare vara, kolla om det är samma som goods_name
+      bool same_owner = owner && strcmp(owner, goods_name) == 0;
+
+      // If we are seeing this goods for the first time
+      if (list == NULL)
+        {
+          list = list_new();
+          tree_insert(db, goods_name, list);
+          /// Nedanstående rad skall inte köras här -- bara om shelf_name inte har använts förut!
+          /// tree_insert(shelves, shelf_name, goods_name);
+        }
+
+      /// Om hyllan redan är i bruk
+      if (owner)
+        {
+          /// Om vi använder hyllan till samma sorts vara
+          if (same_owner)
+            {
+              /// Steg 4: Hitta rätt hylla
+              shelf_t *shelf = find_shelf_for_good(db, owner, shelf_name);
+              /// Steg 6: Uppdatera antalet
+              shelf->amount += amount;
+            }
+          /// Steg 3: ingenting
+        }
+      else
+        {
+          /// Steg 5
+          list_append(list, shelf_new(shelf_name, amount));
+          /// Hyllan var inte i bruk, så lägg till den i shelves
+          tree_insert(shelves, shelf_name, goods_name);
+        }
+
+      answer = ask_question_string("Fler? (ja/nej)");
+    }
+  while (starts_with(answer, "#-----") == 0 || strcmp(uppercase(answer), "JA") == 0);
+#+END_SRC
+
+
+** Konkret lösningsförslag 2/2
+
+Samma kod som ovan med några få rader ändrade/tillagda för korrekt
+minneshantering. För att slippa komplicerade flaggor som fångar
+under vilka omständigheter vi behåller ~goods_name~ använder vi
+~strdup()~ vid insättning i ~db~, och avslutar varje loop med
+~free(goods_name)~. Detta medför dock att de varunamn som lagras i
+~shelves~ och de som lagras i ~db~ inte är samma, vilket i sin tur
+innebär att vi måste lägga till ett ytterligare steg vid
+borttagning av ~shelves~. Detta är enkelt att kopiera från
+existerande kod (~delete_shelves~).
+
+#+BEGIN_SRC c
+  do
+    {
+      if (answer) free(answer);
+
+      char *goods_name = ask_question_string("Mata in namnet på en vara:");
+      char *shelf_name = ask_question_string("Mata in namnet på en hylla:");
+      int amount = ask_question_int("Mata in ett antal:");
+
+      list_t *list = tree_get(db, goods_name);
+
+      char *owner = tree_get(shelves, shelf_name);
+      bool same_owner = owner && strcmp(owner, goods_name) == 0;
+
+      if (list == NULL)
+        {
+          list = list_new();
+          tree_insert(db, strdup(goods_name), list); /// strdup!
+        }
+
+      if (owner)
+        {
+          if (same_owner)
+            {
+              shelf_t *shelf = find_shelf_for_good(db, owner, shelf_name);
+              shelf->amount += amount;
+            }
+          free(shelf_name); /// We did not store the shelf_name!
+      }
+      else
+        {
+          list_append(list, shelf_new(shelf_name, amount));
+          tree_insert(shelves, shelf_name, strdup(goods_name)); /// strdup!
+        }
+
+      /// Always remove goods name because it is strdup'd into the trees
+      free(goods_name);
+
+      answer = ask_question_string("Fler? (ja/nej)");
+    }
+  while (starts_with(answer, "#-----") == 0 || strcmp(uppercase(answer), "JA") == 0);
+
+  if (answer) free(answer);
+
+  tree_apply(db, print_goods, NULL);
+
+  /// Tear down
+  tree_apply(db, delete_lists, NULL);
+  tree_delete(db);
+  tree_apply(shelves, delete_strings, NULL); /// Remove all values in shelves tree
+  tree_delete(shelves);
+#+END_SRC
+
+Där ~delete_strings()~ är definierad på detta vis:
+
+#+BEGIN_SRC c
+void delete_strings(char *key, void *string, void *p)
+{
+  free(string);
+}
+#+END_SRC
+
+Observera att det går /alldeles utmärkt/ att lösa uppgiften utan
+~strdup()~ och ~delete_string()~! Det kräver istället att anropen
+till ~free(shelf_name)~ och ~free(goods_name)~ distributeras över
+koden. Vi tar bort ett inläst hyllnamn om det redan fanns sparat
+och ett varunamn i det fall vi ser att varan redan finns. Båda
+lösningarna förekommer i inlämningarna.
+
+* Hur jag har betygsatt
+
+Med några undantag beroende på diverse omständigheter:
+
+1. Den som har löst båda del-uppgifterna[fn::Alltså sammanslagning
+   av samma vara på samma hylla och ignorerandet av olika varor på
+   samma hylla.] utan minnesläckage eller invalid reads/writes har
+   blivit **GODKÄND**.
+2. Den som har löst en av del-uppgifterna utan minnesläckage eller
+   invalid reads/writes har fått **REST**.
+3. Den som har löst minst en av del-uppgifterna men har
+   minnesläckage eller invalid reads/writes har fått **REST**.
+4. Alla andra har blivit **UNDERKÄNDA**. (I något fall där jag har
+   hittat program som varit snubblande nära att falla i någon av
+   kategorierna ovan har jag givit **REST**.)
+
+Program som inte har funkat med testerna har jag manuellt jagat
+för att se om det t.ex. berodde på att vederbörande ändrat logiken
+för inläsning. I vissa fall har jag givit rest för för stora
+modifikationer av inläsning visavi testskriptet.
+
+
+** Hur fungerar rest?
+
+Det förklaras på mail som kommer till dig som fått rest.
+
+
+* Vanliga fel
+
+Nedan går jag igenom de vanligaste felen. De första två,
+/missuppfattning av/ ~shelves~ och /missat existensen av/
+~shelves~, är de två vanligaste.
+
+** Missuppfattning av ~shelves~
+
+Förvånansvärt många har missuppfattat ~shelves~ och har trott att
+det är en avbildning av namn på hyllor på ~shelf_t~-pekare. Dessa
+har förmodligen brottats med kraschande program eftersom den
+sträng med varunamn som returnerats från ~tree_get()~ har tolkats
+som en pekare och en int.
+
+#+BEGIN_SRC c
+/// Exempel från ett faktiskt kodprov (modulo namn)
+shelf_t *shelf = tree_get(shelves, shelf_name);
+#+END_SRC
+
+** Missat existensen av ~shelves~
+
+Många verkar helt ha missat existensen av ~shelves~, eller så har
+man missuppfattat hur ~shelves~ fungera och till slut givit upp
+och försökt lösa uppgiften utan hjälp av ~shelves~. Detta har i
+regel lett till väldigt krångliga lösningar med jobba anrop till
+~tree_apply()~. Dessa har tyvärr ofta varit felaktiga.
+
+** Minnesläckage
+
+Några har missat att anropa ~iter_delete()~ för att ta bort
+iteratorn. Vissa har kommit ihåg att ta bort iteratorn efter
+iterator-loopen, men gjort en ~return~ innifrån iterator-loopen,
+precis som i min kod ovan, och där glömt att städa upp iteratorn.
+
+Några har missat att ta bort ~goods_name~ och/eller ~shelf_name~
+i de fall när de inte sparas.
+
+** Jämföra strängar med ~==~
+
+Några använt ~==~ istället för ~strcmp()~ för strängjämförelse.
+Observera att i C betyder detta /jämför adresserna/ och inte
+/jämför strängarna/. En sådan jämförelse kommer aldrig vara ~true~
+i detta program med mindre än att vi frigör strängar för tidigt.
+
+#+BEGIN_SRC c
+/// Exempel från ett faktiskt kodprov (modulo namn)
+if (shelf->name == shelf_name) ...
+#+END_SRC
+
+Några som har använt ~strcmp()~ verkar ha glömt att funktionen
+returnerar ~0~ när två strängar är lika.
+
+* Statistik och reflektioner
+
+Statistiken talar sitt tydliga språk: provet lite för svårt!
+Samtidigt verkar provet fylla sitt syfte -- i stor utsträckning
+har man antingen klarat /allt/ eller /inget/ än fått rest.
+
+|-----------+-----------+-------------+-------|
+| Betyg     | Förmiddag | Eftermiddag | andel |
+|-----------+-----------+-------------+-------|
+| <l>       | <c>       | <c>         | <l>   |
+| Godkänd   | 20        | 14          | 37%   |
+| Rest      | 10        | 14          | 26%   |
+| Underkänd | 18        | 15          | 36%   |
+| Totalt    | 48        | 43          | 100%  |
+|-----------+-----------+-------------+-------|
+
+Vi kommer att ordna ett /extra/ kodprovstillfälle -- **enbart för
+C-delen** -- som är öppet för alla de som fick underkänt eller
+inte skrev föregående kodprov.
+
+
+-----
+
+#+BEGIN_CENTER
+[[/ioopm][IOOPM 2017]]
+#+END_CENTER
+
+#+INCLUDE: "statcounter.html" export html

@@ -1,0 +1,350 @@
+#+TITLE: Kodprov 2018-01-05
+#+INCLUDE: "head.org"
+
+* Instruktioner
+
+Öppna en terminal och skriv omedelbart =mkdir kodprov180105=[fn::Obs! . skall inte vara med i kommandona nedan!].
+
+Gå in i denna katalog med =cd kodprov180105=.
+
+Hämta sedan kodprovet till din dator med följande kommando: =curl --remote-name http://wrigstad.com/ioopm/merkel.zip=.
+
+Nu får du en zip-fil med koden till uppgifterna som du kan packa upp så här: =unzip merkel.zip=.
+
+Nu har du fått ett antal filer och kataloger:
+
+- =uppgift1= -- filer för uppgift 1
+- =uppgift2= -- filer för uppgift 2
+- =Makefile= -- en makefil för att /lämna in/ kodprovet
+
+
+** Inlämning och rättning
+
+Inlämning går till så här: ställ dig i katalogen
+=kodprov180105=. Om du har tappat bort dig i filsystemet kan du
+skriva =cd; cd kodprov180105=. Nu kan du skriva =make handin=
+för att lämna in kodprovet. När du kör detta kommando skapas en
+zip-fil med de filer som du har uppmanats att ändra i (inga
+andra), och denna fil sparas sedan på en plats där vi kan rätta
+provet.
+
+Den automatiska rättningen kommer att gå till så att vi kör dina
+inlämningar mot omfattande testfall. Du har fått ut mindre
+omfattande testfall eller motsvarande i detta prov som du kan
+använda som ett /stöd/ för att göra en korrekt lösning. Experiment
+med att lämna ut mer omfattande tester har visat sig skapa mer
+stress än hjälp (tänk fler testfall som fallerar)[fn::Att lämna ut
+exakt samma test som används vid rättning är heller inte lämpligt,
+då det har förekommit fall då studenter /försökt/ simulera en
+korrekt lösning genom att bara hacka output för specifika
+testvärden.].
+
+Om du har löst uppgifterna på rätt sätt och testfallen som du får
+ut passerar är du förhoppningsvis godkänd.
+
+
+
+** Allmänna förhållningsregler
+
+- Samma regler som för en salstenta gäller: inga mobiltelefoner, inga
+  SMS, inga samtal med någon förutom vakterna oavsett medium.
+- Du måste kunna legitimera dig.
+- Du får inte på något sätt titta på eller använda gammal kod som
+  du har skrivit.
+- Du får inte gå ut på nätet.
+- Du får inte använda någon annan dokumentation än man-sidor och böcker.
+- Det är tillåtet att ha en bok på en läsplatta, eller skärmen på
+  en bärbar dator. Inga andra program får köra på dessa maskiner,
+  och du får inte använda dem till något annat än att läsa
+  kurslitteratur.
+- Du måste skriva all kod själv, förutom den kod som är given.
+- Du får använda vilken editor som helst som finns installerad på
+  institutionens datorer, men om 50 personer använder Eclipse
+  samtidigt så riskerar vi att sänka servrarna.
+
+Vi kommer att använda en blandning av automatiska tester och
+granskning vid rättning. Du kan inte förutsätta att den kod du
+skriver enbart kommer att användas för det driver-program som
+används för testning här. Om du t.ex. implementerar en länkad
+lista av strängar kan testningen ske med hjälp av ett helt annat
+driver-program än det som delades ut på kodprovet.
+
+I mån av tid har vi tidigare år tillämpat ett system där vi ger
+rest för mindre fel. Det är oklart om detta system tillämpas i år,
+men det betyder att det är värt att lämna in partiella lösningar,
+t.ex. en lösning som har något mindre fel.
+
+* C-uppgiften
+
+Du får ut filen =queue.h= som innehåller funktionsprototyper med
+tillhörande dokumentation för en dubbeländad FIFO-kö, dvs. en kö
+där element stoppas in i en ände, och tas ut i den andra, i samma
+ordning som de stoppades in. (Notera att kön faktiskt tillåter att
+man tar element från båda ändarna.)
+
+Din uppgift är att implementera =queue.c= enligt instruktionerna
+här och i =queue.h=.
+
+Liksom under kursen använder vi en ~union~ typedef:ad som ~elem_t~
+för elementen. Notera att typen ~queue_t~ är typad som ~void *~ i
+=queue.h=. Internt i =queue.c= kan du typomvandla detta till något annat.
+
+Du kan inte förutsätta något om antalet element man kan vilja
+lagra samtidigt i kön. Kön /skall/ därför implementeras som en
+länkad datastruktur.
+
+** Kompilera och testa ditt program
+
+Du kan testa ditt program mot =driver.c=. Du kan kompilera
+programmet med =make=, köra tester med =make test-soft= eller
+=make test-hard= och köra testerna i valgrind med =make memtest=.
+Du måste inspektera utskrifterna på skärmen själv.
+
+=make test-hard= använder assertions för att testa programmet. Det
+betyder att programmet kan krascha om det är felaktigt -- det kan
+till och med var så att =make test-hard= på den utdelade koden ger
+en failed assertion.
+
+Därför finns =make test-soft= som stänger av assertions, och som
+låter dig köra hela programmet. Tanken är att du kan börja med
+=make test-soft= för att så småningom gå över till =make test-hard=.
+
+**OBS!** För att bli godkänd måste ditt program inte bara vara
+korrekt utan också fritt från minnesläckage, inte läsa oinitierat
+minne och inte skriva utanför allokerat minne eller skriva över
+data på stacken. Alla block allokerade av programmet skall vara
+explicit frigjorda i programmet innan det terminerar. Verifiera
+det med =valgrind=.
+
+/Observera återigen/ att testerna i makefilen är till för att
+hjälpa dig att hitta fel i din kod och att programmet passerar
+testerna inte nödvändigtvis betyder att programmet är korrekt
+eller att du är godkänd.
+
+#+CAPTION: Exempelkörning med =make test-soft= med den utdelade koden
+#+BEGIN_SRC
+$ make test-soft
+gcc -Wall -g -DNDEBUG driver.c queue.c
+Testing with empty list
+./a.out
+Testing with no removal
+./a.out a b c
+Testing with removal front (removing all 'x')
+./a.out x 1 a
+./a.out x x 2 a b c
+./a.out x x x 3 a
+Testing with removal back (removing all 'xx')
+./a.out a 1 xx
+./a.out a b c 2 xx xx
+./a.out a 3 xx xx xx
+Testing with removal both front and back (removing all 'x' and 'xx')
+./a.out 0
+./a.out x 1 xx
+./a.out x 1 a 2 xx xx
+./a.out x x 2 a b c
+./a.out x x 2 a b c 2 xx xx
+./a.out x x x 3 a 1 xx
+#+END_SRC
+
+
+* Java-uppgiften
+Denna uppgift avser att testa Java-programmering med fokus på ett
+par koncept:
+
+- Subtypning
+- Inkapsling
+- Parametrisk polymorfism
+- Identitet kontra ekvivalens
+
+** Instruktioner
+
+Din uppgift är att implementera klasserna ~LinkedSet~ och ~Iterator~. Du skall endast skriva kod i =Set.java=.
+
+- Instanser av klassen ~LinkedSet~ skall vara /subtyper/ av
+  ~Collection~ och ~Set~, som finns utdelade.
+- Respektera Liskovs substitutionsprincip.  /Detta innebär bl.a. korrekt användande av overloading kontra overriding./
+- Som namnet antyder skall klassen ~LinkedSet~ vara implementerad
+  med hjälp av en länkad lista som du själv skriver från
+  grunden[fn::Dvs. utan att använda t.ex. en existerande
+  listklass.]. Instansvariabler ~first~ och ~last~ samt en
+  ~Link~-klass finns redan i filen =Set.java=. Dessa /måste
+  användas/!
+- Inkapsla det faktum att ~LinkedSet~ är implementerat som en
+  länkad lista, dvs. det skall inte vara möjligt att se det
+  utifrån! /Detta löses genom korrekt användning av åtkomstmodifierare./
+- Din implementation skall vara typsäker. Med detta avses att det
+  skall gå att skapa en mängd av element med en viss typ och att
+  försök att stoppa in element av en annan typ skall inte
+  kompilera. /Detta löses genom korrekt användning av parametrisk polymorfism./
+- Klassen ~Collection~ kräver att varje datasamling har en angiven
+  maxstorlek. Vid försök att stoppa in fler element än tillåtet
+  skall undantaget ~FullSetException~ kastas.
+- Klassen ~Collection~ implementerar interfacet ~Iterable~, som
+  ger ut en iterator (se nedan). Dock är metoden ~iterator()~ inte
+  implementerad "på riktigt" utan måste /override:as/ i en
+  subklass.
+- Instruktioner för vilka metoder som skall finnas och deras
+  beteende finns i =Set.java= och =Collection.java=.
+- Mängden som vi skall implementera skall /inte/ vara ett
+  multi-set -- det vill säga, ett element får förekomma i mängden
+  endast en gång. Det betyder att vid upprepad insättning av samma
+  objekt skall alla insättningar utom den första ignoreras (såvida
+  inte elementet tagits bort dessemellan). Detta kräver att vi
+  ställer oss frågan vad som avses med /samma objekt/. I detta
+  fall avser samma /ekvivalens och inte identitet/. Vidare anser
+  vi att två mängder är samma mängd om de innehåller samma objekt.
+  Observera att mängder är oordnade!
+
+
+
+** Iteratorer
+
+En iterator är ett objekt som stöder smidig iteration över en
+datasamling. En datasamling av strängar som stöder
+iterable-interfacet kan itereras över så här:
+#+BEGIN_SRC java
+/// Printar alla element i en datasamling
+for (String element : datasamling) {
+  System.out.println(element);
+}
+#+END_SRC
+Man kan också vilja interagera direkt med iteratorn, t.ex. så här:
+#+BEGIN_SRC java
+/// Tar bort alla strängar av udda längd ut en datasamling
+Iterator<String> iter = datasamling.iterator();
+while (iter.hasMore()) {
+  String string = iter.next();
+  if (string.length() % 2 == 1) iter.remove();
+}
+#+END_SRC
+För att göra implementationen av iteratorn så enkel som möjligt skall den länkade listan
+i ~Set~ använda sig av en dummy-länk[fn::Aka en sentinel.], först i listan, dvs. en tom lista
+består av en länk, utan element. På så vis går det alltid att ställa sig på föregående element,
+vilket är viktigt vid urlänkning. Iteratorn kan alltså med fördel ständigt peka på föregående
+element (vilket gör implementationen av ~remove()~ enklare).
+
+Filen =LinkedSet.java= innehåller ett skelett till en iterator där
+du enbart behöver fylla i metoderna
+
+#+BEGIN_SRC java
+public interface Set<T> {
+    /// Returns true if elem is in the set
+    public boolean contains(T elem);
+    /// Removes elem if it is in the set
+    /// Returns true if elem was removed
+    public boolean remove(T elem);
+    /// Adds elem to the set unless it is already in the set
+    /// Returns true if elem was added
+    public boolean add(T elem);
+    /// Removes all elements in other from the current set
+    /// Returns the number of elements removed
+    public int removeAll(Collection<T> other);
+    /// Adds all elements in other to the current set
+    /// Returns the number of elements added
+    public int addAll(Collection<T> other);
+    /// Returns all elements in the set in an array
+    /// Order of elements in the array should match iteration order!
+    public Object[] asArray();
+    /// Returns the number of elements in the set
+    public int size();
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+public class Collection<T> implements Iterable<T> {
+    /// Upper bounds the number of elements a collection may hold at any point
+    private final int maxCapacity;
+    /// Constructs a collection with a given maximum capacity
+    public Collection(int maxCapacity) { this.maxCapacity = maxCapacity; }
+    /// Returns the maximum capacity of the current collection
+    public int maxCapacity() { return this.maxCapacity; }
+    /// Returns an iterator which allows O(elements) iteration over the set
+    public Iterator<T> iterator() {
+    throw new RuntimeException("ERROR: this method must be overridden in a subclass!");
+    }
+    /// Creates a new empty collection of the same type as the current this
+    /// Needs overriding in subclass!
+    public Collection<T> newEmptyCollection(int maxCapacity) {
+        return new Collection<T>(maxCapacity);
+    }
+    /// Returns a copy of the collection
+    /// No need to change or do anything with this
+    public static <T> Collection<T> copy(Collection<T> c) {
+        Collection<T> copy = c.newEmptyCollection(c.maxCapacity());
+        for (T elem : c) {
+            copy.add(elem);
+        }
+        return copy;
+    }
+    /// Returns the number of elements in the set
+    public int size() {
+        throw new RuntimeException("ERROR: this method must be overridden in a subclass!");
+    }
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+public class LinkedSet<T> ... {
+    private class Link {
+        Link next;
+        final T element;
+        Link(T element) {
+            this(element, null);
+        }
+        Link(T element, Link next) {
+            this.element = element;
+            this.next = next;
+        }
+    }
+
+    /// Write your code here! You may change the below but you must use first and last.
+
+    Link first = new Link(null); /// Sets up a sentinel
+    Link last = first;
+
+    private class SetIterator implements Iterator<T> {
+        Link current;
+
+        public SetIterator(Link current) {
+            this.current = current;
+        }
+        public T next() {
+            /// TODO
+            /// Returns an element, and then moves current forward
+            /// so that the next call to next() returns
+        }
+        public boolean hasNext() {
+            /// TODO
+            /// Returns true if there are more elements to iterate over
+        }
+        public void remove() {
+            /// TODO
+            /// Removes the current element
+        }
+    }
+}
+#+END_SRC
+
+
+**OBS! Du får bara ändra i filen =LinkedSet.java=.**
+
+** Tips
+
+1. Var smart! Fundera på om olika metoder hänger ihop och kanske
+   kan implementeras med hjälp av varandra.
+2. Tänk efter före -- kanske är den optimala ordningen att
+   implementera metoder inte samma ordning som de är listade i
+   ~Set~ eller ~Collection~?!
+3. Minns skillnaden mellan /overriding/ och /overloading/!
+   Utöver konstruktorerna finns inget behov av overloading för
+   att lösa denna uppgift! (Hint: ~equals()~!)
+4. Fastna inte på en deluppgift -- fastnar du så gå vidare och
+   kom tillbaka senare!
+
+**  Kompilera och testa ditt program
+
+Som vanligt kan du kompilera och testa ditt program med =make
+test=. När testerna passerar skrivs **All tests pass! Well done!**
+ut. Notera att du lägga till spårutskrifter i =Driver.java= och
+att ~System.out.println(mySet)~ ger fin debuginfo. Som vanligt är
+det inte någon garanti att du är godkänd om testerna passerar.

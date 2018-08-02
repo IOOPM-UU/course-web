@@ -1,0 +1,113 @@
+#+title: Project Report Template
+#+include: "../setup.org" 
+
+This course is not about writing reports. However, writing a
+report is key to reflecting what you did, and also helps us
+complete our picture of how your team did function during the
+project. The most important part is that you **never, ever make
+things up**. That defeats the whole purpose! Let's say you never
+picked a process -- now is the time to admit that.
+
+A report should not be boring and unreadable. That means that the
+text needs to /want to be read/. There needs to be a "story" and
+not just a number of disconnected facts. For each section, figure
+out what is its meaning, what is your message for that section,
+and for each paragraph, how does it contribute to conveying that
+message and for each sentence, how does it fit in that paragraph.
+
+If you turn each individual bullet point below into a question and
+try to answer it, the report is going to be crap. You will
+approach it from the perspective of "lets solve the 'we need to
+have a report' problem", and that is not acceptable. Write a
+report that you can stand by. **Please write a short report** --
+but don't make it too short so that it effectively is unable to
+convey anything of importance at a reasonable level of detail.
+
+If you find something /impossible to discuss/, state that and
+explain.
+
+If you find something /completely pointless to discuss/, state
+that and explain.
+
+You must follow the top-level section ordering (and have exactly
+these eight top-level section headings) but feel free to structure
+content under each heading as you see fit. Don't try to "answer
+questions". Ordering of bullets under each heading below is
+random. Don't make your answer ordering random!
+
+In the cases where you are asked to provide a number on a scale
+1--7, 7 is always best. If you cannot agree on a number, vote,
+sum, average and explain that is how you arrived at the number you
+are giving.
+
+/The target audience for this report is Tobias, the coaches, the TAs and interested members of other teams that want to know what happend in your team. If you feel that your report is concise enough to be read by members of other teams while still getting something out of reading it, you are probably doing it right./
+
+
+* Group name
+Start by stating the name of your group/team clearly
+** Participant list
+| Name | email | active dates         |
+| ...  | ...   | 1/12 -17 -- 12/1 -18 |
+|      |       |                      |
+* Quantification
+In this section, state:
+- Project start date
+- Project end date
+- Number of sprints, their start and end dates
+- Total number of new lines of C code written excluding tests and preexisting code
+- Total number of lines of test code
+- Total number of lines of "script code" (e.g., make files, Python scripts for generating test data, etc.)
+- Total number of hours worked by the team
+- Total number of git commits
+- Total number of pull requests
+- Total number of GitHub issues
+* Process
+** Inception
+In this section, discuss choice of process, how you went about learning the process, how you went about implementing the process.
+** Implementation
+In this section, discuss:
+- what you actually implemented
+- strengths and weaknesses with your implementation of your chosen process
+- what you would do differently if you were to start over tomorrow
+- what successes you would attempt to repeat if you were to start over tomorrow
+- how plans were made, key plans, and to what extent your plans were followed
+- how decision making happened, key decisions, and whether they were followed
+- how did you attack the Christmas break problem with planning?
+* Use of Tools
+In this section, discuss:
+- what tools you used in the project
+- what use you had of those tools
+- if there were any tools you were lacking
+- tools you would rather not use in the future
+* Communication, Cooperation and Coordination
+In this section, discuss:
+- the communication between team members and with people outside the team
+- the cooperation between team members
+- the coordination between team members with respect to technical tasks
+- how did you deal with team members that were demotivated, angry, stressed about things outside of the project?
+- how did you handle communication, cooperation and coordination during the break?
+- lessons learned
+* Work Breakdown Structure
+In this section, discuss:
+- how the programming tasks were divided, distributed, carried out, load-balanced, etc. – if you used pair programming how did that go? Did you use it for everything?
+- what were the actual tasks
+- did you manage to load-balance the workload so that no one was overwhelmed, how/why not?
+- were tasks of equal sizes or not, and how you handled if they were not
+- your thoughts on how does one estimate how much time a task will take
+* Quality Assurance
+In this section, discuss:
+- where the spec is unclear -- what is your confidence that you are implementing the right thing (why, how, etc.)
+- your strategy for testing (on all levels: unit/integration/regression) -- including /when/ tests were written, by /whom/, etc.
+- your strategy for working with pull requests -- including how many PRs did you do, by how many people, how many reviews, how many comments on PRs
+- what changes to code came out of pull request reviews
+- did you manage to take pull requests seriously -- how did working with PRs change your attitude towards coding?
+- exemplify best and worst quality of names and descriptions for pull requests
+- lessons learned
+* Reflection
+In this section, discuss *briefly*:
+- On a scale 1--7 (7 is best), rate your satisfaction with your /process/ and provide justification for that number
+- On a scale 1--7 (7 is best), rate your satisfaction with your /delivered product/ and provide justification for that number
+- On a scale 1--7 (7 is best), rate your satisfaction with your /quality assurance/ and provide justification for that number
+- what does the team consider its biggest win?
+- what does the team consider its biggest fail?
+

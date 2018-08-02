@@ -13,6 +13,11 @@ h1{
     font-size:175%;
 }
 
+h1.title{
+    font-size:175%;
+    padding-bottom: 16px;
+}
+
 .subtitle{
     font-size:95%; /* of h1 */
 }

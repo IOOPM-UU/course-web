@@ -1,0 +1,1409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-08-02 tor 00:18 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Project 2</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Tobias Wrigstad" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="/home/stw/t/ioopm/2018/site/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/home/stw/t/ioopm/2018/site/css/readtheorg.css"/>
+<script src="/home/stw/t/ioopm/2018/site/js/jquery.min.js"></script>
+<script src="/home/stw/t/ioopm/2018/site/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/home/stw/t/ioopm/2018/site/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/home/stw/t/ioopm/2018/site/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Project 2</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org07efdbd">1. Inledning</a></li>
+<li><a href="#org3757a5f">2. Skräpsamling med mark&#x2013;sweep (som vi alltså inte kommer att implementera)</a>
+<ul>
+<li><a href="#org303d40f">2.1. Att traversera heapen</a></li>
+<li><a href="#org4bc7c14">2.2. Tillåtna förenklingar map. ovanstående</a></li>
+</ul>
+</li>
+<li><a href="#org843d023">3. Kompakterande skräpsamlare</a>
+<ul>
+<li><a href="#orge00d886">3.1. Effektiv allokering och avallokering</a></li>
+<li><a href="#org9ea5ce0">3.2. Naiv implementation: Två minnesareor (eng. two-space)</a></li>
+<li><a href="#org4fdafa5">3.3. En kompakterande, konservativ skräpsamlare för C</a></li>
+<li><a href="#org576933c">3.4. Konservativ kompaktering efter Bartlett</a></li>
+<li><a href="#org18b1c60">3.5. Allokeringskarta</a></li>
+<li><a href="#orgee67e2d">3.6. Höga adresser</a></li>
+<li><a href="#org78bf8be">3.7. Allokering med metadata</a></li>
+<li><a href="#orgfb1f40b">3.8. Formatsträng för <code>h_alloc_struct</code></a></li>
+</ul>
+</li>
+<li><a href="#org2ecbe1e">4. Implementationsdetaljer</a>
+<ul>
+<li><a href="#orgc149d11">4.1. Vilken information finns i headern</a></li>
+<li><a href="#org7dc2b06">4.2. Objektpekare pekar förbi headern</a></li>
+<li><a href="#org4df7bd4">4.3. En mer kompakt layoutspecifikation</a></li>
+</ul>
+</li>
+<li><a href="#org0890997">5. Att skapa och riva ned en heap</a></li>
+<li><a href="#org985292d">6. Att hitta rötterna för skräpsamlingen</a></li>
+<li><a href="#orgc788512">7. Gränssnittet <code>gc.h</code></a></li>
+<li><a href="#org0c71f15">8. Enkla prestandamätningar</a></li>
+<li><a href="#org6871817">9. Integration med existerande program</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org07efdbd" class="outline-2">
+<h2 id="org07efdbd"><span class="section-number-2">1</span> Inledning</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Uppgiften går ut på att utveckla ett bibliotek, för enkelhets
+skull kallat <i>GC</i>, för minneshantering i form av en <i>konservativ
+kompakterande skräpsamlare</i>. En användare kan skapa en "egen heap"
+&#x2013; ett konsekutivt minnesblock<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> &#x2013; i vilket man sedan kan allokera minne.
+Allokeringar i den egna heapen skall sedan hanteras automatiskt &#x2013;
+när minnet tar slut<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> skall skräpsamling automatiskt triggas, och alla objekt i
+detta minne som inte är nåbart via någon rot i systemet tas
+bort<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>. Ett
+korrekt implementerat projekt kan (och skall &#x2013; se under
+integration) integreras med ett existerande C-program &#x2013; en
+inlämningsuppgift från tidigare del av kursen. I det förändrade
+programmet skall all allokering skall ske med hjälp av
+<i>GC</i>-biblioteket och ingen manuell avallokering skall ske, utan
+att programmets minne skall ta slut.
+</p>
+
+<p>
+I detta kapitel beskrivs uppgiften. Av pedagogiska skäl beskriver
+vi först skräpsamling med hjälp av mark&#x2013;sweep (och som redan
+beskrivits på föreläsning), som vi <i>inte</i> skall använda innan
+vi går in på den kompakterande skräpsamlaren som använder en
+liknande algoritm.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org3757a5f" class="outline-2">
+<h2 id="org3757a5f"><span class="section-number-2">2</span> Skräpsamling med mark&#x2013;sweep (som vi alltså inte kommer att implementera)</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Skräpsamling med mark&#x2013;sweep vandrar genom (traverserar) den graf
+som heapen utgör för att identifiera objekt som fortfarande
+används. Alla objekt som inte används anses vara skräp och kan
+frigöras utan att programmet kraschar. Vi går igenom algoritmen
+steg-för-steg nedan.
+</p>
+
+<p>
+Vi kan tänka oss att varje objekt innehåller en extra
+bit<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>, den s.k. <i>mark-biten</i>. När denna bit
+är satt (1) anses objektet vara "vid liv". Annars är objektet
+skräp som kan tas bort.
+</p>
+
+<p>
+Vid skräpsamling sker följande (logiskt sett):
+</p>
+
+<dl class="org-dl">
+<dt>Steg 1</dt><dd>Iterera över samtliga objekt på heapen och sätter
+mark-biten till 0. Detta innebär att alla objekt anses vara
+skräp initialt.</dd>
+<dt>Steg 2</dt><dd>Sök igenom stacken efter pekare till objekt på
+heapen &#x2013; dessa pekare kallar vi också för "rötter" &#x2013; 
+och med utgångspunkt från dessa, traversera heapen och
+markera alla objekt som påträffas genom att mark-biten sätts
+till 1.</dd>
+<dt>Steg 3</dt><dd>Iterera över samtliga objekt på heapen och frigör alla
+objekt vars mark-bit fortfarande är 0.</dd>
+</dl>
+
+<p>
+Steg 2 kallas för "mark-fasen" och steg 3 för "sweep-fasen",
+härav algoritmens namn, <i>mark&#x2013;sweep</i>.
+</p>
+</div>
+
+
+<div id="outline-container-org303d40f" class="outline-3">
+<h3 id="org303d40f"><span class="section-number-3">2.1</span> Att traversera heapen</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Att traversera heapen i C försvåras av att minnet som standard
+allokeras utan metadata. T.ex. allokerar detta anrop
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #d3869b;">void</span> *<span style="color: #83a598;">p</span> = <span style="color: #fb4933; font-weight: bold;">malloc</span>(<span style="color: #fb4933;">sizeof</span>(binary_tree_node));
+</pre>
+</div>
+
+<p>
+plats som rymmer en <code>binary_tree_node</code>, det sparas ingen
+information om innehållet i detta utrymme, mer än hur stort
+utrymmet är som <code>p</code> pekar på. Vi skulle vilja "fråga" minnet
+vilka pekare det innehåller och hur stort det är, men det kan vi
+alltså inte göra. Vi måste själva implementera stöd för detta.
+</p>
+
+<p>
+Rimligtvis har en <code>binary_tree_node</code> åtminstone två pekare till
+höger respektive vänster subträd &#x2013; så hur gör man för att hitta dem?
+</p>
+
+<p>
+Ett sätt är att leta igenom det minne som pekas ut av <code>p</code> och
+tolka varje möjlig <code>sizeof(void *)</code> i detta utrymme som en adress.
+Om adressen pekar in i den aktuella heapens adressrymd<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup> anser vi att den är en
+pekare till det objekt som finns lagrat där (observera att pekaren
+inte måste peka på starten av det objektet). Då skall vi markera
+detta objekt som levande (dess mark-bit sätts till 1), varefter
+dess utrymme också letas igenom på samma sätt som
+<code>binary_tree_node</code>:en i jakt på andra pekare in i den aktuella
+heapen. Om ett objekt redan markerats och traverserats behöver man
+inte göra det igen.
+</p>
+
+<p>
+Men hur vet man då vilka pekare som finns som pekar in i heapen?
+För att hitta dessa, de s.k. "rotpekarna", måste man leta igenom
+stacken efter pekare till heapen på samma sätt som ovan, alltså gå
+igenom hela stackens adressrymd, inklusive register och de
+statiska dataareorna och leta efter pekare in i heapens
+adressrymd. 
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org4bc7c14" class="outline-3">
+<h3 id="org4bc7c14"><span class="section-number-3">2.2</span> Tillåtna förenklingar map. ovanstående</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Vi tillåter flera förenklingar i denna uppgift &#x2013; vi kräver inte
+stöd för pekare "in i objekt" (alltså som inte pekar till starten
+av ett objekt)<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup>, eller scanning av den statiska
+dataarean<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>. Vi
+uppmuntrar förstås till stöd för dessa vanliga C-idiom, men det är
+inte nödvändigt. (Och ta inte itu med detta förrän resten av
+projektet är klart!)
+</p>
+
+<blockquote>
+<p>
+Nu har vi sett hur man kan leta igenom både stacken och heapen
+efter pekare. Då skall vi titta på hur man kompakterar heapen i
+syfte att minska fragmentering.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org843d023" class="outline-2">
+<h2 id="org843d023"><span class="section-number-2">3</span> Kompakterande skräpsamlare</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+En kompakterande skräpsamlare är en relativt vanlig skräpsamlartyp
+som vid skräpsamling flyttar samman objekt i minnet. Det finns
+åtminstone tre goda skäl till att göra detta:
+</p>
+
+<ol class="org-ol">
+<li>Det undviker fragmentering, eftersom allt använt minne och allt
+icke-använt minne ligger var för sig, konsekutivt.</li>
+<li>Objekt som pekar på varandra tenderar att hamna nära varandra
+vilket förbättrar minneslokaliteten hos programmet.</li>
+<li>Det ger möjlighet till en mycket effektiv implementation av
+allokering.</li>
+</ol>
+</div>
+
+
+<div id="outline-container-orge00d886" class="outline-3">
+<h3 id="orge00d886"><span class="section-number-3">3.1</span> Effektiv allokering och avallokering</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Om alla levande objekt flyttas samman vid allokering kommer allt
+ledigt minne att vara konsekutivt och vi behöver inte föra bok
+över var ledigt minne finns, vilket vore fallet för mark&#x2013;sweep.
+Därför kan allokering implementeras med så-kallad "bump pointer".
+Det går till så att man har en pekare till starten av det fria
+minnet, "fronten", och att allokering av \(n\) bytes returnerar den
+nuvarande addressen till fronten, varefter fronten flyttas \(n\)
+bytes. Denna typ av allokering är betydligt snabbare än en
+implementation som söker bland en lista av fria block för att
+hitta ett av lämplig storlek.
+</p>
+
+<p>
+Vidare, om vi enbart opererar på levande objekt och ignorerar
+skräp blir tidskomplexiteten \(O(\#\textrm{levande objekt})\) istället för
+\(O(\#\textrm{objekt})\). Det tillåter oss att skriva en implementation som
+undviker steg 1 och steg 3 i beskrivningen av mark&#x2013;sweep ovan.
+</p>
+
+<p>
+Det är inte ovanligt att 90&#x2013;95% av alla objekt är skräp vid en
+skräpsamling<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup>, så detta är en <i>stor tidsvinst</i>, även om kopiering
+är dyrt.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9ea5ce0" class="outline-3">
+<h3 id="org9ea5ce0"><span class="section-number-3">3.2</span> Naiv implementation: Två minnesareor (eng. two-space)</h3>
+<div class="outline-text-3" id="text-3-2">
+<blockquote>
+<p>
+Vi kommer att implementera en variant av denna efter Bartlett.
+</p>
+</blockquote>
+
+<p>
+Det enklaste sättet att implementera en kompakterande skräpsamlare
+är att dela upp minnet i två olika minnesareor, en passiv och en
+aktiv. Alla objekt finns i den aktiva arean, och all allokering
+sker där &#x2013; den passiva arean används inte. 
+</p>
+
+<p>
+Om man fyller den aktiva arean triggas skräpsamlingen. Den utgår
+från samtliga rötter och traverserar samtliga levande objekt i den
+aktiva arean. Varje objekt som hittas på detta sätt kopieras
+över<sup><a id="fnr.9" class="footref" href="#fn.9">9</a></sup> in i den
+passiva heapen, och vi noterar kopians adress<sup><a id="fnr.10" class="footref" href="#fn.10">10</a></sup>. Alla pekare vi hittar i under traverseringens
+gång ersätter vi med objektets forwarding-adress så att vi till
+slut kopierat över alla levande objekt från den aktiva arean till
+den passiva, och uppdaterat alla pekare mellan objekten så att
+kopiorna pekar ut varandra. På samma sätt uppdaterar vi också alla
+rotpekare att peka på kopiorna. (Hela detta motsvarar alltså steg
+2 i beskrivningen av mark&#x2013;sweep.)
+</p>
+
+<p>
+När traverseringen och kopieringen är klar byter vi så att den
+passiva arean blir aktiv, och den aktiva passiv.
+</p>
+
+<p>
+Vad vi har åstadkommit nu är alltså att alla objekt innan
+skräpsamlingen finns i den numer passiva arean och betraktas som
+skräp. Endast de objekt som programmet kunde nå har flyttats över
+in i den nya aktiva arean vilket betyder att den använder minsta
+möjliga minne som fortfarande garanterar att programmets alla
+pekare är korrekta.
+</p>
+
+<p>
+Notera att uppdelningen av minnet i två areor varav endast den ena
+är i bruk vid varje givet tillfälle (förutom vid skräpsamlingen då
+båda används) effektivt dubblar ett programs minnesanvändande.
+Detta har inte hindrat denna teknik från att användas i praktiken;
+de flesta program använder relativt lite minne, och smidig och
+korrekt minnesanvändning är ofta viktigare än <i>yteffektiv</i>.
+(Generationsbaserade skräpsamlare där flera olika
+skräpsamlingstekniker kombineras kan också hjälpa till att minska
+"slöseriet" med minne.)
+</p>
+
+<p>
+Bilderna nedan visar en naiv implementation av en kopierande
+skräpsamlare. Minnet är indelat i två areor, en aktiv och en
+passiv. När skräpsamling triggas kopieras alla levande objekt över
+från den aktiva till den passiva arean, varefter den passiva arean
+blir aktiv och den aktiva passiv. Notera att i den nya aktiva
+arean är objekten kompakterade, dvs. lagda intill varandra. På
+detta vis undviks minnesfragmentering.
+</p>
+
+
+<div class="figure">
+<p><img src="two-space-1.png" alt="two-space-1.png" /> 
+</p>
+<p><span class="figure-number">Figure 1: </span>Precis innan skräpsamling.</p>
+</div>
+
+
+<div class="figure">
+<p><img src="two-space-2.png" alt="two-space-2.png" /> 
+</p>
+<p><span class="figure-number">Figure 2: </span>Precis efter skräpsamling.</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org4fdafa5" class="outline-3">
+<h3 id="org4fdafa5"><span class="section-number-3">3.3</span> En kompakterande, konservativ skräpsamlare för C</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Ett problem med skräpsamling i språk som C är avsaknaden av
+metadata i minnet. Eftersom en pekare och en integer ser identiska
+ut (och en adress är ett positivt heltal!) är det möjligt att
+tolka <i>heltalet</i> 3786230 (som kanske avser slutpriset på en
+enrummare i Stockholms innerstad) som <i>pekaren</i> 0x39C5F6 
+(samma tal skrivet i bas 16). Har vi otur kan 0x39C5F6 råka vara
+en valid adress i den heap som hanteras av <i>GC</i>.
+</p>
+
+<p>
+Vi kommer att hantera detta problem med en kombination av fyra
+tekniker:
+</p>
+
+<ul class="org-ul">
+<li>Konservativ kompaktering efter Bartlett</li>
+<li>Allokeringskarta</li>
+<li>Höga adresser (<i>frivilligt att implementera</i>)</li>
+<li>Allokering med metadata</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org576933c" class="outline-3">
+<h3 id="org576933c"><span class="section-number-3">3.4</span> Konservativ kompaktering efter Bartlett</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+Bartlett skiljer mellan <i>säkra</i> och <i>osäkra</i> pekare. En säker
+pekare är en adress som vi säkert vet är en pekare. En osäker
+pekare är en vars data vi inte säkert vet är en pekare. Ett
+typiskt användande av Bartletts teknik är för skanning av stacken
+i ett C-liknande språk, där vi inte vet vad det är för data vi
+tittar på. Pekare på stacken blir därför osäkra, medan pekare
+mellan objekt på heapen<sup><a id="fnr.11" class="footref" href="#fn.11">11</a></sup> blir
+säkra.
+</p>
+
+<p>
+Vi klassificerar alltså alla pekare vi hittar som säkra eller
+osäkra. Att vara konservativ innebär att vi måste utgå från att en
+osäker pekare faktiskt är en pekare i bemärkelsen att vi måste
+betrakta dess utpekade objekt som levande, och samtidigt att vi
+måste utgå från att den osäkra pekaren faktiskt inte är en pekare
+vilket innebär att vi inte kan flytta dess utpekade objekt i
+minnet eftersom det kräver att vi ändrar pekarvärdet till den nya
+adressen. Exempel, om vi hittar 0x39C5F6 (slutpriset på en
+lägenhet) på stacken måste det objekt som ligger på den adressen
+överleva och inte flyttas. Flyttade vi det till t.ex. adressen
+0x1C0030 måste vi uppdatera värdet på stacken till 0x1C0030 (peka
+om "pekaren"), vilket skulle betyda att vi ändrat slutpriset på
+lägenheten!
+</p>
+
+<p>
+För att använda Bartletts trick för att hantera osäkerhet delar vi
+in minnet som vi hanterar i ett antal diskreta "sidor"<sup><a id="fnr.12" class="footref" href="#fn.12">12</a></sup>. Istället för att dela in hela
+heapen i två delar &#x2013; passiv och aktiv &#x2013; ger vi <i>varje sida</i>
+statusen passiv eller aktiv. En osäker pekare till en adress \(A\)
+medför nu att den omslutande sidan \(P\) inte får flyttas vid
+kompaktering.
+</p>
+
+<p>
+I en skräpsamlare av Bartlett-typ, se figuren nedan, är minnet
+indelat i många små sidor som var och en kan vara aktiv (grå)
+eller passiv (vit). Pekare kan också vara säkra eller osäkra
+(streckad pil). Objekt som utpekas av osäkra pekare får inte
+flyttas. Detta implementeras genom att hela sidan som objektet
+ligger på är oförändrad. Detta leder i exemplet i figuren till att
+ett skräp-objekt inte tas bort för att det råkar ligga på samma
+sida som ett osäkert utpekat objekt.
+</p>
+
+
+<div class="figure">
+<p><img src="bartlett-1.png" alt="bartlett-1.png" /> 
+</p>
+<p><span class="figure-number">Figure 3: </span>Precis innan skräpsamling.</p>
+</div>
+
+
+<div class="figure">
+<p><img src="bartlett-2.png" alt="bartlett-2.png" /> 
+</p>
+<p><span class="figure-number">Figure 4: </span>Precis efter skräpsamling.</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org18b1c60" class="outline-3">
+<h3 id="org18b1c60"><span class="section-number-3">3.5</span> Allokeringskarta</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+Ytterligare ett sätt att minska risken för felaktiga pekarvärden
+är att använda en allokeringskarta. En allokeringskarta är en
+array av booleans där varje plats i arrayen motsvarar en valid
+adress för en allokering, och där <code>true</code> betyder att något
+allokerats på den platsen (<code>false</code> &#x2013; inte). Om man t.ex. har
+(vilket är rimligt) en minsta objektstorlek på 16
+bytes[fn::Inklusive header.} behöver man alltså
+en array med 1024 element för att hålla reda på 16 kb. Om man
+använder en <code>bitvektor</code> där en enskild bit är en boolean behövs
+alltså bara 128 bytes för att hålla reda på 16 kb, vilket är &lt;1%
+overhead.
+</p>
+
+<p>
+Om vi återgår till vårt exempel där vi hittar 0x39C5F6 (slutpriset
+på en lägenhet) på stacken kan vi se om den boolean som motsvarar
+den adressen i allokeringskartan är <code>true</code> eller <code>false</code>. Om
+värdet är <code>false</code> kan vi helt ignorera 0x39C5F6. Om värdet är
+<code>true</code> måste vi behandla det som en pekare.
+</p>
+
+<blockquote>
+<p>
+Det bitset som vi kodat tidigare på kursen (utdelat i Piazza) är
+fritt fram att använda för att implementera allokeringskartan.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-orgee67e2d" class="outline-3">
+<h3 id="orgee67e2d"><span class="section-number-3">3.6</span> Höga adresser</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+Detta är enkelt att implementera och brukar ge hög avkastning.
+Använd t.ex. <code>posix_memalign</code> för att allokera minnet till
+programmets egen heap och ange en mycket hög adress som alignment.
+Det medför att alla pekaradresser som skapas kommer att vara
+väldigt stora. Eftersom program sällan manipulerar väldigt stora
+tal minskar risken för att ett heltal i programmet skulle råka
+sammanfalla med en valid minnesadress.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org78bf8be" class="outline-3">
+<h3 id="org78bf8be"><span class="section-number-3">3.7</span> Allokering med metadata</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+För att slippa leta igenom heapen på samma sätt som stacken kommer
+vi att använda ett format för allokering som kräver att användaren
+ger den information vi behöver. Vårt skall stödja två  typer av
+allokering:
+</p>
+
+<ul class="org-ul">
+<li><code>h_alloc_struct</code> &#x2013; där programmeraren anger en slags
+formatsträng som beskriver minneslayouten hos objektet som skall
+allokeras<sup><a id="fnr.13" class="footref" href="#fn.13">13</a></sup>. Formatsträngen beskriver var i ett
+objekt eventuella pekare finns som också skall traverseras för
+att markera objekt som levande.</li>
+<li><code>h_alloc_raw</code> &#x2013; där programmeraren anger storleken på ett
+utrymme som skall reserveras<sup><a id="fnr.14" class="footref" href="#fn.14">14</a></sup>.
+Detta utrymme <i>får</i> inte innehålla pekare till andra objekt.</li>
+</ul>
+
+<p>
+I alla fall ovan skall det allokerade minnet nollställas, dvs.
+samma beteende som <code>calloc</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfb1f40b" class="outline-3">
+<h3 id="orgfb1f40b"><span class="section-number-3">3.8</span> Formatsträng för <code>h_alloc_struct</code></h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+Formatsträngen förklaras enklast genom exempel. Antag att vi har en typ
+<code>binary_tree_node</code>, deklarerad enligt följande.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #fb4933;">struct</span> <span style="color: #d3869b;">binary_tree_node</span> {
+  <span style="color: #d3869b;">void</span> *<span style="color: #83a598;">value</span>;
+  <span style="color: #fb4933;">struct</span> <span style="color: #d3869b;">binary_tree_node</span> *<span style="color: #83a598;">left</span>;
+  <span style="color: #fb4933;">struct</span> <span style="color: #d3869b;">binary_tree_node</span> *<span style="color: #83a598;">right</span>;
+  <span style="color: #d3869b;">int</span> <span style="color: #83a598;">balanceFactor</span>;
+}
+</pre>
+</div>
+
+<p>
+Detta utrymme kan beskrivas av formatsträngen <code>"***i"</code> som
+betyder att utrymme skall allokeras för 3 pekare, följt av en
+<code>int</code>, dvs.,
+</p>
+
+<pre class="example">
+alloc("***i");
+</pre>
+
+<p>
+är analogt med
+</p>
+
+<pre class="example">
+alloc(3 * sizeof(void *) + sizeof(int));
+</pre>
+
+<p>
+Notera att data alignment kan påverka en strukturs layout för mer
+effektiv minnesåtkomst i en strukt. Detta kan betyda att två fält
+efter varandra i en strukt har "tomt utrymme" mellan sig för att
+värdens plats i minnet skall bättre passa med ord-gränser. Man kan
+antingen sätta sig in i hur detta fungerar<sup><a id="fnr.15" class="footref" href="#fn.15">15</a></sup> &#x2013; notera
+att det är plattformsberoende &#x2013; eller fundera ut hur man stänger
+av det.<sup><a id="fnr.16" class="footref" href="#fn.16">16</a></sup> Ange
+tydligt i dokumentationen hur detta har hanterats.
+</p>
+
+<p>
+En bra första iteration i implementationen av stödet för
+allokering med formatsträng implementerar stöd för <code>"*"</code> och
+<code>"r"</code>, där det sistnämnda står för <code>sizeof(int)</code>, vilket på en
+64-bitars platform ger möjligheten att allokera antingen i
+"byggklossar" om 8 respektive 4 bytes<sup><a id="fnr.17" class="footref" href="#fn.17">17</a></sup>.
+</p>
+
+<p>
+Åtminstone följande styrkoder skall kunna ingå i en formatsträng:
+</p>
+
+<div class="org-center">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Styrkod</th>
+<th scope="col" class="org-left">Betydelse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>*</code></td>
+<td class="org-left">pekare</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>c</code></td>
+<td class="org-left">char</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>i</code></td>
+<td class="org-left">int</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>l</code></td>
+<td class="org-left">long</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>f</code></td>
+<td class="org-left">float</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>d</code></td>
+<td class="org-left">double</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>
+Ett heltal före ett specialtecken avser repetition; till exempel
+är <code>"***ii"</code> ekvivalent med <code>"3*2i"</code>. Man kan se det som att
+default-värdet 1 inte måste sättas ut explicit, alltså <code>*</code> är
+kortform för <code>1*</code>. En tom formatsträng är inte valid. En
+formatsträng som bara innehåller ett heltal, t.ex. <code>"32"</code>, tolkas
+som <code>"32c"</code>. Detta innebär att <code>h_alloc_struct("32")</code> är
+semantiskt ekvivalent med <code>h_alloc_raw(32)</code>.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org2ecbe1e" class="outline-2">
+<h2 id="org2ecbe1e"><span class="section-number-2">4</span> Implementationsdetaljer</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Eftersom objekt i C inte har något metadata måste implementationen
+hålla reda på två saker:
+</p>
+
+<ul class="org-ul">
+<li>Hur stort varje objekt är (annars kan vi inte kopiera det), samt</li>
+<li>Var i objektet dess pekare till andra objekt finns.</li>
+</ul>
+
+<p>
+Formatsträngen innehåller information för att räkna ut båda dessa,
+men formatsträngen är inte helt oproblematisk, t.ex. eftersom den
+ägs av klienten som kan avallokera den<sup><a id="fnr.18" class="footref" href="#fn.18">18</a></sup>
+</p>
+
+<p>
+Om varje formatsträng kopierades med motsvarande <code>strdup()</code> skulle
+vi vara mer skyddade mot att de avallokeras i förtid, men det
+skulle bli ett påtagligt slöseri att skapa många kopior av
+strängar. En bättre implementation skulle använda en mer kompakt
+representation av formatsträngen <i>som kunde bakas in i det
+allokerade objektet</i><sup><a id="fnr.19" class="footref" href="#fn.19">19</a></sup>.
+</p>
+
+<p>
+I implementationen av den kompakterande skräpsamlaren skall varje
+objekt ges en <i>header</i> (metadata), och vi är förstås
+intresserade av att denna header är så liten som möjligt eftersom
+program som allokerar många små objekt annars blir för
+ineffektiva. En bra design är att spara headern precis före varje
+objekt i minnet. Låt oss börja med att titta på vad headern skall
+kunna innehålla för information:
+</p>
+
+<ul class="org-ul">
+<li>En pekare till en formatsträng (<code>const char *</code>)</li>
+<li>En mer kompakt representation av objektets layout</li>
+<li>En forwarding-adress</li>
+<li>En flagga som anger om objektet redan är överkopierat till
+den passiva arean vid skräpsamling</li>
+</ul>
+
+<p>
+Lyckligtvis kan vi representera samtliga dessa data i ett enda
+utrymme av storlek <code>sizeof(void *)</code> med hjälp av litet klassisk
+C-slughet. Vi kan börja med att notera att alternativ 1 och 2 är
+ömsesigt uteslutande, dvs., finns en kompakt representation av
+objektets layout behövs varken formatsträng eller en
+objektspecifik skräpsamlingsfunktion, osv. Vidare behövs
+forwarding-adress enbart när en kopia redan har gjorts av
+objektet, vilket t.ex. betyder att forwarding-adressen kan skriva
+över objektets data eftersom allt överskrivet data går att hitta
+om man bara följer forwarding-pekaren. Slutligen kan vi konstatera
+att flaggan i 4 enbart behövs i samband med 3.
+</p>
+</div>
+
+<div id="outline-container-orgc149d11" class="outline-3">
+<h3 id="orgc149d11"><span class="section-number-3">4.1</span> Vilken information finns i headern</h3>
+<div class="outline-text-3" id="text-4-1">
+<blockquote>
+<p>
+Om vi använder adresser som är "alignade" mot ord i minnet, och
+varje ord är minst 4 bytes, så kommer alla addresser att vara en
+multipel av 4, vilket betyder att de sista två bitarna i en adress
+i praktiken inte används. (Virtuellt minne kan medföra att vi har
+ett stort antal insignifikanta bitar i varje adress, detta är
+maskin och OS-specifikt.) Notera att man kan använda t.ex.
+<code>-falign-functions=16</code> för att även styra vilka adresser
+funktionspekare får.
+</p>
+</blockquote>
+
+<p>
+För att inte slösa med minnet skall vi använda de två minst
+signifikanta bitarna i en pekare för att koda in information om
+vad som finns i headern. Alltså, om en 32-bitars pekare binärt är
+(med little-endian) <code>1001000111101100</code>-<code>01100101000001000</code>
+pratar vi om att gömma information i de sista två, dvs.
+<code>1001000111101100011001010000010__</code>.
+</p>
+
+<p>
+Två bitar
+är tillräckligt för att koda in fyra olika tillstånd, t.ex.:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Mönster</th>
+<th scope="col" class="org-left">Headern är en&#x2026;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>00</code></td>
+<td class="org-left">pekare till en formatsträng (alt. 1)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>01</code></td>
+<td class="org-left">forwarding-adress (alt. 3)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>10</code></td>
+<td class="org-left"><i>tillgängligt för utökning</i></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>11</code></td>
+<td class="org-left">bitvektor med layoutinformation (alt. 2, se nedan)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Notera att de två minst signifikanta bitarna måste "maskas ut" ur
+pekaren innan pekaren används &#x2013; annars kan pekarvärde bli
+ogiltigt på grund av att datat vi gömt där tolkas som en del av
+adressen. Det betyder att varje läsning av headern som en pekare
+skall sätta de två minst signifikanta bitarna<sup><a id="fnr.20" class="footref" href="#fn.20">20</a></sup> till 0 i det utlästa resultatet.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org7dc2b06" class="outline-3">
+<h3 id="org7dc2b06"><span class="section-number-3">4.2</span> Objektpekare pekar förbi headern</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Objektets header ligger alltid först i objektet, men skall inte
+vara synlig i några struktar (det skulle göra programmet beroende
+av en specifik skräpsamlare, vilket vore dåligt). Därför kommer en
+pekare till ett objekt alltid att peka på struktens första byte,
+dvs. den "pekar förbi" headern. Och om man vill komma åt headern
+måste man använda pekararitmetik och "backa"
+<code>sizeof(header)</code> bytes. Denna typ av design tillåter att
+skräpsamlaren modiferas så att headern växer och krymper utan att
+program som använder skräpsamlaren måste modifieras. 
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org4df7bd4" class="outline-3">
+<h3 id="org4df7bd4"><span class="section-number-3">4.3</span> En mer kompakt layoutspecifikation</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Vi skall använda en bitvektor för att koda in en
+layoutspecifikation på ett sätt som är betydligt mer yteffektivt
+än en formatsträng. Vi kan t.ex. använda en bit för att ange
+antingen en pekare eller "data", t.ex. <code>11001</code> är samma som
+formatsträngen <code>"**ii*"</code>, som ger en objektstorlek på \(32\)
+bytes<sup><a id="fnr.21" class="footref" href="#fn.21">21</a></sup> om en pekare är 8 bytes och
+<code>sizeof(int)</code> är 4~bytes. Vi behöver också information om
+bitvektorns längd. Notera att vi enbart är intresserade av
+huruvida något är en pekare eller inte &#x2013; om det är en <code>int</code> eller
+en <code>float</code> eller en <code>bool</code> kvittar.
+</p>
+
+<p>
+För större allokeringar av data utan pekare behöver
+layoutspecifikationen enbart vara en storleksangivelse. I likhet
+med headern kan vi reservera en bit för att ange om
+layoutspecifikationen är en storlek i bytes, eller om det är en
+vektor med mer precis layoutinformation.
+</p>
+
+<p>
+På en maskin där en pekare är 64 bitar skulle alltså 2 bitar gå åt
+till metadata om headern, ytterligare 1 bit gå åt till att koda in
+typ av layoutspecifikation, och resterande 61 bitar antingen vara
+en storlek i bytes eller en bitvektor och dess längd<sup><a id="fnr.22" class="footref" href="#fn.22">22</a></sup>.
+</p>
+
+<p>
+Notera att eftersom den kompakta layoutspecifikationen har en övre
+storleksgräns (30 i exemplet i fotnoten här intill) fungerar denna
+representation bara för data av begränsad storlek (som också styrs
+av huruvida headern är 32 eller 64 bitar).
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org0890997" class="outline-2">
+<h2 id="org0890997"><span class="section-number-2">5</span> Att skapa och riva ned en heap</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Funktionen <code>h_init</code> som ni skall implementera skapar en ny heap
+med en angiven storlek och returnerar en pekare till den. Utöver
+storlek skall det gå att ställa in två ytterligare parametrar:
+</p>
+
+<ul class="org-ul">
+<li>Huruvida pekare på stacken skall anses som säkra eller osäkra</li>
+<li>Vid vilket minnestryck skräpsamling skall köras</li>
+</ul>
+
+<p>
+Eftersom det måste vara möjligt att resonera om minneskraven för
+en applikation skall <i>allt</i> metadata om heapen också rymmas i
+det angivna storleksutrymmet. Dvs., alla eventuella kopior av
+formatsträngar etc. skall lagras i "er heap". Funktionen
+<code>h_avail</code> returnerar antalet tillgängliga bytes i en heap, dvs.
+så många bytes som kan allokeras innan minnet är fullt (dvs.
+minnestrycket är 100%).
+</p>
+
+<p>
+Det skall finnas två funktioner för att frigöra en heap och
+återställa allt minne:
+</p>
+
+<ul class="org-ul">
+<li><code>h_delete</code> som frigör allt minne som heapen använder.</li>
+<li><code>h_delete_dbg</code> som utöver ovanstående också ersätter
+alla variabler på stacken som pekar in i heapens adressrymd med
+ett angivet värde, t.ex. <code>NULL</code> eller <code>0xDEADBEEF</code> så att
+"skjutna pekare" (eng. dangling pointers) lättare kan
+upptäckas.</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org985292d" class="outline-2">
+<h2 id="org985292d"><span class="section-number-2">6</span> Att hitta rötterna för skräpsamlingen</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Att hitta rötterna (eng. root set) kräver att man letar igenom
+stacken efter samtliga bitmönster som kan tolkas som pekare och
+som har en adress som pekar in i den aktuella heapen. Detta kan
+man göra genom betrakta stacken som en array från \(B\) till \(E\) och
+pröva alla möjliga <code>sizeof(void *)</code>-block mellan \(B\) och \(E\).
+Eftersom värden kan hållas i register kan det vara lämpligt att
+använda någon C-funktion som tvingar alla register att sparas på
+stacken, så att inte en pekare missas för att den för tillfället
+inte finns varken på stacken eller heapen. Här är ett lämpligt
+makro som gör det. Man behöver <i>inte</i> scanna <code>env</code> på något
+sätt, utan innehållet dumpas på stacken (verifiera gärna detta
+genom att ta reda på hur <code>env</code> är definierad på de aktuella
+maskiner du vill köra på genom att läsa deras <code>setjmp.h</code>).
+</p>
+
+<pre class="example">
+#include &lt;setjmp.h&gt;
+
+#define Dump_registers()                        \
+  jmp_buf env;                                  \
+  if (setjmp(env)) abort();                     \
+</pre>
+
+<p>
+Toppen på stacken kan man approximera genom att t.ex. ta adressen
+till en stackvariabel på den översta stack-framen. Ett bättre
+sätt, som dock inte fungerar på alla kompilatorer, är att använda
+<code>__builtin_frame_address(lvl)</code> som returnerar adressen till den
+översta framen på stacken när <code>lvl</code> är 0, den anropande
+funktionens stack frame när <code>lvl</code> är 1, etc. För att få toppen på
+stacken i användarens program i <code>h_gc</code> kan man alltså bara skriva
+<code>void *top = __builtin_frame_address(0)</code>. Botten på stacken kan
+man också få fram genom att läsa adressen till den globala
+variabeln <code>environ</code> som enligt C-standarden skall ligga "under"
+starten på stacken<sup><a id="fnr.23" class="footref" href="#fn.23">23</a></sup>.
+</p>
+
+<p>
+Åtkomst till <code>environ</code> ges genom att man deklarerar den som en
+<i>extern</i>, analogt med en global variabel:
+</p>
+
+<pre class="example">
+extern char **environ;
+</pre>
+
+<p>
+eller lägger till den som ett tredje argument till <code>main</code>. 
+</p>
+
+<p>
+Notera att huruvida stacken växer uppåt eller nedåt i adressrymden
+är plattformsspecifikt. Betänk också <i>data alignment</i> vid
+genomsökning av stacken &#x2013; på vilka adresser kan man hitta
+adresser?
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgc788512" class="outline-2">
+<h2 id="orgc788512"><span class="section-number-2">7</span> Gränssnittet <code>gc.h</code></h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Nedanstående headerfil sammanfattar det publika gränssnitt som
+skall implementeras. En doxygen-dokumenterad version finns också
+tillgänglig <a href="https://github.com/IOOPM-UU/ioopm16/blob/master/uppgifter/projekt/src/gc.h">i kursens repo</a>.<sup><a id="fnr.24" class="footref" href="#fn.24">24</a></sup>
+</p>
+
+<pre class="example">
+#include &lt;stddef.h&gt;
+#include &lt;stdbool.h&gt;
+
+#ifndef __gc__
+#define __gc__
+
+typedef struct heap heap_t;
+
+heap_t *h_init(size_t bytes, bool unsafe_stack, float gc_threshold);
+void h_delete(heap_t *h);
+void h_delete_dbg(heap_t *h, void *dbg_value);
+
+void *h_alloc_struct(heap_t *h, char *layout);
+void *h_alloc_raw(heap_t *h, size_t bytes);
+
+size_t h_avail(heap_t *h);
+size_t h_used(heap_t *h);
+size_t h_gc(heap_t *h);
+size_t h_gc_dbg(heap_t *h, bool unsafe_stack);
+
+#endif
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org0c71f15" class="outline-2">
+<h2 id="org0c71f15"><span class="section-number-2">8</span> Enkla prestandamätningar</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Beroende på vilken implementation av <code>malloc</code> du använder
+används olika strategier för att allokera minne. Gör några enkla
+prestandatest för ett program som allokerar
+många objekt<sup><a id="fnr.25" class="footref" href="#fn.25">25</a></sup> och mät:
+</p>
+
+<ul class="org-ul">
+<li>För ett stort program som ryms i minnet (alltså där
+skräpsamlaren aldrig körs), går det att observera
+prestandaskillnader mellan er minneshanterare och <code>malloc</code>? 
+Detta test mäter <i>allokeringens</i> effektivitet.</li>
+<li>För ett stort program som <i>inte</i> ryms i minnet, går det
+att observera prestandaskillnader mellan er minneshanterare och
+<code>malloc</code>? Detta test mäter allokeringens effektivitet, men
+också skräpsamlingens. Traversering av objekt kostar, men
+samtidigt krävs endast att man bearbetar data som är levande,
+till skillnad från <code>malloc~/~free</code> där allt skräp måste
+explicit lämnas tillbaka, vilket förstås tar tid.</li>
+<li>Kör ett program som skapar 4 länkade listor av heltal<sup><a id="fnr.26" class="footref" href="#fn.26">26</a></sup>, där varje lista
+håller i tal inom ett visst intervall, \([0,1*10^9)\),
+\([1*10^9,2*10^9)\), etc. upp till \(4*10^9\). Slumpa fram \(M\) tal i
+intervallet \([0,4*10^9)\) och stoppa in dem i rätt listor[fn::Det
+är viktigt att varje slumptal tas fram ur intervallet
+\([0,4*10^9)\) och inte att man först slumpar lista ett, sedan
+lista två etc.]. (*) Slumpa sedan fram \(N\) tal och sök igenom
+rätt lista och svara på om talet finns där. <i>Detta program
+kommer att delas ut.</i> Använd både <code>malloc</code> och er egen
+minneshanterare i ovanstående program och jämför körtiderna.
+Storleksförhållandet mellan M och N bör vara sådant att \(M\approx
+  10*N\). Pröva också att göra en skräpsamling vid punkten
+(*) i programmet och justera N uppåt utan att ändra \(M\). Kan man
+se en skillnad i körtider?</li>
+<li><b><b>Frivilligt!</b></b> Jämförelse med Boehm&#x2013;Demers&#x2013;Weiser's GC (BDW).
+Ladda ned och installera skräpsamlaren BDW. Den fungerar
+liknande som den skräpsamlare vi bygger på denna kurs, men är
+betydligt mer avancerad och fungerar med flertrådade program,
+etc. BDW har bara bara stöd för en enda heap, vilket betyder att
+interfacet är enklare: inkludera (dess) <code>gc.h</code> och ersätt alla
+anrop till <code>malloc</code> med <code>GC_malloc</code>, samt anropa <code>GC_init()</code>
+först i programmet. Jämför er prestanda med BDW genom att göra
+motsvarande integrationer med BDW för programmen ovan.</li>
+</ul>
+
+<p>
+Resultatet av prestandatesterna kommer att efterfrågas i samband
+med redovisningen. (Grafer är ett bra sätt att förmedla
+information!)
+</p>
+
+<p>
+Körtid kan man mäta t.ex. med <code>time</code> (ett POSIX-program) eller
+genom att använda C:s inbyggda funktioner för att läsa av
+systemklockan (t.ex. <code>time.h</code>).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6871817" class="outline-2">
+<h2 id="org6871817"><span class="section-number-2">9</span> Integration med existerande program</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+Kronan på verket när skräpsamlaren är klar är att integrera den
+med ett existerande program. Vi kommer att plocka ett slumpvist
+valt program från en godkänd redovisning av Z101 (fas 1/sprint 2).
+Detta program kommer inte ha några globala pekare och allokera
+sitt minne dynamiskt (jmf. krav på denna inlämningsuppgift). 
+</p>
+
+<p>
+Vi kommer sedan att ta detta program och skriva om det så att alla
+anrop till <code>malloc</code> / <code>calloc</code> går till <code>h_alloc</code> (eller
+<code>h_alloc_raw</code>).
+</p>
+
+<p>
+Vid slutseminariet skall ni demonstrera att er skräpsamlare
+fungerar med detta program!
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara">Skapas under huven t.ex. med
+hjälp av <code>calloc</code>, <code>posix_memalign</code> i <code>stdlib.h</code>, eller <code>mmap</code> i
+<code>sys/mman.h</code>, eller&#x2026;</div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara">Eller något annat villkor som användaren
+anger.</div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara">Vi gör en förenkling och utgår från att programmen är
+enkeltrådade och att endast en heap skapas per program.</div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara">Tekniskt kan det också vara en bit om man har en över.
+Ibland kan man packa in bitar i annat data &#x2013; vi skall se exempel
+på det senare i denna text!</div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara">Alltså
+dess pekaren är en adress i den egna heapens adressrymd &#x2013; dvs.
+mellan dess startadress och slutadress.</div></div>
+
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara">Implementerar du inte stöd för detta blir det
+heller inte säkert att använda sådana pekare i de program som
+använder minneshanteraren.</div></div>
+
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7">7</a></sup> <div class="footpara">Dvs. globala variabler &#x2013; samma som föregående not
+gäller. Notera att vissa förenklingar kan kräva att man ändrar de
+program som man vill integrera med sitt bibliotek senare.</div></div>
+
+<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8">8</a></sup> <div class="footpara">Detta kallas för "the weak generational
+hypothesis."</div></div>
+
+<div class="footdef"><sup><a id="fn.9" class="footnum" href="#fnr.9">9</a></sup> <div class="footpara">Vid denna kopiering används bump pointer-allokering i den
+passiva arean och den initiala fronten är areans start.</div></div>
+
+<div class="footdef"><sup><a id="fn.10" class="footnum" href="#fnr.10">10</a></sup> <div class="footpara">En s.k.
+forwarding-adress.</div></div>
+
+<div class="footdef"><sup><a id="fn.11" class="footnum" href="#fnr.11">11</a></sup> <div class="footpara">I alla fall om metadata finnes!</div></div>
+
+<div class="footdef"><sup><a id="fn.12" class="footnum" href="#fnr.12">12</a></sup> <div class="footpara">För
+enkelhets skull använder vi storleken 2048 bytes per sida.
+Observera att man måste se till att objekt inte korsar sidgränser.
+För enkelhets skull kan vi sätta en maxgräns på objektstorlek så
+att alla objekt ryms på en sida.</div></div>
+
+<div class="footdef"><sup><a id="fn.13" class="footnum" href="#fnr.13">13</a></sup> <div class="footpara">Analogt med hur en formatsträng till <code>printf</code>
+beskriver hur en utskriven sträng ser ut och var olika värden
+skall stoppas in. Se nedan.</div></div>
+
+<div class="footdef"><sup><a id="fn.14" class="footnum" href="#fnr.14">14</a></sup> <div class="footpara">Analogt med <code>malloc</code>.</div></div>
+
+<div class="footdef"><sup><a id="fn.15" class="footnum" href="#fnr.15">15</a></sup> <div class="footpara">En bra plats att
+börja på är
+<a href="http://en.wikipedia.org/wiki/Data_structure_alignment">http://en.wikipedia.org/wiki/Data_structure_alignment</a>.</div></div>
+
+<div class="footdef"><sup><a id="fn.16" class="footnum" href="#fnr.16">16</a></sup> <div class="footpara">En bra plats att börja på är
+<a href="http://gcc.gnu.org/onlinedocs/gcc/Structure_002dPacking-Pragmas.html">http://gcc.gnu.org/onlinedocs/gcc/Structure_002dPacking-Pragmas.html</a>
+och <a href="http://gcc.gnu.org/onlinedocs/gcc/Type-Attributes.html">http://gcc.gnu.org/onlinedocs/gcc/Type-Attributes.html</a>.</div></div>
+
+<div class="footdef"><sup><a id="fn.17" class="footnum" href="#fnr.17">17</a></sup> <div class="footpara">Faktiskt så räcker detta
+bra som en "intern representation" av formatsträngen, oavsett vad
+användaren skriver (mer snart!).</div></div>
+
+<div class="footdef"><sup><a id="fn.18" class="footnum" href="#fnr.18">18</a></sup> <div class="footpara">Formatsträngen stöder
+inte heller unioner, men det blundar vi för. Det går att lösa
+t.ex. genom att scanna alla objekt av union-typ, precis som man
+scannar stacken.</div></div>
+
+<div class="footdef"><sup><a id="fn.19" class="footnum" href="#fnr.19">19</a></sup> <div class="footpara">Detta leder också till färre
+minnesaccesser, vilket är bra för prestandan.</div></div>
+
+<div class="footdef"><sup><a id="fn.20" class="footnum" href="#fnr.20">20</a></sup> <div class="footpara">Notera
+skillnader mellan big-endian och little-endian i hur adresser
+representeras binärt.</div></div>
+
+<div class="footdef"><sup><a id="fn.21" class="footnum" href="#fnr.21">21</a></sup> <div class="footpara">\(8+8+4+4+8=32\)</div></div>
+
+<div class="footdef"><sup><a id="fn.22" class="footnum" href="#fnr.22">22</a></sup> <div class="footpara">Faktiskt
+behövs inte längden. Om man kodar varje byggkloss som två bitar,
+t.ex. <code>01</code> för <code>r</code> och <code>11</code> för <code>*</code> och <code>00</code> för inget mer så
+räcker det med att scanna bitvektorn tills man hittar <code>00</code> för att
+avgöra längden och maxlängden blir 30. Men är detta en
+optimering?</div></div>
+
+<div class="footdef"><sup><a id="fn.23" class="footnum" href="#fnr.23">23</a></sup> <div class="footpara">Läs mer på
+<a href="https://gcc.gnu.org/onlinedocs/gcc/Return-Address.html">https://gcc.gnu.org/onlinedocs/gcc/Return-Address.html</a>.</div></div>
+
+<div class="footdef"><sup><a id="fn.24" class="footnum" href="#fnr.24">24</a></sup> <div class="footpara">Trots att filen länkar till 2016
+års repo är det rätt fil.</div></div>
+
+<div class="footdef"><sup><a id="fn.25" class="footnum" href="#fnr.25">25</a></sup> <div class="footpara">10-tals megabyte minne totalt för programmet.</div></div>
+
+<div class="footdef"><sup><a id="fn.26" class="footnum" href="#fnr.26">26</a></sup> <div class="footpara">Som
+alla skall rymmas i den allokerade heapen.</div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Tobias Wrigstad</p>
+<p class="date">Created: 2018-08-02 tor 00:18</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

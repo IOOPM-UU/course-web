@@ -1,0 +1,584 @@
+#+title: Course Project 
+#+include: "../setup.org" 
+
+* Why a Project?
+The IOOPM project serves several goals, but mainly, it serves as
+an introduction to the inherent problems of software development.
+So far on the course, and in previous courses like PKD, we have
+focussed on /programming/, in the sense of "cutting code". Our main
+problems have been getting things to run, figthing compilers and
+libraries, chasing double deallocations or memory leaks, or
+understanding why a particular method call did not get dispatched
+in a way we intended. These are /problems in the small/[fn::By
+which I do not mean that they are small problems!] -- now it is
+time to face problems in the large[fn::Admittedly, for a quite
+small large.].
+
+The main challenge of software development is /not/ programming --
+it is understanding specification, communicating with other
+members of the team, customers and problem owners, dealing with
+design decisions of the past that turned out not to be as future
+proof as intended, estimating time, fighting motivational issues,
+and delivering on time and on budget with acceptable quality, not
+just once, but consistently. This is, as it turns out, quite a
+tall order.
+
+While the domain of the projects was picked to serve a learning
+purpose, the main goal of the project is *not* to learn more
+programming, but to put programming to work in a larger context,
+and deliver in a way that is sustainable[fn::Sustainable includes
+that you are supposed to work in a way that is reasonable to
+expect of you without destroying you if you were to do it for a
+couple of years.].
+
+What this means is that during the project you should be thinking
+consistently about these things:
+
+- How can we as a team be reasonably sure to deliver what we set
+  out to deliver at a date we committed to?
+- How can we load-balance the workload so that no one is
+  overwhelmed?
+- How can we be sure that we are delivering the right thing?
+- How do we make sure that the thing we are delivering works
+  correctly?
+- How do we communicate effectively in the team?
+- How do we deal effectively with team members that are
+  demotivated, angry, stressed about things outside of the
+  project, in a way that is sustainable?
+- How do we ensure that the team is working smoothly? (E.g.,
+  making sure that the team is a team, that people are not working
+  against each others, that no small cabals are formed, etc.)
+
+And more personally about:
+
+- How do I function in a team? Where are my strengths and weaknesses?
+- How should I try to adapt the way I work to work better in a team?
+- What motivates me? What demotivates me? How do I stay motivated in a project?
+- How good am I at estimating how long a task will take? What is the process
+  that produce my estimations?
+- What role do I want to play in a team?
+
+Because the goal of the project is to understand and reflect on
+the software development process, the main requirement for passing
+and failing is not whether you manage to complete the project or
+not. **What I request is that you all do your best effort to
+complete the project, in a sustainable way, and without chucking
+all the principles of good software development just to be able to
+demo something at the end.**
+
+In practise that means that if you are able to hand something in
+that only implements a subset of the requested functionality, but
+that is solid enough for others to build on, you are probably not
+going to fail. However, this should not come as a surprise to your
+coach[fn::The role of the coach will be described below.]! You
+must efficiently communicate with your coach so that he or she
+knows what to expect from your final deliverable, or we will
+expect that you have completed the entire specification.
+
+In the likely event that you think anything about the project
+specification is vague, know that it is your responsibility to
+untangle it. This includes details in the specification as well
+as requirements to pass this part of the course. Also, in either
+case, you cannot rely on getting answers that satisfy you.
+
+* Process
+** How to work
+This is impossible to describe, but here are some suggestions:
+- Work in sprints, ideally more than two
+- No coding in the first day and last two days of the project
+- Doing a bad job of dividing tasks will hurt the project
+- Don't be afraid to revise plans/tasks/alottment/etc.
+- Take 5 minutes to sync daily, even of workdays where you only work on other things (like other courses)
+- Spend time on "group norming and forming" -- have a kick-off, celebrate your wins (and your losses)
+- Avoid making this mistake: "I'm not a coder so I better work on something that does not involve programming"
+- Don't panic!
+- Don't go dark -- keep your coach informed about progress
+- If you don't understand X[fn::Where X can be stack traversal,
+  pull requests or Scrum, or...], create a task force of 1--2
+  people to learn about X and educate the others
+- When setting goals, try hard to make the goals measurable (how else will you know if you have met them?)
+- Risk taking is less risky when combined with time-boxing
+- Strong opinions does not make one right
+- Don't buy a single person's whole design -- share ownership of ideas, decision power, etc.
+- Assigning roles and responsibilities is a really good idea, but
+  such things only work if everyone in the team cooperates and e.g. gives the project manager more power
+- Don't lie about your abilities
+- Don't lie about (lack of) progress
+- If you mess up -- don't try to cover it up! For example, if you
+  forget to record time measurements -- don't fudge them
+  afterwards because you are supposed to. What will you learn from
+  that?
+- If you see a team member struggling without speaking up, help that person come clean
+- Any process is better than no process
+
+** How Not To Work
+Historically on this course, there has been a tendency to focus on
+optimisations, and following specifications to the letter from the
+start. **This is a really bad idea.** As has been regurgitated since
+day one on this course, don't over-engineer your designs and
+implementations from the start as you simply do not have enough
+information or understanding of the problem at that point.
+
+Example: it used to be the case that the project description was
+phrased in terms of, "implement /X/, here is how to do it by
+bit-manipulation to save memory." /This was purposely a setup!/
+The right way to go about this is to first do /X/ in the simplest
+possible way. That allows testing, integration, etc. and
+benchmarking how much memory would actually be saved using the
+bit-manipulation implementation! Lots of student groups got stuck
+on trying to both understand /X/ and the bit-manipulation /at the
+same time/, causing the entire project to be delayed or at times
+even fail because without /X/, the it was impossible to get anything
+else working[fn::One could successfully argue that this is a
+testament to my failure as a lecturer to hammer in the importance
+of getting something working before optimising. One could also
+successfully argue that students follow specifications too
+slavishly. One could also argue that optimisations have a certain
+attraction to some people. Etc.].
+
+Planning is hard and cannot be learned from a book! If your
+approach is to work as hard as possible from the start and then
+harder (or less hard) when you get closer to the deadline, you are
+not doing it right. Unless you have a plan, you cannot deviate,
+and you'll have a hard time communicating to us what our
+expectations should be of your team's final deliverable. Start by
+making a plan, and see how it goes. Maybe you will learn that you
+have a tendency to think that things are simpler than they are. Or
+that you have a tendency to not realise that physical meetings
+take time, or that it may be hard to get 20 solid hours of coding
+done in a 40 hour week! Having expectations and refining them are
+key. Flying blind is not.
+
+This course is not about teaching you the right way to develop
+software in teams, but about giving you an understanding of the
+importance of the whole field of software engineering. Later
+courses will give you better tools and techniques, but unless you
+reflect on things now[fn::Meaning, your focus is on the finished
+product, not on the actual project.], you'll get less out of those
+courses later!
+
+* Project Infrastructure and Constraints
+** Time: Lower bound, upper bound
+
+The project may start at December 4th, but not earlier. The
+project will be handed in no later than 24 hours /before/ the
+seminar. For example, if your team's seminar is on the 11th of
+January at 15:00, the strict deadline is January 10th, at 15:00.
+*This is a strict deadline which may not be renegotiated.*
+The time slots for the seminars will be announced on the course
+web site or Piazza in December.
+
+We expect that you take some time off during Christmas and New
+Year. The definition of /some time/ is up to you. For example, in
+2017, there are exactly four holidays (December 25 and 26, 1st and
+5th of January), in addition to weekends. Feel free to handle this
+in whatever way you want, as long as you get the work done.
+
+In the past, I have had several panic calls from project members
+who feel that most of the team is AWOL and does not care during
+the holidays, and feel obligated to work around the clock to move
+things forward. This causes tension in the team, is bad for
+quality, and simply serves to perpetuate an already bad situation.
+/As a team, you are responsible for making sure this does not
+happen./ Take responsibility for the well-being of your fellow
+team members.
+
+You are invited to reach out to me as often as you need during
+Christmas and New Year. I might be travelling, but working.
+
+
+** Resources: The Team
+
+Each team will be about 6 people. You may choose to work however
+you like in this team. You may use pair programming, or not. You
+may choose to only work together, all at the same time at the
+University, or completely distributed, or a mix.
+
+Since team members have signed up for the project, this means they
+have also signed the statement of intent, promising to pull their
+weight. Any team member that falls back on this promise can be
+"voted of the Island". Talk to Tobias if the need arises.
+
+
+** Resources: The Coach
+
+Varje team får en coach tilldelad sig, för att få hjälp och svara
+på frågor. Dessa anslås på kursens webbsida/Piazza i samband med
+grupperna. Tidigt under projektets gång bör teamet ha ett möte med
+coachen. Vid detta första möte skall teamet presentera sin tänkta
+(partiella?) högnivådesign för coachen, samt sin planering, d.v.s.
+hur systemet är uppdelat i delsystem, gränssnittet mellan
+delsystemen, hur delsystemen är fördelade över programmeringspar,
+och några första grova deadlines.
+
+Teamet ansvarar för att boka ett avstämningsmöte med sin coach
+någon gång under projektets gång. Vid detta möte skall teamet kort
+rapportera om hur arbetet fortskrider, om man räknar med att bli
+klar i tid, eventuella stora problem, etc. Vid behov kan
+ytterligare möten bokas. **Vid problem skall man i första hand kontakta sin coach.**
+
+
+** Failing to Hand In Something Remotely Satisfactory
+
+A team that fails to hand anything in that is remotely
+satisfactory will be failed. Each team member will be given a new
+opportunity next year, as part of a different team.
+
+** Failing to Hand in Something Satisfactory
+
+A team that fails to hand anything in that is satisfactory will be
+given an opportunity to fix their problems. We will negotiate a
+new deadline, negotiate demands of the final deliverable, and go
+from there.
+
+Notably, satisfaction is tied to expectations. This means
+surprising your coach (and other examiners) by handing in
+something very poor is a harder fail than an expected, equally
+poor delivery.
+
+* What to Hand In
+The entire hand-in should be contained in the team's GitHub
+repository. The repository should have the following structure
+(see below for additional explaination):
+
+#+BEGIN_SRC
+.
+├── demo/
+├── doc/
+│   └── design.md # note markdown format
+├── makefile # top-level makefile
+├── proj/
+│   ├── code_quality_report.md
+│   ├── deviations.md
+│   ├── individual_reflection.md
+│   ├── team_reflection.md
+│   └── test_report.md
+├── src/
+└── test/
+#+END_SRC
+** The Code
+
+The code (excluding demo code and tests) should be placed in
+=./src= in the repo. You can have whatever structure under this
+directory. It should be possible to build the code using the
+top-level make file[fn::By top-level make file is meant a make
+file at the top-level, that is the root of the directory
+structure. Feel free to have many makefiles for building things,
+and use them in the top-level makefile to accomplish its work.].
+
+Note that files with extension .md are supposed to use [[https://daringfireball.net/projects/markdown/syntax][markdown
+format]].
+
+** The Tests
+
+Unit tests, integration tests, etc. are placed in =./test=. It
+should be possible to run these with =make test= and =make memtest= with the top-level makefile.
+
+** Integrations with Existing Code
+
+Both projects ask for integration with existing code. Such code
+should be placed in =./demo=. The top-level makefile should allow
+building this code and link it with the code in =./src=.
+
+** Design Documentation
+
+In the file =./doc/design.md=, describe the design of the system at
+a high level. You must start with a high-level description using
+some graphical notation and accompanying text. The purpose of this
+document is to serve as a starting point for someone that wants to
+understand the implementation.
+
+This file, together with =./proj/deviations.md= (and, naturally the
+code) will be used by the examiner to convince him/herself that
+you pass Y68.
+
+
+** Team Retrospective
+
+In a relatively short text write a team retrospective in which you
+reflect on how the team has worked together. **A report template
+[[file:project-report.org][is found here]].** Using this template, you will be asked to reflect
+on the questions listed at the top of this document, but also
+about:
+
+- The communication between team members and with people outside the team
+- The cooperation between team members
+- The coordination between team members with respect to technical tasks
+- How the programming tasks were divided, distributed, carried
+  out, load-balanced, etc. -- if you used pair programming how did
+  that go? Did you use it for everything?
+- How did you go about planning? Were your plans mostly followed?
+- How did decision making happen?
+- What process did you follow, why and how did that go?
+- What are they key lessons learned? (Both negative and positive!)
+
+In a separate section of this document, diskutera arbetet med pull
+requests (PRs) och löpande granskning av kod som går in i
+''master''. Vad ledde detta till? Var det endast merarbete eller
+tjänade det något till? Hur fungerade färgglada diffar på GitHub
+som stöd för att se vad som ändrats? Hur ofta knuffades en PR
+tillbaka för förändringar (eller liknande) innan den fick
+merge:as? Hur många PR gjordes? Låg de länge i snitt? Arbetade
+alla par lika med PR? Vad fungerade? Vad fungerade inte?
+
+Sammanställ också samtliga gruppmedlemmars tidsloggar och ta fram
+en gemensam sammanställning av tidsåtgång och fördelning över
+olika kategorier[fn::The categories should include at least
+design, documentation, meetings, implementation, review of pull
+requests, and testing. Testing should not include unit testing,
+but integration testing and regression testing.]. Denna skall
+visualiseras som ett pie chart.
+
+The team retrospective goes into a file in =proj= called
+=team_reflection.md=.
+
+This file should convince the examiner that you pass Y64.
+The text on pull requests, together with the actual pull request
+log on GitHub, should convince the examiner that you pass Y66.
+
+** Individual Reflection
+Varje projektmedlem skall skriva en kort självreflektion[fn::About
+1000--1500 characters. Note -- all character counts in this
+document are to be interpreted as "as outputted by the ~wc~ command".] om sin
+prestation. Vilka är dina styrkor och svagheter i ett
+projektarbete? Vilka egenskaper bör du förstärka och vilka behöver
+du bli bättre på? Titta på listan av individuella frågor i början
+av detta dokument.
+
+- Hur fungerar du i ett team? Faller du in i ett särskilt mönster,
+  eller tar du återkommande en särskild roll?
+- Får du ut något av att jobba i en grupp, eller jobbar du helst
+  ensam?
+- Jämför hur mycket du lärt dig under projektarbetet kontra
+  kursens övriga delar, och fundera över hur du bäst lär dig
+  saker.
+- Hur har det gått att logga arbetstid?
+- "Biggest fail" och "biggest win", dvs. det största problem som
+  du stötte på och det smartaste eller bästa du gjorde.
+
+All individual reflections go into a file in =proj= called
+=individual_reflections.md=.
+
+This file should convince the examiner that each team member
+passes Y67.
+
+
+** Test Report
+
+In the file =proj/test_report.md=, explain how you are testing
+your project on three levels:
+- Unit testing
+- Integration testing
+- Regression testing
+And how you have automated these things. Include a graphical
+overview of the code coverage. List your 6 most nasty bugs by
+linking to their issue pages on GitHub.
+
+This file, together with the GitHub issue log, should convince the
+examiner that you pass Y69.
+
+** Code Quality Report
+
+In the file =./proj/code_quality_report.md=, your job is to
+convince the examiner that the code passes Y65. You can go about
+this in any way that you like that is helpful to the reviewer.
+Helpful /saves time/, meaning that blanket statements such as
+"just look at all the code" are not good enough[fn::Discussing
+each function individually also would not save time...]. The
+examiner wants to know to that /you think you have written good
+code/ and /why you think that the code is good/!
+
+Note that Y65 requires /consistently good quality/ meaning that
+you cannot concentrate on code quality in just a few places, point
+to them as good examples in the report, and expect to pass.
+
+
+** Deviations
+
+In =./proj/deviations.md=, describe all deviations from the full
+specification. For every feature /X/ that you do not deliver,
+explain /why/ you do not deliver it, how the feature could be
+integrated in the future in your system, and sketch the high-level
+design.
+
+* Process Requirements
+
+You can use whatever process you like, as long as you pick one and
+stick to it. Recommendations are to follow some agile methodology
+like Scrum or Kanban, but I'm fine with you trying to bite off the
+Rationale Unified Process or doing a bad old waterfall. You don't
+have time to learn a complicated process, so quickly pick
+something that you can grasp fast. There is no right choice --
+whatever you pick, it will form the basis for your more mature
+understanding later.
+
+
+** Trello (or similar)
+
+You are required to use [[http://trello.com][Trello]] to manage tasks -- unless you find
+a better tool. You get to define what better means, and that means
+/in writing/ in the final project report. Do invite your coach to
+your Trello board.
+
+** GitHub for Version Control, Issue Tracking and Pull Requests
+
+Under projektet skall ni använda er av [[http://github.com][GitHub]] för att
+versionshantera koden. Ni kommer att få ett privat konto på
+Github, som ni *måste* använda. Av uppenbara och fuskrelaterade
+skäl får koden inte göras publik eller delas med andra utanför
+teamet (undantaget coachen och kursledningen). Versionshistoriken
+på Github visar om versionshantering använts på ett vettigt sätt.
+
+Github har ett utmärkt stöd för [[https://guides.github.com/features/issues/][issue tracking]], d.v.s.
+buggrapporter och diskussioner kring buggar som ni skall använda.
+Spårbarhet är oerhört viktigt i systemutveckling, så använd en
+issue tracker/bug tracker, även om alla sitter i samma rum!
+
+All integration av kod med projektets /main branch/ skall ske via
+så-kallade [[https://help.github.com/categories/collaborating-with-issues-and-pull-requests/][pull requests]], där någon ber om att få sina ändringar
+merge:ade med projektet. I samband med varje pull request skall
+någon form av granskning ske. Är koden bra nog för att integreras?
+Har den test? Har den rimlig dokumentation? Är den förståelig? Har
+författaren städat koden ordentligt? När koden väl är inne i
+systemet är den svår att bli av med, så ta tillfället i akt att
+skapa en projektkultur där endast /bra pull requests accepteras/.
+
+**TODO**
+
+- Tipsa om att bygga en checklista för hur PRs skall gå till baserat på kodgranskningsprotokoll
+
+** Tools for Making Good Code
+
+- You are required to use ~valgrind~ to check for memory errors.
+  You will be asked to run e.g. ~make memtest~ at the final
+  seminar and show the absence of error for a non-trivial program.
+- You are required to write unit tests in some existing unit test
+  framework, like CUnit. You will be asked to run e.g. ~make test~
+  at the final seminar to show automated tests running. In
+  combination with running ~make test~, you will also be asked to
+  provide /test coverage metrics/ using e.g. [[https://gcc.gnu.org/onlinedocs/gcc/Gcov.html][gcov]], and reason
+  about good your tests are. Automating this process is a good
+  idea!
+- Code formatting tools (not a strict requirement). Please use a
+  code formatting tool like ~astyle~ or similar to ensure that
+  code formatting is consistent.
+
+* Final Seminar
+
+Note: Obligatorisk närvaro / attending the seminar is mandatory.
+
+The final seminars are divided intro several slots. Historically,
+each slot is 90 minutes, but it may vary with the number of
+students taking the course, the availability of examiners etc.
+
+/Each group will participate in one slot only./ Each group is
+expected to present their project. This is expected to take 25-30
+minutes. An additional 30 mimnutes per slot is reserved for
+questions, feedback and general discussion.
+
+The presentation should touch on the following:
+
+1) The program
+   - What is implemented and not?
+   - What works and what does not work?
+   - Show your tests and demonstrate running the tests
+   - If possible/applicable: run performance tests
+   - If possible: show the running demonstrator application (typically lagerhanterare 2)
+   - What simplifications did you do?
+   - How did you set the cascade limit and to what?
+   - How did you tackle hard problems?
+   - What are you most satisfied about your implementation?
+   - What is the ugliest hack in your implementation?
+2) The process
+   - How did you organise your work?
+   - How has working together worked out?
+   - What is the experience from working with pull requests?
+   - How did you solve soft problems (e.g., key person fell ill, etc.)
+   - How much time did it all take and how was it distributed?
+   - Has logging time worked out well? Why/why not? Experiences?
+3) Planning
+   - How did you approach planning?
+   - Did your plans work out?
+   - How did you handled wrong planning?
+4) Show the plan for the implementation of all that is missing
+   - Based on your time log so far, estimate how much time that would take to do
+
+The presentation is not a role-playing game, so don't pretend that
+there is an audience that does not know what the project is etc.
+
+** Do we need slides?
+
+Jag fick frågan om man borde/måste ha en powerpoint-presentation på seminariet.
+
+Måste: nej.
+Borde: definitivt.
+
+Det är svårt att strukturera en presentation (det borde vara uppenbart för alla som
+sett mig föreläsa 100 gånger under kursen...) och en powerpoint -- speciellt en som
+man har kört igenom 1-2 gånger i förväg -- tenderar att göra presentationen 10x
+bättre. Det är lätt att visa visualiseringar, kod i läsbar och stor font, etc.
+
+Det är ert seminarium så ni får göra som ni vill men det är bra
+att använda tiden väl till att berätta om allt viktigt som kanske
+inte står att läsa/går att utläsa ur inlämningen.
+
+Tänk så här: jag vill att ni skall bli godkända! Jag kommer att leta efter bevis på
+att ni har fått ut tillräckligt mycket av det jag vill att ni skall få ut av projektet,
+och har ni det så blir ni godkända (om bara det ni levererar inte är helt otjänligt).
+
+Om allt har kraschat och brunnit i slutet: ägna inte nätterna till att släcka bränder,
+utan titta noga på det som kraschar och brinner och försök att hitta lärdomen i det.
+Målet är inte att bevisa för någon att ni redan kan detta -- målet är att ni skall möta
+svårigheterna och problemen med mjukvaruutveckling i grupp i en miljö där kostnaden för
+att allt kraschar och brinner är låg.
+
+Minns min långa rant om hållbarhet. Om ni är vakna 72 timmar i sträck för att släcka
+bränder, hur skall ni då orka med nya kursstarter? Då kommer en liten rest på en liten
+del av dokumentationen att kännas oöverstiglig.
+
+Och ni kommer inte orka gå på kurspuben eller sista föreläsningen.
+
+Det betyder alltså att även om ni definitivt borde ha en powerpoint men inte har det
+så kanske det är bäst ändå att inte ha någon. Beroende på allt annat.
+
+Hur lång är en projektrapport? Hur långt är ett snöre? Aaah!
+
+Puh. Vi ses på seminarierna!
+
+* Nutshell Summaries of the two Projects
+
+#+begin_note
+Note that the project specifications are subject to change at any moment.
+#+end_note
+
+If nothing else is stated, then the projects are required to work
+on Linux X86 64 bit, Ubuntu 16.04 (which is what the department
+provides). Note that developing on Windows or macOS and deploying
+on Linux is very very brittle in C. In those cases, use a virtual
+Linux environment for testing.
+
+** Project One
+
+Implement a simple system that helps programmers manage memory in
+C applications using a /reference counting scheme/ where reference
+counts are managed /manually/ through an API[fn::A fancy word for
+library, if you will.] that you provide. This project involves
+(among other things) wrapping ~malloc()~ to install an object
+header in each memory allocation, which is hidden from users,
+which stores a reference count for that object, and possibly other
+things.
+
+The full project description is [[file:project1.org][here]].
+
+** Project Two
+
+Implement a system that /automatically/ manages memory using a
+/tracing-based scheme/ based on Bartlett's compacting conservative
+collector. In this system, programmers may define their own heaps
+and when a heap is full, garbage collection will be triggered and
+memory scanned for garbage. This involves scanning the stack of
+your application to find all possible pointers into that heap,
+which requires a bit of low-level trickery.
+
+The full project description is [[file:project2.org][here]].
+

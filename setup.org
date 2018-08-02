@@ -1,0 +1,11 @@
+#+LANGUAGE: en
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="/home/stw/t/ioopm/2018/site/css/htmlize.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="/home/stw/t/ioopm/2018/site/css/readtheorg.css"/>
+
+#+HTML_HEAD: <script src="/home/stw/t/ioopm/2018/site/js/jquery.min.js"></script>
+#+HTML_HEAD: <script src="/home/stw/t/ioopm/2018/site/js/bootstrap.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="/home/stw/t/ioopm/2018/site/js/jquery.stickytableheaders.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="/home/stw/t/ioopm/2018/site/js/readtheorg.js"></script>
+
+
+

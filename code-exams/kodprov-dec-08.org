@@ -1,0 +1,498 @@
+#+TITLE: Kodprov 2017-12-08
+#+INCLUDE: "head.org"
+
+* Instruktioner
+
+Öppna en terminal och skriv omedelbart =mkdir kodprov171208=[fn::Obs! . skall inte vara med i kommandona nedan!].
+
+Gå in i denna katalog med =cd kodprov171208=.
+
+Hämta sedan kodprovet till din dator med följande kommando: =curl --remote-name http://wrigstad.com/ioopm/entrekod.zip=.
+
+Nu får du en zip-fil med koden till uppgifterna som du kan packa upp så här: =unzip entrekod.zip=.
+
+Nu har du fått ett antal filer och kataloger:
+
+- =uppgift1= -- filer för uppgift 1
+- =Makefile= -- en makefil för att /lämna in/ kodprovet
+
+
+** Inlämning och rättning
+
+Inlämning går till så här: ställ dig i katalogen
+=kodprov171208=. Om du har tappat bort dig i filsystemet kan du
+skriva =cd; cd kodprov171208=. Nu kan du skriva =make handin=
+för att lämna in kodprovet. När du kör detta kommando skapas en
+zip-fil med de filer som du har uppmanats att ändra i (inga
+andra), och denna fil sparas sedan på en plats där vi kan rätta
+provet.
+
+Den automatiska rättningen kommer att gå till så att vi kör dina
+inlämningar mot vissa testfall. Du har fått ut testfall eller
+motsvarande i detta prov som du kan använda för att kontrollera
+din lösning. Om du har löst uppgifterna på rätt sätt och
+testfallen som du får ut passerar är det /troligt/ att du är
+godkänd. Man kan förstås aldrig vara helt säker med test, och på
+tidigare omgångar av kodprovet har vi sett lösningar som fungerar
+enbart för de testfall som lämnats ut. Till exempel har vi sett
+lösningar där man, istället för att göra en generell (korrekt)
+lösning med ~strlen()~, testade om en sträng var ~"foo"~ och i så
+fall returnerade 3, om det var ~"quux"~ returnerade 4, etc. där
+~"foo"~ och ~"quux"~ strängarna från testfallen. En sådan lösning
+klarar förstås inte de testfall som vi kör mot när vi rättar, och
+förklarar också varför vi inte lämnar ut samma testfall i tentan
+som vi kör vid rättningen.
+
+
+** Allmänna förhållningsregler
+
+- Samma regler som för en salstenta gäller: inga mobiltelefoner, inga
+  SMS, inga samtal med någon förutom vakterna oavsett medium.
+- Du måste kunna legitimera dig.
+- Du får inte på något sätt titta på eller använda gammal kod som
+  du har skrivit.
+- Du får inte gå ut på nätet.
+- Du får inte använda någon annan dokumentation än man-sidor och böcker.
+- Det är tillåtet att ha en bok på en läsplatta, eller skärmen på
+  en bärbar dator. Inga andra program får köra på dessa maskiner,
+  och du får inte använda dem till något annat än att läsa
+  kurslitteratur.
+- Du måste skriva all kod själv, förutom den kod som är given.
+- Du får använda vilken editor som helst som finns installerad på
+  institutionens datorer, men om 50 personer använder Eclipse
+  samtidigt så riskerar vi att sänka servrarna.
+
+Vi kommer att använda en blandning av automatiska tester och
+granskning vid rättning. Du kan inte förutsätta att den kod du
+skriver enbart kommer att användas för det driver-program som
+används för testning här. Om du t.ex. implementerar en länkad
+lista av strängar kan testningen ske med hjälp av ett helt annat
+driver-program än det som delades ut på kodprovet.
+
+I mån av tid har vi tidigare år tillämpat ett system där vi ger
+rest för mindre fel. Det är oklart om detta system tillämpas i år,
+men det betyder att det är värt att lämna in partiella lösningar,
+t.ex. en lösning som har något mindre fel.
+
+
+
+* Vad du skall göra -- läs mig först!
+
+Skriv klart ~kalloc_inner_find()~ som används i ~kalloc_free()~.
+
+Du kan verifiera att ditt program gör rätt genom att köra de
+minimala testerna. Modulo adresserna[fn::De kommer att variera på
+olika datorer -- men skall vara identiska mellan expected och
+actual output.] skall en körning se ut så här:
+
+#+BEGIN_SRC
+Test 1: ------------------------
+Expected output:
+Integrity check failed for: 0x55e587bf92f8 (4 bytes, allocated at driver.c:16 in main) -- expected OxDEADBEEF, found OxDEADBE00
+Actual output:
+Integrity check failed for: 0x55e587bf92f8 (4 bytes, allocated at driver.c:16 in main) -- expected OxDEADBEEF, found OxDEADBE00
+
+Test 2: ------------------------
+Expected output:
+Successfully ignored second attempt at freeing str
+Actual output:
+Successfully ignored second attempt at freeing str
+
+Test 3: ------------------------
+Expected output:
+Checking integrity for: 0x55e587bf9288 (42 bytes, allocated at driver.c:13 in main) ... OK
+Actual output:
+Checking integrity for: 0x55e587bf9288 (42 bytes, allocated at driver.c:13 in main) ... OK
+--------------------------------
+#+END_SRC
+
+Verifiera också att programmet inte läcker minne eller
+läser/skriver till minne som är oinitierat eller oallokerat.
+
+**OBS!** Läs avsnittet om att kompilera och testa ditt program!
+
+**TIPS #1!** Det är ingen fara om det tar 90-120 minuter att läsa
+instruktionerna. Lösningen är storleksordningen 10 rader kod. Kom
+ihåg att testa med och utan valgrind.
+
+**TIPS #2!** Du måste konvertera mellan /userland objects/ och
+/internal pointers/. Kommentarerna i ~kalloc.c~ ger bra
+information.
+
+**TIPS #3!** Läs speciellt kapitlet "Sammanhanget för ~kalloc_inner_find()~".
+
+
+#+BEGIN_QUOTE
+Läs nu vidare!
+#+END_QUOTE
+
+
+
+* C-uppgiften: kalloc -- ett bibliotek för att slåss mot minnesfel
+
+#+BEGIN_QUOTE
+Observera att även om /domänen/ för denna uppgift är krånglig, så
+är lösningen "enkel" och innefattar ingen programmering som du
+inte har gjort tidigare om du har följt kursen och gjort labbar och
+inluppar. Ett av målen är att det skall vara omöjligt att klara
+tentan om du mest har suttit och tittat på när någon annan har
+programmerat!
+#+END_QUOTE
+
+Den här uppgiften går ut på att skriva /klart/[fn::OBS! Det är
+nästan färdigt!] biblioteket /kalloc/ som fungerar som ~malloc()~
+och ~free()~, men som använder några enkla C-tricks för att se om
+användaren råka skriva utanför det allokerade minnet.
+
+Det är inte särskilt mycket kod att skriva, men för att klara
+uppgiften måste du kunna läsa kod, och framförallt förstå vad som
+/inte/ är relevant för det du skall göra. Det hjälper också att
+kunna felsöka och ta hjälp av =gdb= och =valgrind=.
+
+Under kursen har vi lärt oss att tänka på ~malloc()~ som en svart
+låda. Vi vet inte hur ~malloc()~ är implementerat, och skall
+heller inte tänka på det. Biblioteket /kalloc/ tillhandahåller
+(bland annat) funktionen ~kalloc()~ som är en abstraktion ovanpå
+~malloc()~, sådan att när användaren ber om /n/ bytes, allokeras
+/h/ + /n/ + /m/ bytes där:
+
+1. De första /h/ bytesen används till en /header/ som sparar
+   information om minnesplatsen -- t.ex. i vilken fil, funktion
+   och på vilken rad som allokeringen skedde.
+2. De efterföljande /n/ bytesen är de bytes som användaren skall
+   använda -- samma som ~malloc(n)~ hade returnerat
+3. De sista /m/ bytesen används till att lagra ett "magiskt tal"
+
+Alltså om ~malloc(n)~ returnerar något som ser ut så här:
+=DDDDDDDDDDDDD= (där =D= står för något data) så kommer
+~kalloc(n)~ att returnera =HHHH_DDDDDDDDDDDDD_MM= där =HHHH= är
+headern och =MM= är det magiska talet (samma tal för alla
+allokeringar) och =_= är separatorer för läsbarhetens skull,
+som inte finns med i minnet.
+
+När användaren återlämnar minne /p/ allokerat med ~kalloc()~, med
+hjälp av funktionen ~kalloc_free()~, kontrollerar denna funktion
+att de sista /m/ bytesen i /p/ fortfarande innehåller det magiska
+talet. I ett korrekt program både så alltid vara fallet, men /om/
+programmet skrivit utanför en datastrukturs storlek är sannolikheten
+stor att det magiska talet skrivits över. Det magiska talet är alltså
+lite som en kanariefågel, i minnets kolgruva.
+
+Alltså, när ett minne frigörs kontrollerar vi att det magiska
+talet är orört. Om talet har ändrats skrivs ett felmeddelande ut,
+som använder informationen i /p/:s header för att tala om varifrån
+allokeringen kom. Så här kan det se ut:
+
+=Integrity check failed for: 0x55d8f6e78080 (4 bytes, allocated at driver.c:9 in main) -- expected OxDEADBEEF, found OxDEADBE00=
+
+Detta fel genererades så här:
+
+#+BEGIN_SRC c
+  /// Initierar kalloc med OxDEADBEEF som magiskt tal
+  kalloc_init(0xDEADBEEF);
+
+  /// Allokerar 3 bytes till en sträng mha kalloc
+  char *str = kalloc(3);
+
+  /// Kopierar 4 bytes in i det 3 bytes stora området...
+  /// Minns att Hej har ett \0 på slutet!
+  strcpy(str, "Hej");
+#+END_SRC
+
+Att det magiska talet har blivit =OxDEADBE00= istället för
+=OxDEADBEEF= kommer sig alltså av att de första åtta bitarna som
+representerar det magiska talet har skrivits över med null-tecknet
+som terminerar strängen ~"Hej"~. Det i sig är inte viktigt, men
+illustrerar hur det går att använda /kalloc/-biblioteket för att
+se vilka allokeringar som trasas sönder.
+
+
+** Två viktiga koncept: userland pointers och pekare till allokerat minne
+
+Det skall inte vara möjligt för någon som får en pekare till ett
+minne att se att ~kalloc()~ använts för att allokera det. Det
+skall se ut som om det är allokerat med vanlig ~malloc()~. Därför
+returnerar ~kalloc()~ inte en pekare till starten av det minne som
+allokerats, utan en pekare /h/ bytes in[fn::Minns att vi allokerar
+/h/ + /n/ + /m/ bytes när användaren ber om /n/ bytes.] -- dvs. en
+pekare som pekar förbi headern och på det första av de /n/ bytes
+som hen bad om. På så sätt kan användaren göra
+
+#+BEGIN_SRC c
+char *str = kalloc(4);
+strcpy(str, "Hej");
+#+END_SRC
+
+utan att råka skriva över headern som håller koll på hur många
+bytes som är allokerade, var allokeringen skedde, etc[fn::Att
+lägga metadatat "till vänster" om en pekare är ett
+standard-C-trick. Det kommer av att vi normalt inte vet hur många
+bytes allokerat minne en pekare /p/ pekar ut, så vi kan inte räkna
+ut slutet av vad /p/ pekar på, och därför inte lägga metadatat
+där. Om metadatat har en fix längd (vilket det har i vårt fall) är
+det dock möjligt att hitta det genom att "backa" i minnet, /h/
+bytes i vårt fall.].
+
+För varje ~kalloc()~-allokerat minne =HHHH_DDDDDDDDDDDDD_MM= kan
+vi alltså prata om två pekare:
+
+1. /userland pointer/ som är den pekare som returneras, och som
+   alltså pekar på det första =D=:et[fn::~str~ ovan är en
+   /userland pointer/.], samt
+2. /internal pointer/ som pekar på det första =H=:et, alltså på
+   den faktiska starten av det allokerade minnet.
+
+Skillnaden mellan dessa två i bytes är precis headerns
+storlek[fn::Funktioner för att konvertera mellan dessa två pekare
+headern, till datat samt för att givet en pekare ta fram dess
+magiska tal, finns redan implementerat!].
+
+Alla publika funktioner i =kalloc.h= som tar in eller returnerar
+pekare tar in eller returnerar userland pointers. Internt hanterar
+många funktioner pekare till starten av allokerat minne. Dessa
+pekare har typen ~obj_t~.
+
+Observera att det inte finns någon strukt i ~kalloc.c~ som
+motsvarar hela det allokerade minnet, alltså hela /h/ + /n/ + /m/
+eller =HHHH_DDDDDDDDDDDDD_MM=. Det är omöjligt eftersom vi inte vet
+storleken på /n/ vid kompileringtid! Istället använder vi
+/pekararitmetik/ för att räkna ut starten på =HHHH=,
+=DDDDDDDDDDDDD= och =MM=.
+
+Det sköts av funktionerna ~kalloc_header()~ och ~kalloc_object()~.
+
+
+** Sammanhanget för ~kalloc_inner_find()~
+
+Ovan beskrevs hur vi kunde kontrollera i samband med anrop till
+~kalloc_free()~ om det magiska talet längst bak i ett objekt
+fortfarande var intakt. Detta är problematiskt på två sätt:
+
+1. Det hjälper oss dock inte att hitta minnesfel i minne som
+   aldrig frias
+2. Tiden mellan minnet förstördes och vi märker det i samband med
+   anrop till ~kalloc_free()~ kan vara väldigt lång
+
+Funktionen ~kalloc_check_integrity()~ löser båda dessa problem.
+När gör den en integritetskontroll på /alla allokerade objekt/.
+Men för att göra detta måste vi hålla koll på alla allokerade
+objekt!
+
+För att hålla reda på alla allokerade objekt stoppar vi dem i en
+länkad lista. För att slippa allokera minne för en länk varenda
+gång användaren allokerar något med ~kalloc()~ stoppar vi in en
+~next~-pekare i headern på varje objekt så att varenda allokerat
+minne utom det sista pekar på nästa allokerade minne. På så sätt
+kan ~kalloc_check_integrity()~ enkelt loopa igenom minnet och
+hitta alla allokeringar.
+
+Funktionen ~kalloc_inner_find()~, som är den som du skall skriva,
+skall alltså ta emot en userland pointer /p/, och söka igenom den
+länkade listan av interna pekare till allokerade block för att se
+om någon av dessa pekare har /p/ som sin motsvarande userland
+pointer. Det vill säga vi letar efter något /q/ sådant att
+~kalloc_object(q) == p~. Finns det ett sådant /q/ vill vi
+returnera en pekare till /q/, så att ~kalloc_free()~ kan länka
+ur /q/ ur listan.
+
+Observera att det inte går att returnera vilken pekare till /q/
+som helst -- det måste vara föregående elements /q/. Det vill
+säga, om /q/ är ~node->next~ så är det ~&(node->next)~ som skall
+returneras.
+
+
+* Kompilera och testa ditt program
+
+Du kan testa ditt program mot =driver.c=. Du kan kompilera
+programmet med =make=, köra tester med =make test-soft= eller
+=make test-hard= och köra testerna i valgrind med =make memtest=.
+Du måste inspektera utskrifterna på skärmen själv.
+
+=make test-hard= använder assertions för att testa programmet. Det
+betyder att programmet kan krascha om det är felaktigt -- det är
+till och med så att =make test-hard= på den utdelade koden ger en
+failed assertion.
+
+Därför finns =make test-soft= som stänger av assertions, och som
+låter dig köra hela programmet. Tanken är att du kan börja med
+=make test-soft= för att så småningom gå över till =make test-hard=.
+
+**OBS!** För att bli godkänd måste ditt program inte bara vara
+korrekt utan också fritt från minnesläckage, inte läsa oinitierat
+minne och inte skriva utanför allokerat minne eller skriva över
+data på stacken. Alla block allokerade av programmet skall vara
+explicit frigjorda i programmet innan det terminerar. Verifiera
+det med =valgrind=.
+
+/Observera återigen/ att testerna i makefilen är till för att
+hjälpa dig att hitta fel i din kod och att programmet passerar
+testerna inte nödvändigtvis betyder att programmet är korrekt
+eller att du är godkänd.
+
+#+CAPTION: Exempelkörning med =make test-soft= med den utdelade koden
+#+BEGIN_SRC
+Test 1: ------------------------
+Expected output:
+Integrity check failed for: 0x55595af802f8 (4 bytes, allocated at driver.c:16 in main) -- expected OxDEADBEEF, found OxDEADBE00
+Actual output:
+
+Test 2: ------------------------
+Expected output:
+Successfully ignored second attempt at freeing str
+Actual output:
+Successfully ignored second attempt at freeing str
+
+Test 3: ------------------------
+Expected output:
+Checking integrity for: 0x55595af80288 (42 bytes, allocated at driver.c:13 in main) ... OK
+Actual output:
+Checking integrity for: 0x55595af80288 (42 bytes, allocated at driver.c:13 in main) ... OK
+Checking integrity for: 0x55595af802f8 (4 bytes, allocated at driver.c:16 in main) ... FAILED
+--------------------------------
+#+END_SRC
+
+
+
+* Hjälp: Pekare till pekare
+
+För dig som behöver en hjälp att komma ihåg hur pekare till pekare
+fungerar.
+
+#+BEGIN_SRC c
+int   x = 42; /// x är ett heltal med värdet 42
+int  *y = &x; /// y är en pekare till platsen där x:s värde är lagrat
+int **z = &y; /// z är en pekare till platsen där y:s värde är lagrat
+#+END_SRC
+
+Ovan är ~z~ en pekar till en pekare. Vi kan operera på den så här:
+
+#+BEGIN_SRC c
+int a = 4711;
+
+**z = 43; /// Ändra x till 43
+*z = &a;  /// Ändra y till att peka på platsen där a:s värde är lagrat
+**z = 5;  /// Ändra a till 5
+#+END_SRC
+
+I övrigt, titta på existerande kod och kommentarer i =kalloc.c=.
+
+-----
+
+/Lycka till!/
+
+* Lösningsförslag
+
+#+CAPTION: Tobias lösningsförslag
+#+BEGIN_SRC c
+static
+obj_t **kalloc_inner_find(obj_t **mem, void *p)
+{
+  do
+    {
+      if (kalloc_header(p) == *mem) return mem;
+
+      mem = &(*mem)->next;
+    }
+  while (*mem);
+
+  return NULL;
+}
+#+END_SRC
+
+#+CAPTION: Elias lösningsförslag
+#+BEGIN_SRC c
+static
+obj_t **kalloc_inner_find(obj_t **mem, void *p)
+{
+  if (mem == NULL || kalloc_object(*mem) == p) return mem;
+
+  return kalloc_inner_find(&((*mem)->next), p);
+}
+#+END_SRC
+
+
+* Genomgång av vanliga fel
+
+** Trasar sönder den länkade listan
+
+Det vanligaste felet i inlämnade kodprov -- ofta i kombination med
+ett annat fel -- var ett "försök" till att undvika dubbelpekare.
+Istället för att använda ~mem~ och stega sig fram genom den
+länkade strukturen med ~mem = &(*mem)->next~ användes en
+programsats som är syntaktiskt snarlik, men semantiskt /väldigt/
+annorlunda: ~*mem = (*mem)->next~.
+
+Observera att ~mem~ är en pekare till den globala variabeln
+~first~. Satsen ~mem = &(*mem)->next~ får ~mem~ att peka på
+~next~-pekaren i nästa block. Satsen ~*mem = (*mem)->next~ ändrar
+inte ~mem~, men värdet i variabeln ~first~! Denna sats /länkar
+alltså ur/ ett block ur listan. Eftersom denna sats förekommer
+inuti ~while~-loopen blir alltså konsekvensen av detta att
+iterationen länkar ur alla block och "tömmer den länkade listan".
+
+Det betyder att en lösning som är identisk med min, men använder
+~*mem = (*mem)->next~ istället för ~mem = &(*mem)->next~ endast är
+nästan rätt utifrån "edit distance"[fn::Alltså antalet tecken som
+måste ändras.] -- med avseende på vad koden gör är lösningen gravt
+felaktig. Hade vi haft tid att ge rest detta kodprov hade vi
+/inte/ givit rest för detta fel.
+
+
+** Hoppar över det första blocket
+
+Ett något mindre vanligt fel är att hoppa över det första blocket,
+t.ex. genom att aldrig testa ~*mem~ utan istället gå direkt på
+~(*mem)->next~. Ingen har begått endast detta fel, utan detta fel
+är alltid i kombination med något annat, vanligen det föregående.
+
+Jag fick frågan om jag avsiktigt försökt vilseleda de som skrev
+kodprovet med följande formulering:
+
+#+BEGIN_QUOTE
+Observera att det inte går att returnera vilken pekare till /q/
+som helst -- det måste vara föregående elements /q/. Det vill
+säga, om /q/ är ~node->next~ så är det ~&(node->next)~ som skall
+returneras.
+#+END_QUOTE
+
+Det finns inget medvetet vilseledande i hela kodprovet! Syftet med
+ovanstående var att försöka motverka nästa vanliga fel. Kanske hade
+det blivit tydligare med tillägget "inte ~&q~"?
+
+
+** Returnera pekare till en lokal variabel
+
+Av okänd anledning -- kanske för att slippa skriva ~&(*mem)~ hela
+tiden har många börjat med att avreferera ~mem~ (t.ex. ~obj_t *q =
+*mem~;) för att på så sätt iterera över en lista av pekare till
+block (istället för pekare till pekare till block). Eftersom
+funktionen skall returnera en ~obj_t **~ har man dock fått problem
+med ~return q;~ som inte typcheckar. Detta har många försökt lösa
+genom ~return &q;~ vilket är problematiskt eftersom ~&q~ är
+addressen till den lokala variabeln ~q~ som ligger på en stack
+frame som förstörs i och med ~return~. Alla som har gjort denna
+lösning har fått en varning av ~gcc~:
+
+=kalloc.c:203:10: warning: function returns address of local variable [-Wreturn-local-addr]=
+
+
+** Hanterar endast borttagning av första elementet
+
+Flera har missat att göra en loop, eller på andra sätt missat att
+gå förbi första elementet. Detta funkar t.ex. bra för ~leak~ i
+testet eftersom det är den första allokeringen, men fungerar
+mindre bra när man testar med flera allokeringar.
+
+
+** Minnesläckage pga egen malloc
+
+Flera har, förmodligen i syfte att få till någonting som kunde
+typas som en dubbelpekare, använt ~malloc~ för att få en pekare
+till en plats som innehåller en annan pekare, och sedan använt
+detta som en loop-variabel istället för ~mem~. Detta är konstigt,
+och tyder[fn::I min tolkning, ofc.] på brist på förståelse för hur
+pekare till pekare fungerar. Tyvärr har dessa lösningar med ett
+undantag också lett till minnesläckage då ~free~ inte alltid
+anropats. Antingen har lösningen läckt den nya mallokeringen,
+eller så har det lett till att det block som skulle tas bort
+läcktes.

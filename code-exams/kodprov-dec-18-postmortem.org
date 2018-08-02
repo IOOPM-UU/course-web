@@ -1,0 +1,360 @@
+#+TITLE: Kodprov 2017-12-18 -- genomgång
+#+INCLUDE: "head.org"
+
+* C-uppgiften
+Denna C-uppgift var -- som utannonserat -- ganska lik den som gavs
+ut [[http://wrigstad.com/ioopm/2017/kodprov-dec-08.html][2017-12-08]] (följ länken för detaljer). Den implementation som
+förkom i föregående kodprov använde sig att pekare till pekare för
+att implementera urlänkning. I denna lista använder vi istället en
+/sentinel/, en extra tom länk först i listan så att det alltid går
+att ställa sig på föregående länk, även när man vill länka ut det
+logiska första elementet[fn::Det går att läsa mer [[http://wrigstad.com/ioopm/2018/lists.html][här]].].
+
+En eventuell svårighet med uppgiften var hur sentinelen
+implementerades -- genom att ~first~ använde värdesemantik så att
+all början av iteration startade med ~&first~ till skillnad från
+efterföljande steg som bara kunde göra ~...->next~. I och med att
+~first~ var en global variabel behövde den heller inte frigöras
+för att undvika minnesläckage. Försök att frigöra ~&first~ leder
+till hårda kraschar.
+
+Så här kunde en lösning till slut se ut.
+#+BEGIN_SRC c
+static
+obj_t *kalloc_inner_find(obj_t *mem, void *p)
+{
+  do
+    {
+      if (kalloc_header(p) == mem->next) return mem;
+
+      mem = mem->next;
+    }
+  while mem;
+
+  return NULL;
+}
+#+END_SRC
+
+Av 28 som skrev uppgiften blev 22 godkända och 6 underkända. Många
+har också blivit klara med uppgiften relativt snabbt. Inga problem
+med att förstå sentinel-listan här, men märkligt nog har många haft
+problem med att förstå exakt samma liststruktur i Java-uppgiften!
+
+* Java-uppgiften
+
+Förra året lade flera studenter fram åsikten att kodproven i Java
+skulle ha flera enklare moment, istället för att testa någon
+mindre del djupare.
+
+Kodprovet denna gång hade ett antal deluppgifter, som inte var
+namngivna i uppgiftstexten. Jag har tilldelat de olika
+deluppgifterna olika poäng:
+
+#+BEGIN_CENTER
+| Uppgift                 | Poäng | % Som klarade den |
+|-------------------------+-------+-------------------|
+| Subtypning              |     5 |                84 |
+| Parametrisk polymorfism |     3 |                89 |
+| Konstruktorer           |     3 |                84 |
+| Inkapsling              |     2 |                82 |
+| Lägga till element      |     5 |                64 |
+| Iteratorn               |     5 |                68 |
+| equals()                |     5 |                33 |
+| asArray()               |     3 |                75 |
+| newEmptyCollection()    |     2 |                64 |
+|-------------------------+-------+-------------------|
+| Summa                   |    33 |                   |
+#+END_CENTER
+
+Uppenbart är att ~equals()~ är det svåraste momentet -- vilket
+kanske förklarar den statistik på trasiga ~equals()~-metoder som
+jag nämnde i samband med att vi gick igenom ~equals()~ och varför
+t.ex. dess signatur måste se ut som den gör.
+
+
+** Subtypning
+
+Klassen ~LinkedSet~ skall vara en subtyp av ~Collection~ och
+~Set~. Eftersom inte ~Collection~ implementerar ~Set~ eller ~Set~
+ärver av ~Collection~ är den enda möjligheten att möta
+subtypskravet att göra ~LinkedSet~ till en subklass av
+~Collection~ och implementera interfacet ~Set~.
+
+#+BEGIN_SRC java
+public class LinkedSet extends Collection implements Set
+#+END_SRC
+
+Man måste förstå ordet subtyp här. I övrigt /skall/ det vara
+uppenbart att man endast kan subklassa den enda och implementera
+den andra.
+
+
+** Parametrisk polymorfism
+
+Både ~Set~ och ~Collection~ är parameteriserade över typparametern
+~T~ och instruktionerna efterfrågar typsäkerhet -- att det skall
+gå att skapa en mängd av element endast av en given typ. Lösningen
+är att parameteriser ~LinkedSet~ över ~T~ vilket kräver att man
+skickar vidare typparametern.
+
+#+BEGIN_SRC java
+public class LinkedSet<A> extends Collection<A> implements Set<A>
+#+END_SRC
+
+Observera att man kan använda vilken bokstav man vill istället för ~A~.
+Eftersom vi använt ~T~ redan i koden i ~LinkedSet~ är det rätt bokstav
+att använda för att undvika sök-och-ersätt.
+
+** Konstruktorer
+
+Superklassen ~Collection~ har en konstruktor som kräver att en
+maxkapacitet anges. Då vi ärver av ~Collection~ måste vi se till
+att samtliga konstruktorer i ~LinkedSet~ anropar konstruktorn i
+~Collection~ med maxkapaciteten. Så här kan vi t.ex. lösa det:
+
+#+BEGIN_SRC java
+public LinkedSet(int maxCapacity) {
+    super(maxCapacity);
+}
+#+END_SRC
+
+** Inkapsling
+
+Fälten ~first~ och ~last~ hade inga åtkomstmodifierare och
+testerna klagar om de inte är private. Lösning:
+
+#+BEGIN_SRC java
+private Link first = new First(null);
+private Link last = first;
+#+END_SRC
+
+** Lägga till element
+
+När element skall läggas till skall vi kasta ett undantag om
+mängden är full. Exempelvis:
+#+BEGIN_SRC java
+if (this.size() == this.maxCapacity()) throw new SetFullException();
+#+END_SRC
+
+Vidare skall vi se till att /samma/ element bara
+förekommer i mängden en gång. Exempelvis:
+#+BEGIN_SRC java
+if (this.contains(elem)) return false;
+#+END_SRC
+Att använda ~contains()~ kräver att man förstår att dess
+implementation av /samma/ är det som efterfrågas i
+instruktionerna. De som har implementerat en egen sådan kontroll i
+~add()~ måste använda ~equals()~ och inte ~==~.
+
+Ytterligare en svårighet med denna uppgift är att förstå hur
+inlänkning går till i en lista med en tom första länk. Exempelvis:
+#+BEGIN_SRC java
+this.last.next = new Link(elem);
+this.last = this.last.next;
+#+END_SRC
+Observera att det inte finns några specialfall! Det finns alltid
+en länk vars ~next~ vi kan skriva. Vi får heller inte glömma bort
+att uppdatera ~this.last~ i samband med detta.
+
+
+** Iteratorn
+
+Implementation av iteraton kräver tre metoder. När man anropar
+~next()~ skall man få ut nästa element (med start med det första,
+förstås -- vid första anropet), och vid nästa anrop nästa element,
+etc. Metoden ~hasNext()~ returnerar ~true~ om nästa anrop till
+~next()~ är valitt (dvs. vi passerar inte utanför listan). Till
+sist remove som tar bort ett element ur listan.
+
+Här är en fungerande implementation av iteratorn.
+#+BEGIN_SRC java
+private class SetIterator implements Iterator<T> {
+    Link current;
+    Link prev = null;
+    public SetIterator(Link first) {
+        this.current = first;
+    }
+    public T next() {
+        this.prev = this.current;
+        this.current = this.current.next;
+        return this.current.element;
+    }
+    public boolean hasNext() {
+        return this.current.next != null;
+    }
+    public void remove() {
+        this.prev.next = this.current.next;
+        this.current = this.prev.next;
+    }
+}
+#+END_SRC
+
+** equals()
+
+Att skriva en ~equals()~-metod kräver att man minns problemet med
+overriding kontra overloading. Det är enkelt att förledas att tro
+att man kan skriva en ~equals()~-metod på detta sätt:
+
+#+BEGIN_SRC java
+public boolean equals(LinkedSet<T> o) {
+    for (T elem : this) {
+        if (o.contains(elem) == false) return false;
+    }
+    return this.size() == o.size();
+}
+#+END_SRC
+Detta är korrekt, /förutom/ att signaturen på metoden gör att vi
+inte override:ar ~Object~:s ~equals()~-metod. Denna skall nämligen
+ha följande signatur:
+#+BEGIN_SRC java
+public boolean equals(Object o)
+#+END_SRC
+Som vi tog upp två gånger på föreläsningarna kan man använda sig av
+en kombination av båda implementationerna:
+#+BEGIN_SRC java
+public boolean equals(Object o) {
+    if (o instanceof LinkedSet<T>
+        return this.equals((LinkedSet<T>) o);
+    } else {
+        return false;
+    }
+}
+#+END_SRC
+Obs: på grund av [[https://docs.oracle.com/javase/tutorial/java/generics/erasure.html][Javas type erasure]] är lösningen ovan inte
+typsäker[fn::Kompilatorn varnar men du får godkänt på kodprovet!]
+eftersom typomvandling inte kan kontrollera elementtyperna. Detta
+kan man t.ex. lösa genom att implementera en egen contains som
+opererar på ~Object~ etc., eller helt enkelt ändra den existerande
+på detta vis:
+#+BEGIN_SRC java
+public boolean contains(Object elem) {
+    for (Object e : this) {
+        if (e.equals(elem)) return true;
+    }
+    return false;
+}
+#+END_SRC
+En avancerad variant är att använda wildcards, som vi gick igenom
+på föreläsningarna (här i kombination med ~contains()~-metoden ovan).
+#+BEGIN_SRC java
+public boolean equals(Object o) {
+    if (o instanceof LinkedSet<?>
+        for (Object obj : (LinkedSet<?>) o) {
+            if (this.contains(obj) == false) return false;
+        }
+        return ((LinkedSet<?>) o).size() == this.size;
+    } else {
+        return false;
+    }
+}
+#+END_SRC
+
+En anledning till varför signaturen på ~equals()~ kräver att
+inparameterns typ är ~Object~ och inte något mer specifikt är för
+att ekvivalens är definierat för alla typer, dvs. det skall gå --
+dynamiskt -- att jämföra två helt olika saker, och få ett svar på
+skalan sant/falskt. Denna kod visar varför detta är vettigt:
+
+#+BEGIN_SRC java
+public void someFunction(Object probablyALinkedSet) {
+    LinkedSet<T> set = new LinkedSet<T>(42);
+    if (set.equal(probablyALinkedSet)) {
+        ...
+    }
+}
+
+/// In other method
+someFunction(new LinkedSet<T>(42));
+#+END_SRC
+
+I koden ovan har vi tappat bort det faktum att
+~probablyALinkedSet~ /är/ ett ~LinkedSet~ statiskt. Om vi inte
+hade definierat ~equals()~ som en metod vars inparameter hade
+typen ~Object~ hade vi inte tillåtits testa dessa två tomma
+mängder för likhet.
+
+** asArray()
+Denna metod tillhandahåller tjänsten att kunna få ut innehållet i
+mängden som en array. Detta borde vara straightline-kod att skriva
+för alla, inte minst med tanke på att liknande metoder delats ut i
+koden redan som gör samma typ av iteration:
+#+BEGIN_SRC java
+public Object[] asArray() {
+    Object[] result = new Object[this.size()];
+    int index = 0;
+    for (T e : this) {
+        result[index++] = e;
+    }
+    return result;
+}
+#+END_SRC
+
+
+** newEmptyCollection()
+Klassen ~Collection~ tillhandahåller metoden
+~newEmptycollection()~ som skapar en ny instans av klassen
+~Collection~ att användas i t.ex. ~copy()~. Men om vi använder
+~copy()~ för att kopiera ett ~LinkedSet~ fungerar det inte
+om inte ~newEmptycollection()~ override:as i ~LinkedSet~ för
+att returerna ett ~LinkedSet~:
+#+BEGIN_SRC java
+public LinkedSet<T> newEmptyCollection(int maxCapacity) {
+    return new LinkedSet<T>(maxCapacity);
+}
+#+END_SRC
+Det går också bra att behålla returtypen om vi har löst
+subtypningsuppgiften korrekt:
+#+BEGIN_SRC java
+public Collection<T> newEmptyCollection(int maxCapacity) {
+    return new LinkedSet<T>(maxCapacity);
+}
+#+END_SRC
+
+** (Själv)kritik av Java-uppgiften
+Ett problem med detta kodprov har varit att många har haft svårt
+att få sin kod att kompilera. Om man inte begriper t.ex.
+subtypningen eller den parametriska polymorfismen, måste man kämpa
+hårt och göra många manuella förändringar för att få sin klass att
+fungera. Förmodligen har en bov i kompileringsdramat varit
+konstruktorerna där Javas kompilator ger ett ganska svårtytt
+felmeddelande. Vad felmeddelande försöker säga är i stort sett:
+"hej, det där anropet till superklassens konstruktor som vi
+normalt kompilerar in automagiskt kan inte stoppas in automatiskt
+eftersom det inte finns någon parameterlös defaultkonstuktorn."
+
+/Att inte ens kunna kompilera måste ha varit djupt
+demoraliserande, och det är jag ledsen för!/ Glädjande är att
+många, trots detta problem, lyckats få så många saker rätt. Det är
+särskilt imponerande eftersom det inte ens funnits kompilatorhjälp
+att få! Bra kämpat där!
+
+I framtiden skall jag undvika att dela ut kod som inte fungerar,
+tror jag. Det begränsar visserligen de möjliga uppgifterna en
+smula, men jag tror att det ändå är bäst så.
+
+** Resultat
+
+Av 70 som skrev har 32 blivit godkända, 16 är nära att bli
+godkända (18 poäng) och har därför fått rest och 22 är underkända.
+Vi /förväntar/ oss därmed att knappt 48 av 70 blir godkända (65-69%).
+
+
+* Kodprovet 2018-01-05
+
+En helt ny C-uppgift kommer att ges. Jag kommer att försöka göra
+en variant på Java-uppgiften som inte har samma brister vad gäller
+att få saker att kompilera, och där det är mindre rörigt vad som
+skall göras[fn::Jag gissar att många inte kunde ta ledning av
+testen för detta eftersom koden inte körde...]. Nästa Java-uppgft
+kommer alltså att täcka samma saker, med en liknande uppgift:
+subtypning, olika sorters polymorfism, konstruktorer, inkapsling,
+vanlig hederlig Java-programmering, ~equals()~, samt overriding
+kontra overloading.
+
+-----
+
+#+BEGIN_CENTER
+IOOPM 2017
+#+END_CENTER
+
+#+INCLUDE: "statcounter.html" export html

@@ -1,4 +1,5 @@
 #+title: Basic Git and GitHub on IOOPM 
+#+include: "./setup.org" 
 
 #+begin_note
 This document is in no way attempting to replace any of the
@@ -238,15 +239,4 @@ back in time and still have working and sensible code.
 There are pros and cons with both ways of integrating changes, but
 the way we are going to use git on this course, I would recommend
 to always use =git pull --rebase=.
-
-
-
-#+LANGUAGE: en
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./css/htmlize.css"/>
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./css/readtheorg.css"/>
-
-#+HTML_HEAD: <script src="./js/jquery.min.js"></script>
-#+HTML_HEAD: <script src="./js/bootstrap.min.js"></script>
-#+HTML_HEAD: <script type="text/javascript" src="./js/jquery.stickytableheaders.min.js"></script>
-#+HTML_HEAD: <script type="text/javascript" src="./js/readtheorg.js"></script>
 

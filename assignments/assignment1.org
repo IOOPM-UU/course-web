@@ -1,4 +1,11 @@
 #+title: Assignment 1 (Phase 1, Sprint 1)
+#+include: "../setup.org" 
+
+#+begin_important
+Soft deadline: XXX.
+
+Hard deadline: XXX.
+#+end_important
 
 * Introduction :START:
 
@@ -3246,13 +3253,4 @@ presentations, or add your name to the help list.
 - *DONE* Add const to some functions where appropriate
 - *DONE* Refactor ints to size_ts at some point
 
-
-#+LANGUAGE: en
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/htmlize.css"/>
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/readtheorg.css"/>
-
-#+HTML_HEAD: <script src="../js/jquery.min.js"></script>
-#+HTML_HEAD: <script src="../js/bootstrap.min.js"></script>
-#+HTML_HEAD: <script type="text/javascript" src="../js/jquery.stickytableheaders.min.js"></script>
-#+HTML_HEAD: <script type="text/javascript" src="../js/readtheorg.js"></script>
 
