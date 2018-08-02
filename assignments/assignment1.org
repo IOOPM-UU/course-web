@@ -1001,7 +1001,7 @@ After some thinking (and with experience, you'll learn to see
 these kinds of things immediately) we note that the two find
 operations are strikingly similar. Let (~key~, ~value~) be the
 entry we are trying to add. If the first search comes across an
-entry /e/ such that /e/ = (~k1~, ~v1~) such that ~k1 < key~, then
+entry /e/ such that /e/ = (~k1~, ~v1~) such that ~k1 > key~, then
 not only can we conclude that there is no entry with key ~key~,
 but that (~key~, ~value~) should be added right before /e/. Thus,
 with a little bit of cleverness, a single find can serve both
@@ -3149,9 +3149,9 @@ design decisions or optional tasks. Note that the header files
 only show the /public functions/ not any internal functions and
 structs described in the text above.
 
-- =[[file:hash_table.h][hash_table.h]]=
-- =[[file:list.h][list.h]]=
-- =[[file:iterator.h][iterator.h]]=
+- [[file:hash_table.h][=hash_table.h=]]
+- [[file:list.h][=list.h=]]
+- [[file:iterator.h][=iterator.h=]]
 
 By now you should have demonstrated a few achievements, or at
 least have accumulated enough insights to be able to demonstrate.

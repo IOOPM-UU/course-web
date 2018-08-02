@@ -2,16 +2,15 @@
 #+include: "./setup.org" 
 
 #+begin_note
-This page is not yet updated for 2018.
+This page is being updated for 2018.
 #+end_note
 
 #+begin_note
-Note: I am in the process of translating the material for this
-course from Swedish to English. The reason for this is to be able
-to have non-Swedish speaking TAs on this course. Rather than delay
-things or offer only a single project, I have elected to mix
-Swedish and English where I did not have the time to rewrite old
-material.
+I am in the process of translating the material for this course
+from Swedish to English. The reason for this is to be able to have
+non-Swedish speaking TAs on this course. Rather than delay things
+or offer only a single project, I have elected to mix Swedish and
+English where I did not have the time to rewrite old material.
 #+end_note
 
 #+begin_important
@@ -124,13 +123,13 @@ Note that assignments mostly act as drivers to learn concepts and produce eviden
 | [[file:assignments/assignment3.org][Assignment 1 (Java)]]           | 29/10 | 16/11     |
 | [[file:assignments/assignment4.org][Assignment 2 (Java)]]           | 19/11 | 30/11     |
 | [[file:projects/projects.org][Project assignment -- Phase 3]] | 3/12  | 14/1 2019 |
-* Resources
-** How IOOPM Works
-See [[file:about.org][this page]].
-** The SIMPLE Methodology
-See [[file:simple.org][this page]].
-** The Coding Exam 
+* The Coding Exam 
 See [[file:code-exam.org][this page]].
+* How IOOPM Works
+See [[file:about.org][this page]].
+* The SIMPLE Methodology
+See [[file:simple.org][this page]].
+* Resources
 ** Contact Information
 | Name             | Function                | Email                       | Office |
 |------------------+-------------------------+-----------------------------+--------|

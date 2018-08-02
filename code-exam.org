@@ -1,0 +1,103 @@
+#+title: Coding Exam
+#+include: "./setup.org"
+
+* What is a Coding Exam?
+A coding exam is an individual exam that runs in the normal
+computer halls. You have to pass *two* coding exams on this
+course, one imperative and one object-oriented in the programming
+languages that the course uses.
+
+Coding exams are given multiple times during the course (e.g., 4
+times in 2018) and each exam has two programming tasks -- one
+imperative and one object-oriented. A few students pass both
+coding exams already in October (because they are already seasoned
+programmers). Students typically have ~3 hours to solve the
+questions and hand in their solutions.
+
+The programming tasks are solved using the lab computers, with
+access to compilers, debuggers, editors, man pages, etc. *but not
+Internet*. A set of tests are always provided so that you can
+check your solutions before you hand them in.
+
+* Signing up for the Coding Exam
+A signup link will be posted on Piazza or distributed through
+email to old students. This usually happens 1-2 weeks before the
+exam.
+
+When you sign up for the code exam, you will be able to state your
+preferences for writing in the morning 9-12 or afternoon 13-16.
+There is no guarantee that you will get your preferred choice.
+
+If you have some formally recognized condition (e.g. a dyslexia
+diagnosis) that normally gives you extra time to write the coding
+exam, email Tobias about this *early in the course*.
+
+* Correction
+Vi har försökt att rätta automatiskt men det har visat sig svårt
+eftersom man måste vara mycket noga med hur resultat presenteras
+för att inte bli underkänd på grund av ett extra mellanslag, eller
+av att man råkar göra någon olycklig ändring som gör att de
+automatiska testerna inte längre fungerar. Därför kommer vi att
+rätta med en bladndning av automatiska och manuella metoder,
+vilket medför tre saker:
+
+- Man kan inte få svaret /direkt/ efter provet (det dröjer normalt ett par dagar)
+- Om man gör små dumheter kan de eventuellt "förlåtas" i rättningen
+- Om man gör stora dumheter kan man få bassning
+
+Med små dumheter avses t.ex. skriva ut resultatet på felaktigt
+format eller missa ett enstaka randvillkor.
+
+Med stora dumheter avses t.ex. ett program som skriver ut korrekt
+resultat men räknar ut det på ett otillåtet sätt (t.ex. hårdkodar
+utdata per indata istället för att göra en beräkning, eller inte
+respekterar explicita krav på lösningen), eller använder ett
+extremt tillkrånglat och bakvänt sätt att skriva kod.
+
+Vi tittar inte på benämning av variabelnamn etc. eftersom
+kodprovet har hårda tidsgränser.
+
+* Recent Coding Exams
+Below are some recent coding exams.
+
+|       Date | Instructions | Postmortem | Note   |
+| 2017-10-26 | [[http://wrigstad.com/ioopm/agoster.zip][available]]    | [[http://wrigstad.com/ioopm/2017/kodprov-dec-18.html][available]]  |        |
+| 2017-12-08 | [[http://wrigstad.com/ioopm/entrekod.zip][available]]    | [[http://wrigstad.com/ioopm/2017/kodprov-dec-08.html][available]]  | Only C |
+| 2017-12-18 | [[http://wrigstad.com/ioopm/sorsele-fm.zip][available]]    | [[http://wrigstad.com/ioopm/2017/kodprov-dec-18.html][available]]  |        |
+| 2018-04-02 | [[http://wrigstad.com/ioopm/bridget.zip][available]]    |            |        |
+
+
+* Frequently Asked Questions
+
+*Q:* Hur förbereder jag mig bäst på kodprovet? \\
+*A:* Genom att programmera mycket *själv*[fn::Alltså -- att själv kunna lösa uppgifter utan att behöva bolla med någon annan.] och *utan att Googla* -- och vara bekant med miljön på maskinerna på Pollax.
+
+*Q:* Måste jag skriva på skolans datorer eller kan jag använda min egen? \\
+*A:* Du måste skriva på skolans datorer. Ni kommer eventuellt att använda en särskild inloggning utan tillgång till det vanliga filsystemet eller Internet.
+
+*Q:* Vad kommer på kodprovet? \\
+*A:* Kolla bland de gamla kodproven.
+
+*Q:* Vilken betygsskala används? \\
+*A:* Kodproven motsvarar 2 x 2.5 HP och har betyget U eller G. Ditt betyg på kursen avgörs helt av målen. Notera att kodprovets syfte inte är att mäta din skicklighet som programmerare, utan lägga en miniminivå. Det tjänar som motivator/forcing function för att tvinga fram den student som normalt sätter sig i baksätet i framsätet och se till att kunna skriva kod själv. Annars kommer man nämligen inte att klara kodprovet.
+
+*Q:* Vilka hjälpmedel får jag ha? \\
+*A:* Böcker om programspråk. Vidare får du använda man-sidorna. Du får inte använda gammal kod, inte gå ut på nätet, etc. Elektroniska böcker är tillåtna. Vi föredrar att du har en läsplatta, men en bärbar dator utan Internet går också bra.
+
+*Q:* När går kodprovet? \\
+*A:* Kolla på [[file:index.org][schemat]]!
+
+*Q:* Hur anmäler jag mig? \\
+*A:* Länk postas i Piazza.
+
+*Q:* Vad händer om jag inte vet hur man t.ex. kör valgrind eller kan kompilera med GCC? \\
+*A:* Då får du problem. Man måste kunna kompilera, skriva ett nytt program från scratch, veta vad main-funktionen heter, veta hur man använder gdb hjälpligt, kunna köra valgrind, etc.
+
+*Q:* Varför kommer det en Java-fråga redan på det första kodprovet? \\
+*A:* Två skäl: (1) Gamla studenter som skriver om provet och bara har Javan kvar. (2) De som redan kan Java och vill "bli av med den" redan nu får den möjligheten/får pröva.
+
+*Q:* Vad händer om jag inte klarar av kodprovet? \\
+*A:* Observera att det är flera kodprov schemalagda under kursen. Du får möjlighet att göra C och Java varje gång. Från och med 2016 rapporteras C- och Java-kodproven som två separata prov á 2.5 HP.
+
+*Q:* Jag har hört talas om att man kan få rest på kodprovet... \\
+*A:* De flesta år har vi ofta tillämpat rest för mindre fel, men detta sker helt i mån av tid för oss som ger kursen. Huruvida vi tillämpar samma system detta år, är beroende på vilka fel som begås och andra yttre omständigheter.

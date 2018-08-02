@@ -179,7 +179,8 @@ dl dd{
         -ms-filter:none !important}
 
     a,a:visited{
-          text-decoration:underline}
+        text-decoration: underline;
+    }
 
     pre.src,blockquote{
         page-break-inside:avoid}
@@ -655,6 +656,7 @@ label{
     font-size:90%}
 
 a{
+    font-weight: 400;
     color:#2980B9;
     text-decoration:none;
     cursor:pointer}

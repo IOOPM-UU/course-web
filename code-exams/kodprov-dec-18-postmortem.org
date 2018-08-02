@@ -337,24 +337,3 @@ smula, men jag tror att det ändå är bäst så.
 Av 70 som skrev har 32 blivit godkända, 16 är nära att bli
 godkända (18 poäng) och har därför fått rest och 22 är underkända.
 Vi /förväntar/ oss därmed att knappt 48 av 70 blir godkända (65-69%).
-
-
-* Kodprovet 2018-01-05
-
-En helt ny C-uppgift kommer att ges. Jag kommer att försöka göra
-en variant på Java-uppgiften som inte har samma brister vad gäller
-att få saker att kompilera, och där det är mindre rörigt vad som
-skall göras[fn::Jag gissar att många inte kunde ta ledning av
-testen för detta eftersom koden inte körde...]. Nästa Java-uppgft
-kommer alltså att täcka samma saker, med en liknande uppgift:
-subtypning, olika sorters polymorfism, konstruktorer, inkapsling,
-vanlig hederlig Java-programmering, ~equals()~, samt overriding
-kontra overloading.
-
------
-
-#+BEGIN_CENTER
-IOOPM 2017
-#+END_CENTER
-
-#+INCLUDE: "statcounter.html" export html
