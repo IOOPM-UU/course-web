@@ -1,0 +1,481 @@
+#+title: Basic C
+#+include: "./setup.org"
+
+#+begin_note
+This page is very much a work in progress and will grow gradually
+during 2018. Feel free to make requests!
+#+end_note
+
+* Anatomy of a C Program
+
+A C program consists of one or more files. Files come in two
+forms: **C** ode and **H** eader files (with extensions =.c= and
+=.h= respectively). =.c= files contain declarations of functions
+and data structures. The =.h= files contain definitions of e.g.
+type aliases and function prototypes which simply names a function
+and states its parameter types and return type, but not its actual
+code.
+
+In an executable C program, exactly one =.c= file has a ~main()~
+function that starts the program.[fn::There are rare cases where
+this is not true, but that's out of scope of this course.]
+
+The figure below shows a typical =.h= file. It contains a set of
+include directives and type aliases which are used in the function
+prototypes.
+
+#+CAPTION: A typical =.h= file
+#+BEGIN_SRC
+#pragma once
+
+[include directives]
+
+[type aliases]
+
+[function prototypes]
+#+END_SRC
+
+The include directives list names of =.h= files whose definitions
+will be included in the current file. For example, writing
+~#include <stdlib.h>~ includes all the function defintions from
+the standard library into the curren file, allowing the compiler
+to check that calls to these functions are correct.
+
+The line ~#pragma once~ states that no matter how many times the
+=.h= file is included, it will only be included
+/once/.[fn::Aside: The ~#pragma~ is not part of the C standard!
+Nevertheless, it is supported by GCC and Clang, which are the two
+C compilers we will use in this course. Later on we will cover the
+canonical way, which involves digging into the C preprocessor a
+little deeper.]
+
+In contrast, a typical =.c= file will look like this:
+
+#+CAPTION: A typical =.c= file
+#+BEGIN_SRC
+[include directives]
+
+[type aliases]
+
+[struct declarations]
+
+[function prototypes]
+
+[function definitions]
+#+END_SRC
+
+Here, there is no ~#pragma~, which is because =.c= files are not
+usually included into other files. Commonly, the file =file.c=
+includes =file.h=, which means a =.c= file imports a list of its
+public functions. This is useful because the C compiler reads
+sources top to bottom, and will be confused[fn::The nature of
+this confusion is often confusing to programmers. Rather than
+rejecting calls to functions that hasn't been seen yet, the C
+compiler will assume that the function will eventually be defined,
+and that all its types are integers!] if a function is called
+before it is defined.
+
+The struct declaration part will declare how or memory objects are
+shaped. If there are function definitions in the =.c= file which
+are not in the =.h= file, they are typically listed before the
+definitions. If type aliase, struct declarations and function
+prototypes come before the function definitions, we are free to
+use them in the function defitions, no matter their order.
+
+
+** A Complete Example
+
+Below shows three files, =greeter.h=, =greeter.c= and =driver.c=
+that together make up a complete C program. =greeter.h= defines a
+function, ~greet()~ that takes a message and a name. =greeter.c=
+implements this function. Finally, =driver.c= must include
+=greeter.h= to learn the existence of ~greet()~.
+
+#+CAPTION: greeter.h
+#+BEGIN_SRC c
+#pragma once
+
+void greet(char *msg, char *name);
+#+END_SRC
+
+#+CAPTION: greeter.c
+#+BEGIN_SRC c
+#include "greeter.h"
+
+void greet(char *msg, char *name)
+{
+  printf("Hi, %s, %s!\n", name, msg);
+}
+#+END_SRC
+
+#+CAPTION: driver.c
+#+BEGIN_SRC c
+#include "greeter.h"
+
+int main(int arc, char *argv[])
+{
+  if (argc == 3)
+    {
+      greet(argv[1], argv[2]);
+    }
+  else
+    {
+      puts("Usage: ./driver <msg> <name>")
+    }
+
+  return 0;
+}
+#+END_SRC
+
+These files can be compiled thus: =gcc greeter.c driver.c -o
+driver=. This produces the executable =driver=. Note how we do not
+mention the =.h= file when compiling. That would be redundant since
+the contents of =greeter.h= has already been included /twice/, once
+in each =.c= file.
+
+* Common Compiler Flags
+
+Most C compilers support hundreds if not thousands of options. It
+is beyond the scope of this course to go beyond the absolute
+basics. Below are some flags that we will use frequently:
+
+| Flag          | Description                                                                                  |
+|---------------+----------------------------------------------------------------------------------------------|
+| =-c=          | Separate compilation -- produce an /object file/ that can be linked to an executable later   |
+| =-o filename= | Name the resulting executable =filename= rather than =a.out=                                 |
+| =-lm=         | Link with the mathematics library                                                            |
+| =-lcunit=     | Link with the CUnit testing framework                                                        |
+| =-Wall=       | Makes the compiler warn for things it considers dubious                                      |
+| =-Wextra=     | Makes the compiler even more suspicious than with =-Wall=                                    |
+| =-pedantic=   | Warns about use of C outside of what the standard supports                                   |
+| =-g=          | Add information to the output that facilitates debuggning (you can use =-ggdb= if using gdb) |
+| =-O2=, =-O3=  | Turn on (increasing) levels of optimisation (this may trigger errors in bad code)            |
+| =-pg=         | Add profiling information to the output                                                      |
+
+On this course, I recommend always using =-g= or =-ggdb= and
+=-Wall=. Warnings in C are often to be taken seriously, especially
+in an introductory course, and the overhead of adding debugging
+information to the code is negligable. This very line will get you
+quite far:[fn::Of course, change the filenames!]
+
+=gcc -Wall -pedantic -g file1.c file2.c file3.c=
+
+
+
+
+* Loops
+** While Loops
+
+#+BEGIN_SRC c
+int fib(int n)
+{
+  if (n < 2)
+    {
+      return n;
+    }
+  else
+    {
+      return fib(n - 1) + fib(n - 2);
+    }
+}
+#+END_SRC
+
+#+BEGIN_SRC c
+int fib(int n)
+{
+  int fib_1 = 0;
+  int fib_2 = 1;
+  int times = 0;
+
+  while (times < n)
+    {
+      int tmp = fib_1 + fib_2;
+      fib_1 = fib_2;
+      fib_2 = tmp;
+
+      times = times + 1;
+    }
+
+  return fib_2;
+}
+#+END_SRC
+
+bug if n == 0 -- exercise!
+
+** Do-While Loops
+
+A do-while loop is a good fit for loops where we know we will go
+through the loop body /at least once/. Here is an example of going
+through a password dialogue. If the correct password is entered,
+~strcmp(password, answer)~ returns 0 and the loop exits.
+Otherwise, the password question is repeated.
+
+#+BEGIN_SRC c
+char *password = "secret";
+char *answer = NULL;
+do
+  {
+    ask_question_string("Enter password:", &answer);
+  }
+while (strcmp(password, answer) != 0);
+#+END_SRC
+
+Concisely, if a do-while loop is =do {body} while (guard)=, we
+could rewrite the code using a while loop as =body; while (guard)
+{body}=. What would the example above look like using a while-loop
+instead?
+
+#+ATTR_IOOPM: :hidden true :show Show answer :hide Hide answer
+#+BEGIN_SRC c
+char *password = "secret";
+char *answer = ask_question_string("Enter password:", &answer);
+while (strcmp(password, answer) != 0);
+  {
+    ask_question_string("Enter password:", &answer);
+  }
+#+END_SRC
+
+
+
+** For Loops
+
+* Increment and Decrement Operators
+
+Many C programs make use of the increment and decrement operators,
+~++~ and ~--~. A pretty strong and compelling case can be made for
+not using these operators, because they make code hard to read.
+Indeed, several "modern" languages[fn::For example Go and Python.]
+do not support them.
+
+The ~++~ operator operates on SCALAR variables and fields and adds
+one to their value. The reason why the operator is sometimes
+confusing is that the result of applying it depends on whether it
+is used in a /prefix/ (/e.g./, ~++x~) or /postfix/ (/e.g./, ~x++~
+position).
+
+Example: let ~x~ be an integer variable declared thus: ~int x =
+5;~. Table LINK shows the meaning of ~++~ and ~--~ applied to ~x~
+in both the postfix and prefix positions.
+
+| Expression | Return Value | Side Effect |
+|------------+--------------+-------------|
+| <c>        | <c>          | <c>         |
+| ~x++~      | ~5~          | ~x = 6~     |
+| ~++x~      | ~6~          | ~x = 6~     |
+| ~x--~      | ~5~          | ~x = 4~     |
+| ~--x~      | ~4~          | ~x = 4~     |
+
+** Exercise I
+
+What does the following code print?[fn::The answer is 42 44 44]
+#+BEGIN_SRC c
+int x = 42;
+printf("%d ", x++);
+printf("%d ", ++x);
+printf("%d.", x)
+#+END_SRC
+
+What does the following code print?[fn::The answer is 43 43 44]
+#+BEGIN_SRC c
+int x = 42;
+printf("%d ", ++x);
+printf("%d ", x++);
+printf("%d.", x)
+#+END_SRC
+
+(Brain teaser and sort-of trick question) What does the following
+code print? [fn::Answer: Compiling this program generates a warning
+saying that this operation may be underfined. On the computer
+where I am writing this, using gcc (Ubuntu 6.3.0-12ubuntu2) 6.3.0
+20170406 on an X86 64 running Ubuntu 17.04, the result is =85=.]
+#+BEGIN_SRC c
+int x = 42;
+printf("%d.", x+++x);
+#+END_SRC
+
+The first and second example are quite simple. It is easy for your
+eyes to transpose the two ~printf()~-lines and confuse one for the
+other. The final example is interesting because it stresses the
+parsing situation -- does ~x+++x~ parse as ~(x++) + x~ or as ~x +
+(++x)~ -- and does it matter?
+
+
+** Rationale
+
+Historically, many programmers have enjoyed writing programs which
+use ~++~ (and ~--~) when iterating over arrays. Here is a snippet that
+illustrates this in a very simple way.
+
+#+BEGIN_SRC c
+char msg[4];
+int i = 0;
+msg[i++] = 'H';
+msg[i++] = 'e';
+msg[i++] = 'y';
+msg[i++] = '\0';
+#+END_SRC
+
+Clearly, the ability to both look up an index and increment it at
+the same time is making the code above /compact/. In the code
+above, one could argue that adding four separate lines for
+incrementing ~i~ would add "a lot of noise" to the program.
+However, most-real world examples involve loops where we are
+mostly changing the index in a single line. For example:
+
+#+BEGIN_SRC c
+void puts_equivalent(char *str)
+{
+  int i = 0;
+  while (str[i]) putchar(str[i++]);
+}
+#+END_SRC
+
+Before we dig in, let us write that code with a proper loop body:
+
+#+BEGIN_SRC c
+void puts_equivalent(char *str)
+{
+  int i = 0;
+  while (str[i])
+    {
+      putchar(str[i++]);
+    }
+}
+#+END_SRC
+
+One reason to dislike this code is because ~putchar(str[i++]);~ is
+a very busy statement -- many things going on in a single line:
+
+1. Read the ~i~:th character of ~str~
+2. Increment ~i~
+3. Print the character we read in 1.
+
+Moving the increment to a line of its own makes the code much
+clearer:
+
+#+BEGIN_SRC c
+void puts_equivalent(char *str)
+{
+  int i = 0;
+  while (str[i])
+    {
+      putchar(str[i]);
+      ++i;
+    }
+}
+#+END_SRC
+
+We can rewrite it thus using a ~for~ loop, which could be argued
+makes the code clearer by collecting the loop variable, guard and
+change to the loop variable in a coherent space, textually[fn::Of
+course, this argument is much stronger for loops with longer
+and/or more complicated bodies.].
+
+#+BEGIN_SRC c
+void puts_equivalent(char *str)
+{
+  for (int i = 0; str[i]; ++i)
+    {
+      putchar(str[i]);
+    }
+}
+#+END_SRC
+
+Note that in the last two cases, the behaviour is the same if the
+increment is done using ~++i~ or using ~i++~. This is a good thing
+for readability and maintainability.
+
+I strongly advocate only using ~++~ in the **prefix** position to
+the extent possible.
+
+** Increments in Pointer Arithmetic
+
+The increment operation is often used to do pointer arithmetic.
+For example, ~int *ip~ declares ~ip~ to be a pointer to a place in
+memory where an int is stored[fn::For simplicity, we don't show
+the initialisation of ~ip~ -- just assume ~ip~ points to something
+sensible.].
+
+Remember that ~ip + 1~ returns a pointer to the next integer after
+the one that ~ip~ points to, meaning that pointer arithmetic moves
+pointers to values of type ~T~ in strides of ~sizeof(T)~ bytes.
+
+Also, because of C's preference order rules, ~*ip++~ means read
+~*ip~, then increase ~ip~ by one, the following code prints 7, 42
+and 4711.
+
+#+BEGIN_SRC c
+int values[] = { 7, 42, 4711 }
+int *ip = values;
+printf("%d ", *ip++)
+printf("%d ", *ip++)
+printf("%d ", *ip++)
+#+END_SRC
+
+To increment the value pointed to by some pointer, put the
+dereference in parentheses: ~(*ip)++~ means increase the value of
+~*ip~ by one and does not change the value of ~ip~.
+
+
+** Exercise II
+
+Look at the following implementation of ~strcpy()~, the string
+copying function, that copies a string from ~b~ to ~a~. Do you
+understand how it works?[fn::First, ~x = y~ returns the value of ~y~. Second, ~'\0'~ has the value ~0~ meaning it is the same as ~false~.]
+
+#+BEGIN_SRC c
+void strcpy(char *a, char *b)
+{
+  while (*a++ = *b++) ;
+}
+#+END_SRC
+
+Because sometimes strings are not properly null-terminated, we
+should never use ~strcpy()~. Instead, we should rely on
+~strncpy()~ that takes an additional argument that upper-bounds
+the number of characters copied. Here is an implementation of
+that function using ~--~.
+
+#+BEGIN_SRC c
+void strncpy(char *a, char *b, int n)
+{
+  while (n-- > 0 && *a++ = *b++) ;
+}
+#+END_SRC
+
+The documentation for ~strncpy()~ says (slightly adapted):
+
+/If the length of =b= is less than =n=, =strncpy()= writes additional null characters to =a= to ensure that a total of =n= bytes are written./
+
+Update ~strncpy()~ above to adhere to that specification. Can you
+do it on a single line, without breaking the FORMATTING
+CONVENTIONS?
+
+#+ATTR_IOOPM: :hidden true :show Show answer :hide Hide answer
+#+BEGIN_SRC c
+// TODO: Hide
+void strncpy(char *a, char *b, int n)
+{
+  while (n-- > 0 && *a++ = *b++) ;
+  while (n-- > 0) *a++ = '\0';
+}
+#+END_SRC
+
+
+** Concluding Remarks
+
+Several modern languages abolish ~++~ and ~--~ because they make
+code hard to read. Many languages (including C) support more
+general ~+=~ and ~-=~ operators that can be used to achieve the
+same effect with similar brevity.
+
+I strongly advocate only using ~++~ in the **prefix** position to
+the extent possible. But even better, use ~+= 1~ and ~-= 1~
+instead. The ~++~ and ~--~ are seductive, and it may be hard to
+stop using them once you have grown accustomed to them.
+
+* Avoid Global Variables
+[[file:misc/inga%20globala%20variabler.pdf][This slide set]] discusses this statement further, and explains how
+to refactor yourself free from global variables.
+
+#+include: "./footer.org"

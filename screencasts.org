@@ -1,0 +1,61 @@
+#+title: Screencasts
+#+include: "./setup.org"
+
+* Gamla screencasts
+
+Här hittar du kursens alla screencasts samt eventuellt utdelat
+material till dessa. Vissa screencasts är anpassade efter Scalable
+Learning (som vi inte längre använder) och har därför referenser
+till frågor som inte längre fungerar.
+
+Vi har valt att inte lägga vår begränsade tid på att fixa den
+typen av kosmetiska buggar, utan istället fokusera mer på
+innehåll. Strunta därför i referenser till föreläsningsnummer och
+frågor etc. Hör av dig om det är något som verkar väldigt konstigt
+med en screencast!
+
+En annan skillnad är att förstaårskursen PKD nyligen gick över
+till att lära ut Haskell från att tidigare ha använt ML (ett annat
+funktionellt språk). Varje gång som "ML" nämnns kan ni alltså byta
+ut det mentalt mot "Haskell".
+
+** Screencasts om C
+
+- [[https://www.youtube.com/watch?v=aYiatm0ni3A][I/O i terminalen]] [11 minuter]. Förklarar hur man på ett enkelt
+  sätt kan läsa in och skriva ut värdet av olika typer i
+  terminalen med ett C-program.
+- [[http://www.youtube.com/watch?v=Q71HcbxaRPc][Strängar]] [22 minuter]. Förklarar hur strängar fungerar i C.
+  Strängar är arrayer av tecken. Skillnaden på en "likadan" och
+  "samma" sträng Hur man kopierar strängar i C Hur man jämför
+  strängar i C
+- Länkade strukturer. Den här screencasten användes som komplement till
+  en lektion (som vi inte använder längre) 2015. Den utdelade
+  koden hittar du [[https://github.com/IOOPM-UU/ioopm17/tree/master/extramaterial/screencasts/stack-calculator][här]].
+  - [[https://youtu.be/1Wtb6nYEoYI][Del 1 - Vi implementerar en stack]].
+  - [[https://youtu.be/ndrevAdwjgQ][Del 2 - Stacken får en iterator]]. 
+  - [[https://youtu.be/vwvNFKnSXmY][Del 3 - Vi skriver ett program som använder stacken (och
+    iteratorn)]]. 
+
+** Screencasts om verktyg
+
+- [[http://www.youtube.com/watch?v=t6Q89QzSMc4][Emacs 1]] [13 minuter]. Introduktion, grundläggande redigering och navigering.
+- [[https://www.youtube.com/watch?v=oyUQ7fE_fKk&index=59&list=UUxcEJHLbYZC7TdmDAPnHE4Q][Emacs 2]] [14 minuter]. Kommandon, hjälp, dynamic abbreviations, query-replace
+- [[https://www.youtube.com/watch?v=7WEtL6xpEI4&list=UUxcEJHLbYZC7TdmDAPnHE4Q&index=58][Git]] [16 minuter]. En kort genomgång av
+  versionshanteringssystemet git och dess grundläggande kommandon.
+  Vi visar hur två användare kan samarbeta i ett gemensamt
+  git-projekt
+- [[https://www.youtube.com/watch?v=sCtY--xRUyI][gdb]] [10 minuter]. En introduktion från en kurs på Harvard.
+- [[http://www.youtube.com/watch?v=lhBmhzNCJLg][Valgrind]] [4 minuter]. Spåra minnesläckor i ditt C-program.
+- [[http://www.youtube.com/watch?v=Ik6hlVfrpLw][SSH]] [10 minuter]. Lär dig ansluta till universitetets datorer
+  hemifrån med hjälp av terminalen.
+- [[http://www.youtube.com/watch?v=4l6YbHX2hNc][LaTeX]] [7 minuter]. Grundläggande typsättning och kompilering.
+- [[http://www.youtube.com/watch?v=KYiD8oGkNeg][Netbeans profileringsverktyg]] [35 minuter]. Hands-on-genomgång av
+  hur man kan profilera och optimera ett program i Netbeans
+
+** Screencasts om Java
+
+- [[http://www.youtube.com/watch?v=Z5B0H8ymdes][Samlingsklasser och Avbildningsklasser]] (aka Collections and Maps) [17 minuter]
+- [[http://www.youtube.com/watch?v=JTs96vLXrEw][Parsning med recursive descent]] [35 minuter]
+
+
+#+include: "./footer.org"
