@@ -1,3 +1,7 @@
-#+title: Assignment 2 
+#+title: Assignment 2 (Phase 1, Sprint 2)
+#+include: "../setup.org"
 
-TODO
+#+begin_note
+Assignment 2 is being updated and significantly changed for 2018.
+It will be published here when it is finished.
+#+end_note

@@ -1,8 +1,14 @@
 #+title: Imperative and Object-Oriented Programming Methodology
-#+include: "./setup.org" 
+#+include: "./setup.org"
+
+#+begin_attention
+Get course material at the [[https://github.com/IOOPM-UU/ioopm18/][course's GitHub page]] \\
+Ask questions and discuss with other students on [[https://piazza.com/class/jkd32onglxi2vb][Piazza]]  \\
+Request demonstrations and track your progress at the [[http://auportal.herokuapp.com/][AU Portal]]
+#+end_attention
 
 #+begin_note
-This page is being updated for 2018.
+As of 2018-08-02 is this page still being updated for 2018.
 #+end_note
 
 #+begin_note
@@ -19,7 +25,7 @@ probably [[file:about.org][read the page about the course first]].
 #+end_important
 
 * Lecture Schedule with Slides
-Note that without exception, all lectures start at 10:15 and are scheduled to end at 12:00. 
+Note that without exception, all lectures start at 10:15 and are scheduled to end at 12:00.
 ** Phase 1 (Imperative Programming)
 | Contents | Date                                                                                                                                                                   |
 |----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -85,7 +91,7 @@ TBA in 2018: Guest lecture from Oracle JVM engineers.
 | 18/1  | Retrospective & guest lecture            |
 
 
-* Deadlines 
+* Deadlines
 Deadlines and important dates in chronological order. Read [[file:about.org#orgc68375c][here]] about soft and hard deadlines.
 
 | Date         | Deadline                   | Comment                                   |
@@ -123,7 +129,7 @@ Note that assignments mostly act as drivers to learn concepts and produce eviden
 | [[file:assignments/assignment3.org][Assignment 1 (Java)]]           | 29/10 | 16/11     |
 | [[file:assignments/assignment4.org][Assignment 2 (Java)]]           | 19/11 | 30/11     |
 | [[file:projects/projects.org][Project assignment -- Phase 3]] | 3/12  | 14/1 2019 |
-* The Coding Exam 
+* The Coding Exam
 See [[file:code-exam.org][this page]].
 * How IOOPM Works
 See [[file:about.org][this page]].
@@ -135,6 +141,7 @@ See [[file:simple.org][this page]].
 |------------------+-------------------------+-----------------------------+--------|
 | [[http://wrigstad.com][Tobias Wrigstad]]  | Head Teacher            | =tobias.wrigstad@it.uu.se=  |   1356 |
 | Gustaf Borgström | Head Teaching Assistant | =gustaf.borgstrom@it.uu.se= |   1258 |
+** TODO Screencasts
 ** FAQ
 A minimal FAQ is [[file:about.org][available]].
 ** TODO Links

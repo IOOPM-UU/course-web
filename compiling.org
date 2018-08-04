@@ -1,3 +1,101 @@
-Needs to explain the basic compiler flags
+#+title: Compiling C and Java Code
+#+include: "./setup.org"
 
-gcc -pedantic -Wall -g -o -c -lm -lcunit 
+#+begin_important
+This page does *not* try to be an exhaustive introduction to
+compiling C and Java programs. Instead, it focuses on the most
+common compilation incantations (and options) in the course.
+Please suggest improvements!
+#+end_important
+
+* Compiling C Code
+** Compiling a Single Souce File into an Executable
+The following command uses the =gcc= C compiler to compile a
+program contained in a single file (modulo standard libraries)
+called =single-file.c= into an executable called =output-file=.
+#+BEGIN_EXAMPLE
+$ gcc -pedantic -Wall -g single-file.c -o output-file
+#+END_EXAMPLE
+The flag =-Wall= "enables all the warnings about constructions
+that some users consider questionable, and that are easy to avoid
+(or modify to prevent the warning), even in conjunction with
+macros" (quoting from =man gcc=).
+
+If you want, you can replace =-Wall= with =-Wextra= which enables
+even more warning flags. Use =man gcc= to search for =-Wall= and
+=-Wextra= for more information.
+
+The =-g= flag inserts debugging information in the operating
+system's native format into the program (executable or object
+code) that lets programs like =gdb= at the source level, e.g.,
+give you line numbers for a crash, display the line of code
+executed etc.
+
+The =-pedantic= flag turns on warnings demanded by strict ISO C
+and reject all programs that use forbidden extensions, and some
+other programs that do not follow ISO C+.
+** Compiling Several Source Files into an Executable
+Like a single source file, but input all source file names:
+#+BEGIN_EXAMPLE
+$ gcc -pedantic -Wall -g file1.c file2.c ... fileN.c -o output-file
+#+END_EXAMPLE
+** Compiling a One or More Source File(s) into Object Code(s) (Separate Compilation)
+To compile into object code, and output =.o= files and do not perform any linking, insert the flag =-c=. This will make the input files produce =.o= files instead.
+#+BEGIN_EXAMPLE
+$ gcc -pedantic -Wall -g file1.c file2.c ... fileN.c -c
+#+END_EXAMPLE
+** Linking Object Code into an Executable
+Simply use the =.o= files as if they were =.c= files. You can mix =.c= and =.o= files in this step.
+#+BEGIN_EXAMPLE
+$ gcc -pedantic -Wall -g file1.o file2.o ... fileN.o -o output-file
+#+END_EXAMPLE
+** Linking Against Additional Standard Libraries
+Common linker options that you may need to use are =-lm= which
+means link with the math library and =-lcunit= which means link
+with the cunit libraries. Note that you must include e.g. =math.h=
+or =CUnit/CUnit.h= etc. to be able to /compile/ against these
+APIs.
+** Adding Profiling Information
+The =gcc= flag =-pg= generates extra code to write profile
+information suitable for the gprof program. Use this option for
+compiling *all the source files you want to profile*, and you must
+*also* use it when linking. (If you compile everything from source
+to executable in one go like Section [[Compiling a Single Souce File
+into an Executable]], simply add =-pg= once and you are done).
+** TODO Adding Code Coverage Information
+=--coverage= and =-ftest-coverage=
+** A Complete Example
+Let a program "bread" consist of the files =flour.c=, =water.c=
+and =misc.c=. To compile an executable =bread= from these files, the
+simplest way possible is:
+#+BEGIN_EXAMPLE
+$ gcc -pedantic -Wall -g flour.c misc.c water.c -o bread
+#+END_EXAMPLE
+This compiles the program into object code, links the object code
+files together into an executable called =bread=, and throws away
+the object code.
+
+To compile each file into object code separately, and finally link
+it into =bread= we could instead do:
+#+BEGIN_EXAMPLE
+$ gcc -pedantic -Wall -g flour.c -c
+$ gcc -pedantic -Wall -g misc.c -c
+$ gcc -pedantic -Wall -g water.c -c
+#+END_EXAMPLE
+This produces the object code files =flour.o=, =misc.o= and =water.o=. These can now be linked together to create =bread=:
+#+BEGIN_EXAMPLE
+$ gcc -pedantic -Wall -g flour.o misc.o water.o -o bread
+#+END_EXAMPLE
+The advantage of the latter approach is that if we make an
+internal change to =misc.c= and want to recompile, we only need to
+recompile =misc.c= into =misc.o= and relink. If compiling
+=flour.c= and =water.c= takes a lot of time (many program has
+1000's of =.c= files that can take seconds to compile), we probably
+shaved off *a lot of time* by only redoing the necessary steps.
+
+#+begin_tip
+If you use a [[file:makefiles.org][Makefile]], it is easy to always use the fancy latter
+option.
+#+end_tip
+
+* TODO Compiling Java Code

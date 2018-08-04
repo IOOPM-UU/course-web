@@ -1,0 +1,3317 @@
+#+title: C Bootstrapping (2 weeks)
+#+include: "../setup.org"
+
+#+HTML_LINK_UP: http://wrigstad.com/ioopm/
+
+* Introduktionslabbar i C (V1-2)
+
+Välkommen till vad som i IOOPM-mytologin kallas för Adams Weckor!
+De här två första veckorna är till för att du ska lära dig
+programmera i C. Du kommer garanterat inte känna dig färdig med C
+efter bara två veckor, men om du går på alla sex labbar kommer du
+ha fått minst 24 timmar av de [[http://www.wisdomgroup.com/blog/10000-hours-of-practice/][10 0000 timmar]] som behövs för att
+bli en expert på programmering, och du kommer vara väl förberedd
+på att läsa resten av kursen.
+
+På varje labb kommer det att vara en eller flera uppgifter som är
+markerade med en stjärna. Det betyder att dessa uppgifter ska
+redovisas för en labbassistent. Senare under kursens kommer
+redovisningarna vara mer utförliga men under de här labbarna
+räcker det med att räcka upp handen (eller skriva upp sig på
+tavlan om det finns en lista) och visa vad man har gjort. Förbered
+gärna ett litet körexempel!
+
+Uppgifterna bygger ofta på tidigare uppgifter och tidigare labbar,
+så det bästa sättet att lösa dem är helt enkelt att jobba uppifrån
+och ner.
+
+** Är labbarna obligatoriska?
+
+Ja. Nej. Nja. Det är obligatoriskt att göra dem, men inte att göra
+dem på plats. Redovisning är enbart möjligt på plats, men alla labbar
+finns ute från dag 1 och kan göra när som helst.
+
+** Måste jag arbeta med någon annan?
+
+Ja. Nej. Nja. Det är *bra* att arbeta i par om två -- dels för att
+du kommer att göra det senare under kursen, men också för att det
+ofta främjar reflektion när man sitter med någon annan och måste prata
+om vad man håller på med och inte "bara göra det". Det viktigaste är
+att varje enskild person har varit med och gjort allt som labbarna
+innehåller. Om du jobbar själv händer det automagiskt. Om du jobbar
+med någon annan måste du se till att vara 50% av tiden framför
+tangentbordet! *Du kommer inte att lära dig programmering om du
+låter någon annan skriva all kod!!!*
+
+** Deadlines
+
+Vi rekommenderar att du försöker hinna klart med uppgifterna på
+labben de ges (under Adams Weckor). Varje labbs /mjuka deadline/
+är alltså samma dag som den ges. Om du av någon anledning inte
+hinner klart, eller om du missar en labb kan du göra klart labben
+på egen hand och istället redovisa den på efterföljande labb.
+Varje labbs /hårda deadline/ är alltså efterföljande
+labbtillfälle.
+
+Om du av någon anledning tror att du inte kommer klara någon hård
+deadline, hör av dig till en senior assistent eller till Tobias så
+hittar vi en lösning!
+
+** Om du kör fast
+
+Det finns många sätt att komma vidare om du kör fast:
+
+- Fråga en labbassistent - Assarna är här för att hjälpa till ::
+     Kom ihåg att de inte sitter på "det rätta svaret" (det finns
+     nästan aldrig bara en enda lösning när man programmerar) men
+     förmodligen kan hjälpa dig komma vidare med din egen lösning.
+- Fråga en kompis ::
+     Att prata om programmering är ett utmärkt sätt att lära sig
+     programmera, oavsett om man är den som förklarar eller den
+     som får hjälp. Så länge man inte skriver av varandras
+     lösningar rakt av så finns det inga problem att diskutera
+     lösningar med varandra.
+- Ställ en fråga på Piazza ::
+     På Piazza kan din fråga besvaras av assistenter och av andra
+     studenter utanför labbtid. Gör gärna din fråga publik så att
+     fler kan ta del av svaren!
+- Googla problemet ::
+     Att kunna hitta svaret på sina frågor på Internet är en av de
+     viktigaste sakerna man måste lära sig som programmerare.
+     Någon gång kommer du hamna i en situation där det inte finns
+     någon annan att be om hjälp, och då är det bra att veta hur
+     man letar själv.
+- Börja om ::
+     Det låter kanske konstigt, men ofta när man kör fast beror
+     det på att man har lett in sig själv i en
+     återvändsgränd. Var inte rädd att skriva om program
+     (eller i alla fall delar av ett program) helt från
+     början. Ta bort (eller flytta) gammal kod så att du
+     inte ser den när du skriver den nya.
+
+** Om du redan "kan programmera"
+
+De första två veckorna har vi valt att prioritera de som inte har
+programmerat mycket utanför tidigare kurser på IT/DV så att fler
+ska nå en nivå där det går att samarbeta och göra intressanta och
+roliga saker. Om du redan kan det som tas upp här kommer labbarna
+att gå snabbt. Om du stöter på något som tar längre tid så visade
+det sig att det fanns något för dig att lära dig ändå!
+
+Blir du klar med uppgiften tidigt får du gärna hjälpa andra, men
+kom ihåg att poängen med att ge någon hjälp inte är att den andra
+ska bli klar så snabbt som möjligt utan denne ska lära sig så
+mycket som möjligt!
+
+* Labb 1: Grundläggande koncept
+
+#+begin_important
+På lab 5 kommer du att bli ombedd om att spara alla dina labbar
+på GitHub! Se därför till att inte kasta bort eller slarva bort
+någon fil innan dess!
+#+end_important
+
+
+** TODO Steg 1: Emacs-fix
+
+Som du säkert vet kommer vi att använda Emacs som editor på
+kursen. (Notera att med Emacs avses också vi/vim.) Emacs är en
+utökningsbar editor som är skriven i C och programspråket
+Emacs-lisp. Man utökar och raffinerar sin egen Emacs genom
+ytterligare paket skrivna i Emacs-lisp. Man kan skriva dessa paket
+själv, eller ladda ned dem och installera dem själv eller via
+Emacs inbyggda pakethanterare.
+
+**Tips** I kursrepots [extramaterial](../extramaterial) finns
+screencasts och en lathund om grundläggande Emacs-användning.
+
+Nu följer två olika uppsättningar instruktioner beroende på om du
+kör Linux eller OS X/macOS. För dig som kör Windows har vi tyvärr
+ingen handledning, men vi råder dig att installera Linux under
+kursens gång då det är en bättre programmeringsmiljö för den
+C-programmering som vi skall göra.
+
+*** Linux
+
+Kör =emacs --version= i terminalen. Om du har en yngre Emacs än
+version 24 skall måste du uppgradera den för att nedanstående
+skall fungera.
+
+#+begin_example
+$ cd ~
+$ mkdir .emacs.d
+$ cd .emacs.d
+$ curl http://wrigstad.com/ioopm/emacs-setup-linux.zip -o e.zip
+$ unzip e.zip
+$ rm -f e.zip
+#+end_example
+
+Notera att om du skriver fel i den långa URL:en ovan kommer du
+fortfarande att få en fil =e.zip= men som inte går att
+packa upp. Om =unzip=-steget inte fungerar -- kontrollera din
+stavning i =curl=-steget!
+
+*** OS X/macOS
+
+Kör =emacs --version= i terminalen. Om du har en Emacs som är
+yngre än version 24 skall måste du uppgradera den för att
+nedanstående skall fungera. Vid behov kan du ladda hem och
+installera en okonfigurerad version från
+https://emacsformacosx.com som är tillräckligt ny. Om du vill att
+din nya version ska öppnas när du skriver =emacs= i terminalen kan
+du skapa ett alias. Skriv följande i en terminal:
+
+#+begin_example
+$ cd ~                  # Gå till hemkatalogen
+$ emacs .bash_profile   # Öppna din profil
+#+end_example
+
+I den öppnade filen, lägg till följande rad:
+
+#+begin_example
+alias emacs=/Applications/Emacs.app/Contents/MacOS/Emacs
+#+end_example
+
+Spara och avsluta (~C-x C-s~ ~C-x C-c~) och kör ytterligare ett
+kommando i terminalen:
+
+#+begin_example
+$ source ~/.bash_profile
+#+end_example
+
+Nu kommer du att öppna Emacs i ett eget fönster när du skriver
+=emacs=. Om du vill köra Emacs i terminalen kan du använda
+kommandot =emacs -nw=.
+
+För att skaffa kursens Emacs-konfiguration, kör nedanstående i en
+terminal.
+
+#+begin_example
+$ cd ~
+$ mkdir .emacs.d
+$ cd .emacs.d
+$ curl http://wrigstad.com/ioopm/emacs-setup-osx.zip -o e.zip
+$ unzip e.zip
+$ rm -f e.zip
+#+end_example
+
+Notera att om du skriver fel i den långa URL:en ovan kommer du
+fortfarande att få en fil =e.zip= men som förstås inte går att
+packa upp. Om =unzip=-steget inte fungerar -- kontrollera din
+stavning i =curl=-steget!
+
+** Steg 2: Setup
+
+Nu är det dags att skapa en katalog för kursen i din hemkatalog på
+Linux-maskinerna (eller på din egen dator, eller båda). Ett
+lämpligt namn för denna katalog är =ioopm=. Sedan skall vi skapa en
+underkatalog =lab1=, en tom fil =hello.c= i den och starta Emacs
+för att editera filen.
+
+#+begin_example
+$ cd ~              # gå till din hemkatalog
+$ mkdir ioopm       # skapa underkatalogen ioopm
+$ cd ioopm          # gå in i ioopm-katalogen
+$ mkdir lab1        # skapa underkatalogen lab1
+$ cd lab1           # gå in i lab1-katalogen
+$ touch hello.c     # skapa en tom fil hello.c
+$ emacs hello.c &   # starta Emacs för att editera filen
+$
+#+end_example
+
+Om du kör på institutionens Linux och inte har gjort någon egen
+konfigurering kan du växla mellan program med =Alt+Tab=. Vi kommer
+att använda **editorn** för att skriva text och **terminalen** för
+att kompilera och köra programmet. Pröva att växla några gånger
+mellan programmen.
+
+Du bör kunna använda =Ctrl+Win+vänsterpil= för att maximera det
+aktuella fönstret på skärmens vänstra halva och motsvarande för
+den högra. Det är ett bra sätt att ha både terminalen och editorn
+så att man kan se all information alltid.
+
+#+begin_center
+*Nu är du redo att börja med labben!*
+#+end_center
+
+Var noga med att spara en version av varje färdigt program! Ta för
+vana att experimentera i en ny fil som du antingen skapar tom eller
+kopierar från en som fungerar.
+
+** Hello, world!
+
+Det klassiska första programmet att skriva i varje programspråk är "Hello, world!"
+
+Det finns många sätt att skriva detta program. Ett enkelt sätt är:
+
+#+BEGIN_SRC c
+#include <stdio.h>
+
+int main(void)
+{
+  puts("Hello, world!");
+  return 0;
+}
+#+END_SRC
+
+Skriv av (eller kopiera, men ännu hellre skriv av) programmet ovan
+i en editor och döp det till =hello.c=. Alla C-program startar i
+funktionen ~main()~ (aka "~main()~-funktionen") som är en funktion
+som returnerar ett heltal som berättar för det underliggande
+operativsystemet om körningen av programmet gick bra. Tillsvidare
+returnerar vi alltid 0.
+
+Kompilera programmet med =gcc hello.c= -- nu skapas filen =a.out=
+som du kör så här: =./a.out=. Så här kan det se ut i terminalen:
+
+#+begin_example
+$ emacs hello.c &       # startar Emacs
+$ gcc hello.c           # kompilerar hello.c
+$ ls                    # listar filerna i terminalen
+a.out   hello.c
+$ ./a.out               # kör a.out
+Hello, world!           # programmets output
+$ _                     # väntande kommandoprompt
+#+end_example
+
+Funktionen ~puts()~ skriver ut en sträng på terminalen (~puts~ = "put
+string"). Låt oss nu experimentera med att använda funktionen
+~printf()~. Denna funktion tar ett variabelt antal argument. Börja
+med att ändra ~puts("Hello, world!");~ till ~printf("Hello,
+world!");~, kompilera om och kör programmet igen. Kan du se någon
+skillnad?
+
+Skillnaden är add ~printf()~ inte automatiskt skriver ut en
+radbrytning efter utskriften. Sätt dit det genom att skriva
+~\n~ efter ~!~, dvs. ~printf("Hello, world!\n");~.
+
+Funktionerna ~puts()~ och ~printf()~ är två helt olika funktioner.
+Den första skriver ut en enskild sträng medan den andra kan
+användas för att skriva ut en mängd olika saker: strängar, heltal,
+flyttal, minnesadresser etc.
+
+*Pröva gärna* att titta på skillnaden mellan ~puts()~ och
+~printf()~ genom att skriva ~man puts~ och ~man printf~ i
+terminalen och titta på manualsidorna för funktionerna. Du
+scrollar med mellanslag och avslutar med **q**. (Du kan skriva
+~man pager~ för att läsa vilka kortkommandon som finns för att
+läsa manualsidor med man-kommandot. Du kan också skriva ~man man~
+för att få veta mer om man-kommandot.)
+
+Pröva att ändra utskriften så här:
+
+#+BEGIN_SRC C
+char *msg = "Hello, world!";
+int year = 2017;
+printf("%s in the year %d\n", msg, year);
+#+END_SRC
+
+Vi deklarerar nu en /variabel/ ~msg~ som är en sträng (i C är
+typen för sträng ~char *~, mer om detta senare) vars innehåll är
+texten "Hello, world!" och en variabel ~year~ som innehåller
+heltalet 2017. (Minns att en typ är ett namn på en samling värden
+som delar vissa egenskaper. I C har vi t.ex. en typ för heltal, en
+för flyttal, etc.)
+
+Sedan säger vi åt ~printf()~ att skriva ut en sträng (~%s~) följt
+av texten " in the year ", följt av ett heltal (~%d~) följt av en
+radbrytning (~\n~). Sedan skickar vi med ~msg~ och ~year~ -- i samma
+ordning som ~%s~ och ~%d~ (vad händer om du råkar byta plats på dem?).
+
+Observera att ~printf()~ nu tar 3 argument. Funktionen tar alltid
+in en /formatsträng/ (i vårt exempel ~"%s in the year %d\n"~) och
+sedan ytterligare ett argument för varje "styrkod" (~%s~ och ~%d~
+i detta exempel) som finns med i formatsträngen.
+
+Från Haskell är du van vid att man binder namn till värden, t.ex.
+~let x = 5 in BLAHRG~. Där är ~x~ en konstant vars värde är ~5~.
+När vi har denna typ av namnbindningar kan vi söka och ersätta
+alla förekomster av ~x~ med ~5~ i ~BLAHRG~ och få samma resultat.
+
+Variabler i C fungerar annorlunda i och med att deras värden kan
+ändras! ~int x = 5; ...~ betyder att vi har skapat ett namn, ~x~,
+som avser ett heltal, som initialt är ~5~, men som kan komma att
+ändra värde. Om ~...~ ovan t.ex. är
+
+#+BEGIN_SRC c
+printf("%d\n", x);
+x = 42;
+printf("%d\n", x);
+#+END_SRC
+
+kommer första utskriften av ~x~ att bli 5 och den andra 42.
+
+*** Mini-övning
+
+Skriv av följande program och ändra ~...~ till kod som byter plats
+på värdena i variablerna ~x~ och ~y~:
+
+#+BEGIN_SRC c
+#include <stdio.h>
+
+int main(void)
+{
+  int x = 1;
+  int y = 2;
+  printf("x = %d\n", x);
+  printf("y = %d\n", y);
+  puts("=====");
+  ...
+  printf("x = %d\n", x);
+  printf("y = %d\n", y);
+  return 0;
+}
+#+END_SRC
+
+**Tips** Använd en tredje variabel ~tmp~ för att "komma ihåg"
+värdet på ~x~ så att du kan skriva över ~x~ med ~y~ och sen ~y~
+med ~tmp~. Var noggrann med skillnaden mellan ~int x = 1~, som
+introducerar en /ny/ variabel ~x~ med värdet 1, och ~x = 1~, som
+ändrar värdet på en /existerande/ variabel ~x~ till värdet 1.
+
+Om du gjort rätt borde programmet ge följande output när du
+kompilerar och kör det:
+
+#+begin_example
+$ gcc swap.c
+$ ./a.out
+x = 1
+y = 2
+=====
+x = 2
+y = 1
+#+end_example
+
+** Skriv ut talföljden 1--10
+
+Skriv ett program ~p1~ som, när det körs, skriver ut talen 1 till 10 så här:
+
+#+begin_example
+$ gcc p1.c
+$ ./a.out
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+#+end_example
+
+Du ska använd en ~for~-loop och kan utgå från följande
+programskelett:
+
+#+BEGIN_SRC c
+#include <stdio.h>
+
+int main(void)
+{
+  int i = 1;              // deklaration och initiering av iterationsvariabeln
+  while (i <= 10)         // iterationsvillkor (utför blocket så länge i är mindre än 11)
+  {                       // loop-kropp (utförs så länge iterationsvillkoret är uppfyllt)
+    printf("%d\n", 1);    // skriv ut 1, och en radbrytning
+    i = i + 1;            // öka i:s värde med 1 (förändring av iterationsvariabeln)
+  }
+  return 0;
+}
+#+END_SRC
+
+Detta program är trasigt: det skriver ut 1 hela tiden. Börja med att
+fixa det (ledning: titta anropet till ~printf()~), och skriv sedan om
+~while~-loopen med en for-loop som har följande syntax:
+
+#+BEGIN_SRC c
+for ( deklaration och initiering av iterationsvariabel ;
+      iterationsvillkor ;
+      förändring av iterationsvariabel )
+  {
+    loop-kropp
+  }
+#+END_SRC
+
+Det så-kallade /preprocessormakrot/ ~#include <stdio.h>~ talar om
+för C-kompilatorn att vi vill använda standardbiblioteket för
+input/output, som alltså heter ~stdio~. Filen ~stdio.h~ som finns
+någonstans i filsystemet innehåller deklaration av funktioner och
+datatyper som blir tillgängliga i och med att man skriver
+~#include <stdio.h>~ i den fil som vill använda biblioteket.
+
+** Skriv ut talföljden 10--1
+
+Kopiera programmet ~p1.c~ ovan till ~p2.c~ och skriv om det så att
+talföljden går ned från 10 till 1 istället:
+
+#+begin_example
+$ gcc p2.c
+$ ./a.out
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+#+end_example
+
+** Nästade loopar
+
+Nu skall vi experimentera med nästade loopar, dvs. loopar vars
+loopkroppar innehåller loopar. Kopiera ~p1.c~ till ~p3.c~ och
+skriv om programmet så att det istället för tal skriver ut en
+ökande mängd ~*~. Sist skall det skrivas ut hur många ~*~
+(asterisker) som skrev ut:
+
+#+begin_example
+$ gcc p3.c
+$ ./a.out
+*
+**
+***
+****
+*****
+******
+*******
+********
+*********
+**********
+Totalt: 55
+$ _
+#+end_example
+
+Skriva ut /N/ stycken ~*~ kan enkelt göras med en loop som i /N/
+varv skriver ut ett ~*~ i varje varv utan efterföljande
+radbrytning.
+
+#+begin_tip
+Ett program ska ofta göra mer än en sak. Börja aldrig med att
+försöka skriva hela programmet på en gång. Om du inte kan skriva
+en enskild loop som skriver ut /N/ stycken ~*~ så kommer du inte
+kunna skriva ett program som skriver ut /1/ till /N/ stycken ~*~.
+Försök alltid hitta delproblemen och lös dem var och en för sig.
+#+end_tip
+
+Här är ett förslag på delproblemen för den här uppgiften som alla
+kan lösas en i taget:
+
+1. Skriv en loop som itererar från 1 till 10 (redan löst i ~p1.c~).
+2. Skriv en loop som skriver ut /N/ stycken brädgårdar (för något
+   värde på /N/).
+3. Ändra loopen i 1. så att brädgårdar skrivs ut istället för
+   tal (använd loopen från 2.).
+4. Skriv ut summan av alla utskrivna asterisker (~*~).
+
+** Kommandoradsargument 1/2
+
+Kopiera ~p3.c~ till ~p4.c~ -- nu skall vi utöka programmet så att
+det går att skicka in antalet staplar som skall skrivas ut, samt
+hur snabbt staplarna skall växa. Här är tre exempelkörningar av
+programmet:
+
+#+begin_example
+$ gcc p4.c
+$ ./a.out 3 2
+**
+****
+******
+Totalt: 12
+$ ./a.out 0 25
+Totalt: 0
+$ ./a.out 4 4
+****
+********
+************
+****************
+Totalt: 40
+$ ./a.out
+Usage: ./a.out rows growth
+$ _
+#+end_example
+
+Kommandoradsargument skickas automagiskt in som argument till
+~main()~-funktionen. Vi kan skriva programmet ~eko~ så här (som
+bara "ekar" alla kommandoradsargument):
+
+#+BEGIN_SRC c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+  for (int i = 0; i < argc; ++i)
+  {
+    puts(argv[i]);
+  }
+  return 0;
+}
+#+END_SRC
+
+Observera nu att ~main()~-funktionens /signatur/ ser annorlunda ut. Två
+nya /parametrar/ har lagts till:
+
+1. ~int argc~ -- heltalet ~argc~ som håller reda på hur många argument som skickades in
+2. ~char *argv[]~ -- en /array/ av strängar som motsvarar kommandoradsargumenten
+
+Minns att ~char *~ är C:s strängtyp -- det efterföljande ~[]~ visar
+att ~argv~ inte är bara en sträng, utan en hel array av strängar.
+
+Minns att **en array** är som en lista -- dvs. en sekvens av
+värden, men till skillnad från en lista (i t.ex. Haskell) kan en
+array inte utökas. Om arrayen ~arr~ är en array med tre element
+kan vi komma åt element 1 med ~arr[0]~, element 2 med ~arr[1]~ och
+element 3 med ~arr[2]~. Om vi skriver ~arr[3]~ för att komma åt
+det 4:e elementet är resultatet skräp, och exakt vad det betyder
+kan variera mellan olika implementationer av kompilatorer, etc.
+Det är alltså något som vi skall undvika, men som kompilatorn inte
+skyddar oss emot.
+
+Arrayer indexeras från 0 i C (och många andra programspråk), dvs.
+~puts(argv[0])~ skriver ut den första strängen i ~argv~. ~argv[0]
+= "Ivor Cutler"~ gör så att den första strängen i ~argv~-arrayen
+blir strängen "Ivor Cutler".
+
+När programmet ovan körs skriver det ut sina kommandoradsargument så här:
+
+#+begin_example
+$ gcc eko.c
+$ ./a.out hej hopp fallera 42
+./a.out
+hej
+hopp
+fallera
+42
+$ _
+#+end_example
+
+I ovanstående körning anropas ~main()~-funktionen med ~argc~ = ~5~
+och ~argv~ = ~["./a.out", "hej", "hopp", "fallera", "42"]~.
+
+Observera att den första strängen i ~argv~ alltid är det namn som
+man använde för att starta programmet -- alltså ~./a.out~ i alla
+våra exempel hittills.
+
+Observera att ~"42"~ är en sträng och att ~42~ är ett heltal -- de
+är alltså olika datatyper som inte är kompatibla. Man
+kan konvertera strängen ~"42"~ till talet ~42~ med hjälp av
+funktionen ~atoi()~:
+
+#+BEGIN_SRC c
+char *str = "42";
+int num = atoi(str);
+printf("%s == %d?\n", str, num);
+#+END_SRC
+
+~atoi()~ står för /ASCII to Integer/. (En av anledningarna till
+att namnen på många funktioner är så korta och usla är att man i
+förhistorisk tid kunde tjäna många sekunder på att slippa skicka
+"onödiga" tecken över väldigt långsamma linor när man skulle
+programmera via terminaler. Det är inte en giltig anledning
+längre, men det är svårt att ändra 30+ år gamla standardbibliotek
+som regleras av trögrörliga standardiseringsorgan.)
+
+För att använda ~atoi()~ måste programmet /inkludera/
+standardbiblioteket ~stdlib.h~:
+
+#+BEGIN_SRC c
+#include <stdio.h>   // stod redan
+#include <stdlib.h>
+#+END_SRC
+
+(Senare skall vi skriva en funktion som konverterar från ett
+heltal till en sträng.)
+
+I körningsexemplet ovan detekterar programmet om det körs utan
+några argument (eller -- mer korrekt -- utan andra argument än
+programmets namn) och skriver i så fall ut en hjälptext:
+
+    =Usage: ./a.out rows growth=
+
+Vi kan använda en ~if~-sats för att kontrollera om antalet
+argument är felaktigt.
+
+#+BEGIN_SRC c
+if (antalet argument < 2 || antalet argument > 3)
+{
+  skriv ut felmeddelande
+}
+else
+{
+  utför uppgiften
+}
+#+END_SRC
+
+Den märkliga ~||~-symbolen är ett /logiskt eller/ dvs. ~a || b~ är
+sant om ~a~ är sant, eller om ~b~ är sant, eller om båda är sanna.
+
+#+BEGIN_CENTER
+*Nu kan du skriva klart programmet!*
+#+END_CENTER
+
+Betänk följande:
+
+- Arrayer indexeras från 0
+- ~argv[0]~ är programmets namn
+- Programmet blir lättare att läsa och förstå om du sparar
+  ~argv[1]~ och ~argv[2]~ i variabler med vettiga namn.
+- Programmet klarar inte av kommandoradsargument som inte är tal
+
+
+** Primtalstest
+
+Med hjälp av vad vi lärt oss hittills kan vi nu skriva ett enkelt
+program som tar emot ett tal som kommandoradsargument och avgör om
+det är ett primtal. Utgå från ~p4.c~ och kopiera det till ~p5.c~.
+
+En enkel algoritm för att kontrollera om talet /N/ är ett primtal
+är att pröva om /x/ * /y/ = /N/ för alla kombinationer av /x/ och
+/y/ i intervallet 2 till /N/. Om det inte går att hitta ett sådant
+/x/ anser vi att /N/ är ett primtal. Två tal kan jämföras med
+operatorn ~==~, t.ex. så här:
+
+#+BEGIN_SRC c
+if (a == b)
+{
+  puts("Lika");
+}
+else
+{
+  puts("Inte lika");
+}
+#+END_SRC
+
+#+begin_warning
+Ett vanligt nybörjarfel är att man blandar ihop ~a == b~, som
+kontrollerar om ~a~ och ~b~ har samma värde, med ~a = b~ som
+skriver värdet av ~b~ till variabeln ~a~. Det är ett svårt fel att
+upptäcka i början, så var försiktig!
+#+end_warning
+
+Med en nästad loop kan du prova alla kombinationer av /x/ och /y/
+genom att räkna ut ~2*2~, ~2*3~, ..., ~2*(N-1)~, ~3*2~, ~3*3~...
+och se om någon produkt är lika med /N/.
+
+En /optimering/ av algoritmen ovan är att inte växa /x/ högre än
+roten av /N/. Roten av /N/ kan räknas fram med
+biblioteksfunktionen ~sqrt()~. Optimeringar kan vi göra först när
+vi fått en första version av programmet att fungera.
+
+#+begin_warning
+Om du har problem med att kompilera program med ~sqrt()~
+i för att en sådan funktion inte finns, lägg till ~-lm~ till
+kompileringen. Det betyder "länka mot matematikbiblioteket",
+dvs. sök också i matematikbiblioteket efter funktioner som
+programmet kan vilja använda.
+#+end_warning
+
+#+BEGIN_SRC c
+float roten_ur_n = sqrt(N);
+#+END_SRC
+
+För att använda ~sqrt()~ måste programmet /inkludera/
+matematikbiblioteket ~math.h~ på samma sätt som du inkluderat
+~stdio.h~ och ~stdlib.h~ tidigare: ~#include <math.h>~.
+
+Notera att ~sqrt()~ returnerar ett /flyttal/. Hjälpfunktionen
+~floor()~ skapar ett heltal från ett flyttal och avrundar nedåt.
+Gränsen för /x/ blir därför:
+
+#+BEGIN_SRC c
+float tmp = sqrt(N);
+int limit = floor(tmp) + 1;
+#+END_SRC
+
+Det går också att skriva detta program utan variabeln~tmp~. (Gör gärna det -- här ville vi lyfta fram de två delstegen.)
+
+Skriv klart programmet och testa det:
+
+#+begin_example
+$ gcc p5.c
+$ ./a.out 7
+7 is a prime number
+$ ./a.out 2
+2 is a prime number
+$ ./a.out 4
+4 is not a prime number
+#+end_example
+
+Anser programmet att 1 är ett primtal?
+Anser programmet att 0 är ett primtal?
+
+
+** Största gemensamma delare (GCD)
+
+Skriv nu ett program som tar emot två positiva tal och skriver ut deras
+största gemensamma delare med hjälp av Euklides algoritm:
+
+#+begin_example
+gcd(a, b) = a                om a = b
+gcd(a, b) = gdc(a - b, b)    om a > b
+gcd(a, b) = gdc(a, b - a)    om a < b
+#+end_example
+
+Använd en **while-loop** eller en **for-loop** för att lösa
+problemet. Varje varv i loopen kommer variabeln ~a~ eller
+variabeln ~b~ att ändra värde beroende på vilken som innehåller det
+största värdet. Till slut är de lika och då har vi svaret.
+
+Du kan utgå från ~p5.c~ och skapa ~p6.c~ eller skriva programmet
+från grunden. Så här skall en exempelkörning av programmet se ut:
+
+#+begin_example
+$ gcc p6.c
+$ ./a.out 40 12
+gcd(40, 12) = 4
+#+end_example
+
+Använd ~printf()~ för utskriften. Minns att ~%d~ är styrkoden för
+heltal och ~%s~ är styrkoden för strängar.
+
+*Tips på jämförelseoperatorer:*
+
+#+BEGIN_EXAMPLE
+a == b // sant om a och b innehåller samma värde
+a != b // sant om a och b inte innehåller samma värde
+a < b  // sant om a:s värde är strikt mindre än b:s värde
+a > b  // sant om a:s värde är strikt större än b:s värde
+#+END_EXAMPLE
+
+Boolesk algebra i C:
+
+#+BEGIN_EXAMPLE
+!a     // sant om a är falskt
+a && b // sant om både a och b är sanna
+a || b // sant om a och/eller b är sanna/sant
+#+END_EXAMPLE
+
+Vi kan nu beskiva ytterligare C-operatorer i termer av de vi redan sett:
+
+- ~a <= b~ är logiskt ekvivalent med ~a < b || a == b~
+- ~a >= b~ är logiskt ekvivalent med ~a > b || a == b~
+- ~a != b~ är logiskt ekvivalent med ~!(a == b)~ alternativt ~a < b || a > b~
+- ~a == b~ är logiskt ekvivalent med ~!(a < b || a > b)~ alternativt ~!(a < b) && !(a > b)~
+
+
+*Tips på sätt att manipulera numeriska variabler:*
+
+- ~a = a - 1~ ändrar värdet på ~a~ till 1 mindre än vad det var innan
+- ~a -= 1~ är ekvivalent med ovanstående
+- ~a--~ och ~--a~ minskar värdet på ~a~ med 1 på samma sätt, men har subtila skillnader -- tills vidare bör du enbart använda dem för sido-effekter (om alls!)
+- Motsvarande finns för addition ~+=~ och ~++~
+- ~*=~ och ~/=~ existerar även för multiplikation och division
+
+*Frivilliga extrauppgifter:*
+
+1. Detektera att programmet används korrekt -- exakt två positiva tal skickas in
+2. Utöka programmet med stöd för hantering av negativa tal
+
+
+** Kontrollera om en sträng är ett tal :redovisas:
+
+Nu har det blivit dags för oss att skriva vår första funktion (förutom
+~main()~-funktionen då) -- vilket vi kommer att ägna oss åt under nästa
+labb. Vi skall skriva funktionen ~is_number()~ som tar emot en sträng
+(~char *~) och returnerar en boolean (~bool~) -- ~true~ om den inskickade
+strängen är ett tal, annars ~false~.
+
+Av historiska skäl måste stöd för booleaner inkluderas explicit i C på
+följande sätt:
+
+#+BEGIN_SRC c
+#include <stdbool.h>
+#+END_SRC
+
+Genom detta bibliotek får du tillgång till datatypen ~bool~ samt
+konstanterna ~true~ och ~false~. (Nästan alla värden i C går att
+konvertera till sanningsvärden, även om det ofta inte är
+semantiskt vettigt. 0 är falskt och alla andra värden är sanna.
+Konverteringen sker automatiskt, så ~bool b = 1;~ är logiskt
+ekvivalent med ~bool b = true;~ även om det är vansinnig kod att
+skriva.)
+
+Skapa en ny fil ~temp.c~ med en tom ~main()~-funktion med
+kommandoradsargumenten i (du kan kopiera texten från högre upp på
+denna sida). Inkludera ~stdlib.h~, ~stdio.h~ och ~stdbool.h~ med
+~#include~-direktivet. /Ovanför/ ~main()~-funktionen, skriv in
+följande:
+
+#+BEGIN_SRC c
+bool is_number(char *str)
+{
+  return false;
+}
+#+END_SRC
+
+Du har nu deklarerat en funktion, ~is_number()~, som tar emot en
+sträng och returnerar ett sanningsvärde -- ett booleskt värde (aka
+"en boolean"). Funktionens /kropp/ är just nu tom, så när som på
+satsen ~return false~, vilket innebär att funktionen alltid svarar
+med falskt. Detta är en s.k. *dummy* eller *stub*, dvs. en funktion vars
+existens är explict men vars implementation ännu inte är skriven.
+Den innehåller bara minimalt med kod för att den skall vara legal
+enligt C-kompilatorn, och då är vi konservativa, dvs. ingen sträng
+är ett tal. Som kropp i ~main()~ kan vi skriva följande:
+
+#+BEGIN_SRC c
+if (argc > 1 && is_number(argv[1]))
+{
+  printf("%s is a number\n", argv[1]);
+}
+else
+{
+  if (argc > 1)
+  {
+    printf("%s is not a number\n", argv[1]);
+  }
+  else
+  {
+    printf("Please provide a command line argument!\n");
+  }
+}
+#+END_SRC
+
+Pröva nu att kompilera och köra programmet:
+
+#+begin_example
+$ gcc temp.c
+$ ./a.out 42
+42 is not a number
+$ _
+#+end_example
+
+Perfekt! Nu har vi något som "fungerar" men som gör fel, och
+vår uppgift nu är att modifiera detta program tills det gör rätt.
+
+*Det är viktigt att alltid ha ett fungerande program* så att det
+går att experimentera sig fram till en lösning. Så arbetar såväl
+nybörjade som experter -- ingen tycker att det är en bra idé att
+skriva 10 rader kod mellan varje kompilering, även om värdet på 10
+varierar mellan personer och ofta stiger något med erfarenhet med
+den aktuella kodbasen.
+
+En sträng i C är en array av tecken och varje tecken representeras
+som ett heltal (ASCII-värdet för tecknet). Sist i en välformad
+sträng kommer ett s.k. "nulltecken", som har värdet 0, och som
+avser att "nu är strängen slut". Strängen ~"Hej"~ i C innehåller
+alltså /4/ tecken: ~['H', 'e', 'j', '\0']~ (skrivet som en array av
+teckenliteraler) eller ~[72, 101, 106, 0]~ (skrivet som en array av
+ASCII-värden).
+
+Ett enkelt sätt att kontrollera om en sträng är ett (hel)tal är
+att inspektera om varje tecken i strängen är en siffa (0-9),
+förutom det första tecknet som också kan vara ett minustecken ~-~.
+
+- Funktionen ~strlen()~ i biblioteket ~string.h~ (~#include <string.h>~) returnerar längden av en sträng (med eller utan nulltecknet? Utforska!)
+- Funktionen ~isdigit()~ i biblioteket ~ctype.h~ testar om ett enskilt tecken är en siffra
+- Implementera testet med hjälp av en loop från ~i=0~ till längden av strängen (utan nulltecknet)
+- Minns att ~str[42]~ läser ut det 43:e tecknet från arrayen ~str~
+
+Nu har du nog med information för att skriva programmet! När du
+fått det att fungera, kopiera funktionen (och import-satser) över
+in i ~p6.c~ och använd funktionen för att kontrollera att
+kommandoradsargumenten är heltal. Lägg också in en kontroll att de
+inte är negativa (dvs. ~talet >= 0~).
+
+#+begin_attention
+*Om funktioners ordning i filen*
+
+Som du har märkt har du blivit instruerad att placera funktioner
+högre upp i filen än där de anropas. C-kompilatorn läser filen i
+radordning, och om den inte först har sett en funktions
+**deklaration** så kan den inte kontrollera att anropen till den
+är korrekta, till exempel med avseende på antalet parametrar.
+Redan i nästa labb skall vi se hur man kan komma runt detta med
+så-kallade ~header~-filer.
+#+end_attention
+
+#+begin_attention
+*Om return-satsen*
+
+Alla funktioner i C vars returtyp inte är ~void~ måste returnera
+ett värde explicit med hjälp av ~return~-satsen, varvid funktionen
+omedelbart avbryts. Det är därmed tillåtet för en funktion att ha
+flera ~return~-satser utan att det blir tveksamt vad funktionen
+returnerar. Även funktioner vars returtyp är ~void~ kan ha en "tom"
+~return~-sats: ~return;~. Detta avbryter funktionen men returnerar
+inget värde.
+
+Felaktigt användande av ~return~ kan leda till /död kod/, dvs. kod
+som aldrig kommer att utföras, t.ex.:
+
+#+caption: OBS! Illustrerar död kod -- skriv inte så här!
+#+BEGIN_SRC c
+int dead_code_example()
+{
+  return 17; // Här avbryts funktionen
+  puts("This string will never be printed"); // denna rad körs aldrig
+}
+#+END_SRC
+
+Det är viktigt att hitta död kod och ta bort den av flera skäl --
+inte minst säkerhet!
+#+end_attention
+
+** Extrauppgifter
+
+För dig som är tidigt färdig eller känner att du vill arbeta mer
+med materialet.
+
+*** Egen isdigit
+
+Du kan implementera din egen ~isdigit()~ genom att kontrollera att
+det inskickade tecknet ~c~ är ~'0' <= c && c <= '9'~. Notera
+skillnaden mellan ~'0'~ som är /tecknet/ '0', och ~0~ som är
+/heltalet/ 0. Glöm inte att ta bort importen av ~ctype.h~ eller
+döpa din funktion (t.ex. till ~is_digit()~) så att namnet inte
+krockar med ~ctype.h~:s funktion.
+
+Observera: du måste skriva din ~isdigit()~ /ovanför/ ~is_number()~.
+
+*** Fibonacci
+
+Skriv ett program ~fib.c~ som skriver ut de första /N/ talen i Fibonacciserien.
+/N/ skickas in som ett kommandoradsargument som vanligt.
+
+#+begin_example
+$ gcc fib.c
+$ ./a.out 10
+0 1 1 2 3 5 8 13 21 34
+$ _
+#+end_example
+
+Fibonacciserien definieras så här:
+
+#+begin_example
+fib(0) = 0
+fib(1) = 1
+fib(i) = fib(i-1) + fib(i - 2) om i >= 2
+#+end_example
+
+Som synes är definitionen av ~fib()~ rekursiv -- men vi skall implementera
+den med hjälp av en loop. Använd två variabler ~a~ och ~b~ som
+sätts till 0 respektive 1.
+
+För att räkna ut ~fib(3)~, utför följande beräkning i en loop:
+
+1. räkna ut summan av ~a~ och ~b~
+2. sätt ~a~ till värdet på ~b~
+3. sätt ~b~ till summan i (1)
+4. skriv ut ~b~
+
+För att räkna ut ~fib(4)~ kan vi fortsätta på samma sätt eftersom
+~a~ innehåller värdet på ~fib(2)~ och ~b~ innehåller värdet på
+~fib(3)~, etc.
+
+Generalisera detta i en loop så att det går att räkna ut
+godtyckliga Fibonaccital.
+
+
+** Heltalsvariablernas ändlighet
+
+Här behandlas den "vita lögnen" ovan om "en typ för heltal [...]".
+
+Hittills har vi använt typen ~int~ som en heltalsvariabel. Under
+programmets körning sparas en ~int~ som ett binärt tal i ett
+utrymme som är lika stort som ett /maskinord/, dvs. 32 eller 64
+bitar beroende på vilken typ av dator man sitter på. Antalet bitar
+styr (naturligtvis) hur stora tal som ryms i variabeln. En
+32-bitars ~int~ har som maxvärde ~2^31-1~ och minvärde ~-2^31~.
+
+- Hur stor är en ~int~ på datorn du sitter på? Du kan pröva detta
+  genom att lägga till ~#include <limits.h>~ överst i filen och
+  sedan göra ~printf("%d\n%d\n", INT_MIN, INT_MAX);~
+- En ~unsigned int~ har endast positiva värden och
+- Pröva vad som händer om du sparar ett för stort tal i en
+  heltalsvariabel! (T.ex. genom att räkna ut ett för stort tal med ~fib~-programmet.)
+
+Datatypen ~long~ rymmer större tal (se ~LONG_MAX~).
+
+I modern C använder vi ofta datatyper vars storlek är garanterad
+oavsett vilken plattform vi sitter på. Om du inkluderar ~#include <stdint.h>~
+i dina program får du tillgång till typer som:
+
+- ~int64_t~ ett heltal som är garanterat att vara 64 bitar stort
+- ~uint64_t~ ett "unsigned" heltal som är garanterat att vara 64 bitar stort (och alltså bara sparar positiva tal)
+- ~int8_t~ ett heltal som är garanterat att vara 8 bitar stort
+- etc.
+
+Liknande gäller för flyttal. Analogt med ~int~ och ~long~ finns
+~float~ och ~double~, samt ytterligare bibliotek för flyttalsberäkningar
+enligt olika standarder.
+
+* Labb 2: I/O och funktioner
+
+** Varningar
+
+Från och med den här labben kommer vi att använda flaggan ~-Wall~
+(show all warnings) varje gång vi kompilerar. Det berättar för
+kompilatorn att den ska ge varningar för fler saker än vanligt.
+Var vaksam om du får en varning från kompilatorn. Även om felet
+inte alltid ligger precis där kompilatorn varnar så betyder en
+varning att någonting är fel i programmet, eller borde skrivas
+om. Om man tar för vana att inte fixa "ofarliga varningar" kommer
+det att vara svårare att hitta "de farliga varningarna" i allt
+mummel som kompilatorn spottar ur sig.
+
+#+begin_important
+Goda vanor är enklast att etablera om man tar de till sig redan
+från start: *Åtgärda alltid varningar innan du går vidare*.
+#+end_important
+
+** Debugging
+
+Ingen människa skriver felfria program direkt. Ibland kan ett
+program kompilera men ändå göra fel eller krascha, och det är inte
+alltid lätt att hitta vad som orsakar en bugg. Ett verktyg som kan
+användas för att hitta buggar i ett körande program kallas för en
+"debugger" (på stolpig svenska kallas de ibland för "avlusare").
+Program skrivna i C kan "debuggas" med programmet ~gdb~ (eller
+~lldb~ om du kör på OS X).
+
+[[https://www.youtube.com/watch?v=sCtY--xRUyI][Här]] finns en en kort screencast om ~gdb~ som du bör se vid
+tillfälle, samt en lathund som går igenom hur ~gdb~ fungerar. Om
+du stöter på en bugg och vill prova att använda ~gdb~ redan på den
+här labben kan du be en assistent om hjälp.
+
+
+** Uppvärmning: Fizz Buzz
+
+Fizz Buzz är en klassisk programmeringsövning som går ut på att
+implementera leken "Fizz Buzz" där man sitter i en ring och räknar
+uppåt från 1. Den som börjar börjar säger 1, och nästa person
+säger 2, etc. -- men alla tal som är delbara med 3 ersätts med
+"Fizz", alla tal som är delbara med 5 ersätts med "Buzz" och alla
+tal som är delbara med både 3 och 5 med "Fizz Buzz".
+
+Skriv ett program som räknar från 1 till ett på kommandoraden
+angivet tal på detta sätt:
+
+#+begin_example
+$ gcc -Wall fizzbuzz.c
+$ ./a.out 16
+1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, Fizz Buzz, 16
+$ _
+#+end_example
+
+Strukturera programmet så här:
+
+1. En ~main()~-funktion som läser in ett tal /T/ som ett kommandoradsargument (se föregående labb)
+2. En loop i ~main()~-funktionen som räknar från 1 till /T/
+3. En funktion ~void print_number(int num)~ som anropas för varje /T/ och skriver /T_, Fizz, Buzz eller Fizz Buzz
+4. Fundera på hur du skall göra för att inte ha något sista avslutande ~,~-tecken
+
+**Tips:** i C är modulo-operatorn ~%~, dvs. ~10 % 5 = 0~ och ~10 % 3 = 1~.
+
+
+** I/O
+
+I/O -- input/output -- är en viktig del av många program, och ibland
+knepigt beroende på hur långt ned i mjukvarustacken man befinner
+sig. Ju närmare hårdvaran -- desto lägre abstraktionsnivå erbjuds,
+vilket tvingar oss att tänka på fler detaljer.
+
+Vi skall börja med att implementera en generell rutin för att
+ställa en fråga och läsa in ett svar i form av ett heltal. Vi
+kommer att göra det i ett antal delsteg som förbättrar programmet
+på ett antal sätt, och därigenom illustrera en vanlig
+programmeringsprocess.
+
+Börja med att skapa filen ~ioopm/lab2/utils.c~ -- vi skall jobba
+med den idag. Den skall inkludera ~stdio.h~, som är C:s
+standardbibliotek för I/O-funktioner.
+
+
+*** Del 1: ~ask_question_int()~
+
+Tillägg i ~utils.c~.
+
+Funktionen ~scanf()~ fungerar analogt med ~printf()~ men för
+/inläsning/ av data, inte utskrift. Följande två rader visar
+hur man kan deklarera en heltalsvariabel ~result~ och sedan
+läsa in ett heltal från terminalen och spara i variabeln:
+
+#+BEGIN_SRC c
+int result;
+scanf("%d", &result);
+#+END_SRC
+
+Observera ~&~-tecknet före ~result~ ovan! Det är den så-kallade
+*adresstagningsoperatorn* som returnerar /adressen/ till en
+plats i minnet. Alltså, ~result~ är en ~int~ (enligt vår
+deklaration) men ~&result~ har typen ~int *~ vilket betyder
+/adressen till en plats i minnet där det finns en int/. Detta är
+en så-kallad pekare, och vi skall få anledning att återkomma till
+pekare tusentals gånger under kursen. Nu räcker det med att veta
+att alla anrop till ~scanf()~ måste innehålla adresser till
+platser i minnet där resultaten av en inläsning skall läggas. Om
+vi t.ex. vill läsa in tre tal:
+
+#+BEGIN_SRC c
+int first;
+int second;
+int third;
+scanf("%d %d %d", &first, &second, &third);
+#+END_SRC
+
+Funktionen ~scanf()~ har väldigt många olika möjligheter och
+"features" som vi inte hinner gå in på här -- vi uppmuntrar att du
+bläddrar genom manualsidan för ~scanf()~ och dess syskonfunktioner
+för att bilda dig en uppfattning (~man scanf~, men inte under
+labben).
+
+Nu kan vi skriva en funktion ~ask_question_int()~ som tar en
+sträng (~char *~) som indata, skriver ut strängen på terminalen,
+läser in ett heltal, och returnerar det. /Signaturen/ för
+~ask_question_int()~ skall följaktigen vara:
+
+#+BEGIN_SRC c
+int ask_question_int(char *question)
+#+END_SRC
+
+(Strikt sett är ~question~ inte en del av signaturen -- det är bara
+ett internt namn på det inskickade argumentet och kan fritt döpas
+om utan att det påverkar användare av funktionen.)
+
+Vi är nu redo att skriva vår första implementation av funktionen.
+
+#+begin_important
+Innan det finns en ~main()~-funktion i denna fil måste du
+kompilera med flaggan ~-c~ för att tala om för kompilatorn att du
+inte försöker skapa ett körbart program. Vi återkommer till denna
+flagga senare under kursen. (Du kan också lägga till en
+~main()~-funktion som vi gör nedan.)
+#+end_important
+
+#+BEGIN_SRC c
+int ask_question_int(char *question)
+{
+  printf("%s\n", question);
+  int result = -1; // godtyckligt valt nummer
+  scanf("%d", &result);
+  return result;
+}
+#+END_SRC
+
+För enkelhets skull lägger vi till en ~main()~-funktion som kan
+testa vårt program. Senare kommer vi att ta bort den. Syftet med
+~utils.c~ är nämligen att vi skall skapa några grundläggande
+funktioner i ett *bibliotek* som kommer att återanvändas i
+inlämningsuppgifterna senare.
+
+#+BEGIN_SRC c
+int main(void)
+{
+  int tal;
+
+  tal = ask_question_int("Första talet:");
+  printf("Du skrev '%d'\n", tal);
+
+  tal = ask_question_int("Andra talet:");
+  printf("Du skrev '%d'\n", tal);
+
+  return 0;
+}
+#+END_SRC
+
+Kompilera och kör programmet! Testa med följande input och notera
+vad resultatet blir:
+
+- ~1~ och ~1~
+- ~1a~ och ~1~
+- ~1~ och ~1a~
+- ~a~ och ~42~
+
+Inläsning från tangentbordet i C fungerar genom en
+/tangentbordsbuffert/ som du kan tänka på som en sträng i datorns
+minne. ~scanf()~-funktionen ovan förväntar sig ett heltal
+(styrkoden ~%d~ -- tänk /digits/) vilket betyder att inläsningen
+av ~1a~ slutar vid ~1~, så att ~a\n~ lämnas kvar i minnet
+(observera radbrytningstecknet ~\n~). Vid nästa inläsning finns
+~a\n~ kvar i bufferten och eftersom ~scanf()~ läser rad för rad
+kommer scanf inte att kunna läsa in något tal.
+
+Vår ~ask_question_int()~ behöver bli lite smartare: vi måste
+kontrollera vad ~scanf()~ lyckas med.
+
+Returvärdet från ~scanf()~ är så många inläsningar som ~scanf()~
+lyckades med. I vårt fall försöker vi bara göra en (en styrkod
+~%d~) så om ~scanf()~ returnerar ~1~ vet vi att inläsningen är
+lyckad.
+
+Intuitivt kanske man kan tycka att följande funktion borde lösa
+problemet:
+
+#+caption: Inte dålig kod, men inte rätt för vad vi vill nu.
+#+BEGIN_SRC c
+int ask_question_int(char *question)
+{
+
+  int result = -1;
+
+  do
+  {
+    printf("%s\n", question);
+  }
+  while (scanf("%d", &result) != 1);
+
+  return result;
+}
+#+END_SRC
+
+Det gör den inte, och problemet ligger i att en misslyckad
+~scanf()~ inte tömmer tangentbordsbufferten (vi har ju bara bett
+om att läsa till och med nästa tal -- inte det som kommer efter).
+Nästa varv i loopen i detta program är alltså dömt att misslyckas.
+Det betyder att om vi skriver in ~1a~ med detta program kommer
+programmet att köra för evigt!
+
+Det finns ingen bästa lösning på detta problem, men en möjlig
+lösning som är både vettig och enkel är att kasta bort resten av
+den inlästa raden. Dvs. om du skriver in ~1a...~, läses ~1~ in,
+och ~a...~ kastas bort oavsett vad som är i ~...~.
+
+Vi kan tömma tangentbordets buffer så här:
+
+#+BEGIN_SRC c
+int c;
+do
+{
+  c = getchar();
+}
+while (c != '\n');
+#+END_SRC
+
+Denna loop tar tecken från terminalen, ett efter ett, tills den
+läser ett ~\n~. På så vis töms tangentbordets buffert. Vi kan nu
+skriva en fungerande ~ask_question_int()~:
+
+#+BEGIN_SRC c
+int ask_question_int(char *question)
+{
+
+  int result = 0;
+  int conversions = 0;
+  do
+    {
+      printf("%s\n", question);
+      conversions = scanf("%d", &result);
+      int c;
+      do
+        {
+          c = getchar();
+        }
+      while (c != '\n');
+      putchar('\n');
+    }
+  while (conversions < 1);
+  return result;
+}
+#+END_SRC
+
+Ändra gärna ~while (c != '\n');~ till ~while (c != '\n' && c != EOF);~.
+Den andra villkoret betyder att ~c~ inte skall vara specialtecknet
+som avser att en fil är slut -- End Of File. Det hanterar inmatning
+som avslutas utan att det kommer en ny rad sist.
+
+#+begin_tip
+Funktionen blir enklare att läsa och förstå om du flyttar ut den
+inre loopen (den som tömmer tangentbordets buffert) till en egen
+funktion med ett bra namn, till exempel ~clear_input_buffer()~.
+#+end_tip
+
+
+*** Del 2: Inläsning av en sträng
+
+Tillägg i ~utils.c~.
+
+Vi har nu sett ett exempel på inläsning av ett heltal. Låt oss nu
+läsa in en sträng istället. Vi skall skriva
+~ask_question_string()~ med motsvarande beteende -- men denna gång
+skall vi inte tillåta den tomma strängen. Något som gör denna
+funktion mycket svårare att skriva är att strängar inte har en fix
+storlek. Om vi skall använda ~scanf()~ för att läsa in en sträng
+måste vi skicka med adressen till en plats i minnet där resultatet
+skall sparas, analogt med inläsning av heltal. Ett klassiskt
+säkerhetshål i C är s.k. "buffer exploits" som i stort går ut på
+att mata in för långa strängar i ett program så att de inte
+ryms i buffrarna och spiller över in i programmets övriga minne.
+Ta därför alltid för vana när du läser in data i ett C-program att
+enbart använda funktioner som låter dig ange hur många tecken som
+ryms på den plats där det inlästa datat skall sparas!
+
+Här är en **regelvidrig** (och dessutom **felaktig** -- testa
+själv) inläsningsfunktion som absolut aldrig får användas. Här
+använder vi en array med 255 tecken som inläsningsbuffert (vi har
+alltså plats för 254 tecken + null-tecknet), och använder oss av
+två hjälpfunktioner för att kontrollera strängens längd
+(~strlen()~) och skapa en kopia av den inlästa strängen som vi
+returnerar (~strdup()~):
+
+#+caption: Varning för negativt exempel -- nedanstående kod är dålig.
+#+BEGIN_SRC c
+#include <string.h>
+
+char *ask_question_string(char *question)
+{
+
+  char result[255]; // <-- bufferstorlek 255
+  do
+    {
+      printf("%s\n", question);
+      scanf("%s", result); // <-- scanf vet ej bufferstorlek! (inläsning av >254 tecken möjligt!)
+    }
+  while (strlen(result) > 0);
+  return strdup(result);
+}
+#+END_SRC
+
+*Nu skall du skriva en funktion* som tar emot en buffert (i form av
+en sträng, ~char *~), en storleksangivelse för bufferten i form av
+ett heltal och som läser in en sträng i bufferten. Det avslutande
+~'\n'~-tecknet skall /inte/ vara med i strängen som returneras.
+Funktionens signatur skall vara:
+
+#+BEGIN_SRC c
+int read_string(char *buf, int buf/siz)
+#+END_SRC
+
+Där returvärdet är antalet inlästa tecken, alltså hur många av de
+~buf_siz~ tecknen i ~buf~ som faktiskt används, förutom
+null-tecknet. Valida värden är alltså ~[0..buf_siz-1]~.
+
+Att läsa in en sträng är väldigt likt att tömma
+tangentbordsbufferten som vi gjorde ovan, med den lilla skillnaden
+att vi sparar det vi läste in i ~buf~. Vidare måste vi:
+
+1. Lägga till en räknare för hur många tecken vi läst in
+2. Se till att räknarens värde inte överstiger ~buf_siz-1~
+3. Se till att strängen vi läser in blir korrekt nullterminerad
+
+Som du kanske minns från föregående labb är en sträng en array av
+tecken som slutar med tecknet ~'\0'~. Eftersom detta tecken också
+tar upp en plats i strängen får vi inte läsa in ~buf_siz~ tecken
+utan högst ~buf_siz-1~ tecken. Genom att skriva ~'\0'~ sist i
+strängen har vi markerat dess slut. Alltså: om vi har läst in 5
+tecken i en buffert ~buf~ skall vi sätta ~buf[5] = '\0';~ dvs.
+skriva ~'\0'~ på den sjätte platsen i ~buf~. Om ~buf~ endast
+hade längden ~5~ hade vi fått sluta läsa in efter 4 tecken så
+att vi kunde göra ~buf[4] = '\0'~.
+
+Om vi lyckas läsa hela vägen till det sista ~'\n'~-tecknet behöver
+vi inte tömma tangentbordets buffer. Om vår inläsningsbuffer tar
+slut först, dock, så skall vi tömma tangentbordets buffer på samma
+sätt om vi gjorde i ~ask_question_int()~.
+
+Här är en enkel ~main()~-funktion som du kan använda för att
+testa ditt program:
+
+#+BEGIN_SRC c
+int main(void)
+{
+    int buf_siz = 255;
+    int read = 0;
+    char buf[buf_siz];
+
+    puts("Läs in en sträng:");
+    read = read_string(buf, buf_siz);
+    printf("'%s' (%d tecken)\n", buf, read);
+
+    puts("Läs in en sträng till:");
+    read = read_string(buf, buf_siz);
+    printf("'%s' (%d tecken)\n", buf, read);
+
+    return 0;
+}
+#+END_SRC
+
+Notera att ~read_string()~ inte returnerar den inlästa strängen --
+genom att ~main()~-funktionen delat adressen till ~buf~-arrayen
+med ~read_string()~ kan den senare skicka data tillbaka till den
+förra genom att skriva i arrayen.
+
+Pröva med långa strängar, korta strängar, med och utan mellanslag,
+en lång följd av en kort, en kort följd av en lång, etc. Notera
+att första varje anrop till ~read_string()~ använder samma
+buffert, dvs. den andra inläsningen skriver över innehållet som
+var inläst av den första inläsningen. Detta är i sig inget
+problem, men kan kanske hjälpa dig att förstå varför du kan få
+rester av gammal input i din sträng om du gör fel.
+
+
+*** Del 3: ~ask_question_string()~
+
+Tillägg i ~utils.c~.
+
+Nu när vi har en ~read_string()~-funktion är det enkelt att
+implementera en ~ask_question_string()~. Gör det, och använd
+returvärdet från ~read_string()~ för att fånga tomma strängen
+(vars längd är 0) och i så fall upprepa frågan på samma sätt som
+~ask_question_int()~.
+
+Funktionen ~ask_question_string()~ går i stort sett att extrahera
+från det första försöket att implementera ~ask_question_string()~
+men skall ha signaturen:
+
+#+BEGIN_SRC c
+char *ask_question_string(char *question, char *buf, int buf_siz)
+#+END_SRC
+
+Senare under kursen skall vi se hur vi kan ändra så att signaturen
+för funktionen blir
+
+#+BEGIN_SRC c
+char *ask_question_string(char *question)
+#+END_SRC
+
+genom att skapa ett dynamiskt allokerat minnesutrymme i vilket vi
+kan spara den inlästa strängen.
+
+
+** Gör om ~utils.c~ till ett "riktigt bibliotek"
+
+Nu skall vi skapa vår första **header-fil**! Skapa ~utils.h~ i
+samma katalog som ~utils.c~ och /flytta/ dit samtliga
+funktionsprototyper från ~utils.c~. I ~utils.h~ borde det nu alltså
+åtminstone stå:
+
+#+BEGIN_SRC c
+#include <stdbool.h>
+int read_string(char *buf, int buf/siz);
+bool is_number(char *str);
+int ask_question_int(char *question);
+char *ask_question_string(char *question, char *buf, int buf_siz);
+#+END_SRC
+
+Som första rader i ~utils.h~ skriv
+
+#+BEGIN_SRC c
+#ifndef __UTILS_H__
+#define __UTILS_H__
+#+END_SRC
+
+och som sista rader skriv
+
+#+BEGIN_SRC c
+#endif
+#+END_SRC
+
+(alternativt skriv bara ~#pragma once~ högst upp i =utils.c=!)
+
+Vi återkommer till dessa magiska instruktioner senare. Om du är
+nyfiken -- kolla i kurslitteraturen, sök på nätet, eller fråga en
+assistent!
+
+Lägg till ~#include "utils.h"~ i ~utils.c~ -- notera ~"..."~ istället för ~<...>~.
+
+Passa också på att ta bort ~main()~-funktione ur ~utils.c~. Nu har vi
+ett "riktigt bibliotek" som kan inkluderas av program som behöver komma
+åt hjälpfunktionerna.
+
+
+** Applikation: Gissa talet                                       :redovisas:
+
+Nu skall vi skapa programmet ~guess.c~ som använder sig av våra
+två ~ask_~-funktioner. Interaktion med programmet skall se ut så här:
+
+#+begin_example
+$ gcc -Wall guess.c
+$ ./a.out
+Skriv in ditt namn:
+Tobias
+Du Tobias, jag tänker på ett tal ... kan du gissa vilket?
+0
+För litet!
+1000
+För stort!
+500!
+För stort!
+... (osv)
+För litet!
+42
+Bingo!
+Det tog Tobias 12 gissningar att komma fram till 42
+$ _
+#+end_example
+
+Om man tar mer än 15 gissningar på sig skall programmet skriva ut:
+
+#+begin_example
+...
+Nu har du slut på gissningar! Jag tänkte på 42!
+$ _
+#+end_example
+
+Programmet skall alltså:
+
+1. Slumpa fram ett tal /T/ (med hjälp av funktionen ~random()~ i ~stdlib.h~)
+2. Fråga efter användarens namn /N/
+3. Skriva ut "Du /N/, jag tänker på ett tal kan du gissa vilket?"
+4. I en loop, läsa in tal från användaren och skriva ut "För litet!"
+   eller "För stort!" eller "Bingo!"
+5. Vid bingo, skriv ut "Det tog /N/ /G/ gissningar att komma fram till /T/"
+6. Om /G/ når 15, skriva ut "Nu har du slut på gissningar! Jag tänkte på /T/!"
+
+#+begin_warning
+På vissa maskiner fungerar ~rand()~ bättre än ~random()~.
+#+end_warning
+
+Funktionen ~random()~ i ~stdlib.h~ returnerar ett slumptal som kan vara mycket
+stort. För att skapa ett slumptal mellan 0 och /N/ kan du använda
+/modulo/:
+
+#+BEGIN_SRC c
+random() % 1024  // slumptal mellan 0 och 1023
+#+END_SRC
+
+Programmet använder naturligtvis funktionerna från ~utils.c~, utefter
+den beskrivning som finns i ~utils.h~. Importera dem
+i ~guess.c~ så här:
+
+#+BEGIN_SRC c
+#include "utils.h"
+#+END_SRC
+
+Om när du kompilerar -- ange båda källkodsfilerna:
+
+#+begin_example
+$ gcc -Wall utils.c guess.c
+#+end_example
+
+Om du har glömt att ta bort ~main()~-funktionen från ~utils.c~
+kommer detta inte att fungera eftersom det då finns två
+~main()~-funktioner, vilket är tvetydigt och därför inte är
+tillåtet!
+
+
+** Extrauppgifter
+
+För dig som är tidigt färdig eller känner att du vill arbeta mer
+med materialet.
+
+*** Implementera om ~ask_question_int()~
+
+Implementera om ~ask_question_int()~ i termer av ~read_string()~
+och den ~is_number()~ som du implementerade på föregående labb.
+
+Du skall alltså använda ~read_string()~ för att läsa in en sträng,
+och sedan ~is_number()~ för att verifiera att den inlästa strängen
+faktiskt är ett tal.
+
+Om du lägger till ~is_number()~ i ~utils.c~ har du utökat ditt
+utility-bibliotek!
+
+
+*** Implementera ~ask_question_float()~
+
+Implementera funktione ~ask_question_float()~ i termer av
+~read_string()~ och en ~is_float()~ som du själv måste skriva. Du
+kan utgå från ~is_number()~ men också tillåta förelkomsten av
+**en** punkt ~.~ någonstans i strängen. Funktionen ~atof()~ i
+~ctype.h~ vet hur man omvandlar en sträng till ett flyttal.
+
+
+*** Enkel aritmetikdrillare
+
+Skriv ett enkelt program som ett enkelt artitmetiskt uttryck på
+formatet
+
+#+begin_center
+/tal1 op tal2 = ?/
+#+end_center
+
+Där ~tal1~ och ~tal2~ är framslumpade tal i intervallet [1..1024]
+och ~op~ är en framslumpad operator i mängden {+, -, *, /}.
+
+Användaren skall mata in tal och programmet kontrollerar att det
+inmatade talet är korrekt.
+
+En rolig utökning av denna uppgift är att tillåta att användaren
+svarar ~fyrahundratjugosju~ istället för ~427~. Du kan
+implementera detta på två sätt:
+
+1. implementera en funktion som konverterar heltal till dess
+   textuella motsvarighet. Du kan sedan använda funktionen
+   ~strcmp()~ från ~string.h~ för att göra jämförelsen.
+2. implementera en funktion som konverterar från ett heltals
+   textuella motsvarighet till heltalet, dvs. från ~två~ till ~2~.
+   Du kan nu använda ~==~-operatorn för att göra jämförelsen.
+
+Notera att ~strcmp()~-funktionen tar emot två strängar och
+returnerar 0 om de är lika. Dvs.:
+
+#+BEGIN_SRC c
+char *str1 = "foo";
+char *str2 = "bar";
+if (strcmp(str1, str2) == 0)
+{
+  puts("Strängarna är lika");
+}
+else
+{
+  puts("Strängarna är inte lika");
+}
+#+END_SRC
+
+
+*  Labb 3: Rekursion, Generalisering & Funktionspekare
+
+Om du känner att du är stressad och har ont om tid -- kan det
+ibland vara en god idé att pröva att gå direkt på funktionspekare,
+dvs. hoppa över början.
+
+
+** Uppvärmning: strängfunktioner
+
+Skapa ett program ~str.c~.
+
+Som du säkert minns är C:s strängtyp ~char *~. Det betyder en
+adress till en plats i minnet där det finns lagrat **ett eller
+fler tecken**. Det är i de flesta avseenden ekvivalent med typen
+~char []~ som avser en array av ett eller fler tecken. Strängar
+innehåller ingen information om hur långa de är -- istället
+används ett speciellt tecken som ett stopptecken: det s.k.
+null-tecknet som skrivs ~'\0'~.
+
+Om vi skriver ~char *str = "Guy Maddin, Winnipeg";~ har vi skapat
+en sträng vars innehåll är 21 tecken. Om vi skriver detta som en
+array: ~['G', 'u', 'y', ' ', 'M', 'a', 'd', 'd', 'i', 'n', ',', ' ', 'W', 'i', 'n', 'n', 'i', 'p', 'e', 'g', '\0']~. Det enda sättet att ta reda på hur lång
+en sträng är är att "loopa igenom den" och leta efter null-tecknet.
+
+
+*** Uppvärmningsuppgift 1: implementera en egen ~strlen()~-motsvarighet
+
+Implementera en funktion ~string_length()~ som tar som argument en
+sträng och returnerar ett heltal som avser hur många tecken som
+var i strängen. Du kan t.ex. använda en loop och en
+heltalsvariabel som räknare för att lösa uppgiften. För varje varv
+i loopen, gå ett steg längre "till höger" i arrayen, och leta
+efter ett ~'\0'~-tecken. Antalet gångna steg är strängens längd.
+
+Testa ditt program genom att jämföra dess output med ~strlen()~
+som finns i ~string.h~. Du kan t.ex. skriva så här:
+
+#+BEGIN_SRC c
+int main(int argc, char *argv[])
+{
+  if (argc < 2)
+  {
+    printf("Usage: %s words or string", argv[0]);
+  }
+  else
+  {
+    for (int i = 1; i < argc; ++i)
+    {
+      int expected = strlen(argv[i]);
+      int actual   = string_length(argv[i]);
+      printf("strlen(\"%s\")=%d\t\tstring_length(\"%s\")=%d\n",
+             argv[i], expected, argv[i], actual);
+    }
+  }
+  return 0;
+}
+#+END_SRC
+
+Observera att för att skriva ut ~"~ inuti en sträng så måste vi
+"escape:a dem", dvs. skriva dem som ~\"~. Tecknet ~\t~ står för
+tab.
+
+Exempelkörning:
+
+#+BEGIN_EXAMPLE
+$ gcc -Wall str.c
+$ ./a.out hej hopp
+strlen("hej")=3    string_length("hej")=3
+strlen("hopp")=4   string_length("hopp")=4
+$ _
+#+END_EXAMPLE
+
+Ovan kan vi se att ~strlen()~ och ~string_length()~ ger samma svar
+för de ord vi skickade in vilket ger förhoppning om att
+~string_length()~ är korrekt implementerad.
+
+
+*** Uppvärmningsuppgift 2: implementera egna enkla print-satser
+
+Analogt med hur vi har använt funktionen ~getchar()~ för att läsa
+in tecken för tecken kan vi använda funktionen ~putchar()~ för att
+skriva tecken för tecken. Om jag t.ex. har en sträng ~s~ kan jag
+skriva ~putchar(s[3])~ för att skriva ut dess fjärde tecken.
+
+1. Implementera funktionen ~print()~ som tar en sträng och skriver
+   ut den på terminalen (med hjälp av ~putchar()~) fast **utan**
+   avslutande radbrytning.
+2. Implementera ~println()~ -- en egen motsvarighet till ~puts()~,
+   som tar en sträng och skriver ut den på terminalen (med hjälp
+   av ~print()~) **med** en avslutande radbrytning. Jämför med
+   ~puts()~ i ditt program för att kontrollera att du gör rätt.
+3. Lägg till ~print()~ och ~println()~ i ~utils~-biblioteket!
+
+
+
+** Rekursion i C
+
+Du är bekant med rekursionsbegreppet sedan PKD. Rekursion i C
+fungerar i stort sett likadant. I labb 1 var en extrauppgift att implementera ett
+program som skrev ut tal ur Fibonacci-serien på ett /imperativt/
+sätt. Nedan följer ett liknande program, som bara skriver ut det
+sista talet i serien och inte varenda tal på vägen dit. Målet med
+denna uppgift är att skriva om ~fib()~-funktionen så att den blir
+/rekursiv/. Efter koden nedan kommer ett exempel som visar hur man
+kan skriva en annan imperativ funktion med rekursion.
+
+#+BEGIN_SRC c
+#include <stdio.h>
+#include <stdlib.h>
+
+/// Den intressanta delen av programmet
+int fib(int num)
+{
+  int ppf = 0; // the two given fib values
+  int pf  = 1;
+
+  for (int i = 0; i < num; ++i)
+  {
+    int tmp = pf;
+    pf = ppf + pf;
+    ppf = tmp;
+  }
+
+  return pf;
+}
+
+/// Den ointressanta main()-funktionen
+int main(int argc, char *argv[])
+{
+  if (argc != 2)
+  {
+    printf("Usage: %s number\n", argv[0]);
+  }
+  else
+  {
+    int n = atoi(argv[1]);
+    if (n < 2)
+    {
+      printf("fib(%d) = %d\n", n, n);
+    }
+    else
+    {
+      printf("fib(%s) = %d\n", argv[1], fib(n));
+    }
+  }
+  return 0;
+}
+#+END_SRC
+
+*** Exempel på iteration ==> rekursion: sum
+
+Nedanstående funktion tar in en array av heltal samt längden på
+arrayen och adderar talen i arrayen och returnerar summan.
+
+#+BEGIN_SRC c
+long sum(int numbers[], int numbers_siz)
+{
+  long result = 0;
+
+  for (int i = 0; i < number_siz; ++i)
+  {
+    result += numbers[i];
+  }
+
+  return result;
+}
+#+END_SRC
+
+En rekursiv motsvarighet kan skrivas utifrån insikten att summan
+av en serie av N tal är lika med det första talet + summan av
+resterande tal. Alltså, om vi vill beräkna ~sum([1, 2, 3, 4])~
+så kan vi räkna ut den som ~1 + sum([2, 3, 4])~, och så vidare,
+där basfallet är ~sum([]) = 0~, alltså summan av alla tal i en
+tom array är 0.
+
+Så här skulle vi kunna skriva C-kod som fungerar på detta sätt:
+
+#+BEGIN_SRC c
+long rec_sum(int numbers[], int numbers_siz, int index)
+{
+  if (index < numbers_siz)
+  {
+    return numbers[index] + rec_sum(numbers, numbers_siz, index + 1);
+  }
+  else
+  {
+    return 0;
+  }
+}
+#+END_SRC
+
+Om vi använder ~rec_sum~ för att summera arrayen ~[1, 2, 3]~
+kommer vi att göra följande steg (förenklat):
+
+1. ~rec_sum([1, 2, 3]) = return 1 + rec_sum([2, 3])~
+2. ~rec_sum([2, 3])    = return 2 + rec_sum([3])~
+3. ~rec_sum([3])       = return 3 + rec_sum([])~
+4. ~rec_sum([])        = return 0~
+
+Vid (4) har vi nått slutet av vår rekursion och vi kan "gå tillbaka"
+och räkna ut att svaret på (3) är ~3 + 0~ och därmed blir svaret på
+(2) ~2 + 3 + 0~ och (1) ~1 + 2 + 3 + 0~. Som man kunde förvänta sig.
+
+Eftersom vi inte kan "skala av element från arrayen" använder vi
+en extra parameter ~index~ som stiger tills den når ~numbers_siz~.
+Varje rekursionssteg har alltså tillgång till hela arrayen men
+börjar titta från ~index~. Vid startanropet skall ~index~ vara 0.
+Vi kan nu implementera ~sum()~ i termer av ~rec_sum()~:
+
+#+BEGIN_SRC c
+long sum(int numbers[], int numbers_siz)
+{
+  return rec_sum(numbers, numbers_siz, 0);
+}
+#+END_SRC
+
+**Nu återgår vi till uppgiften**: skriv om ~fib()~-funktionen i
+programmet längst upp på sidan så att den är **rekursiv**.
+
+**Ledning:**
+Vi upprepar den rekursiva definitionen av Fibonacci-serien från labb 1:
+
+#+BEGIN_EXAMPLE
+fib(1) = 1
+fib(2) = 1
+fib(i) = fib(i-1) + fib(i-2) om i > 2
+#+END_EXAMPLE
+
+En något mer C-lik pseudokod skulle vara:
+
+#+BEGIN_EXAMPLE
+fib(i) = 1                     om i = 0
+         1                     om i = 1
+         fib(i-1) + fib(i-2)   annars
+#+END_EXAMPLE
+
+Senare under kursen skall vi diskutera problemet med ändligt
+utrymme på stacken och djup rekursion. Ett anrop till ~rec_sum()~
+med en väldigt stor array kommer sannolikt att krascha programmet
+om inte kompilatorn är smart nog att översätta rekursionen till
+en loop -- mer om detta senare alltså.
+
+**Testa** att ditt program är korrekt genom att jämföra dess resultat
+med resultatet från ditt imperativa program.
+
+** Funktionspekare
+
+Pekare är som bekant adresser till platser i datorns minne där
+data finns lagrat. Vi har ännu inte stiftat någon djup bekantskap
+med dem men vi har sett att strängar i C är pekare (~char *~), och
+att vi skickat in pekare till ~int~:ar i ~scanf()~. Nu skall vi
+stifta bekantskap med pekare till /funktioner/. Detta motsvarar
+högre ordningens funktioner som du använt i Haskell, t.ex. när du
+skickat in en funktion och en datasamling till ~map~.
+
+C:s syntax för funktionspekares typer är fruktansvärd och det är
+därför brukligt att man skapa ett /typalias/ -- dvs. skapar ett
+beskrivande namn på en krånglig typ som man sedan kan använda
+istället för dess krångliga motsvarighet. Syntaxen för ett
+typalias är så här:
+
+#+BEGIN_SRC c
+typedef existerande_typ nytt_namn;
+#+END_SRC
+
+Exempel på typalias som inte berör funktionspekare:
+
+#+caption: Se noten om ~string/t~ nedan!
+#+BEGIN_SRC c
+typedef char *string_t;
+typedef unsigned int age_t;
+#+END_SRC
+
+Här har vi skapat två typalias: ~string_t~ kan nu användas överallt
+som en synonym för ~char *~ och vi har angivit att typen ~age_t~ är
+ett icke-negativt heltal. Suffixet ~_t~ är en namnkonvention.
+
+Just typaliaset ~string_t~ är ett alias vi skall undvika eftersom
+det avviker från alla andra C-program och därför blir förvirrande
+för någon som läser din kod, även om ~string_t~ förmodligen har
+mindre kognitiv belastning än ~char *~ för en ny C-programmerare.
+
+Låt oss nu använda ~typedef~-nyckelordet för att definiera ett
+typalias för en funktion. Det är invecklat, men inte speciellt
+svårt när man väl har lärt sig läsa koden:
+
+#+BEGIN_SRC c
+typedef int(*int_fold_func)(int, int);
+#+END_SRC
+
+Koden ovan definierar typen ~int_fold_func~ som en funktion som
+tar som argument två ~int~:ar och returnerar en ~int~. I Haskell
+skulle typen skrivas ~Int -> Int -> Int~. Asterisken ~*~ framför
+namnet ~int_fold_func~ ovan är det som gör det hela till en
+pekare. **Denna skall dock inte vara med i namnet**.
+
+Om jag har en funktion ~add(...)~ och vill skicka en pekare till
+den funktionen skriver jag alltså ~add~. Funktionens namn utan
+parenteser och argument. Om jag skriver ~add(2,2)~ är det ju
+ett helt vanligt **anrop** till funktionen och det som skickas
+in är resultatet!
+
+Nu kan vi använda ~int_fold_func~ som en datatyp och deklarara
+t.ex. en [[http://learnyouahaskell.com/higher-order-functions][left fold]] (som du kanske minns från PKD). Om du inte minns hur en left fold fungerar -- försök
+att räkna ut det från C-koden nedan!
+
+#+BEGIN_SRC c
+/// En funktion som tar en array av heltal, arrayens längd och
+/// en pekare till en funktion f av typen Int -> Int -> Int
+int foldl_int_int(int numbers[], int numbers_siz, int_fold_func f)
+{
+  int result = 0;
+
+  // Loopa över arrayen och för varje element e utför result = f(result, e)
+  for (int i = 0; i < numbers_siz; ++i)
+  {
+    result = f(result, numbers[i]);
+  }
+
+  return result;
+}
+#+END_SRC
+
+Låt oss skriva en funktion som adderar två tal:
+
+#+BEGIN_SRC c
+int add(int a, int b)
+{
+  return a + b;
+}
+#+END_SRC
+
+Eftersom ~add()~ är en funktion av typen ~Int -> Int -> Int~ kan
+den användas tillsammans med ~foldl/int/int~. För att skicka med
+en funktion som en parameter skriver du bara funktionens namn, i
+detta fall alltså ~add~.
+
+**Uppgift:** Skriv om ~sum()~-funktionen ovan med hjälp av
+~foldl/int/int()~ och ~add()~. Du behöver inte ändra i vare sig
+~foldl/int/int()~ eller ~add()~.
+
+
+** Generell inläsningsrutin
+
+Skapa en ny fil med ett lämpligt namn, t.ex. ~experiment.c~ med
+en tom ~main()~-funktion. Skriv all kod för denna uppgift här,
+kompilera ofta och fundera på hur du kan skriva kod i
+~main()~-funktionen som testar/kör den kod som du skriver.
+Vi kommer att vilja använda kod som du har skrivit tidigare.
+Välj själv om du vill inkludera ~utils.h~ och kompilera med
+~gcc experiment.c utils.c~ eller om du vill kopiera in all
+kod som behövs i ~experiment.c~.
+
+Med hjälp av funktionspekare skall vi nu skriva en generell
+inläsningsrutin som ger ytterligare abstraktion vid inläsning. Den
+fångar det generella mönstret för inläsning:
+
+1. Skriv ut frågan (t.ex. "mata in ett tal")
+2. Läser in svaret
+3. Kontrollerar att svaret är på rätt format (t.ex. att det är ett tal) och går tillbaka till 1. igen vid behov
+4. Konverterar det till rätt format (t.ex. från ~"42"~ till ~42~)
+5. Returnerar resultatet
+
+För att göra detta skall vår nya ~ask_question()~-funktion ha tre
+parametrar:
+
+1. Frågan i form av en sträng (~char *~)
+2. En pekare till en funktion som kontrollerar att svaret har rätt format
+3. En pekare till en funktion som konverterar en sträng till något annat format
+
+Typen på kontrollfunktionen skall vara ~char * -> bool~, dvs. den tar emot
+en sträng och returnerar sant eller falskt.
+
+Typen på konverteringsfunktionen skall vara ~char * -> answer_t~ --
+vilket introducerar en ny typ som vi ännu inte har sätt, nämligen
+typen ~answer_t~ som är en s.k. **union**:
+
+#+BEGIN_SRC c
+typedef union { // Not: undvik gärna så här korta namn på variabler! Varför?
+  int   i;
+  float f;
+  char *s;
+} answer_t;
+#+END_SRC
+
+Typen ~answer/t~ avser ett värde som /antingen/ är en ~int~ /eller_
+en ~float~ /eller/ en sträng (~char *~). Om ~val~ är en variabel av
+typen ~answer_t~ så kan jag tilldela den ett heltal via ~val.i =
+42~ och läsa det på motsvarande sätt ~... = val.i~, eller en
+sträng via ~val.s = ...~ och ~... = val.s~. Namnen ~i~, ~f~ och ~s~
+har jag valt i min definition av ~answer_t~ och kan bytas ut mot
+andra namn om man så önskar.
+
+**Uppgift!** Använd ~typedef~ för att definiera typerna
+~check_func~ och ~convert_func~ med typerna ovan. Utgå från
+exemplet från ~int_fold_func~.
+
+Ett exempel på en kontrollfunktion är den ~is_number()~ som du
+redan skrivit (labb 1) och som tar in en sträng och returnerar true eller
+false beroende på om strängen kan konverteras till ett tal. En
+kontrollfunktion som kontrollerar att en sträng inte är tom kan se
+ut så här:
+
+#+BEGIN_SRC c
+/// Hjälpfunktion till ask_question_string
+bool not_empty(char *str)
+{
+  if (strlen(str) > 0)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+#+END_SRC
+
+Eller, mer kompakt och bättre:
+
+#+BEGIN_SRC c
+/// Hjälpfunktion till ask_question_string
+bool not_empty(char *str)
+{
+  return strlen(str) > 0;
+}
+#+END_SRC
+
+Ett exempel på en funktion som går att använda som
+konverteringsfunktion är funktionen ~atoi()~ som vi har använt
+förut. Den fungerar eftersom ~atoi()~ returnerar ett heltal som så
+att säga är en delmängd av ~answer_t~.
+
+Dock: Om man försöker skicka in ~atoi~ som argument till en
+funktion vars motsvarande parameter är ~convert_func~ kommer
+kompilatorn att klaga eftersom ~answer_t~ och ~int~ inte är samma
+typ. Det kan man lösa med hjälp av en **typomvandling** (eng. type
+cast):
+
+#+BEGIN_SRC c
+atoi                     // har typen char * -> int
+(convert_func) atoi      // har typen char * -> answer_t
+#+END_SRC
+
+**Uppgift!** Nu är det dags att skriva funktionen ~ask_question()~
+med signaturen:
+
+#+BEGIN_SRC c
+answer_t ask_question(char *question, check_func check, convert_func convert)
+#+END_SRC
+
+Inuti denna funktion avser variablerna ~check~ och ~convert~
+funktioner som kan anropas ~check(str)~ etc.
+
+1. Skapa en buffert av lämplig längd
+2. I en loop
+   - skriv ut frågan
+   - läs in en sträng med din egen ~read_string()~-funktion
+   - Använd ~check~ för att kontrollera att det du läst in är korrekt och terminera loopen
+3. Använd ~convert~ för att konvertera resultatet och returnera det
+
+Med hjälp av din generella ~ask_question()~-funktion är det nu busenkelt
+att definiera nya. T.ex. kan vi definiera ~ask_question_int()~ så här:
+
+#+BEGIN_SRC c
+int ask_question_int(char *question)
+{
+  answer_t answer = ask_question(question, is_number, (convert_func) atoi);
+  return answer.i; // svaret som ett heltal
+}
+#+END_SRC
+
+Om du har skrivit en ~is_float()~ på en tidigare labb kan du
+använda den för att definiera ~ask_question_float()~. Dock -- för
+att göra detta måste vi skapa en funktion som skapar ett
+~answer_t~ från en ~double~:
+
+#+BEGIN_SRC c
+answer_t make_float(char *str)
+{
+  answer_t a;      // skapa ett oinitierat answer_t-värde
+  a.f = atof(str); // gör det till en float, via atof
+  return a;        // returnera värdet
+}
+#+END_SRC
+
+Eller, mer kompakt (skapar ett nytt ~answer_t~-värde) -- via en syntax
+som vi skall behandla i mer detalj på nästa labb:
+
+#+BEGIN_SRC c
+answer_t make_float(char *str)
+{
+  return (answer_t) { .f = atof(str) };
+}
+#+END_SRC
+
+Här skriver vi ~ask_question_float()~ utan den onödiga variabeln
+~answer~ bara för att visa att det också är möjligt (notera ~.f~
+på slutet!).
+
+#+BEGIN_SRC c
+double ask_question_float(char *question)
+{
+  return ask_question(question, is_float, make_float).f;
+}
+#+END_SRC
+
+För att göra ~ask_question_string()~ måste vi tyvärr gå händelserna
+i förväg en aning och använda en funktion, ~strdup()~ vars funktion
+är svårt att förklara med den begränsade del av C som vi har tittat
+på hittills. Den inlästa strängen i din ~ask_question()~ är ju redan
+en sträng, så man kan tycka att man kunde returnera den rakt av, men
+så är inte fallet!
+
+Skriv så här längst upp i filen så länge. Senare kommer vi att
+skriva en egen version av denna kod:
+#+BEGIN_SRC c
+extern char *strdup(const char *);
+#+END_SRC
+
+Det är nämligen så att din inläsningsbuffert (iallafall om du har
+använt en array, som är det enda vi gått igenom hittills) är knuten
+till den omslutande funktionen -- och efter att funktionen är klar
+kan minnet där texten lästes in komma att återanvändas när som helst.
+Vi måste därför skapa en /kopia/ av strängen som är fri att skickas
+vart som helst. Detta görs med hjälp av funktionen ~strdup()~ som
+finns i ~string.h~ och som duplicerar en sträng. Exemplet nedan
+skapar en kopia och skriver ut både kopian och originalet:
+
+#+BEGIN_SRC c
+char *original = "foo bar baz!"
+char *kopia = strdup(original);
+printf("%s\n%s\n", original, kopia);
+#+END_SRC
+
+Nu kan vi skriva klar ~ask_question_string()~ så här:
+
+#+BEGIN_SRC c
+char *ask_question_string(char *question)
+{
+  return ask_question(question, not_empty, (convert_func) strdup).s;
+}
+#+END_SRC
+
+
+** Uppdatera ~utils.h~ och ~utils.c~
+
+Nu är det dags att uppdatera det generella biblioteket ~utils~.
+Kopiera in dina funktioner och typalias dit. Där bör nu ligga
+följande funktioner (åtminstone), i någon ordning:
+
+- Typen ~answer_t~
+- Typen ~check_func~
+- Typen ~convert_func~
+- Deklarationen ~extern char *strdup(const char *);~
+- ~int read_string(char *buf, int buf_siz)~
+- ~bool is_number(char *str)~
+- ~bool is_float(char *str)~ och ~answer_t make_float(char *)~ (inte obligatoriska)
+- ~bool not_empty(char *str)~
+- ~answer_t ask_question(char *question, check_func check, convert_func convert)~
+- ~char *ask_question_string(char *question)~
+- ~int ask_question_int(char *question)~
+- ~double ask_question_float(char *question)~ (inte obligatorisk)
+
+Själva definitionen av funktionerna (med koden i) skall ligga i
+~utils.c~. Funktionsprototyperna (t.ex. ~bool is_number(char
+*str);~), ~extern...~ samt typedef:arna skall ligga i ~utils.h~.
+
+Senare under kursen skall vi diskutera mer ingående hur man skapar
+bibliotek/moduler, placering av funktioner och definitioner,
+inkapsling och synlighet.
+
+
+** Grand Finale! Kompilera om Gissa Talet mot nya ~utils~         :redovisas:
+
+Om du har gjort allt rätt kan du kompilera om ditt Gissa
+Talet-program från föregående labb mot ditt nya ~utils~-bibliotek:
+
+#+begin_example
+$ gcc -Wall utils.c guess.c
+#+end_example
+
+Du borde inte få några varningar vid kompilering (såvida du inte
+fick det förut -- vilket du inte borde ha gjort!) och om du kör
+programmet igen skall det fungera precis som förut.
+
+Verifiera att så är fallet och fixa till eventuella buggar!
+
+** Frivilliga extrauppgifter
+
+*** Trim
+
+En funktion som är vanlig i moderna strängbibliotek är funktionen
+~trim()~ (aka ~strip()~) som tar bort "skräptecken" i början och
+slutet av en sträng. Exakt vad ett skräptecken är naturligtvis
+subjektivt, men låt oss definiera det som "whitespace" -- enligt
+definitionen av ~isspace()~ i ~ctype.h~. (Använd gärna ~man
+isspace~ för att ta reda på mer.)
+
+Du skall skriva funktionen ~trim()~ som tar in en sträng och
+helt enkelt tvättar bort allt "skräp".
+
+#+begin_example
+trim("  hej  ")   => "hej"
+trim("  h ej  ")  => "h ej"
+trim(" hej  \n")  => "hej"
+#+end_example
+
+Funktionens signatur:
+
+#+BEGIN_SRC c
+char *trim(char *str);
+#+END_SRC
+
+Förslag till implementation:
+
+1. Ta reda på det första tecknet från vänster, /S/, som inte är skräp (~!isspace()~)
+2. Ta reda på det första tecknet från höger, /E/, som inte är skräp (~!isspace()~)
+3. Kopiera varje tecken från /S/ till och med /E/ till början av ~str~
+4. Skriv in ett ~'\0'~-tecken efter det sista flyttade tecknet
+5. Returnera ~str~
+
+Lägg till ~trim()~ i ~utils~-biblioteket!
+
+Du kan testa att ditt program är korrekt med hjälp av följande
+testprogram:
+
+#+BEGIN_SRC c
+#include "utils.h"
+
+int main(void)
+{
+  char str1[] = "  hej  ";
+  char str2[] = "  h ej  ";
+  char str3[] = "  hej\t ";
+  char str4[] = "  hej\t \n";
+
+  char *tests[] = { str1, str2, str3, str4 };
+
+  for (int i = 0; i < 4; ++i)
+    {
+      print("Utan trim: '");
+      print(tests[i]);
+      print("'\nMed trim:  '");
+      print(trim(tests[i]));
+      println("'\n");
+    }
+  return 0;
+}
+#+END_SRC
+
+Exempel på in- och utdata:
+
+| Ursprunglig sträng | Output från ~trim()~ |
+|--------------------+----------------------|
+| ="  hej  "=        | ="hej"=              |
+| ="  h ej  "=       | ="h ej"=             |
+| ="  \nhej  "=      | ="hej"=              |
+| ="  hej\n "=       | ="hej"=              |
+
+(En modifierad version av detta program var nyligen på ett kodprov.)
+
+Alternativ implementation:
+
+1. Gå genom strängen från vänster till höger, och så länge enbart
+   skräptecken hittats, gör ingeting
+2. Från det att första skräptecknet hittats, kopiera varje tecken
+   som passerats till början av strängen (första gången till
+   position 0, andra till position 1, osv.) -- kopiera även
+   skräptecken. Första gången ett skräptecken kopieras efter att
+   ett eller flera icke-skräptecken har kopierats, kom ihåg platen
+   /P/ för det skräptecknet (vi är bara intresserade av det sista
+   -- högraste -- /P/:t)
+3. När du når slutet på strängen, skriv ~\0~ i /P/
+
+* Labb 4: Del 1 -- pekare
+
+**OBS!!** Om du känner dig stressad -- börja med den fråga som du skall redovisa och hoppa över resten av labben och spara den till senare! **OBS!!**
+
+Pekare -- adresser till platser i minnet där data är lagrat -- är
+en viktig del av C-programmering. Genom att dela information
+mellan funktioner om /var/ något är lagrat sker två saker:
+
+1. mottagaren kan **läsa** datat på platsen
+2. mottagaren kan **ändra** datat på platsen
+
+Att skicka platsen där datat finns istället för att skicka själva
+datat kan vara väldigt effektivt. Om funktion /A/ har en array med
+10 miljoner skivspår och vill att funktion /B/ skall hitta antalet
+förekomster av "Kaffe utan grädde" skulle tiden för att kopiera 10
+miljoner skivspår förmodligen vara betydligt högre än kostnaden
+för sökningen. Genom att /dela med sig/ av datat via en pekare
+istället för att kopiera hela rasket blir programmet mycket mer
+effektivt.
+
+Den stora **risken** med pekare ligger bland annat i att /B/ också
+får rätt att ändra i datat (det går ibland att lösa med hjälp av
+nyckelordet ~const~ som vi skall se senare) -- och att det inte
+finns något sätt för implementatören av /A/ att veta att /B/
+faktiskt inte modifierar datat, förutom att läsa all kod i /B/
+(inklusive koden för alla funktioner som /B/ anropar).
+
+
+** Värdesemantik vs. pekarsemantik
+
+*Fråga:* Vad skriver detta program ut på skärmen när det körs?
+
+1. =7, 42=
+2. =42, 7=
+3. Något annat
+
+#+BEGIN_SRC c
+#include <stdio.h>
+
+void swap(int a, int b)
+{
+  int tmp = a;
+  a = b;
+  b = tmp;
+}
+
+int main(void)
+{
+  int x = 7;
+  int y = 42;
+  swap(x, y);
+  printf("%d, %d\n", x, y);
+  return 0;
+}
+#+END_SRC
+
+Om det råder minsta tvekan -- kör programmet!
+
+Programmet exemplifierar *värdesemantik*, dvs. att vid anrop
+överförs argumentens värde genom **kopiering**. ~a~ och ~b~ i
+~swap()~ har samma värde som ~x~ respektive ~y~ initialt, men
+förändringar av ~a~ och ~b~ påverkar inte ~x~ och ~y~.
+
+
+** Skriv om ~swap()~ med pekarsemantik
+
+Namnet ~swap()~ i programmet ovan är misledande -- det antyder
+något som i programmet ovan inte stämmer. Nu skall vi skriva om
+~swap()~ så att det använder pekare istället. Det påverkar typerna:
+
+#+BEGIN_SRC c
+int  a  // a är en variabel som innehåller ett heltal
+int *b  // b är en variabel som innehåller en adress till en plats i minnet där det finns ett heltal
+#+END_SRC
+
+Variabeln ~b~ ovan innehåller alltså en adress. För att komma åt
+det heltal som ligger på den adressen skriver vi ~*b~. Vi säger
+att vi **avrefererar** ~b~. Vi har tidigare sett **adresstagningsoperatorn**
+~&~ som vi kan använda för att få platsen i minnet där något data finns.
+Vi kan t.ex. skriva ~&a~ för att avse platsen där ~a~:s värde finns lagrat.
+Om ~a~ och ~b~ är deklarerade enligt ovan kan vi skriva:
+
+#+BEGIN_SRC c
+a = 42;  // a innehåller nu heltalet 42
+b = &a;  // b innehåller nu en adress till där värdet på a finns lagrat
+printf("%d, %d\n", a, *b);  // skriver ut 42, 42
+a = 7;
+printf("%d, %d\n", a, *b);  // skriver ut 7, 7
+*b = 42;
+printf("%d, %d\n", a, *b);  // skriver ut 42, 42
+#+END_SRC
+
+Med hjälp av pekartypen ~int *~, adresstagningsoperatorn ~&~ och
+avrefereringsoperatorn ~*~ kan vi nu skriva om ~swap()~ så att
+funktionen tar in två **pekare** (aka adresser) till heltal, och
+byter plats på värdena som finns lagrade på dessa två platser.
+Målet är att skriva om Program 1 ovan så att ~42, 7~ skrivs ut när
+det körs.
+
+Ledning:
+
+1. Signaturen för ~swap()~ skall vara~void swap(int *a, int *b)~
+2. Du kommer att använda avrefereringsoperatorn i implementationen av ~swap()~
+3. Du måste använda adresstagningsoperatorn i ~main()~ för att kunna anropa ~swap()~ (detta är enda ändringen du skall göra i ~main()~)
+
+
+** Mer om pekare och arrayer
+
+Vi har sett att C:s strängtyp är ~char *~ och att en sträng är en
+array av tecken. Ovan såg vi att ~int *~ betyder pekare till en
+~int~. Hur kan en sträng vara både en pekare och en array? Är inte
+det typvidrigt?
+
+*Skillnaden mellan arrayer och pekare i C är extremt liten, och
+tillsvidare kan vi betrakta pekare och arrayer som samma sak.*
+
+Typerna ~t *~ och ~t[]~ är i regel utbytbara, för varje typ ~t~.
+Det betyder t.ex. att ~char *argv[]~ också kan skrivas ~char
+**argv~. Ovan sade vi att ~int *~ betyder en pekare till en plats
+i minnet där det finns **ett** heltal. Det var en vit lögn -- det
+borde vara "där det finns ett eller flera heltal."
+
+Arrayer i C överförs med pekare, dvs. när man skickar en array
+från en funktion till en annan skickas inte en kopia av arrayen
+utan bara själva adressen till den. Att det är så är inte så
+konstigt om man betänker att arrayer i C inte känner till sin egen
+längd (jmf. strängar vars längd vi måste räkna ut genom att räkna
+antal tecken fram till ~'\0'~). C kan alltså inte själv räkna ut
+hur många bytes som skall kopieras när man kopierar en array, så
+det enda alternativ som återstår är att överföra pekaren istället.
+
+**Pekararitmetik** är aritmetik som innefattar adresser. Om ~a~
+har typen ~int *~ pekar ~a~ på ett heltal och ~a + 1~ på "nästa
+heltal". Uttrycket ~a + 1~ skapar en ny adress från adressen i
+~a~. Observera att ~a + 1~ **alltid** kan beräknas, oavsett om det
+finns något "nästa heltal" eller inte -- analogt med att C inte
+vet längden på en array och därmed inte kan förhindra åtkomst till
+element 26 i en array med bara 20 element. Det är helt enkelt
+något som programmeraren måste sköta själv!
+
+Många program som manipulerar arrayer kan skrivas om på ett
+kortare sätt med pekararitmetik. Här är t.ex. funktionen
+~string_copy()~ som kopierar en sträng till en annan (kopierar
+alla tecken från en array av tecken till en annan):
+
+#+BEGIN_SRC c
+void string_copy(char *source, char *dest)
+{
+  while (*dst++ = *source++) ;
+}
+#+END_SRC
+
+En bättre (mer lättläst) version:
+
+#+BEGIN_SRC c
+void string_copy(char *source, char *dest)
+{
+  while (*source)
+  {
+    *dest = *source;
+    ++dest;
+    ++source;
+  }
+}
+#+END_SRC
+
+Eller med en ~for~-loop (där iterationsvillkoret har blivit tydligare):
+#+BEGIN_SRC c
+void string_copy(char *source, char *dest)
+{
+  for (; *source != '\0'; ++dest, ++source)
+  {
+    *dest = *source;
+  }
+}
+#+END_SRC
+
+För att illustrera pekararitmetik ytterligare kan vi skriva om
+~string_length()~ från labb 3 så här:
+
+#+BEGIN_SRC c
+int string_length(char *str)
+{
+  char *end = str;
+  while (*end != '\0') ++end;
+  return end - str;
+}
+#+END_SRC
+
+Förklaring:
+
+1. ~end~ pekar från början på starten av strängen, precis som ~str~
+2. Så länge som tecknet som ~end~ pekar på (dvs. ~*end~) inte är ~'\0'~, flytta ~end~-pekaren till nästa tecken
+3. Längden på strängen är "avståndet" mellan ~end~ och ~str~ när ~end~ pekar på strängens nulltecken
+
+
+** Skriv om ~print~ från labb 3 med pekare istället för array-index
+
+#+BEGIN_SRC c
+void print(char *str)
+{
+   ...
+}
+#+END_SRC
+
+Använd ~str~ som en pekare och använd inte array-indexering
+(alltså inte ~str[12]~).
+
+**Ledning:** Vi kan implementera ~trim()~-funktionen från labb 3 på
+motsvarande sätt:
+
+#+BEGIN_SRC c
+char *trim(char *str)
+{
+  char *start = str;
+  char *end = start + strlen(str)-1;
+
+  while (isspace(*start)) ++start;
+  while (isspace(*end)) --end;
+
+  char *cursor = str;
+  for (; start <= end; ++start, ++cursor)
+    {
+      *cursor = *start;
+    }
+  *cursor = '\0';
+
+  return str;
+}
+#+END_SRC
+
+# Labb 4: Del 2 -- struktar
+
+**Struktar** är grupperingar av värden. En strukt-deklaration skapar
+en ny typ som kan användas i ett C-program.
+
+En strukt deklareras precis som en **union** men använder
+nyckelordet **strukt** istället:
+
+#+BEGIN_SRC c
+struct point
+{
+  int x;
+  int y;
+};
+#+END_SRC
+
+Strukten ~point~ innehåller två **fält** (aka poster, ibland
+medlemmar eller medlemsvariabler), ~x~ och ~y~ -- båda av
+heltalstyp. Ett värde av ~point~-typ, "en point", grupperar alltså
+två värden som hör ihop, i detta fall x- och y-koordinaterna hos
+en punkt. På så vis kan man skicka runt en punkt mellan funktioner
+som ett sammanhållet värde, istället för att skicka en massa "lösa
+variabler". Ponera t.ex. att du skulle vilja skapa en rektangel
+från två punkter -- fyra koordinater. Om du inte grupperade dem
+som punkter måste du komma på något system för att veta vilken
+x-koordinat som hör ihop med vilken y-koordinat.
+
+Den närmsta motsvarigheten till struktar i Haskell är definitionen
+av nya datatyper:
+
+#+BEGIN_SRC haskell
+data Point = Point {x :: Int, y :: Int}
+#+END_SRC
+
+Struktar i C har värdesemantik -- dvs. överförs med kopiering. Så
+här kan man skapa (och skriva ut) en strukt:
+
+#+BEGIN_SRC c
+struct point p;
+p.x = 10;
+p.y = -42;
+
+printf("point(x=%d,y=%d)\n", p.x, p.y);
+#+END_SRC
+
+Klistra in ovanstående i ett tomt program tillsammans med
+~struct~-deklarationen av ~point~ och kör programmet. En smidig
+syntax för att skapa struktar med initialvärden finns -- här är
+samma program skriven med hjälp av denna:
+
+#+BEGIN_SRC c
+struct point p = { .x = 10, .y = -42};
+
+printf("point(x=%d,y=%d)\n", p.x, p.y);
+#+END_SRC
+
+Ofta använder man en ~typedef~ för att definiera ett typalias
+som inte innehåller det extra ~struct~-nyckelordet:
+
+#+BEGIN_SRC c
+typedef struct point point_t;
+#+END_SRC
+
+Nu är ~struct point~ och ~point_t~ synomyma och vi kan skriva
+vårt program så här:
+
+#+BEGIN_SRC c
+point_t p = { .x = 10, .y = -42};
+
+printf("point(x=%d,y=%d)\n", p.x, p.y);
+#+END_SRC
+
+Värt att notera med ~{ .x = 10, .y = -42 }~-syntaxen är att det är
+tillåtet att **utelämna** fält som då får defaultvärden enligt följande:
+
+1. heltalsfält får värdet 0
+2. flyttalsfält får värdet 0
+3. booleska fält fär värdet false
+4. pekarfält får värdet ~NULL~ som betyder att de ännu inte pekar ut något -- vi skall återkomma till ~NULL~ senare
+
+Följande program är alltså legalt (kör det gärna för att verifiera
+att din uträkning av vad det skriver ut stämmer):
+
+#+BEGIN_SRC c
+point_t p1 = { .x = 10 };
+point_t p2 = { .y = -42 };
+point_t p3 = { };
+
+printf("point(x=%d,y=%d)\n", p1.x, p1.y);
+printf("point(x=%d,y=%d)\n", p2.x, p2.y);
+printf("point(x=%d,y=%d)\n", p3.x, p3.y);
+#+END_SRC
+
+Eftersom struktar har värdesemantik tar följande funktion för att
+flytta en punkt i planet in två struktar och skapar en ny, flyttad
+punkt, som returneras:
+
+#+BEGIN_SRC c
+struct point translate(point_t p1, point_t p2)
+{
+  p1.x += p2.x;
+  p1.y += p2.y;
+  return p1;
+}
+#+END_SRC
+
+Om vi vill skriva om ~translate()~ så att den punkt som skickas in
+förändras (en så-kallad sido-effekt) kan vi göra det med hjälp av
+pekare:
+
+#+BEGIN_SRC c
+void translate(point_t *p1, point_t *p2)
+{
+  p1->x += p2->x;
+  p1->y += p2->y;
+}
+#+END_SRC
+
+Observera att ~.~-notationen för att komma åt fält i en strukt
+byts ut mot pilar ~->~ när man gör åtkomst till fält i en **pekare
+till en strukt**.
+
+En anledning till pilnotationen är för att förtydliga att vi inte
+vet så mycket om värdet vars fält vi läser och skriver. I den
+sista implementationen av ~translate()~ är det t.ex. möjligt att
+anropa translate med samma argument två gånger:
+
+#+BEGIN_SRC c
+point_t p = { .x = 10, .y = 7 };
+translate(&p, &p);
+#+END_SRC
+
+(observera ~&p~ eftersom funktionen vill ha adressen till där
+punkten finns, inte en kopia av själva punkten).
+
+Om translate anropas med samma punkt som första och andra argument
+kommer även det andra argumentet att förändras. Det är förmodligen
+lite överraskande (varför skulle den det?) och detta illustrerar
+att pekare är kraftfulla men också knepiga att programmera med.
+
+
+** Punkter, rektanglar och cirklar
+
+Börja med att skapa en ny fil ~geo.c~ med en tom ~main()~-metod etc.
+Kopiera dit struktdefinitionen för punkt, samt typaliaset och
+den sista ~translate()~-funktionen.
+
+1. Skriv en funktion ~print_point()~ som tar en ~point_t *~
+   (pekare alltså!) som argument och skriver ut den på terminalen
+   på formatet ~(x-värde,y-värde)~. Testa den genom att skriva ut
+   en lämplig punkt.
+
+2. Skriv funktionen ~make_point()~ som tar in två heltal som x-
+   och y-koordinater och returnerar en ~point_t~. Testa den med
+   hjälv av ~print_point()~.
+
+3. Definiera en strukt för rektanglar. En ~struct rectangle~
+   representeras som två punkter, dvs. dess övre vänstra hörn och
+   dess nedre högra hörn.
+
+4. Definiera ett typalias ~rectangle_t~ till ~struct rectangle~
+
+5. Skriv funktionen ~print_rect()~ som tar in en pekare till
+   en rektangel och skriver ut den på terminalen på formatet
+   ~rectangle(upper_left=(x,y), lower_right=(x,y))~. Använd
+   ~print_point()~ för att implementera funktionen. Ändra sedan
+   ~print_point()~ till att skriva ut ~point(x,y)~ istället och
+   kompilera om programmet och se att förändringen också får
+   genomslagskraft i definitionen av ~print_rect()~.
+
+6. Skriv funktionen ~make_rect()~ som tar in fyra heltal
+   och utifrån dem skapar en rektangel. Testa den med hjälp av
+   ~print_rect()~.
+
+7. Skriv funktionen ~area_rect()~ som tar in en pekare till en
+   rektangel och räknar ut dess area (dvs. basen * höjden).
+   Testa den på några enkla exempel vars areor du enkelt kan
+   räkna ut själv.
+
+8. Skriv funktionen ~intersects_rect()~ som tar in två pekare till
+   rektanglar och returnerar ~true~ om det finns minst en punkt i
+   planet som finns i båda rektanglarna, annars ~false~. Testa den
+   med både negativa och positiva exempel, alltså både med
+   rektanglar som överlappar och rektanglar som inte gör det.
+
+9. Skriv funktionen ~intersection_rect()~ som tar in två pekare
+   till rektanglar /R1/ och /R2/ och returnerar en ny rektangel
+   (med värdesemantik) som är den minsta rektangel som innefattar
+   alla punkter som som finns i både /R1/ och /R2/. Testa den
+   med de positiva exemplen från föregående fråga.
+
+0. **Frivillig** Definiera en strukt för cirklar med en ~point_t~
+   som mittpunkt och ett heltal som radie.
+
+0. **Frivillig** Definiera ett typalias ~circle_t~ för cirklar.
+
+0. **Frivillig** Definiera en ~print_circle()~ som skriver ut
+   ~circle(center=point(x,y), radius=r)~.
+
+0. **Frivillig** Definiera en ~make_circle()~.
+
+0. **Frivillig** Definiera en ~area_circle()~ som räknar ut arean
+   på en cirkel som ~pi * radien^2~. Du kan använda lämpliga
+   funktioner och konstanter i ~math.h~ för att lösa uppgiften.
+   Returtypen på ~area_circle()~ skall vara ett flyttal.
+
+
+** Databas                                                        :redovisas:
+
+Detta program skall skrivas i filen ~db.c~. **Du kommer att kunna återanvända
+delar av detta program i en inlämningsuppgift senare på kursen!**
+
+En vara har ett namn, en beskrivning, ett pris och en lagerhylla
+som avser platsen där den är lagrad.
+
+- Namn och beskrivning skall vara strängar (~char *~)
+- Pris skall vara i ören och är därför ett heltal (~int~)
+- Lagerhylla skall vara en bokstav åtföljd av en eller flera
+  siffror t.ex. =A25= men inte =A 25= eller =25A= (en möjlig datatyp
+  för detta är t.ex. ~char *~ -- det tillåter lagerhyllor som inte
+  följer formatet, så kontrollen att endast valida lagerhyllor
+  finns i varor måste ske någon annanstans!)
+
+
+*** Deluppgift 1: deklarationer
+
+Deklarera en strukt ~item~ (för en vara) enligt ovan och ett typalias ~item_t~.
+
+*** Deluppgift 2: skriva ut varor
+
+Definiera en funktion ~print_item~ som tar emot en pekare till en vara
+och skriver ut en vara på följande format:
+
+#+BEGIN_EXAMPLE
+Name:  XXXXX
+Desc:  XXXXX
+Price: XX.XX SEK
+Shelf: XXX   (t.ex. A25)
+#+END_EXAMPLE
+
+**Tips:** decimalkommat i ~Price~ går lätt att göra med
+heltalsdivision, modulo och ~printf~ då vi vet att priset alltid är
+i ören. T.ex. ~price / 100~ blir alltid jämna kronor och ~.~:en
+kan vara en del av det som skrivs ut.
+
+
+*** Deluppgift 3: skapa en vara
+
+Skriv en funktion ~make_item()~ som tar som indata namn,
+beskrivning, pris och lagerhylla. Funktionen ~make_item~ kan
+förutsätta att lagerhyllans format är korrekt.
+
+
+*** Deluppgift 4: läs in en vara från terminalen
+
+Skriv en funktion ~input_item()~ som använder hjälpfunktionerna
+~ask_question_string()~ och ~ask_question_int()~ för att läsa in namn,
+beskrivning och pris på en vara. Definiera ytterligare en
+hjälpfunktion ~ask_question_shelf()~ för att läsa in en lagerhylla
+och verfiera att formatet är korrekt enligt specifikationen ovan.
+
+Du kommer att behöva en ny kontrollfunktion för lagerhyllor som är
+ganska lik ~is_number()~ (men första teckenet får vara en
+bokstav). Som konverteringsfunktion fungerar ~strdup()~ eftersom
+representationen för lagerhyllan är en sträng.
+
+
+*** Deluppgift 5: kaosmagi
+
+Skriv en funktion ~magick()~ som genererar ett slumpnamn för
+varor med hjälp av kaosmagi. För denna uppgift definieras kaosmagi
+som tre slumpmässiga val från tre sträng-arrayer av samma längd som
+skickas in till ~magick()~ och kombineras till ett namn.
+
+Exempel:
+
+#+BEGIN_SRC c
+char *array1[] = { "Laser",        "Polka",    "Extra" };
+char *array2[] = { "förnicklad",   "smakande", "ordinär" };
+char *array3[] = { "skruvdragare", "kola",     "uppgift" };
+
+char *str = magick(array1, array2, array3, 3); // 3 = längden på arrayerna
+
+puts(str); // Polka-ordinär skruvdragare
+#+END_SRC
+
+Algoritmen fungerar som följer:
+
+1. Skapa en ~char buf[255]~ att hålla det nya ordet i
+2. Välj ett slumpmässigt ord från array1 och skriv in det i ~buf~
+3. Skriv in ett ~'-'~ sist i ~buf~
+4. Välj ett slumpmässigt ord från array2 och skriv in det sist i ~buf~
+5. Skriv in ett ~' '~ sist i ~buf~
+6. Välj ett slumpmässigt ord från array3 och skriv in det sist i ~buf~
+7. Skriv in ett ~'\0'~ sist i ~buf~
+8. returnera ~strdup(buf);~
+
+Vi kommer att återkomma till den "magiska" ~strdup()~-funktionen
+senare i kursen: enkelt förklarat tillhör ~buf~-bufferten
+~magick()~- funktionen och för att få skicka tillbaka strängen
+till den anropande funktionen måste vi duplicera den.
+
+Du kan använda följande ~main()~-funktion som läser in ett tal
+från kommandoraden, anropar ~input_item()~ lika många gånger, och
+sedan använder ~magick()~ för att skapa en databas med 16 varor
+som sedan skrivs ut på skärmen. Du måste lägga till arrayerna
+med ord själv, och deras längd -- sök efter ~TODO:~ för att hitta
+de platser som du måste ändra nedan.
+
+#+BEGIN_SRC c
+int main(int argc, char *argv[])
+{
+  char *array1[] = { ... }; // TODO: Lägg till!
+  char *array2[] = { ... }; // TODO: Lägg till!
+  char *array3[] = { ... }; // TODO: Lägg till!
+
+  if (argc < 2)
+  {
+    printf("Usage: %s number\n", argv[0]);
+  }
+  else
+  {
+    item_t db[16]; // Array med plats för 16 varor
+    int db_siz = 0; // Antalet varor i arrayen just nu
+
+    int items = atoi(argv[1]); // Antalet varor som skall skapas
+
+    if (items > 0 && items <= 16)
+    {
+      for (int i = 0; i < items; ++i)
+      {
+        // Läs in en vara, lägg till den i arrayen, öka storleksräknaren
+        item_t item = input_item();
+        db[db_siz] = item;
+        ++db_siz;
+      }
+    }
+    else
+    {
+      puts("Sorry, must have [1-16] items in database.");
+      return 1; // Avslutar programmet!
+    }
+
+    for (int i = db_siz; i < 16; ++i)
+      {
+        char *name = magick(array1, array2, array3, ...); // TODO: Lägg till storlek
+        char *desc = magick(array1, array2, array3, ...); // TODO: Lägg till storlek
+        int price = random() % 200000;
+        char shelf[] = { random() % ('Z'-'A') + 'A',
+                         random() % 10 + '0',
+                         random() % 10 + '0',
+                         '\0' };
+        item_t item = make_item(name, desc, price, shelf);
+
+        db[db_siz] = item;
+        ++db_siz;
+      }
+
+     // Skriv ut innehållet
+     for (int i = 0; i < db_siz; ++i)
+     {
+       print_item(&db[i]);
+     }
+
+  }
+  return 0;
+}
+#+END_SRC
+
+*** Lista databasens innehåll
+
+Skriv en funktion ~void list_db(item_t *items, int no_items)~ som
+skriver ut namnen på alla varor i databasen, samt deras index i
+arrayen + 1:
+
+#+BEGIN_EXAMPLE
+1. XXX
+2. YYY
+...
+16. ZZZ
+#+END_EXAMPLE
+
+Ersätt utskriften av innehållet i databasen med ett anrop till
+~list_db()~ istället. Använd ~db_siz~ som storleken på databasen
+(~no_items~ i ~list_db()~).
+
+Observera att databasen är en variabel som är deklarerad i ~main()~.
+
+
+*** Editera databasen
+
+Skriv en funktion ~edit_db()~ som:
+
+1. Frågar efter vilken vara som skall editeras (ett heltal som
+   motsvarar heltalen i listningen ovan) med hjälp av ~ask_question_int()~
+2. Skriver ut varan på skärmen med hjälp av ~print_item()~
+3. Låter användaren ersätta varan med en annan som läses in med ~input_item()~
+
+Fundera över:
+
+1. Vad behöver ~edit_db()~ ta som inparametrar?
+2. Hur sparar vi förändringarna som användaren matar in i databasen?
+3. Hur skall programmet bete sig om användaren matar in en siffra
+   för vilken det inte finns en vara? (t.ex. -27 eller 42 när
+   databasen bara har 16 varor)
+
+*** Frivilliga utökningar
+
+1. Låt användaren välja vilken del av varan som skall ändras, t.ex. bara priset
+2. Bygg in stöd för att lägga in helt nya varor om det finns plats
+   (dvs. ~db_siz~ är mindre än databasens faktiska storlek)
+
+
+*  Labb 5: mer I/O och utökning av ~db.c~
+
+#+begin_important
+I slutet av den här labben ska du ladda upp dina resultat på
+GitHub. *Glöm inte att göra det!*
+#+end_important
+
+Hittills har vi talat om att läsa och skriva till och från
+terminalen. Lyckligtvis är en grundläggande abstraktion kring I/O
+i C baserad på filer -- oavsett om vi skall läsa från
+tangentbordet eller från en plats på hårddisken.
+
+Följande program läser tecken för tecken från s.k. ~stdin~ som är
+en fil som normalt är knuten till terminalen i våra C-program.
+~stdin~ motsvarar helt enkelt inläsning från tangentbordet.
+
+Skrivning sker analogt till ~stdout~ och allt som skrivs dit visas
+i terminalen i våra program.
+
+#+BEGIN_SRC c
+/// passthrough.c
+#include <stdio.h>
+
+int main(void)
+{
+  int c = getchar();
+  int safety = 1024;
+
+  while (c != EOF && --safety > 0)
+  {
+    putchar(c);
+    c = getchar();
+  }
+
+  return 0;
+}
+#+END_SRC
+
+Detta program läser max 1024 gånger från ~stdin~ och skriver
+det som lästes på ~stdout~. Så här kan en körning se ut:
+
+#+BEGIN_EXAMPLE
+$ gcc passthrough.c
+$ ./a.out
+hej               <-- input
+hej               <-- skrivs ut
+hopp i galopp     <-- input
+hopp i galopp     <-- skrivs ut
+^C                <-- ctrl+c för att avbryta
+$ _
+#+END_EXAMPLE
+
+Med hjälp av ~|~ kan du tala om att output från ett program skall
+skickas till ett annat (på Linux och OS X):
+
+#+BEGIN_EXAMPLE
+$ gcc passthrough.c
+$ head -n 3 passthrough.c   # skriver ut första 3 raderna i passthrough.c
+/// passthrough.c
+#include <stdio.h>
+
+$ head -n 3 passthrough.c | wc -l   # räkna antalet rader i input
+3
+$ head -n 3 passthrough.c | ./a.out
+/// passthrough.c
+#include <stdio.h>
+#+END_EXAMPLE
+
+Observera att när vi skickade output från ~head~ till ~a.out~ (vår
+kompilerade ~passthrough.c~) så skrevs den ut igen, precis som om vi
+hade skrivit in den via terminalen.
+
+Programmet vet alltså inte om om det läser från en fil eller från ett
+annat program.
+
+Här är några hjälpfunktioner för att explicit läsa från en fil
+inifrån C (istället för att skicka in den utifrån som ovan):
+
+- Funktionen ~fopen()~ tar som input två strängar -- den första är
+  filnamnet och den andra beskriver hur filen skall öppnas. För
+  läsning: ~"r"~, för skrivning ~"w"~, och ~"a"~ för append.
+  ~fopen()~ returnerar en ~FILE *~ -- dvs. en pekare till en fil
+  som kan användas för att läsa från/skriva till beroende på hur
+  filen öppnades (~"r"~, etc.).
+- ~fclose()~ stänger en öppen fil.
+- ~fprintf()~ fungerar som ~printf()~ men är inte låst till ~stdout~
+  -- ~printf(...)~  är ekvivalent med ~fprintf(stdout, ...)~. Alltså,
+  ~fprintf(fil, ...)~ skriver ut på filen ~fil~.
+- ~fgetc(fil)~ läser ett tecken från filen ~fil~.
+- ~fscanf(fil, ...)~ läser som ~scanf()~ fast från filen ~fil~.
+- etc.
+
+
+** Uppvärmning: Cat med radnumrering
+
+Nedan följer en version av programmet ~cat~ som läser en fil och
+skriver ut filen på terminalen (~stdout~). Programmet är väldigt
+likt ~passthrough.c~ ovan -- med skillnaden att vi vill öppna en
+namngiven fil, inte ~stdin~:
+
+#+BEGIN_SRC c
+/// cat.c
+#include <stdio.h>
+
+void cat(char *filename)
+{
+  FILE *f = fopen(filename, "r");
+  int c = fgetc(f);
+
+  while (c != EOF)
+  {
+    fputc(c, stdout);
+    c = fgetc(f);
+  }
+
+  fclose(f);
+}
+
+int main(int argc, char *argv[])
+{
+  if (argc < 2)
+  {
+    fprintf(stdout, "Usage: %s fil1 ...\n", argv[0]);
+  }
+  else
+  {
+    for (int i = 1; i < argc; ++i)
+    {
+      cat(argv[i]);
+    }
+  }
+
+  return 0;
+}
+#+END_SRC
+
+(observera att detta program inte fungerar så bra om vi anger
+filer som inte finns -- men det är inget du behöver fixa.)
+
+Titta på programmet ovan: i funktionen ~cat()~ läser vi infilen
+tecken för tecken. Nu vill vi skriva ut filen så att varje rad
+börjar med ett radnummer. Här är ett exempel från texten i labben:
+
+    1   Titta på programmet ovan: ...
+    2   tecken för tecken. Nu vill ...
+    3   börjar med ett radnummer ...
+
+#+begin_tip
+- Ha en räknare för antalet rader i ~cat()~ som börjar på 1
+- Skriv ut 1 innan vi går in i loopen i ~cat()~
+- Tecknet ~'\n'~ är radslutsteckenet -- efter varje sådant tecken kommer en ny rad
+  * Inkrementera räknaren
+  * Skriv ut räknaren
+#+end_tip
+
+
+**Uppvärmning: Frivilliga utökningar av cat**
+
+1. Utöka programmet så att när flera filer skrivs ut (stöds redan) börjar radräknaren /inte/ om från 0 vid varje ny fil
+2. Innan varje fil skrivs ut, skriv ut ~==== filnamn.ext ====~ i terminalen
+3. Skriv om ~cat.c~ till ~cp.c~ och låt programmet kopiera från en fil till en annan, tecken för tecken, analogt med programmet ~cp~
+
+
+** Slutprojektet på labbarna: Utökning av databasen
+
+Nu skall vi avsluta vår implementation av databasprogrammet. I en
+senare inlämningsuppgift skall vi utöka databasen med stöd för att
+spara och ladda databasen på fil med hjälp av funktionerna ovan
+(och andra), men det är lite för tidigt ännu. Istället skall vi
+utöka programmet med en interaktiv meny, och stöd för insättning
+och borttagning.
+
+
+*** Menyfunktionalitet 1/2
+
+Vi skall utöka programmet med en meny med olika val:
+
+#+BEGIN_EXAMPLE
+[L]ägga till en vara
+[T]a bort en vara
+[R]edigera en vara
+Ån[g]ra senaste ändringen
+Lista [h]ela varukatalogen
+[A]vsluta
+#+END_EXAMPLE
+
+Skriv en funktion ~print_menu()~ som skriver ut ovanstående text
+på ~stdout~.
+
+Guldstjärna för att göra utskriften med endast en enda ~puts()~
+eller ~printf()~ utan att göra utskriftssträngen oläslig.
+
+
+*** Menyfunktionalitet 2/2
+
+Skriv en funktion ~ask_question_menu()~ som skriver ut menyn
+med ~print_menu()~ och sedan låter användaren mata in sitt val.
+
+Funktionen skall kontrollera att resultatet som användaren matar
+in är giltigt (följande tecken ~LlTtRrGgHhAa~) och fråga om tills
+ett giltigt val gjorts. Funktionen skall returnera valet som ett
+enda tecken (en ~char~) som skall vara en stor bokstav. Funktionen
+~toupper()~ i ~ctype.h~ kan användas för att konvertera en gemen
+till en versal.
+
+#+begin_tip
+Om du vill kan du använda din generiska ~ask_question()~-funktion.
+Du måste skriva en ny kontrollfunktion from kontrollerar att input
+är ett tecken i strängen ~"LlTtRrGgHhAa"~, och antingen utöka
+~answer_t~ eller låta tecknet vara ett heltal. Om du gör på detta
+vis behövs inte ~print_menu()~-funktionen längre, eller så kan du
+använda denna funktion för att returnera strängen som skall
+skrivas ut. (OBS! Inget ~strdup()~ i denna funktion i så fall!)
+#+end_tip
+
+
+*** Tillägg i databasen
+
+Skriv en funktion ~add_item_to_db()~ som lägger till en vara i
+databasen med ~input_item()~ från föregående labb. Du kan
+förutsätta att det finns plats i databasen.
+
+- Vad skall funktionen ta som input?
+- Vad skall funktionen returnera?
+
+
+*** Borttag ur databasen
+
+Skriv en funktion ~remove_item_from_db()~ som tar bort en vara
+från databasen. Använd ~list_db()~ för att skriva ut databasen och
+samma metod som vid ~edit_db()~ för att välja vilken vara som
+skall tas bort.
+
+När man tar bort något ur en array måste man "skriva över" det man
+vill ta bort med elementen till höger. Dvs. ponera arrayen /A/ med
+elementen ~[1, 2, 3, 4]~. Variabeln /as/ håller reda på antalet
+element i /A/ och är just nu 4.
+
+Om jag vill ta bort 1:an kan jag göra det genom att kopiera 2:an
+till 1:ans plats, 3:an till 2:ans plats och så vidare. Det betyder
+att det kommer att finnas två 4:or sist i arrayen --
+~[2, 3, 4, 4]~ -- men om jag också minskar /as/ till 3 och
+respekterar detta kommer jag inte att läsa den andra fyran. Vid
+insättning skrivs den över och /as/ ökar till 4. Motsvarigheten
+till /A/ i vårt program är förstås ~db~ och /as/ ~db_siz~.
+
+Kopieringen sker lämpligen från höger till vänster. Notera att om
+jag i ovanstående exempel ville ta bort 4:an räcker det med att
+bara miska /as/ med 1. Om jag ville ta bort 3:an räcker det med
+att kopiera över 3:an med 4:an, lämna 1 och 2, och minska /as/ med 1.
+
+
+*** Integration                                                   :redovisas:
+
+Skriv en funktion ~event_loop()~ som anropar ~ask_question_menu()~
+och baserat på svaret antingen ~add_item_to_db()~,
+~remove_item_from_db()~, ~edit_db()~, ~list_db()~ för
+motsvarande menyval. För ångra-valet skall ett meddelande ~Not yet
+implemented!~ skrivas ut. Och vid avsluta skall ~event_loop()~
+funktionen terminera och programmet avslutas.
+
+*** Utökad vara
+
+Utöka definitionen av en vara till att också ha ett antal
+(~amount~) som avser hur många av en vara som lagrats på
+lagerhyllan. Hur går du tillväga för att utöka programmet? Kan C:s
+kompilator hjälpa dig på något sätt?
+
+
+*** Frivilligt: stöd för ångra
+
+Implementera stöd för att ångra. Detta omfattar:
+
+1. Vid borttagning, spara det som togs bort
+2. Vid redigering, spara originalet
+3. Vid insättning, spara vilken vara som lades till
+4. Spara alltid vilken som var den senaste handlingen som kan
+   ångras -- du kan t.ex. använda ett heltal för att hålla koll på
+   vad det var för typ av handling (den mest eleganta lösningen
+   involverar funktionspekare)
+5. När användaren väljer ångra, inspektera vilken handling som var
+   den senaste, och ångra den
+6. Om du vill kan du implementera stöd för att ångra själva ångrandet
+
+* Ladda upp alla dina labbar på GitHub
+
+Du borde ha fått ett GitHub-konto från oss på en adress som liknar
+https://github.com/IOOPM-UU/fornamn.efternamn.1234, där
+=fornamn.efternamn.1234= är ditt student-ID (om du inte har fått
+det, följ [[file:~/t/ioopm/2018/site/github.org][dessa instruktioner]]. Här ska du ladda upp alla uppgifter
+som du har redovisat under de här veckorna. Det finns många sätt
+att ladda upp filer till GitHub, och här går vi igenom ett sätt
+att göra det via terminalen.
+
+1. Klona ditt repo (om du inte redan har gjort det):
+   =git clone https://github.com/IOOPM-UU/fornamn.efternamn.1234=
+   Detta skapar en mapp som heter ~fornamn.efternamn.1234~ som du
+   kan synka med online-versionen på GitHub. Du kan döpa mappen
+   till vad som helst och lägga den var du vill.
+2. Kopiera eller flytta över filerna som behövs för att kompilera
+   och köra dina labbar i respektive mapp. Till exempel bör
+   ~labbar/lab2~ innehålla ~guess.c~, ~utils.c~ samt ~utils.h~. Om
+   du har sparat dina gamla labbar i en mapp som heter ~ioopm~ som
+   ligger i samma mapp som ditt klonade repo kan du köra:
+#+begin_example
+$ cp ioopm/lab2/guess.c fornamn.efternamn.1234/labar/lab2/
+$ cp ioopm/lab2/utils.c fornamn.efternamn.1234/labar/lab2/
+$ cp ioopm/lab2/utils.h fornamn.efternamn.1234/labar/lab2/
+#+end_example
+3. [@3] För varje labb, gå till respektive mapp och markera att du vill
+   synka dessa med kommandot ~git add~. Bunta sedan ihop
+   ändringarna till en "commit" med commandot ~git commit~. Till
+   exempel (flaggan ~-m~ används för att ge en beskrivande text till en
+   commit):
+#+begin_example
+$ cd fornamn.efternamn.1234/labbar/lab2
+$ ls
+README.md    utils.c
+guess.c      utils.h
+$ git add guess.c
+$ git add utils.c
+$ git add utils.h
+$ git commit -m "Lade till labb 2"
+#+end_example
+4. [@4] Slutligen, synka online-versionen med din egen version genom
+   att "knuffa upp" dina ändringar (alltså dina commits) med
+   kommandot ~git push~. Nu ska du kunna se ändringarna på GitHub!
+
+Om du vill lära dig mer om Git och GitHub finns det många guider
+online. Du hittar några av dem i vårt [[file:links.org][länkbibliotek]]. Det finns
+också en [[file:~/t/ioopm/2018/site/github.org][kortare lathund]] med de vanligaste Git-kommandona.
+En gammal students anteckningar ligger till grund för ytterligare
+en [[https://github.com/IOOPM-UU/ioopm17/blob/master/extramaterial/lathundar/github][GitHub-guide]].
+
+#+BEGIN_CENTER
+*Nu är du klar med C-labbarna.* Bra jobbat! Det är dags att pusta
+ut, kanske föra några anteckningar om saker som du tänkt på,
+frågor som du vill ställa, misstag som du verkar upprepa, etc. När
+du har tagit en paus är det dags för [[file:assignment1.org][inlämningsuppgift 1]]!
+#+END_CENTER

@@ -1,0 +1,834 @@
+#+title: Java Bootstrapping (1 week)
+
+* Lab 6: Kom igång med Java                                       :redovisas:
+#+include: "../setup.org"
+
+Målsättningen med denna uppgift är att du skall komma igång med
+Java och bekanta dig med några grundläggande Java-idiom. Du kan
+**inte** redovisa mål med den här uppgiften, och inte heller
+använda den för att redovisa
+[[http://auportal.herokuapp.com/achievements/103][Z103]] eller
+[[http://auportal.herokuapp.com/achievements/104][Z104]].
+
+** Tärningar
+
+I filen [[https://github.com/IOOPM-UU/ioopm17/tree/master/labbar/Die.java][Die.java]] ligger en [[https://docs.oracle.com/javase/tutorial/java/concepts/class.html][klass]] som representerar en tärning.
+Kompilera programmet med kommandot =javac Die.java=. [fn::Om du
+vill kan du pröva att skriva ~javac -help~ för att se vilka växlar
+du kan ge till Java-kompilatorn.] Detta skapar en fil i den
+aktuella katalogen; använd =ls= för att ta reda på dess namn.
+Prova sedan att köra programmet med kommandot =java
+Die=[fn::Observera /javac/ för att kompilera men /java/ för att
+köra programmet.].
+
+Här kommer en kort beskrivning av koden i filen. Följande kodsnutt
+importerar /klassen/ =Scanner= som låter oss läsa in inmatningar
+från tangentbordet. I Java organiserar vi kod i /klasser/ som är
+/förtingligade moduler/[fn::Förtingligad -- alltså något går från
+att vara ett koncept/en idé till något konkret objekt/ting/sak.
+När ett Java-program körs finns klassen åtkomlig som ett /objekt/,
+något vi kan skaffa oss en pekare till.].
+
+#+BEGIN_SRC java -n
+import java.util.Scanner;
+#+END_SRC
+
+Java organiserar klasser i [[https://docs.oracle.com/javase/tutorial/java/concepts/package.html][paket]]. För att kunna en klass som
+inte är en del av det aktuella paketet måste vi importera den. I
+detta fall ligger ~Scanner~ i paketet =java.util=. Jämför med C
+där vi skrev ~#include <stdio.h>~ för att komma åt funktionerna i
+biblioteket för I/O.
+
+#+BEGIN_SRC java +n
+public class Die {
+#+END_SRC
+
+Här börjar själva klassen ~Die~. Nyckelordet ~public~ betyder här
+att klassen är synlig för alla. Du kan jämföra detta med att deklarera
+en typ i en headerfil.
+
+#+BEGIN_SRC java +n
+  private int numberOfSides;
+  private int value;
+#+END_SRC
+
+En klass används i regel som en ritning för att kunna skapa
+[[https://docs.oracle.com/javase/tutorial/java/concepts/object.html][objekt]]. Jämför med hur vi i C har deklarerat en ~struct~ och sedan
+gjort ~malloc~ eller ~calloc~ för att skapa en instans av
+strukten. I objektorienterad programmering används begreppen
+instans och objekt som synonymer. I Java räcker det med att skriva
+~new Klass()~ för att skapa en instans av klassen ~Klass~, alltså
+ett ~Klass~-objekt. (Notera att vi i Java inte behöver bry oss om
+hur stort ett objekt är i bytes -- det kan till och med vara svårt
+att räkna ut på grund av de abstraktioner som Java
+tillhandahåller)
+
+Raderna ovar deklarerar *attribut* (eng. attributes) eller *fält*
+(eng. fields). Det är den interna data som representerar de objekt
+som man kan skapa med hjälp av klassen. Jämför med motsvarande
+strukt i C:
+
+#+BEGIN_SRC c
+struct die
+{
+  int number_of_sides;
+  int value;
+};
+#+END_SRC
+
+Observera bytet från ~snake_case~ (som jag använt konsekvent i C)
+till ~camelCase~ (som är Java-standarden).
+
+Att sätta nyckelordet ~private~ på ett attribut betyder att den
+som har en pekare till en tärning inte kan läsa attributen. Den
+som håller i en tärning kan alltså inte se direkt hur många sidor
+den har eller vilket värde som är uppåt. (Däremot går det att fråga
+tärningen om dess värde, se nedan om metoder). Jämför med C om
+~struct die~ inte var definierad i ~.h~-filen.
+
+Nu följer tärningens två /konstruktorer/[fn::Alltså motsvarande
+~die_new()~ som vi skulle ha skrivit i ett C-program. Läs gärna
+mer om konstruktorer på [[https://en.wikipedia.org/wiki/Constructor_(object-oriented_programming)][t.ex. Wikipedia]].]. Konstruktorer är
+metoder som (om de finns) /måste/ anropas när ett nytt objekt
+skapas. Notera att en konstruktor inte någon returtyp och att
+metoden måste heta samma sak som klassen. Det är så man känner
+igen en konstruktor. En konstruktor kan bara anropas i samband med
+att ett objekt skapas.
+
+Att vi kan ha två konstruktorer beror på att Java stöder så-kallad
+/överlagring/ -- dvs. att samma namn kan användas på flera
+metoder, så länge dessa i övrigt har olika signatur (dvs. tar in
+olika argument)[fn::C stöder också överlagring för t.ex.
+~+~-operatorn. Vi skriver i C ~a + b~ oavsett om ~a~ och ~b~ är
+heltal eller flyttal. Åsikterna går isär om huruvida överlagring
+är bra eller dåligt.].
+
+#+BEGIN_SRC java +n
+  public Die() {
+      this.numberOfSides = 6;
+  }
+
+  public Die(int numberOfSides) {
+      this.numberOfSides = numberOfSides;
+  }
+#+END_SRC
+
+Vilken av de två överlagrade konstruktorerna som kommer att köras
+i samband med skapandet av en tärning styrs av vilka argument vi
+skickar in. Anropet ~new Die()~ kommer att köra den första
+konstruktorn (som inte tar några argument och sätter antalet sidor
+till 6), medan ~new Die(42)~ kommer att köra den andra.
+
+Det fantastiska nyckelordet ~this~[fn::I vissa programspråk heter
+~this~ t.ex. ~self~ eller ~current~.] betyder "i den aktuella
+tärningen" (för det aktuella /objektet/). Alltså,
+~this.numberOfSides = numberOfSides~ betyder sätt den aktuella
+tärningens /fält/ ~numberOfSides~ till värdet på den /lokala
+variabeln/ ~numberOfSides~.
+
+Nu går vi vidare till att titta på tärningsklassens två vanliga
+metoder[fn::I bemärkelsen metoder som inte är konstruktorer.].
+Metoden ~roll()~ slår tärningen och returnerar det resulterande
+värdet, medan ~get~ läser av värdet utan att slå tärningen. Notera
+att båda metoderna är ~public~ och alltså kan anropas av vem som
+helst som har en pekare[fn::I Java pratar vi om referenser
+istället för pekare, men vi återkommer till det. För nu kan du
+tänka att en pekare och en referens är samma sak.] till tärningen.
+
+#+BEGIN_SRC java +n
+  public int roll() {
+    this.value = (int) (Math.random() * numberOfSides) + 1;
+    return this.get();
+  }
+#+END_SRC
+
+Metoden ovan använder funktionen ~random()~ i ~Math~-biblioteket
+för att ta fram ett slumptal. Anropet ~Math.random()~ betyder att
+vi ber det objekt som är det förtingligade ~Math~-biblioteket att
+utföra ~random()~-operationen. Vi tar resultatet gånger antalet
+sidor på tärningen, lägger till 1 (eftersom 0 inte är valitt) och
+konverterar resultatet till ett heltal.
+
+Detta heltar sparas sedan i ~value~-fältet i den aktuella
+tärningen (tack vare ~this~). Sist ber tärningen sig själv om att
+få sitt aktuella värde via metoden ~get()~.
+
+#+BEGIN_SRC java +n
+  public int get() {
+      return this.value;
+  }
+#+END_SRC
+
+Notera hur attributen beskriver vad ett objekt /är/[fn::Dess
+möjliga tillstånd -- /state/.], medan metoderna beskriver vad ett
+objekt /kan göra/[fn::Dess beteende -- /behaviour/.] (En tärning
+är något som har ett antal sidor och ett värde. Man kan slå en
+tärning och läsa av dess värde). Konstruktorerna beskriver hur ett
+nytt objekt skapas. Destruktorer finns inte i Java på samma sätt
+som i C (eller C++), och behövs inte i samma utsträckning eftersom
+vi har automatisk minneshantering. Det sista betyder enkelt
+uttryckt att vi aldrig behöver anropa ~free()~ i ett Java-program
+då exekveringsmiljön detekterar objekt som inte längre pekas ut av
+programmet och städar bort dem. Sådana objekt kallar vi för
+skräp[fn::Eng. garbage.]. Om vi vill ta bort ett objekt i ett
+Java-program måste vi alltså se till att objektet inte längre
+pekas ut av något annat objekt, med undantag för andra
+skräpobjekt.
+
+Till sist, ~main()~-metoden, ett koncept vi känner igen från C:
+
+#+BEGIN_SRC java +n
+  public static void main(String [] args) {
+      Scanner sc = new Scanner(System.in);
+      System.out.print("Number of sides: ");
+      int sides = sc.nextInt()
+      Die d = new Die(sides);
+      System.out.println("Alea iacta est: " + d.roll());
+  }
+}
+#+END_SRC
+
+Det här är klassens ~main()~-metod och den som körs när man
+skriver ~java Die~. Alla ~main()~-metoder måste ha precis den här
+signaturen. Nyckelordet ~static~ betyder att metoden hör till
+*klassen* och inte till *varje enskilt objekt*[fn::Om vi t.ex.
+gjorde ~numberOfSides~ till ~static~ skulle det betyda att alla
+tärningar hade samma antal sidor.].
+
+Varje tärning har ett eget antal sidor och ett värde, men det
+finns bara en enda ~main()~-metod oavsett hur många tärningar som
+skapas.
+
+För att köra programmet skriver vi =java Die= vilket betyder:
+starta Javas exekveringsmiljö, ladda in klassen ~Die~, skapa det
+/klassobjekt/ som klassen representeras som under körning, och
+anropa dess ~main()~-metod. Observera skillnaden mellan
+/klassobjektet/ ~Die~ och en instans av klassen ~Die~. Det
+förstnämnda avser alltså ett objekt som vet hur tärningar kan
+konstrueras (med hjälp av ~new Die()~ kan du skapar hur många
+tärningar du vill). Det sistnämnda avser en specifik tärning
+skapad med hjälp av ~new Die()~.
+
+** Fortsätt själv
+
+*** Att slå en tärning 10 gånger
+
+Skriv en annan klass med namnet ~MyDieTest~ (i en fil som heter
+~MyDieTest.java~ i samma katalog). Klassen skall (endast)
+innehålla en ~main~-metod som frågar användaren om önskat antal
+sidor och sedan skapar ett sådant ~Die~-objekt, slår det 10 gånger
+och beräknar och skriver ut summan i terminalen. Se ~Die.java~ för
+exempel på hur man skriver en ~main~-metod och läser data från
+terminalen.
+
+*** För dig som är oinitierad i Java
+
+Följande kod är nonsenskod som inte producerar ett vettigt
+resultat (försök att fundera ut varför innan du skriver ett
+program som utför uttrycken nedan och ser resultatet):
+
+#+BEGIN_SRC java -n
+Die die = new Die();
+System.out.println(die.get());
+#+END_SRC
+
+Vad är problemet/felet? En tärning kan visa 0!
+
+Ändra i ~Die.java~ så att ovanstående kod blir
+meningsfull[fn::Dvs. "vettig" -- ha en rimlig innebörd].
+
+*** Konstruktorer gör det möjligt att skapa invarianter
+
+Följande kod är ytterligare ett exempel på kod som inte är vettig:
+
+#+BEGIN_SRC java -n
+Die die = new Die(-12);
+#+END_SRC
+
+Ändra i ~Die.java~ så att det inte går att skapa tärningsobjekt
+med ett orimligt antal sidor! Fundera på om programmet borde
+krascha eller om det tyst ska sätta antalet sidor till något
+vettigt. Om du vill använda ~assert~ i Java måste du köra
+programmet med ~java -ea Die~ eller ~java -enableassertions Die~.
+
+Ett snyggt sätt att få koden att krascha är:
+#+BEGIN_SRC java -n
+throw new IllegalArgumentException("Illegal number of sides for die");
+#+END_SRC
+
+*** Hit med lite vettig strängkonkatenering, det är på tiden
+
+Pröva vad följande kod ger för utskrift:
+
+ #+BEGIN_SRC java -n
+Die d = new Die();
+System.out.println(d);
+ #+END_SRC
+
+Lägg till följande metod i ~Die~-klassen:
+
+ #+BEGIN_SRC java -n
+public String toString() {
+    return "Die(" + value + ")";
+}
+ #+END_SRC
+
+och se vad det då blir för utskrift. Fundera över varför! Om du
+använde ~IllegalArgumentException~ ovan, använd
+strängkonkatenering[fn::Alltså, det faktum att /a/ + /b/ när /a/
+och /b/ är strängar resulterar i den nya strängen /ab/.] för att
+ändra utskriften till "-12 is an illegal number of sides for a
+die!"
+
+*** Identitet och ekvivalens
+
+Lägg till en metod i klassen ~Die~ med signaturen ~boolean
+equals(Die otherDie)~ som returnerar ~true~ om tärningarna "är
+likadana" (vad betyder det?), annars ~false~. Tänk också på
+skillnaden mellan "samma tärning" och "likadana tärningar".
+
+*** Aggregat -- objekt som består av objekt
+
+Nu är det dags att skriva en egen klass -- ~PairOfDice~ -- som
+representerar ett tärningspar. I Java måste en publik klass ligga
+i en fil som heter samma sak som klassen, så börja med att skapa
+filen =PairOfDice.java= och öppna den i Emacs.
+
+Klassen ~PairOfDice~ skall använda sig av ("aggregera" med
+OO-terminologi) klassen ~Die~, d.v.s. den skall ha två attribut av
+typen ~Die~ och metoderna i ~PairOfDice~ skall använda metoder i
+klassen ~Die~. Operationer som skall finnas:
+
+- Skapa ett tärningspar med givet antal sidor (samma för båda tärningar),
+- slå båda tärningarna samtidigt och returnera resultatet,
+- avläsa varje enskild tärning, samt
+- en ~toString()~-metod.
+
+*** Inget program existerar i ett vakum
+
+Gå till [[https://docs.oracle.com/javase/8/docs/api/][online-dokumentationen]] för Javas klass-API (JDK) och
+skumma dokumentationen för ~String~-klassen. Läs om
+~compareTo~-metoden och skriv sedan ett nytt program som läser in
+två namn i strängform (med hjälp av ~Scanner~-klassen) och skriver
+ut dem i bokstavsordning.
+
+1. Skapa en klass ~NameOrder~ i filen =NameOrder.java=. Klassen
+   skall vara publik. Det är okej att placera all logik i dess
+   ~main()~-metod.
+2. Deklarera ~main()~-metoden som ~public static void main(String[] args)~.
+3. I ~main()~-metoden, deklarera två lokala variabler ~String name1~
+   och ~String name2~. Tilldela variablerna från inläsning med
+   ~Scanner~ på samma sätt som gjorts ovan.
+4. Använd ~compareTo()~ i en ~if~-sats för att välja utskriftsordning.
+
+Frivillig utökning: gör sorteringen skiftlägesokänslig.
+
+** Frivilliga uppgifter
+
+Rekommenderas[fn::Speciellt till dig som har programmerat i Java
+tidigare!]
+
+*** Uppvärmning
+
+Skriv ett lämpligt driver-program som kapslar in nedanstående kod
+i en main-metod, och förklara beteendet (ledning: Tänk på
+skillnaden mellan identitet och ekvivalens!).
+
+ #+BEGIN_SRC java
+ String a = "Beefheart";
+ String b = "Beefheart";
+ String c = "heart";
+ String d = "Beef" + c;
+ int i = 1;
+ int j = 1;
+ Integer k = 2;
+ Integer l = i + j;
+ System.out.println(a == b);
+ System.out.println(a.equals(b));
+ System.out.println(a == d);
+ System.out.println(a.equals(d));
+ System.out.println(i == j);
+ System.out.println(k == i + j);
+ System.out.println(k.equals(i+j));
+ System.out.println(k == l);
+ System.out.println(k.equals(l));
+ #+END_SRC
+
+
+/Nedanstående övningar blandar in arv. Du kan vänta med den här
+delen tills arv har tagits upp på en föreläsning./
+
+*** Färgglada tärningar
+
+Skriv en klass ~ColoredDie~ som representerar en tärning som har
+en viss färg (låt färgen representeras som en sträng). Låt den
+ärva av klassen ~Die~. Vilka metoder bör du specialisera (eng.
+"override")? Vilka nya metoder är vettiga att ha? Ändra sedan i
+klassen ~PairOfDice~ så att en av de skapade tärningarna är röd
+och den andra tärningen har en slumpvis vald färg.
+
+
+*** Polymorfism och "everything is an object"
+
+Metoden ~equals()~ som du skrev ovan har problemet att den bara
+kan anropas med en tärning som argument. Med andra argument
+anropas istället motsvarande metod ur klassen ~Object~ (alla
+klasser ärver av ~Object~), och den metoden kanske inte gör vad vi
+vill. För att specialisera ~equals~ *måste* den ha typen ~boolean
+equals(Object other)~. Skriv om ~equals~ så att den kan anropas
+med argument av godtycklig typ. Du kan använda operatorn
+~instanceof~ för att ta reda på om ett värde är (en subtyp av) en
+viss klass (men det här är ett av få vettiga tillfällen att
+använda ~instanceof~!).
+
+
+* Lab 7: Simulera kassor i ett varuhus                            :redovisas:
+
+** Introduktion
+
+Uppgiften i den här labben går ut på att simulera hur köerna växer
+och krymper i ett varuhus[fn::Objektorienteringens rötter ligger
+just i /simulering/.]. Genom att köra programmet med olika
+parametrar (antalet kassor, ankomsthastigheten hos kunderna, vid
+vilket tillfälle man öppnar nya kassor, och så vidare) kan man se
+hur länge en kund behöver köa i genomsnitt under olika tider på
+dygnet. **Observera att till skillnad från tidigare labbar så får
+du redovisa mål med hjälp av denna kod!**[fn::Dock inte
+inlupps-målen
+[[http://auportal.herokuapp.com/achievements/103][Z103]] eller
+[[http://auportal.herokuapp.com/achievements/104][Z104]].]
+
+Programmet använder sig av ett antal olika klasser (dessa beskrivs
+i mer detalj längre ner):
+
+- ~Customer~ - Modellerar kunder (en kund per instans av klassen)
+  som har samlat på sig ett antal varor och nu vill betala.
+- ~Register~ - Modellerar kassor (en kassa per instans av klassen)
+  med tillhörande kundkö. En kassa kan vara öppen eller stängd.
+- ~Queue~ - Används av klassen ~Register~ för att hålla koll på
+  vilka kunder som står i kön.
+- ~Store~ - Modellerar en affär (en per instans). En affär består
+  av flera ~Register~:s som kunder kan ställa sig i kö till.
+- ~Simulation~ - Förtinglingen av själva simuleringen som
+  innehåller en ~Store~ och som hanterar när det anländer nya
+  kunder till ~Store~:en, samt samlar in statistik.
+- ~Simulator~ - Huvudprogrammet som skapar och kör en simulation.
+
+Simuleringen körs i diskreta tidssteg. Det betyder att hela
+systemet rör sig ett steg per tidsenhet. På ett tidssteg händer
+följande:
+
+- Varje kund som står längst fram i en kö får /en/ av sina varor
+  registrerad i kassan.
+- Varje kund som står längst fram i en kö och inte har några varor
+  kvar att registrera lämnar varuhuset.
+- Om en ny kund har handlat klart (detta styrs av slumpen) går
+  denne och ställer sig i en kö.
+- Om snittkölängden är för lång öppnas en ny kassa (om det finns
+  någon mer kassa att öppna).
+- All relevant statistik om det nuvarande tidssteget samlas in.
+
+Vi kan hålla koll på "vad klockan är" genom att se hur många
+tidssteg som har gått sedan vi startade simuleringen. Varje objekt
+håller själv reda på vad just det objektet ska göra när det går
+ett tidssteg. (Man kan se det som att det går en puls genom hela
+simuleringen med start i ~Simulation~ och när ett objekt i
+programmet nås av pulsen utför det en handling.)
+
+Genom att skriva ut en textuell representation av systemet varje
+tidssteg fås en animation av hur kunderna kommer och går. Ett
+förslag på hur det kan se ut är så här:
+
+#+CAPTION: Köanimering
+#+NAME: fig:köanimering
+file:queue.gif
+
+
+** Uppgiften
+
+Labbuppgiften går ut på att skriva klart detta program. Innan vi
+presenterar en föreslagen ordning för implementationen går vi
+igenom programmet klass för klass.
+
+Vi kan tänka på programmet som ett samling delprogram med ett
+delprogram per publik klass. Du kan ha en ~main()~-metod i varje
+publik klass och skriva testkod i funktionen -- skapa en instans
+av den aktuella klassen, anropa dess metoder, och skriva ut
+resultatet.
+
+Kompilera en fil med =javac FileName.java=.
+
+Om klassen ~FileName~ har en ~main()~-metod kan du "köra den"
+med =java FileName=.
+
+
+*** Klassen ~Customer~
+
+En kund i vårt system behöver hålla koll på hur många varor hen
+har i sin korg samt vid vilken tidpunkt hen kom in i systemet.
+Följande attribut borde räcka:
+
+- ~int bornTime~ - tidssteget som kunden kom in i systemet
+- ~int groceries~ - antalet varor i kundens korg
+
+Förutom en konstruktor behövs (åtminstone) följande metoder:
+
+- ~serve()~ - registrera en av kundens varor (alltså minska på
+  ~groceries~)
+- ~isDone()~ - fråga om kunden är färdig, dvs. om ~groceries~ är 0.
+
+En kund behöver inte vara medveten om att tiden går (~bornTime~
+och ~groceries~ påverkas ju inte av tiden).
+
+Pröva att skriva en ~main()~-metod i ~Customer~ som skapar en kund
+med ett antal varor och anropa ~serve()~ tills ~isDone()~ är sant.
+
+
+*** Klassen ~Register~
+
+En kassa måste veta om den är öppen eller stängd, samt hålla koll
+på kunderna som står i kö:
+
+- ~boolean open~ - ~true~ om kassan är öppen, annars ~false~
+- ~Queue queue~ - En kö av kunderna som väntar på att behandlas.
+  Kunden som står längst fram i kön är den som får sina varor
+  behandlade.
+
+Förutom en konstruktor behövs (åtminstone) följande metoder:
+
+- ~open()~ - öppna kassan.
+- ~close()~ - stäng kassan.
+- ~isOpen()~ - är kassan öppen?
+- ~step()~ - låt tiden gå ett steg i kassan. Det betyder att
+  kunden som står först i kön får en vara registrerad.
+- ~hasCustomers()~ - har kassan några kunder?
+- ~currentCustomerIsDone()~ - är kunden som står längst fram i kön
+  klar?
+- ~addToQueue(Customer c)~ - ställ kunden ~c~ sist i kön.
+- ~removeCurrentCustomer()~ - ta bort (och returnera) kunden som
+  står först i kön.
+- ~getQueueLength()~ - hur lång är kön?.
+
+Notera att många av metoderna är lätta att implementera med hjälp
+av metoderna i klassen ~Queue~!
+
+Här kan du välja att "fuska" genom att låtsas att ~Queue~ redan är
+implementerad, t.ex. genom att skapa en ~Queue~-klass med mer
+eller mindre tomma metoder.
+
+
+*** Klassen ~Queue~
+
+Observera att Java kommer med länkade listor, köer, stackar,
+arrayer, etc. -- det går bra att använda dessa för att
+implementera ~Queue~, men det duger inte för att redovisa mål på
+just länkade strukturer.
+
+En kö ser ut ungefär som en länkad lista, med skillnaden att man
+alltid lägger till element i ena änden och tar bort element i den
+andra. Precis som en länkad lista består en kö ett antal noder
+(nedan kallad ~Node~, som med fördel kan ligga nästlad i ~Queue~).
+En nod ser ut precis som länken i en länkad lista:
+
+- ~Customer element~ - Kunden som står på just den platsen i kön
+- ~Node next~ - Noden för platsen bakom den nuvarande.
+
+I klassen ~Queue~ behövs referenser till första och sista noden i
+kön:
+
+- ~Node first~ - Noden som håller det första elementet
+- ~Node last~ - Noden som håller det sista elementet
+- ~int length~ - Antalet kunder i kön just nu (frivilligt, men
+  praktiskt att ha)
+
+Förutom en konstruktor behövs (åtminstone) följande metoder:
+
+- ~length()~ - Hur lång är kön?
+- ~enqueue(Customer c)~ - Ställ en kund sist i kön
+- ~dequeue()~ - Ta bort (och returnera) kunden som står först i
+  kön.
+- ~first()~ - Returnera (men ta inte bort) kunden som står först i
+  kön.
+
+
+
+*** Klassen ~Store~
+
+Eftersom vi bara är intresserade av kassorna representeras själva
+varuhuset bara av en array av kassor:
+
+- ~Register registers[]~ - kassorna i varuhuset
+
+Arrayer i Java fungerar som i C, dvs. de är konsekutivt allokerade
+utrymmen som indexeras från 0 med samma syntax som i C. Dock
+håller arrayer i Java koll på sin längd. Man kan t.ex. skriva
+~registers.length~ för att få veta hur många element som finns i
+~registers~. Vidare, om man försöker accessa ett element som inte
+finns, t.ex. ~registers[12]~ när ~registers.length == 10~ kommer
+att ge upphov till en krasch där felmeddelandet anger vilken rad
+felet uppstod på och att felet berodde på att vi accessar utanför
+arrayen (~ArrayOutOfBoundsException~).
+
+Konstruktorn kan med fördel ta antalet kassor som argument, och
+bör öppna minst en av sina kassor. Förutom en konstruktor behövs
+(åtminstone) följande metoder:
+
+- ~getAverageQueueLength()~ - vad är snittlängden för alla kassor
+  i varuhuset?
+- ~newCustomer(Customer c)~ - ställ kunden ~c~ i den kortaste kön.
+- ~step()~ - tiden går ett steg i varuhuset.
+- ~openNewRegister()~ - öppna en ny kassa (om det går).
+- ~getDoneCustomers()~ - returnera alla kunder som är klara i det
+  nuvarande tidssteget.
+
+
+*** Klassen ~Simulation~
+
+Det här är klassen som håller koll på tiden och all statistik, och
+avgör när det kommer nya kunder och när det är dags att öppna nya
+kassor. Det är också den här klassen som tar emot simuleringens alla
+parametrar. Följande attribut är en bra början:
+
+- ~Store store~ - varuhuset som simuleras
+- ~int time~ - antalet tidssteg sedan simuleringen startade
+- ~int intensity~ - sannolikheten (i procent) att det ska komma en
+  ny kund vid varje tidssteg.
+- ~int maxGroceries~ - maxantalet varor som en kund kan ha när hen
+  kommer till kassan.
+- ~int thresholdForNewRegister~ - vid vilken snittlängd en ny
+  kassa öppnas.
+
+Det kan också vara en bra idé att ha attribut för den statistik
+man samlar.
+
+Förutom en konstruktor behövs nästan bara metoden ~step()~ som
+driver simuleringen framåt ett tidssteg. Detta bör ske i följande
+steg:
+
+1. Låt tiden gå ett steg i varuhuset.
+2. Slumpa ett heltal mellan 0 och 100 om heltalet är mindre än
+   ~intensity~, skapa en ny kund och skicka den till varuhuset.
+   Antalet varor i kundens korg slumpas fram mellan ~1~ och
+   ~maxGroceries~.
+3. Hämta snittlängden på kassaköerna i varuhuset. Om den är
+   högre än ~thresholdForNewRegister~, öppna en ny kassa.
+4. Hämta alla kunder som är klara och samla in statistik från
+   dem.
+
+Du bör också ha metoder för att returnera den insamlade
+statistiken.
+
+*** Klassen ~Simulator~
+
+~Simulator~ är given och innehåller bara programmets
+~main()~-metod som skapar en ny ~Simulation~ och anropar ~step()~
+på den ett visst antal gånger. Varje ~step()~-anrop motsvarar en
+"puls" genom systemet. Mellan varje tidssteg skrivs simuleringen
+ut och tråden som kör pausas i en halv sekund.
+
+Det går förstås bra att ändra i ~Simulator~ om man vill, till
+exempel genom att låta programmet läsa in parametrar från en fil
+eller från kommandoradsargumenten.
+
+
+** Föreslagen arbetsgång
+
+Jobba [[https://github.com/IOOPM-UU/ioopm17/tree/master/forelasningar/F10][bottom-up]] och börja med den minsta klassen.
+
+*** Steg 1: Börja med att rita!
+
+Börja med att rita! Vilka klasser finns det? Hur hänger de samman,
+dvs. vilka funktioner fyller de för varandra? (Dvs. vilka metoder
+kommer klass X att använda hos klass Y, etc.) Fundera också över
+skillnaden mellan klasser och objekt (instanser av klasser) -- det
+finns en kö-klass, men hur många köer finns det?
+
+*** Steg 2: Dags att implementera!
+
+Nu är det dags att börja implementera! Börja med att skriva
+klassen ~Customer~. Skriv ett enkelt program som testar att
+kund-klassen fungerar som den ska. Till exempel: skapa en kund med
+tre varor, anropa ~serve~ tre gånger och kontrollera att kunden är
+klar (med ~isDone~). Ett förslag finns i [[https://github.com/IOOPM-UU/ioopm17/tree/master/labbar/java/CustomerTest.java][CustomerTest.java]].
+
+*** Steg 3: Queue
+
+Den enda klassen du kan skriva härnäst är ~Queue~ (~Register~ är
+beroende av ~Queue~, ~Store~ är beroende av ~Register~,
+~Simulation~ är beroende av ~Store~...). *Börja med* att skriva
+ett enkelt testprogram (som bara har en ~main~-metod) som skapar
+en kö och några kunder, ställer kunderna i kön, plockar ut dem och
+kontrollerar att de kommer ut i rätt ordning.
+
+Själva klassen ~Queue~ är som sagt beroende av att det finns en
+klass för köns noder. Klassen ~Node~ kan med fördel vara
+definierad som en klass i samma fil som klassen ~Queue~, och får
+därför inte vara publik (men ej heller privat)[fn::En möjlighet är
+att definiera klassen ~Node~ /inuti/ klassen ~Queue~ (då får den
+vara privat).]. Du väljer själv om du vill ha ~get~- och
+~set~-metoder för att läsa och skriva nodernas attribut eller om
+du vill komma åt dem direkt (jämför ~this.first.getNext()~ och
+~this.first.next~).
+
+Ett specialfall att tänka på är vad som händer om man försöker ta
+bort en kund ur en kö som redan är tom. Om detta händer är något
+förmodligen fel i programmet, så det är ett bra tillfälle att
+/kasta ett undantag/[fn::Vi går igenom vad detta betyder på
+föreläsningar senare -- för nu kan du tänka på undantag som ett
+slags asserts som river ned programmet och skriver ett
+felmeddelande i terminalen.]. Du kan skapa en klass för eget
+undantag på följande vis
+
+#+BEGIN_SRC java -n
+public class EmptyQueueException extends RuntimeException{}
+#+END_SRC
+
+och sen kasta undantaget genom att skriva ~throw new
+EmptyQueueException()~. Detta kommer att riva ned programmet.
+Senare skall vi lära oss hur man kan fånga denna typ av fel och
+återhämta sig från dem[fn::Så-kallad undantagshantering, Eng.
+/exception handling/.].
+
+*** Steg 4: Register
+
+Nästa klass att skriva är ~Register~. Precis som tidigare kan du
+testa den här klassen separat genom att skapa en kassa och några
+kunder, låta tiden gå några steg och kontrollera att kunderna
+behandlas som de ska. Notera att metoden ~step~ bara behandlar den
+första kunden. Det är ~Store~:s ansvar att plocka ut kunden när
+hen är klar.
+
+*** Steg 5: Store
+
+När kassaklassen är klar kan du skriva ~Store~, som består av en
+samling kassor i en array. Många av metoderna går ut på att
+iterera över alla kassor och göra något särskilt. I Java kan du
+använda ~for~-loopar för att iterera över en samling:
+
+#+BEGIN_SRC java -n
+   for(Register r : this.registers) {
+       ...
+   }
+#+END_SRC
+
+Loopen ovan kommer att iterera över hela ~this.registers~ och i
+varje steg av loopen binda ~r~ till en av kassorna i arrayen.
+
+Metoden ~getDoneCustomers()~ ska returnera en samling av kunder.
+Du kan använda en array, din egen ~Queue~ eller någon datastruktur
+från Javas standardbibliotek.
+
+Det lättaste sättet att testa klassen är förmodligen att skapa en
+~Store~, lägga in ett par kunder med kända parametrar och anropa
+~step~ och ~getDoneCustomers~ för att kontrollera att kunderna
+behandlas som de ska. Om något inte verkar funka kan du skriva ut
+hela varuhuset mellan varje steg för att se hur kunderna rör sig.
+Det är också en bra förberedelse för det sista steget:
+
+*** Steg 6: Simulation
+
+Sist kan du skriva klassen ~Simulation~. Den viktigaste metoden är
+~step~, som beskrevs i mer detalj tidigare. Du kommer att behöva
+slumpa fram några tal. För att göra det kan du låta klassen ha
+följande attribut:
+
+#+BEGIN_SRC java -n
+Random random = new Random();
+#+END_SRC
+
+Du måste importera ~java.util.Random~ för att den klassen ska
+hittas. När du har ett ~Random~-objekt på det sättet kan du anropa
+~random.nextInt(100)~ för att slumpa fram ett heltal mellan 0
+och 100.
+
+Du kan välja själv mellan att ha flera metoder som alla returnerar
+varsin bit av statistiken, eller om du vill skapa en klass som
+lagrar all statistik och ha en metod som returnerar ett sådant
+objekt.
+
+Notera den magiska raden
+#+BEGIN_SRC java -n
+ System.out.print("\033[2J\033[;H");
+#+END_SRC
+Den rensar skärmen så att det går att göra animationer av det slag
+som visades på exempelfilmen tidigare i detta dokument.
+
+
+** Fler tips
+
+- Använd privata metoder när du fuskar inom en klass. Till
+  exempel, när du lägger till en ny kund i ~Store~ behöver du
+  hitta den kortaste kön. Låtsas att det finns en metod som gör
+  det åt dig, och implementera den senare!
+- Använd klassernas ~toString()~-metoder för att "rita upp"
+  systemet. En kund kan skrivas ut som ~[n]~, där ~n~ är antalet
+  varor i kundens korg. En kassa kan skrivas ut som ~X [ ]~ när
+  den är stängd, och som ~[n]@@@~ när den är öppen och det finns
+  fyra kunder i kö. Den första kundens strängrepresentation får vi
+  genom att anropa ~toString()~ på den första kunden. Resterande
+  kunder är bara ~length() - 1~ stycken ~@~. Ett varuhus kan
+  skrivas ut genom att skriva ut varje kassa en rad i taget. En
+  simulering kan skrivas ut genom att skriva ut varuhuset
+  tillsammans med den insamlade statistiken.
+- Ett enkelt sätt att kontinuerligt mäta snittväntetiden är att
+  istället mäta antalet färdiga kunder och deras sammanlagda
+  väntetid. Då får man fram snittväntetiden genom att dela den
+  sammanlagda väntetiden med antalet färdiga kunder.
+
+** Förslag på utökningar
+
+- Gör programmet lättare att testa genom att läsa parametrarna
+  från kommandoraden eller från en fil, så att du inte behöver
+  kompilera om för att köra med olika värden. Läs till exempel på
+  om [[https://docs.oracle.com/javase/tutorial/essential/environment/properties.html][Properties]].
+- Kö-strukturen som beskrivs ovan går att göra generell så att den
+  inte bara kan lagra kunder. Gör klassen *parametriskt polymorf*,
+  så att en kö av kunder istället skrivs som ~Queue<Customer>~.
+  (Parametrisk polymorfism tas upp senare på kursen -- känn dig
+  fri att vänta med detta steg!)
+- När det öppnar en ny kassa, låt kunder som står i en lång kö
+  flytta över till den nya kassan (men bara om det innebär att de
+  får en bättre plats än den de redan har). Detta kommer
+  förmodligen kräva att du implementerar en metod i ~Queue~ för
+  att returnera "svansen" av en kö.
+- Ett sätt att få in arv i uppgiften är att låta det finnas flera
+  olika sorters kunder, till exempel pensionärer som tar dubbelt
+  så lång tid på sig i kassan eller storfamiljer som kör med
+  självscanning och därför alltid blir klara på ett enda tidssteg.
+- Du kan låta kunderna välja kö själva genom att skriva en metod
+  ~chooseQueue(Register registers[])~ som returnerar den kassa i
+  ~registers~ som kunden vill bli ställd i. Du kan låta olika
+  kunder ha olika strategi, till exempel att välja den kortaste
+  kön eller kön med minst antal varor totalt. Detta kan kräva att
+  du behöver något sätt att iterera över en kö. Se till exempel
+  interfacet [[http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html][Iterable]] och hur det samspelar med ~for~-loopar!
+
+** Rekommenderade mål på nivå tre
+
+1. [[http://auportal.herokuapp.com/achievements/2][A2]] - Fundera på vad varje klass behöver veta om de andra
+   klasserna de använder. Hur hade du skrivit motsvarande kod i C?
+2. [[http://auportal.herokuapp.com/achievements/16][G16]] - Vilka attribut (om några) ska vara synliga utifrån?
+   Jämför att ha privata attribut med getters och setters med att
+   bara ha publika attribut.
+3. [[http://auportal.herokuapp.com/achievements/23][I23]] - Vad händer när man försöker plocka ut något ur en tom kö?
+   Vem (om någon) ska ta hand om problemet? Vad händer om vi
+   behöver öppna en ny kassa när det inte finns någon mer kassa
+   att öppna? Hur meddelar vi det till omvärlden när typen på
+   ~step~ är void?
+4. [[http://auportal.herokuapp.com/achievements/40][N40]] - Vad händer när vi kompilerar vårt program? Vilka filer
+   skapas? Vad händer om man byter ut någon av filerna och kör
+   programmet? Hur skulle motsvarande program (med samma
+   modularisering) fungera i C?
+
+** Rekommenderade mål på nivå fyra/fem
+5. [[http://auportal.herokuapp.com/achievements/12][E12]] - Om du gör ~Queue~ generell.
+6. [[http://auportal.herokuapp.com/achievements/17][G17]] - Om du kapslar in klassen noderna i ~Queue~.
+7. [[http://auportal.herokuapp.com/achievements/25][I25]] - Se punkt **4** ovan.
+8. [[http://auportal.herokuapp.com/achievements/28][J28]] - När frigörs kund-objekten i programmet?
+
+#+BEGIN_CENTER
+*Nu är du klar med Java-labbarna.* Bra jobbat! Det är dags att pusta
+ut, kanske föra några anteckningar om saker som du tänkt på,
+frågor som du vill ställa, misstag som du verkar upprepa, etc. När
+du har tagit en paus är det dags för [[file:assignment3.org][inlämningsuppgift 3]]!
+#+END_CENTER

@@ -1,0 +1,6 @@
+#+title: Editors on IOOPM
+#+include: "./setup.org"
+
+#+begin_attention
+This text is being written from scratch in 2018. For now, refer to the bootstrap sections on the [[file:assignments/c-bootstrap.org][C bootstap labs]].
+#+end_attention

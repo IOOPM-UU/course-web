@@ -1,13 +1,18 @@
 #+title: Tools on IOOPM
+#+include: "./setup.org"
 
-* A C Development Environement
-** Basic Tools
-gcc or clang
-gdb or lldb
-valgrind
-gcov
-gprof
-make
-emacs
+#+begin_attention
+This text is being written from scratch in 2018. For now, refer to the bootstrap sections on the [[file:assignments/c-bootstrap.org][C bootstap labs]] and [[file:assignments/assignment1.org][Assignment 1]].
+#+end_attention
 
-* A Java Development Environement
+* TODO A C Development Environement
+# ** Basic Tools
+# gcc or clang
+# gdb or lldb
+# valgrind
+# gcov
+# gprof
+# make
+# emacs
+
+* TODO A Java Development Environement

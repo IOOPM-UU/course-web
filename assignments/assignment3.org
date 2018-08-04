@@ -1,0 +1,7 @@
+#+title: Assignment 3 (Phase 2, Sprint 1)
+#+include: "../setup.org"
+
+#+begin_note
+Assignment 3 is being updated and significantly changed for 2018.
+It will be published here when it is finished.
+#+end_note

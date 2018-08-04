@@ -1,7 +1,21 @@
-needs to explain basic makefiles or point to something about basic makefiles
+#+title: Makefiles on IOOPM
+#+include: "./setup.org"
 
+#+begin_attention
+This text is being written from scratch in 2018.
+#+end_attention
 
-make 
-dependencies
-make test
-make valgrind 
+#+begin_important
+This page does *not* try to be an exhaustive introduction to
+Makefiles. Instead, it focuses on the most common usages in the
+course. Please suggest improvements!
+#+end_important
+
+* TODO Build Management
+** Dependencies
+** Automate, Automate, Automate
+
+* TODO GNU Make
+** A First Simple Makefile
+** Make Test
+** Make Valgrind
