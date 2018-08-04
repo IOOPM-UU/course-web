@@ -1,0 +1,302 @@
+#+title: Pointers 
+#+INCLUDE: "./setup.org" 
+
+* TODO Pointers
+
+* An Extra Level of Indirection: Pointers to Pointer Values
+Historically, pointers has been a hard concept to grasp, and
+pointers to pointers therefore logically must be exponentially
+hard?
+
+Actually not. You have probably written many programs that used
+this concept. For example, ~char *argv[]~ is an array holding
+pointers -- and ~char **argv~ is an equivalent type. Dereferencing
+~argv~ means reading a location in memory where a pointer -- in
+this case to a null-terminated string -- resides. Let us examine
+~argv~ and its dereferencing. 
+
+| ~argv~   | An address to a place in memory storing an address to a place in memory storing a ~char~ (pointer-to-pointer) |
+| ~*argv~  | An address to a place in memory storing a ~char~ (pointer)                                                    |
+| ~**argv~ | A char (value)                                                                                                |
+
+To concretise this, Figure [[fig:tail-f]] shows the argument vector
+~argv~ of a program called =tail= invoked with the single
+command-line argument =-f=. Purple arrows shows the value of the
+purple expressions. The types of each purple expression is written
+out in pink.
+
+#+CAPTION: What ~argv~ looks like in a program run as =tail -f=
+#+NAME: fig:tail-f
+[[file:./images/pp_argv-tail-f.jpg]]
+
+In this document, we will look at pointers to pointers and their
+use. We will look at [[file:lists.org][linked lists]] as our driving example, because
+we know them well from previous "modules" in this course.
+** Pointers Into Structures 
+To grasp the use of pointers to pointers in the upcoming example,
+we must first talk about /pointers into structures/. Commonly,
+~malloc()~ and ~calloc()~[fn::And also ~realloc()~ and others.]
+allocate some consecutive bytes on the heap and return a pointer
+to the "start" of this structure. For example, remember the
+link structure from before. 
+
+#+BEGIN_SRC c
+typedef struct link link_t; 
+struct link 
+{
+  elem_t elem; 
+  link_t *next;
+};
+#+END_SRC
+
+Executing ~ptr = malloc(sizeof(link_t))~ makes ~ptr~ a pointer to
+the start of some space large enough to hold /at least/ a
+~link_t~. Given the layout of the ~link_t~ struct, we can see that
+first in the struct is an ~elem_t~ followed by a pointer to a
+~link_t~. So, since the first field in a struct is at the
+beginning of the struct, the address denoted by ~ptr~, not only
+could ~ptr~ be typed as a pointer to a ~link_t~, but also as a
+pointer to an ~elem_t~ (and both at the same time). In a similar
+fashion, we can get a pointer to the second field, whose type is
+~link_t *~. Let's write some code to make this concrete:
+
+#+BEGIN_SRC c
+void *ptr = malloc(sizeof(link_t)); 
+link_t *a = ptr;
+elem_t *b = ptr;
+link_t **c = ptr + offsetof(link_t, next);
+#+END_SRC
+
+Above, ~ptr~, ~a~ and ~b~ are aliases, and allow us to access the
+same memory as different types. Let's refer to ~ptr~ as the
+address of the place in memory where the ~link_t~ struct is
+defined. Through ~b~, we are allowed to access the memory at ~ptr~
+to read and write in ~elem_t~-sized chunks[fn::And naturally to
+access fields in ~elem_t~, /e.g.,/ ~p~.], because that's what the
+type says is found at ~b~. Similarly, through ~a~, we are allowed
+read and write accesses in ~link_t~-sized chunks[fn::And naturally
+to access fields in ~link_t~, /e.g.,/ ~next~.].
+
+Figure [[fig:access]] illustrates the code above. The coloured line on
+each black pointer shows what part of the structure can be read
+through that pointer. Note that the ~void~ pointer cannot be
+dereferenced, meaning it cannot be used to read the structure at
+all.
+
+#+CAPTION: Accessing (parts of) the same structure through different pointers
+#+NAME: fig:access
+[[file:./images/pp_pointers-to-link.jpg]]
+
+The macro ~offsetof()~ allows us to calculate the relative
+starting address in memory of a field in a struct.[fn::As an
+aside, ~offsetof(T, f)~ is calculated as ~&((T)NULL)->f~. Note how
+this is defined even though this looks like a ~NULL~ dereference
+at first glance.] On the machine where this is written,
+~offsetof(link_t, next)~ is ~8~. Thus the addressed stored in ~c~
+is ~ptr + 8~. Note that this address is inside the struct pointed
+to by ~a~, that is ~a < c < a + sizeof(*a)~. 
+
+Because ~c~ is a pointer to a field in a struct that stores a
+pointer, ~c~ is a /pointer to a pointer/, which is clearly
+reflected by its type: ~link_t **~. Thus, ~c~ denotes an address
+in memory[fn::Remember, ~ptr + 8~ on the machine where this is
+written.] where a pointer is stored. In the code example above,
+the value of this pointer is /undefined/, because we used
+~malloc()~. Dereferencing this pointer -- aka following this
+pointer to read the memory at the location it points to -- ~*c~,
+denotes an address in memory where a pointer to a ~link_t~ is
+stored. We may dereference this pointer too, adding another ~*~ to
+the expression: ~**c~ denotes a value of type ~link_t~. In
+summary:
+
+| Expression  | Type                             |
+| ~c~         | ~link_t **~                      |
+| ~*c~        | ~link_t *~                       |
+| ~**c~       | ~link_t~                         |
+| ~***c~      | illegal, ~link_t~ is not a pointer |
+| ~&c~        | ~link_t ***~                     |
+
+This clearly shows how the number of ~*~'s are "balanced" -- to get
+closer to the value, add another star in front of the expression.
+Taking the address using ~&~ adds a ~*~ to the type, reflecting
+the additional pointer indirection. The number of ~*~'s in the type
+of some variable ~x~ upper bounds how many times we can dereference
+~x~, /i.e.,/ write ~*x~, ~**x~, etc.
+
+Above, ~c~ exemplifies a pointer /into/ a structure. 
+
+Pointers to pointers can often simplify implementations by making
+things more regular, and getting rid of corner cases.
+** Using Pointers-to-Pointers to Implement Unlinking
+When we implemented [[file:lists.org][linked lists]], we used a clever trick of
+inserting a sentinel link at the start of the node to
+simplify the implementation. This allowed us to define a find
+function that returned the /preceding/ node. This allowed the find
+function to be used across multiple list functions such as insert,
+remove, and get. 
+
+We will now see how we can implement a similar function but
+without the need for a sentinel. The trick is to return a
+pointer -- not to a link, but to a pointer to a link. Such a
+pointer can be used both for reading and writing, allowing its use
+across multiple list functions such as insert, remove, and get,
+like before. Because a ~link_t *~ can be found both in the ~next~
+fields of /links/ and in the ~first~ and ~last~ fields of /lists/,
+a ~link_t **~ can cover both these cases. Thus, there is no need
+for a sentinel link to be able to easily update the pointer
+/to/ a link.
+
+#+BEGIN_SRC c
+static 
+link_t **list_find(list_t *list, int index)
+{
+  link_t **cursor = &list->first;
+
+  for (int i = 0; i < index && *cursor; ++i)
+    {
+      cursor = &(*cursor)->next;
+    }
+
+  return cursor; 
+}
+#+END_SRC
+
+We start by defining ~cursor~ -- a pointer to a pointer -- by
+taking the address of ~list->first~ using the ~&~ operator. Like
+we saw in the table above, ~list->first~ is a ~link_t *~ but
+~&list->first~ is a ~link_t **~. This pointer points to the first
+field in the ~list~ struct. Thus, even if an empty list is
+represented as a list whose ~first~ and ~last~ fields are both
+~NULL~, ~&list->first~ is defined, and /not/ ~NULL~[fn::A way to
+think about this is that the place where the ~NULL~ pointer is
+stored exists somewhere in memory.]. Figure [[fig:cursor]] shows the
+value of ~cursor~ after the first line of ~list_find()~ is
+executed.
+
+#+CAPTION: The value of ~cursor~ at the start of a find
+#+NAME: fig:cursor
+[[file:./images/pp_find.jpg]]
+
+As is visible from the code, swinging ~cursor~ forward through the
+list is somewhat involved. Previous iteration in the list
+implementation used code like ~cursor = cursor->next~. Now, we are
+forced to /dereference/ ~cursor~ to read ~next~ and then /take the
+address/ of the result: ~cursor = &(*cursor)->next~.
+
+In plain English what this means is: /read the address of the
+variable/ ~cursor~, /then take the address of the/ ~next~ /field
+of the object stored at that location, and store the result in/
+~cursor~.
+
+Note that turning this operation into two discrete steps is not
+possible. Consider declaring a temporary variable ~tmp~ to store
+the value of the next field, and then using ~&tmp~ to swing
+~cursor~ forward. When ~list_find()~ returns, its will return a
+pointer to a variable (~tmp~) located on the stack frame that is
+just popped! 
+
+#+BEGIN_SRC c
+link_t *tmp = (*cursor)->next;
+cursor = &tmp;
+...
+return cursor;
+#+END_SRC
+
+In plain English what the first line means is: /read the address
+of the variable/ ~cursor~, /then read the value of the/ ~next~
+/field of the object stored at that location, and store the result
+in/ ~tmp~. The interpretation of the 2nd line: /take the address
+of the local variable/ ~tmp~ /and store that address in/ ~cursor~.
+Figure [[fig:cursor-neq-tmp]] shows the difference between
+~&(*cursor)->next~ and ~&tmp~ pictorially.
+
+#+CAPTION: Illustrating the difference between ~&(*cursor)->next~ and ~&tmp~
+#+NAME: fig:cursor-neq-tmp
+[[file:./images/pp_cursor-neq-tmp.jpg]]
+
+Even if the stack frame is not overwritten by a subsequent
+function call, ~*cursor = new_link()~ will only update the
+(useless) value of ~tmp~, a variable on a popped stack frame.
+
+Using the ~list_find()~ function is very similar to how we used
+~list_find()~ in the past, except that we use ~*cursor~ both to
+read and write the field that ~cursor~ points to[fn::In other
+words, the field located at ~*cursor~.].
+
+#+BEGIN_SRC c
+void list_insert(list_t *list, int index, elem_t element)
+{
+  link_t **cursor = list_find(list, index);
+
+  if (*cursor)
+    {
+      *cursor = link_new(element, *cursor); 
+    }
+}
+#+END_SRC
+
+** Application to Trees
+
+Above, we iterated over a list by pointing to the pointer to the
+next ~link_t~ in the list. This allows us to very easily implement
+functions that insert or unlink a specific link. 
+
+This is even more powerful when it comes to less linear data
+structures. For example, when navigating a binary search tree, it
+is useful to keep a pointer to the parent pointer's pointer to a
+subtree instead of simply the pointer to a subtree. This allows us
+to navigate to the subtree, but also update it, without caring
+whether the pointer is the left or right subtree.
+
+#+BEGIN_SRC c
+static
+node_t **tree_inner_find_node(node_t **n, elem_t e)
+{
+  node_t **cursor = n;
+
+  while (*cursor)
+    {
+      /// Logic left as exercise to the reader (no recursion!)
+    }
+
+  return cursor;
+}
+#+END_SRC
+
+With this code, we can now in an easy way implement insertion. We
+simply obtain a pointer to the pointer to the place in the tree
+where we should add the new node. Let ~n~ be this pointer.
+Below, if ~*n~ is ~NULL~ we "fell out of the tree" going down some
+subtree where we expected to the key. In that case, we simply
+create a new subtree and update ~*n~ to point to that subtree
+instead of ~NULL~.
+
+#+BEGIN_SRC c
+bool tree_insert(tree_t *t, key_t k, elem_t e)
+{
+  node_t **n = tree_inner_find_node(t->root); 
+
+  if (*n)
+    {
+      *n = node_new(k, e, NULL, NULL); 
+    }
+}
+#+END_SRC
+
+** Recap
+
+Pointers to values allows values to be shared across several
+places in the code such that a modification from one part becomes
+visible to another. Since pointers are just a form of value, a
+pointer to another pointer follows no special rules that do not
+apply to, say, a pointer to an integer.
+
+In linked structures, having a pointer to a ~next~ field instead
+of the value in that ~next~ field is often convenient, because
+that same pointer will allow you to both get the contents of the
+~next~ field and set the contents. For a linked list, this is
+similar to having a pointer to the preceding link, but for a
+tree-shaped data structure, there is no "clean" alternative. 
+
+#+INCLUDE: "./footer.org" 
+
