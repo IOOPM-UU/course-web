@@ -5,3 +5,5 @@
 Assignment 2 is being updated and significantly changed for 2018.
 It will be published here when it is finished.
 #+end_note
+
+#+include: "../footer.org" 

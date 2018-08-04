@@ -4,3 +4,167 @@
 #+begin_attention
 This text is being written from scratch in 2018. For now, refer to the bootstrap sections on the [[file:assignments/c-bootstrap.org][C bootstap labs]].
 #+end_attention
+* TODO Yas-snippets
+
+* TODO Programmera Java i Emacs med irony-mode
+
+* Programmera Java i Emacs med meghanada
+
+Här är steg-för-steg-beskrivningar för hur du kan installera
+[[https://github.com/mopemope/meghanada-emacs][meghanada]] i Emacs[fn::Notera att meghanada är två komponenter --
+en server som är oberoende av editor, och en klient som är olika
+för olika texteditorer. Här Emacs.], som alltså ger IDE-liknande
+funktionalitet, men inte "för mycket" (i min subjektiva bedömning
+alltså).
+
+** Steg 1: Starta Emacs
+Starta Emacs. (Om Emacs redan är igång[fn::Visste du förresten att
+du kan köra [[key:M-x]] =emacs-uptime= för att se hur länge ditt Emacs
+varit igång?] kan du hoppa över detta steg!)
+
+** Steg 2: Lägg till melpa
+Klistra in följande rad i en tom[fn::Du kan egentligen använda
+vilken buffer som helst.] buffer:
+#+BEGIN_SRC emacs-lisp
+(setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")))
+#+END_SRC
+
+** Steg 3: =eval-region= (kör kod!)
+Markera hela ovanstående rad och kör [[key:M-x]] =eval-region=[fn::Släpp
+musen! [[key:C-a]] för att gå till starten av raden, [[key:C-n]] eller [[key:C-p]]
+för pil ned/upp, [[key:C-<space>]] för att börja markera, [[key:C-e]] för gå
+till slutet av raden.]. Om du får ett felmeddelande om parsing
+beror det på att du antingen inte har markerat hela raden eller
+att en parentes i början eller slutet saknas -- kanske för att du
+"skrev av" raden fel.
+
+** Steg 4: Starta Emacs pakethanterare
+Kör [[key:M-x]] =package-list-packages=. Nu öppnas en sida som visar
+hundratals paket som kan installeras i Emacs. Du kan markera ett
+paket för installation genom att ställa markören på paketet och
+trycka [[key:i]][fn::Om du råkar markera fel kan du avmarkera med
+[[key:u]].].
+
+#+CAPTION: Exempel på en paketlistning
+#+BEGIN_SRC 
+  Package            Version       Status [v] Description
+  ace-window         0.9.0         available  Quickly switch windows.
+  ack                1.5           available  interface to ack-like tools
+  ada-mode           5.3.1         available  major-mode for editing Ada sources
+  ada-ref-man        2012.3        available  Ada Reference Manual 2012
+  adaptive-wrap      0.5.1         available  Smart line-wrapping with wrap-prefix
+  adjust-parens      3.0           available  Indent and dedent Lisp code, automatically adjust cl$
+  aggressive-indent  1.8.3         available  Minor mode to aggressively keep your code always ind$
+  ahungry-theme      1.8.0         available  Ahungry color theme for Emacs.  Make sure to (load-t$
+  all                1.0           available  Edit all lines matching a given regexp
+  ampc               0.2           available  Asynchronous Music Player Controller
+  arbitools          0.71          available  Package for chess tournaments administration
+  ascii-art-to-un... 1.11          available  a small artist adjunct
+  async              1.9.2         available  Asynchronous processing in Emacs
+I auctex             11.91.0       available  Integrated environment for *TeX*
+  aumix-mode         7             available  run the aumix program in a buffer
+  auto-correct       1.1.3         available  Remembers and automatically fixes past corrections
+  auto-overlays      0.10.9        available  Automatic regexp-delimited overlays
+
+#+END_SRC
+
+Exemplet ovan visar en del av en paketlistning där paketet
+=auctex= är markerat för installation, vilket visas av =I= i
+första kolumnen. Blir du nyfiken på ett paket och vill veta mer
+kan du trycka [[key:?]] eller [[key:ENTER]] för att få mer information.
+
+
+** Steg 5: Markera paket för installation 
+Markera följande paket för installation[fn::Minns att du är i
+Emacs -- du kan söka med t.ex. [[key:C-s]] (I-search).]:
+- =meghanada=[fn::Ger Emacs möjligheten att förstå Java.]
+- =flycheck=[fn::Visar kompileringsfel och varningar direkt i
+  Emacs-buffern.]
+- =company=[fn::Stöd för 'autocomplete', dvs. att Emacs föreslår
+  vilka fält eller metoder du vill använda när du avrefererar en
+  variabel.]
+- =use-package=[fn::Ett paket som gör konfiguration av Emacs-paket
+  enklade och smidigare. Vi kommer att använda detta i Steg 8.]
+- =diminish=[fn::Ett paket som låter oss förkorta namnet på ett
+  /mode/, i detta fall /meghanada/. Används i Steg 8.]
+
+Observera att vissa av dessa namn förekommer i beskrivningen av andra
+paket! Du måste alltså titta efter vad du gör! Om det finns flera
+versioner av samma paket, välj det som kommer från /melpa/.
+
+** Steg 6: Installera Emacspaket 
+Installera paketen genom att trycka [[key:x]] och sedan svara /yes/
+på frågan om du vill installera 5 paket. Det ser ut så här
+ungefär:
+
+=Install these 5 packages (company-20171017.1638, use-package-20171030.1428, meghanada-20170723.1724, flycheck-20171026.610, diminish-20170419.1036)? (yes or no)=
+
+Nu försöker Emacs kontakta melpa och ladda ned paketen. Du kan
+följa statusen längst ned i /minibuffern/. 
+
+**Problem?** Ibland är melpa överbelastat och svarar inte. I så
+fall kan du avbryta med [[key:C-g]] och pröva att trycka [[key:x]] igen. Om
+du inte ser att en massa filer laddas ned och installeras efter
+några sekunder brukar det betyda att melpa inte svarar och att du
+måste avbryta.
+
+** Steg 7: Installera servern
+Kör [[key:M-x]] =meghanada-install-server=. 
+
+Nu laddas ett Java-program ned som är det som kör själva Java-logiken
+under huven och analyserar din källkod etc.
+
+** Steg 8: Lägg till =meghanada-mode= i =init.el=
+Öppna =~/.emacs.d/init.el= och leta upp raden 
+~(package-initialize)~
+
+Lägg sedan till följande: 
+#+BEGIN_SRC emacs-lisp
+(use-package meghanada
+  :diminish meghanada-mode "Mm"
+  :config
+  (add-hook 'java-mode-hook
+            (lambda ()
+              (meghanada-mode t)
+              (flycheck-mode t)
+              (company-mode t)
+              (add-hook 'before-save-hook 'delete-trailing-whitespace))))
+#+END_SRC
+
+Hittar du inte ~(package-initialize)~, skriv då det längst ned i filen
+och sedan use-package, etc.
+
+** Steg 9: Starta om Emacs.
+Starta om Emacs. /Klart!/
+
+(Ett alternativ till att starta om Emacs är att markera alla rader
+ovan förutom ~(package-initialize)~ och köra [[key:M-x]] =eval-region=.)
+
+#+begin_important
+Meghanada kräver konfiguration för varje projekt! 
+#+end_important
+
+Meghanada-mode vill helst att du kör maven eller gradle som är två
+Make-liknande verktyg som vi inte använder på kursen. Om du inte
+vill lära dig maven eller gradle just nu (*mycket rimligt!*) kan
+du istället lägga en konfigurationsfil i de kataloger där din
+Java-källkod finns.
+
+Denna fil skall heta =.meghanada.conf=[fn::Observera att namnet
+startar med en punkt!] och kan lämpligen innehålla följande:
+
+#+BEGIN_SRC 
+sources = ["."]
+output = "classes"
+test-output = "debug"
+#+END_SRC
+
+Detta betyder: Leta efter källkod i den aktuella katalogen. Vi
+kompilering, lägg allt kompilerat i underkatalogen "classes" och alla
+test-filer i underkatalogen "debug".
+
+** Steg 10: Programmera Java!
+
+Ös!
+
+#+include: "./footer.org"

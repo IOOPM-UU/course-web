@@ -3315,3 +3315,5 @@ ut, kanske föra några anteckningar om saker som du tänkt på,
 frågor som du vill ställa, misstag som du verkar upprepa, etc. När
 du har tagit en paus är det dags för [[file:assignment1.org][inlämningsuppgift 1]]!
 #+END_CENTER
+
+#+include: "../footer.org" 

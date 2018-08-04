@@ -16,3 +16,5 @@ This text is being written from scratch in 2018. For now, refer to the bootstrap
 # emacs
 
 * TODO A Java Development Environement
+
+#+include: "./footer.org"

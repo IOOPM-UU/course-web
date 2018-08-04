@@ -732,3 +732,5 @@ anrop till ~malloc~ / ~calloc~ går till ~h_alloc~ (eller
 Vid slutseminariet skall ni demonstrera att er skräpsamlare
 fungerar med detta program!
 
+
+#+include: "../footer.org" 

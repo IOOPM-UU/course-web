@@ -101,3 +101,5 @@ Below are some recent coding exams.
 
 *Q:* Jag har hört talas om att man kan få rest på kodprovet... \\
 *A:* De flesta år har vi ofta tillämpat rest för mindre fel, men detta sker helt i mån av tid för oss som ger kursen. Huruvida vi tillämpar samma system detta år, är beroende på vilka fel som begås och andra yttre omständigheter.
+
+#+include: "./footer.org"

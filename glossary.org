@@ -1,4 +1,7 @@
 #+title: Glossary
+#+include: "./setup.org"
+
+
 * Common
 ** Backlog
 *TODO*
@@ -108,3 +111,5 @@ double g(double base, double exp);
 ... // as before 
 #+END_SRC
 
+
+#+include: "./footer.org"

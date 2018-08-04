@@ -19,3 +19,5 @@ course. Please suggest improvements!
 ** A First Simple Makefile
 ** Make Test
 ** Make Valgrind
+
+#+include: "./footer.org"

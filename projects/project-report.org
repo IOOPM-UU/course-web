@@ -111,3 +111,5 @@ In this section, discuss *briefly*:
 - what does the team consider its biggest win?
 - what does the team consider its biggest fail?
 
+
+#+include: "../footer.org" 

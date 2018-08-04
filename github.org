@@ -240,3 +240,5 @@ There are pros and cons with both ways of integrating changes, but
 the way we are going to use git on this course, I would recommend
 to always use =git pull --rebase=.
 
+
+#+include: "./footer.org"

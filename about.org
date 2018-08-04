@@ -532,3 +532,5 @@ mål av upp till sju.
 *Q*: Jag har en idé -- vill ni höra den?
 *A*: [[mailto:ioopm-suggestions@wrigstad.com][JA]]! 
 
+
+#+include: "./footer.org" 

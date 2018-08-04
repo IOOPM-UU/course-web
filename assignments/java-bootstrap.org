@@ -1,8 +1,7 @@
 #+title: Java Bootstrapping (1 week)
+#+include: "../setup.org" 
 
 * Lab 6: Kom igång med Java                                       :redovisas:
-#+include: "../setup.org"
-
 Målsättningen med denna uppgift är att du skall komma igång med
 Java och bekanta dig med några grundläggande Java-idiom. Du kan
 **inte** redovisa mål med den här uppgiften, och inte heller
@@ -380,7 +379,6 @@ med argument av godtycklig typ. Du kan använda operatorn
 ~instanceof~ för att ta reda på om ett värde är (en subtyp av) en
 viss klass (men det här är ett av få vettiga tillfällen att
 använda ~instanceof~!).
-
 
 * Lab 7: Simulera kassor i ett varuhus                            :redovisas:
 
@@ -832,3 +830,5 @@ ut, kanske föra några anteckningar om saker som du tänkt på,
 frågor som du vill ställa, misstag som du verkar upprepa, etc. När
 du har tagit en paus är det dags för [[file:assignment3.org][inlämningsuppgift 3]]!
 #+END_CENTER
+
+#+include: "../footer.org" 

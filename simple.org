@@ -1247,3 +1247,5 @@ pretty much everything except have more than one ware in the
 database. The logic for everything except writing to the database
 should be exactly the same for the entire program regardless of
 whether the database is an array of wares, a binary tree, etc.
+
+#+include: "./footer.org"

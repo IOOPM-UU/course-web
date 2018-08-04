@@ -580,3 +580,5 @@ which requires a bit of low-level trickery.
 
 The full project description is [[file:project2.org][here]].
 
+
+#+include: "../footer.org" 
