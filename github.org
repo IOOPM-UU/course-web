@@ -143,6 +143,11 @@ $ git add list.h list.c
 #+END_SRC
 This is often referred to as /staging/ in Git parlance. 
 
+To check what files have been changed (or added and not ever
+checked in yet), use =git status= for a listing. To restrict
+yourself to the current directory and subdirs, use =git status -s
+.=.
+
 #+begin_important
 *DO NOT* add generated files like =a.out= or =list.o= etc. These
 are easy to generate from the source files when/if you want them.
