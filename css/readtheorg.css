@@ -1128,8 +1128,8 @@ pre {
 pre.src:before {
     display: none;
     position: absolute;
-    background-color: #222;
-    color: magenta;
+    background-color: magenta;
+    color: #333;
     top: 10px;
     right: 10px;
     padding: 3px;
