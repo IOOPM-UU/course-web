@@ -1,0 +1,441 @@
+#+title: Iterators
+#+INCLUDE: "../setup.org" 
+
+* Introduction
+When we implemented [[file:lists.org][linked lists]], we implemented a function
+~list_apply()~ that took as argument a pointer to a function /f/
+and a pointer to some data /d/ and then for each element /e/ in
+the list, called /f(e, d)/ in list order. This pattern is often
+called an /internal iterator/ as the apply-function iterates over
+all the elements of the list. C's support for higher-order
+functions (functions that take or produce other functions) is
+quite crude, so in many cases, an /external iterator/ is
+preferable.
+
+Imagine that we want to iterate over all elements of a list of
+integers and count odd and even values. The listing below shows
+a solution to this problem. 
+#+BEGIN_SRC c
+list_t *list = ...; /// a list we have gotten from somewhere
+
+int odd = 0;
+int even = 0;
+
+for (int i = 0; i < list_size(list); ++i)
+  {
+    elem_t e = list_get(list, i);
+    if (e.i % 2 == 0)
+      {
+        ++even;
+      }
+    else
+      {
+        ++odd;
+      }
+  }
+#+END_SRC
+Something which is (probably) not obvious at a first glance is
+that this implementation has quadratic time complexity. Fetching
+element =i= requires =i= steps inside ~list_get()~ and
+subsequently finding element =i+1= requires another =i+1= steps.
+The problem is that each call to ~list_get()~ must start from the
+first link. The internal iterator ~list_apply()~ did not suffer
+from this problem and only steps through the list once. 
+
+An external iterator to a list can be implemented as an
+opaque[fn::Meaning that clients to the object does not know its
+representation.] object holding a pointer to a link in the list.
+Each time we advance the iterator to the next element, we only
+need to take one step. The key to make this possible is that the
+iterator stores state about the iteration, namely the pointer
+directly into the list.
+
+With a properly encapsulated list, it is impossible for a client
+to build an efficient iterator -- the iterator needs to know how
+the list is represented. Thus, iterators are generally implemented
+as part of a list, or a list exports some basic iterator interface
+on-top of which more fancy iterators can be built. 
+
+
+* The Iterator Interface
+Our iterator shall support the following standard operations:
+
+1. Check if the iterator is positioned at the end of the list
+2. Move the iterator forward one step
+3. Get the current element 
+4. Remove the current element 
+5. Reset the iterator (positioning it at the first element again)
+
+Additionally, we must be able to create and destroy iterators. 
+
+
+** A First Stab at an Iterator Structure
+Following the principle of starting out with something simple that
+seems to be able to do most of what we want, let us define an
+iterator as simply a pointer to a link[fn::We assume we are
+building an iterator for the list we built [[file:lists.org][previously]], and will
+use types like ~list_t~ and ~link_t~ that we defined then.].
+
+#+BEGIN_SRC c
+typedef link_t iter_t; 
+#+END_SRC
+
+We note that this adds ~link_t~ to the public interface of the
+list, which is something we do not want[fn::Two reasons: a) we do
+not want to expose internal details of the list's implementation
+in its interface; b) because the implementation of ~link_t~ is not
+visible externally, we /may/ end up not being able to compile this
+code.]. We remember to fix that later.
+
+** Creating an Iterator
+
+We can now add a public function to the list that creates an iterator. 
+Remember that ~list->first~ points to a /sentinel/ link.
+
+#+BEGIN_SRC c
+iter_t *list_iterator(list_t *list)
+{
+  return list->first; 
+}
+#+END_SRC
+
+A function that tests whether the iterator is at the end of the
+list is simple to implement. Because an iterator is really a
+pointer to a link, we can simply check whether the link has a
+~next~ field that is not ~NULL~. Because of the sentinel link, an
+iterator to an empty list is not a ~NULL~ pointer, but a pointer
+to a link whose ~next~ is ~NULL~.
+
+
+** Reading the Iterator
+
+#+BEGIN_SRC c
+bool iterator_has_next(iter_t *iter)
+{
+  return iter->next != NULL; 
+}
+#+END_SRC
+
+As a new iterator points to the sentinel, in order to get an
+element, we need to return the element of the ~next~ link. If you
+have the linked list fresh in mind, you have probably already
+realised why we point to the preceding link rather than the
+"current link"[fn::It simplifies the implementation of remove, and
+also avoids us having to care about the iterator ever pointing to
+NULL.].
+
+#+BEGIN_SRC c
+elem_t iterator_get_current(iter_t *iter)
+{
+  return iter->next->element; 
+}
+#+END_SRC
+
+So far, things look simple enough -- but we have now reached the
+limits for how far our definition of ~iter_t~ will get us.
+
+
+** Iterator Functions with Side-Effects
+
+As we move attempt to implement a function that moves the iterator
+forward through the list, we run into a problem. Consider the
+**broken implementation** in Figure [[fig:bad_swing]].
+
+#+CAPTION: Broken implemenation of ~iterator_next()~
+#+NAME: fig:bad_swing
+#+BEGIN_SRC c
+void iterator_next(iter_t *iter)
+{
+  iter = iter->next;
+}
+#+END_SRC
+
+Hopefully it is obvious to you why this is not working! The ~iter~
+variable is a local variable inside ~iterator_next()~, meaning
+that the change to ~iter~ is visible only inside ~iterator_next()~.
+
+One solution is to change the function to take a pointer to the
+pointer to the iterator. This makes the change inside
+~iterator_next()~ visible to the caller.
+
+#+BEGIN_SRC c
+void iterator_next(iter_t **iter)
+{
+  *iter = (*iter)->next;
+}
+#+END_SRC
+
+Another solution is to add an extra level of indirection -- rather
+than make an iterator a pointer to a link, make an iterator an
+object /that holds a pointer to a link/. We will stick with the
+latter design rather than the pointer-to-pointer, because having
+an actual iterator object is much more /future proof/. For one, it
+will allow us to extend the iterator with new fields if the need
+should arise.
+
+
+** Refactoring Step: New Design of Iterator Struct
+
+#+BEGIN_SRC c
+/// Goes into list.h
+typedef struct iter iter_t;
+
+/// Goes into list.c
+struct iter 
+{
+  link_t *current;
+};
+#+END_SRC
+
+This requires us to update the functions we have implemented until
+now, but the changes are simple -- simply follow the ~current~
+pointer. 
+
+Creating an iterator now requires a ~malloc()~ call to create a
+new struct and writing the field in the struct.
+
+#+BEGIN_SRC c
+iter_t *list_iterator(list_t *list)
+{
+  iter_t *result = malloc(sizeof(struct iter));
+
+  result->current = list->first;
+
+  return result; 
+}
+#+END_SRC
+
+Checking whether the iterator has reached the end of the list
+requires following the ~current~ pointer.
+
+#+BEGIN_SRC c
+bool iterator_has_next(iter_t *iter)
+{
+  return iter->current->next != NULL; 
+}
+#+END_SRC
+
+The code for getting the current element changes in a similar way,
+and turns a bit unwieldy. Following the current pointer takes us
+to a link in the list. We must then read that pointer's ~next~
+field to get to the actual current link. We are then ready to read
+the ~element~ field.
+
+#+BEGIN_SRC c
+elem_t iterator_get_current(iter_t *iter)
+{
+  return iter->current->next->element; 
+}
+#+END_SRC
+
+Moving the iterator forward through the list now involves updating
+its ~current~ field.
+
+#+BEGIN_SRC c
+void iterator_next(iter_t *iter)
+{
+  iter->current = iter->current->next;
+}
+#+END_SRC
+
+Finally, because an iterator is allocated on the heap, we need a
+destructor that can return its resources back to the system.
+
+#+BEGIN_SRC c
+void iterator_delete(iter_t *iter)
+{
+  free(iter);
+}
+#+END_SRC
+
+
+** Resetting the Iterator
+
+One reason for adding an iterator struct is because resetting the
+iterator requires us to keep extra data around in the iterator.
+Either we store a pointer to the first element when we create the
+iterator or we store a pointer to the list from which the iterator
+was created. We choose the latter solution because it is more
+resilient to change -- if the first element has been removed
+before resetting, asking the list for the current first element
+will simply return the new first element.
+
+#+BEGIN_SRC c
+struct iter 
+{
+  link_t *current;
+  list_t *list; /// New field
+};
+
+iter_t *list_iterator(list_t *list)
+{
+  iter_t *result = malloc(sizeof(struct iter));
+
+  result->current = list->first;
+  result->list = list; /// Iterator remembers where it came from
+
+  return result; 
+}
+#+END_SRC
+
+With this in place, we can now write the ~iterator_reset()~
+function. 
+
+#+BEGIN_SRC c
+void iterator_reset(iter_t *iter)
+{
+  iter->current = iter->list->first;
+}
+#+END_SRC
+
+Note that we do not need to update ~iterator_delete()~ to also
+call ~list_delete()~ on its ~list~ field, because iterators are
+normally much more short-lived than the list they are iterating
+over, meaning it makes sense to be able to destroy an iterator
+without also destroying the list.
+
+** Removing Elements
+
+Because our iterator is positioned on the link "before" (it starts
+by pointing to the sentinel), removing an element is simple --
+otherwise, it would have required us to find the preceding element
+from the start of the list.
+
+#+BEGIN_SRC c
+void iterator_remove(iter_t *iter)
+{
+  iter->current->next = iter->current->next->next; 
+}
+#+END_SRC
+
+Note that while the implementation above captures the essence of
+unlinking, it does not free the memory of the unlinked link. This is
+an easy fix.  
+
+#+BEGIN_SRC c
+void iterator_remove(iter_t *iter)
+{
+  link_t *to_remove = iter->current->next; /// Cache result
+
+  iter->current->next = to_remove->next;  /// Move forward
+
+  free(to_remove); /// Remove link
+}
+#+END_SRC
+
+
+* Improving the Public Interface
+
+It is quite common to have the remove function also return the
+element of the link it is removing. Similarly, for
+~iterator_next()~. This is simple. Again, remember that we are
+always positioned "to the left" of the current link, that is, we
+are relying on being able to point to the sentinel object of the
+list.
+
+#+BEGIN_SRC c
+elem_t iterator_next(iter_t *iter)
+{
+  iter->current = iter->current->next;
+  return iter->current->element; 
+}
+
+elem_t iterator_remove(iter_t *iter)
+{
+  link_t *to_remove = iter->current->next; 
+  elem_t result = to_remove->element;
+
+  iter->current->next = to_remove->next; 
+
+  free(to_remove); 
+
+  return result;
+}
+#+END_SRC
+
+* Testing Our Iterator
+
+To test the iterator, we can implement ~list_remove()~ using it.
+List remove removes the ~i:th~ element. This means, we can create
+an iterator, take ~i~ steps, and then call ~iterator_remove()~.
+
+#+BEGIN_SRC c
+void list_remove(list_t *list, int index)
+{
+  int valid_index = list_inner_adjust_index(index, list_size(list));
+
+  iterator_t *list_iterator(list);
+  for (int i = 0; i < valid_index; ++i)
+    {
+      iterator_next(iter); 
+    }
+
+  iterator_remove(iter);
+
+  iterator_delete(iter);
+}
+
+#+END_SRC
+
+Note that, because our iterator works in terms of /elements/ and
+not /links/, we cannot use iterators to implement
+~list_inner_find_previous()~. However, because we are able to
+quickly move an iterator to the right place in the list, and
+either get the element or remove it, there is no longer a strong
+need for ~list_inner_find_previous()~.
+
+Let us close with revisiting the initial example, but use an
+iterator instead of ~list_get()~.
+
+#+BEGIN_SRC c
+list_t *list = ...; /// a list we have gotten from somewhere
+
+int odd = 0;
+int even = 0;
+
+for (iter_t *iter = list_iterator(list); iterator_has_next(iter); iterator_next(iter))
+  {
+    elem_t e = iterator_get_current(iter);
+    if (e.i % 2 == 0)
+      {
+        ++even;
+      }
+    else
+      {
+        ++odd;
+      }
+  }
+#+END_SRC
+
+If we do not insist in using a ~for~ loop, we can do a little bit
+better by relying on the implementation of ~iterator_next()~
+returning an elements.
+
+#+BEGIN_SRC c
+list_t *list = ...; /// a list we have gotten from somewhere
+
+int odd = 0;
+int even = 0;
+
+iter_t *iter = list_iterator(list); 
+
+while (iterator_has_next(iter))
+  {
+    elem_t e = iterator_next(iter); /// Both step forward and return element
+    if (e.i % 2 == 0)
+      {
+        ++even;
+      }
+    else
+      {
+        ++odd;
+      }
+  }
+#+END_SRC
+
+You can think of ~iterator_next(iter)~ a little bit like
+~arr[i++]~ -- we both look up an element in the array and
+increment the index variable so that next use will "move forward"
+in the array.
+
+#+INCLUDE: "../footer.org" 
