@@ -9,3 +9,19 @@
 
 #+HTML_LINK_HOME: http://wrigstad.com/ioopm18/
 #+HTML_LINK_UP: http://wrigstad.com/ioopm18/
+
+#+begin_important
+As long as this note remains on this page, any information *is
+subject to change* and broken links, etc. are to be expected.
+Please be restrictive in reporting any errors for now.
+#+end_important
+
+#+begin_note
+I am in the process of translating the material for this course
+from Swedish to English. The reason for this is to be able to have
+non-Swedish speaking TAs on this course. Rather than delay things
+or offer only a single project, I have elected to mix Swedish and
+English where I did not have the time to rewrite old material.
+*This note will be removed early in the course to reduce noise.*
+#+end_note
+

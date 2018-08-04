@@ -7,18 +7,6 @@ Ask questions and discuss with other students on [[https://piazza.com/class/jkd3
 Request demonstrations and track your progress at the [[http://auportal.herokuapp.com/][AU Portal]]
 #+end_attention
 
-#+begin_note
-As of 2018-08-02 is this page still being updated for 2018.
-#+end_note
-
-#+begin_note
-I am in the process of translating the material for this course
-from Swedish to English. The reason for this is to be able to have
-non-Swedish speaking TAs on this course. Rather than delay things
-or offer only a single project, I have elected to mix Swedish and
-English where I did not have the time to rewrite old material.
-#+end_note
-
 #+begin_important
 If you are visiting this page for the first time, you should
 probably [[file:about.org][read the page about the course first]].
@@ -145,3 +133,5 @@ See [[file:simple.org][this page]].
 ** FAQ
 A minimal FAQ is [[file:about.org][available]].
 ** TODO Links
+
+#+include: "./footer.org"

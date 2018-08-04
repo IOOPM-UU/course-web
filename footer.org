@@ -1,0 +1,7 @@
+-----
+
+*Questions about stuff on these pages?* Use our [[https://piazza.com/class/jkd32onglxi2vb][Piazza]] forum. 
+
+*Want to report a bug?* Please place an issue here. Pull requests are graciously accepted (hint, hint). 
+
+*Nerd fact:* These pages are generated using [[https://orgmode.org/][org-mode]] in [[https://www.gnu.org/software/emacs/][Emacs]], a modified [[https://github.com/fniessen/org-html-themes][ReadTheOrg]] template, and a bunch of scripts. 

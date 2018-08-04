@@ -420,7 +420,7 @@ a better tool. You get to define what better means, and that means
 /in writing/ in the final project report. Do invite your coach to
 your Trello board.
 
-** GitHub for Version Control, Issue Tracking and Pull Requests
+** TODO GitHub for Version Control, Issue Tracking and Pull Requests
 
 Under projektet skall ni använda er av [[http://github.com][GitHub]] för att
 versionshantera koden. Ni kommer att få ett privat konto på
@@ -443,9 +443,7 @@ författaren städat koden ordentligt? När koden väl är inne i
 systemet är den svår att bli av med, så ta tillfället i akt att
 skapa en projektkultur där endast /bra pull requests accepteras/.
 
-**TODO**
-
-- Tipsa om att bygga en checklista för hur PRs skall gå till baserat på kodgranskningsprotokoll
+*To be added:* Tipsa om att bygga en checklista för hur PRs skall gå till baserat på kodgranskningsprotokoll
 
 ** Tools for Making Good Code
 
