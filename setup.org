@@ -25,3 +25,20 @@ English where I did not have the time to rewrite old material.
 *This note will be removed early in the course to reduce noise.*
 #+end_note
 
+#+HTML_HEAD_EXTRA: <!-- Start of StatCounter Code for Default Guide -->
+#+HTML_HEAD_EXTRA: <script type="text/javascript">
+#+HTML_HEAD_EXTRA: var sc_project=11470697; 
+#+HTML_HEAD_EXTRA: var sc_invisible=1; 
+#+HTML_HEAD_EXTRA: var sc_security="9ff70043"; 
+#+HTML_HEAD_EXTRA: var scJsHost = (("https:" == document.location.protocol) ?
+#+HTML_HEAD_EXTRA: "https://secure." : "http://www.");
+#+HTML_HEAD_EXTRA: document.write("<sc"+"ript type='text/javascript' src='" +
+#+HTML_HEAD_EXTRA: scJsHost+
+#+HTML_HEAD_EXTRA: "statcounter.com/counter/counter.js'></"+"script>");
+#+HTML_HEAD_EXTRA: </script>
+#+HTML_HEAD_EXTRA: <noscript><div class="statcounter"><a title="Web Analytics"
+#+HTML_HEAD_EXTRA: href="http://statcounter.com/" target="_blank"><img
+#+HTML_HEAD_EXTRA: class="statcounter"
+#+HTML_HEAD_EXTRA: src="//c.statcounter.com/11470697/0/9ff70043/1/" alt="Web
+#+HTML_HEAD_EXTRA: Analytics"></a></div></noscript>
+#+HTML_HEAD_EXTRA: <!-- End of StatCounter Code for Default Guide -->

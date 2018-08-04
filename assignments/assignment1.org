@@ -1445,8 +1445,8 @@ when we are done with it. Heap memory must be returned
 *explicitly* through a call to ~free()~ with a pointer to the heap
 memory that you want to free as argument. It is not possible to
 partially free a memory block returned by calloc (malloc, etc.),
-or use a single free to free more than one block. *TODO: link to
-the freeing a linked list slides here*
+or use a single free to free more than one block. (See [[file:~/t/ioopm/2018/site/misc/l%C3%A4nkade%20strukturer,%20notation%20och%20free.pdf][this slide
+set]] for some pictures to go with that statement.)
 
 Calling ~free()~ on some memory and subsequently accessing it is a
 *classic bug* in C programs (and most systems where programmers
@@ -2418,7 +2418,7 @@ An iterator is an important concept that reifies the action of
 visiting all elements in a structure in some predefined order. An
 iterator typically allows visiting all elements and removing
 elements. An introduction to iterators that builds on the linked
-list page can be found [[file:~/t/ioopm/2018/site/iterators.org][here]].
+list page can be found [[file:iterators.org][here]].
 
 To support iterators, we want to extend the list with the ability
 to create an iterator. Thus, such a function must be added to the

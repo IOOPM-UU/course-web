@@ -2,8 +2,219 @@
 #+include: "./setup.org"
 
 #+begin_attention
-This text is being written from scratch in 2018. For now, refer to the bootstrap sections on the [[file:assignments/c-bootstrap.org][C bootstap labs]].
+Most of this text is being written from scratch in 2018. For now, refer to the bootstrap sections on the [[file:assignments/c-bootstrap.org][C bootstap labs]].
 #+end_attention
+
+* Introduktion till Emacs
+
+#+begin_note
+Skrevs av Elias Castegren, huvudassistent på IOOPM 2011--2017
+#+end_note
+
+det här är en kort genomgång av några väldigt grundläggande
+kommandon i Emacs. Dokumentet är inte utförligt eller ens särskilt
+pedagogiskt, utan jag har försökt sammanfatta de kommandon som jag
+själv har haft mest nytta av (och använder i princip dagligen).
+Det är inte en introduktion, utan snarare en resurs för den som
+har använt Emacs lite grand och vill lära sig att bli mer
+effektiv. Du kan också använda filen =init.el= (se ovan) som
+utgångspunkt om du vill konfigurera ditt eget Emacs. Emacs letar
+efter inställningar (bland annat) genom sökvägen
+=~/.emacs.d/init.el=.
+
+Nästan alla kortkommandon i Emacs innehåller tangenterna Control
+och Meta (symbolen som ser ut som en diamant på tangentborden i
+datorsalarna). När man skriver ut kortkommandona skriver man [[key:C]]
+för Control och [[key:M]] för Meta. För att till exempel spara en fil
+trycker man key:C-x key:C-s, alltså först "Control x" (håll in Control
+och tryck "x"), och sen "Control s" (håll in key:Ctrl och tryck
+"s"). Det är ofta så att "Control bokstav" och "Meta bokstav" gör
+liknande saker. key:C-f flyttar till exempel fram markören ett
+tecken, medan key:M-f flyttar fram den ett helt ord. På datorer som
+inte har en Meta-tangent brukar man kunna använda key:ESC eller key:Alt
+istället. På Mac-datorer funkar key:Cmd eller key:Alt (beroende på vilken
+version av Emacs man kör). I det här dokumentet skrivs
+specialtangenter som space, delete och return ut med vinkelhakar:
+[[key:<space>]], [[key:<del>]] och [[key:<ret>]].
+
+Det bästa sättet att lära sig är att helt enkelt försöka använda
+alla kommandon så ofta som möjligt. Varje gång man gör något, om
+det så är kopiera text eller bara flytta markören, så ska man
+fundera på hur man kan göra det med så få knapptryckningar som
+möjligt. I början kommer det kännas omständligt att leta upp
+kortkommandon för allt man ska göra, men efter ett tag sätter det
+sig i fingrarna och då kommer man att bli mer effektiv i sitt
+arbete. Sist i dokumentet finns en sida som sammanfattar några
+användbara kommandon. Den kan man med fördel skriva ut och låta
+ligga bredvid datorn när man arbetar. Här följer en kort
+beskrivning av dessa kommandon.
+
+** Öppna filer och hantera buffrar
+
+När man startar Emacs är det första man vill göra att välja vilken
+fil man vill jobba med. För att öppna en fil är kommandot key:C-x
+key:C-f (=f= som i *find file*). Om filen inte finns kommer den att
+skapas. Sparar gör man med key:C-x key:C-s (*save file*), eller `C-x
+C-w` (*write file*) om man vill ange ett nytt namn på filen. Rent
+tekniskt skapas en ny fil när man sparar för första gången.
+
+När man öppnar en fil i Emacs läses den in till en buffer. Man kan
+ha flera buffrar inlästa samtidigt, och man byter buffer genom att
+trycka [[key:C-x b]] och ange namnet på buffern man vill byta till.
+key:C-x key:C-b visar en lista på alla inlästa buffrar, och
+[[key:C-x k]] (*kill buffer*) stänger den aktiva buffern.
+
+Om man vill kunna se flera buffrar samtidigt kan man dela
+Emacs-fönstret horisontellt ([[key:C-x 2]]) eller vertikalt ([[key:C-x
+3]]). Man byter mellan öppna fönster med [[key:C-x o]] (*other window*)
+eller genom att klicka i ett fönster. [[key:C-x 0]] stänger det aktiva
+fönstret, och [[key:C-x 1]] stänger alla fönster förutom det aktiva.
+
+
+** Navigering
+
+Man scrollar ner i ett fönster med key:C-v (*view next screen*) och
+upp med key:M-v. key:C-l (*center **l**ine*) centrerar fönstret vid
+markören. Trycker man key:C-l flera gånger så scrollas fönstret så
+att markören hamnar överst eller underst i fönstret.
+
+Kortkommandona för att flytta markören är key:C-f (*forward*), key:C-b
+(*backward*), key:C-n (*next line*) och key:C-p (*previous line*).
+Håller man in meta-tangenten istället för control (alltså key:M-f
+och key:M-b) flyttar man markören hela ord istället. Det finns också
+kortkommandon för att (bland annat) flytta markören till början
+eller slutet av den nuvarande raden, meningen, funktionen eller
+buffern.
+
+Man kan flytta markören med piltangenterna (i kombination med
+control- och meta-tangenterna) eller genom att klicka med musen
+också, men med kortkommandona går det betydligt snabbare och man
+slipper flytta händerna.
+
+Varje gång man gör något "särskilt" i Emacs (markerar text,
+klipper ut eller kopierar något, söker, och så vidare) så sparas
+markörens nuvarande position högst upp i den så kallade
+mark-stacken. För att hoppa till den position som är överst i
+mark-stacken använder man key:C-u [[key:C-<space>]]. Det tar också bort den
+positionen från mark-stacken. Ett bra sätt att snabbt komma
+tillbaka till "där man nyss var" är att trycka key:C-u [[key:C-<space>]]
+några gånger.
+
+
+** Redigera text
+
+Om man vill ta bort text i Emacs kan man ta bort enskilda tecken
+bakåt med [[key:<del>]] (backspace) och framåt med key:C-d (*delete*).
+När man tar bort mer text åt gången så klipper man egentligen ut
+den (så att man kan klistra in den igen). Man kan ta bort hela ord
+bakåt och framåt med [[key:M-<del>]] och key:M-d. Med key:C-k (*kill
+line*) tar man bort resten av raden från och med markören. [[key:C-0
+k]] tar bort raden fram till markören
+
+Trycker man [[key:C-<space>]] så börjar man markera text från
+markörens nuvarande position tills man gör något med markeringen
+(eller avbryter med key:C-g). Om man vill utvidga markeringen åt
+andra hållet kan man trycka key:C-x key:C-x (*exchange point and
+mark*) för att flytta markören till där man började markeringen
+(utan att förlora det man redan har markerat). Man kan också
+(bland annat) markera ett helt stycke, en hel funktion eller hela
+buffern.
+
+När man har markerat text klipper man ut den med key:C-w (*wipe*)
+eller kopierar med key:M-w. Klistra in gör man sen med key:C-y
+(klistra in kallas *yank* i Emacs). För att komma åt gamla saker
+man har klippt ut kan man trycka key:M-y efter att man tryckt key:C-y.
+Då bläddrar man igenom allt man har klippt ut hittills.
+
+
+** Söka och ersätta
+
+Ett annat snabbt sätt att navigera i en fil är att söka efter
+textsträngar. Trycker man key:C-s (*search*) eller key:C-r (*reverse
+search*) kommer Emacs börja leta efter inmatad text framåt eller
+bakåt i filen. Trycker man key:C-s eller key:C-r igen så letar den
+efter nästa förekomst i filen.
+
+Om man vill ersätta alla eller vissa förekomster av en textsträng
+kan man använda kommandot [[key:M-%]] (key:M-Shift-5 på vanliga svenska
+tangentbord). Man får då mata in texten man söker efter och vad
+man vill ersätta den med. För varje förekomst av söksträngen får
+man sen ange med [[key:y]] (*yes*) och [[key:n]] (*no*) om man vill att den
+ska bytas ut eller inte (trycker man [[key:?]] får man se fler möjliga
+svarsalternativ). För att byta ut alla förekomster kan man använda
+kommandot key:M-x =replace-string= istället.
+
+
+** Terminal i Emacs
+
+Man kan köra enskilda terminalkommandon från Emacs genom att
+trycka [[key:M-!]] (key:M-Shift-1) och ange ett kommando. Anger man till
+exempel =ls= får man se alla filer som finns i samma katalog som
+den aktiva filen. Det går också att öppna en terminal i ett
+Emacs-fönster med kommandot =M-x shell=. Den fungerar precis som
+ett vanligt terminalfönster, med skillnaden att man måste hålla in
+control för att bläddra mellan tidigare inmatningar med hjälp av
+piltangenterna.
+
+** Ångra och avbryt
+
+Om man vill ångra tidigare ändringar använder man antingen [[key:C-x u]]
+(*undo*) eller [[key:C-_]]. Om man råkar påbörja ett oönskat kommando
+kan man avbryta det med key:C-g. Slutligen kan man spara alla
+inlästa buffrar och avsluta Emacs med key:C-x key:C-c.
+
+
+** Och sen då?
+
+När man har lärt sig vad som står i det här dokumentet kan man
+börja leta vidare efter mer utförliga källor. Ett ställe att börja
+kan till exempel vara lektionen man får om man trycker [[key:C-h t]] i
+Emacs. [[file:misc/cheatsheet.pdf][Referensbladet]] är baserat på ett
+större referensblad men medvetet förkortat och förenklat för att
+vara överskådligt. När man känner sig säker på det grundläggande
+så kan ett bra nästa steg vara att skaffa ett större referensblad,
+till exempel något av de många man hittar när man googlar "emacs
+cheat sheet". Man kan förstås också installera Emacs på sin
+hemdator.
+
+En favoritfunktionalitet som det här dokumentet inte har tagit upp
+är inspelning och uppspelning av macron. Trycker man [[key:C-x (]] så
+börjar man spela in alla tangenttryckningar man gör, tills man
+avslutar med [[key:C-x )]]. Man kan sen spela upp sin senaste inspelning
+med [[key:C-x e]], som står för *execute macro*. Det är användbart om
+man vill upprepa någonting flera gånger. Som ett enkelt exempel
+kommer här ett macro som skriver en =printf=-sats med radbrytning
+och flyttar markören till argumentsträngens början:
+
+#+begin_center
+key:C-x [[key:(]] =printf("\n");= key:M-b key:C-b key:C-x [[key:)]]
+#+end_center
+
+Efter att ha spelat in ovanstående macro kan man alltså trycka
+[[key:C-x e]] för att få en =printf=-sats med markören på rätt ställe.
+Det går också att upprepa vilket kommando som helst ett visst
+antal gånger genom att trycka [[key:C-u 5]] (för något värde på 5) och
+sen vilket kommando man vill upprepa. Vill man ta bort fyra på
+varandra följande rader kan man alltså trycka key:C-u [[key:4]] key:C-k. Prova
+också att skriva
+
+#+begin_center
+key:C-x [[key:(]] =Emacs är bäst= [[key:<ret>]] key:C-x [[key:)]] key:C-u =100= key:C-x [[key:e]]
+#+end_center
+
+På frågan "Kan man göra det här i Emacs" är svaret nästan alltid
+"Ja", framförallt om det handlar om effektiv textredigering. Det
+går också att använda Emacs till exempel som webbläsare,
+e-postklient, chattklient, PDF-läsare, filhanterare, kalkylator,
+kalender och att-göra-lista. Hur insnöad man vill bli är upp till
+var och en (jag tycker till exempel inte att det är något fel på
+Chrome eller Firefox som webbläsare).
+
+/Lycka till i ditt framtida liv som Emacs-fantast!/
+
+#+caption: Dr. Elias Castegren, känd som Emacs-Jesus under IOOPM 2017
+file:http://wrigstad.com/images/dr-castegren.jpg
+
 * TODO Yas-snippets
 
 * TODO Programmera Java i Emacs med irony-mode

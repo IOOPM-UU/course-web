@@ -242,3 +242,32 @@ to always use =git pull --rebase=.
 
 
 #+include: "./footer.org"
+* More
+#+begin_note
+Baserad på anteckningar av Elsa Rick 2015.
+#+end_note
+** Ångra etc.
+- =git reset HEAD filnamn= - ångrar "add"
+- =git checkout filnamn= - motsatsen till "add". Om du har ändrat i en fil men inte vill spara ändring. *Obs! Om du checkout:ar en fil försvinner alla dina ändringar i den filen!*
+- =git rm filnamn= - ta bort en fil från ett repo (ändringen kommer med i nästa commit)
+
+** Branching
+- =git checkout -b branchnamn= - skapa branch
+- =git branch= - se alla brancher du har tillgång till
+- =git branch -r= - se alla brancher, även de du inte har lokalt
+- =git checkout branchnamn= - byt branch till branchnamn
+- =git push origin branchnamn= - pusha upp dina commits i den lokala branchen branchnamn till GitHub. Till exempel, =git push origin master= för att pusha till master.
+- =git pull origin master= - dra ner master från repot online
+
+Om du vill merge:a ändringar i en lokal branch med master efter en pull som ovan:
+- =git checkout origin branchnamn= - ställ dig i branchnamn
+- =git merge origin/master= - merga branchnamn med din lokala master
+
+** Hämta existerande branch
+- =git fetch= - Hämta ändringar från GitHub
+- =git checkout branchnamn= - Efter det här står du i branchnamn
+
+** Övrigt
+- =git remote -v= - se vilka repon du är kopplad till
+
+Se till att alltid stå i rätt branch!!!

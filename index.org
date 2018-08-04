@@ -78,7 +78,6 @@ TBA in 2018: Guest lecture from Oracle JVM engineers.
 | 10/12 | Project presentations, software projects |
 | 18/1  | Retrospective & guest lecture            |
 
-
 * Deadlines
 Deadlines and important dates in chronological order. Read [[file:about.org#orgc68375c][here]] about soft and hard deadlines.
 
@@ -120,18 +119,32 @@ Note that assignments mostly act as drivers to learn concepts and produce eviden
 * The Coding Exam
 See [[file:code-exam.org][this page]].
 * How IOOPM Works
-See [[file:about.org][this page]].
+IOOPM has a somewhat unusual structure. See [[file:about.org][this page]] for details.
 * The SIMPLE Methodology
-See [[file:simple.org][this page]].
+The [[file:simple.org][SIMPLE methodology]] is an attempt at codifying some good
+practises for thinking about coding, actual coding, and
+refactoring. Read about in on [[file:simple.org][this page]].
 * Resources
-** Contact Information
-| Name             | Function                | Email                       | Office |
-|------------------+-------------------------+-----------------------------+--------|
-| [[http://wrigstad.com][Tobias Wrigstad]]  | Head Teacher            | =tobias.wrigstad@it.uu.se=  |   1356 |
-| Gustaf Borgström | Head Teaching Assistant | =gustaf.borgstrom@it.uu.se= |   1258 |
-** TODO Screencasts
+** TODO General Programming
+- An introduction to Emacs is found [[file:editors.org][here]]
+- An introduction to Makefiles is found [[file:makefiles.org][here]]
+- An overview of the tools we use on the course is found [[file:tools.org][here]]
+- A minimal set of commands for working with git and GitHub is found [[file:github.org][here]]
+** TODO C Programming
+- [[file:compiling.org][Basic compiling]] instructions
+- [[file:basic-c.org][Basic C constructs]] overview and discussion
+- [[file:pointers.org][An introduction to pointers and pointers to pointers]]
+** TODO Java Programming
+- [[file:compiling.org][Basic compiling]] instructions
+** Screencasts
+- [[file:screencasts.org][Screencasts from old instances of the course]]
 ** FAQ
 A minimal FAQ is [[file:about.org][available]].
 ** TODO Links
 
 #+include: "./footer.org"
+* Contact Information
+| Name             | Function                | Email                       | Office |
+|------------------+-------------------------+-----------------------------+--------|
+| [[http://wrigstad.com][Tobias Wrigstad]]  | Head Teacher            | =tobias.wrigstad@it.uu.se=  |   1356 |
+| Gustaf Borgström | Head Teaching Assistant | =gustaf.borgstrom@it.uu.se= |   1258 |
