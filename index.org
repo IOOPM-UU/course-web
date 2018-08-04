@@ -113,8 +113,8 @@ Note that assignments mostly act as drivers to learn concepts and produce eviden
 | [[file:assignments/assignment1.org][Assignment 1 (C)]]              | 17/9  | 5/10      |
 | [[file:assignments/assignment2.org][Assignment 2 (C)]]              | 8/10  | 19/10     |
 | [[file:assignments/java-bootstrap.org][Java bootstrap exercises]]      | 22/10 | 26/10     |
-| [[file:assignments/assignment3.org][Assignment 1 (Java)]]           | 29/10 | 16/11     |
-| [[file:assignments/assignment4.org][Assignment 2 (Java)]]           | 19/11 | 30/11     |
+| [[file:assignments/assignment3.org][Assignment 3 (Java)]]           | 29/10 | 16/11     |
+| [[file:assignments/assignment4.org][Assignment 4 (Java)]]           | 19/11 | 30/11     |
 | [[file:projects/projects.org][Project assignment -- Phase 3]] | 3/12  | 14/1 2019 |
 * The Coding Exam
 See [[file:code-exam.org][this page]].
@@ -142,9 +142,10 @@ refactoring. Read about in on [[file:simple.org][this page]].
 A minimal FAQ is [[file:about.org][available]].
 ** TODO Links
 
-#+include: "./footer.org"
 * Contact Information
 | Name             | Function                | Email                       | Office |
 |------------------+-------------------------+-----------------------------+--------|
 | [[http://wrigstad.com][Tobias Wrigstad]]  | Head Teacher            | =tobias.wrigstad@it.uu.se=  |   1356 |
 | Gustaf Borgström | Head Teaching Assistant | =gustaf.borgstrom@it.uu.se= |   1258 |
+
+#+include: "./footer.org"
