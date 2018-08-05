@@ -104,7 +104,7 @@ Deadlines and important dates in chronological order. Read [[file:about.org#orgc
 | 16/1 2019    | [[http://auportal.herokuapp.com/achievements/7][C7]] deadline                |                                           |
 | 16-18/1 2019 | [[file:projects/projects.org][Project]] Seminars           | *Mandatory presence for all*              |
 
-* Assignments and Hand-Ins
+* Exercises, Assignments and Projects
 Note that assignments mostly act as drivers to learn concepts and produce evidence for demonstrating mastery of achivements.
 
 | What                          | Start | End       |
@@ -126,11 +126,14 @@ The [[file:simple.org][SIMPLE methodology]] is an attempt at codifying some good
 practises for thinking about coding, actual coding, and
 refactoring. Read about in on [[file:simple.org][this page]].
 * Resources
-** TODO General Programming
+** TODO General 
 - An introduction to Emacs is found [[file:editors.org][here]]
 - An introduction to Makefiles is found [[file:makefiles.org][here]]
 - An overview of the tools we use on the course is found [[file:tools.org][here]]
 - A minimal set of commands for working with git and GitHub is found [[file:github.org][here]]
+- An IOOPM-specific [[https://trello.com/ioopm][clonable Trello board]] that you can use to track your own progress and plan your phases and sprints
+- An IOOPM-specific [[https://docs.google.com/spreadsheets/d/171ME0XXa-7C7iSbRsHuwdwDwt912nGqHwdpuHQAhIVc/edit#gid=49659760][Google Spread Sheet for making burndown charts]] and tracking your velocity
+- [[http://www.it.uu.se/datordrift/maskinpark/linux][Machines at IT available for remote access]] and [[http://www.it.uu.se/datordrift/maskinpark/linux][instructions for accessing them remotely]]
 ** TODO C Programming
 - [[file:compiling.org][Basic compiling]] instructions
 - [[file:basic-c.org][Basic C constructs]] overview and discussion
@@ -138,15 +141,25 @@ refactoring. Read about in on [[file:simple.org][this page]].
 ** TODO Java Programming
 - [[file:compiling.org][Basic compiling]] instructions
 ** Screencasts
-- [[file:screencasts.org][Screencasts from old instances of the course]]
+Screencasts from old instances of the course are [[file:screencasts.org][available]].
 ** FAQ
-A minimal FAQ is [[file:about.org][available]].
+A minimal FAQ is [[file:about.org][available]]. 
 ** TODO Links
+- [[http://wrigstad.com/ioopm][Old website for IOOPM 2015--2017]]
+- [[http://wrigstad.com/ioopm/links.php][The old link library]]
 
 * Contact Information
 | Name             | Function                | Email                       | Office |
 |------------------+-------------------------+-----------------------------+--------|
 | [[http://wrigstad.com][Tobias Wrigstad]]  | Head Teacher            | =tobias.wrigstad@it.uu.se=  |   1356 |
 | Gustaf Borgström | Head Teaching Assistant | =gustaf.borgstrom@it.uu.se= |   1258 |
+
+* Recent Changes
+
+#+begin_attention
+When the course starts, substantial changes (i.e., not spelling
+errors) will be logged here. More complete change tracking is
+possible by following [[https://github.com/IOOPM-UU/course-web][these pages on GitHub]]. 
+#+end_attention
 
 #+include: "./footer.org"
