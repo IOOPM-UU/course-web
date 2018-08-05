@@ -68,8 +68,10 @@ Below are some recent coding exams.
 
 In 2016, I was asked on Piazza to record a screencast that
 demonstrated what doing a code exam could be like. This was a
-great idea, but the question was asked the night before the first
-exam, and hence [[http://user.it.uu.se/~writo649/java.mp4][this recording]] is a little rough. 
+great idea, but the question was asked the night before the 
+exam, and hence [[http://user.it.uu.se/~writo649/java.mp4][this recording]] is a little rough (to the point
+of being a bit wrong in the end, but it serves the purpose to
+show what writing a code exam can be like). 
 
 * Frequently Asked Questions
 
