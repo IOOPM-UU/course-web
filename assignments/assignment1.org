@@ -848,7 +848,7 @@ We already have a working ~ioopm_hash_table_create()~, so we are
 almost done. To finish this step, you should:
 
 1. Make sure that your code compiles with the [[file:~/t/ioopm/2018/site/compiling.org][appropriate flags]]
-   turned on. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]].
 2. [[file:~/t/ioopm/2018/site/github.org][Check your code into the approprate GitHub repos]]. Tag your
    commit with =assignment1_step0= following the instructions
    in the previous link. 
@@ -1112,7 +1112,7 @@ Finishing this step means finishing the implementation of
 3. Implement a couple of tests for ~ioopm_hash_table_insert()~
    following the instructions in Section XXX.
 4. Make sure that your code compiles with the [[file:~/t/ioopm/2018/site/compiling.org][appropriate flags]]
-   turned on. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]].
 5. Make sure that the code passes your tests.
 6. [[file:~/t/ioopm/2018/site/github.org][Check your code into the approprate GitHub repos]]. Tag your
    commit with =assignment1_step1=.
@@ -1372,7 +1372,7 @@ code above.
 2. Implement a couple of tests for ~ioopm_hash_table_lookup()~
    following the instructions in Section XXX.
 3. Make sure that your code compiles with the [[file:~/t/ioopm/2018/site/compiling.org][appropriate flags]]
-   turned on. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]].
 4. Make sure that the code passes your tests.
 5. [[file:~/t/ioopm/2018/site/github.org][Check your code into the approprate GitHub repos]]. Tag your
    commit with =assignment1_step2=.
@@ -1510,7 +1510,7 @@ Finishing this step means finishing the implementation of
 4. Implement a couple of tests for ~ioopm_hash_table_insert()~
    following the instructions in Section XXX.
 5. Make sure that your code compiles with the [[file:~/t/ioopm/2018/site/compiling.org][appropriate flags]]
-   turned on. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]].
 6. Make sure that the code passes your tests.
 7. [[file:~/t/ioopm/2018/site/github.org][Check your code into the approprate GitHub repos]]. Tag your
    commit with =assignment1_step3=.
@@ -1651,7 +1651,7 @@ introduced along the way.
    that all hash tables created during testing are properly
    destroyed.
 3. Make sure that your code compiles with the [[file:~/t/ioopm/2018/site/compiling.org][appropriate flags]]
-   turned on. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]].
 4. Run your tests through Valgrind. There are no reasons to see
    any warnings or errors or memory leaks, and Valgrind should
    print out "No leaks possible" at the end[fn::If you run
@@ -1732,8 +1732,8 @@ Finish this step by verifying that you did not accidentally insert
 bugs by making sure that the tests compile and run as before.
 
 1. Make sure that your code compiles with the [[file:~/t/ioopm/2018/site/compiling.org][appropriate flags]]
-   turned on. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
-2. Run your tests through Valgrind. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]].
+2. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 3. Make sure that the code passes your tests.
 4. [[file:~/t/ioopm/2018/site/github.org][Check your code into the approprate GitHub repos]]. Tag your
    commit with =assignment1_step5=.
@@ -1918,8 +1918,8 @@ then call ~ioopm_hash_table_clear()~ from
 2. Write tests for all functions, before or after implementing
    them, depending on your way of working.
 3. Make sure that your code compiles with the [[file:~/t/ioopm/2018/site/compiling.org][appropriate flags]]
-   turned on. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
-4. Run your tests through Valgrind. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]].
+4. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 5. Make sure that the code passes your tests.
 6. [[file:~/t/ioopm/2018/site/github.org][Check your code into the approprate GitHub repos]]. Tag your
    commit with =assignment1_step6=.
@@ -1976,8 +1976,8 @@ list instead of an array.
    ~free()~ in your tests to deallocate the arrays of keys and
    values.
 3. Make sure that your code compiles with the [[file:~/t/ioopm/2018/site/compiling.org][appropriate flags]]
-   turned on. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
-4. Run your tests through Valgrind. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]].
+4. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 5. Make sure that the code passes your tests.
 6. [[file:~/t/ioopm/2018/site/github.org][Check your code into the approprate GitHub repos]]. Tag your
    commit with =assignment1_step7=.
@@ -2023,8 +2023,8 @@ free the array in the end.
    ~strdup()~ to create a copy of a string. (Don't forget to
    deallocate the copy or Valgrind will complain.)
 3. Make sure that your code compiles with the [[file:~/t/ioopm/2018/site/compiling.org][appropriate flags]]
-   turned on. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
-4. Run your tests through Valgrind. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]].
+4. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 5. Make sure that the code passes your tests.
 6. [[file:~/t/ioopm/2018/site/github.org][Check your code into the approprate GitHub repos]]. Tag your
    commit with =assignment1_step8=.
@@ -2222,8 +2222,8 @@ would probably find the second version more readable.
    Thus, write tests for the latter function, before or after
    implementing it, depending on your way of working.
 4. Make sure that your code compiles with the [[file:~/t/ioopm/2018/site/compiling.org][appropriate flags]]
-   turned on. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
-5. Run your tests through Valgrind. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]].
+5. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 6. Make sure that the code passes your tests.
 7. [[file:~/t/ioopm/2018/site/github.org][Check your code into the approprate GitHub repos]]. Tag your
    commit with =assignment1_step9=.
@@ -2249,7 +2249,7 @@ table. However, because the linked list is a fundamental data
 structure, it pays off to have implemented one from the ground up.
 So that's what we are going to do next.
 
-Following the instructions [[file:lists.org][here]] as well as above, we will now
+Following the instructions [[lists.org][here]] as well as above, we will now
 switch tasks for a second, to implement a linked list. Although
 the instructions in the link above mention pointers to pointers,
 sticking with the dummy node is a fine choice. For now, we will
@@ -2275,7 +2275,7 @@ Here are some questions to ponder:
   into private functions?
 - How should failure be handled (e.g., inserting at an invalid
   index)? (You may alter signatures do deal with failure in the
-  same way we did for the hash table.) The [[file:lists.org][linked list overview]]
+  same way we did for the hash table.) The [[lists.org][linked list overview]]
   implements a defensive approach that lets all indexes be valid
   by e.g. interpreting negative indexes in some way, etc.
 - How do we meet the /non-functional requirements/ on prepend,
@@ -2405,8 +2405,8 @@ you get going:
 3. Write at least basic tests, before or after implementing it,
    depending on your way of working.
 4. Make sure that your code compiles with the [[file:~/t/ioopm/2018/site/compiling.org][appropriate flags]]
-   turned on. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
-5. Run your tests through Valgrind. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]].
+5. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 6. Make sure that the code passes your tests.
 7. [[file:~/t/ioopm/2018/site/github.org][Check your code into the approprate GitHub repos]]. Tag your
    commit with =assignment1_step10=.
@@ -2497,8 +2497,8 @@ like modularity, encapsulation, coupling and cohesion.
    in the list using the iterator in a way that exercises all the
    functions in the iterator interface.
 4. Make sure that your code compiles with the [[file:~/t/ioopm/2018/site/compiling.org][appropriate flags]]
-   turned on. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
-5. Run your tests through Valgrind. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]].
+5. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 6. Make sure that the code passes your tests.
 7. [[file:~/t/ioopm/2018/site/github.org][Check your code into the approprate GitHub repos]]. Tag your
    commit with =assignment1_step11=.
@@ -2528,14 +2528,14 @@ platforms. Quoting the [[https://en.wikipedia.org/wiki/C_data_types][Wikipedia a
 
 #+BEGIN_QUOTE
 [An int is a basic] signed integer type. Capable of containing
-at least the [−32,767, +32,767] range; thus, it is at least 16
+at least the $[−32,767, +32,767]$ range; thus, it is at least 16
 bits in size.
 #+END_QUOTE
 
 The current C standard defines multiple integer data types (for
 example), which have invariant size across all platforms. For
 example, an ~int32_t~ is always 32 bits and is therefore capable
-of containing the [−2_147_483_647, +2_147_483_647] range]. On the
+of containing the $[−2,147,483,647, +2,147,483,647]$ range. On the
 computer on which I am editing this document right now, ~int32_t~
 is a type alias of ~int~, i.e., it is defined using ~typedef~ as
 ~int~ (because ~int~ is 32 bits on this machine). It is perfectly
@@ -2606,8 +2606,8 @@ that intention.
 3. Update the tests to adapt to the changes, before or after the
    changes are implemented, depending on your way of working.
 4. Make sure that your code compiles with the [[file:~/t/ioopm/2018/site/compiling.org][appropriate flags]]
-   turned on. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
-5. Run your tests through Valgrind. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]].
+5. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 6. Make sure that the code passes your tests.
 7. [[file:~/t/ioopm/2018/site/github.org][Check your code into the approprate GitHub repos. Tag your
    commit with =assignment1_step12=.]]
@@ -2615,11 +2615,11 @@ that intention.
 
 ** Step 13: Supporting Arbitrary Data as Elements, Keys and Values
 
-As you were looking at [[file:~/t/ioopm/2018/site/lists.org][the text on linked lists]], you may have
+As you were looking at [[lists.org][the text on linked lists]], you may have
 scrolled all the way down to the section /Adding Genericity/ that
 deals with how to support lists that can hold arbitrary data. Now,
 time has come to change both the list and the hash table to store
-arbitrary data. We will follow the trick in [[file:~/t/ioopm/2018/site/lists.org][the text on linked
+arbitrary data. We will follow the trick in [[lists.org][the text on linked
 lists]] and have each element (in the case of the list), key and
 value (in the case of the hash table) be a union of the possible
 element types. Since C does not have run-time type information, we
@@ -2764,8 +2764,8 @@ This is no longer a problem, so go ahead and update
 5. Update all tests to pass in the proper functions and to handle
    ~elem_t~'s instead of e.g., integers or strings.
 6. Make sure that your code compiles with the [[file:~/t/ioopm/2018/site/compiling.org][appropriate flags]]
-   turned on. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
-7. Run your tests through Valgrind. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]].
+7. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 8. Make sure that the code passes your tests.
 9. [[file:~/t/ioopm/2018/site/github.org][Check your code into the approprate GitHub repos]]. Tag your
    commit with =assignment1_step13=.
@@ -3132,8 +3132,8 @@ remove in the hash table to drive the implementation.
    that require us to do or know in our test programs? Implement a
    test for the growing of the number of buckets.
 6. Make sure that your code compiles with the [[file:~/t/ioopm/2018/site/compiling.org][appropriate flags]]
-   turned on. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
-7. Run your tests through Valgrind. Preferably using a [[file:~/t/ioopm/2018/site/makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]].
+7. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 8. Make sure that the code passes your tests.
 9. [[file:~/t/ioopm/2018/site/github.org][Check your code and the profiling results into the approprate
    GitHub repos]]. Tag your commit with =assignment1_step14=.

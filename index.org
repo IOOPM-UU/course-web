@@ -117,7 +117,8 @@ Note that assignments mostly act as drivers to learn concepts and produce eviden
 | [[file:assignments/assignment4.org][Assignment 4 (Java)]]           | 19/11 | 30/11     |
 | [[file:projects/projects.org][Project assignment -- Phase 3]] | 3/12  | 14/1 2019 |
 * The Coding Exam
-See [[file:code-exam.org][this page]].
+The course does not use a traditional closed-book exam. Read [[file:code-exam.org][this
+page]] for more information about he coding exam.
 * How IOOPM Works
 IOOPM has a somewhat unusual structure. See [[file:about.org][this page]] for details.
 * The SIMPLE Methodology
