@@ -1,7 +1,12 @@
 #+title: How the IOOPM Course Works
 #+include: "./setup.org" 
 
-*TODO* link to SPLASH-E paper
+#+begin_attention
+In 2017, we presented a paper on the design of the IOOPM course at
+the SPLASH-E symposium in Vancouver. If you want to know more
+about why we are doing what we are doing, go ahead and [[http://uu.diva-portal.org/smash/get/diva2:1157549/FULLTEXT01.pdf][read the
+paper]] (15 pages).
+#+end_attention
 
 * TODO Changes from 2017
 - Presentation
