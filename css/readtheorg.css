@@ -466,7 +466,7 @@ table tr:nth-child(2n) td{
     }
 
     #org-div-home-and-up {
-        margin-top: 504px;
+        margin-top: 50px;
     }
 
 }
@@ -1129,7 +1129,7 @@ pre.src:before {
     display: none;
     position: absolute;
     background-color: magenta;
-    color: #333;
+    color: white;
     top: 10px;
     right: 10px;
     padding: 3px;
@@ -1180,4 +1180,17 @@ span.section-number-3 {
 span.section-number-4 {
     color: magenta;
     padding-right: 1ex;
+}
+
+span.figure-number {
+    font-weight:600;
+}
+
+div.figure p {
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight:300;
+    font-style:normal;
+    line-height: 120%;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }

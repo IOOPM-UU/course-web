@@ -6,9 +6,4 @@
 
 *Nerd fact:* These pages are generated using [[https://orgmode.org/][org-mode]] in [[https://www.gnu.org/software/emacs/][Emacs]], a modified [[https://github.com/fniessen/org-html-themes][ReadTheOrg]] template, and a bunch of scripts. 
 
------
-
-#+BEGIN_CENTER
-[[http://wrigstad.com/ioopm18/sitemap.html][Sitemap]] | [[http://wrigstad.com/ioopm18/index.html][Start page]] | [[http://auportal.herokuapp.com/][AUPortal]]
-#+END_CENTER
 

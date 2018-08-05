@@ -83,26 +83,26 @@ Deadlines and important dates in chronological order. Read [[file:about.org#orgc
 
 | Date         | Deadline                   | Comment                                   |
 |--------------+----------------------------+-------------------------------------------|
-| 14/9         | Groupie Assignment         |                                           |
-| 14/9         | C Bootstrap                | Prerequisite for starting on Assignment 1 |
-| 5/10         | Assignment 1 (Soft)        |                                           |
-| 19/10        | Assignment 1 (Hard)        |                                           |
-| 19/10        | Assignment 2 (Soft)        |                                           |
-| 24/10        | Coding Exam 1              |                                           |
-| 26/10        | Assignment 2 (Hard)        |                                           |
-| 26/10        | Java Bootstrap             | Prerequisite for starting on Assignment 2 |
-| 16/11        | Assignment 3 (Soft)        |                                           |
-| 30/11        | Assignment 3 (Hard)        |                                           |
-| 30/11        | Assignment 4 (Soft)        |                                           |
-| 1/12         | Last day to hand in essay  |                                           |
-| 11/12        | Assignment 4 (Hard)        |                                           |
-| 11/12        | Coding Exam 2              |                                           |
-| 13/12        | Last possibility to do X62 |                                           |
-| 19/12        | Coding Exam 3              |                                           |
+| 14/9         | [[http://auportal.herokuapp.com/achievements/63][Groupie Achievement]]        | Only one hand-in *per group*              |
+| 14/9         | [[file:assignments/c-bootstrap.org][C Bootstrap]]                | Prerequisite for starting on Assignment 1 |
+| 5/10         | [[file:assignments/assignment1.org][Assignment 1]] (Soft)        |                                           |
+| 19/10        | [[file:assignments/assignment1.org][Assignment 1]] (Hard)        |                                           |
+| 19/10        | [[file:assignments/assignment2.org][Assignment 2]] (Soft)        |                                           |
+| 24/10        | [[file:code-exam.org][Coding Exam]] 1              |                                           |
+| 26/10        | [[file:assignments/assignment2.org][Assignment 2]] (Hard)        |                                           |
+| 26/10        | [[file:assignments/java-bootstrap.org][Java Bootstrap]]             | Prerequisite for starting on Assignment 2 |
+| 16/11        | [[file:assignments/assignment3.org][Assignment 3]] (Soft)        |                                           |
+| 30/11        | [[file:assignments/assignment3.org][Assignment 3]] (Hard)        |                                           |
+| 30/11        | [[file:assignments/assignment4.org][Assignment 4]] (Soft)        |                                           |
+| 1/12         | Last day to hand in [[http://auportal.herokuapp.com/achievements/59][essay]]  | Essay is *not mandatory*                  |
+| 11/12        | [[file:assignments/assignment4.org][Assignment 4]] (Hard)        |                                           |
+| 11/12        | [[file:code-exam.org][Coding Exam]] 2              |                                           |
+| 13/12        | Last possibility to do [[http://auportal.herokuapp.com/achievements/62][X62]] | This is a *not mandatory* achievement     |
+| 19/12        | [[file:code-exam.org][Coding Exam]] 3              |                                           |
 | December     | Essay feedback seminars    | *Mandatory presence for essay writers*    |
-| 14/1 2019    | Project (Hard)             |                                           |
-| 16/1 2019    | C7 deadline                |                                           |
-| 16-18/1 2019 | Project Seminars           | *Mandatory presence for all*              |
+| 14/1 2019    | [[file:projects/projects.org][Project]] (Hard)             |                                           |
+| 16/1 2019    | [[http://auportal.herokuapp.com/achievements/7][C7]] deadline                |                                           |
+| 16-18/1 2019 | [[file:projects/projects.org][Project]] Seminars           | *Mandatory presence for all*              |
 
 * Assignments and Hand-Ins
 Note that assignments mostly act as drivers to learn concepts and produce evidence for demonstrating mastery of achivements.

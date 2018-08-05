@@ -1072,6 +1072,8 @@ ones involving human users. Although the running example used a
 program with a user interface, SIMPLE works equally well with
 non-UI programs.
 
+file:./images/everyone-can-code.jpg
+
 * Tickets, Tasks and Post-it Stacks
 
 Programming with SIMPLE revolves around breaking problems down

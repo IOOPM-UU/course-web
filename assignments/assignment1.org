@@ -2,9 +2,9 @@
 #+include: "../setup.org" 
 
 #+begin_important
-Soft deadline: XXX.
+Soft deadline: 2018-10-05
 
-Hard deadline: XXX.
+Hard deadline: 2018-10-19
 #+end_important
 
 * Introduction :START:
@@ -3226,12 +3226,12 @@ presentations, or add your name to the help list.
 * Backlog
 - Double check that all forward references are resolved above
 - The whole leg on test-driven development is TODO
-- Add SIMPLE stuff
 - need to enable updating of a value without inserting a new key!
 - +Give a catalogue structure *TODO* -- in the repos already+
 - +Step 14 probably need a brief explanation of unions or a pointer to some place where it can be read about+
 - +Explain why we don't do everything right from the start+
 - +Add a "don't blindly copy code!"+
+- *DONE* Add SIMPLE stuff
 - *DONE* Write notes about how they should work together with someone else on this
 - *DONE* Instruct them to write down cheats and dodges as we go
 - *DONE* Code coverage does not yet come in -- needs addressing
