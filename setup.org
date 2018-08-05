@@ -3,12 +3,12 @@
 #+LANGUAGE: en
 
 #+HTML_LINK_HOME: http://wrigstad.com/ioopm18/
+#+HTML_LINK_UP: http://wrigstad.com/ioopm18/
 
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://wrigstad.com/ioopm18/css/htmlize.css"/>
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://wrigstad.com/ioopm18/css/readtheorg.css"/>
 
-#+HTML_HEAD:   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-#+HTML_HEAD:   <link rel="stylesheet" href="/resources/demos/style.css">
+#+HTML_HEAD:   <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 #+HTML_HEAD:   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 #+HTML_HEAD: <script src="http://wrigstad.com/ioopm18/js/bootstrap.min.js"></script>
 #+HTML_HEAD:   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -19,6 +19,7 @@
 #+HTML_HEAD: <script type="text/javascript" src="http://wrigstad.com/ioopm18/js/jquery.stickytableheaders.min.js"></script>
 #+HTML_HEAD: <script type="text/javascript" src="http://wrigstad.com/ioopm18/js/readtheorg.js"></script>
 
+# == Make footnotes also hover ======================== 
 #+HTML_HEAD: <script type="text/javascript">
 #+HTML_HEAD: $(document).ready(function() {
 #+HTML_HEAD:     $( ".footref" ).tooltip({
@@ -29,6 +30,13 @@
 #+HTML_HEAD:             return tip;
 #+HTML_HEAD:         }
 #+HTML_HEAD:     });
+#+HTML_HEAD: });
+#+HTML_HEAD: </script>
+
+# == Add page title to TOC ======================== 
+#+HTML_HEAD: <script type="text/javascript">
+#+HTML_HEAD: $(document).ready(function() {
+#+HTML_HEAD:     $('#table-of-contents').first().html("<h2>" + document.title + "<hr>" + $('#table-of-contents').first().html().substr(5));
 #+HTML_HEAD: });
 #+HTML_HEAD: </script>
 

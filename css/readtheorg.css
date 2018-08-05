@@ -1194,3 +1194,8 @@ div.figure p {
     padding-top: 0px;
     padding-bottom: 0px;
 }
+
+.ui-tooltip-content {
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight:300;
+}
