@@ -1,4 +1,3 @@
-
 $(function() {
     $('.note').before("<p class='admonition-title note'>Note</p>");
     $('.seealso').before("<p class='admonition-title seealso'>See also</p>");
@@ -88,3 +87,32 @@ window.SphinxRtdTheme = (function (jquery) {
     };
 }($));
 
+function tw_hide_show(h) {
+    if (h.next().is(':visible')) {
+        h.siblings("div").each(function (){
+            var c = $(this);
+            c.hide(100);
+        });
+        h.addClass("expandable");
+        h.removeClass("is-collapsable-hint");
+    } else {
+        h.siblings("div").each(function (){
+            var c = $(this);
+            c.show(100);
+        });
+        h.removeClass("expandable");
+        h.addClass("is-collapsable-hint");
+    }
+}
+
+$(document).ready(function() {
+    $("h2, h3, h4").each(function () {
+        var h = $(this);
+        if (h.parent().attr("id") != "table-of-contents") {
+            h.addClass("is-collapsable-hint");
+            h.click(function() {
+                tw_hide_show(h);
+            });
+        }
+    });
+});

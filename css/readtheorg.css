@@ -1113,6 +1113,7 @@ span.tag span.redovisas {
 pre {
     color: #eee;
     background: #333;
+    font-family: "Input Mono Narrow", "Lucida Console","Lucida Sans Typewriter", "Courier New", Courier, monospace;
 }
 
 #org-div-home-and-up {
@@ -1123,6 +1124,7 @@ pre {
     padding: 10px;
     text-transform: uppercase;
     letter-spacing: .2em;
+    max-width: 1100px;
 }
 
 pre.src:before {
@@ -1198,4 +1200,56 @@ div.figure p {
 .ui-tooltip-content {
     font-family: "Source Sans Pro", sans-serif;
     font-weight:300;
+}
+
+h2.expandable:after {
+    content: "+";
+    color: magenta;
+}
+
+h3.expandable:after {
+    content: "+";
+    color: magenta;
+}
+
+h4.expandable:after {
+    content: "+";
+    color: magenta;
+}
+
+h2.is-collapsable-hint:hover:after {
+    content: "\2013";
+    color: #aaa;
+}
+
+h3.is-collapsable-hint:hover:after {
+    content: "\2013";
+    color: #aaa;
+}
+
+h4.is-collapsable-hint:hover:after {
+    content: "\2013";
+    color: #aaa;
+}
+
+
+
+@font-face {
+    font-family: Input Mono Narrow;
+    src: url(./fonts/InputMonoNarrow-Regular.ttf);
+}
+
+@font-face {
+    font-family: Input Mono Narrow Italic;
+    src: url(./fonts/InputMonoNarrow-Italic.ttf);
+}
+
+@font-face {
+    font-family: Input Mono Narrow Bold;
+    src: url(./fonts/InputMonoNarrow-Bold.ttf);
+}
+
+@font-face {
+    font-family: Input Mono Narrow BoldItalic;
+    src: url(./fonts/InputMonoNarrow-BoldItalic.ttf);
 }
