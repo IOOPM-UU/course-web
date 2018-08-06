@@ -116,3 +116,27 @@ $(document).ready(function() {
         }
     });
 });
+
+// == Make footnotes also hover ======================== 
+$(document).ready(function() {
+    $( ".footref" ).tooltip({
+        items: "a[id]",
+        content: function () {
+            var id = $(this).attr("id");
+            var tip = $('a[href="#' + id + '"]').parent().next().html();
+            return tip;
+        }
+    });
+});
+
+// == Add top menu ======================== 
+$(document).ready(function() {
+    var topMenu = $('#top-menu');
+    topMenu.insertBefore($('.title'));
+});
+
+// == Add page title to TOC ======================== 
+$(document).ready(function() {
+    $('#table-of-contents').first().html("<h2>" + document.title + "<hr>" + $('#table-of-contents').first().html().substr(5));
+});
+
