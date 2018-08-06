@@ -1260,7 +1260,17 @@ h4.is-collapsable-hint:hover:after {
     src: url(./fonts/InputMonoNarrow-BoldItalic.ttf);
 }
 
-nav-item {
-    font-family: Source Sans Pro;
+/* nav-item { */
+/*     font-family: Source Sans Pro; */
+/*     font-weight: 600; */
+/* } */
+
+a.nav-link {
+    font-family:"Roboto Slab", "Source Sans Pro", sans-serif;
     font-weight: 600;
+}
+
+a.dropdown-item {
+    font-family: Source Sans Pro;
+    font-weight: 400;
 }
