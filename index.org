@@ -7,42 +7,42 @@ Ask questions and discuss with other students on [[https://piazza.com/class/jkd3
 Request demonstrations and track your progress at the [[http://auportal.herokuapp.com/][AU Portal]]
 #+end_attention
 
-#+begin_important
+* How IOOPM Works
 If you are visiting this page for the first time, you should
-probably [[file:about.org][read the page about the course first]].
-#+end_important
+probably [[file:about.org][read the page about the course first]]. *Mandatory reading!*
 
 * Lecture Schedule with Slides
 Note that without exception, all lectures start at 10:15 and are scheduled to end at 12:00.
+The [[https://cloud.timeedit.net/uu/web/schema/ri1875ZQ0QYZ01Q0wo7YwcQ25y6QZ6XfYxZ020g.html][full schedule]] is available on TimeEdit.
 ** Phase 1 (Imperative Programming)
-| Contents | Date                                                                                                                                                                   |
-|----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 3/9      | Grundläggande datatyper (inkl. arrayer), deklaration, uttryck och satser (inkl. loopar). Funktioner. Introduktion till standard-I/O och grundläggande stränghantering. |
-|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/1][A1]] ([[http://auportal.herokuapp.com/achievements/13][F13]], [[http://auportal.herokuapp.com/achievements/15][G15]])                                                                                                                    |
-| 6/9      | Poster och unioner. Typnamnsdefinitioner. Funktionspekare. Separatkompilering och headerfiler.                                                                         |
-|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/3][A3]], [[http://auportal.herokuapp.com/achievements/9][D9]], [[http://auportal.herokuapp.com/achievements/15][G15]], [[http://auportal.herokuapp.com/achievements/16][G16]], ([[http://auportal.herokuapp.com/achievements/22][I22]]), [[http://auportal.herokuapp.com/achievements/30][K30]].                                                                                                    |
-| 10/9     | Introduktion till resten av kursen. Skillnad mellan funktionell och imperativ programmering. SIMPLE. Det agila upplägget.                                              |
-|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/7][C7]]                                                                                                                               |
-| 13/9     | Dynamisk minnesallokering. Pekare.                                                                                                                                     |
-|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/10][E10]], [[http://auportal.herokuapp.com/achievements/20][H20]], [[http://auportal.herokuapp.com/achievements/26][J26]], [[http://auportal.herokuapp.com/achievements/27][J27]], [[http://auportal.herokuapp.com/achievements/38][M38]]                                                                                                          |
-| 17/9     | Hur strukturerar man? Top-down, bottom-up. Lagertänkande.                                                                                                              |
-|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/41][N41]], [[http://auportal.herokuapp.com/achievements/45][P45]]                                                                                                                         |
-| 19/9     | Automatisering (Make, scripting).                                                                                                                                      |
-|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/55][T55]], [[http://auportal.herokuapp.com/achievements/57][U57]], [[http://auportal.herokuapp.com/achievements/58][V58]]                                                                                                                    |
-| 24/9     | Introduction to testing with CUnit                                                                                                                                     |
-|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/18][G18]], [[http://auportal.herokuapp.com/achievements/49][Q49]], [[http://auportal.herokuapp.com/achievements/50][Q50]]                                                                                                                    |
-| 27/9     | Recap: Pekare, arrayer. Dynamiska arrayer. Pekararrayer.                                                                                                               |
-|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/10][E10]], [[http://auportal.herokuapp.com/achievements/20][H20]], [[http://auportal.herokuapp.com/achievements/26][J26]], [[http://auportal.herokuapp.com/achievements/36][M36]]                                                                                                               |
-| 1/10     | Länkade strukturer och iteratorer.                                                                                                                                     |
-|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/27][J27]], [[http://auportal.herokuapp.com/achievements/37][M37]], [[http://auportal.herokuapp.com/achievements/39][M39]]                                                                                                                    |
-| 4/10     | Const, Preprocessorn, Coupling & Cohesion                                                                                                                              |
-|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: TBA                                                                                                                              |
-| 8/10     | Defensiv programmering. Läsbar kod.                                                                                                                                    |
-|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/22][I22]], [[http://auportal.herokuapp.com/achievements/45][P45]]                                                                                                                         |
-| 11/10    | Preprocessorn. Bitmanipulering. Optimering.                                                                                                                            |
-|          | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/42][O42]], [[http://auportal.herokuapp.com/achievements/43][O43]], [[http://auportal.herokuapp.com/achievements/44][O44]]                                                                                                                    |
-| 15/10    | /Backup/                                                                                                                                                               |
-| 18/10    | Prepping for code exam                                                                                                                                                 |
+| Date  | Contents                                                                                                                                                           |
+|-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 3/9   | Grundläggande datatyper (inkl. arrayer), deklaration, uttryck och satser (inkl. loopar). Funktioner. Introduktion till standard-I/O och grundläggande stränghantering. |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/1][A1]] ([[http://auportal.herokuapp.com/achievements/13][F13]], [[http://auportal.herokuapp.com/achievements/15][G15]])                                                                                                                    |
+| 6/9   | Poster och unioner. Typnamnsdefinitioner. Funktionspekare. Separatkompilering och headerfiler.                                                                         |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/3][A3]], [[http://auportal.herokuapp.com/achievements/9][D9]], [[http://auportal.herokuapp.com/achievements/15][G15]], [[http://auportal.herokuapp.com/achievements/16][G16]], ([[http://auportal.herokuapp.com/achievements/22][I22]]), [[http://auportal.herokuapp.com/achievements/30][K30]].                                                                                                    |
+| 10/9  | Introduktion till resten av kursen. Skillnad mellan funktionell och imperativ programmering. SIMPLE. Det agila upplägget.                                              |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/7][C7]]                                                                                                                               |
+| 13/9  | Dynamisk minnesallokering. Pekare.                                                                                                                                     |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/10][E10]], [[http://auportal.herokuapp.com/achievements/20][H20]], [[http://auportal.herokuapp.com/achievements/26][J26]], [[http://auportal.herokuapp.com/achievements/27][J27]], [[http://auportal.herokuapp.com/achievements/38][M38]]                                                                                                          |
+| 17/9  | Hur strukturerar man? Top-down, bottom-up. Lagertänkande.                                                                                                              |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/41][N41]], [[http://auportal.herokuapp.com/achievements/45][P45]]                                                                                                                         |
+| 19/9  | Automatisering (Make, scripting).                                                                                                                                      |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/55][T55]], [[http://auportal.herokuapp.com/achievements/57][U57]], [[http://auportal.herokuapp.com/achievements/58][V58]]                                                                                                                    |
+| 24/9  | Introduction to testing with CUnit                                                                                                                                     |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/18][G18]], [[http://auportal.herokuapp.com/achievements/49][Q49]], [[http://auportal.herokuapp.com/achievements/50][Q50]]                                                                                                                    |
+| 27/9  | Recap: Pekare, arrayer. Dynamiska arrayer. Pekararrayer.                                                                                                               |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/10][E10]], [[http://auportal.herokuapp.com/achievements/20][H20]], [[http://auportal.herokuapp.com/achievements/26][J26]], [[http://auportal.herokuapp.com/achievements/36][M36]]                                                                                                               |
+| 1/10  | Länkade strukturer och iteratorer.                                                                                                                                     |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/27][J27]], [[http://auportal.herokuapp.com/achievements/37][M37]], [[http://auportal.herokuapp.com/achievements/39][M39]]                                                                                                                    |
+| 4/10  | Const, Preprocessorn, Coupling & Cohesion                                                                                                                              |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: TBA                                                                                                                              |
+| 8/10  | Defensiv programmering. Läsbar kod.                                                                                                                                    |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/22][I22]], [[http://auportal.herokuapp.com/achievements/45][P45]]                                                                                                                         |
+| 11/10 | Preprocessorn. Bitmanipulering. Optimering.                                                                                                                            |
+|       | [[https://github.com/IOOPM-UU/ioopm18/blob/master/lectures/c/][Handouts and resources]]. Achievements: [[http://auportal.herokuapp.com/achievements/42][O42]], [[http://auportal.herokuapp.com/achievements/43][O43]], [[http://auportal.herokuapp.com/achievements/44][O44]]                                                                                                                    |
+| 15/10 | /Backup/                                                                                                                                                               |
+| 18/10 | Prepping for code exam                                                                                                                                                 |
 ** Phase 2 (Object-Oriented Programming)
 | Date  | Contents                                                                                         |
 |-------+--------------------------------------------------------------------------------------------------|
@@ -71,7 +71,6 @@ Note that without exception, all lectures start at 10:15 and are scheduled to en
 | 3/12  | Prepping for code exam                                                                           |
 
 TBA in 2018: Guest lecture from Oracle JVM engineers.
-
 ** Phase 3 (Methodology and Tools)
 | Date  | Contents                                 |
 |-------+------------------------------------------|
@@ -119,8 +118,6 @@ Note that assignments mostly act as drivers to learn concepts and produce eviden
 * The Coding Exam
 The course does not use a traditional closed-book exam. Read [[file:code-exam.org][this
 page]] for more information about he coding exam.
-* How IOOPM Works
-IOOPM has a somewhat unusual structure. See [[file:about.org][this page]] for details.
 * The SIMPLE Methodology
 The [[file:simple.org][SIMPLE methodology]] is an attempt at codifying some good
 practises for thinking about coding, actual coding, and
