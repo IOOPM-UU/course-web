@@ -1,8 +1,21 @@
-#+title: Sitemap
 #+include: "./setup.org"
+* Search in These Pages
+#+HTML: <script>
+#+HTML:   (function() {
+#+HTML:     var cx = '007874743943986280766:oxxq2gmqzks';
+#+HTML:     var gcse = document.createElement('script');
+#+HTML:     gcse.type = 'text/javascript';
+#+HTML:     gcse.async = true;
+#+HTML:     gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+#+HTML:     var s = document.getElementsByTagName('script')[0];
+#+HTML:     s.parentNode.insertBefore(gcse, s);
+#+HTML:   })();
+#+HTML: </script>
+#+HTML: <gcse:search></gcse:search>
+
 
 * Meta
-- [[./index.org][Landing page]]
+- [[./index.org][Imperative and Object-Oriented Programming]] (start page)
 - [[./about.org][How the course works]]
 - [[./code-exam.org][Information about Code Exams]]
 * Tools and Coding
@@ -30,5 +43,14 @@
 - [[./projects/project1.org][The Simpler Project]]
 - [[./projects/project2.org][The Harder Project]]
 - [[./projects/project-report.org][How to write project report]]
+
+* Complete Index :redundant:
+The above information is /curated/ -- manually created and
+categorised. Below is automatically generated /complete/ index of
+the course web site, structured after the file tree. Ideally, the
+manually curated sitemap should be complete, but if it would ever
+lag behind, then the information below ensures no page is
+orphaned.
+#+INCLUDE: sitemap-autogen.org
 
 #+include: "./footer.org"
