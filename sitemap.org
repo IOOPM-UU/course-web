@@ -14,43 +14,45 @@
 #+HTML: <gcse:search></gcse:search>
 
 
-* Meta
-- [[./index.org][Imperative and Object-Oriented Programming]] (start page)
-- [[./about.org][How the course works]]
-- [[./code-exam.org][Information about Code Exams]]
-* Tools and Coding
-- [[./tools.org][Basic Tools]]
-- [[./compiling.org][Basic Compiling]]
-- [[./basic-c.org][Basic C Constructs]]
-- [[./screencasts.org][Screencasts]]
-- [[./github.org][Git and GitHub]]
-- [[./makefiles.org][Building and Makefiles]]
-- [[./editors.org][Editors for Programming]]
-- [[./simple.org][The SIMPLE methodology]]
-- [[./pointers.org][Pointers]]
-- [[./glossary.org][Glossary]]
-- [[./assignments/iterators.org][How to Implement Iterators]]
-- [[./assignments/lists.org][How to Implement Linked Lists]]
-* Labs and Assignments
-- [[./assignments/c-bootstrap.org][C Bootstrap Labs]]
-- [[./assignments/java-bootstrap.org][Java Bootstrap Labs]]
-- [[./assignments/assignment1.org][Assignment1]] 
-- [[./assignments/assignment2.org][Assignment2]] 
-- [[./assignments/assignment3.org][Assignment3]] 
-- [[./assignments/assignment4.org][Assignment4]] 
-* Course Project
-- [[./projects/projects.org][Common Information About the Course Project]]
-- [[./projects/project1.org][The Simpler Project]]
-- [[./projects/project2.org][The Harder Project]]
-- [[./projects/project-report.org][How to write project report]]
+# * Meta
+# - [[./index.org][Imperative and Object-Oriented Programming]] (start page)
+# - [[./about.org][How the course works]]
+# - [[./code-exam.org][Information about Code Exams]]
+# * Tools and Coding
+# - [[./tools.org][Basic Tools]]
+# - [[./compiling.org][Basic Compiling]]
+# - [[./basic-c.org][Basic C Constructs]]
+# - [[./screencasts.org][Screencasts]]
+# - [[./github.org][Git and GitHub]]
+# - [[./makefiles.org][Building and Makefiles]]
+# - [[./editors.org][Editors for Programming]]
+# - [[./simple.org][The SIMPLE methodology]]
+# - [[./pointers.org][Pointers]]
+# - [[./glossary.org][Glossary]]
+# - [[./assignments/iterators.org][How to Implement Iterators]]
+# - [[./assignments/lists.org][How to Implement Linked Lists]]
+# * Labs and Assignments
+# - [[./assignments/c-bootstrap.org][C Bootstrap Labs]]
+# - [[./assignments/java-bootstrap.org][Java Bootstrap Labs]]
+# - [[./assignments/assignment1.org][Assignment1]] 
+# - [[./assignments/assignment2.org][Assignment2]] 
+# - [[./assignments/assignment3.org][Assignment3]] 
+# - [[./assignments/assignment4.org][Assignment4]] 
+# * Course Project
+# - [[./projects/projects.org][Common Information About the Course Project]]
+# - [[./projects/project1.org][The Simpler Project]]
+# - [[./projects/project2.org][The Harder Project]]
+# - [[./projects/project-report.org][How to write project report]]
 
-* Complete Index :redundant:
-The above information is /curated/ -- manually created and
-categorised. Below is automatically generated /complete/ index of
-the course web site, structured after the file tree. Ideally, the
-manually curated sitemap should be complete, but if it would ever
-lag behind, then the information below ensures no page is
-orphaned.
+# * Complete Index :redundant:
+# The above information is /curated/ -- manually created and
+# categorised. Below is automatically generated /complete/ index of
+# the course web site, structured after the file tree. Ideally, the
+# manually curated sitemap should be complete, but if it would ever
+# lag behind, then the information below ensures no page is
+# orphaned.
+
+* Index
 #+INCLUDE: sitemap-autogen.org
 
 #+include: "./footer.org"

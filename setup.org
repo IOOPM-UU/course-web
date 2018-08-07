@@ -5,7 +5,7 @@
 #+HTML_LINK_HOME: http://wrigstad.com/ioopm18/
 #+HTML_LINK_UP: http://wrigstad.com/ioopm18/
 
-# #+HTML_HEAD:   <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+#+HTML_HEAD:   <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 # #+HTML_HEAD:   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 # #+HTML_HEAD: <script src="http://wrigstad.com/ioopm18/js/bootstrap.min.js"></script>
 # #+HTML_HEAD:   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -23,15 +23,16 @@
 
 #+HTML_HEAD: <script src="http://wrigstad.com/ioopm18/js/jquery.min.js"></script>
 #+HTML_HEAD: <script src="http://wrigstad.com/ioopm18/js/bootstrap.min.js"></script>
-# #+HTML_HEAD: <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
+#+HTML_HEAD: <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
 #+HTML_HEAD: <script type="text/javascript" src="http://wrigstad.com/ioopm18/js/jquery.stickytableheaders.min.js"></script>
 #+HTML_HEAD: <script type="text/javascript" src="http://wrigstad.com/ioopm18/js/readtheorg.js"></script>
 
-#+begin_important
+
+#+begin_danger
 As long as this note remains on this page, any information *is
 subject to change* and broken links, etc. are to be expected.
 Please be restrictive in reporting any errors for now.
-#+end_important
+#+end_danger
 
 #+begin_note
 I am in the process of translating the material for this course

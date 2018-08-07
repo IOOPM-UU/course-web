@@ -1,11 +1,11 @@
-#+title: Imperative and Object-Oriented Programming Methodology
+#+title: Imperative & Object-Oriented Programming Methodology
 #+include: "./setup.org"
 
-#+begin_attention
+#+begin_note
 Get course material at the [[https://github.com/IOOPM-UU/ioopm18/][course's GitHub page]] \\
 Ask questions and discuss with other students on [[https://piazza.com/class/jkd32onglxi2vb][Piazza]]  \\
 Request demonstrations and track your progress at the [[http://auportal.herokuapp.com/][AU Portal]]
-#+end_attention
+#+end_note
 
 * How IOOPM Works
 If you are visiting this page for the first time, you should

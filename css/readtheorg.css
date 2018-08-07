@@ -469,6 +469,11 @@ table tr:nth-child(2n) td{
         margin-top: 25px;
     }
 
+    a.dropdown-item {
+        font-family: Source Sans Pro;
+        font-weight: 400;
+        display: block;
+    }
 }
 
 *{
@@ -1273,4 +1278,9 @@ a.nav-link {
 a.dropdown-item {
     font-family: Source Sans Pro;
     font-weight: 400;
+    display: inline;
+}
+
+div.dropdown-menu {
+    background-color: #F9F5FF;
 }

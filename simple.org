@@ -122,9 +122,9 @@ and avoids the scary feeling of "not having anything" for a long
 while until finally the individual pieces are connected and a
 program magically appears.
 
-#+begin_center
 *I am supposed to write a program. Where do I start?*
-#+end_center
+
+file:https://s.abcnews.com/images/Entertainment/GTY_janet_leigh_kab_150916_12x5_992.jpg
 
 This is exactly the question SIMPLE is trying to answer. Along
 with the question, when am I done? We will now proceed by walking
@@ -204,7 +204,7 @@ that was a good step or not by coding. This is good, because
 forcing us to concretise, coding challenges us to understand what
 it is we understand.
 
-** Step 2. Code a little.
+** Step 2: Code a little.
 Following the most fundamental principle of SIMPLE, we start with
 the minimal working program. If we are using C, we would probably
 write something like this:
@@ -306,7 +306,7 @@ while you are fixing another one, so recompile often to make sure
 that the error number goes down steadily.
 #+end_tip
 
-** Step 3. Think a little more.
+** Step 3: Think a little more.
 
 We now have a working program that does absolutely nothing. Let's
 start adding some functionality to our program following the
@@ -329,7 +329,7 @@ should enter into a confirmation dialogue, and if the user replies
 =Y=, then we quit, if =N= we return to the main menu, otherwise
 repeat the question.
 
-** Step 4. Code a little more.
+** Step 4: Code a little more.
 
 To keep the program as simple as possible, we are not going to add
 functionality for choosing an action in the main menu just yet.
@@ -531,16 +531,16 @@ follow:
      Each increment should result in a working program.
 - Each increment should ideally have a testable outcome ::
      For example, when we implemented (skipped...) increment 4, we
-     should also have changed the get_char_input to return N to test
+     should also have changed the ~get_char_input()~ to return N to test
      this. And similar for increment 5.
 
 Now: back to the running example.
 
-** Step 5. Remove the Cheats
+** Step 5: Remove the Cheats
 
-We have finished quit_action, but mostly because we cheated. To
+We have finished ~quit_action()~, but mostly because we cheated. To
 finish implementing this part of the program, we will now remove
-the cheat by implementing get_char_input. However, the reason why
+the cheat by implementing ~get_char_input()~. However, the reason why
 we didn't write this piece of code down immediately from the start
 was because we thought it was complicated and did not know exactly
 how to do it. So, how do we proceed now?
@@ -645,7 +645,7 @@ tremendously, and that all minutes spent on simplifying
 simplification simplifies even more.
 #+end_tip
 
-** Step 6. Think a little -- Code a little (Seems familiar?)
+** Step 6: Think a little -- Code a little (Seems familiar?)
 
 Now that we are done with quitting the program, it is time to move
 on to the next action. However, in order to get to the next
@@ -741,7 +741,7 @@ Now, we can compile and run the program again, and test that it
 works to trigger ~add_action()~, which will print "Add action is
 not implemented yet". Time to implement it!
 
-** Step 7. Think a little -- Code a little (again)
+** Step 7: Think a little -- Code a little (again)
 A good candidate for this is adding a ware, because editing,
 removing, listing, undoing, etc. all presuppose the existence of
 some data in the database. Adding something new is often simpler
@@ -904,7 +904,7 @@ edit will require us to store the original values of the edited
 data!)
 #+end_attention
 
-** Step 8. Think a Little -- Code a Little
+** Step 8: Think a Little -- Code a Little
 
 Choosing the proper database design is of course very important
 for the program at hand. There are multiple alternatives ranging
@@ -994,7 +994,7 @@ void add_to_db(db_t *db, struct ware ware)
 #+END_SRC
 
 
-** Step 9 and beyond
+** Step 9, and beyond
 
 Think/code/refactor/remove cheats. Repeat until done. Find a good balance.
 
@@ -1188,7 +1188,7 @@ implementing and not get stuck in details, cheating has the
 automatic side-effect of breaking down your code into smaller
 chunks. It also isolates trickier code inside single functions.
 For example, the logic for reading user input is now nicely
-encapsulated inside the get_char_input function and we can solve
+encapsulated inside the ~get_char_input()~ function and we can solve
 this problem completely in isolation of the rest of the code for
 quitting the program although that code depends on it.
 

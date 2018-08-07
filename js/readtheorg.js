@@ -119,7 +119,7 @@ $(document).ready(function() {
 
 // == Make footnotes also hover ======================== 
 $(document).ready(function() {
-    $( ".footref" ).tooltip({
+    $(".footref").tooltip({
         items: "a[id]",
         content: function () {
             var id = $(this).attr("id");

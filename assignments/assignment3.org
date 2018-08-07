@@ -720,15 +720,10 @@ inte går att hitta bättre namn på klasser och variabler.
 
 ** Rekommenderade mål på nivå fyra/fem
 
-1. [[http://auportal.herokuapp.com/achievements/21][H21]] - Om du
-   refaktorerar meddelandeklasserna till en klasshierarki. (Detta
-   gås igenom i nästa sprint!)
-2. [[http://auportal.herokuapp.com/achievements/17][G17]] - Används
-   redan. Finns det fler möjligheter?
-3. [[http://auportal.herokuapp.com/achievements/24][I24]] och
-   [[http://auportal.herokuapp.com/achievements/25][I25]] - finns
-   mycket som kan gå fel i detta program.
-4. [[http://auportal.herokuapp.com/achievements/28][J28]] - När
-   frigörs kund-objekten i programmet?
+1. [[http://auportal.herokuapp.com/achievements/21][H21]] - Om du refaktorerar meddelandeklasserna till en
+   klasshierarki. (Detta gås igenom i nästa sprint!)
+2. [[http://auportal.herokuapp.com/achievements/17][G17]] - Används redan. Finns det fler möjligheter?
+3. [[http://auportal.herokuapp.com/achievements/24][I24]] och [[http://auportal.herokuapp.com/achievements/25][I25]] - finns mycket som kan gå fel i detta program.
+4. [[http://auportal.herokuapp.com/achievements/28][J28]] - När frigörs kund-objekten i programmet?
 
 #+include: "../footer.org"
