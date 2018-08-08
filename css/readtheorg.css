@@ -496,10 +496,12 @@ ins{
     text-decoration:none}
 
 mark{
-    background:#ff0;
+    background:#f9f;
     color:#000;
-    font-style:italic;
-    font-weight:bold}
+    font-weight:400;
+    padding-left: 4px;
+    padding-right: 4px;
+}
 
 small{
     font-size:85%}
@@ -1278,7 +1280,7 @@ a.nav-link {
 a.dropdown-item {
     font-family: Source Sans Pro;
     font-weight: 400;
-    display: inline;
+    /* display: inline; */
 }
 
 div.dropdown-menu {
