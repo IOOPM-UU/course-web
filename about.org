@@ -167,47 +167,12 @@ kommer på första mötet.
 
 Hela kursens finns det ungefär 8 timmar schemalagd i datorsalar
 per vecka, s.k. labbtillfällen. Deltagande vid dessa tillfällen är
-inte obligatoriskt (förutom inledande 6 labbar). Vid dessa
-tillfällen finns det möjlighet att få handledning och också
-möjlighet att redovisa mål (förutom inledande 6 labbar).
+inte obligatoriskt (förutom inledande 6 C-labbar och 3
+Java-labbar). Vid dessa tillfällen finns det möjlighet att få
+handledning och också möjlighet att redovisa mål (förutom
+inledande 6 labbar).
 
-För att få hjälp under en labb måste du skriva upp dig på en tavla
-i den största labbsalen där labben sker.
-** Att redovisa under en labb
-För att redovisa under en labb använder du [[http://auportal.herokuapp.com/][AU-portalen]]. Under
-"Dashboard" kan du välja vilka mål du vill redovisa (notera att du
-måste vara inloggad). När du skickat in din ansökan om att
-redovisa syns den i vårt system, och så fort det finns en ledig
-assistent kommer hen till dig för att ta din redovisning.
-Assistenterna kommer bara ta redovisningar som anmälts under
-schemalagd handledningstid.
-
-Efter att du redovisat kommer assistenten att bocka av de mål du
-framgångsrikt redovisat och signera rapporten. Om du misslyckades
-med att redovisa ett mål kan du få rest eller bara inte bli
-godkänd. Rest betyder att du kan försöka redovisa igen så fort du
-fixat till de småfel assen pekat ut; annars måste du vänta till
-nästa labbtillfälle. I det senare fallet kommer systemet inte
-tillåta dig att försöka redovisa samma mål igen inom 24 timmar.
-
-*Senare i kursen kommer systemet automatiskt att lägga till
-ytterligare ett mål till redovisningen när du anmäler dig* (ett
-s.k. repetitionsmål). Detta blir synligt för dig i samband med att
-systemet visar din plats i redovisningskön. Det extra målet väljs
-från mål som du tidigare har bockat av, och tanken är att du under
-redovisningen ska relatera det målet till de andra målen du
-presenterar. Om det mål som lades till inte är relevant duger det
-utmärkt att sakligt redogöra för varför ("Java har inga pekare,
-alltså är det inte relevant att prata om pekararitmetik"). Syftet
-med att tvingas återbesöka ett redan avbockat mål är för att
-stimulera till att hålla goda vanor och kunskaper vid liv!
-*** Hur många mål får jag redovisa under en labb? 
-Du får redovisa max 4 godkända mål vid varje labbtillfälle
-(typiskt 25-30 labbar under kursen initialt planerat, förutom 6
-uppstartslabbar de första två veckorna). Det extra mål som
-systemet lägger till själv räknas inte in bland dessa.
-
-Kodprovet kan inte användas för att redovisa mål. 
+Mer information om labbarna och redovisning finns [[file:labs.org][här]]. 
 ** Betyg
 Målen har en betygsnivå kopplad till sig. Mål på högre nivå
 omfattar de på lägre nivå. Du kan inte byta ut ett mål på en

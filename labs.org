@@ -1,0 +1,94 @@
+#+title: How Labs Work on IOOPM
+#+include: "./setup.org"
+
+* IOOPM Labs
+
+This page describes how labs work on IOOPM, with the exception of
+the [[file:assignments/c-bootstrap.org][C]] and [[file:assignments/java-bootstrap.org][Java]] bootstrap labs. You will have two 4-hour labs per
+week, typically on Mondays and Thursdays. Labs will be staffed
+with 5+ TAs and Tobias will be at most labs, most of the time. 
+
+Labs on IOOPM serve the following purposes: 
+
+- They provide opportunities to demonstrate mastery of achievements ::
+     At your own leisure, you register to demonstrate on the [[http://auportal.herokuapp.com/][AU
+     Portal]]. This triggers the oral examination process. 
+     [[hl:1][You may demonstrate up to 4 achievements per lab.]] 
+
+- They provide possibilities to get help from TAs ::
+     Sign up on the help list in Computer Hall 1515 to get help
+     from course staff. You can ask about anything -- e.g., "what
+     does this compile error mean", "how do I start with this
+     assignment", "what grade should I aim for", etc. If you want
+     a specific TA or teacher, write e.g., =(Tobias)= beside your
+     name on the help list. 
+
+- They provide possibilities to get help from other students ::
+     Discussing your ideas, approaches and solutions with others
+     is a great way to work. Computer Hall 1549 has a nice
+     whiteboard for visual exploration of ideas, or code.
+
+- They provide scheduled sync time for work with your partner ::
+     This means there are at least one full work-day every week
+     /reserved/ for working together with your partner, even if
+     you happen to have vastly different schedules for the
+     remainder of your life.
+
+Even though no labs are mandatory, you will need to attend at
+least some labs during the course in order to demonstrate.
+Additional key differences with how labs have been used in some
+other courses:
+
+- Labs do not come with a script to follow ::
+     They do not exercise one or a few concepts from class.
+     [[hl:][You must plan your own lab work.]] Students typically
+     work in pairs with their partner on the assignments during
+     lab hours. Pairs that have a hard time getting together
+     outside of lab hours also make plans for what to do
+     separately between labs. [[hl:][Expect a substantial chunk of lab
+     time to be spent in demonstrations.]]
+
+- Lab hours are not nearly enough time for passing assignments ::
+     [[hl:][Expect to work 14-15 hours per week on the assignments, in
+     addition to the work you do in the labs.]]
+
+
+* Att redovisa under en labb
+För att redovisa under en labb använder du [[http://auportal.herokuapp.com/][AU-portalen]]. Under
+"Dashboard" kan du välja vilka mål du vill redovisa (notera att du
+måste vara inloggad). När du skickat in din ansökan om att
+redovisa syns den i vårt system, och så fort det finns en ledig
+assistent kommer hen till dig för att ta din redovisning.
+Assistenterna kommer bara ta redovisningar som anmälts under
+schemalagd handledningstid.
+
+Efter att du redovisat kommer assistenten att bocka av de mål du
+framgångsrikt redovisat och signera rapporten. Om du misslyckades
+med att redovisa ett mål kan du få rest eller bara inte bli
+godkänd. Rest betyder att du kan försöka redovisa igen så fort du
+fixat till de småfel assen pekat ut; annars måste du vänta till
+nästa labbtillfälle. I det senare fallet kommer systemet inte
+tillåta dig att försöka redovisa samma mål igen inom 24 timmar.
+
+*Senare i kursen kommer systemet automatiskt att lägga till
+ytterligare ett mål till redovisningen när du anmäler dig* (ett
+s.k. repetitionsmål -- som inte räknas till de 4 mål du får bocka
+av). Detta blir synligt för dig i samband med att systemet visar
+din plats i redovisningskön. Det extra målet väljs från mål som du
+tidigare har bockat av, och tanken är att du under redovisningen
+ska relatera det målet till de andra målen du presenterar. Om det
+mål som lades till inte är relevant duger det utmärkt att sakligt
+redogöra för varför ("Java har inga pekare, alltså är det inte
+relevant att prata om pekararitmetik"). Syftet med att tvingas
+återbesöka ett redan avbockat mål är för att stimulera till att
+hålla goda vanor och kunskaper vid liv!
+
+* Hur många mål får jag redovisa under en labb? 
+Du får redovisa max 4 godkända mål vid varje labbtillfälle
+(typiskt 25-30 labbar under kursen initialt planerat). Det extra
+mål som systemet lägger till själv räknas inte in bland dessa.
+
+*Du får inte redovisa mål under bootstrap-labbarna.*
+
+
+#+include: "./footer.org"
