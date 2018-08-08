@@ -728,7 +728,7 @@ float tmp = sqrt(N);
 int limit = floor(tmp) + 1;
 #+END_SRC
 
-Det går också att skriva detta program utan variabeln~tmp~. (Gör gärna det -- här ville vi lyfta fram de två delstegen.)
+Det går också att skriva detta program utan variabeln ~tmp~. (Gör gärna det -- här ville vi lyfta fram de två delstegen.)
 
 Skriv klart programmet och testa det:
 
@@ -1926,7 +1926,7 @@ typedef existerande_typ nytt_namn;
 
 Exempel på typalias som inte berör funktionspekare:
 
-#+caption: Se noten om ~string/t~ nedan!
+#+caption: Se noten om ~string_t~ nedan!
 #+BEGIN_SRC c
 typedef char *string_t;
 typedef unsigned int age_t;
@@ -2435,7 +2435,7 @@ det körs.
 
 Ledning:
 
-1. Signaturen för ~swap()~ skall vara~void swap(int *a, int *b)~
+1. Signaturen för ~swap()~ skall vara ~void swap(int *a, int *b)~
 2. Du kommer att använda avrefereringsoperatorn i implementationen av ~swap()~
 3. Du måste använda adresstagningsoperatorn i ~main()~ för att kunna anropa ~swap()~ (detta är enda ändringen du skall göra i ~main()~)
 
