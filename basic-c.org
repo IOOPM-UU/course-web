@@ -165,7 +165,6 @@ quite far:[fn::Of course, change the filenames!]
 
 
 
-
 * Loops
 ** While Loops
 
@@ -237,10 +236,42 @@ while (strcmp(password, answer) != 0);
     ask_question_string("Enter password:", &answer);
   }
 #+END_SRC
-
-
-
 ** For Loops
+Technically, there is nothing you can do with a for loop that you
+could not do with a while. However, in many (but not all)
+circumstances, a for loop can be much clearer -- by providing a
+single place (at the start of the loop) for declaring loop
+variables, loop guards and incrementing the loop variables. 
+
+The following snippet uses a for loop to print =i = 0=, =i = 1=,
+etc. up to 1023. Note that the first line has three =;=-separated
+compartments. the first is for declaring one or more loop
+variables and initialising them; the second is the guard, just
+like in while or do/while loops; the third is applied at the end of 
+a loop body.
+
+#+BEGIN_SRC c
+int N = 1024;
+for (int i = 0; i < N; ++i)
+  {
+    printf("i = %d\n", i);
+  }
+/// Cannot use i variable here
+#+END_SRC
+
+We could translate the for loop above to an equivalent while loop:
+
+#+BEGIN_SRC c
+int N = 1024;
+int i = 0; 
+
+while (i < N)
+  {
+    printf("i = %d\n", i);
+    ++i;
+  }
+/// __Can__ use i variable here
+#+END_SRC
 
 * Increment and Decrement Operators
 
