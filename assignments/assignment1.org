@@ -698,6 +698,105 @@ long as you try both -- seriously -- during the course.*
 
 
 * TODO Left: Test-Driven Approach  
+Test-driven development is based on the idea that tests should be
+written before the code they are testing, and thus serve as a
+defintion of correctness for that code. By starting with the
+tests, we are forced to decide what are valid behaviours and what
+is the semantics of the function *before* we start coding it up,
+which is very nice. 
+
+The test-driven approach will thus work very much like the
+classical approach, but change in two important ways:
+
+- For each step, we start by defining the success critera of that
+  step, expressed as a test -- and equate finishing the step with
+  the passing of the test. 
+- Because we are test-driven, the order in which we implement
+  things might sometimes change because in order to test
+  something, we usually need ways of inspecting it, or at least
+  getting some data for it. 
+
+A possible order of basic features for a hash table is this:
+
+1. Create a new, empty hash table
+2. Delete a hash table and free its used memory
+3. Lookup the value for a given key
+4. Insert a new key--value mapping in a hash table
+5. Remove a key--value mapping from a hash table
+
+Creation and deletion could possibly be a single step, but we
+separate them here to simplify the discussion. Implementing lookup
+before insertion might seem strange, but it is totally fine even
+though our initial tests for lookup are going to be very boring
+because it will only be able to interact with empty hash tables.
+
+#+begin_important
+Before we begin, [[file:~/t/ioopm/2018/site/cunit.org][read the page on the CUnit test framework]] which
+is the mandated framework to use for unit testing on this course.
+Those instructions will give you a minimal unit test file that you 
+can populate with tests for the hash table. 
+#+end_important
+
+How do we test creation and destruction of a data structure?
+Future tests will test the correctness of the implementatation of
+the data representation, but for now creation and destruction can
+be tested together. Our test will create an ~ioopm_hash_table_t~,
+destroy same hash table, and we will run this test under
+/valgrind/, to make sure that we both allocate and free
+appropriately.
+
+Here is what such a test could look like:
+#+BEGIN_SRC c
+void test_create_destroy()
+{
+   ioopm_hash_table_t *ht = ioopm_hash_table_create();
+   ioopm_hash_table_destroy(ht);
+}
+#+END_SRC
+
+OK, so from a external testing perspective, we now know that the
+success criteria for the implementation of
+~ioopm_hash_table_create()~ and ~ioopm_hash_table_destroy()~ is
+that whatever data was created by the first is removed by the
+second. Note that as tests go, this is no super great -- if we
+leave the definition of both functions under test empty, the tests
+will pass. However, as our feature sets grow, so will our tests, 
+which will take care of this. 
+
+Now that we have a test for both functions, now is the time to
+start thinking about how to implement them. Look at the discussion
+in [[step0][Step 0]] and [[step4][Step 4]] from the "Classical Approach". Then return
+here. 
+
+Next step is to implement support for looking up values in a hash
+table. This is going to be a very useful feature, not in the least
+for testing many other features like insertion and removal. From a
+testing perspective, we could try to manually construct a hash
+table and use it for looking up, but this is brittle and will
+haunt us if we ever need to change the internal repesentation.
+Instead, for now, let us as a test simply verify that a newly
+created hash table is completely empty. 
+
+Here, we can draw on our knowledge of the interal representation
+in our choice of lookup uperations. If we know that the number of
+bucket lists is 17, then we can easily carve up a test where we are sure to hit all the buckets. 
+
+
+#+BEGIN_SRC c
+void test_lookup()
+{
+   ioopm_hash_table_t *ht = ioopm_hash_table_create();
+   for (int i = 0; i < 17; ++i)
+     {
+       CU_ASSERT_PTR_NULL(ioopm_hash_table_lookup(ht, i));
+     }
+   CU_ASSERT_PTR_NULL(ioopm_hash_table_lookup(ht, -1));
+   ioopm_hash_table_destroy(ht);
+}
+#+END_SRC
+
+- Refactor the magic number 17 above
+
 * Right: Classical Approach
 
 In a top-down way (starting from the public functions that a user
@@ -763,7 +862,7 @@ now. You can also do =man man= to get information about how the
 man pages system works.
 
 
-** Step 0: Creating an Empty Hash Table
+** Step 0: Creating an Empty Hash Table <<step0>>
 
 Recapping the structure of the hash table from above, a hash table
 (for now) is simply an array of (pointers) to entries. Since we
@@ -854,7 +953,7 @@ almost done. To finish this step, you should:
    in the previous link. 
 
 
-**  Step 1: Inserting a new (key, value) entry
+**  Step 1: Inserting a new (key, value) entry <<step1>>
 
 A first algorithm for inserting a new (~key~, ~value~) entry into
 our hash map could involve the following steps:
@@ -1135,7 +1234,7 @@ static entry_t *create_entry(...TODO...)
 #+END_SRC
 
 
-**  Step 2: Looking Up the Value for a Key
+**  Step 2: Looking Up the Value for a Key <<step2>>
 
 Interestingly enough, the code for insertion already required that
 we write some code for finding an entry for a given key. We were
@@ -1339,8 +1438,67 @@ idea as every lookup will now have to search for the key twice --
 once for checking that it is in the hash table and one for
 returning its associated value. That seems wasteful!
 
-For now, we conclude that failure is not an option, is not an
-option.
+Using failure is not an option often requires rethinking an
+operation (and this is not always possible) so that it becomes a
+total function. One way to do so for ~ioopm_hash_table_lookup()~
+is to change the behavious of the function so that it returns, not
+the value for the given key, but the /location of that value/.
+Think about it: if there is an entry for the key, there is a
+non-~NULL~ location in the hash table data structure that holds 
+the corresponding value. If there is no entry, there is no such
+location. In other words:
+
+\[
+lookup(h, k) = \left\{\begin{array}{ll}
+address\_of(v) & \text{if} ~ (k,v) \in h \\
+\texttt{NULL}  & \text{otherwise} \\
+\end{array}\right.
+\]
+
+This works even when $v$ is ~NULL~ since the /location/ of that
+~NULL~ value is guaranteed to be stored somewhere (i.e., the
+location cannot be ~NULL~). 
+
+With this design, the signature of ~ioopm_hash_table_lookup()~
+changes to return a ~char **~ -- a pointer to a pointer to a
+character ([[file:~/t/ioopm/2018/site/pointers.org][if your mind boggles at the thought of pointers to
+pointer, you can look here]]). 
+
+This design now very neatly supports book looking up and replacing
+an existing entry:
+
+#+BEGIN_SRC c
+char **value_ptr = ioopm_hash_table_lookup(ht, key);
+char *value = NULL; // no value yet
+if (value_ptr != NULL)
+  {
+    // key was in ht
+    value = *value_ptr; // Value now points to the string key maps to in ht
+    *value_ptr = "Some other string"; // We just updated the value! 
+  }
+else
+  {
+    // key was not in ht
+  }
+#+END_SRC
+
+In this design, we only needed to lookup the value once -- once we
+found the location, we could hold on to that location and use it
+to update the value in the hash table in constant time. 
+
+Caveats:
+
+- This seems to work well for lookup, but not for remove since
+  remove must free the datum holding the location of the value
+  (read that sentence again until you get it). One possibility is
+  to change remove to simply not return the value removed, but
+  this may force situations where extra lookups must be
+  inserted[fn::On the other hand, lookups are typically a lot more
+  frequent than removes.]. 
+- Hanging on to a location of a value in a hash table can be
+  dangerous if something causes such locations to move while we
+  are keeping this pointer around. This needs to be reflected
+  in the documentation. 
 
 *** Using Built-in Mechanisms for Propagating Errors
 
@@ -1378,7 +1536,7 @@ code above.
    commit with =assignment1_step2=.
 
 
-**  Step 3: Removing the Value for a Key
+**  Step 3: Removing the Value for a Key <<step3>>
 
 By now we can create new hash tables, add (key, value) entries to
 them, and look up the value for a given key. Next step is to add
@@ -1518,7 +1676,7 @@ Finishing this step means finishing the implementation of
 *Hints:* For 2., what should be deallocated? Look at a drawing of
 the hash table representation in memory for guidance.
 
-**  Step 4: Tearing Down a Hash Table
+**  Step 4: Tearing Down a Hash Table <<step4>>
 
 We have now arrived at Step 4, the final step of Ticket #1, and
 the last step needed to honestly claim that we have implemented a
