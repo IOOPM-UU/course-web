@@ -1,7 +1,531 @@
 #+title: A Minimal Guide to CUnit
 #+include: "./setup.org"
 
-* TODO Overview
-* TODO A Basic CUnit Test File
+* Inledning
+
+CUnit är ett ramverk för att skriva och utföra enhetstester på
+C-kod. CUnit är utvecklat som ett biliotek av funktioner som
+länkas samman med användarens testkod.
+
+Denna enkla lathund är menad att komplettera [[http://cunit.sourceforge.net/doc/introduction.html][CUnit Programmers
+Guide]]. Den visar hur man snabbt kan komma igång med CUnit, samt
+den kompilatorflagga som måste anges vid kompilering med CUnit på
+institutionens datorsystem. Om tillämpligt, titta på några av
+enhetstesterna som distributerats med koden för
+inlämningsuppgifterna (här tar vi exempel från en fil
+=unittests.c= från en inlämningsuppgift från en forntida IOOPM,
+see [[unitests.c][här]]) och försök följa dem för att se hur enkelt enhetstest kan
+sättas upp.
+
+Ett enhetstest är ett test av en enhet, t.ex. en modul eller
+sammanhängande samling av funktioner. (Täcks av föreläsning på
+kursen.) Ett enhetstest av en modul för att logga
+programmeddelanden på disk kunde t.ex. bestå av följande
+komponenter:
+
+1. Sätta upp testet: skapa kataloger och filer för loggmeddelanden
+2. Test att logga på:
+   $a$ en tom fil, 
+   $b$ en fil med en rad text i,
+   $c$ en fil med många rader text i,
+   $d$ en fil som inte finns -- med --
+   $e$ ett tomt loggmeddelande, 
+   $f$ ett meddelande med ett tecken, 
+   $g$ ett långt meddelande
+3. Utför testen $\{a,b,c,d\}\times\{e,f,g\}$[fn::Där t.ex. $(a,g)$ avser ett test med en tom fil till vilken ett långt meddelande skrivs.] och jämför det förväntade utdatat med det faktiska utfallet och signalera fel
+4. Riva ned testet: ta bort skapade kataloger och filer
+
+** Grundläggande CUnit
+
+Ett enhetstest i CUnit består av ett antal testsviter som var och
+en innehåller ett antal olika test. Filen =unittests.c= ([[unitests.c]][här]]) i
+som vi använder som löpande exempel har tre sviter, en för test av
+ett binärt sökträd, ett för en enkellänkade lista och ett för att
+läsa ord från en inström.
+
+Följande kod skapar den sistnämnda sviten i variabeln
+~pSuiteNW~  Först deklareras variabeln (rad 1), sedan skapas
+sviten (rad 6) med ett namn ~''nextWord Suite''~  samt
+funktionerna för att sätta upp samt riva ned testen
+(~init_suite_nw~ och ~clean_suite_nw~, se nästa
+avsnitt. Om sviten inte skapades korrekt är värdet i ~pSuiteNW~ ~NULL~  vi städar bland de registrerade testerna (rad 9) och
+avslutar genom att returnera en felkod (rad 10).
+
+Rad 13--16 lägger till ett test i sviten. Funktionen
+~CU_add_test~ lägger till testfunktionen ~testNEXTWORD~  en
+funktion som vi (utvecklaren) skrivit själva, i sviten med ett
+beskrivande namn. Fel fångas upp och rapporteras på samma sätt som
+tidigare.
+
+På rad 18 anges att vi vill att testen skall utföras /verbose/,
+alltså att alla detaljer skall skrivas ut när testen körs. Rad 19
+kör alla test (i detta fall bara ett). Rad 20 städar upp bland de
+registrerade testen (avallokerar minne, etc.). Slutligen, på rad
+21, returnerar vi /de eventuella fel/ som uppstått under körning.
+
+#+BEGIN_SRC c
+CU_pSuite pSuiteNW = NULL;
+
+if (CUE_SUCCESS != CU_initialize_registry())
+  return CU_get_error();
+
+pSuiteNW = CU_add_suite("nextWord Suite", init_suite_nw, clean_suite_nw);
+
+if (NULL == pSuiteNW) {
+  CU_cleanup_registry();
+  return CU_get_error();
+}
+
+if (NULL == CU_add_test(pSuiteNW, "test of nextWord()", testNEXTWORD)) {
+  CU_cleanup_registry();
+  return CU_get_error();
+}
+
+CU_basic_set_mode(CU_BRM_VERBOSE);
+CU_basic_run_tests();
+CU_cleanup_registry();
+return CU_get_error();
+#+END_SRC
+
+** Att sätta upp och riva ned tester
+
+För vissa samlingar av test kan det vara smidigt att först utföra
+ett initialt arbete. Det kan röra sig om att skapa filer och
+kataloger i filsystemet där testerna kommer att skriva och läsa,
+eller t.ex. skapa ett antal binära sökträd som testerna sedan
+opererar på. 
+
+I =unittests.c= finns följande två funktioner.
+
+#+BEGIN_SRC c
+int init_suite_bst(void) {
+  return 0;
+}
+
+int init_suite_nw(void) {
+  temp_file = fopen("temp.txt", "w+"); // global variabel
+  if (temp_file == NULL {
+    return -1;
+  } else {
+    return 0;
+  }
+}
+#+END_SRC
+
+Den första funktionen initierar alla test av modulen ~bst~ --
+det binära sökträdet, och gör som synes ingenting. Alla tester av
+sökträdet skapar ett nytt träd och utför testerna på det. 
+
+Den andra funktionen initierar alla test av modulen för
+~nextWord~ och öppnar filen ~temp.txt~ för skrivning i den
+aktuella katalogen. Om detta inte är möjligt kommer ett fel
+signaleras och testen inte utföras vidare -- vilket är rimligt då
+förutsättningarna för att läsa in ord uppenbarligen inte finns. 
+
+En motsvarande funktion river också ned ~nextWord~ sviten av
+tester:
+
+#+BEGIN_SRC c
+int clean_suite_nw(void) {
+  if (0 != fclose(temp_file)) {
+    return -1;
+  } else {
+    temp_file = NULL;
+    return 0;
+  }
+}
+#+END_SRC
+
+Här stängs filen i fråga, varvid vi kan rapportera att nedrivning
+av testen gick enligt planen (~return 0~).
+
+** Utföra tester
+
+Varje funktion vars namn börjar på ~test~ avser ett test av en
+funktion i enheten. Följande test som återfinns bland
+enhetstesterna till inlämningsuppgift 1 testar att insertering i
+ett binärt sökträd skapar ett träd med förväntat djup. 
+
+Funktionen ~int depth(TreeLink)~ används för att ta reda på
+trädets djup. Denna funktion är inte strikt nödvändig för
+insertering och sökning, men är en hjälpfunktion som utvecklaren
+av trädet tillhandahåller bl.a. just för att underlätta test av
+trädet. Det är relativt vanligt att tillhandahålla ''extra kod''
+på detta sätt. Det underlättar testandet och håller dessutom
+testen på en rimlig abstraktionsnivå! I föreliggande exempel,
+om trädets interna representation ändras behöver vi inte skriva om
+testet. Mycket smidigt. Men ack! Den sista raden i testet nedan
+följer inte denna princip. 
+
+I koden nedan skapas ett nytt träd. För varje insertering
+kontrolleras att det resulterande trädets djup är den förväntade.
+Detta görs med ~CU_ASSERT(<exp>)~ där ~<exp>~ är ett booleskt
+uttryck som förväntas evaluera till /sant/. Om något uttryck i
+någon assert-sats evaluerar till /falskt/ (vi säger att asserten
+fejlar, alt. misslyckas, på Svenska) under testet räknas testet
+som att det inte har passerat.
+
+#+BEGIN_SRC c
+void testBST_DEPTH(void) {
+  TreeLink t = insert(NULL, "ni", 1);
+  CU_ASSERT(depth(t) == 1);
+  t = insert(t, "spam", 2);
+  CU_ASSERT(depth(t) == 2);
+  t = insert(t, "eki", 3);
+  CU_ASSERT(depth(t) == 2);
+  t = insert(t, "eki", 4);
+  CU_ASSERT(depth(t) == 2);
+  CU_ASSERT(strcmp(t->left->key, "eki") == 0); // Bryter mot abstraktionsprincipen!
+#+END_SRC
+
+Observera att testet inte returnerar något. Om funktionen körs
+utan att någon assert-sats misslyckas anses testet ha passerat. 
+
+De olika typerna av assertions som finns är dokumenterade [[http://cunit.sourceforge.net/doc/writing_tests.html][här]].
+
+Om man ville undvika att bryta mot abstraktionsprincipen skulle
+man kunna utveckla en funktion som tillät åtkomst till en specifik
+nod i trädet som en del av trädmodulen. Man skulle t.ex. kunna
+skriva följande:
+
+#+BEGIN_SRC c
+char *keyForPath(TreeLink t, char *path) {
+  if (!t) return NULL;
+  switch (*path) {
+    case 'L':  return keyForPath(t->left, ++path);
+    case 'R':  return keyForPath(t->right, ++path);
+    case '\0': return t->key;
+    default: 
+      printf(stderr, "Bogus path value '%c' expected L or R\n", *path);
+  }
+  return NULL;
+}
+#+END_SRC
+
+Denna funktion vandrar i trädet i enlighet med en söksträng.
+T.ex. returnerar ~''LRLLR''~ den nyckel som fås efter att först gå
+vänster, sedan höger, sedan två gånger vänster, och sist höger i
+trädet. 
+
+Nu skulle man kunna skriva om sista raden i testet så här:
+
+#+BEGIN_SRC c
+  char *temp = keyForPath(t, "L");
+  CU_ASSERT(strcmp(temp, "eki") == 0);
+#+END_SRC
+
+Ofta kan det vara en bra idé att inte lägga denna typ av funktion
+i sin moduls headerfil, utan istället skapa en speciell headerfil
+som är specifik för testning och som definierar de ytterligare
+funktionerna.
+
+Titta på de olika ~test~ funktionerna i =unittests.c= i
+inlämningsuppgift 1 för att se olika exempel på tester av både ett
+binärt sökträd och en enkellänkad lista.
+
+
+** Arbeta på egen maskin
+
+Om du vill arbeta på din egen maskin måste du installera
+CUnit. Detta handleds endast i mån av tid och förmåga, givet att
+din dator är åtkomlig från någon av institutionens datorsalar.
+
+CUnit finns att ladda ned på http://cunit.sourceforge.net/. 
+
+* Kompilera med CUnit
+
+Vid kompilering med CUnit måste man explicit ange att CUnit skall
+länkas in. Detta görs med flaggan ~-l~  med parametern ~cunit~ , t.ex.:
+
+#+BEGIN_EXAMPLE
+  gcc -ggdb -Wall -std=c11 unittests.c list.c bst.c -o unittests -lcunit
+#+END_EXAMPLE
+
+Om ~-lcunit~ inte anges kommer länknings-steget efter
+kompileringen att misslyckas, eftersom funktionerna för
+enhetstest, t.ex. ~CUAssert~  då fortfarande saknas. 
+
+* En minimal CUnit-fil
+Använd nedanstående som mall för att komma igång med CUnit. 
+
+#+caption: minimal.c
+#+BEGIN_SRC c
+#include <string.h>
+#include <stdbool.h>
+#include "CUnit/Basic.h"
+
+int init_suite(void)
+{
+  return 0;
+}
+
+int clean_suite(void)
+{
+  return 0;
+}
+
+void test1(void)
+{
+  CU_ASSERT(true);
+}
+
+void test2(void)
+{
+  CU_ASSERT(true);
+}
+
+int main()
+{
+  CU_pSuite test_suite1 = NULL;
+
+  if (CUE_SUCCESS != CU_initialize_registry())
+    return CU_get_error();
+
+  test_suite1 = CU_add_suite("Test Suite 1", init_suite, clean_suite);
+  if (NULL == test_suite1)
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+
+  if (
+    (NULL == CU_add_test(test_suite1, "test 1", test1)) ||
+    (NULL == CU_add_test(test_suite1, "test 2", test2))
+  )
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+
+  CU_basic_set_mode(CU_BRM_VERBOSE);
+  CU_basic_run_tests();
+  CU_cleanup_registry();
+  return CU_get_error();
+}
+#+END_SRC
+
+* Filen =unittests.c= <<unitests.c>>
+#+caption: unittests.c
+#+BEGIN_SRC c
+#include <string.h>
+#include "CUnit/Basic.h"
+
+#include "list.h"
+#include "bst.h"
+#include "nextword.h"
+
+static FILE* temp_file = NULL;
+
+int init_suite_bst(void)
+{
+  return 0;
+}
+
+int clean_suite_bst(void)
+{
+  return 0;
+}
+
+int init_suite_list(void)
+{
+  return 0;
+}
+
+int clean_suite_list(void)
+{
+  return 0;
+}
+
+int init_suite_nw(void)
+{
+  if (NULL == (temp_file = fopen("temp.txt", "w+")))
+    {
+      return -1;
+    }
+  else
+    {
+      return 0;
+    }
+}
+
+int clean_suite_nw(void)
+{
+  if (0 != fclose(temp_file))
+    {
+      return -1;
+    }
+  else
+    {
+      temp_file = NULL;
+      return 0;
+    }
+}
+
+void testBST_INSERT(void)
+{
+  TreeLink t = insert(NULL, "spam\0", 1);
+  CU_ASSERT(strcmp(t->key, "spam\0") == 0);
+  CU_ASSERT(t != NULL);
+  CU_ASSERT(t->left == NULL);
+  CU_ASSERT(t->right == NULL);
+  CU_ASSERT(t->rowlist != NULL);
+  CU_ASSERT(listlength(t->rowlist) == 1);
+  t = insert(t, "spam\0", 2);
+  CU_ASSERT(listlength(t->rowlist) == 2);
+
+  TreeLink d = insert(NULL, "ni\0", 1);
+  d = insert(d, "spam\0", 2);
+  d = insert(d, "eki\0", 3);
+  CU_ASSERT(strcmp(d->key, "ni\0") == 0);
+  CU_ASSERT(strcmp(d->right->key, "spam\0") == 0);
+  CU_ASSERT(strcmp(d->left->key, "eki\0") == 0);
+}
+
+void testBST_REMOVE(void)
+{
+  /* Note that this test is not run automatically, modifications
+     further down are necessary */
+}
+
+void testBST_DEPTH(void)
+{
+  TreeLink t = insert(NULL, "ni\0", 1);
+  CU_ASSERT(depth(t) == 1);
+  t = insert(t, "spam\0", 2);
+  CU_ASSERT(depth(t) == 2);
+  t = insert(t, "eki\0", 3);
+  CU_ASSERT(depth(t) == 2);
+  t = insert(t, "eki\0", 4);
+  CU_ASSERT(depth(t) == 2);
+  CU_ASSERT(strcmp(t->left->key, "eki\0") == 0);
+}
+
+void testBST_SIZE(void)
+{
+  TreeLink t = insert(NULL, "ni\0", 1);
+  CU_ASSERT(size(t) == 1);
+  t = insert(t, "spam\0", 2);
+  CU_ASSERT(size(t) == 2);
+  t = insert(t, "eki\0", 3);
+  CU_ASSERT(size(t) == 3);
+  t = insert(t, "eki\0", 4);
+  CU_ASSERT(size(t) == 3);
+}
+
+void testLIST_LISTINSERT(void)
+{
+  ListLink l = listinsert(1, NULL);
+  for (int i=2; i<=10; i++)
+    {
+      l = listinsert(i, l);
+    }
+
+  for (int i=1; i<=10; i++)
+    {
+      CU_ASSERT(l->value == i);
+      l = l->next;
+    }
+}
+
+void testLIST_LISTLENGTH(void)
+{
+  ListLink l = listinsert(1, NULL);
+  CU_ASSERT(listlength(l) == 1);
+  for (int i=2; i<=20; i++)
+    {
+      l = listinsert(i, l);
+      CU_ASSERT(listlength(l) == i);
+    }
+}
+
+void testNEXTWORD(void)
+{
+  char buffer[20];
+  CU_ASSERT(temp_file != NULL)  // Internal error
+  fprintf(temp_file, "spam spam\nbacon spam");
+  rewind(temp_file);
+
+  // Läser in nästa ord i strömen "fp". Returnerar 0 vid EOF och 2 vid
+  // radbrytning, annars 1.
+
+  int i = nextWord(buffer, temp_file);
+  CU_ASSERT(strcmp(buffer, "spam\0") == 0)
+  CU_ASSERT(i == 1)
+  i = nextWord(buffer, temp_file);
+  CU_ASSERT(strcmp(buffer, "spam\0") == 0)
+  CU_ASSERT(i == 1)
+  i = nextWord(buffer, temp_file);
+  CU_ASSERT(i == 2)
+  i = nextWord(buffer, temp_file);
+  CU_ASSERT(strcmp(buffer, "bacon\0") == 0)
+  CU_ASSERT(i == 1)
+  i = nextWord(buffer, temp_file);
+  CU_ASSERT(strcmp(buffer, "spam\0") == 0)
+  CU_ASSERT(i == 1)
+  i = nextWord(buffer, temp_file);
+  CU_ASSERT(i == 0)
+}
+
+int main()
+{
+  CU_pSuite pSuiteBst = NULL;
+  CU_pSuite pSuiteList = NULL;
+  CU_pSuite pSuiteNW = NULL;
+
+  if (CUE_SUCCESS != CU_initialize_registry())
+    return CU_get_error();
+
+  pSuiteNW = CU_add_suite("nextWord Suite", init_suite_nw, clean_suite_nw);
+  if (NULL == pSuiteNW)
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+  pSuiteList = CU_add_suite("Linked List Suite", init_suite_list, clean_suite_list);
+  if (NULL == pSuiteList)
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+  pSuiteBst = CU_add_suite("Binary Search Tree Suite", init_suite_bst, clean_suite_bst);
+  if (NULL == pSuiteBst)
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+
+  if (
+    (NULL == CU_add_test(pSuiteBst, "test of insert()", testBST_INSERT)) ||
+    (NULL == CU_add_test(pSuiteBst, "test of size()", testBST_SIZE)) ||
+    (NULL == CU_add_test(pSuiteBst, "test of depth()", testBST_DEPTH))
+  )
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+
+  if (
+    (NULL == CU_add_test(pSuiteList, "test of listinsert()", testLIST_LISTINSERT)) ||
+    (NULL == CU_add_test(pSuiteList, "test of listlength()", testLIST_LISTLENGTH))
+  )
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+
+  if (
+    (NULL == CU_add_test(pSuiteNW, "test of nextWord()", testNEXTWORD))
+  )
+    {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+
+  CU_basic_set_mode(CU_BRM_VERBOSE);
+  CU_basic_run_tests();
+  CU_cleanup_registry();
+  return CU_get_error();
+}
+#+END_SRC
 
 #+include: "./footer.org"
