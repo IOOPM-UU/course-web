@@ -5,6 +5,8 @@
 * Common
 ** Backlog
 *TODO*
+** Dummy function
+See [[Stub]].
 ** Signature 
 The signature of a function or method is its name and types of
 parameters and return types. For example, the signature of the
@@ -13,6 +15,19 @@ the syntax of a function prototype). This signature denotes that
 the function ~atoi()~ takes one parameter, a pointer to a constant
 string (i.e., that will only be read, not modified) and returns an
 integer.
+** Stub
+A stub function (aka dummy) is a placeholder for a full
+implementation that does the minimal work needed to make code
+compile. For example, a stub for a create function, e.g., 
+~ioopm_hash_table_create()~, will simply return ~NULL~ :
+#+BEGIN_SRC c
+ioopm_hash_table_t *ioopm_hash_table_create()
+{
+  return NULL; /// TODO:
+}
+#+END_SRC
+Quite commonly, a stub function will contain a ~TODO~ comment so
+that it can be easily found and not forgotten.
 ** Refactoring
 Simply put, refactoring is the act of changing the structure of a
 piece of code without changing its behaviour. A classic example of
