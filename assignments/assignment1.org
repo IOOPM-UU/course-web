@@ -697,7 +697,7 @@ amount of work is the same. *Pick whatever approach you like, as
 long as you try both -- seriously -- during the course.*
 
 
-* TODO Left: Test-Driven Approach  
+* Left: Test-Driven Approach  
 Test-driven development is based on the idea that tests should be
 written before the code they are testing, and thus serve as a
 defintion of correctness for that code. By starting with the
@@ -719,10 +719,21 @@ classical approach, but change in two important ways:
 A possible order of basic features for a hash table is this:
 
 1. Create a new, empty hash table
-2. Delete a hash table and free its used memory
+2. Destroy a hash table and free its used memory
 3. Lookup the value for a given key
 4. Insert a new key--value mapping in a hash table
 5. Remove a key--value mapping from a hash table
+
+** Features 1 & 2: Create and Destroy
+Start by writing a [[file:~/t/ioopm/2018/site/glossary.org][stub]] for the functions under test so we can
+compile and run a (failing) test:
+#+BEGIN_SRC c
+  ioopm_hash_table_t *ioopm_hash_table_create()
+  void ioopm_hash_table_destroy(ioopm_hash_table_t *ht)
+#+END_SRC
+Note that for some functions, there are some design decisions left
+to you which may change the [[file:~/t/ioopm/2018/site/glossary.org][signature]].
+
 
 Creation and deletion could possibly be a single step, but we
 separate them here to simplify the discussion. Implementing lookup
@@ -750,6 +761,7 @@ Here is what such a test could look like:
 void test_create_destroy()
 {
    ioopm_hash_table_t *ht = ioopm_hash_table_create();
+   CU_ASSERT_PTR_NULL(ht); 
    ioopm_hash_table_destroy(ht);
 }
 #+END_SRC
@@ -768,6 +780,29 @@ start thinking about how to implement them. Look at the discussion
 in [[step0][Step 0]] and [[step4][Step 4]] from the "Classical Approach". Then return
 here. 
 
+#+begin_important
+Ideally, after writing the test, you want to execute it and see
+that it fails. This is in line with the [[file:~/t/ioopm/2018/site/simple.org][SIMPLE]] approach (always
+have a running program), and requires that we start the actual
+implementation of the features by defining stubs for the functions
+under test, e.g., a one-line ~ioopm_hash_table_create()~ function
+that returns ~NULL~ etc. This will cause our test to fail which is
+good because our goal is to make it pass! Moreover, if we can get
+the test to compile, run and fail /before/ implementing the
+feature we are testing, we do not need to fix bugs both in the
+test and the feature under test at the same time!
+#+end_important
+
+** Feature 3: Looking up Values
+Start by writing a [[file:~/t/ioopm/2018/site/glossary.org][stub]] for the function under test so we can
+compile and run a (failing) test:
+#+BEGIN_SRC c
+  char *ioopm_hash_table_lookup(ioopm_hash_table_t *ht, int key)
+#+END_SRC
+Note that there are some design decisions left to you which may
+change the [[file:~/t/ioopm/2018/site/glossary.org][signature]].
+
+
 Next step is to implement support for looking up values in a hash
 table. This is going to be a very useful feature, not in the least
 for testing many other features like insertion and removal. From a
@@ -777,16 +812,25 @@ haunt us if we ever need to change the internal repesentation.
 Instead, for now, let us as a test simply verify that a newly
 created hash table is completely empty. 
 
-Here, we can draw on our knowledge of the interal representation
-in our choice of lookup uperations. If we know that the number of
-bucket lists is 17, then we can easily carve up a test where we are sure to hit all the buckets. 
-
+We can draw on our knowledge of the interal representation in our
+choice of lookup uperations. If we know that the number of bucket
+lists is 17, then we can easily carve up a test where we are sure
+to hit all the buckets. *However*, tempting as it may be to draw
+on such internal information, constants such as the number of
+buckets may change in the future. Unless the test uses the same
+constant as the hash table[fn::Which may require exposing a
+supposedly internal detail, and thus break abstraction or
+encapsulation. ], it may be better to treat the object under test
+as a black box. Nevertheless, here is an initial test based on
+trying to hit all buckets, do one wrap-around (17 should wrap to
+bucket 0), and dealing with negative numbers. (Are they possible?
+Should they be possible? How should they be handled?)
 
 #+BEGIN_SRC c
 void test_lookup()
 {
    ioopm_hash_table_t *ht = ioopm_hash_table_create();
-   for (int i = 0; i < 17; ++i)
+   for (int i = 0; i < 18; ++i) /// 18 is a bit magical 
      {
        CU_ASSERT_PTR_NULL(ioopm_hash_table_lookup(ht, i));
      }
@@ -795,7 +839,133 @@ void test_lookup()
 }
 #+END_SRC
 
-- Refactor the magic number 17 above
+The code snippet above exemplifies a great case for using a
+comment. The number 18 is seeminlgy "magical" -- it is likely not
+obvious to most casual readers of this code why it was chosen. A
+comment is a good way to explain why it was chosen, so that a
+future coder will know to change it if the number of buckets
+change (at least if they stumble across the code and read the
+comment).
+
+Now that we have an initial (albeit fairly uninteresting) test for
+look-ups, now is the time to start thinking about how to implement
+the lookup function. Look at the discussion in [[step2][Step 2]] from the
+"Classical Approach". Then return here.
+
+** Feature 4: Inserting Values
+Start by writing a stub for the function under test so we can
+compile and run a (failing) test:
+#+BEGIN_SRC c
+  void ioopm_hash_table_insert(ioopm_hash_table_t *ht, int key, char *value)
+#+END_SRC
+Note that there are some design decisions left to you which may
+change the [[file:~/t/ioopm/2018/site/glossary.org][signature]].
+
+Dijkstra's classical quote about testing -- that testing can only
+prove the presence of errors, not the absence -- stems from the
+fact that we, in the general case, cannot (be sure to) test all
+possible cases. Thus, if all tests pass, we cannot claim
+correctness, just that "all tests pass". 
+
+Testing is to a large extent about being clever and economic about
+what tests to execute. If we are going to test a linked list, for
+example, what length should we test? 1? 1.000? 1.000.000? Etc. The
+key insight is to test the cases that represent particular states
+in the object under test. For a linked list, for example, testing
+against the empty list is important, as is a list with a single
+element, and a list with "a couple of" elements. These typically
+represent the important states of a list. For example, in a list
+with a single element, there is no middle element, so we need one
+with "a couple of" elements to cover that case. 
+
+For inserting values, there are going to be two, possibly three
+important basic cases to test for:
+
+1. Testing with a fresh key that is not already in use
+2. Testing with a key that is already in use
+3. Testing with an invalid key (if at all possible)
+
+When we test these cases, we test them in isolation. If we tested
+all together, it will be harder for us to pinpoint the location of
+errors. For example, maybe a bug in inserting with an existing key
+leaves the hash table in a corrupted state that triggers an error
+on the next lookup. When that error happens, we would like to be
+able to deduce that the error is in the implementation of insert
+with an existing key. 
+
+Thus, to reduce the search space for the root cause of a bug, we
+test the cases 1-3 separately. After this, it makes sense to test
+the interaction between the cases, e.g. testing the sequences
+=1;1=, =1;2=, =2;2=, etc. And possibly longer sequences. Thus, if
+the tests for 1, 2 and =1;1= passes, but the test =1;2= fails, we
+know that it is the interaction between 1 and 2, and that the bug
+is likely in 2 given that =1;1= worked fine. 
+
+#+begin_important
+In a nut shell, test design is about finding a small enough number
+of tests that they can be executed in short enough time for us to
+be able to run them constantly, yet large enough to cover all the
+important states and state transitions of the object under test,
+and structured in such a way that for each failing test, the
+search space for the root cause of the bug is as small as
+possible.
+#+end_important
+
+We can use lookup to observe the changes after insert. For
+example, a minimal test for case 1 above would be:
+
+1. Create a new empty hash table $h$
+2. Verify that key $k$ is not in $h$ using lookup
+3. Insert a value $v$ with key $k$ in $h$
+4. Use lookup to verify that $k$ maps to $v$
+5. Destroy $h$ 
+
+Go ahead and code up that test in this function skeleton:
+
+#+BEGIN_SRC c
+void test_lookup1()
+{
+  ...
+}
+#+END_SRC
+
+Complement this test function with others following the logic of
+above. When you are done, you have defined the success criteria
+for the insert function. Time to write it! Look at the discussion
+in [[step3][Step 3]] from the "Classical Approach". Then return here.
+
+** Feature 5: Removing Values
+Start by writing a [[file:~/t/ioopm/2018/site/glossary.org][stub]] for the function under test so we can
+compile and run a (failing) test:
+#+BEGIN_SRC c
+  void ioopm_hash_table_remove(ioopm_hash_table_t *ht, int key)
+#+END_SRC
+Note that there are some design decisions left to you which may
+change the [[file:~/t/ioopm/2018/site/glossary.org][signature]].
+
+
+For this test, you are on your own! You know what to do -- it will
+be very similar to the tests above. When you are done, implement
+support for removal following [[step4][Step 4]] from the "Classical
+Approach". Then jump to [[Step 5: Refactoring][Step 5: Refactoring]] and apply that while
+using the tests to make sure that your refactorings do not
+accidentally break stuff!
+
+** Moving On...
+
+Now you know basic [[https://en.wikipedia.org/wiki/Test-driven_development][test-driven development]]! Granted, details are
+still a bit sketchy, but we are only on Assignment 1. This diagram
+shows the process of test-driven development quite clearly,
+especially after having completed it once. 
+
+https://en.wikipedia.org/wiki/File:TDD_Global_Lifecycle.png
+#+CAPTION: The lifecycle of test-driven design (from Wikipedia)
+
+Continue using the test-driven approach now, by jumping to [[Ticket #2: Utility Functions][Ticket
+#2: Utility Functions]] which is not written especially for a
+test-driven approach. *That should not be needed now that you know
+what you are doing.*
+
 
 * Right: Classical Approach
 
@@ -1209,7 +1379,7 @@ Finishing this step means finishing the implementation of
    two suggestions from above for how to add a dummy node.
 2. Implement ~entry_create()~.
 3. Implement a couple of tests for ~ioopm_hash_table_insert()~
-   following the instructions in Section XXX.
+   following the instructions in [[Feature 4: Inserting Values][Feature 4: Inserting Values]].
 4. Make sure that your code compiles with the [[file:../compiling.org][appropriate flags]]
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 5. Make sure that the code passes your tests.
@@ -1528,7 +1698,7 @@ code above.
    alter the [[file:../glossary.org][signature]] of the function (changing the return type
    and/or adding an additional parmeter).
 2. Implement a couple of tests for ~ioopm_hash_table_lookup()~
-   following the instructions in Section XXX.
+   following the instructions in [[Feature 3: Looking up Values][Feature 3: Looking up Values]].
 3. Make sure that your code compiles with the [[file:../compiling.org][appropriate flags]]
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 4. Make sure that the code passes your tests.
@@ -1665,8 +1835,8 @@ Finishing this step means finishing the implementation of
    use-after-free, dangling pointers (not including temporary
    ones!) and memory leaks. Later, we will learn how to use tools
    to help us identify and fix such bugs.
-4. Implement a couple of tests for ~ioopm_hash_table_insert()~
-   following the instructions in Section XXX.
+4. Implement a couple of tests for ~ioopm_hash_table_remove()~
+   following the instructions in [[Feature 5: Removing Values][Feature 5: Removing Values]].
 5. Make sure that your code compiles with the [[file:../compiling.org][appropriate flags]]
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 6. Make sure that the code passes your tests.
@@ -3381,35 +3551,35 @@ presentations, or add your name to the help list.
 * Known Bugs
 - As of 2018-09-01, this document has no known bugs. 
 
-* Backlog
-- Double check that all forward references are resolved above
-- The whole leg on test-driven development is TODO
-- need to enable updating of a value without inserting a new key!
-- +Give a catalogue structure *TODO* -- in the repos already+
-- +Step 14 probably need a brief explanation of unions or a pointer to some place where it can be read about+
-- +Explain why we don't do everything right from the start+
-- +Add a "don't blindly copy code!"+
-- *DONE* Add SIMPLE stuff
-- *DONE* Write notes about how they should work together with someone else on this
-- *DONE* Instruct them to write down cheats and dodges as we go
-- *DONE* Code coverage does not yet come in -- needs addressing
-- *DONE* Where does the iterator go? Iterator.h? If so, how does it access the links? Etc. Encapsulation!
-- *DONE* Should we supply a simple hash function for strings?
-- *DONE* Make a note to use git tag for checking in at the end of each step
-- *DONE* Assertions!
-- *DONE* Explain that they have to compile with -c for compiling libraries
-- *DONE* Order of functions
-- *DONE* Instruct them how to read compiler output!
-- *DONE* alias bt='gdb -batch -ex "run" -ex "bt" --args'
-- *DONE* Add "always have a working program"
-- *DONE* Add a "if I use a function that you haven't seen before, try man that function "
-- *DONE* gdb
-- *DONE* A fun optimisation is to chain together all the buckets in the hash table
-- *DONE* What to call the .c file
-- *DONE* Include the header file
-- *DONE* Clean up all uses of key % 17 /before/ we move to a better structure
-- *DONE* Add const to some functions where appropriate
-- *DONE* Refactor ints to size_ts at some point
+# == Backlog ==
+# - Double check that all forward references are resolved above
+# - *DONE* The whole leg on test-driven development is TODO (MVP in place)
+# - need to enable updating of a value without inserting a new key!
+# - +Give a catalogue structure *TODO* -- in the repos already+
+# - +Step 14 probably need a brief explanation of unions or a pointer to some place where it can be read about+
+# - +Explain why we don't do everything right from the start+
+# - +Add a "don't blindly copy code!"+
+# - *DONE* Add SIMPLE stuff
+# - *DONE* Write notes about how they should work together with someone else on this
+# - *DONE* Instruct them to write down cheats and dodges as we go
+# - *DONE* Code coverage does not yet come in -- needs addressing
+# - *DONE* Where does the iterator go? Iterator.h? If so, how does it access the links? Etc. Encapsulation!
+# - *DONE* Should we supply a simple hash function for strings?
+# - *DONE* Make a note to use git tag for checking in at the end of each step
+# - *DONE* Assertions!
+# - *DONE* Explain that they have to compile with -c for compiling libraries
+# - *DONE* Order of functions
+# - *DONE* Instruct them how to read compiler output!
+# - *DONE* alias bt='gdb -batch -ex "run" -ex "bt" --args'
+# - *DONE* Add "always have a working program"
+# - *DONE* Add a "if I use a function that you haven't seen before, try man that function "
+# - *DONE* gdb
+# - *DONE* A fun optimisation is to chain together all the buckets in the hash table
+# - *DONE* What to call the .c file
+# - *DONE* Include the header file
+# - *DONE* Clean up all uses of key % 17 /before/ we move to a better structure
+# - *DONE* Add const to some functions where appropriate
+# - *DONE* Refactor ints to size_ts at some point
 
 
 
