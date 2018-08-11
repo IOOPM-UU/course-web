@@ -212,7 +212,6 @@ kodprovet).
 - 4 avbockade mål på nivå 3 (du kan inte använda samma mål i flera faser)
 - Inga eftersläpande repetitionsmål
 
-
 * Arbetsflöde under kursen
 Kursens upplägg härmar avsiktligt lättrörliga eller agila
 processer, främst Kanban och Scrum. Under projektdelen (fas 3)
@@ -449,9 +448,34 @@ Ett kodpar som missar en hård deadline blir kallad till ett
 uppföljningsmöte med obligatorisk närvaro för att diskutera
 anledningen och eventuella påföljder. Undvik att missa hårda
 deadlines!
+* Academic Honesty and Integrity
+Honesty and integrity are of utmost importance.
+
+These goals are not at odds with being resourceful and working
+collaboratively. You should be resourceful and you should discuss
+your work in this course with others taking the class.
+
+*However, you must never misrepresent the work of others as your own.*
+*Nor may you ever parrot explanations of others, or paint insights of others as your own.*
+
+When helping others -- as you should, also for your own benefit --
+avoid doing their work for them -- help them get to the point
+where they are able to do their own work.
+
+If you have taken ideas from elsewhere or used code sourced from
+elsewhere, you must say so with utmost clarity in the
+documentation of your assignment. 
+
+When in doubt, ask Tobias. 
+
+#+begin_important
+Make sure you have familiarised yourself with the rules of
+plagiarism at the department and the university.
+#+end_important
 * FAQ
 *Q*: Jag har delar av IOOPM från *före* 2013 kvar! Hur skall jag
-göra? *A*: Om du läste kursen innan den gjordes om 2013 så ska du
+göra? \\
+*A*: Om du läste kursen innan den gjordes om 2013 så ska du
 göra olika saker beroende på vad du har kvar. Oavsett vad bör du
 börja med att skicka ett mejl till Tobias och berätta vad du har
 kvar, och att du har för avsikt att bli klar med kursen i år.
@@ -476,34 +500,34 @@ Vid redovisning kommer vi att gå igenom slumpvis valda mål som du
 måste kunna diskutera utifrån din lösning. Du skall klara av fem
 mål av upp till sju.
 
-*Q*: Hur anmäler jag mig till kodprovet?
+*Q*: Hur anmäler jag mig till kodprovet? \\
 *A*: Det kommer en länk till anmälan i ett meddelande i Piazza. Detta meddelande skickas också vidare till din studentadress.
 
-*Q*: Vilken grupp är jag med i?
+*Q*: Vilken grupp är jag med i? \\
 *A*: Grupperna postas i Piazza och uppdateras löpande. Vi får uppgifter om registrerade studenter stötvis vid terminens början och det går därför knackigt ibland att bli instoppad i en grupp.
 
-*Q*: Jag är inte med i någon grupp!
+*Q*: Jag är inte med i någon grupp! \\
 *A*: Maila [[mailto:gustaf.borgstrom@it.uu.se][Gustaf]].
 
-*Q*: Jag har inte något login i AU-portalen!
+*Q*: Jag har inte något login i AU-portalen! \\
 *A*: Maila [[mailto:gustaf.borgstrom@it.uu.se][Gustaf]].
 
-*Q*: Jag har inte tillgång till Piazza!
+*Q*: Jag har inte tillgång till Piazza! \\
 *A*: Maila [[mailto:gustaf.borgstrom@it.uu.se][Gustaf]].
 
-*Q*: Hur länge gäller delresultat på kursen som inte har rapporterats in i LADOK/UPPDOK?
+*Q*: Hur länge gäller delresultat på kursen som inte har rapporterats in i LADOK/UPPDOK? \\
 *A*: Avklarade kodprovsfrågor gäller till nästa kurstillfälle. Vad gäller enskilda mål gör vi en fall-för-fall-bedömning. Om du saknar färre än 10 mål från föregående tillfälle får du normalt tillgodoräkna dig dina tagna mål nästa år (= starta med dem avklarade). Läs mer här
 
-*Q*: Får man komma förbi er på rummet och fråga?
+*Q*: Får man komma förbi er på rummet och fråga? \\
 *A*: Ja! Tobias sitter (2018) i rum 1356. 
 
-*Q*: Räknas det som fusk att hjälpa en annan student som kört fast med programmeringen?
+*Q*: Räknas det som fusk att hjälpa en annan student som kört fast med programmeringen? \\
 *A*: Att hjälpa någon som kört fast att komma vidare räknas inte som fusk. Vi uppmuntrar till samarbete och framförallt till diskussion kring hur man kan lösa ett problem. Att skriva någon annans kod åt dem är inte att hjälpa dem! Att dela sin lösning med någon annan (utöver vad som krävs av uppgifter i kursen) räknas som fusk! Att passivt dela sin lösning på GitHub (etc.) är inte förbjudet så länge som ingen plagierar den.
 
-*Q*: Jag är borta under en labb! Vad gör jag?
+*Q*: Jag är borta under en labb! Vad gör jag? \\
 *A*: Förutom de första 6 labbarna som startar upp kursen är labbar inte obligatoriska. Du skall gå på labbar för att redovisa. Initialt har vi planerat in ca 30 labbar, så om du missar någon spelar det ingen roll.
 
-*Q*: Jag har en idé -- vill ni höra den?
+*Q*: Jag har en idé -- vill ni höra den? \\
 *A*: [[mailto:ioopm-suggestions@wrigstad.com][JA]]! 
 
 

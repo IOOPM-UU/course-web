@@ -151,6 +151,39 @@ A minimal FAQ is [[file:about.org][available]].
 | [[http://wrigstad.com][Tobias Wrigstad]]  | Head Teacher            | =tobias.wrigstad@it.uu.se=  |   1356 |
 | Gustaf Borgström | Head Teaching Assistant | =gustaf.borgstrom@it.uu.se= |   1258 |
 
+** How do I contact you?
+
+- Talk to us during lectures and labs :: 
+     See the [[https://cloud.timeedit.net/uu/web/schema/ri1875ZQ0QYZ01Q0wo7YwcQ25y6QZ6XfYxZ020g.html][schedule]] for details. 
+- Use [[https://piazza.com/class/jkd32onglxi2vb][Piazza]] :: 
+     For questions that are not sensitive, consdier asking a [[public][public question]] (/Entire Class/)
+     rather than a [[private][private question]] (/Individual Student(s) / Instructor(s)/). Most questions are of interest to many students,
+     and often, many other students chip in to try and untangle some issue, 
+     which is good for everyone.
+- Come by our offices :: 
+     Tobias is not in most Tuesdays, but otherwise he should be around unless he is not lecturing or labbing on IOOPM. 
+- Send us an email ::
+     This should be the last resort, really. Please use your student email so that we
+     have an easier time knowing who we are talking to. 
+- NEVER call or text :: 
+     Really, don't do that!
+
+** How do I ask a public question on Piazza? <<public>>
+1. Start by searching the Piazza site using the search dialogue at top left. If the question has already been answered, you’re done. If the answer is not quite what you’re looking for, use the "follow up discussions" below the existing question to create a follow up.
+2. If the above is not successful, use the search feature on this page (check the menu). 
+3. If the above is not successful, time to use Piazza!
+   Create a new question by pressing the “New Post” button at top right.
+   You should post to "Entire class" unless there is a strong reason to make your question private.
+   You may make your post anonymous, but only do so if you are particularly uncomfortable revealing your identity. 
+
+** How do I ask a private question on Piazza? <<private>>
+
+Follow the steps above for a public question, but select
+"Individual Student(s) / Instructor(s)", rather than "Entire
+class". Type the name of the person you want to contact. Tutors
+names are listed here.
+
+
 * Recent Changes
 
 #+begin_attention

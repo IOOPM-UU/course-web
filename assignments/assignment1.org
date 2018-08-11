@@ -515,28 +515,49 @@ struct hash_table
 };
 #+END_SRC
 
-*TODO: make proper picture*
+The figure [[fig_ht_1]] and Figure [[fig_ht_2]] show the hash table newly
+initialised and with three entries respectively. =ADDR= means a
+non-NULL pointer pointing to the datum on the right. 
 
-Figure [[fig_ht_1]] and Figure [[fig_ht_2]] show the hash table newly initialised
-and with three entries respectively.
-
-#+CAPTION: Newly initialised hash table.
 #+NAME: fig_ht_1
-#+BEGIN_SRC
-hash_table_t = [NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL]
-#+END_SRC
+#+CAPTION: Newly initialised hash table.
+#+RESULTS: 
+[[../images/hashtable01.png]]
 
-#+CAPTION: Hash table with keys 4 => bar, 16 => foo, and 202 => "baz".
 #+NAME: fig_ht_2
-#+BEGIN_SRC
-hash_table_t = [.|NULL|NULL|NULL|.|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL]
-                |                |
-                V                V
-               [16|"foo"|NULL]  [4|"bar"|.]
-                                         |
-                                         V
-                                        [202|"baz"|NULL]
-#+END_SRC
+#+CAPTION: Hash table with keys 4 => bar, 17 => foo, and 208 => "baz".
+#+RESULTS: 
+[[../images/hashtable02.png]]
+
+
+#+begin_src dot :results file :file ../images/hashtable01.png :exports none
+  digraph G {
+      nodesep=.05;
+      rankdir=LR;
+      node [shape=record,width=.1,height=.1];
+
+      node0 [label = "{0|NULL}|{1|NULL}|{2|NULL}|{3|NULL}|{4|NULL}|...|{16|NULL} ",height=2.5];
+      node [width = 1.5];
+    }      
+#+end_src
+
+#+begin_src dot :results file :file ../images/hashtable02.png :exports none
+  digraph G {
+      nodesep=.05;
+      rankdir=LR;
+      node [shape=record,width=.1,height=.1];
+
+      node0 [label = "{0|<f0> ADDR}|{1|NULL}|{2|NULL}|{3|NULL}|{4|<f4> ADDR}|...|{16|NULL} ",height=2.5];
+      node [width = 1.5];
+      node1 [label = "{<n> 17  | \"foo\" |NULL }"]; 
+      node2 [label = "{<n> 4   | \"bar\" |<nxt> ADDR}"]; 
+      node3 [label = "{<n> 208 | \"baz\" |NULL }"]; 
+
+      node0:f0 -> node1:n; 
+      node0:f4 -> node2:n; 
+      node2:nxt -> node3:n; 
+    }      
+#+end_src
 
 *** Using Debuggers
 
@@ -958,8 +979,8 @@ still a bit sketchy, but we are only on Assignment 1. This diagram
 shows the process of test-driven development quite clearly,
 especially after having completed it once. 
 
-https://en.wikipedia.org/wiki/File:TDD_Global_Lifecycle.png
 #+CAPTION: The lifecycle of test-driven design (from Wikipedia)
+https://upload.wikimedia.org/wikipedia/commons/0/0b/TDD_Global_Lifecycle.png
 
 Continue using the test-driven approach now, by jumping to [[Ticket #2: Utility Functions][Ticket
 #2: Utility Functions]] which is not written especially for a
@@ -1343,21 +1364,43 @@ show the changes to the hash table structure in memory.
 
 #+CAPTION: Newly initialised hash table with inlined dummy entries.
 #+NAME: fig_ht_3
-#+BEGIN_SRC
-hash_table_t = [ [0|NULL|NULL] | [0|NULL|NULL] | ... | [0|NULL|NULL] ]
-#+END_SRC
+#+RESULTS:
+[[../images/hashtable03.png]]
 
-#+CAPTION: Newly initialised hash with inlined dummy entries with 4 => bar, 16 => foo and 202 => baz.
+#+CAPTION: Newly initialised hash with inlined dummy entries with 4 => bar, 17 => foo and 208 => baz.
 #+NAME: fig_ht_4
-#+BEGIN_SRC
-hash_table_t = [ [0|NULL|.] | ... | [0|NULL|.] | ... | [0|NULL|NULL] ]
-                         |                  |
-                         V                  V
-                        [16|"foo"|NULL]    [4|"bar"|.]
-                                                    |
-                                                    V
-                                                   [202|"baz"|NULL]
-#+END_SRC
+#+RESULTS:
+[[../images/hashtable04.png]]
+
+#+begin_src dot :results file :file ../images/hashtable03.png :exports none
+  digraph G {
+      nodesep=.05;
+      rankdir=LR;
+      node [shape=record,width=.1,height=.1];
+
+      node0 [label = "{0|{0|NULL|NULL}}|{1|{0|NULL|NULL}}|{2|{0|NULL|NULL}}|{3|{0|NULL|NULL}}|{4|{0|NULL|NULL}}|...|{16|{0|NULL|NULL}} ",height=2.5];
+      node [width = 1.5];
+    }      
+#+end_src
+
+#+begin_src  dot :results file :file ../images/hashtable04.png :exports none
+  digraph G {
+      nodesep=.05;
+      rankdir=LR;
+      node [shape=record,width=.1,height=.1];
+
+      node0 [label = "{0|{0|NULL|<f0> ADDR}}|{1|{0|NULL|NULL}}|{2|{0|NULL|NULL}}|{3|{0|NULL|NULL}}|{4|{0|NULL|<f4> ADDR}}|...|{16|{0|NULL|NULL}} ",height=2.5];
+      node [width = 1.5];
+      node1 [label = "{<n> 17  | \"foo\" |NULL }"]; 
+      node2 [label = "{<n> 4   | \"bar\" |<nxt> ADDR}"]; 
+      node3 [label = "{<n> 208 | \"baz\" |NULL }"]; 
+
+      node0:f0 -> node1; 
+      node0:f4 -> node2; 
+      node2:nxt -> node3:n; 
+    }      
+#+end_src
+
 
 To make this work, one more change is needed -- which is subtle
 but important. In the call to ~find_previous_entry_for_key()~,
