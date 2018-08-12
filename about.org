@@ -160,9 +160,9 @@ kommer på första mötet.
 #+begin_important
 *SUPERVIKTIG SKILLNAD MOT PKD:* Labbar på denna kurs avser tid att
 *redovisa* och *få hjälp med programmering*. Den mesta
-*programmeringen sker *utanför* schemalagd tid! Beräkna *14-15
-*timmars* arbete utanför labbar och föreläsningar i snitt per
-*vecka.
+programmeringen sker *utanför* schemalagd tid! Beräkna *14-15
+timmars* arbete utanför labbar och föreläsningar i snitt per
+vecka.
 #+end_important
 
 Hela kursens finns det ungefär 8 timmar schemalagd i datorsalar
