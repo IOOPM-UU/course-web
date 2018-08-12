@@ -1,22 +1,99 @@
-#+title: Tools on IOOPM
+#+title: Compilers, Tools, Dev Environments, etc.
 #+include: "./setup.org"
 
 #+begin_attention
 This text is being written from scratch in 2018. For now, refer to the bootstrap sections on the [[file:assignments/c-bootstrap.org][C bootstap labs]] and [[file:assignments/assignment1.org][Assignment 1]].
 #+end_attention
 
-* TODO A C Development Environement
-# ** Basic Tools
-# gcc or clang
-# gdb or lldb
-# valgrind
-# gcov
-# gprof
-# make
-# emacs
+* Installing a Development Environment on Your Own Machine :optional:
 
-* TODO A Java Development Environement
+For those who do not want to tinker with their own machines, we
+suggest installing Vagrant to run a small virtualized Linux
+machine inside your computer to compile, debug, profile, etc. This
+will make it easier to remove any IOOPM-related file after the
+course, but also provides a dead-simple way to get a machine with
+all the necessary software. You can still install e.g., Emacs
+natively and edit your files through a graphical program, but
+compile and run in the virtual machine. Typically macOS users will
+suffer from tools like Valgrind reporting ghost errors (because
+Valgrind isn't up to date with the latest macOS release yet), etc.
+Running inside a faux Linux machine fixes these problems. 
 
-#+include: "./footer.org"
+Vagrant has [[https://www.vagrantup.com/intro/getting-started/][pretty decent documentation]], that is way more comprehensive than below.
+
+** Installing Vagrant
+
+0. As a prerequisite, download and install [[https://www.virtualbox.org/][Virtualbox]]
+1. [[https://www.vagrantup.com/downloads.html][Download Vagrant]] and run the downloaded file (Windows, macOS) or install it with your package manager (Linux)
+2. Open a terminal, navigate to your IOOPM GitHub repository 
+3. Create a directory for Vagrant with =mkdir vagrant= 
+4. Tell =git= to ignore this directory with =git-ignore vagrant=
+5. Go into that directory with =cd vagrant= 
+6. [[file:misc/Vagrantfile.txt][Download this Vagrantfile]] into the =vagrant= directory *and rename it* =Vagrantfile= without any =.txt= ending (e.g., =curl http://wrigstad.com/ioopm18/misc/Vagrantfile.txt -o Vagrantfile=)
+7. Run the command =vagrant up= -- this will (*only the first time*, unless you destroy your virtual machine) download the vitual machine according to the specification in =Vagrantfile= and install the necessary packages 
+
+#+begin_important
+If you are prompted with a dialogue for choosing =LOCALE= during =vagrant up=, choose =utf-8= (should be pre-selected).
+#+end_important
+
+** Using Vagrant
+
+1. Open a terminal, navigate to your IOOPM GitHub repository
+2. Run =vagrant ssh= to move inside the running virtual machine -- now all commands you type run on the virtual machine instead
+3. To find the files in your repo, navigate to =cd /ioopm= -- typing e.g. =clang -c assignment1/hash_table.c= will compile the file in the virtual machine
+4. To disconnect from the virtual machine, simply use key:C-d 
+5. To pause the virtual machine (e.g., to reserve battery power and memory), do =vagrant suspend= 
+6. To shutdown the virtual machine (e.g., to reserve battery power and memory, and some hard drive space), do =vagrant halt= 
+7. To resume a paused (suspended) vagrant box, do =vagrant resume= before =vagrant ssh=
+8. To restart a stopped (halted) vagrant box, do =vagrant up= before =vagrant ssh=
+
+** What is Installed in the Virtual Linux Box?  <<software>>
+
+The following is installed (with the exception of *to-be-added*):
+- C compilers: gcc, clang
+- C debuggers: gdb, lldb
+- Java: openjdk 8
+- Editors: Emacs 25, Vim 8 (note: both are text-only -- no graphical components)
+- valgrind
+- gcov
+- gprof
+- cscope
+- cproto
+- GNU global 
+- perf tools
+- git
+- cunit
+- make
+- doxygen
+- tmux
+- ssh
+- curl
+- astyle
+- terminal emulators: bash, zsh
+- convenience: oh-my-zsh, zip, unzip
+- *to-be-added*: tag, some aliases
+
+/Feel free to look up all of these programs and learn about them./
+
+** Manually Installing Most of the Above in a Linux System with =apt-get=
+#+BEGIN_EXAMPLE
+$ sudo apt-get install -y gcc clang libclang-dev lldb emacs25 vim tree make \
+       tmux curl astyle zsh linux-tools-common valgrind git libcunit1-dev doxygen \ 
+       xclip global zip unzip openjdk-8-jdk linux-tools-generic \
+       cscope cproto
+#+END_EXAMPLE
+** Using Homebrew on macOS and Skip Virtualbox
+1. Open https://brew.sh/ in a browser, and copy-and-paste the installation command into a terminal and execute it
+2. Install the individual components in the [[software][list of software]] above, e.g., through =brew install gcc=, etc. -- use [[https://formulae.brew.sh/formula/][this search index]] for finding brew packages
+** TODO Installing Tools in the Linux Subsystem of Windows :help_wanted:
+#+begin_important
+A step-by-step description of this, or information about how it is
+not possible, is much welcome.
+#+end_important
+* TODO A C Development Environment
+* TODO A Java Development Environment
 * TODO Project Tools
 - Trello etc. 
+
+
+#+include: "./footer.org"
