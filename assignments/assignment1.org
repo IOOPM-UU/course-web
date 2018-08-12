@@ -202,11 +202,11 @@ $
 
 We are going to build a hash table with the above features (and
 more) in a number of discrete steps. These steps are structured to
-tell a story where we incrementally arrive at a final program. If
-you are already a good programmer (or just hate following
-"instructions"), you are free to skip directly to the complete
-specification of the program (70+ functions), rather than follow
-the steps, and tackle the problems in smaller chunks.
+tell a story where we incrementally arrive at a final program.
+There is no complete concise specification -- you will have to
+work through this document bit by bit, because it discusses pros
+and cons, gets philosophical, etc. The point of this assignment
+is carrying it out, not having carried it out. 
 
 ** The Above Code in C
 
