@@ -1,0 +1,13 @@
+#+title: Instructions for Publishing to the Course Web
+
+* Manually 
+
+1. Open Emacs and load =index.org= to make sure =org-mode= is loaded and set up.
+2. Open =publish.el=
+3. Run =M-x eval-buffer= to set up the project 
+3. Run =M-x org-publish= and type =ioopm website= (autocomplete works). This should load everything onto the website. 
+
+* TODO Automated
+
+* Changes for each year
+- In =publish.el=, change the target website to the right url
