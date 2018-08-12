@@ -2,60 +2,82 @@
 #+include: "../setup.org"
 
 #+begin_tip
-Did you know that you can collapse and expand entire sections of
+Did you know that you can collapse ([[fas:minus-circle][]]) and expand ([[fas:plus-circle][]]) entire sections of
 these pages? Try clicking a heading! Try "scrolling" to content
 deep down in a page by collapsing preceeding sections. 
+
+Found a bug? Select the fauly text and hit key:C-x to start a GitHub issue.
 #+end_tip
 
 * Introduktionslabbar i C (V1-2)
 
-Välkommen till vad som i IOOPM-mytologin kallas för Adams Weckor!
-De här två första veckorna är till för att du ska lära dig
-programmera i C. Du kommer garanterat inte känna dig färdig med C
-efter bara två veckor, men om du går på alla sex labbar kommer du
-ha fått minst 24 timmar av de [[http://www.wisdomgroup.com/blog/10000-hours-of-practice/][10 0000 timmar]] som behövs för att
-bli en expert på programmering, och du kommer vara väl förberedd
-på att läsa resten av kursen.
+Välkommen till vad som i IOOPM-mytologin kallas för Adams
+Weckor[fn::De är döpta efter Adam Woods som var student på kursen
+2015 och som lobbade starkt för denna modell.]! De här två första
+veckorna är till för att du ska lära dig programmera i C. Du
+kommer garanterat inte känna dig färdig med C efter bara två
+veckor, men om du går på alla sex labbar kommer du ha fått minst
+24 timmar av de [[http://www.wisdomgroup.com/blog/10000-hours-of-practice/][10.000 timmar]] som behövs för att bli en expert på
+programmering, och du kommer vara väl förberedd på att läsa resten
+av kursen.
 
 På varje labb kommer det att vara en eller flera uppgifter som är
 markerade med en stjärna. Det betyder att dessa uppgifter ska
 redovisas för en labbassistent. Senare under kursens kommer
-redovisningarna vara mer utförliga men under de här labbarna
-räcker det med att räcka upp handen (eller skriva upp sig på
-tavlan om det finns en lista) och visa vad man har gjort. Förbered
-gärna ett litet körexempel!
+redovisningarna vara mer utförliga men *under de här labbarna
+räcker det med att skriva upp sig på tavlan i 1515* och visa vad
+du har gjort. Förbered gärna ett litet körexempel!
 
 Uppgifterna bygger ofta på tidigare uppgifter och tidigare labbar,
 så det bästa sättet att lösa dem är helt enkelt att jobba uppifrån
 och ner.
 
+#+begin_important
+*During the C bootstraps*, there will be a specific task for each
+lab. Depending on your programming background, it is possible that
+you will not finish each lab during the four scheduled lab hours.
+
+*During the first C assignment*, there will be a collection of
+discrete steps to perform. From then on, labs will be an
+opportunity to get help or make demonstrations and most work will
+be done outside of labs.
+
+*During the second C assignment*, there is no given trajectory --
+you will have to not only code, but decide in what order to
+implement features, tackle problems, etc.
+#+end_important
+
+
 ** Är labbarna obligatoriska?
 
-Ja. Nej. Nja. Det är obligatoriskt att göra dem, men inte att göra
-dem på plats. Redovisning är enbart möjligt på plats, men alla labbar
-finns ute från dag 1 och kan göra när som helst.
+Det är obligatoriskt att göra dem, men inte att göra dem på plats.
+Redovisning är enbart möjligt på plats, men alla labbar finns ute
+från dag 1 och kan göras när som helst.
 
 ** Måste jag arbeta med någon annan?
 
 Ja. Nej. Nja. Det är *bra* att arbeta i par om två -- dels för att
-du kommer att göra det senare under kursen, men också för att det
-ofta främjar reflektion när man sitter med någon annan och måste prata
-om vad man håller på med och inte "bara göra det". Det viktigaste är
-att varje enskild person har varit med och gjort allt som labbarna
-innehåller. Om du jobbar själv händer det automagiskt. Om du jobbar
-med någon annan måste du se till att vara 50% av tiden framför
-tangentbordet! *Du kommer inte att lära dig programmering om du
-låter någon annan skriva all kod!!!*
+du kommer att göra det senare under kursen, ev. också arbetslivet,
+men också för att det främjar reflektion att samarbeta med någon
+annan -- eftersom ni måste diskutera vad ni håller på med och inte
+"bara göra det" i en blind jakt på att bli klar[fn::Observera att
+bli klar med en uppgift och lära sig något av att utföra den inte
+är samma sak!]. Det viktigaste är att varje enskild person har
+varit med och gjort allt som labbarna innehåller. Om du jobbar
+själv händer det automagiskt. Om du jobbar med någon annan måste
+du se till att vara 50% av tiden framför tangentbordet! *Du kommer
+inte att lära dig programmering om du låter någon annan skriva all
+kod!!!*
 
 ** Deadlines
 
 Vi rekommenderar att du försöker hinna klart med uppgifterna på
-labben de ges (under Adams Weckor). Varje labbs /mjuka deadline/
-är alltså samma dag som den ges. Om du av någon anledning inte
-hinner klart, eller om du missar en labb kan du göra klart labben
-på egen hand och istället redovisa den på efterföljande labb.
-Varje labbs /hårda deadline/ är alltså efterföljande
-labbtillfälle.
+det labbtillfälle de ges (under Adams Weckor). Varje labbs /mjuka
+deadline/ är alltså samma dag som den ges. Om du av någon
+anledning inte hinner klart, eller om du missar en labb kan du
+göra klart labben på egen hand och istället redovisa den på
+efterföljande labb. Varje labbs /hårda deadline/ är alltså
+efterföljande labbtillfälle.
 
 Om du av någon anledning tror att du inte kommer klara någon hård
 deadline, hör av dig till en senior assistent eller till Tobias så
@@ -126,8 +148,10 @@ ytterligare paket skrivna i Emacs-lisp. Man kan skriva dessa paket
 själv, eller ladda ned dem och installera dem själv eller via
 Emacs inbyggda pakethanterare.
 
-**Tips** I kursrepots [extramaterial](../extramaterial) finns
-screencasts och en lathund om grundläggande Emacs-användning.
+Emacs-resurser på denna webbsida: 
+- [[file:~/t/ioopm/2018/site/editors.org#Introduktion%20till%20Emacs][Introduktion till Emacs]]
+- [[file:~/t/ioopm/2018/site/screencasts.org#Screencasts%20om%20verktyg][Screencasts om Emacs]]
+- [[file:~/t/ioopm/2018/site/misc/cheatsheet.pdf][Emacs lathund]]
 
 Nu följer två olika uppsättningar instruktioner beroende på om du
 kör Linux eller OS X/macOS. För dig som kör Windows har vi tyvärr
@@ -229,10 +253,11 @@ att använda **editorn** för att skriva text och **terminalen** för
 att kompilera och köra programmet. Pröva att växla några gånger
 mellan programmen.
 
-Du bör kunna använda =Ctrl+Win+vänsterpil= för att maximera det
-aktuella fönstret på skärmens vänstra halva och motsvarande för
-den högra. Det är ett bra sätt att ha både terminalen och editorn
-så att man kan se all information alltid.
+Om du använder förstersystemet Gnome (standard på t.ex. Ubuntu)
+kan du använda =Ctrl+Win+vänsterpil= för att maximera det aktuella
+fönstret på skärmens vänstra halva och motsvarande för den högra.
+Det är ett bra sätt att ha både terminalen och editorn så att man
+kan se all information alltid.
 
 #+begin_center
 *Nu är du redo att börja med labben!*
@@ -2364,7 +2389,7 @@ faktiskt inte modifierar datat, förutom att läsa all kod i /B/
 
 ** Värdesemantik vs. pekarsemantik
 
-*Fråga:* Vad skriver detta program ut på skärmen när det körs?
+*Fråga:* [[quiz:Alternativ%201%20%C3%A4r%20korrekt.][Vad skriver detta program ut på skärmen när det körs?]]
 
 1. =7, 42=
 2. =42, 7=
@@ -3242,8 +3267,8 @@ funktionen terminera och programmet avslutas.
 
 Utöka definitionen av en vara till att också ha ett antal
 (~amount~) som avser hur många av en vara som lagrats på
-lagerhyllan. Hur går du tillväga för att utöka programmet? Kan C:s
-kompilator hjälpa dig på något sätt?
+lagerhyllan. Hur går du tillväga för att utöka programmet? 
+[[quiz:Genom%20att%20definiera%20om%20nyckelfunktioner%20f%C3%B6r%20att%20t.ex.%20ta%20ett%20extra%20argument%20kan%20du%20f%C3%A5%20kompilatorn%20att%20driva%20f%C3%B6r%C3%A4ndringsarbetet.%20][Kan C:s kompilator hjälpa dig på något sätt?]]
 
 
 *** Frivilligt: stöd för ångra
