@@ -33,7 +33,7 @@ you are using.
 * Working With Your Git/GitHub Repository
 ** Checking Out the Repository for the First Time
 Checking out your repository for the first time will create a
-directory on your machine called =ioopm= (unless you rename it).
+directory on your machine with the same name as the repo on GitHub.
 This directory should hold all your work during this course. All
 the hand-ins happen through your git repository.
 
