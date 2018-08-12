@@ -1122,6 +1122,18 @@ span.tag span.redovisas {
     background: red;
 }
 
+span.tag span.optional {
+    color: white;
+    background: magenta;
+    border: none;
+}
+
+span.tag span.help_wanted {
+    color: red;
+    background: lightgray;
+    border: none;
+}
+
 pre {
     color: #eee;
     background: #333;
@@ -1176,6 +1188,7 @@ span.kbd {
     border-radius:3px;
     margin:1px 3px;
     padding:0px 3px;
+    background: white;
 }
 
 span.highlight {
@@ -1216,33 +1229,39 @@ div.figure p {
 }
 
 h2.expandable:after {
-    content: "+";
+    font-family: 'FontAwesome';
+    content: " ";
     color: magenta;
 }
 
 h3.expandable:after {
-    content: "+";
+    font-family: 'FontAwesome';
+    content: " ";
     color: magenta;
 }
 
 h4.expandable:after {
-    content: "+";
+    font-family: 'FontAwesome';
+    content: " ";
     color: magenta;
 }
 
 h2.is-collapsable-hint:hover:after {
-    content: "\2013";
-    color: #aaa;
+    font-family: 'FontAwesome';
+    content: " ";
+    color: #bbb;
 }
 
 h3.is-collapsable-hint:hover:after {
-    content: "\2013";
-    color: #aaa;
+    font-family: 'FontAwesome';
+    content: " ";
+    color: #bbb;
 }
 
 h4.is-collapsable-hint:hover:after {
-    content: "\2013";
-    color: #aaa;
+    font-family: 'FontAwesome';
+    content: " ";
+    color: #bbb;
 }
 
 

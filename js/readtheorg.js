@@ -137,6 +137,48 @@ $(document).ready(function() {
 
 // == Add page title to TOC ======================== 
 $(document).ready(function() {
-    $('#table-of-contents').first().html("<h2>" + document.title + "<hr>" + $('#table-of-contents').first().html().substr(5));
+    if ($('#table-of-contents').length ) {
+      $('#table-of-contents').first().html("<h2>" + document.title + "<hr>" + $('#table-of-contents').first().html().substr(5));
+    }
 });
+
+/// If text in a P is selected -- offer bug reporting button 
+$(document).ready(function () {
+    $("p").each(function () {
+        var p = $(this);
+        p.select(function () {
+            
+        });
+    });
+});
+
+// == Make footnotes also hover ======================== 
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
+// == Bug report hotkey ================
+function getSelectionText() {
+    var text = "";
+    if (window.getSelection) {
+        text = window.getSelection().toString();
+    } else if (document.selection && document.selection.type != "Control") {
+        text = document.selection.createRange().text;
+    }
+    return text;
+}
+
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    if (evt.ctrlKey && evt.keyCode == 88) {
+        var text = getSelectionText();
+        if (text.length > 0)
+            {
+                var url = escape(window.location);
+                var esc_text = escape(text.replace(/(\r\n\t|\n|\r\t)/gm,""));
+                window.location.href = "https://github.com/IOOPM-UU/course-web/issues/new?title=Descriptive Title&body=(Location: " + url + ")%0A%0APlease describe the issue clearly, help me locate it on the page, and if possible suggest a fix.%0A%0ASelected text:%0A>" + esc_text + "&assignee=TobiasWrigstad";
+            }
+    }
+};
+
 

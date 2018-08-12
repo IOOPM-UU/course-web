@@ -2,7 +2,7 @@
 
 *Questions about stuff on these pages?* Use our [[https://piazza.com/class/jkd32onglxi2vb][Piazza]] forum. 
 
-*Want to report a bug?* Please place an issue [[elisp-link:(format%20"https://github.com/IOOPM-UU/course-web/issues/new?title=Bug%20on%20page%20%25s&body=Please%20describe%20the%20issue%20clearly,%20help%20me%20locate%20it%20on%20the%20page,%20and%20if%20possible%20suggest%20a%20fix.&assignee=TobiasWrigstad"%20(file-name-nondirectory%20(buffer-name)))][here]]. requests are graciously accepted (hint, hint). 
+*Want to report a bug?* Please place an issue [[elisp-link:(format%20"https://github.com/IOOPM-UU/course-web/issues/new?title=Bug%20on%20page%20%25s&body=Please%20describe%20the%20issue%20clearly,%20help%20me%20locate%20it%20on%20the%20page,%20and%20if%20possible%20suggest%20a%20fix.&assignee=TobiasWrigstad"%20(file-name-nondirectory%20(buffer-file-name)))][here]]. requests are graciously accepted (hint, hint). 
 
 *Nerd fact:* These pages are generated using [[https://orgmode.org/][org-mode]] in [[https://www.gnu.org/software/emacs/][Emacs]], a modified [[https://github.com/fniessen/org-html-themes][ReadTheOrg]] template, and a bunch of scripts. 
 
