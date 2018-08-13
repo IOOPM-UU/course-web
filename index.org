@@ -10,7 +10,35 @@ Request demonstrations and track your progress at the [[http://auportal.herokuap
 * How IOOPM Works
 If you are visiting this page for the first time, you should
 probably [[file:about.org][read the page about the course first]]. *Mandatory reading!*
+** What You Should be Doing the First Week
+In no particular order, and preferably somewhat in parallel:
 
+- Look through this website! Especially read about [[file:about.org][how this course
+  works]], [[*Deadlines][deadlines]] and [[file:labs.org][labs]], and form a mental model for what you
+  need to do to pass with the [[file:about.org::*Betyg][grade that you want]].
+- Get a [[file:github.org::*How%20to%20Get%20a%20GitHub%20Account%20for%20the%20Course][GitHub account and let us know about its username]] so we
+  can connect it to the course. Once this is done, you should
+  [[file:github.org::*Checking%20Out%20the%20Repository%20for%20the%20First%20Time][check out your GitHub repository]].
+- If you want to work on your own machine, [[file:tools.org][install the necessary
+  tools]].
+- Start working on the [[file:assignments/c-bootstrap.org][C bootstrap exercises]].
+
+In addition to this, and outside of your control[fn::No, you
+cannot form your own team, no matter what the reasons are.], you
+will be placed in a group with about 10-12 other students.
+Throughout the course, this group will be your "team", and you
+will be [[file:team.org::*Pair%20Programming][pairing with others from this team]], and [[file:team.org::*Group%20Meetings][report back to the
+team]] regularly, and [[file:group.org::*Group%20Meetings][meet with your coach]]. Your will also cooperate
+on [[http://auportal.herokuapp.com/achievements/63][your first deliverable]].
+** Who is Running the Course in 2018?
+Check out [[file:tas2018.org][this page]].
+** The Coding Exam
+The course does not use a traditional closed-book exam. Read [[file:code-exam.org][this
+page]] for more information about he coding exam.
+** The SIMPLE Methodology
+The [[file:simple.org][SIMPLE methodology]] is an attempt at codifying some good
+practises for thinking about coding, actual coding, and
+refactoring. Read about in on [[file:simple.org][this page]].
 * Lecture Schedule with Slides
 Note that without exception, all lectures start at 10:15 and are scheduled to end at 12:00.
 The [[https://cloud.timeedit.net/uu/web/schema/ri1875ZQ0QYZ01Q0wo7YwcQ25y6QZ6XfYxZ020g.html][full schedule]] is available on TimeEdit.
@@ -84,22 +112,15 @@ Deadlines and important dates in chronological order. Read [[file:about.org::*De
 * Exercises, Assignments and Projects
 Note that assignments mostly act as drivers to learn concepts and produce evidence for demonstrating mastery of achivements.
 
-| What                          | Start | End       |
-|-------------------------------+-------+-----------|
-| [[file:assignments/c-bootstrap.org][C bootstrap exercises]]         | 3/9   | 14/9      |
-| [[file:assignments/assignment1.org][Assignment 1 (C)]]              | 17/9  | 5/10      |
-| [[file:assignments/assignment2.org][Assignment 2 (C)]]              | 8/10  | 19/10     |
-| [[file:assignments/java-bootstrap.org][Java bootstrap exercises]]      | 22/10 | 26/10     |
-| [[file:assignments/assignment3.org][Assignment 3 (Java)]]           | 29/10 | 16/11     |
-| [[file:assignments/assignment4.org][Assignment 4 (Java)]]           | 19/11 | 30/11     |
-| [[file:projects/projects.org][Project assignment -- Phase 3]] | 3/12  | 14/1 2019 |
-* The Coding Exam
-The course does not use a traditional closed-book exam. Read [[file:code-exam.org][this
-page]] for more information about he coding exam.
-* The SIMPLE Methodology
-The [[file:simple.org][SIMPLE methodology]] is an attempt at codifying some good
-practises for thinking about coding, actual coding, and
-refactoring. Read about in on [[file:simple.org][this page]].
+| What                     | Start | End       | Capsule summary                                                             |
+|--------------------------+-------+-----------+-----------------------------------------------------------------------------|
+| [[file:assignments/c-bootstrap.org][C bootstrap exercises]]    | 3/9   | 14/9      | Lots of small tasks to get familiar with C                                  |
+| [[file:assignments/assignment1.org][Assignment 1 (C)]]         | 17/9  | 5/10      | Follow us on an excursion in C while implementing two basic data structures |
+| [[file:assignments/assignment2.org][Assignment 2 (C)]]         | 8/10  | 19/10     | Put the above data structures to use in a larger program                    |
+| [[file:assignments/java-bootstrap.org][Java bootstrap exercises]] | 22/10 | 26/10     | Finish an existing program skeleton for a simulation of cashier registers   |
+| [[file:assignments/assignment3.org][Assignment 3 (Java)]]      | 29/10 | 16/11     | TBA                                                                         |
+| [[file:assignments/assignment4.org][Assignment 4 (Java)]]      | 19/11 | 30/11     | TBA                                                                         |
+| [[file:projects/projects.org][Project group work]]       | 3/12  | 14/1 2019 | Implement memory management systems for C programs                          |
 * Resources
 ** TODO General 
 - An introduction to Emacs is found [[file:editors.org][here]]
@@ -122,44 +143,6 @@ A minimal FAQ is [[file:about.org][available]].
 ** TODO Links
 - [[http://wrigstad.com/ioopm][Old website for IOOPM 2015--2017]]
 - [[http://wrigstad.com/ioopm/links.php][The old link library]]
-
-* Contact Information
-| Name             | Function                | Email                       | Office |
-|------------------+-------------------------+-----------------------------+--------|
-| [[http://wrigstad.com][Tobias Wrigstad]]  | Head Teacher            | =tobias.wrigstad@it.uu.se=  |   1356 |
-| Gustaf Borgström | Head Teaching Assistant | =gustaf.borgstrom@it.uu.se= |   1258 |
-
-** How do I contact you?
-
-- Talk to us during lectures and labs :: 
-     See the [[https://cloud.timeedit.net/uu/web/schema/ri1875ZQ0QYZ01Q0wo7YwcQ25y6QZ6XfYxZ020g.html][schedule]] for details. 
-- Use [[https://piazza.com/class/jkd32onglxi2vb][Piazza]] :: 
-     For questions that are not sensitive, consdier asking a [[public][public question]] (/Entire Class/)
-     rather than a [[private][private question]] (/Individual Student(s) / Instructor(s)/). Most questions are of interest to many students,
-     and often, many other students chip in to try and untangle some issue, 
-     which is good for everyone.
-- Come by our offices :: 
-     Tobias is not in most Tuesdays, but otherwise he should be around unless he is not lecturing or labbing on IOOPM. 
-- Send us an email ::
-     This should be the last resort, really. Please use your student email so that we
-     have an easier time knowing who we are talking to. 
-- NEVER call or text :: 
-     Really, don't do that!
-
-** How do I ask a public question on Piazza? <<public>>
-1. Start by searching the Piazza site using the search dialogue at top left. If the question has already been answered, you’re done. If the answer is not quite what you’re looking for, use the "follow up discussions" below the existing question to create a follow up.
-2. If the above is not successful, use the search feature on this page (check the menu). 
-3. If the above is not successful, time to use Piazza!
-   Create a new question by pressing the “New Post” button at top right.
-   You should post to "Entire class" unless there is a strong reason to make your question private.
-   You may make your post anonymous, but only do so if you are particularly uncomfortable revealing your identity. 
-
-** How do I ask a private question on Piazza? <<private>>
-
-Follow the steps above for a public question, but select
-"Individual Student(s) / Instructor(s)", rather than "Entire
-class". Type the name of the person you want to contact. Tutors
-names are listed here.
 
 * Recent Changes
 

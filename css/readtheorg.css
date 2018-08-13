@@ -1264,13 +1264,16 @@ a.nav-link {
 }
 
 a.dropdown-item {
-    font-family: Source Sans Pro;
-    font-weight: 400;
+    color: #333;
+    font-weight: 300 !important;
+    display: block !important;
+    font-family:"Roboto Slab", "Source Sans Pro", sans-serif;
     /* display: inline; */
 }
 
 div.dropdown-menu {
-    background-color: #F9F5FF;
+    background-color: white;
+    border: 1pt solid magenta;;
 }
 
 div.tooltip-inner {
@@ -1285,3 +1288,55 @@ div.tooltip-inner > p {
     margin: 0px 0px 0px 0px;
 }
 
+ul.about-list li:before {
+  content: "\f059"; 
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.9em; /* same as padding-left set on li */
+  width: 1.6em; /* same as padding-left set on li */
+}
+
+ul.resources-list li:before {
+  content: "\f187"; 
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.9em; /* same as padding-left set on li */
+  width: 1.6em; /* same as padding-left set on li */
+}
+
+ul.deliverables-list li:before {
+  content: "\f197"; 
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.9em; /* same as padding-left set on li */
+  width: 1.6em; /* same as padding-left set on li */
+}
+
+ul.link-list li:before {
+  content: "\f0c1"; 
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.9em; /* same as padding-left set on li */
+  width: 1.6em; /* same as padding-left set on li */
+}
+
+ul.about-list {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    list-style: none;
+}
+ul.resources-list  {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    list-style: none;
+}
+ul.deliverables-list {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    list-style: none;
+}
+ul.link-list {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    list-style: none;
+}

@@ -6,9 +6,9 @@
 #+HTML_LINK_UP: http://wrigstad.com/ioopm18/
 
 #+HTML_HEAD: <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+#+HTML_HEAD: <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://wrigstad.com/ioopm18/css/htmlize.css"/>
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://wrigstad.com/ioopm18/css/readtheorg.css"/>
-#+HTML_HEAD: <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 #+HTML_HEAD: <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 #+HTML_HEAD: <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>

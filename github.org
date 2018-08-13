@@ -13,7 +13,75 @@ If you do not remember what version control is, or git, please
 start by reading [[https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control#ch01-getting-started][this]] and then [[https://git-scm.com/book/en/v2/Getting-Started-Git-Basics][this]]. If you want some basic help
 in installing git, look [[https://git-scm.com/book/en/v2/Getting-Started-Installing-Git][here]].
 * How to Get a GitHub Account for the Course
-*TODO* refer to http://wrigstad.com/ioopm/github.php
+
+Du kommer att använda GitHub för att dela och versionshantera all
+kod som skrivs för kursen. För att undvika situationer som
+formellt räknas som [[http://www.ibg.uu.se/student/fusk-plagiat/][fusk]] kommer alla att få ett privat repo att
+använda i kursen. Följ de här stegen: <
+
+** 1. Skaffa ett GitHub-konto
+
+Först behöver du ett konto på [[http://www.github.com][GitHub]]. Om du redan har ett kan du
+hoppa över det här steget. På GitHubs förstasida kan du skapa ett
+konto genom att fylla i ett (unikt) användarnamn, din epostadress
+och ett lösenord, och trycka "Sign up for GitHub": 
+
+file:./images/GitHub1.jpg
+
+På nästa sida behöver du inte göra någonting. Klicka bara på
+"Finish sign up":
+
+file:./images/GitHub2.jpg
+
+Efter ett litet tag ska du få ett mejl till den epostadress du
+angav. Klicka på "Verify email address" 
+
+file:./images/GitHub3.jpg
+
+** 2. Ge oss dina uppgifter
+
+För att du ska kunna få ett privat repo behöver du bli inbjuden
+till vår GitHub-organisation IOOPM-UU. För att kunna ge dig ett
+konto måste vi ha dina uppgifter. Börja med att [[https://goo.gl/forms/whhj3E5zOSfKR9sN2][klicka här]] och
+fyll i ditt student-ID och ditt användarnamn på GitHub.
+
+file:./images/GitHubForm.jpg
+
+** 3. Tacka ja till inbjudan
+
+Så snart någon ser att du har skickat in dina uppgifter (vi kommer
+kolla listan ungefär en gång per dag under den första veckan)
+kommer vi att lägga till dig i vår GitHub-organisation. Du kommer
+då att få ett mejl med en inbjudan:
+
+file:./images/GitHub4.jpg
+
+Om du går till http://www.github.com/ioopm-uu kommer det se ut
+ungefär så här: </p>
+
+file:./images/GitHub5.jpg
+
+Klicka på 'View Invitation' och välj "Join IOOPM-UU".
+
+file:./images/GitHub6.jpg
+
+** 4. Du är klar!
+
+Det ska redan finnas ett repo som heter samma sak som ditt
+student-ID. Du kan söka efter ditt repo på organisationens
+förstasida. För att klona repot, kör "git clone
+https://github.com/IOOPM-UU/elias.castegren.1234.git" i en
+terminal (där "elias.castegren.1234" ersätts med ditt eget namn).
+Notera ".git" i slutet av adressen! Om du vill kan du ändra namnet
+på mappen där ditt repo hamnar -- det påverkar inte repots namn på
+GitHub.
+
+Ditt repo kommer att vara synligt för alla i din grupp, så du och
+den du programmerar med kommer att kunna arbeta i samma repo under
+tiden ni jobbar tillsammans. När samarbetet är klart kommer den
+vars repo inte användes vilja kopiera över koden till sitt eget
+repo så att den finns tillgänglig för nästa sprint också.
+
 * Setting up Git for Your Account
 If you haven't used git before on your machine, you need to tell
 git your user name and email address, which is part of every git
@@ -36,6 +104,16 @@ Checking out your repository for the first time will create a
 directory on your machine with the same name as the repo on GitHub.
 This directory should hold all your work during this course. All
 the hand-ins happen through your git repository.
+
+Once you have been added to our GitHub organisation, there should
+be a GitHub account created for you with your student ID. Check it
+out like this:
+#+BEGIN_EXAMPLE
+git clone https://github.com/IOOPM-UU/first.last.1234.git ioopm
+#+END_EXAMPLE
+This creates a directory called =ioopm= on your machine where you
+will be doing your work. You can name it what you want, but on
+these pages we will assume you call it =ioopm=.
 
 There will be one or more /local copies/ of your repository (one
 for each machine where you are working, counting all thin clients
