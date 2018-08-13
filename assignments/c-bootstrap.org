@@ -149,9 +149,9 @@ själv, eller ladda ned dem och installera dem själv eller via
 Emacs inbyggda pakethanterare.
 
 Emacs-resurser på denna webbsida: 
-- [[file:~/t/ioopm/2018/site/editors.org#Introduktion%20till%20Emacs][Introduktion till Emacs]]
-- [[file:~/t/ioopm/2018/site/screencasts.org#Screencasts%20om%20verktyg][Screencasts om Emacs]]
-- [[file:~/t/ioopm/2018/site/misc/cheatsheet.pdf][Emacs lathund]]
+- [[file:../editors.org::*Introduktion%20till%20Emacs][Introduktion till Emacs]]
+- [[file:../screencasts.org::*Screencasts%20om%20verktyg][Screencasts om Emacs]]
+- [[file:../site/misc/cheatsheet.pdf][Emacs lathund]]
 
 Nu följer två olika uppsättningar instruktioner beroende på om du
 kör Linux eller OS X/macOS. För dig som kör Windows har vi tyvärr

@@ -843,9 +843,9 @@ ul.nav li a.nav-link.active {
 
 ul.nav li a.nav-link.active + ul li a.nav-link:not(.active) {
     background-color: #E3E3E3;
-    color: #8099B0;
     border-right:solid 1px #c9c9c9 !important;
     font-weight: 300;
+    color: #808080 !important;
 }
 
 ul.nav li a.nav-link.active + ul li a.nav-link.active {
@@ -861,7 +861,7 @@ ul.nav li a.nav-link.active + ul a.nav-link.active + ul a.nav-link.active {
 }
 
 ul.nav li a.nav-link.active + ul li a.nav-link.active + ul li a.nav-link {
-    color: #808080 !important;
+    color: #606060 !important;
     font-weight: normal !important;
     display: block !important;
 }

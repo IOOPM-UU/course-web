@@ -56,7 +56,7 @@ TBA in 2018: Guest lecture from Oracle JVM engineers.
 | 18/1  | Retrospective & guest lecture            | TBA          | TBA              |
 
 * Deadlines
-Deadlines and important dates in chronological order. Read [[file:about.org#orgc68375c][here]] about soft and hard deadlines.
+Deadlines and important dates in chronological order. Read [[file:about.org::*Deadlines][here]] about soft and hard deadlines.
 
 | Date         | Deadline                   | Comment                                   |
 |--------------+----------------------------+-------------------------------------------|
@@ -160,7 +160,6 @@ Follow the steps above for a public question, but select
 "Individual Student(s) / Instructor(s)", rather than "Entire
 class". Type the name of the person you want to contact. Tutors
 names are listed here.
-
 
 * Recent Changes
 
