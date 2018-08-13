@@ -31,11 +31,12 @@ $( document ).ready(function() {
 });
 
 $( document ).ready(function() {
-    $('#text-table-of-contents ul').first().addClass('nav');
+    $('#text-table-of-contents ul').addClass('nav');
+    $('#text-table-of-contents ul li').addClass('nav-item');
+    $('#text-table-of-contents ul li a').addClass('nav-link');
                                         // ScrollSpy also requires that we use
                                         // a Bootstrap nav component.
     $('body').scrollspy({target: '#text-table-of-contents'});
-
     // add sticky table headers
     $('table').stickyTableHeaders();
 
@@ -108,7 +109,7 @@ function tw_hide_show(h) {
 $(document).ready(function() {
     $("h2, h3, h4").each(function () {
         var h = $(this);
-        if (h.parent().attr("id") != "table-of-contents") {
+        if (h.parent().parent().attr("id") != "toggle-sidebar" && h.parent().attr("id") != "table-of-contents") {
             h.addClass("is-collapsable-hint");
             h.click(function() {
                 tw_hide_show(h);
@@ -118,16 +119,27 @@ $(document).ready(function() {
 });
 
 // == Make footnotes also hover ======================== 
+// $(document).ready(function() {
+//     $(".footref").tooltip({
+//         items: "a[id]",
+//         content: function () {
+//             var id = $(this).attr("id");
+//             var tip = $('a[href="#' + id + '"]').parent().next().html();
+//             return tip;
+//         }
+//     });
+// });
+
 $(document).ready(function() {
-    $(".footref").tooltip({
-        items: "a[id]",
-        content: function () {
-            var id = $(this).attr("id");
-            var tip = $('a[href="#' + id + '"]').parent().next().html();
-            return tip;
-        }
+    $(".footref").each(function () {
+        $(this).attr("data-toggle", "tooltip");
+        $(this).attr("data-html", "true");
+        var id = $(this).attr("id");
+        var tip = $('a[href="#' + id + '"]').parent().next().html();
+        $(this).attr("title", tip);
     });
 });
+
 
 // == Add top menu ======================== 
 $(document).ready(function() {
@@ -152,10 +164,19 @@ $(document).ready(function () {
     });
 });
 
-// == Make footnotes also hover ======================== 
+// == for quiz:links ======================== 
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
 });
+
+// $(document).ready(function() {
+//     $("a[quiz]").tooltip({
+//         content: function () {
+//             return $(this).attr("title");
+//         }
+//     });
+// });
+
 
 // == Bug report hotkey ================
 function getSelectionText() {

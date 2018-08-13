@@ -171,3 +171,8 @@ possible by following [[https://github.com/IOOPM-UU/course-web][these pages on G
 #+end_attention
 
 #+include: "./footer.org"
+
+
+# Local Variables:
+# eval: (progn (find-file "publish.el") (eval-buffer "publish.el"))
+# End:

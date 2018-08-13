@@ -5,30 +5,19 @@
 #+HTML_LINK_HOME: http://wrigstad.com/ioopm18/
 #+HTML_LINK_UP: http://wrigstad.com/ioopm18/
 
-#+HTML_HEAD:   <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-# #+HTML_HEAD:   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-# #+HTML_HEAD: <script src="http://wrigstad.com/ioopm18/js/bootstrap.min.js"></script>
-# #+HTML_HEAD:   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 #+HTML_HEAD: <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-#+HTML_HEAD: <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-#+HTML_HEAD: <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-#+HTML_HEAD: <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://wrigstad.com/ioopm18/css/htmlize.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://wrigstad.com/ioopm18/css/readtheorg.css"/>
+#+HTML_HEAD: <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+#+HTML_HEAD: <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+#+HTML_HEAD: <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="http://wrigstad.com/ioopm18/js/jquery.stickytableheaders.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="http://wrigstad.com/ioopm18/js/readtheorg.js"></script>
 
 #+HTML_HEAD: <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/solid.css" integrity="sha384-wnAC7ln+XN0UKdcPvJvtqIH3jOjs9pnKnq9qX68ImXvOGz2JuFoEiCjT8jyZQX2z" crossorigin="anonymous">
 #+HTML_HEAD: <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css" integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE" crossorigin="anonymous">
 #+HTML_HEAD: <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css" integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6" crossorigin="anonymous">
-
-
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://wrigstad.com/ioopm18/css/htmlize.css"/>
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://wrigstad.com/ioopm18/css/readtheorg.css"/>
-
-#+HTML_HEAD: <script src="http://wrigstad.com/ioopm18/js/jquery.min.js"></script>
-#+HTML_HEAD: <script src="http://wrigstad.com/ioopm18/js/bootstrap.min.js"></script>
-#+HTML_HEAD: <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
-#+HTML_HEAD: <script type="text/javascript" src="http://wrigstad.com/ioopm18/js/jquery.stickytableheaders.min.js"></script>
-#+HTML_HEAD: <script type="text/javascript" src="http://wrigstad.com/ioopm18/js/readtheorg.js"></script>
-
 
 #+begin_danger
 As long as this note remains on this page, any information *is
