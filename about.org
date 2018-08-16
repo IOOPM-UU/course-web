@@ -309,7 +309,7 @@ enkel och ger direkt en känsla för om det "går bra" eller inte --
 kommer jag till slut att komma i mål på utsatt tid? 
 
 #+CAPTION: Exempel på burndown chart.
-https://upload.wikimedia.org/wikipedia/commons/0/05/SampleBurndownChart.png
+file:images/SampleBurndownChart.png
 
 I exemplet planerar vi utifrån förutsättningen att alla mål tar
 lika lång tid. Det är naturligtvis inte sant. Ett mer raffinerat
