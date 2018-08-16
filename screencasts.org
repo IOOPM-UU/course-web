@@ -1,7 +1,14 @@
 #+title: Screencasts
 #+include: "./setup.org"
 
-* Gamla screencasts
+* Tools
+** Vagrant Demo
+Tobias shows =vagrant up= and plays around a little in the course
+Vagrant box.
+
+[[movie:http://user.it.uu.se/~writo649/vagrant-ioopm.mp4]]
+
+* Old screencasts
 
 Här hittar du kursens alla screencasts samt eventuellt utdelat
 material till dessa. Vissa screencasts är anpassade efter Scalable
