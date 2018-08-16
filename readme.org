@@ -1,11 +1,17 @@
 #+title: Instructions for Publishing to the Course Web
 
-* Manually 
+* Publish all changed pages
 
 1. Open Emacs and load =index.org= -- this loads and evaluates =publish.el= (needs confirmation for security reasons)
 2. Run =M-x org-publish= and type =ioopm website= (autocomplete works). This should load everything onto the website. 
 
-* TODO Automated
+To publish the current buffer, use =M-x org-publish-current-file=. 
 
 * Changes for each year
-- In =publish.el=, change the target website to the right url
+- Each year's webpage should have a unique URL so that old students can see the old information.
+- Starting in 2018, let =/ioopm= point to the current page. 
+- In =publish.el=, change the target website to the right url.
+
+* Backlog
+** Prune repeated information (seems consistent /now/ but will complicate updates)
+ 

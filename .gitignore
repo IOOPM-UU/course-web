@@ -1,1 +1,3 @@
 /misc/Vagrantfile
+.vagrant
+/sitemap-autogen.org
