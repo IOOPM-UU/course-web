@@ -1,6 +1,12 @@
 #+title: Course Staff of 2018
 #+include: "./setup.org"
 
+#+begin_verse 
+Running IOOPM has always been a team effort. Nevertheless,
+different people play different roles. On this page, we list the
+people involved in running the course in 2018.
+#+end_verse
+
 * Head Teacher: Tobias Wrigstad
 #+ATTR_HTML: :width 300px :align right :title: Tobias Wrigstad
 [[http://wrigstad.com/images/self7.jpg]]

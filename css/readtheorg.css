@@ -496,11 +496,11 @@ ins{
     text-decoration:none}
 
 mark{
-    background:#f9f;
+    background: #cfc;
     color:#000;
     font-weight:400;
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: 1ex;
+    padding-right: 1ex;
 }
 
 small{
@@ -1324,19 +1324,23 @@ ul.about-list {
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
     list-style: none;
+    border-top: solid 1px #f0f0f0;
 }
 ul.resources-list  {
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
     list-style: none;
+    border-top: solid 1px #f0f0f0;
 }
 ul.deliverables-list {
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
     list-style: none;
+    border-top: solid 1px #f0f0f0;
 }
 ul.link-list {
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
     list-style: none;
+    border-top: solid 1px #f0f0f0;
 }

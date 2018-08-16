@@ -54,23 +54,22 @@ The following is installed (with the exception of *to-be-added*):
 - C debuggers: gdb, lldb
 - Java: openjdk 8
 - Editors: Emacs 25, Vim 8 (note: both are text-only -- no graphical components)
-- valgrind
-- gcov
-- gprof
-- cscope
-- cproto
-- GNU global 
-- perf tools
-- git
-- cunit
-- make
-- doxygen
-- tmux
-- ssh
-- curl
-- astyle
+- =valgrind= /for debugging memory errors, finding memory leaks, and more!/
+- =gcov= and =gcovr= /for code coverage/
+- =gprof= and =perf= /for profiling etc./
+- =cproto= /extract function prototypes from C code/
+- GNU =global= and =cscope= /code navigation tools/
+- =git= and =tig= /version control/
+- =cunit= and =junit= /unit testing frameworks for C and Java/
+- =make= and =cmake= /build management/
+- =doxygen= /generate documentation extracted from comments in source files/
+- =ssh= and =tmux= /love tmux!/
+- =curl= /get files, interact with web APIs etc./
+- =astyle= /automatic code formatting/
+- =htop= /check the processes running on the machine/
+- =gnuplot= and =graphviz= /to draw diagrams -- used by doxygen (and you?)/
 - terminal emulators: bash, zsh
-- convenience: oh-my-zsh, zip, unzip
+- convenience: [[https://ohmyz.sh/][oh-my-zsh]], zip, unzip
 - *to-be-added*: tag, some aliases
 
 /Feel free to look up all of these programs and learn about them./
@@ -80,7 +79,7 @@ The following is installed (with the exception of *to-be-added*):
 $ sudo apt-get install -y gcc clang libclang-dev lldb emacs25 vim tree make \
        tmux curl astyle zsh linux-tools-common valgrind git libcunit1-dev doxygen \ 
        xclip global zip unzip openjdk-8-jdk linux-tools-generic \
-       cscope cproto
+       cscope cproto gcovr tig htop junit gnuplot graphviz cmake
 #+END_EXAMPLE
 ** Using Homebrew on macOS and Skip Virtualbox
 1. Open https://brew.sh/ in a browser, and copy-and-paste the installation command into a terminal and execute it
