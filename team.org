@@ -1,0 +1,160 @@
+#+title: Teams on IOOPM
+#+author: Tobias Wrigstad
+#+include: "./setup.org"
+
+* The Role of the Team 
+The team serves three key purposes:
+- drastically reduce the search space for partner search for pair programming; 
+- create a context for reflecting on progress, what is working and not, and exchange ideas at semi-regular meetings; and
+- facilitate establishing some connection with a coach (TA). 
+
+The teams are created by us, and it usually takes about one week
+before the teams are announced because we do not know the names of
+everyone taking the course until then. [[mark:You do not get to pick your team members.]]
+
+The teams will meet at least once each sprint, meaning at least
+five times during the course. The coaches will initiate these
+meetings.
+
+* Pair Programming
+Reusing [[https://en.wikipedia.org/wiki/Pair_programming][Wikipedia's definition]] (emphasis added),
+#+BEGIN_QUOTE
+Pair programming is an agile software development technique in
+which two programmers work together at one workstation. One, the
+driver, writes code while the other, the observer or navigator,
+reviews each line of code as it is typed in. *The two programmers
+switch roles frequently.*
+
+While reviewing, the observer also considers the "strategic"
+direction of the work, coming up with ideas for improvements and
+likely future problems to address. This is intended to free the
+driver to focus all of their attention on the "tactical" aspects
+of completing the current task, *using the observer as a safety net
+and guide.*
+#+END_QUOTE
+
+Den bakomliggande orsaken till att parprogrammering är
+obligatorisk är att parprogrammering (och andra tekniker för att
+uppnå liknande effekt med avseende på kunskapsspridning,
+granskning, etc.) inte bara tenderar att resultera i bättre kod än
+kod som produceras av en enskild, utan också förbättrar
+inlärningen. Genom att prata tvingas du sätta ord på vad du gör,
+och reflektera. Ibland försöka förklara något som du själv inte
+förstår fullt, etc. Det stimulerar framförallt djuplärningen -- du
+kommer alltså i mindre utsträckning att glömma bort allt efter att
+kursen är slut.
+
+Det finns många olika varianter av parprogrammering. Tanken på
+IOOPM är att det vid varje tillfälle skall vara en person som är
+"driver" i bemärkelsen att vara vid tangentbordet, och att paren
+skall byta driver mycket ofta, *minst en gång var 30:e minut*, men
+helst oftare. Det kan vara en god idé att byta vid logiska
+enheter, t.ex. byta i samband med att en funktion blir klar eller
+att testerna för funktionen har skrivits. Det är också bra om inte
+samma person skriver funktionen f och dess tester. Senare i kursen
+kan arbetet med att skriva test och funktion paralleliseras,
+men regelbunden avstämning, säg var 10:e minut, är ändå bra, liksom
+att sitta brevid varandra.
+
+*Det är inte parprogrammering att dela upp en uppgift i två delar
+och göra hälften var* eftersom båda medlemmarna i ett kodpar måste
+får individuellt godkänt på alla mål vid redovisning. När
+examinatorn frågar en enskild person om ett mål och pekar på en
+del av koden måste den kunna ge ett bra svar. Att säga "jag skrev
+inte just den biten" är inte ett acceptabelt svar. Det är rimligt
+att anta att /vissa/ delar av uppgiften görs separat eftersom ca
+$2\over 3$:ar av all kodning sker utanför labbtid och inte alla
+kan sitta tillsammans jämt.
+
+** Omaka par
+Om en person i paret upplevs som expert och en som novis är det
+bra att vädra det tidigt (ibland upplever båda att den andre är
+experten...). Om så är fallet är det fortfarande viktigt att byta
+regelbundet och att båda utför samma typ av arbete. Om novisen
+sitter i baksätet kommer hen nämligen inte att lära sig lika
+mycket vilket manifesterar sig på kursen genom att hen inte klarar
+kodprovet och därmed inte kursen.
+
+Som nämnt ovan går det utmärkt att ha ett par där en (A) siktar på
+ett högre betyg än en annan (B). Det kan t.ex. manifestera sig
+genom att A gör vissa utökningar på egen hand, eller vissa
+redovisningar på egen hand.
+** Parprogrammering på distans
+Om ett par har svårt att sitta tillsammans och koda i fysisk
+bemärkelse kan de använda bra online-verktyg. Du kan t.ex. ha
+motsvarande Skype igång, en chatt uppe, använda GitHubs issue
+tracker, etc. för att minska avståndet och synka. Det är bra att
+använda system som ger en automatisk historik som går att gå
+tillbaka till när vid felsökning eller jakt på bakomliggande
+orsaker till missförstånd, etc.
+
+* Group Meetings
+
+En gång varje sprint skall du gå på ett uppföljningsmöte, som din
+coach kallar till. Till detta möte skall du ta med dig åtminstone:
+
+- Planeringen för den aktuella sprinten (inlämningsuppgiften)
+- [[https://en.wikipedia.org/wiki/Burn_down_chart][Burndown chart]] för den aktuella sprinten (inlämningsuppgiften)
+- [[https://en.wikipedia.org/wiki/Burn_down_chart][Burndown chart]] för måluppfyllnad hela kursen
+
+Under uppföljningsmötet kommer vi att gå igenom den aktuella
+sprinten (hur har du planerat = vilka deluppgifter har du
+identifierat, vad har du klarat av, vad har du för styrfart, etc.)
+och takten för måluppfyllnad för hela kursen.
+
+Tips! Om du använder Trello för planering, och någon annan digital
+tjänst för att rita burndown-charts så kan ni använda assistentens
+(eller din egen) laptop för att visa allting ovan. Vi
+[[https://docs.google.com/spreadsheets/d/171ME0XXa-7C7iSbRsHuwdwDwt912nGqHwdpuHQAhIVc/edit#gid=49659760][tillhandahåller ett Google spreadsheet]] för att generera
+burndown-charts för kursen. Du kan kopiera eller ladda hem det för
+att få en skrivbar version.
+
+Under mötet får varje kodpar några minuter på sig att presentera
+sina framsteg. Börja med att visa planeringen för den aktuella
+sprinten. Vilken uppgift jobbar ni med, vad har ni gjort, vad
+tänker ni göra härnäst? Fråga gärna om ni är osäkra på något i er
+egen planering. Om det andra paret jobbar med samma uppgift har de
+kanske också kommentarer eller tips! Visa sedan båda era burndown
+charts för den aktuella sprinten och förklara vilka mål ni har
+tagit och vilka ni planerar att ta. I samband med detta kan andra
+komma med tips på passande mål! Avsluta med att visa era burndown
+charts för hela kursen och säg något om er nuvarande styrfart.
+
+*Teamet skriver en rapport för varje möte* som lämnas in via mail
+till coachen och till [[file:tas2018.org][huvudassistenten]], och CC:as till samtliga i
+teamet. Denna rapport skall vara mycket kortfattad och innehålla:
+
+1. Antalet kodpar som håller åtminstone avsedd styrfart respektive
+   som inte gör det
+2. Antalet studenter som avser att satsa på högre betyg än 3
+3. En stressindikator i intervallet $[1,7]$ (där 1 är sömn och 7
+   är maxpuls) som teamet enats om[fn::Ni kan t.ex. rösta och ange
+   min, max, medel och median -- eller enbart median eller medel,
+   etc. Men var tydliga med hur siffran kommits fram till!]
+4. Summan av antalet mål som tagits av enskilda medlemmar i teamet
+5. En lista på namn på medlemmar i teamet som åtminstone någon i
+   teamet anser behöver en knuff i rätt riktning
+6. Eventuella förslag till kursledning (t.ex. saker att ta upp
+   extra, deadlines att flytta, önskemål, etc.)
+7. "Underskrifter" på samtliga närvarande
+
+OBS! Listan i den 4:e punkten ovan är inte till för att "sätta
+dit" någon som det går dåligt för, utan tvärt om -- för att hjälpa
+den eller de att komma vidare. Alla som arbetar på kursen är på
+din sida och har som uppgift att leda dig i rätt riktning innan
+det är för sent. Du lurar bara dig själv om du fejkar dina
+framsteg eller undviker mötena. Även om det känns som att det går
+bra för dig kan uppföljningsmötet också vara ett sätt att bekräfta
+att din planering är realistisk. Om du siktar på ett högre betyg
+kan du också få hjälp att hitta mål som passar din nuvarande
+uppgift.
+
+Mot kursens slut kommer du att göra "en retrospektiv" över hur
+styrfart, stress, förväntat/eftersträvat betyg, etc. har ändrats
+under kursens gång i samband med [[aua:7][C7: Planering och uppföljning]].
+
+#+begin_note
+Om coachens schema kräver kan dessa möten behöva ledas av teamet självt.
+#+end_note
+
+#+include: "./footer.org"
