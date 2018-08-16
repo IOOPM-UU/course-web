@@ -13,11 +13,11 @@ Labs on IOOPM serve the following purposes:
 - They provide opportunities to demonstrate mastery of achievements ::
      At your own leisure, you register to demonstrate on the [[http://auportal.herokuapp.com/][AU
      Portal]]. This triggers the oral examination process. 
-     [[hl:1][You may demonstrate up to 4 achievements per lab.]] 
+     [[mark][You may demonstrate up to 4 achievements per lab.]] 
 
 - They provide possibilities to get help from TAs ::
-     Sign up on the help list in Computer Hall 1515 to get help
-     from course staff. You can ask about anything -- e.g., "what
+     [[mark][Sign up on the help list in Computer Hall 1515 to get help
+     from course staff]]. You can ask about anything -- e.g., "what
      does this compile error mean", "how do I start with this
      assignment", "what grade should I aim for", etc. If you want
      a specific TA or teacher, write e.g., =(Tobias)= beside your
@@ -41,17 +41,16 @@ other courses:
 
 - Labs do not come with a script to follow ::
      They do not exercise one or a few concepts from class.
-     [[hl:][You must plan your own lab work.]] Students typically
+     [[mark][You must plan your own lab work.]] Students typically
      work in pairs with their partner on the assignments during
      lab hours. Pairs that have a hard time getting together
      outside of lab hours also make plans for what to do
-     separately between labs. [[hl:][Expect a substantial chunk of lab
+     separately between labs. [[mark][Expect a substantial chunk of lab
      time to be spent in demonstrations.]]
 
 - Lab hours are not nearly enough time for passing assignments ::
-     [[hl:][Expect to work 14-15 hours per week on the assignments, in
+     [[mark][Expect to work 14-15 hours per week on the assignments, in
      addition to the work you do in the labs.]]
-
 
 * Att redovisa under en labb
 För att redovisa under en labb använder du [[http://auportal.herokuapp.com/][AU-portalen]]. Under

@@ -61,7 +61,7 @@ kodprovet har hårda tidsgränser.
 Below are some recent coding exams.
 
 |       Date | Instructions | Postmortem | Note   |
-| 2017-10-26 | [[http://wrigstad.com/ioopm/agoster.zip][available]]    | [[http://wrigstad.com/ioopm/2017/kodprov-dec-18.html][available]]  |        |
+| 2017-10-26 | [[http://wrigstad.com/ioopm/agoster.zip][available]]    | [[http://wrigstad.com/ioopm/2017/kodprov-okt-17.html][available]]  |        |
 | 2017-12-08 | [[http://wrigstad.com/ioopm/entrekod.zip][available]]    | [[http://wrigstad.com/ioopm/2017/kodprov-dec-08.html][available]]  | Only C |
 | 2017-12-18 | [[http://wrigstad.com/ioopm/sorsele-fm.zip][available]]    | [[http://wrigstad.com/ioopm/2017/kodprov-dec-18.html][available]]  |        |
 | 2018-04-02 | [[http://wrigstad.com/ioopm/bridget.zip][available]]    |            |        |

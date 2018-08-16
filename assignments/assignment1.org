@@ -17,8 +17,8 @@ This assignment serves several purposes:
   editors, compilers and debuggers. In particular, we will be
   using a profiler (=gprof=), a coverage tracker (=gcov=), and a
   memory leak detector (=valgrind=). And of course version control.
-- Create multiple opportunities to demonstrate mastery of
-  achievements.
+- Create multiple opportunities to [[file:~/t/ioopm/2018/site/about.org::*Redovisning%20och%20AU-Portalen][demonstrate mastery of
+  achievements.]]
 - Force you to code -- reading and writing code are the only two
   techniques that work when learning how to program, and only if
   you do both.
