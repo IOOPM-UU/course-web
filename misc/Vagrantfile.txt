@@ -60,12 +60,13 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
     apt-get upgrade
-    apt-get install -y gcc clang libclang-dev lldb emacs25-nox vim tree make tmux curl astyle zsh linux-tools-common valgrind git libcunit1-dev doxygen xclip global zip unzip openjdk-8-jdk-headless linux-tools-4.15.0-22-generic cscope cproto
+    apt-get install -y gcc clang libclang-dev lldb emacs25-nox vim tree make tmux curl astyle zsh linux-tools-common valgrind git libcunit1-dev doxygen xclip global zip unzip openjdk-8-jdk-headless linux-tools-4.15.0-22-generic cscope cproto gcovr tig htop junit gnuplot graphviz cmake
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     curl http://wrigstad.com/ioopm18/misc/emacs.zip -o /tmp/emacs.zip
-    mkdir -f ~/.emacs.d/
-    unzip /tmp/emacs.zip -x /home/vagrant/.emacs.d/
+    mkdir -p /home/vagrant/.emacs.d/
+    unzip /tmp/emacs.zip -d /home/vagrant/.emacs.d/
     chown -R vagrant /home/vagrant/.emacs.d
+    chmod 644 /home/vagrant/.emacs.d/custom.el.new
   SHELL
 end
 

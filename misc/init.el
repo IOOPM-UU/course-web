@@ -39,7 +39,7 @@
 (when (equal (window-system) nil)
   (use-package xclip))
 
-;; No splash screen (2011-07-29)
+;; No splash screen 2011-07-29
 (setq inhibit-splash-screen t)
 
 ;; Turn on column number
@@ -86,6 +86,8 @@
 ;; programming
 ;; --------------------------------------------------------
 
+(use-package validate)
+
 ;; Settings for C
 (add-hook 'c-mode-common-hook
           (lambda ()
@@ -96,11 +98,45 @@
               (flycheck-mode t)
               )))
 
-;; Trying out irony-mode (2017-10-10)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-irony))
+;; Show argument list in echo area
+(use-package eldoc
+  :diminish eldoc-mode)
+
+;; Snippets
+(use-package yasnippet
+  :ensure t
+  :diminish yas-minor-mode
+  :init (yas-global-mode t))
+
+;; Autocomplete
+(use-package company
+  :defer 10
+  :diminish company-mode
+  :bind (:map company-active-map
+              ("M-j" . company-select-next)
+              ("M-k" . company-select-previous))
+  :preface
+  ;; enable yasnippet everywhere
+  (defvar company-mode/enable-yas t
+    "Enable yasnippet for all backends.")
+  (defun company-mode/backend-with-yas (backend)
+    (if (or
+         (not company-mode/enable-yas)
+         (and (listp backend) (member 'company-yasnippet backend)))
+        backend
+      (append (if (consp backend) backend (list backend))
+              '(:with company-yasnippet))))
+
+  :init (global-company-mode t)
+  :config
+  ;; no delay no autocomplete
+  (validate-setq
+   company-idle-delay 0
+   company-minimum-prefix-length 2
+   company-tooltip-limit 20)
+
+  (validate-setq company-backends
+                 (mapcar #'company-mode/backend-with-yas company-backends)))
 
 ;; Highlight dangerous C functions
 (add-hook 'c-mode-hook (lambda () (font-lock-add-keywords nil '(("\\<\\(malloc\\|calloc\\|free\\|realloc\\)\\>" . font-lock-warning-face)))))
@@ -498,11 +534,6 @@ This is the same as using \\[set-mark-command] with the prefix argument."
         ((looking-at "[])}]") (forward-char) (backward-sexp 1))
         (t (self-insert-command (or arg 1)))))
 
-;; Add separator to linum-mode
-(setq linum-format "%4d \u2502 ")
-(global-linum-mode)
-
 ;; Local Variables:
 ;; mode: emacs-lisp
-;; byte-compile-warnings: (not mapcar)
 ;; End:
