@@ -64,9 +64,9 @@ It is also likely that you will:
 - Be frustrated by how easy it is to shoot yourself in the foot
   with C. 
 - Be stressed because you had to spend a lot of time just to get
-  going, and it may have caused you to underperform with respect
+  going, and it may have caused you to under perform with respect
   to your required velocity).
-- Have witten about 1000 lines of code (LOC) plus another 1000
+- Have written about 1000 lines of code (LOC) plus another 1000
   lines of test code. (This of course depends on your coding
   style. If you hit say 2000 LOC without counting tests, you
   probably need some help.)
@@ -88,8 +88,8 @@ with 1.
 Rather than simply giving you a list of things to do based on the
 knowledge one has after having implemented similar things, the
 assignment is going to have a story line. Thus, we will be making
-jugdment calls, backing out of decisions that turned out to be
-suboptimal, refactoring parts of the code as we develop better
+judgment calls, backing out of decisions that turned out to be
+sub-optimal, refactoring parts of the code as we develop better
 ways of accomplishing tasks and want to back-port them to be used
 everywhere, etc. etc. 
 
@@ -112,7 +112,6 @@ The entire assignment is laid out as a series of steps with the
 intended velocity of 1-2 steps per weekday (on average). Not all
 steps have equal length, and how long each step will take is going
 to be very individual. 
-
 
 * Ticket #1: Implement a Basic Hash Table
 
@@ -242,7 +241,7 @@ Note that the program (still below) is quite awful for many reasons:
 3. We don't yet use a hash, meaning that time complexity of
    searching and sorting is terrible (what is it?).
 4. There is no order of the entries (other than the order in which
-   they werw stored).
+   they were stored).
 
 #+CAPTION: Toy program for exploring pointer-based structures through gdb
 #+BEGIN_SRC c
@@ -455,7 +454,7 @@ O(1) time).
 Development of hash functions is super interesting and quite
 subtle and out of scope for this course.
 
-Using non-integer keys in a hash table thus requires the existance
+Using non-integer keys in a hash table thus requires the existence
 of a function that for a given value in the key domain returns an
 integer (and always the same value for the same key). Typically,
 we hide this to the users, except for the fact that we ask them to
@@ -466,8 +465,8 @@ provide such a function that we subsequently use internally.
 
 From our above discussion, our hash table will be represented as
 an array of buckets, and each bucket will hold a sequence of
-entries. In addition to that, we will hold some auxillary data
-like the size of the array, etc. The auxillary data will grow as
+entries. In addition to that, we will hold some auxiliary data
+like the size of the array, etc. The auxiliary data will grow as
 we make our hash table increasingly fancy. The sequence of entries
 will not be another array, but a /linked structure/, implemented
 by letting each entry know the location in memory of the next
@@ -626,7 +625,7 @@ We are now going to run this program in =gdb=:
    the program to stop and return control to =gdb= when we hit this point
    in the program.
 4. =r one two three four five six= Start the program again. This time, the
-   prorgam will be paused immediately at the start. 
+   program will be paused immediately at the start. 
 5. =list= Print the source code of the current line and
    surrounding lines.
 6. =n= (repeat this until you reach line 27, aka line 7 in
@@ -717,11 +716,10 @@ of some feature and at least one test for the implementation. The
 amount of work is the same. *Pick whatever approach you like, as
 long as you try both -- seriously -- during the course.*
 
-
-* Left: Test-Driven Approach  
+* Left: Test-Driven Approach
 Test-driven development is based on the idea that tests should be
 written before the code they are testing, and thus serve as a
-defintion of correctness for that code. By starting with the
+definition of correctness for that code. By starting with the
 tests, we are forced to decide what are valid behaviours and what
 is the semantics of the function *before* we start coding it up,
 which is very nice. 
@@ -729,7 +727,7 @@ which is very nice.
 The test-driven approach will thus work very much like the
 classical approach, but change in two important ways:
 
-- For each step, we start by defining the success critera of that
+- For each step, we start by defining the success criteria of that
   step, expressed as a test -- and equate finishing the step with
   the passing of the test. 
 - Because we are test-driven, the order in which we implement
@@ -770,7 +768,7 @@ can populate with tests for the hash table.
 #+end_important
 
 How do we test creation and destruction of a data structure?
-Future tests will test the correctness of the implementatation of
+Future tests will test the correctness of the implementation of
 the data representation, but for now creation and destruction can
 be tested together. Our test will create an ~ioopm_hash_table_t~,
 destroy same hash table, and we will run this test under
@@ -829,12 +827,12 @@ table. This is going to be a very useful feature, not in the least
 for testing many other features like insertion and removal. From a
 testing perspective, we could try to manually construct a hash
 table and use it for looking up, but this is brittle and will
-haunt us if we ever need to change the internal repesentation.
+haunt us if we ever need to change the internal representation.
 Instead, for now, let us as a test simply verify that a newly
 created hash table is completely empty. 
 
-We can draw on our knowledge of the interal representation in our
-choice of lookup uperations. If we know that the number of bucket
+We can draw on our knowledge of the internal representation in our
+choice of lookup operations. If we know that the number of bucket
 lists is 17, then we can easily carve up a test where we are sure
 to hit all the buckets. *However*, tempting as it may be to draw
 on such internal information, constants such as the number of
@@ -861,7 +859,7 @@ void test_lookup()
 #+END_SRC
 
 The code snippet above exemplifies a great case for using a
-comment. The number 18 is seeminlgy "magical" -- it is likely not
+comment. The number 18 is seemingly "magical" -- it is likely not
 obvious to most casual readers of this code why it was chosen. A
 comment is a good way to explain why it was chosen, so that a
 future coder will know to change it if the number of buckets
@@ -979,14 +977,13 @@ still a bit sketchy, but we are only on Assignment 1. This diagram
 shows the process of test-driven development quite clearly,
 especially after having completed it once. 
 
-#+CAPTION: The lifecycle of test-driven design (from Wikipedia)
+#+CAPTION: The life-cycle of test-driven design (from Wikipedia)
 https://upload.wikimedia.org/wikipedia/commons/0/0b/TDD_Global_Lifecycle.png
 
 Continue using the test-driven approach now, by jumping to [[Ticket #2: Utility Functions][Ticket
 #2: Utility Functions]] which is not written especially for a
 test-driven approach. *That should not be needed now that you know
 what you are doing.*
-
 
 * Right: Classical Approach
 
@@ -1005,14 +1002,14 @@ feature is a prerequisite of the following three, the second is a
 prerequisite of the following two (at least for interesting
 cases), and the third lets us see the effects of the 2nd and 4th.
 (In all honesty, delete should probably be made the second -- but
-we punt on that now, beacuse it is slightly involved.)
+we punt on that now, because it is slightly involved.)
 
 If we wanted to proceed in another order, we would have had to
 create and populate a list by hand to be able to write a
 reasonable test. (There is nothing wrong with that. For a lot of
 things in programming, there is no inherent /right or wrong/ --
 this may vary from case to case and also be strongly influenced by
-what you percieve as natural or intuitive.)
+what you perceive as natural or intuitive.)
 
 #+begin_attention
 *Words of Advice Before You Start*
@@ -1338,7 +1335,7 @@ If you added this to =hash_table.c= and called the method in
 you have a runnable program, you would see it blow up! Why?
 Because we have forgotten about an important edge case, namely
 that the way we have coded up the insertion case requires that
-there is always a /preceeding/ entry -- which is not true for the
+there is always a /preceding/ entry -- which is not true for the
 first entry in the bucket's list. *Doh!* (Forgetting a case is a
 typical programmer mistake, and you should expect to make it many
 times more.)
@@ -1426,7 +1423,7 @@ Finishing this step means finishing the implementation of
 4. Make sure that your code compiles with the [[file:../compiling.org][appropriate flags]]
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 5. Make sure that the code passes your tests.
-6. [[file:../github.org][Check your code into the approprate GitHub repos]]. Tag your
+6. [[file:../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step1=.
 
 *Hints:* For 1. and 2., you have plenty of help from the initial
@@ -1502,7 +1499,7 @@ value, but that argument is going to fall over for say integer
 values or float values. Granted, we aren't supporting these yet,
 but in the back of our minds, we know we conveniently forgot about
 those to simplify the problem to make progress, in exchange to not
-forget them indefinitly.
+forget them indefinitely.
 
 So, if we cannot use ~NULL~ (or any other special value), what are
 our options?
@@ -1654,7 +1651,7 @@ returning its associated value. That seems wasteful!
 Using failure is not an option often requires rethinking an
 operation (and this is not always possible) so that it becomes a
 total function. One way to do so for ~ioopm_hash_table_lookup()~
-is to change the behavious of the function so that it returns, not
+is to change the behaviours of the function so that it returns, not
 the value for the given key, but the /location of that value/.
 Think about it: if there is an entry for the key, there is a
 non-~NULL~ location in the hash table data structure that holds 
@@ -1739,13 +1736,13 @@ code above.
 1. Handle failing lookups by either alternative one or alternative
    three above. Note that your choice may lead you to have to
    alter the [[file:../glossary.org][signature]] of the function (changing the return type
-   and/or adding an additional parmeter).
+   and/or adding an additional parameter).
 2. Implement a couple of tests for ~ioopm_hash_table_lookup()~
    following the instructions in [[Feature 3: Looking up Values][Feature 3: Looking up Values]].
 3. Make sure that your code compiles with the [[file:../compiling.org][appropriate flags]]
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 4. Make sure that the code passes your tests.
-5. [[file:../github.org][Check your code into the approprate GitHub repos]]. Tag your
+5. [[file:../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step2=.
 
 
@@ -1883,7 +1880,7 @@ Finishing this step means finishing the implementation of
 5. Make sure that your code compiles with the [[file:../compiling.org][appropriate flags]]
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 6. Make sure that the code passes your tests.
-7. [[file:../github.org][Check your code into the approprate GitHub repos]]. Tag your
+7. [[file:../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step3=.
 
 *Hints:* For 2., what should be deallocated? Look at a drawing of
@@ -2006,7 +2003,7 @@ be run like this: =valgrind --leak-check=full ./name-of-program=.
 
 Because Valgrind alters the way your program runs, you will likely
 encounter cases where a program crashes when run normally but not
-when run under Valgrind. Do not be tempted to intepret this as a
+when run under Valgrind. Do not be tempted to interpret this as a
 sign of the bug not being in your code.
 
 
@@ -2034,7 +2031,7 @@ introduced along the way.
    through Valgrind, e.g., =make memtest=.
 5. Make sure that the code passes your tests. Fix all memory
    errors reported by Valgrind.
-6. [[file:../github.org][Check your code into the approprate GitHub repos]]. Tag your
+6. [[file:../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step4=.
 
 
@@ -2106,9 +2103,8 @@ bugs by making sure that the tests compile and run as before.
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 2. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 3. Make sure that the code passes your tests.
-4. [[file:../github.org][Check your code into the approprate GitHub repos]]. Tag your
+4. [[file:../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step5=.
-
 
 * Ticket #2: Utility Functions
 
@@ -2166,17 +2162,17 @@ char **ioopm_hash_table_values(ioopm_hash_table_t *h);
 
 /// @brief change the number of buckets for hash table h
 /// @param h hash table operated upon
-/// @param siza the new number of buckets
+/// @param size the new number of buckets
 void ioopm_hash_table_resize(ioopm_hash_table_t *h, int size);
 
 /// @brief check if a hash table has an entry with a given key
 /// @param h hash table operated upon
-/// @param key the key saught 
+/// @param key the key sought 
 bool ioopm_hash_table_has_key(ioopm_hash_table_t *h, int key);
 
 /// @brief check if a hash table has an entry with a given value
 /// @param h hash table operated upon
-/// @param value the value saught 
+/// @param value the value sought 
 bool ioopm_hash_table_has_value(ioopm_hash_table_t *h, char *value);
 
 /// @brief check if a predicate is satisfied by all entries in a hash table
@@ -2222,7 +2218,7 @@ approach, make the same tests, but afterwards.
 
 An alternative design is to let the hash table keep track of its
 size and increment and decrement it on insertion and removal. This
-/amortizes the cost/ of making size calculations over the entire
+/amortises the cost/ of making size calculations over the entire
 life-time of a hash table, allowing use to get the current size of
 a hash table in O(1) time. This design is good if we query the
 size often and otherwise less important or possibly even wasteful.
@@ -2292,7 +2288,7 @@ then call ~ioopm_hash_table_clear()~ from
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 4. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 5. Make sure that the code passes your tests.
-6. [[file:../github.org][Check your code into the approprate GitHub repos]]. Tag your
+6. [[file:../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step6=.
 
 
@@ -2350,7 +2346,7 @@ list instead of an array.
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 4. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 5. Make sure that the code passes your tests.
-6. [[file:../github.org][Check your code into the approprate GitHub repos]]. Tag your
+6. [[file:../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step7=.
 
 
@@ -2397,7 +2393,7 @@ free the array in the end.
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 4. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 5. Make sure that the code passes your tests.
-6. [[file:../github.org][Check your code into the approprate GitHub repos]]. Tag your
+6. [[file:../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step8=.
 
 If you cannot get ~strdup()~ to work, either add ~#define
@@ -2459,7 +2455,7 @@ Again, the ~x~ argument is an extra argument chained through all
 the calls to ~P()~ performed internally in the hash table.
 
 Similarly, we are also going to add support for checking the
-existance of at least /one/ (key, value) entry in a hash table for
+existence of at least /one/ (key, value) entry in a hash table for
 which ~P()~ holds:
 
 #+BEGIN_SRC c
@@ -2508,7 +2504,7 @@ int call_fun(int (*fun)(int, int), int a, int b)
 #+END_SRC
 
 Because these kinds of parameters are hard to read, it often makes
-sense to define a typename for them. For example, we can define
+sense to define a type name for them. For example, we can define
 ~fun_t~ as the name of a type that takes two integers and returns
 an integer, and use this type in the normal way to define a
 parameter. Note that the body of the function is unchanged. To
@@ -2572,7 +2568,7 @@ results in a normal integer variable. *Step 3* finally compares
 the two values and returns the result.
 
 We can write this more succinctly as a single line of code using
-an explict type cast: ~return key1 == *((int *)x);~. This line
+an explicit type cast: ~return key1 == *((int *)x);~. This line
 temporarily changes the type of ~x~ to ~int *~ so we are allowed
 to dereference it. It is just as brittle as the step-wise
 solution and just as efficient.
@@ -2596,9 +2592,8 @@ would probably find the second version more readable.
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 5. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 6. Make sure that the code passes your tests.
-7. [[file:../github.org][Check your code into the approprate GitHub repos]]. Tag your
+7. [[file:../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step9=.
-
 
 * Ticket #3: More, More Basic, Data Structures
 
@@ -2634,7 +2629,7 @@ Here are the functions you should implement. They are reminiscent
 of the functions in the hash table. Stick with the same approach
 (test-driven, classical) as before. The kinds of reasoning that we
 did for the hash table works here too, e.g., there are internal
-functions that can serve as the fundaments of public functions,
+functions that can serve as the building blocks of public functions,
 and more specific public functions can (sometimes) delegate to
 more general public functions.
 
@@ -2779,7 +2774,7 @@ you get going:
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 5. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 6. Make sure that the code passes your tests.
-7. [[file:../github.org][Check your code into the approprate GitHub repos]]. Tag your
+7. [[file:../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step10=.
 
 
@@ -2871,11 +2866,10 @@ like modularity, encapsulation, coupling and cohesion.
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 5. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 6. Make sure that the code passes your tests.
-7. [[file:../github.org][Check your code into the approprate GitHub repos]]. Tag your
+7. [[file:../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step11=.
 
-
-* Ticket #4: Refactoring and Improvments
+* Ticket #4: Refactoring and Improvements
 
 In this step, we are going to polish the hash table and the linked
 list and make a few changes and general improvements.
@@ -2939,14 +2933,14 @@ One could argue that the returning an array is more performant,
 but the linked list offers a richer interface, not to mention
 support for both internal and external iterators. Since the
 internal representation of the list is not visible externally, it
-would not be hard to offer an alternate list implementatation
+would not be hard to offer an alternate list implementation
 backed by an array (generally referred to as an /array list/).
 (This would be an ambitious way to demonstrate e.g., modularity
-and incapsulation.)
+and encapsulation.)
 
 As a result, the return type of ~ioopm_hash_table_keys()~ should
 change to ~ioopm_list_t *~. Updating the function to use the list
-interface instead of the array should be straigtforward. Spend a
+interface instead of the array should be straightforward. Spend a
 few minutes (not more) thinking about the time complexity, and
 what order the keys should be in the list according to the
 specification (or more correctly -- documentation).
@@ -2954,12 +2948,12 @@ specification (or more correctly -- documentation).
 
 *** Optional: Const Annotations
 
-*Note that this is optional* The C ~const~ qualifier provides a
+*Note that this is optional* The C ~con st~ qualifier provides a
 way to indicate that a value will not (or shall not) change. For
 example, the ~strncpy(dst, src, n)~ function that copies n bytes
 from the string ~src~ to the string ~dst~ has the signature ~char
 *strncpy(char *dest, const char *src, size_t n)~. The ~const~
-qualifier here means that ~strncmp()~ only needs read capbilities
+qualifier here means that ~strncmp()~ only needs read capabilities
 for ~src~, in other words, it rescinds the rights the write ~src~,
 meaning that an attempt inside ~strncpy()~ to do e.g., ~src[42] =
 '!'~ will not compile because that /violates constness/. So, not
@@ -2980,7 +2974,7 @@ that intention.
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 5. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 6. Make sure that the code passes your tests.
-7. [[file:../github.org][Check your code into the approprate GitHub repos. Tag your
+7. [[file:../github.org][Check your code into the appropriate GitHub repos. Tag your
    commit with =assignment1_step12=.]]
 
 
@@ -3138,7 +3132,7 @@ This is no longer a problem, so go ahead and update
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 7. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 8. Make sure that the code passes your tests.
-9. [[file:../github.org][Check your code into the approprate GitHub repos]]. Tag your
+9. [[file:../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step13=.
 
 
@@ -3172,7 +3166,7 @@ Let's put our hash table to use!
 # *Ticket C:* After every 32 user interactions, remove items whose
 # stock quote is zero.
 
-# In the case of underspecification, feel free to be creative. 
+# In the case of under-specification, feel free to be creative. 
 
 We are going to write a simple program that reads zero or more
 files, and counts the frequencies of the words in these files. A
@@ -3183,7 +3177,7 @@ $ ./freq-count file1 file2
 word1: frequency1
 word2: frequency2
 ...
-word3: frequencyn
+word3: frequency
 #+end_example
 
 where output is lexicographic order on the keys.
@@ -3373,7 +3367,7 @@ exponentially rather than linearly) so we do not need to repeat
 this costly operation so often.
 
 It is a good idea to factor out the growth check and the actual
-growth and rehasing in a single function that gets called early in
+growth and rehashing in a single function that gets called early in
 operations that may grow the hash table, so that they can always
 proceed with that already taken care of.
 
@@ -3468,7 +3462,7 @@ a subsequence of all the links belongs to a specific bucket. There
 are several schemes to make this work. Ideally, we would be able
 to use the existing linked list implementation. If each bucket
 holds its starting index in the linked list, inserting into a
-bucket would e.g. create an iterator, then move the neccessary
+bucket would e.g. create an iterator, then move the necessary
 number of steps forward, and then step and check the key value
 until we reach the end of the bucket, or an entry with a larger
 key and use the insert function of the iterator. While simple --
@@ -3506,7 +3500,7 @@ remove in the hash table to drive the implementation.
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 7. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
 8. Make sure that the code passes your tests.
-9. [[file:../github.org][Check your code and the profiling results into the approprate
+9. [[file:../github.org][Check your code and the profiling results into the appropriate
    GitHub repos]]. Tag your commit with =assignment1_step14=.
 
 
@@ -3534,24 +3528,24 @@ program. What way of working that works best for you is up to you.
 
 As part of your way of getting here, you have written some tests.
 To measure how much of your code your tests actually execute, we
-can use a /coverage tool/, like [[https://en.wikipedia.org/wiki/Gcov][gcov]]. A coverage tool will tell
+can use a /coverage tool/, like [[https://en.wikipedia.org/wiki/Gcov][gov]]. A coverage tool will tell
 you, in varying ways depending on how it is implemented, tell you
 what lines of code your tests run, and/or what paths in the
 control flow that are covered. For example, imagine that you have
 a complex nested conditional -- it is easy to miss executing all
 combinations of branching, e.g., true followed by false, false
 followed by false, etc. (or more complicated). As part of this
-final step, run a code coverage tool (hint, [[https://en.wikipedia.org/wiki/Gcov][gcov]] is installed
+final step, run a code coverage tool (hint, [[https://en.wikipedia.org/wiki/Gcov][gov]] is installed
 already, but feel free to try something more fancy) and construct
-a code coverage report for your files. If you use gcov, you can
-[[https://qiaomuf.wordpress.com/2011/05/26/use-gcov-and-lcov-to-know-your-test-coverage/][easily add lcov to your tool chain]] ([[https://embeddedinn.wordpress.com/tutorials/test-coverage-analysis-with-gcov/][alternative guide]]) to produce
+a code coverage report for your files. If you use gov, you can
+[[https://qiaomuf.wordpress.com/2011/05/26/use-gcov-and-lcov-to-know-your-test-coverage/][easily add Lvov to your tool chain]] ([[https://embeddedinn.wordpress.com/tutorials/test-coverage-analysis-with-gcov/][alternative guide]]) to produce
 a much more appealing visual code coverage report.
 
 Knowing the code coverage of your test is important -- it gives us
 some high-level knowledge about the quality of the tests. Since
 code and tests will evolve, we are likely going to want to
 generate these numbers time and again. *To that end, automate the
-procedure and stick it in your makefile.*
+procedure and stick it in your Makefile.*
 
 *** Finishing the Assignment
 
@@ -3589,7 +3583,6 @@ procedure and stick it in your makefile.*
 have got from the oral presentations. If you want more feedback on
 specific things, ask questions in conjunction with your
 presentations, or add your name to the help list.
-
 
 * Known Bugs
 - As of 2018-09-01, this document has no known bugs. 
