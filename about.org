@@ -32,47 +32,56 @@ sprint.
 ** Inlämningsuppgifter, mål och redovisning
 För att bli godkänd på kursen kommer du att behöva demonstrera att
 du uppnått alla kursmål (detta gäller på alla kurser). För att
-göra det tydligare arbetar vi med att separera inlämningsuppgifter
-från de kursmål de (är tänkta att) examinerar. Det betyder att
+göra det tydligt arbetar vi med att separera inlämningsuppgifter
+från de kursmål de (är tänkta att) examinera. Det betyder att
 syftet med att göra en inlämningsuppgift inte är att "skriva ett
 program som..." utan att koppla programmet mot kursens mål och
 använda programmen som du skriver för att visa att du uppnått
 målen.
 
-Du utgår alltså från (helst färdiga, men även ofärdiga) uppgifter
-när du redovisar mål, och det skall finnas en tydlig koppling till
-uppgiften eller någon föreslagen utökning till uppgiften. Det
-ingår i uppgiften (eller egentligen i hela kursupplägget) att
-förstå mappningen från uppgift (eller del av uppgift) till
-lämpliga mål. Vi ger dock förslag, men färre och färre ju längre
-in i kursen vi kommer. Det räcker inte med att bara följa
-förslagen för att bli godkänd, utan du måste själv ta reda
-på/förstå vilka mål du bör redovisa när.
+Du utgår alltså från uppgifter (i olika grad av förfärdigande
+beroende på när du redovisar) när du redovisar mål, och det skall
+finnas en tydlig koppling till uppgiften eller någon föreslagen
+utökning till uppgiften. Det ingår i uppgiften (eller egentligen i
+hela kursupplägget) att förstå mappningen från uppgift (eller del
+av uppgift) till lämpliga mål. Vi ger ibland förslag, men färre
+och färre ju längre in i kursen vi kommer. Det räcker inte med att
+bara följa förslagen för att bli godkänd, utan du måste själv ta
+reda på/förstå vilka mål du bör redovisa och när. 
 
 Målen redovisar du i stort sett uteslutande på labbarna (ca 8
 timmar varje vecka). Till labbarna kan du också gå för att få
 hjälp. Försök att alltid redovisa mål i sammanhängande klumpar.
 ** Om kursmålen
 För varje mål anges vilken nivå målet ligger på och hur det kan
-redovisas. Totalt finns 36 mål på nivå 3, 18 mål på nivå 4 och 8
-mål på nivå 5. Utöver dessa finns 4 mål som avser inluppar och 6
-mål för projektet. Du förväntas bocka av mål löpande under kursens
-gång. För att bli godkänd på kursen måste alla inluppsmål och
-projektmål vara godkända. För att få betyget 3 på kursen måste
-samtliga mål på nivå 3 vara uppfyllda, för betygen 4 måste
-samtliga mål på nivå 3 och 4 vara uppfyllda och för betyget 5
-måste samtliga mål vara uppfyllda. Observera att det inte finns en
-linjär relation mellan antalet mål och tidsåtgång -- och många mål
-kan bockas av samtidigt och inom ramarna för samma uppgift.
+redovisas. 2018 finns ca 43 mål på nivå 3, 18 mål på nivå 4 och
+knappt 8 mål på nivå 5. Av de 43 målen på nivå 3 avser 4 mål
+avklarade inluppar och 6 mål redovisas i och med projektet. 
+
+Du måste bocka av mål löpande under kursens gång. Det är ca 25
+labbar att redovisa på och totalt 55 mål att redovisa på labbar
+(för nivå 5). Det finns ett maxtak på 4 avbokade mål per
+labbtillfället -- du måste alltså redovisa på minst 17 labbar för
+att få betyget 5.
+
+För att bli godkänd på kursen måste alla mål vara godkända, och
+kodprovet avklarat. För att få betyget 3 på kursen måste samtliga
+mål på nivå 3 vara uppfyllda, för betygen 4 måste samtliga mål på
+nivå 3 och 4 vara uppfyllda och för betyget 5 måste samtliga mål
+vara uppfyllda. Observera att det inte finns en linjär relation
+mellan antalet mål och tidsåtgång -- och många mål kan bockas av
+samtidigt och inom ramarna för samma uppgift.
 
 Notera att du förväntas att själv söka efter information, både i
 de länkar och bokreferenser som finns i kursmaterialet, men också
 fritt med hjälp av t.ex. Google och Wikipedia. Föreläsningarnas
 syfte är att måla en övergripande bild och introducera viktiga
-koncept och ibland även göra praktiska övningar. Screencasts
-används för mer detaljerade utvikningar om mindre ämnen. Förslag
-på kursböcker finns på kursens webbsida, men det finns ingen
-specifik bok som vi följer under kursens gång.
+koncept och ibland även göra praktiska övningar. 
+** TODO Kurslitteratur
+- Ingen specifik bok
+- Fråga om du vill ha en bok, beroende på vad du söker
+- K&R, Shaw, Modern C
+- Lewis & Loftus
 ** Arbetsgrupper och programmeringspar
 Under kursens gång kommer du att ingå i en framslumpad arbetsgrupp
 med ca 10-12 personer. Dessa grupper byggs successivt upp under
@@ -83,31 +92,31 @@ mellan varje inlämningsuppgift och att inger får ha samma
 partner mer än en gång under fas 1 och 2. Anledningen till att du
 själv skall välja par beror på att du i möjligaste mån vill arbeta
 med någon annan i samma grupp med liknande intressen och
-ambitioner. I projektet kommer vi att bilda projektgrupper av två
-programmeringspar. (Möjligen tre.)
+ambitioner. 
 
-Du kommer att göra i stort sett allt arbete på denna kurs
-tillsammans med någon annan i ett programmeringspar. Ni kommer
-också i regel att redovisa tillsammans, oavsett om dessa
-redovisningar sker i labbsal eller på annat sätt. Alla
-redovisningar ger dock individuella godkänt/underkänt och det är
-möjligt för studenterna A och B att redovisa för målen X, Y och Z
-varav endast B redovisar Z och endast A blir godkänd på X.
+Allt arbete på kursen sker tillsammans med någon annan i ett
+programmeringspar. Paren kommer också i regel att redovisa
+tillsammans, oavsett om dessa redovisningar sker i labbsal eller
+på annat sätt. Alla bedömningar är individuella och det är möjligt
+att en student blir godkänd och en underkänd på samma redovisning.
+Det är också möjligt att ha en redovisning där endast en student
+bockar av högre mål, etc.
 ** Redovisning och AU-Portalen
-With few exceptions (e.g., essay, C7, and the project
-achievements), all demonstrations take the form of oral
-examination in front of a computer terminal with one examiner and
-two students working in a pair.
+With few exceptions (essay, C7, communication and project
+achievements), demonstrations take the form of oral examination in
+front of a computer terminal with one examiner and two students
+working in a pair.
 
 Checks are individual, meaning that both respondents must
 demonstrate mastery for both to pass. A mostly passive respondent
 will not pass a check even with a brilliant partner. The
 responsibility for making sure that both respondents actively
-participate is on you -- not on the examiner. For this reason, and
-because it tends to speed things up, we encourage you to prepare
-your demonstrations and discuss who says what. In our experience,
-this makes demonstrations run faster, have higher quality, and
-increase your reflection (e.g., you will remember it better).
+participate is on the respondents -- not on the examiner. For this
+reason, and because it tends to speed things up, we encourage you
+to prepare your demonstrations and discuss who says what. In our
+experience, this makes demonstrations run faster, have higher
+quality, and increase your reflection (e.g., you will remember it
+better).
 
 The choice of oral examination serves several purposes. Explaining
 interactively is time-efficient, both for you and us, and feedback
@@ -119,7 +128,7 @@ Demonstrations take place in 1515, 1549 and (for students with
 laptops also 1245), during the lab sessions, excluding bootstrap
 labs (where you will be demonstrating lab tasks instead). You
 request to demonstrate through the [[http://auportal.herokuapp.com/][AU Portal]] where you can choose
-which achievements they wish to demonstrate.
+which achievements you wish to demonstrate.
 
 After requesting to demonstrate, there will be a waiting period
 (/so please do continue to work/). A feed of pending requests to
@@ -133,21 +142,21 @@ and by whom. At all times, you can also see how many requests are
 waiting and how many are in front of their request, if any. *You
 cannot queue several simultaneous requests.*
 
-When the examiner arrives, you must /pitch their
-  demonstration/, which means:
-- Stating the achievements you wish to demonstrate
-- Explaining why/how it makes sense to demonstrate them together
-- Explaining what *evidence* you will use in the demonstration
+When the examiner arrives, you must /pitch your demonstration/, 
+which means:
+1. Stating what achievements you wish to demonstrate
+2. Explaining why/how it makes sense to demonstrate them together
+3. Explaining what *evidence* you will use in the demonstration
 
 If the examiner is /not/ satisfied with 1 or 2, she
 will explain why and reject the request.
 
-By *evidence*, we mean artefacts developed in the course that will
-form the basis of the demonstration. For example, "we profiled the
-binary search tree that we developed in Assignment 2". The key
-idea with evidence is that you relate the achievements to the
-programming assignments (and programming project) of the
-course.[fn::In the course's initial instalment, we naively allowed
+By *evidence*, we mostly mean artefacts developed in the course
+that will form the basis of the demonstration. For example, "we
+profiled the binary search tree that we developed in Assignment
+2". The key idea with evidence is that you relate the achievements
+to the programming assignments (and programming project) of the
+course[fn::In the course's initial instalment, we naively allowed
 any code to be used in demonstrations prompting students to search
 for code rather than write their own, or spending lots of time
 trying to write a minimal program that could be used to
@@ -155,7 +164,7 @@ demonstrate a maximal number of achievements. While there are
 merits to both these approaches, we are seeking to teach how to
 write imperative and object-oriented code, which is why we added
 the requirement of evidence in the form of assignments from the
-course.] Expect to be asked questions that force you to go
+course.]. Expect to be asked questions that force you to go
 "off-script", e.g., what would happen if $X$ is changed for $Y$,
 or the examiner asks you to change some lines of code, or
 introduces a bug etc.
@@ -168,12 +177,13 @@ ask questions. Some delay all questions to the end.
 Only the achievements explicitly stated at the beginning of the
 demonstration can be passed in the demonstration. If you were to
 happen to ``meet the requirements'' for some other achievement
-too, *this will be ignored*. Actually, we will not even tell you
-if you didn't see it yourself! Our philosophy is that /you can
-only know what you know you know/, meaning that accidentally
-demonstrating procedural abstraction not knowing that that is what
-you are doing counts as nothing. (We are not sadists either so
-expect to get nudged towards the relevant insight.)
+too, *this achivement will not be marked as done*. Actually, we
+will not even tell you if you didn't see it yourself! Our
+philosophy is that /you can only know what you know you know/,
+meaning that accidentally demonstrating procedural abstraction not
+knowing that that is what you are doing counts as nothing. (We are
+not sadists either so expect to get nudged towards the relevant
+insight.)
 
 Each achievement in your demonstration will be marked as either
 *pass*, *fail* or *fail with push-back*. If you fail to
@@ -184,12 +194,17 @@ the rest of the lab session to encourage spending some more time
 understanding that achievement. /Failures with or without
 push-back are not counted towards any grade./
 
-*An examiner's decision is final*, and the examiner does not /have
-to/ motivate failing a presentation. Examiners are expected to
-explain and motivate both passing and failing grades on
-demonstration.
+#+begin_note
+In 2017, about 30\% of all demonstrations were at least partially
+failed. About 5\% got puch-backs. 
+#+end_note
+
+*An examiner's decision is final*, and the examiner does not "have
+to" motivate failing a presentation. Examiners are however
+expected to explain and motivate both passing and failing grades
+on demonstration.
 ** Uppföljningsmöten
-En gång per sprint kommer du att kallas till ett kort
+Vid sex tillfällen under kursen kommer du att kallas till ett kort
 uppföljningsmöte där du (och din labbpartner) får presentera hur
 det går för er i den pågående sprinten. Där kan ni visa vad ni har
 gjort hittills och vad ni planerar att göra resten av sprinten.
@@ -197,8 +212,7 @@ Tanken med dessa möten är att ni ska kunna få hjälp att hålla en
 lämplig styrfart genom kursen och att komma loss om ni har kört
 fast. Om ni är osäkra på vilka mål som passar med er uppgift kan
 får ni diskutera saken med en assistent och ett annat
-programmeringspar. Information om hur uppföljningsmötena går till
-kommer på första mötet.
+programmeringspar. [[file:team.org::*Group%20Meetings][Läs mer här]].
 ** Labbar
 #+begin_important
 *SUPERVIKTIG SKILLNAD MOT PKD:* Labbar på denna kurs avser tid att
@@ -273,10 +287,10 @@ beslut. Du kan ändra dig senare. För att minska stressen kan du
 redan nu planera in en tidpunkt (t.ex. 1:a oktober) för att
 eventuellt revidera beslutet.
 ** Steg 2: Styrfart
-Hur blir du godkänd på en kurs? Det går inte att arbeta på att "bli
-godkänd", det är för flummigt och abstrakt. "Problemet" måste brytas ned
-i mindre beståndsdelar (delproblem) och kanske
-även bryta ned dessa ytterligare för att nå tillräckligt konkreta
+Hur blir du godkänd på en kurs? Det går inte att arbeta på att
+"bli godkänd", det är för flummigt och abstrakt. "Problemet" måste
+brytas ned i mindre beståndsdelar (delproblem) och kanske även
+bryta ned dessa ytterligare för att nå tillräckligt konkreta
 proble/uppgifter som faktiskt går att tackla.
 
 Du har redan fattat beslut om vilket betyg du vill ha. Då vet du
@@ -304,9 +318,9 @@ skulle det "idealiska" vara en rät linje med start i (0,30) och
 slut i (5,0). Verklighetens kurva kommer att se annorlunda ut.
 
 En graf av detta slag kallas för en burndown chart, och du kommer
-att göra många sådana under kursens gång. En burndown chart är
-enkel och ger direkt en känsla för om det "går bra" eller inte --
-kommer jag till slut att komma i mål på utsatt tid? 
+att göra flera sådana under kursens gång. En burndown chart är
+enkel att tolka och ger direkt en känsla för om det "går bra"
+eller inte -- kommer jag till slut att komma i mål på utsatt tid?
 
 #+CAPTION: Exempel på burndown chart.
 file:images/SampleBurndownChart.png
@@ -403,35 +417,35 @@ till att hjälpa dig att komma igång.
 
 Du hittar våra Trello-bräden [[https://trello.com/ioopm][här]]
 .
-* TODO Träning i skriftlig framställning
-Universitetskanslerämbetet åligger oss att träna studenter i
-skriftlig framställning. Oavsett detta är det ofta [[http://gotocon.com/dl/goto-aar-2013/slides/CristinaVideiraLopes_ExercisesInStyle.pdf][liten skillnad
-mellan att programmera och att skriva text]] eftersom [[https://mitpress.mit.edu/sicp/front/node3.html][kod skrivs så
-att andra programmerare skall kunna läsa den, inte främst för att
-exekveras]].
+# * Träning i skriftlig framställning
+# Universitetskanslerämbetet åligger oss att träna studenter i
+# skriftlig framställning. Oavsett detta är det ofta [[http://gotocon.com/dl/goto-aar-2013/slides/CristinaVideiraLopes_ExercisesInStyle.pdf][liten skillnad
+# mellan att programmera och att skriva text]] eftersom [[https://mitpress.mit.edu/sicp/front/node3.html][kod skrivs så
+# att andra programmerare skall kunna läsa den, inte främst för att
+# exekveras]].
 
-På denna kurs tränar vi skriftlig framställning i projektrapporten
-(det går alltså att bli underkänd på en undermålig rapport), men också
-via en essä (för nivå 4/5). Du kan läsa om den bland målen.
-* TODO Träning i att hålla presentationer
-Universitetskanslerämbetet åligger oss att träna studenter i att
-hålla presentationer. Oavsett detta är det extremt viktigt att
-kunna hålla presentationer, på många olika nivåer. På ett ståmöte
-behöver man kunna sammafatta hur arbetet med en viss del av
-systemet går på 30-60 sekunder. På en anställningsintervju kanske
-man måste kunna presentera en lösning av ett problem eller hur man
-felsöker ett visst sorts fel i ett system. På en
-utvecklarkonferens måste man kunna förmedla kunskap eller
-entusiasm kring något som man arbetar med. I ett möte kring en
-ISO-standard måste man kunna argumentera för den lösning som man
-tror är den bästa på ett väl förberett sätt. Etc.
-# På denna kurs tränar vi presentation i två steg. Först skall du
-# hålla en individuell presentation och få återkoppling på den.
-# Vissa av er kommer att hålla ytterligare en individuell
-# presentation, och slutligen kommer du att göra en gemensam
-# presentation med din projektgrupp i kursens slut. Tanken är att
-# den sista gemensamma redovisningen är den stora och att du skall
-# få tillfälle att träna och få återkoppling innan dess.
+# På denna kurs tränar vi skriftlig framställning i projektrapporten
+# (det går alltså att bli underkänd på en undermålig rapport), men också
+# via en essä (för högre betyg). Du kan läsa om den bland [[file:achievements.org::*59][målen]].
+# * Träning i att hålla presentationer
+# Universitetskanslerämbetet åligger oss att träna studenter i att
+# hålla presentationer. Oavsett detta är det extremt viktigt att
+# kunna hålla presentationer, på många olika nivåer. På ett ståmöte
+# behöver man kunna sammafatta hur arbetet med en viss del av
+# systemet går på 30-60 sekunder. På en anställningsintervju kanske
+# man måste kunna presentera en lösning av ett problem eller hur man
+# felsöker ett visst sorts fel i ett system. På en
+# utvecklarkonferens måste man kunna förmedla kunskap eller
+# entusiasm kring något som man arbetar med. I ett möte kring en
+# ISO-standard måste man kunna argumentera för den lösning som man
+# tror är den bästa på ett väl förberett sätt. Etc.
+# # På denna kurs tränar vi presentation i två steg. Först skall du
+# # hålla en individuell presentation och få återkoppling på den.
+# # Vissa av er kommer att hålla ytterligare en individuell
+# # presentation, och slutligen kommer du att göra en gemensam
+# # presentation med din projektgrupp i kursens slut. Tanken är att
+# # den sista gemensamma redovisningen är den stora och att du skall
+# # få tillfälle att träna och få återkoppling innan dess.
 * Deadlines
 ** Hur funkar deadlines?
 De flesta inlämningsuppgifter har två deadlines, en mjuk och en
@@ -441,7 +455,7 @@ måste ha redovisat. Den hårda deadlinen ligger alltid en eller två
 veckor efter den mjuka, och ofta i samband med en annan deadline.
 ** Att missa en hård deadline
 Ett kodpar som missar en hård deadline blir kallad till ett
-uppföljningsmöte med obligatorisk närvaro för att diskutera
+/uppföljningsmöte med obligatorisk närvaro/ för att diskutera
 anledningen och eventuella påföljder. Undvik att missa hårda
 deadlines!
 * Academic Honesty and Integrity
@@ -462,15 +476,14 @@ If you have taken ideas from elsewhere or used code sourced from
 elsewhere, you must say so with utmost clarity in the
 documentation of your assignment. 
 
-When in doubt, ask Tobias. 
+When in doubt, ask [[file:tas2018.org::*Head%20Teacher:%20Tobias%20Wrigstad][Tobias]]. 
 
 #+begin_important
 Make sure you have familiarised yourself with the rules of
 plagiarism at the department and the university.
 #+end_important
 * FAQ
-*Q*: Jag har delar av IOOPM från *före* 2013 kvar! Hur skall jag
-göra? \\
+*Q*: Jag har delar av IOOPM från *före* 2013 kvar! Hur skall jag göra? \\
 *A*: Om du läste kursen innan den gjordes om 2013 så ska du
 göra olika saker beroende på vad du har kvar. Oavsett vad bör du
 börja med att skicka ett mejl till Tobias och berätta vad du har
