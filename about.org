@@ -526,5 +526,9 @@ mål av upp till sju.
 *Q*: Jag har en idé -- vill ni höra den? \\
 *A*: [[mailto:ioopm-suggestions@wrigstad.com][JA]]! 
 
+*Q*: Why are these course pages a mix in Swedish and English? \\
+*A*: I am in the process of translating the material for this course from Swedish to English. The reason for this is to be able to have non-Swedish speaking TAs on this course. This transition will be gradual, meaning that these pages are sometimes in Swedish, sometimes in English and sometimes a funky mix.  
+
+
 
 #+include: "./footer.org" 

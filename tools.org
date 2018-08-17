@@ -81,9 +81,39 @@ $ sudo apt-get install -y gcc clang libclang-dev lldb emacs25 vim tree make \
        xclip global zip unzip openjdk-8-jdk linux-tools-generic \
        cscope cproto gcovr tig htop junit gnuplot graphviz cmake
 #+END_EXAMPLE
+where =\= is a line break in the terminal and completely optional -- used here for formatting.
 ** Using Homebrew on macOS and Skip Virtualbox
 1. Open https://brew.sh/ in a browser, and copy-and-paste the installation command into a terminal and execute it
 2. Install the individual components in the [[software][list of software]] above, e.g., through =brew install gcc=, etc. -- use [[https://formulae.brew.sh/formula/][this search index]] for finding brew packages
+
+*** Homebrew and most packages
+
+If not installed, install /homebrew/: =/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"=
+
+Using homebrew, you can install the above thus:
+#+BEGIN_EXAMPLE
+brew install astyle cmake cproto cscope cunit curl doxygen gcovr git \
+     global gnuplot graphviz htop make tig tmux tree unzip valgrind \
+     vim xclip zip zsh
+#+END_EXAMPLE
+where =\= is a line break in the terminal and completely optional -- used here for formatting.
+
+
+*** Installing Emacs
+
+Install from https://emacsformacosx.com or use homebrew! 
+
+*** =clang= and =libclang-dev=
+
+Install Xcode.app via App Store or run =gcc= in the terminal. If not installed, a dialogue will appear -- follow it.
+
+*** Java JDK
+Download and install from http://www.oracle.com/technetwork/java/javase/downloads/index.html
+
+*** junit
+- Official installation guide: https://junit.org/junit5/docs/current/user-guide
+- Stackoverflow installation guide, probably easier: https://stackoverflow.com/a/26977630/1283083
+
 ** TODO Installing Tools in the Linux Subsystem of Windows :help_wanted:
 #+begin_important
 A step-by-step description of this, or information about how it is

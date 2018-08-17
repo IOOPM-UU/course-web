@@ -191,7 +191,10 @@ function getSelectionText() {
 
 document.onkeydown = function(evt) {
     evt = evt || window.event;
-    if (evt.ctrlKey && evt.keyCode == 88) {
+    if (evt.ctrlKey && evt.keyCode == 90) {  // Ctrl+Z
+        window.location.href = "http://wrigstad.com/ioopm18";
+    } else
+    if (evt.ctrlKey && evt.keyCode == 88) {  // Ctrl+X
         var text = getSelectionText();
         if (text.length > 0)
             {
@@ -201,5 +204,6 @@ document.onkeydown = function(evt) {
             }
     }
 };
+
 
 

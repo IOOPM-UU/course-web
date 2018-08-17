@@ -932,7 +932,29 @@ footer p{
     border-left:5px solid #6AB0DE;
     background-color: #E7F2FA;
     padding: 6px 20px;
-    font-style:italic;
+    font-style: italic;
+}
+
+.summary {
+    border-left:5px solid #6AB0DE;
+    background-color: #E7F2FA;
+    padding: 6px;
+    padding-top: 10px;
+    padding-left: 20px;
+    margin: 4px;
+    font-size: 120%;
+    font-family: Times, "Times New Roman", serif;
+}
+
+.SUMMARY {
+    border-left:5px solid #6AB0DE;
+    background-color: #E7F2FA;
+    padding: 6px;
+    padding-top: 10px;
+    padding-left: 20px;
+    margin: 4px;
+    font-size: 120%;
+    font-family: Times, "Times New Roman", serif;
 }
 
 #content .note .last,#content .attention .last,#content .caution .last,#content .danger .last,#content .error .last,#content .hint .last,#content .important .last,#content .tip .last,#content .warning .last,#content .seealso .last,#content .admonitiontodo .last{
@@ -1089,23 +1111,6 @@ h2.footnotes{
     font-family:"Roboto Slab","ff-tisa-web-pro","Georgia",Arial,sans-serif;
 }
 
-span.tag span.redovisas {
-    color: white;
-    background: red;
-}
-
-span.tag span.optional {
-    color: white;
-    background: magenta;
-    border: none;
-}
-
-span.tag span.help_wanted {
-    color: red;
-    background: lightgray;
-    border: none;
-}
-
 pre {
     color: #eee;
     background: #333;
@@ -1204,36 +1209,42 @@ h2.expandable:after {
     font-family: 'FontAwesome';
     content: " ";
     color: magenta;
+    cursor: pointer;
 }
 
 h3.expandable:after {
     font-family: 'FontAwesome';
     content: " ";
     color: magenta;
+    cursor: pointer;
 }
 
 h4.expandable:after {
     font-family: 'FontAwesome';
     content: " ";
     color: magenta;
+    cursor: pointer;
 }
 
 h2.is-collapsable-hint:hover:after {
     font-family: 'FontAwesome';
     content: " ";
     color: #bbb;
+    cursor: pointer;
 }
 
 h3.is-collapsable-hint:hover:after {
     font-family: 'FontAwesome';
     content: " ";
     color: #bbb;
+    cursor: pointer;
 }
 
 h4.is-collapsable-hint:hover:after {
     font-family: 'FontAwesome';
     content: " ";
     color: #bbb;
+    cursor: pointer;
 }
 
 
@@ -1344,3 +1355,66 @@ ul.link-list {
     list-style: none;
     border-top: solid 1px #f0f0f0;
 }
+
+/* === START TAGS === */
+span.redovisas {
+    color: white;
+    background: red;
+}
+
+span.optional {
+    color: white;
+    background: magenta;
+    border: none;
+}
+
+span.help_wanted {
+    color: red;
+    background: lightgray;
+    border: none;
+}
+
+span.G3 {
+    color: black;
+    border: 1px solid Green;;
+    background: GreenYellow;
+}
+
+span.G4 {
+    color: black;
+    border: 1px solid Teal;
+    background: Aquamarine;
+}
+
+span.G5 {
+    color: black;
+    border: 1px solid GoldenRod;
+    background: Gold;
+}
+
+span.Lab {
+    border: 1px solid Blue;
+    color: white;
+    background: DodgerBlue;
+}
+
+span.Special {
+    border: 1px solid Blue;
+    color: white;
+    background: DodgerBlue;
+}
+
+span.Report {
+    border: 1px solid Blue;
+    color: white;
+    background: DodgerBlue;
+}
+
+h3 span.tag span.G3 { padding: 2px; }
+h3 span.tag span.G4 { padding: 2px; }
+h3 span.tag span.G5 { padding: 2px; }
+h3 span.tag span.Lab { padding: 2px; }
+h3 span.tag span.Special { padding: 2px; }
+h3 span.tag span.Report { padding: 2px; }
+
+/* === STOP TAGS === */

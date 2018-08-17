@@ -25,14 +25,14 @@ subject to change* and broken links, etc. are to be expected.
 Please be restrictive in reporting any errors for now.
 #+end_danger
 
-#+begin_note
-I am in the process of translating the material for this course
-from Swedish to English. The reason for this is to be able to have
-non-Swedish speaking TAs on this course. This transition will be
-gradual, meaning that these pages are sometimes in Swedish, 
-sometimes in English and sometimes a funky mix. 
-*This note will be removed early in the course to reduce noise.*
-#+end_note
+# #+begin_note
+# I am in the process of translating the material for this course
+# from Swedish to English. The reason for this is to be able to have
+# non-Swedish speaking TAs on this course. This transition will be
+# gradual, meaning that these pages are sometimes in Swedish, 
+# sometimes in English and sometimes a funky mix. 
+# *This note will be removed early in the course to reduce noise.*
+# #+end_note
 
 #+HTML_HEAD_EXTRA: <!-- Start of StatCounter Code for Default Guide -->
 #+HTML_HEAD_EXTRA: <script type="text/javascript">

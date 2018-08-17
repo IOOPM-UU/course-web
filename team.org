@@ -90,8 +90,20 @@ orsaker till missförstånd, etc.
 
 * Group Meetings
 
-En gång varje sprint skall du gå på ett uppföljningsmöte, som din
-coach kallar till. Till detta möte skall du ta med dig åtminstone:
+Sex gånger under kursen möts teamet för ett uppföljningsmöte, som
+coachen kallar till. Här är en förteckning av mötena, samt vad
+ämnesraden för rapportmailet skall vara för detta möte (se nedan).
+
+| Möte                          | Ämnesrad på rapportmail                  |
+|-------------------------------+------------------------------------------|
+| Första möte under C-bootstrap | =[IOOPM/Meeting] <Grupp> C-Bootstrap=    |
+| Fas 1/Sprint 1                | =[IOOPM/Meeting] <Grupp> Fas 1/Sprint 1= |
+| Fas 1/Sprint 2                | =[IOOPM/Meeting] <Grupp> Fas 1/Sprint 2= |
+| Fas 2/Sprint 1                | =[IOOPM/Meeting] <Grupp> Fas 2/Sprint 1= |
+| Fas 2/Sprint 2                | =[IOOPM/Meeting] <Grupp> Fas 2/Sprint 2= |
+| Projekt                       | =[IOOPM/Meeting] <Grupp> Fas 3=          |
+
+Till varje uppföljningsmöte skall du ta med dig åtminstone:
 
 - Planeringen för den aktuella sprinten (inlämningsuppgiften)
 - [[https://en.wikipedia.org/wiki/Burn_down_chart][Burndown chart]] för den aktuella sprinten (inlämningsuppgiften)
@@ -121,8 +133,9 @@ komma med tips på passande mål! Avsluta med att visa era burndown
 charts för hela kursen och säg något om er nuvarande styrfart.
 
 *Teamet skriver en rapport för varje möte* som lämnas in via mail
-till coachen och till [[file:tas2018.org][huvudassistenten]], och CC:as till samtliga i
-teamet. Denna rapport skall vara mycket kortfattad och innehålla:
+till coachen och till funktionsadressen [[mailto:ioopm@it.uu.se]], och
+CC:as till samtliga i teamet. *Ämnesrad på mailet enligt tabell
+ovan!* Rapporten skall vara mycket kortfattad och innehålla:
 
 1. Antalet kodpar som håller åtminstone avsedd styrfart respektive
    som inte gör det
@@ -136,7 +149,8 @@ teamet. Denna rapport skall vara mycket kortfattad och innehålla:
    teamet anser behöver en knuff i rätt riktning
 6. Eventuella förslag till kursledning (t.ex. saker att ta upp
    extra, deadlines att flytta, önskemål, etc.)
-7. "Underskrifter" på samtliga närvarande
+7. Samtliga närvarandes "underskrifter" och en lista på
+   frånvarande (som idealiskt skall vara tom!)
 
 OBS! Listan i den 4:e punkten ovan är inte till för att "sätta
 dit" någon som det går dåligt för, utan tvärt om -- för att hjälpa
@@ -156,5 +170,61 @@ under kursens gång i samband med [[aua:7][C7: Planering och uppföljning]].
 #+begin_note
 Om coachens schema kräver kan dessa möten behöva ledas av teamet självt.
 #+end_note
+
+
+** Instruktioner för det första mötet
+
+#+begin_important
+I samband med detta första möte skall ni ge gruppen ett namn som
+ni/vi kommer att få dras med under resten av kursen. (Vi
+förbehåller oss rätten att ändra uppenbara dumheter och
+dubletter.) *Skriv detta namn i mailet som ni skickar in.*
+#+end_important
+
+- Ta mötet på allvar. Låt det ta tid. Trättas gärna nere på stan
+  på ett fik, eller över en öl på en nation.
+- Det är viktigt att du skaffar en relation till de andra
+  personerna i din grupp. Det är bland dessa som du kommer att
+  välja partners till kodparen.
+- Gå en runda och låt alla presentera sig kort! Berätta litet om
+  vem du är och vad du vill åstadkomma med din utbildning
+  generellt, och vad du har för ambitioner med denna kurs
+  specifikt. Beskriv kort din programmeringsbakgrund. Vad vill du
+  jobba med? Kanske kan ni komma överens om att träffas
+  regelbundet och plugga/programmera/etc.?
+- Välj ett namn som ger er pepp! 
+
+*Tillägg till första rapportmailet:* 
+
+Under fyra separata rubriker:
+
+1. Skriv ned namnet ni har valt
+2. Sammafatta kort vad ni har för förhoppningar och farhågor inför
+   kursen
+3. Sammafatta kort vad ni vill få ut av kursen
+4. Sammafatta kort om ni har önskemål på oss som ger kursen 
+
+
+** Instruktioner för möte 3 eller 4 (beroende på när det hålls)
+
+*Tillägg till rapportmailet:* 
+
+Under tre separata rubriker:
+
+1. Hur upplever ni programspråket C? 
+2. Hur upplevde ni styrning kontra frihet i inlämningsuppgift 1 och 2? 
+3. Vad bör vi göra annorlunda nästa år (eller i fas 2)? 
+
+
+** TODO Instruktioner för möte 5 eller 6 (beroende på när det hålls)
+
+*Tillägg till rapportmailet:* 
+
+Under två separata rubriker:
+
+1. Hur upplever ni programspråket Java? 
+2. Vad bör vi göra annorlunda nästa år (eller i fas 2)? 
+
+
 
 #+include: "./footer.org"

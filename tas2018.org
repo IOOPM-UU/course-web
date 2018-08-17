@@ -19,13 +19,35 @@ people involved in running the course in 2018.
 - Office: 1328
 - Office hours: TBA
 - Email: [[mailto:gustaf.borgstrom@it.uu.se][gustaf.borgstrom@it.uu.se]]
-* TODO TAs
-*Waiting for information*
+* TAs 
+- Akram Adinda
+- Alexander Troshin
+- Alexis Remmers
+- Ardalan Samimi
+- Benjamin Ek
+- Elwira Johansson
+- Erik Rimskog
+- Joy van den Eijkhof
+- Linnea Ingmar
+- Michael Rehn
+- Sanna Kurdahl
+
 * TODO Teams and Coaches
 *Waiting for information*
-| Team | Coach |
-|------+-------|
-|      |       |
+| Team | Coach               |
+|------+---------------------|
+| TBA  | Alexander Troshin   |
+| TBA  | Alexis Remmers      |
+| TBA  | Ardalan Samimi      |
+| TBA  | Benjamin Ek         |
+| TBA  | Elwira Johansson    |
+| TBA  | Erik Rimskog        |
+| TBA  | Joy van den Eijkhof |
+| TBA  | Linnea Ingmar       |
+| TBA  | Michael Rehn        |
+| TBA  | Sanna Kurdahl       |
+
+
 
 * Getting in Touch
 - Talk to us during lectures and labs :: 
