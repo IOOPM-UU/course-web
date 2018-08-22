@@ -125,6 +125,8 @@ with ~#pragma once~.
 
 #+CAPTION: Initial header file =hash_table.h= for a basic hash table.
 #+BEGIN_SRC c
+#pragma once
+
 /// @brief Create a new hash table
 /// @return A new empty hash table
 ioopm_hash_table_t *ioopm_hash_table_create();
