@@ -61,7 +61,7 @@ body{
     background:#edf0f2;
     color:#404040;
     font-family: "Source Sans Pro", sans-serif;
-    font-weight:300;
+    font-weight:400;
     margin:0;
     min-height:100%;
     overflow-x:hidden;
@@ -95,9 +95,8 @@ blockquote{
 }
 
 ul,ol,dl{
+    list-style-type: square;
     line-height:24px;
-    list-style-image:none;
-    /* list-style:none; */
     margin:0px 0px 12px 0px;
     padding:0;
 }
@@ -134,10 +133,15 @@ dd{
 #content .section ul li ol li,#content .toctree-wrapper ul li ol li,article ul li ol li{
     list-style:decimal}
 
-#content .section ol,#content ol,article ol{
-    list-style:decimal;
-    line-height:24px;
-    margin-bottom:24px}
+/* #content .section ol,#content ol,article ol{ */
+/*     list-style:decimal; */
+/*     line-height:24px; */
+/*     margin-bottom:24px} */
+
+#content .section ol, #content ol, article ol {
+    list-style: decimal;
+    line-height: 24px;
+}
 
 #content .section ol li,#content ol li,article ol li{
     list-style:decimal;
@@ -1073,6 +1077,10 @@ h2.footnotes{
     color: #fff;
 }
 
+.tag {
+    font-family: "Source Sans Pro", sans-serif;
+}
+
 .tag span {
     background-color: #EDEDED;
     border: 1px solid #EDEDED;
@@ -1410,11 +1418,28 @@ span.Report {
     background: DodgerBlue;
 }
 
-h3 span.tag span.G3 { padding: 2px; }
-h3 span.tag span.G4 { padding: 2px; }
-h3 span.tag span.G5 { padding: 2px; }
-h3 span.tag span.Lab { padding: 2px; }
-h3 span.tag span.Special { padding: 2px; }
-h3 span.tag span.Report { padding: 2px; }
+h2 span.tag span { padding: 1ex 1.5ex 1ex 1.5ex; }
+h3 span.tag span { padding: 1ex 1.5ex 1ex 1.5ex; }
+h4 span.tag span { padding: 1ex 1.5ex 1ex 1.5ex; }
+
+.hidden {
+    display: none;
+}
+
+.redovisas-exempel {
+    font-family: "Source Sans Pro", sans-serif;
+    background-color: red;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+    font-size: 80%;
+    font-weight: normal;
+    border-radius: 10px;
+    padding: 0.5ex 1ex 0.5ex 1ex;
+}
+
 
 /* === STOP TAGS === */
+
+
+

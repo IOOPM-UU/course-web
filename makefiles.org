@@ -1,23 +1,303 @@
 #+title: Makefiles on IOOPM
 #+include: "./setup.org"
 
-#+begin_attention
-This text is being written from scratch in 2018.
-#+end_attention
 
-#+begin_important
-This page does *not* try to be an exhaustive introduction to
-Makefiles. Instead, it focuses on the most common usages in the
-course. Please suggest improvements!
-#+end_important
+* Kort introduktion till build management med Make[fn::Adapterad från en text av Jozef Swiatycki (file:misc/make-lathund.pdf).]
 
-* TODO Build Management
-** Dependencies
-** Automate, Automate, Automate
+När man utvecklar programsystem bestående av flera moduler, med
+källkodsfiler, headerfiler, objektkodsfiler och rutinbibliotek
+börjar det bli besvärligt att kompilera och länka. Det besvärliga
+består av två saker: dels blir kommandon långa och jobbiga att
+skriva, dels måste man komma ihåg vilka moduler som måste
+kompileras om när man har gjort ändringar i källkods- eller
+headerfiler.
 
-* TODO GNU Make
+Man kan få hjälp med båda dessa saker genom att använda ett
+byggverktyg, t.ex. programmet =make=. För att avända =make= skapar
+vi en fil med namnet =makefile= eller =Makefile=. I denna kan vi
+deklarera olika "targets", dvs. filer som skall skapas vid
+kompilering (och länkning) samt beroenden mellan targets och
+källkodsfiler, och olika targets. För varje target anger vi också
+hur det skall kompileras. Makeverktyget är sedan intelligent nog
+att (åtminstone för C, dock ej för Java) räkna /vad som måste
+kompileras om som resultat av en förändring/. Du kompilerar nu
+genom att skriva =make= (alt =make foo= för något namn på =foo=)
+och resten sköts automatiskt.
+
+Detta är *guld* värt, eftersom det nu blir lätt att hela tiden
+kompilera och [[file:simple.org::*The%20SIMPLE%20Approach][se till att du har ett körande program]].
+
+** En minimal =makefile=
+
+En minimal =makefile= kan se ut på följande sätt. Säg att du t.ex.
+har ett program =prog.c= som man du kompilera och länka ihop med
+en modul =modul.o= som ligger i mappen =/foo/bar/baz=.
+
+#+BEGIN_SRC makefile
+prog: prog.c 
+    gcc -g -Wall prog.c /foo/bar/Baz/modul.o -o prog
+#+END_SRC
+
+På första raden anges normalt /namnet på filen som skall
+framställas/ (målfilen, dvs. target) med ett kolon efter och en
+blankseparerad lista av namn på filer som behövs för
+framställningen (som målfilen är beroende utav, dependencies).
+Andra raden skall börja med ett [[key:tab]]-tecken och innehålla
+därefter det kommando som skall utföras för att framställa
+målfilen. Har man gjort en sådan fil så kompilerar och länkar du
+programmet med kommandot =make prog=.
+
+** Hur gör =make=?
+
+=make= letar upp målet =prog= i din =makefile= och kontrollerar om
+målfilen =prog= finns i den aktuella katalogen och om den i så
+fall är /äldre/ än de filer den är beroende utav (i exemplet är
+den endast beroende av =prog.c=). Om =prog= inte finns eller är
+äldre än =prog.c= utför =make= kommandot på raden över. Om =prog=
+finns och inte är äldre än =prog.c= drar =make= slutsatsen att
+någon ny kompilering eller länkning inte behövs och skriver ut
+meddelandet "`prog´ is up to date"[fn::Om du vill tvinga fram en
+kompilering ändå kan du skriva t.ex. =touch prog.c= som ändrar på
+datumet på =prog.c= till /nu/ eller =make -B=.].
+
+
+** Ett mer komplicerat exempel
+
+Exemplet ovan är lite väl enkelt: =prog= är beroende av endast en
+fil, vi har slagit ihop kompilering och länkning till ett enda
+steg osv. För att illustrera hur =make= kan användas med system
+bestående av flera moduler får vi titta på ett större exempel.
+Antag att vi skall bygga (kompilera och länka) ett system
+bestående av källkods- och header-filer enligt följande figur:
+
+#+CAPTION: C-filer med include-beroenden till header-filer 
+#+NAME: fig_ht_4
+#+RESULTS:
+[[./images/modules01.png]]
+
+#+begin_src dot :results file :file ./images/modules01.png :exports none
+  digraph G {
+      nodesep=.05;
+      rankdir=BT;
+      node [shape=record,width=.1,height=.1];
+
+      node0 [label = "modulA.h"];
+      node1 [label = "modulA.c"];
+      node1 -> node0;
+
+      node2 [label = "modulB.h"];
+      node3 [label = "modulB.c"];
+      node3 -> node0;
+      node3 -> node2;
+
+      node4 [label = "main.c"];
+      node4 -> node0;
+      node4 -> node2;
+    }      
+#+end_src
+
+#+RESULTS:
+[[file:./images/modules01.png]]
+
+Systemet består av två moduler och ett huvudprogram. Varje modul
+består av två filer: en headerfil och en källkodsfil. Pilarna i
+figuren visar filberoenden: varje modul är beroende av sin
+headerfil, =modulB= är dessutom beroende av =modulA=:s header-fil.
+Huvudprogrammet är beroende av båda modulers header-filer.
+
+Framställning av ett exekverbart program från dessa filer sker i
+flera steg: först kompileras varje modul för sig och resulterar i
+objektfilerna =modulA.o= och =modulB.o=. Därefter länkas
+=modulA.o=, =modulB.o= och =main.o= samman till ett exekverbart
+program med något namn, t.ex. =main=. I figuren nedan visas vilka
+filer som behövs vid framställning av de olika objektmodulerna
+resp. vid framställning av det exekverbara programmet: =modulA.c=
+
+#+CAPTION: Beroendeträd för kompilering 
+#+NAME: fig_ht_4
+#+RESULTS:
+[[./images/modules02.png]]
+
+#+begin_src dot :results file :file ./images/modules02.png :exports none
+  digraph G {
+      nodesep=.05;
+      rankdir=BT;
+      node [shape=record,width=.1,height=.1];
+
+      node0 [label = "modulA.c"];
+      node1 [label = "modulA.h"];
+      node2 [label = "main.c"];
+      node3 [label = "modulB.c"];
+      node4 [label = "modulB.h"];
+
+      node5 [label = "modulA.o"];
+      node6 [label = "main.o"];
+      node7 [label = "modulB.o"];
+
+      node8 [label = "main"];
+
+      node8 -> node5; 
+      node8 -> node6; 
+      node8 -> node7; 
+
+      node5 -> node0; 
+      node5 -> node1; 
+
+      node6 -> node1; 
+      node6 -> node2; 
+      node6 -> node3; 
+
+      node7 -> node1; 
+      node7 -> node3; 
+      node7 -> node4; 
+
+    }      
+#+end_src
+
+#+RESULTS:
+[[file:./images/modules02.png]]
+
+
+En makefile för detta system kunde se ut så här:
+
+#+BEGIN_SRC makefile
+main: main.o modulA.o modulB.o
+    gcc -g main.o modulA.o modulB.o -o main
+
+main.o: main.c modulA.h modulB.h
+    gcc -c -g -Wall main.c
+
+modulA.o: modulA.c modulA.h
+    gcc -c -g -Wall modulA.c
+
+modulB.o: modulB.c modulA.h modulB.h
+    gcc -c -g -Wall modulB.c
+#+END_SRC
+
+Om alla källkods- och header-filer finns inmatade så kan nu det
+exekverbara programmet main framställas med ett enda kommando:
+=make main=.
+
+Som förut: tittar =make= i =makefile=:n och ser att =main= beror
+av =main.o=, =modulA.o= och =modulB.o=. =make= söker då upp dessa
+i tur och ordning och kontrollerar deras datum i relation till
+datumen för de filer som de i sin tur är framställda från.
+Målfiler som inte finns eller är äldre än någon av sinan
+källkodsfiler kompileras om genom att motsvarande kommando utförs.
+Därefter kommer =make= tillbaka till =main= och utför kommandot
+för att producera det slutgiltiga programmet.
+
+För spårbarhet skriver =make= ut de kommandon som utförs på
+skärmen. Om något mål inte kan framställas (t.ex. därför att det
+har blivit kompileringsfel vid kompilering) avbryts arbetet.
+
+Låt säga att vi har kompilerat =main=, testkört programmet och
+upptäckt ett fel i =modulB=. Vi åtgärdar det genom att ändra i
+=modulB.c= och sedan kör vi återigen =make=. Programmet kör som
+förut: den ser att =main= är beroende av =main.o=, =modulA.o= och
+=modulB.o=. Den tittar då på =main.o= och ser att denna är
+beroende avf =main.c=, =modulA.h= och =modulB.h=. Ingen av dessa
+har ändrats efter att =main.o= kompilerades så den kompileringen
+görs inte. Samma gäller =modulA.o=: den är inte äldre än de filer
+den är beroende utav och alltså "up to date". Men =modulB.o= är
+äldre än =modulB.c= (som vi ändrade när vi fixade felet) och
+alltså "out of date". =make= utför därför kompileringskommandot
+för =modulB.o=. Därefter kommer =make= tillbaka till =main=. Nu
+har dock =modulB.o= blivit yngre än =main= (vi har ju precis byggt
+den!) så =make= utför länkningskommandot för att framställa main
+på nytt.
+
+Genom att använda =make= på detta sätt behöver vi alltså inte
+komma ihåg vilka omkompileringar som måste göras efter ändringar
+av källkods- eller headerfiler, make gör vad som behöver göras med
+ledning av makefile! 
+
+En och samma makefile kan med fördel användas för att kompilera
+olika targets vid olika tilfällen[fn::Eller utföra andra uppgifter
+-- t.ex. ta bort skräpfiler eller köra tester!]. Argumentet till
+=make=-kommandot är namnet på ett target. Vill du endast kompilera
+om =modulB.c= i exemplet ovan kan du skriva =make modulB.o=.
+=make= söker då upp målet =modulB.o=, undersöker vilka filer det
+är beroende utav osv., och struntar i allt som inte behövs för att
+framställa =modulB.o=. Om man ger kommandot =make= utan argument
+använder =make= det första målet i =makefile=:n, alternativt om du
+angivit ett target =main= som då blir "default".
+
+
+* TODO GNU Make Examples
 ** A First Simple Makefile
+#+BEGIN_SRC makefile
+main:	myprog
+
+C_COMPILER     = gcc
+C_OPTIONS      = -Wall -pedantic -g
+C_LINK_OPTIONS = -lm 
+CUNIT_LINK     = -lcunit
+
+%.o:	%.c
+	$(C_COMPILER) $(C_OPTIONS) $< -c
+
+myprog:	file1.o file2.o file3.o
+	$(C_COMPILER) $(C_LINK_OPTIONS) $< -o $@
+
+myprog.final:	file1.o file2.o file3.o
+# TODO: add e.g. optimisation flags, remove unnecessary linking, etc.
+
+clean:
+	rm -f *.o myprog
+#+END_SRC
+
+*Explanations:*
+
+=%.o: %.c= is a target that matches any =file.o= pattern and
+translates into a dependency to =file.c=. 
+
+=$<= expands to the dependency(ies) for the current target, i.e.,
+=file.c= for =file.o= and =file1.o file2.o file3.o= for =myprog=. 
+
+=$@= expands to the name of the target, e.g. =file.o= in the case
+of the =file.o= target, and =myprog= in the case of the =myprog=
+target.
+
+It is common to use variables like =C_COMPILER = gcc= and then
+write =$(C_COMPILER)= in the commands. If we wanted to change
+compiler to clang, for example, we would simply need to change one
+line, =C_COMPILER = clang= and be good to go. Typical names for
+compiler variable is =CC=, =CFLAGS= for options to the compiler,
+and =LDFLAGS= for linking flags. I choose more descriptive names
+above, I hope.[fn::Like with most things, we tend to like long
+descriptive names in the start (because we need the help), and
+then favour short names later (because we are experts, and the
+explanation is just noise).]
+
+
 ** Make Test
-** Make Valgrind
+In addition to the above, we add:
+
+#+BEGIN_SRC makefile
+test1: mytests1.o file1.o 
+	$(C_COMPILER) $(C_LINK_OPTIONS) $(CUNIT_LINK) $< -o $@
+
+test2: mytests2.o file2.o file3.o
+	$(C_COMPILER) $(C_LINK_OPTIONS) $(CUNIT_LINK) $< -o $@
+
+test: test1 test2
+	./test1 
+  ./test2
+#+END_SRC
+
+If we are using CUnit, it is likely that we only have one
+compilation unit with all tests, as CUnit groups the tests in test
+suites anyways. Also add =test1= and =test2= to be removed by =clean=.
+
+** Make Memtest (Valgrind)
+In addition to the above, we add:
+
+#+BEGIN_SRC makefile
+memtest: test1 test2 myprog
+	valgrind --leak-check=full ./test1 
+  valgrind --leak-check=full ./test2
+  valgrind --leak-check=full ./myprog
+#+END_SRC
 
 #+include: "./footer.org"

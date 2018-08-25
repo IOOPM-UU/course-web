@@ -18,7 +18,8 @@
  :export (lambda (path desc backend)
            (cond
             ((eq 'html backend)
-             (format "<a href=\"http://auportal.herokuapp.com/achievements/%s\">%s</i></a>" path desc))))
+             (format "<a href=\"http://wrigstad.com/ioopm18/achievements.html#%s\">%s</i></a>" path desc))))
+             ;; (format "<a href=\"http://auportal.herokuapp.com/achievements/%s\">%s</i></a>" path desc))))
  :face '(:foreground "DarkGoldenrod3"))
 
 (org-link-set-parameters
@@ -118,7 +119,7 @@
 
         ("misc"
          :base-directory "/home/stw/t/ioopm/2018/site/misc/"
-         :base-extension "el\\|pdf\\|c\\|h\\|java\\|txt"
+         :base-extension "el\\|pdf\\|c\\|h\\|java\\|txt\\|cast"
          ;; :publishing-directory "/tmp/ioopm18/misc/"
          :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/ioopm18/misc/"
          :publishing-function org-publish-attachment)

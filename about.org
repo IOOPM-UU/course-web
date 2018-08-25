@@ -415,8 +415,7 @@ burndown chart för dig. Bräde två är ett utkast till plan för det
 första lagerhanteringsystemet. Det är inte komplett, utan tjänar
 till att hjälpa dig att komma igång.
 
-Du hittar våra Trello-bräden [[https://trello.com/ioopm][här]]
-.
+Du hittar våra Trello-bräden [[https://trello.com/ioopm][här]].
 # * Träning i skriftlig framställning
 # Universitetskanslerämbetet åligger oss att träna studenter i
 # skriftlig framställning. Oavsett detta är det ofta [[http://gotocon.com/dl/goto-aar-2013/slides/CristinaVideiraLopes_ExercisesInStyle.pdf][liten skillnad

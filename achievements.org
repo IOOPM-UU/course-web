@@ -1,0 +1,158 @@
+#+title: Achievements
+#+include: "./setup.org"
+
+#+begin_tip
+Did you know that you can collapse ([[fas:minus-circle][]]) and expand ([[fas:plus-circle][]]) entire sections of
+these pages? Try clicking a heading! Try "scrolling" to content
+deep down in a page by collapsing preceeding sections. 
+
+Found a bug? Select the fauly text and hit key:C-x to start a GitHub issue.
+#+end_tip
+
+
+* About This page
+This page gathers all the achievements on the course for your
+perusal. Read about what each achievement corresponds here. Some
+are marked *TODO*, meaning they are being somewhat reworked
+for 2018. When they are finalised, the *TODO* marker will
+disappear.
+
+You will use the [[http://auportal.herokuapp.com][AUPortal]] to select goals for demonstration and
+track your own progress. Starting in 2018, the AUPortal points
+back to this page for information about each achievement. I am
+testing gathering all achievement on a *single page* to facilitate
+searching -- I'm eager to get feedback on this design choice. An
+alternative would be to gather all Abstraction achievements on one
+page, all Inheritance achievements, on another etc.
+
+Each achievement is /tagged/ to reflect its grade level and
+demonstration form -- mirroring information in the AU Portal:
+
+
+#+MACRO: tag @@html:<span class="tag" style="background-color: transparent;"><span class="$1">$1</span></span>@@
+
+| Tag                | Meaning                                                    |
+|--------------------+------------------------------------------------------------|
+| <c>                | <l>                                                        |
+| {{{tag(G3)}}}      | Achievement is mandatory for grade 3                       |
+| {{{tag(G4)}}}      | Achievement is mandatory for grade 4                       |
+| {{{tag(G5)}}}      | Achievement is mandatory for grade 5                       |
+| {{{tag(Lab)}}}     | Achievement is demonstrated during lab sessions            |
+| {{{tag(Special)}}} | See instructions for demonstration in the achievement text |
+| {{{tag(Report)}}}  | Achievement is demonstrated as part of the project report  |
+
+
+#+HTML: <a name="A"></a>
+* A: Abstraktion 
+#+include: "../achievements/A1.org"
+#+include: "../achievements/A2.org"
+#+include: "../achievements/A3.org"
+#+include: "../achievements/A8.org"
+#+HTML: <a name="B"></a>
+* B: Arv 
+#+include: "../achievements/B4.org"
+#+include: "../achievements/B5.org"
+#+include: "../achievements/B6.org"
+#+HTML: <a name="C"></a>
+* C: Planering 
+#+include: "../achievements/C7.org"
+#+HTML: <a name="D"></a>
+* D: Dokumentation 
+#+include: "../achievements/D9.org"
+#+HTML: <a name="D"></a>
+* D: Genericitet 
+#+include: "../achievements/E10.org"
+#+include: "../achievements/E11.org"
+#+include: "../achievements/E12.org"
+#+HTML: <a name="F"></a>
+* F: Imperativ Programmering 
+#+include: "../achievements/F13.org"
+#+include: "../achievements/F14.org"
+#+HTML: <a name="G"></a>
+* G: Inkapsling 
+#+include: "../achievements/G15.org"
+#+include: "../achievements/G16.org"
+#+include: "../achievements/G17.org"
+#+include: "../achievements/H18.org" 
+
+H18???
+#+HTML: <a name="H"></a>
+* H: Objekt, identitet och struktur 
+#+include: "../achievements/H19.org"
+#+include: "../achievements/H20.org"
+#+include: "../achievements/H21.org"
+#+HTML: <a name="I"></a>
+* I: Metodik 
+#+include: "../achievements/I22.org"
+#+include: "../achievements/I23.org"
+#+include: "../achievements/I24.org"
+#+include: "../achievements/I25.org"
+#+HTML: <a name="J"></a>
+* J: Minneshantering 
+#+include: "../achievements/J26.org"
+#+include: "../achievements/J27.org"
+#+include: "../achievements/J28.org"
+#+include: "../achievements/J29.org"
+#+HTML: <a name="K"></a>
+* K: Modularisering 
+#+include: "../achievements/K30.org"
+#+include: "../achievements/K31.org"
+#+include: "../achievements/K32.org"
+#+HTML: <a name="M"></a>
+* M: Pekare 
+#+include: "../achievements/M36.org"
+#+include: "../achievements/M37.org"
+#+include: "../achievements/M38.org"
+#+include: "../achievements/M39.org"
+#+HTML: <a name="N"></a>
+* N: Pragmatics 
+#+include: "../achievements/N40.org"
+#+include: "../achievements/N41.org"
+#+HTML: <a name="O"></a>
+* O: Profilering och Optimering 
+#+include: "../achievements/O42.org"
+#+include: "../achievements/O43.org"
+#+include: "../achievements/O44.org"
+#+HTML: <a name="P"></a>
+* P: Kodgranskning 
+#+include: "../achievements/P45.org"
+#+include: "../achievements/P46.org"
+#+include: "../achievements/P47.org"
+#+include: "../achievements/P48.org"
+#+HTML: <a name="Q"></a>
+* Q: Testning 
+#+include: "../achievements/Q49.org"
+#+include: "../achievements/Q50.org"
+#+include: "../achievements/Q51.org"
+#+HTML: <a name="R"></a> <a name="S"></a> <a name="T"></a> <a name="U"></a> <a name="V"></a>
+* TODO R--V: Verktyg 
+#+include: "../achievements/R52.org"
+#+include: "../achievements/S53.org"
+#+include: "../achievements/T55.org"
+#+include: "../achievements/T56.org"
+#+include: "../achievements/U57.org"
+#+include: "../achievements/V58.org"
+#+HTML: <a name="X"></a>
+* TODO X: Kommunikation 
+#+include: "../achievements/X59.org"
+#+include: "../achievements/X60.org"
+#+include: "../achievements/X61.org"
+#+include: "../achievements/X62.org"
+#+include: "../achievements/X63.org"
+#+HTML: <a name="Y"></a>
+* TODO Y: Mjukvaruutveckling / Programvaruteknik 
+#+include: "../achievements/Y64.org"
+#+include: "../achievements/Y65.org"
+#+include: "../achievements/Y66.org"
+#+include: "../achievements/Y67.org"
+#+include: "../achievements/Y68.org"
+#+include: "../achievements/Y69.org"
+#+HTML: <a name="Z"></a>
+* TODO Z: Inlämningsuppgifter (Inluppar) 
+#+include: "../achievements/z100.org"
+#+include: "../achievements/z101.org"
+#+include: "../achievements/z103.org"
+#+include: "../achievements/z104.org"
+
+
+#+include: "./footer.org"

@@ -1,0 +1,2 @@
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://wrigstad.com/ioopm18/css/asciinema-player.css"/>
+#+HTML_HEAD: <script src="http://wrigstad.com/ioopm18/js/asciinema-player.js"></script>

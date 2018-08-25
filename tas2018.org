@@ -47,8 +47,6 @@ people involved in running the course in 2018.
 | TBA  | Michael Rehn        |
 | TBA  | Sanna Kurdahl       |
 
-
-
 * Getting in Touch
 - Talk to us during lectures and labs :: 
      See the [[https://cloud.timeedit.net/uu/web/schema/ri1875ZQ0QYZ01Q0wo7YwcQ25y6QZ6XfYxZ020g.html][schedule]] for details. 
@@ -82,3 +80,108 @@ names are listed here.
 
 
 #+include: "./footer.org"
+* Practical Matters
+** Salary and scheduling
+- Salary is paid by the month, irrespective of the number of hours worked in that period
+- We manage the assignment of TAs to labs through a Google spreadsheet
+  - *Aim:* At least 5 TAs per lab/not counting me or Gustaf
+  - 100h students = 80h labs, bookable at 40 x 2 h slots + coaching (we will get to that)
+  - 50h students = 46h labs, bookable at 23 x 2 h slots 
+- Course schedule 
+  - Labs twice a week (typically Mondays and Thursdays)
+  - Group meetings 6 times per semester 
+* Being a TA
+- You are now *employed* by the university
+- When acting in your TA role, that means you will be representing the university
+  - That essentially means acting *professionally*
+  - Being examiner for people that you know/like/dislike/dislike you/etc. 
+  - Being able to separate on/off work
+  - Approaching a diverse student population with an open mindset, *and visibly so*
+  - You are now at the forefront of what defines people's study environment! 
+  - Make sure you are not taking a power trip 
+- My worst experience on this course: "Go back to SFI"
+* Why are YOU here? 
+- We have interacted with you and the past, and we know you are great! 
+- You've all passed through IOOPM and been recognised for your (various) abilities
+- We spend a lot of effort each year through the course, looking for good TA material 
+- In addition to your knowledge and skills, you bring some star quality
+  - You are good at explaining things
+  - You are good at expressing yourselves
+  - You don't complicate matters unnecessarily
+  - You bring a lot of good energy 
+  - You are "good people"
+* What we expect of you
+1. To be able to act professionally (as discussed above)
+2. To help us get as many people as possible to realise their true potential during the course
+   - Be an obstacle, not a springboard
+3. To help Tobias be connected to as many students/schools of thought/etc. as possible 
+** The IOOPM Contract
+#+BEGIN_VERSE
+If /you/ do your best to get the most out of the course, 
+/we/  will do our best to make sure you pass the course 
+with the highest possible grade
+#+END_VERSE
+This requires (of teachers, TAs, and students)
+- Trust
+- Flexibility
+- Open dialogue
+*** Realising their true potential 
+- Not all students start at the same level 
+- We are not aiming for them to finish at the same level
+- We are looking for the maximal development for each student
+- And there is a *lower bar* (the passing grade)
+*** Past students think
+- They never worked so hard for credits
+- They never leard as much for the same credits 
+- They realise their capacity to accomplish things 
+- IOOPM is the course when they grok programming 
+*** Listning to students
+- Running a course is not a popularity contest -- we are not doing this so that people like us
+- However, we need to be sensitive to negative group think...
+- ...and to the fact that we are sometimes wrong
+- We get lots of love for changing things mid-air (so we like to keep doing that)
+*** Creating a movement
+- Essentially, we want to create a 
+* Diversity
+- There are a lot of different students 
+  - Gender
+  - Background
+  - What they want out of the course
+  - What they want out of their education 
+- Different groups of students need/do/say/think different things
+  - There is manual for this
+  - Be sensible and use your head at all times! 
+- Watch out for bad things -- and *address immediately*
+  - Weak students getting lousy tasks that don't teach them stuff
+  - "Boys clubs"/grabbighet
+  - Offensive comments and treatments 
+  - The nice person getting a lighter treatment
+  - Härskartekniker
+
+#+CAPTION: Härskartekniker
+| Maktstrategi           | Motstrategi       | Bekräftarteknik                             |
+|------------------------+-------------------+---------------------------------------------|
+| Osynliggöra            | Ta plats          | Synliggör                                   |
+| Förlöjliga             | Ifrågasätt        | Respektera                                  |
+| Undanhålla information | Korten på bordet  | Informera och inkludera                     |
+| Dubbel bestraffning    | Bryt mönstret     | Dubbel belöning                             |
+| Påföra skuld och skam  | Intellektualisera | Bekräfta rimliga normer och konfliktlösning |
+ 
+** Protocol for addressing bad stuff
+- If it makes sense -- put your foot down then and there
+- Regardless, inform me (orally and in writing)
+
+* Examining demonstrations in the labs
+- You are not performing -- the students are 
+- You cannot possibly be expected to know everything 
+  - There are always students that know more than me
+  - However, I have a title that makes me bullet-proof
+- What to do if you are challenged in some way 
+- How to avoid being challenged 
+- Where to go for help/backup/support/high-fives
+* Examining demonstrations
+- Expectations (2 post-its, 2 minutes) 
+- Biggest fears (2 post-its, 2 minutes)
+- Dealing with a diverse student population 
+  - Examining students of a different gender
+- Help people as much as possible but never give "solution without understanding"

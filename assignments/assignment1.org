@@ -2,12 +2,12 @@
 #+include: "../setup.org" 
 
 #+begin_important
-Soft deadline: 2018-10-05
-
-Hard deadline: 2018-10-19
+*Intended start*: 2018-09-17 \\
+*Soft deadline*: 2018-10-05 \\
+*Hard deadline*: 2018-10-19
 #+end_important
 
-* Introduction :START:
+* Introduction
 
 This assignment serves several purposes:
 
@@ -40,10 +40,6 @@ assignment.
 
 By the end of this sprint you should have:
 
-- Familiarised yourself with the [[../simple.org][SIMPLE programming methodology]],
-  and understand key concepts like /dodging/ and /cheating/.
-- Familiarised yourself with Emacs, [[../editors.org][the editor you will be using
-  for at least the C part of the course]].
 - Implemented a full-featured, generic *hash table* and *linked
   list* and an *iterator* for the latter.
 - Demonstrated a suitable number of goals (make your own
@@ -52,28 +48,16 @@ By the end of this sprint you should have:
   order to hit your target number by the end of the course.]).
 - Started to get a feeling for what /good code/ is, what /bad
   code/ is, and where your code sits on that continuum.
-
-It is also likely that you will:
-
-- Be intimidated by the size of the document and the number of
-  steps. Don't be. *You can implement as you go -- no need to read
-  the whole document first and then implement!*
-- Feel inclined to trow away your code and rewrite it now that you
-  have a better idea of how to do it. If you have the time, please
-  do so -- it is very instructive!
-- Be frustrated by how easy it is to shoot yourself in the foot
-  with C. 
-- Be stressed because you had to spend a lot of time just to get
-  going, and it may have caused you to under perform with respect
-  to your required velocity).
 - Have written about 1000 lines of code (LOC) plus another 1000
   lines of test code. (This of course depends on your coding
   style. If you hit say 2000 LOC without counting tests, you
   probably need some help.)
 
-*PREREQUISITES TO START*
+** Prerequisites to Start
 
-1. You should have finished the C boot-strapping exercises.
+1. You should have finished the C boot-strapping exercises, which involves:
+   1. Having familiarised yourself with the [[../simple.org][SIMPLE programming methodology]], and understanding key concepts like /dodging/ and /cheating/.
+   2. Having familiarised yourself with Emacs, [[../editors.org][the editor we are using for at least the C part of the course]].
 2. You should have found a [[file:~/t/ioopm/2018/site/pair-programming.org][partner to work with from your team]].
 3. You should have [[file:../github.org][gotten a GitHub account *from the course*]].
    Naturally, you are to place all files belonging to this
@@ -359,9 +343,9 @@ Bad news about this representation:
 - Only handles integer keys (we knew that, but worth repeating)
 - Only works if we know the largest key value when the map is created
 - Does not work well for a sparse representation (e.g., few keys of widely different values)
-- Does not support delete
+- Does not support deletion
 
-The lack of support for delete is actually rooted in a bigger
+The lack of support for deletion is actually rooted in a bigger
 problem -- there is no way to represent an /absence/ of a value in
 the array! Imagine for example that our values are integers too --
 then the array can only store integers, and unless we e.g.,
@@ -451,7 +435,7 @@ the hash code for similar data still have different hash codes. We
 use the hash code internally to select the bucket for a key (in
 O(1) time).
 
-Development of hash functions is super interesting and quite
+Development of hash functions is super interesting, quite
 subtle and out of scope for this course.
 
 Using non-integer keys in a hash table thus requires the existence
@@ -475,7 +459,7 @@ comes with all of the pros and cons from above[fn::Plus a few
 others, for example relating to the efficiency of changing bucket
 size.]. For now, we will stick with a linked structure.
 
-Following the SIMPLE methodology, we are going to /dodge/ and
+Following the [[file:~/c/ioopm/site/simple.org][SIMPLE methodology]], we are going to /dodge/ and
 simplify the specification. Our first hash table implementation
 will *only support integer keys and string values*, and only
 support *a fixed number of buckets* (17). This is enough to write
@@ -486,15 +470,19 @@ number of entries.
 #+begin_attention
 Always make a note of dodges and cheats so that you can revisit
 them and "fix them" later. Without such a log, it is easy to
-forget to e.g. undo a simplification later.
+forget to e.g. undo a simplification later. You can mark this in
+your code e.g., ~/// DODGE: ...~, ~/// CHEET: ...~, etc. like the
+~/// FIXME: ...~, and ~/// TODO: ...~ that is used in code on
+this page. 
 #+end_attention
 
 Below are the initial definitions of the structs we will be using.
 Remember that ~typedef~ creates a /type alias/. Also note that we
 prefix the hash table type with ~ioopm_~. This will be a naming
-convention for all /public/ types on this course. The ~entry_t~
-type is only used internally by the hash table, so it will not get
-a public name.
+convention for all /public/ types on this course, *meaning, you
+will use this naming scheme for things in your code!* The
+~entry_t~ type is only used internally by the hash table, so it
+will not get a public name.
 
 #+CAPTION: Structure definitions
 #+BEGIN_SRC c
@@ -571,11 +559,12 @@ time.
 So, in that spirit, let us spend a few minutes in =gdb= to explore
 the hash table representation of above. Below is a program that
 (on the stack for simplicity) creates a hash table. Compile this
-program like so: =gcc -pedantic -Wall -g gdb-test.c=. This produces a
-file =a.out= that you can run through =gdb=. Note that compiling
-this program will produce a warning that you're declaring a
-variable ~ht~ that you are not using. We can live with this
-warning for now -- we are going to use ~ht~ through the debugger. 
+fprogram like so: =gcc -pedantic -Wall -g gdb-test.c= ([[file:~/c/ioopm/site/compiling.org][read about
+what the flags mean here]]). This produces a file =a.out= that you
+can run through =gdb=. Note that compiling this program will
+produce a warning that you're declaring a variable ~ht~ that you
+are not using. We can live with this warning for now -- we are
+going to use ~ht~ through the debugger.
 
 #+CAPTION: gdb-test.c
 #+BEGIN_SRC c
@@ -683,13 +672,17 @@ One trick that has worked very well for me is to
 "secretly" run programs through =gdb= so that /if/ they crash,
 they produce a backtrace: =gdb -batch -ex "run" -ex "bt" --args
 ./a.out one two three four five six=.
-#+end_tip
+
+(For =lldb=, you can use this which is almost the same: =lldb -b -o "run" -k "bt" -k "quit"=.)
 
 Because this is a bit dull to write, I have an alias set up for
 this in my =.bashrc= file (actually =.zshrc= because I run =zsh=):
-~alias bt='gdb -batch -ex "run" -ex "bt" --args'~. This allows
-me to write =bt ./a.out one two three four five six=.  and get a
-nice backtrace in the event of a segfault. 
+~alias bt='gdb -batch -ex "run" -ex "bt" --args'~. This allows me
+to write =bt ./a.out one two three four five six=. and get a nice
+backtrace[fn::A backtrace is a list of all the functions that were
+called (but not returned) on the way to the current point of the
+program.] in the event of a segfault.
+#+end_tip
 
 
 
@@ -700,7 +693,7 @@ is a fork, that splits the road in two directions: one leading
 left and one leading right. To go left, scroll down to Section
 [[Left: Test-Driven Approach]]. To go right, scroll down to Section
 [[Right: Classical Approach]]. (But not until you have read the next
-two paragraphs!)
+two paragraphs)
 
 We are finally about to start implementing the hash table. These
 instructions offer you two ways forward. One is the /test-driven
@@ -715,6 +708,8 @@ Regardless of the approach, we will end up with an implementation
 of some feature and at least one test for the implementation. The
 amount of work is the same. *Pick whatever approach you like, as
 long as you try both -- seriously -- during the course.*
+
+(Now you've read the two paragraphs! Go left or right?)
 
 * Left: Test-Driven Approach
 Test-driven development is based on the idea that tests should be
@@ -1264,8 +1259,8 @@ insert new entries at the head of a bucket's list (i.e., a
 in turn means that we must always search the whole list before we
 can determine that it does not contain an entry with the key we
 are looking for. If we tweaked our insertion so that the list was
-ordered by keys, searching for a key ~k1~ can terminate as soon as
-we see a key ~k2~ such that ~k2 < k1~.
+ordered by keys, searching for a key $k_1$ can terminate as soon as
+we see a key $k_2$ such that $k_2 < k_1$.
 
 This is an /optimisation/ of the find operation. We can (and will)
 discuss later the case against premature optimisation (and whether
@@ -1288,9 +1283,9 @@ After some thinking (and with experience, you'll learn to see
 these kinds of things immediately) we note that the two find
 operations are strikingly similar. Let (~key~, ~value~) be the
 entry we are trying to add. If the first search comes across an
-entry /e/ such that /e/ = (~k1~, ~v1~) such that ~k1 > key~, then
-not only can we conclude that there is no entry with key ~key~,
-but that (~key~, ~value~) should be added right before /e/. Thus,
+entry /e/ such that /e/ = ($k_1$, $v_1$) such that $k_1 > key$, then
+not only can we conclude that there is no entry with key $key$,
+but that ($key$,$value$) should be added right before /e/. Thus,
 with a little bit of cleverness, a single find can serve both
 purposes at once.
 
@@ -1733,9 +1728,9 @@ To finish this step, finish the implementation of
 ~ioopm_hash_table_lookup()~. Feel free to base it on the initial
 code above.
 
-1. Handle failing lookups by either alternative one or alternative
-   three above. Note that your choice may lead you to have to
-   alter the [[file:../glossary.org][signature]] of the function (changing the return type
+1. Handle failing lookups by one of the alternatives above
+   Note that your choice might force you to change
+   the [[file:../glossary.org][signature]] of the function (changing the return type
    and/or adding an additional parameter).
 2. Implement a couple of tests for ~ioopm_hash_table_lookup()~
    following the instructions in [[Feature 3: Looking up Values][Feature 3: Looking up Values]].
@@ -1744,8 +1739,6 @@ code above.
 4. Make sure that the code passes your tests.
 5. [[file:../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step2=.
-
-
 **  Step 3: Removing the Value for a Key <<step3>>
 
 By now we can create new hash tables, add (key, value) entries to
@@ -2135,6 +2128,7 @@ features to quickly deliver a much richer interface. Thus, even
 though the list of features is a lot longer in Ticket #2 than in
 Ticket #1, the time to implement them is not proportional.
 
+#+CAPTION: Excerpt from =hash_table.h= -- functions to be implemented. 
 #+BEGIN_SRC c
 /// @brief returns the number of key => value entries in the hash table
 /// @param h hash table operated upon
@@ -2291,7 +2285,6 @@ then call ~ioopm_hash_table_clear()~ from
 6. [[file:../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step6=.
 
-
 ** Step 7: Get all Keys and Values
 
 Another typical operation on a hash table is getting all keys or
@@ -2348,7 +2341,6 @@ list instead of an array.
 5. Make sure that the code passes your tests.
 6. [[file:../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step7=.
-
 
 ** Step 8: Looking for Keys and Values
 
@@ -2411,7 +2403,7 @@ char *ioopm_strdup(char *str)
 }
 #+END_SRC
 
-** Step 9:  General Predicates and Function Application
+** Step 9: General Predicates and Function Application
 
 C allows us to pass around a /pointer to a function/. This allows
 us to higher-order functions in a crude but working way. 
@@ -2484,7 +2476,7 @@ hash table.
 ioopm_hash_table_apply_to_all(ht, f, x);
 #+END_SRC
 
-*FUNCTION POINTERS*
+*** Function Pointers
 
 To take a function pointer as argument, the corresponding
 parameter of the function must be typed as a function pointer.
@@ -2758,8 +2750,9 @@ you get going:
 - Following good naming principles, including naming public
   function ~ioopm_~, etc.
 - Format your code nicely. You could even use a tool like =astyle=
-  or in Emacs' =C-x h= to mark the entire buffer followed by =M-x
-  indent-region=.
+  or =indent=[fn::Use e.g. =indent -nut -gnu -npsl -i2 file.c= to
+  get the same code format as Tobias.], or, in Emacs' =C-x h= to
+  mark the entire buffer followed by =M-x indent-region=.
 
 *** Finish This Step
 

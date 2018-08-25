@@ -13,10 +13,10 @@ Labs on IOOPM serve the following purposes:
 - They provide opportunities to demonstrate mastery of achievements ::
      At your own leisure, you register to demonstrate on the [[http://auportal.herokuapp.com/][AU
      Portal]]. This triggers the oral examination process. 
-     [[mark][You may demonstrate up to 4 achievements per lab.]] 
+     [[mark:1][You may demonstrate up to 4 achievements per lab.]] 
 
 - They provide possibilities to get help from TAs ::
-     [[mark][Sign up on the help list in Computer Hall 1515 to get help
+     [[mark:1][Sign up on the help list in Computer Hall 1515 to get help
      from course staff]]. You can ask about anything -- e.g., "what
      does this compile error mean", "how do I start with this
      assignment", "what grade should I aim for", etc. If you want
@@ -34,22 +34,27 @@ Labs on IOOPM serve the following purposes:
      you happen to have vastly different schedules for the
      remainder of your life.
 
-Even though no labs are mandatory, you will need to attend at
-least some labs during the course in order to demonstrate.
 Additional key differences with how labs have been used in some
 other courses:
 
+- Not all labs are mandatory ::
+     Even though /no labs are mandatory/, you will /need to attend
+     at least some labs/ during the course in order to
+     demonstrate. How many depends on how good you are at
+     demonstrating, how many achievements you demonstrate each
+     lab, etc. -- up to you, effectively. 
+
 - Labs do not come with a script to follow ::
      They do not exercise one or a few concepts from class.
-     [[mark][You must plan your own lab work.]] Students typically
+     [[mark:1][You must plan your own lab work.]] Students typically
      work in pairs with their partner on the assignments during
      lab hours. Pairs that have a hard time getting together
      outside of lab hours also make plans for what to do
-     separately between labs. [[mark][Expect a substantial chunk of lab
+     separately between labs. [[mark:1][Expect a substantial chunk of lab
      time to be spent in demonstrations.]]
 
 - Lab hours are not nearly enough time for passing assignments ::
-     [[mark][Expect to work 14-15 hours per week on the assignments, in
+     [[mark:1][Expect to work 14-15 hours per week on the assignments, in
      addition to the work you do in the labs.]]
 
 * Att redovisa under en labb

@@ -6,7 +6,7 @@ Did you know that you can collapse ([[fas:minus-circle][]]) and expand ([[fas
 these pages? Try clicking a heading! Try "scrolling" to content
 deep down in a page by collapsing preceeding sections. 
 
-Found a bug? Select the fauly text and hit key:C-x to start a GitHub issue.
+Found a bug? Select the faulty text and hit key:C-x to start a GitHub issue.
 #+end_tip
 
 * Introduktionslabbar i C (V1-2)
@@ -17,16 +17,18 @@ Weckor[fn::De är döpta efter Adam Woods som var student på kursen
 veckorna är till för att du ska lära dig programmera i C. Du
 kommer garanterat inte känna dig färdig med C efter bara två
 veckor, men om du går på alla sex labbar kommer du ha fått minst
-24 timmar av de [[http://www.wisdomgroup.com/blog/10000-hours-of-practice/][10.000 timmar]] som behövs för att bli en expert på
-programmering, och du kommer vara väl förberedd på att läsa resten
-av kursen.
+24 timmar av de [[http://www.wisdomgroup.com/blog/10000-hours-of-practice/][10.000 timmar]] som behövs[fn::Obs, ej vetenskaplig
+belagt!] för att bli en expert på programmering, och du kommer
+vara väl förberedd på resten av kursen.
 
-På varje labb kommer det att vara en eller flera uppgifter som är
-markerade med en stjärna. Det betyder att dessa uppgifter ska
-redovisas för en labbassistent. Senare under kursens kommer
-redovisningarna vara mer utförliga men *under de här labbarna
-räcker det med att skriva upp sig på tavlan i 1515* och visa vad
-du har gjort. Förbered gärna ett litet körexempel!
+#+MACRO: tag @@html:<span class="redovisas-exempel"">$1</span>@@
+
+*Samtliga labbars uppgifter finns på denna sida!* Varje labb har
+en eller flera uppgifter markerade med {{{tag(redovisas)}}}. Dessa
+uppgifter ska redovisas för en labbassistent. Senare under kursens
+kommer redovisningarna vara mer utförliga men *under de här
+labbarna räcker det med att skriva upp sig på tavlan i 1515* och
+visa vad du har gjort. Förbered gärna ett litet körexempel!
 
 Uppgifterna bygger ofta på tidigare uppgifter och tidigare labbar,
 så det bästa sättet att lösa dem är helt enkelt att jobba uppifrån
@@ -80,7 +82,7 @@ efterföljande labb. Varje labbs /hårda deadline/ är alltså
 efterföljande labbtillfälle.
 
 Om du av någon anledning tror att du inte kommer klara någon hård
-deadline, hör av dig till en senior assistent eller till Tobias så
+deadline, hör av dig till en [[file:~/t/ioopm/2018/site/tas2018.org][senior assistent]] eller till Tobias så
 hittar vi en lösning!
 
 ** Om du kör fast
@@ -129,6 +131,33 @@ kom ihåg att poängen med att ge någon hjälp inte är att den andra
 ska bli klar så snabbt som möjligt utan denne ska lära sig så
 mycket som möjligt!
 
+** Att programmera med SIMPLE
+*Programming is about problem solving*. Most time is spent
+/thinking/ -- and the time it takes to write down the outcome of
+the thinking, the banging on the keyboard, is only a small
+fraction of the time. Also note that the goal of this course is to
+teach /programming/ -- not programming in a specific language. We
+use C (and later Java) to illustrate concepts like how to think
+about problem decomposition, resource management, code quality
+etc. We could use different languages, but still teach the same
+(well, mostly) course.
+
+How to transform a specification (or an idea or a task...) into a
+running program is something that many beginner programmer
+consider magical. Often, it feels like the solution should just
+magically appear, or be obvious. This is far from the truth.
+However, a finishied program rarely gives us any idea of all the
+intermediate steps -- and buggy variants of the final program --
+that the programmers went through to get there.
+
+As a guide to the personal programming process, [[file:~/t/ioopm/2018/site/simple.org][we recommend
+following the steps of the SIMPLE programming methodology]]. It
+provides some good practises and introduces some key tricks that
+experienced programmers often use to incrementally approach a
+solution to a problem.
+
+Even if you have programming experience from before, please [[file:~/t/ioopm/2018/site/simple.org][take a
+look at SIMPLE]]!
 * Labb 1: Grundläggande koncept
 
 #+begin_important
@@ -169,7 +198,7 @@ skall fungera.
 $ cd ~
 $ mkdir .emacs.d
 $ cd .emacs.d
-$ curl http://wrigstad.com/ioopm/emacs-setup-linux.zip -o e.zip
+$ curl http://wrigstad.com/ioopm18/misc/emacs.zip -o e.zip
 $ unzip e.zip
 $ rm -f e.zip
 #+end_example
@@ -218,7 +247,7 @@ terminal.
 $ cd ~
 $ mkdir .emacs.d
 $ cd .emacs.d
-$ curl http://wrigstad.com/ioopm/emacs-setup-osx.zip -o e.zip
+$ curl http://wrigstad.com/ioopm18/misc/emacs.zip -o e.zip
 $ unzip e.zip
 $ rm -f e.zip
 #+end_example
@@ -529,9 +558,9 @@ Här är ett förslag på delproblemen för den här uppgiften som alla
 kan lösas en i taget:
 
 1. Skriv en loop som itererar från 1 till 10 (redan löst i ~p1.c~).
-2. Skriv en loop som skriver ut /N/ stycken brädgårdar (för något
+2. Skriv en loop som skriver ut /N/ stycken asterisker (för något
    värde på /N/).
-3. Ändra loopen i 1. så att brädgårdar skrivs ut istället för
+3. Ändra loopen i 1. så att asterisker skrivs ut istället för
    tal (använd loopen från 2.).
 4. Skriv ut summan av alla utskrivna asterisker (~*~).
 
@@ -1083,7 +1112,7 @@ inte alltid ligger precis där kompilatorn varnar så betyder en
 varning att någonting är fel i programmet, eller borde skrivas
 om. Om man tar för vana att inte fixa "ofarliga varningar" kommer
 det att vara svårare att hitta "de farliga varningarna" i allt
-mummel som kompilatorn spottar ur sig.
+mummel som kompilatorn spottar ur sig. ([[file:~/t/ioopm/2018/site/compiling.org::*Compiling%20C%20Code][Läs mer om att kompilera C-program här!]])
 
 #+begin_important
 Goda vanor är enklast att etablera om man tar de till sig redan
@@ -1648,11 +1677,11 @@ Skriv ett enkelt program som ett enkelt artitmetiskt uttryck på
 formatet
 
 #+begin_center
-/tal1 op tal2 = ?/
+$tal_1 \odot tal_2 = ?$
 #+end_center
 
-Där ~tal1~ och ~tal2~ är framslumpade tal i intervallet [1..1024]
-och ~op~ är en framslumpad operator i mängden {+, -, *, /}.
+Där $tal_1$ och $tal_2$ är framslumpade tal i intervallet $[1,1024]$
+och $\odot$ är en framslumpad operator i mängden $\{+, -, *, /\}$.
 
 Användaren skall mata in tal och programmet kontrollerar att det
 inmatade talet är korrekt.
@@ -1780,8 +1809,7 @@ skriva ~putchar(s[3])~ för att skriva ut dess fjärde tecken.
 
 
 ** Rekursion i C
-
-Du är bekant med rekursionsbegreppet sedan PKD. Rekursion i C
+Du är bekant med rekursionsbegreppet sedan förut. Rekursion i C
 fungerar i stort sett likadant. I labb 1 var en extrauppgift att implementera ett
 program som skrev ut tal ur Fibonacci-serien på ett /imperativt/
 sätt. Nedan följer ett liknande program, som bara skriver ut det
@@ -1833,7 +1861,7 @@ int main(int argc, char *argv[])
 }
 #+END_SRC
 
-*** Exempel på iteration ==> rekursion: sum
+*** Exempel på iteration $\Longrightarrow$ rekursion: sum
 
 Nedanstående funktion tar in en array av heltal samt längden på
 arrayen och adderar talen i arrayen och returnerar summan.
@@ -1930,7 +1958,6 @@ en loop -- mer om detta senare alltså.
 med resultatet från ditt imperativa program.
 
 ** Funktionspekare
-
 Pekare är som bekant adresser till platser i datorns minne där
 data finns lagrat. Vi har ännu inte stiftat någon djup bekantskap
 med dem men vi har sett att strängar i C är pekare (~char *~), och
@@ -2025,9 +2052,7 @@ detta fall alltså ~add~.
 ~foldl/int/int()~ och ~add()~. Du behöver inte ändra i vare sig
 ~foldl/int/int()~ eller ~add()~.
 
-
 ** Generell inläsningsrutin
-
 Skapa en ny fil med ett lämpligt namn, t.ex. ~experiment.c~ med
 en tom ~main()~-funktion. Skriv all kod för denna uppgift här,
 kompilera ofta och fundera på hur du kan skriva kod i
@@ -2228,9 +2253,7 @@ char *ask_question_string(char *question)
 }
 #+END_SRC
 
-
 ** Uppdatera ~utils.h~ och ~utils.c~
-
 Nu är det dags att uppdatera det generella biblioteket ~utils~.
 Kopiera in dina funktioner och typalias dit. Där bör nu ligga
 följande funktioner (åtminstone), i någon ordning:
@@ -2256,9 +2279,7 @@ Senare under kursen skall vi diskutera mer ingående hur man skapar
 bibliotek/moduler, placering av funktioner och definitioner,
 inkapsling och synlighet.
 
-
 ** Grand Finale! Kompilera om Gissa Talet mot nya ~utils~         :redovisas:
-
 Om du har gjort allt rätt kan du kompilera om ditt Gissa
 Talet-program från föregående labb mot ditt nya ~utils~-bibliotek:
 
@@ -2271,11 +2292,8 @@ fick det förut -- vilket du inte borde ha gjort!) och om du kör
 programmet igen skall det fungera precis som förut.
 
 Verifiera att så är fallet och fixa till eventuella buggar!
-
 ** Frivilliga extrauppgifter
-
 *** Trim
-
 En funktion som är vanlig i moderna strängbibliotek är funktionen
 ~trim()~ (aka ~strip()~) som tar bort "skräptecken" i början och
 slutet av en sträng. Exakt vad ett skräptecken är naturligtvis

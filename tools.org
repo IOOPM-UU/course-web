@@ -65,7 +65,7 @@ The following is installed (with the exception of *to-be-added*):
 - =doxygen= /generate documentation extracted from comments in source files/
 - =ssh= and =tmux= /love tmux!/
 - =curl= /get files, interact with web APIs etc./
-- =astyle= /automatic code formatting/
+- =astyle=, =indent= /automatic code formatting/
 - =htop= /check the processes running on the machine/
 - =gnuplot= and =graphviz= /to draw diagrams -- used by doxygen (and you?)/
 - terminal emulators: bash, zsh
@@ -79,7 +79,7 @@ The following is installed (with the exception of *to-be-added*):
 $ sudo apt-get install -y gcc clang libclang-dev lldb emacs25 vim tree make \
        tmux curl astyle zsh linux-tools-common valgrind git libcunit1-dev doxygen \ 
        xclip global zip unzip openjdk-8-jdk linux-tools-generic \
-       cscope cproto gcovr tig htop junit gnuplot graphviz cmake
+       cscope cproto gcovr tig htop junit gnuplot graphviz cmake indent
 #+END_EXAMPLE
 where =\= is a line break in the terminal and completely optional -- used here for formatting.
 ** Using Homebrew on macOS and Skip Virtualbox

@@ -163,11 +163,17 @@ quite far:[fn::Of course, change the filenames!]
 
 =gcc -Wall -pedantic -g file1.c file2.c file3.c=
 
-
-
+Note that unless you give a =-o filename= flag, the C compiler
+will name the resulting file =a.out=. That is often a fine file
+name for testing things out locally.
 * Loops
+C has 3 kinds of loops. They are equally powerful. When you want
+to create a temporary loop variable just for a loop, the for loop
+is generally the right choice. If you know you will always go
+through at least one iteration, choose a do-while loop. Otherwise,
+while loops are great! 
 ** While Loops
-
+Here is recursive fibonacci: 
 #+BEGIN_SRC c
 int fib(int n)
 {
@@ -181,7 +187,7 @@ int fib(int n)
     }
 }
 #+END_SRC
-
+And here, written using a while loop: 
 #+BEGIN_SRC c
 int fib(int n)
 {
@@ -202,10 +208,8 @@ int fib(int n)
 }
 #+END_SRC
 
-bug if n == 0 -- exercise!
-
+Note: bug if n == 0 -- exercise!
 ** Do-While Loops
-
 A do-while loop is a good fit for loops where we know we will go
 through the loop body /at least once/. Here is an example of going
 through a password dialogue. If the correct password is entered,
@@ -221,21 +225,20 @@ do
   }
 while (strcmp(password, answer) != 0);
 #+END_SRC
-
 Concisely, if a do-while loop is =do {body} while (guard)=, we
 could rewrite the code using a while loop as =body; while (guard)
 {body}=. What would the example above look like using a while-loop
 instead?
 
-#+ATTR_IOOPM: :hidden true :show Show answer :hide Hide answer
-#+BEGIN_SRC c
-char *password = "secret";
-char *answer = ask_question_string("Enter password:", &answer);
-while (strcmp(password, answer) != 0);
-  {
-    ask_question_string("Enter password:", &answer);
-  }
-#+END_SRC
+# #+ATTR_IOOPM: :hidden true :show Show answer :hide Hide answer
+# #+BEGIN_SRC c
+# char *password = "secret";
+# char *answer = ask_question_string("Enter password:", &answer);
+# while (strcmp(password, answer) != 0);
+#   {
+#     ask_question_string("Enter password:", &answer);
+#   }
+# #+END_SRC
 ** For Loops
 Technically, there is nothing you can do with a for loop that you
 could not do with a while. However, in many (but not all)
@@ -256,11 +259,9 @@ for (int i = 0; i < N; ++i)
   {
     printf("i = %d\n", i);
   }
-/// Cannot use i variable here
+/// Cannot use i variable here!
 #+END_SRC
-
 We could translate the for loop above to an equivalent while loop:
-
 #+BEGIN_SRC c
 int N = 1024;
 int i = 0; 
@@ -270,17 +271,14 @@ while (i < N)
     printf("i = %d\n", i);
     ++i;
   }
-/// __Can__ use i variable here
+/// __Can__ use i variable here!
 #+END_SRC
-
 * Increment and Decrement Operators
-
 Many C programs make use of the increment and decrement operators,
 ~++~ and ~--~. A pretty strong and compelling case can be made for
 not using these operators, because they make code hard to read.
 Indeed, several "modern" languages[fn::For example Go and Python.]
 do not support them.
-
 The ~++~ operator operates on SCALAR variables and fields and adds
 one to their value. The reason why the operator is sometimes
 confusing is that the result of applying it depends on whether it
@@ -298,9 +296,7 @@ in both the postfix and prefix positions.
 | ~++x~      | ~6~          | ~x = 6~     |
 | ~x--~      | ~5~          | ~x = 4~     |
 | ~--x~      | ~4~          | ~x = 4~     |
-
 ** Exercise I
-
 [[quiz:42%2044%2044][What does the following code print?]]
 #+BEGIN_SRC c
 int x = 42;
@@ -328,10 +324,7 @@ eyes to transpose the two ~printf()~-lines and confuse one for the
 other. The final example is interesting because it stresses the
 parsing situation -- does ~x+++x~ parse as ~(x++) + x~ or as ~x +
 (++x)~ -- and does it matter?
-
-
 ** Rationale
-
 Historically, many programmers have enjoyed writing programs which
 use ~++~ (and ~--~) when iterating over arrays. Here is a snippet that
 illustrates this in a very simple way.
@@ -344,14 +337,12 @@ msg[i++] = 'e';
 msg[i++] = 'y';
 msg[i++] = '\0';
 #+END_SRC
-
 Clearly, the ability to both look up an index and increment it at
 the same time is making the code above /compact/. In the code
 above, one could argue that adding four separate lines for
 incrementing ~i~ would add "a lot of noise" to the program.
 However, most-real world examples involve loops where we are
 mostly changing the index in a single line. For example:
-
 #+BEGIN_SRC c
 void puts_equivalent(char *str)
 {
@@ -361,7 +352,6 @@ void puts_equivalent(char *str)
 #+END_SRC
 
 Before we dig in, let us write that code with a proper loop body:
-
 #+BEGIN_SRC c
 void puts_equivalent(char *str)
 {
@@ -372,7 +362,6 @@ void puts_equivalent(char *str)
     }
 }
 #+END_SRC
-
 One reason to dislike this code is because ~putchar(str[i++]);~ is
 a very busy statement -- many things going on in a single line:
 
@@ -382,7 +371,6 @@ a very busy statement -- many things going on in a single line:
 
 Moving the increment to a line of its own makes the code much
 clearer:
-
 #+BEGIN_SRC c
 void puts_equivalent(char *str)
 {
@@ -394,13 +382,11 @@ void puts_equivalent(char *str)
     }
 }
 #+END_SRC
-
 We can rewrite it thus using a ~for~ loop, which could be argued
 makes the code clearer by collecting the loop variable, guard and
 change to the loop variable in a coherent space, textually[fn::Of
 course, this argument is much stronger for loops with longer
 and/or more complicated bodies.].
-
 #+BEGIN_SRC c
 void puts_equivalent(char *str)
 {
@@ -410,16 +396,14 @@ void puts_equivalent(char *str)
     }
 }
 #+END_SRC
-
 Note that in the last two cases, the behaviour is the same if the
 increment is done using ~++i~ or using ~i++~. This is a good thing
 for readability and maintainability.
 
 I strongly advocate only using ~++~ in the **prefix** position to
-the extent possible.
-
+the extent possible. Many modern programming languages have dropped
+~++~ in favour of =+=n= which is clearer and more flexible. 
 ** Increments in Pointer Arithmetic
-
 The increment operation is often used to do pointer arithmetic.
 For example, ~int *ip~ declares ~ip~ to be a pointer to a place in
 memory where an int is stored[fn::For simplicity, we don't show
@@ -445,21 +429,16 @@ printf("%d ", *ip++)
 To increment the value pointed to by some pointer, put the
 dereference in parentheses: ~(*ip)++~ means increase the value of
 ~*ip~ by one and does not change the value of ~ip~.
-
-
 ** Exercise II
-
 Look at the following implementation of ~strcpy()~, the string
 copying function, that copies a string from ~b~ to ~a~. 
 [[quiz:First,%20~x%20=%20y~%20returns%20the%20value%20of%20~y~.%20Second,%20~'\0'~%20has%20the%20value%20~0~%20meaning%20it%20is%20the%20same%20as%20~false~.][Do you understand how it works?]]
-
 #+BEGIN_SRC c
 void strcpy(char *a, char *b)
 {
   while (*a++ = *b++) ;
 }
 #+END_SRC
-
 Because sometimes strings are not properly null-terminated, we
 should never use ~strcpy()~. Instead, we should rely on
 ~strncpy()~ that takes an additional argument that upper-bounds
@@ -478,19 +457,20 @@ The documentation for ~strncpy()~ says (slightly adapted):
 /If the length of =b= is less than =n=, =strncpy()= writes additional null characters to =a= to ensure that a total of =n= bytes are written./
 
 Update ~strncpy()~ above to adhere to that specification. Can you
-do it on a single line, without breaking the FORMATTING
-CONVENTIONS?
+do it in a single construct on a single line? (Note -- there is
+nothing better about doing it in a single line, this is just a bit
+of fun, and also to restrict you from inventing too complex
+machinery.)
 
-#+ATTR_IOOPM: :hidden true :show Show answer :hide Hide answer
-#+BEGIN_SRC c
-// TODO: Hide
+#+begin_hidden
+#+BEGIN_SRC c 
 void strncpy(char *a, char *b, int n)
 {
   while (n-- > 0 && *a++ = *b++) ;
   while (n-- > 0) *a++ = '\0';
 }
 #+END_SRC
-
+#+end_hidden
 
 ** Concluding Remarks
 

@@ -1,5 +1,6 @@
 #+title: Editors on IOOPM
 #+include: "./setup.org"
+#+include: "./asciinema-setup.org"
 
 #+begin_attention
 Most of this text is being written from scratch in 2018. For now, refer to the bootstrap sections on the [[file:assignments/c-bootstrap.org][C bootstap labs]].
@@ -8,7 +9,11 @@ Most of this text is being written from scratch in 2018. For now, refer to the b
 * Introduktion till Emacs
 
 #+begin_note
-Skrevs av Elias Castegren, huvudassistent på IOOPM 2011--2017. Vissa tillägg av Tobias (speciella kortkommandon för IOOPM). 
+Skrevs av Elias Castegren, huvudassistent på IOOPM 2011--2017.
+Vissa tillägg av Tobias (speciella kortkommandon för IOOPM).
+
+[[https://www.youtube.com/watch?v=d6iY_1aMzeg&list=PLX2044Ew-UVVv31a0-Qn3dA6Sd_-NyA1n][Här finns en YouTube-kanal]] med 20+ Emacs-videos i tutorial-format,
+för dig som gillar video-orienterad kommunikation. 
 #+end_note
 
 det här är en kort genomgång av några väldigt grundläggande
@@ -54,7 +59,7 @@ beskrivning av dessa kommandon.
 
 När man startar Emacs är det första man vill göra att välja vilken
 fil man vill jobba med. För att öppna en fil är kommandot key:C-x
-key:C-f (=f= som i *find file*). Om filen inte finns kommer den
+key:C-f (*f* som i *find file*). Om filen inte finns kommer den
 att skapas. Sparar gör man med key:C-x key:C-s (*save file*),
 eller [[key:C-x]] key:C-w (*write file*) om man vill ange ett nytt
 namn på filen. Rent tekniskt skapas en ny fil när man sparar för
@@ -77,17 +82,19 @@ fönster förutom det aktiva.
 Om du använder inställningsfilen från IOOPM har du följande kortkommandon också: 
 - [[key:C-x]] [[key:|]] -- delar fönstret vertikalt
 - [[key:C-x]] [[key:-]] -- delar fönstret horisontellt
-- [[key:M-n]] -- öppna en tom buffert (som knyts till en fil först vid spara)
+- [[key:M-n]] [[key:n]]-- öppna en tom buffert (som knyts till en fil först vid spara)
 (De två första kortkommandona är inspirerade av =tmux=.)
 #+end_note
 
-
 ** Navigering
 
-Man scrollar ner i ett fönster med key:C-v (*view next screen*) och
-upp med key:M-v. key:C-l (*center **l**ine*) centrerar fönstret vid
-markören. Trycker man key:C-l flera gånger så scrollas fönstret så
-att markören hamnar överst eller underst i fönstret.
+Du kan scrolla nedåt i ett fönster med key:C-v (*view next
+screen*) och upp med key:M-v. key:C-l (*center line*) centrerar
+fönstret vid markören. Trycker man key:C-l flera gånger så
+scrollas fönstret så att markören hamnar överst eller underst i
+fönstret. Utöver dessa kommandon fungerar key:PgUp och key:PgDn
+som vanligt, även om moderna laptops inte brukar ha särskilda
+tangenter för dessa kommandon längre. 
 
 Kortkommandona för att flytta markören är key:C-f (*forward*), key:C-b
 (*backward*), key:C-n (*next line*) och key:C-p (*previous line*).
@@ -97,7 +104,7 @@ kortkommandon för att (bland annat) flytta markören till början
 eller slutet av den nuvarande raden, meningen, funktionen eller
 buffern.
 
-Man kan flytta markören med piltangenterna (i kombination med
+Man kan flytta markören med piltangenterna (även i kombination med
 control- och meta-tangenterna) eller genom att klicka med musen
 också, men med kortkommandona går det betydligt snabbare och man
 slipper flytta händerna.
@@ -121,6 +128,8 @@ Om du använder inställningsfilen från IOOPM har du följande kortkommandon oc
 - key:M-ä -- hoppar till nästa förekomst av ordet som markören står på
 - key:M-ö -- hoppar till föregående förekomst av ordet som markören står på
 - key:M-p -- ersätt alla (efterföljande) förekomster av ordet som markören står på mot något annat
+- key:M-g [[key:m]] -- pusha en markering på mark-stacken
+- key:M-g [[key:<space>]] -- poppa en markering på mark-stacken och hoppa dit
 #+end_note
 
 ** Redigera text
@@ -180,7 +189,6 @@ man sen ange med [[key:y]] (*yes*) och [[key:n]] (*no*) om man vill att den
 ska bytas ut eller inte (trycker man [[key:?]] får man se fler möjliga
 svarsalternativ). För att byta ut alla förekomster kan man använda
 kommandot key:M-x =replace-string= istället.
-
 
 ** Terminal i Emacs
 
@@ -253,11 +261,21 @@ Chrome eller Firefox som webbläsare).
 #+caption: Dr. Elias Castegren, känd som Emacs-Jesus under IOOPM 2017
 file:http://wrigstad.com/images/dr-castegren.jpg
 
-* TODO Yas-snippets
+* Yas-snippets
+Yasnippets finns installerade i IOOPM-inställningarna. Yasnippets
+har stöd för templates som expaneras direkt i editorn. Varje gång
+text "magiskt" dyker upp i editorn är det för att jag trycker
+key:tab för att expandera texten. Pröva t.ex. =main= key:tab,
+eller =for= key:tab, etc. Navigation mellan de olika "delarna" i
+en snippet sker också med tab.
+ 
+#+BEGIN_EXPORT html
+<asciinema-player src="/ioopm18/misc/yas-demo.cast"></asciinema-player>
+#+END_EXPORT
 
-* TODO Programmera Java i Emacs med irony-mode
-
-https://github.com/Sarcasm/irony-mode
+Observera att yasnippets optimerar editeringshastighet, men att det
+knappast är det viktigaste när det gäller programmering, eller ens
+att vara produktiv när det kommer till programmering!
 
 * Programmera Java i Emacs med meghanada
 
@@ -423,3 +441,6 @@ test-filer i underkatalogen "debug".
 Ös!
 
 #+include: "./footer.org"
+
+
+

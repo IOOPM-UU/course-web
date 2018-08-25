@@ -205,5 +205,17 @@ document.onkeydown = function(evt) {
     }
 };
 
+var id_inc = 0;
 
-
+$(document).ready(function() {
+    $(".hidden").each(function (){
+        var d = $(this);
+        id_inc += 1;
+        var id = "foo-bar-id-" + id_inc;
+        d.before('<button id="' + id + '" type="button" class="btn btn-info">Click to reveal answer!</button>');
+        $(document.body).on('click', '#' + id, function() {
+            d.show(300);
+            $("#" + id).hide();
+        });
+    });
+});
