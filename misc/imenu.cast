@@ -1,0 +1,826 @@
+{
+  "version": 1,
+  "width": 99,
+  "height": 25,
+  "duration": 60.068139,
+  "command": null,
+  "title": null,
+  "env": {
+    "TERM": "st-256color",
+    "SHELL": "/usr/bin/zsh"
+  },
+  "stdout": [
+    [
+      0.461415,
+      "\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                                                  \r \r"
+    ],
+    [
+      0.03264,
+      "\r\u001b[0m\u001b[27m\u001b[m\u001b[J\u001b[37m\u001b[1mstw\u001b[0m\u001b[00m:\u001b[34m\u001b[1mscreencast/\u001b[0m\u001b[00m $ \u001b[K\u001b[71C[3:43:20]\u001b[80D\u001b[?1h\u001b="
+    ],
+    [
+      2.6e-05,
+      "\u001b[?2004h"
+    ],
+    [
+      0.494146,
+      "e"
+    ],
+    [
+      0.164769,
+      "\bem"
+    ],
+    [
+      0.144651,
+      "a"
+    ],
+    [
+      0.150698,
+      "c"
+    ],
+    [
+      0.09077,
+      "s"
+    ],
+    [
+      0.257766,
+      " "
+    ],
+    [
+      0.289443,
+      "-"
+    ],
+    [
+      0.352714,
+      "n"
+    ],
+    [
+      0.18259,
+      "w"
+    ],
+    [
+      0.355943,
+      " "
+    ],
+    [
+      0.225235,
+      "d"
+    ],
+    [
+      0.108219,
+      "e"
+    ],
+    [
+      0.215362,
+      "mo.c\u001b[1m \u001b[0m"
+    ],
+    [
+      0.660637,
+      "\b\u001b[0m \b"
+    ],
+    [
+      0.000119,
+      "\u001b[?1l\u001b>"
+    ],
+    [
+      0.000395,
+      "\u001b[?2004l\r\r\n"
+    ],
+    [
+      0.055185,
+      "\u001b[?1049h\u001b[?25h\u001b[?1h\u001b="
+    ],
+    [
+      0.009698,
+      "\u001b[H\u001b[2J\u001b[25d\u001b[K\u001b[?1l\u001b>\u001b[?12l\u001b[?25h\u001b[?1049l\u001b[39;49m\r\u001b[?1049h\u001b[?25h\u001b[?1h\u001b="
+    ],
+    [
+      0.00742,
+      "\u001b[H\u001b[2J"
+    ],
+    [
+      0.000874,
+      "\u001b[24d\u001b[?25l\u001b[30m\u001b[47m-UUU:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47m*scratch*   \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m   All L1     (Fundamental) ----------------------------------------------\u001b[39;49m\r\n\u001b[A\u001b[2d\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000323,
+      "\u001b[25d\u001b[?25lLoading 00debian-vars...done\u001b[K\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000108,
+      "\u001b[25;9H\u001b[?25l/etc/emacs/site-start.d/50a2ps.el (source)...\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000416,
+      "\u001b[25;54H\u001b[?25ldone\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000138,
+      "\u001b[25;36H\u001b[?25lsymptote.el (source)...\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000329,
+      "\u001b[25;59H\u001b[?25ldone\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000148,
+      "\u001b[25;36H\u001b[?25lutoconf.el (source)...\u001b[K\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000414,
+      "\u001b[25;58H\u001b[?25ldone\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.00016,
+      "\u001b[25;35H\u001b[?25lcmake-data.el (source)...\u001b[K\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.007648,
+      "\u001b[25;60H\u001b[?25ldone\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000139,
+      "\u001b[25;35H\u001b[?25ldictionaries-common.el (source)...\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000633,
+      "\u001b[25;9H\u001b[?25ldebian-ispell...\u001b[K\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.001181,
+      "\u001b[25;9H\u001b[?25l/var/cache/dictionaries-common/emacsen-ispell-default.el (source)...\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000315,
+      "\u001b[25;77H\u001b[?25ldone\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000443,
+      "\u001b[25;9H\u001b[?25ldebian-ispell...done\u001b[K\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      8.1e-05,
+      "\u001b[25;9H\u001b[?25l/var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000298,
+      "\u001b[25;75H\u001b[?25ldone\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      5.6e-05,
+      "\u001b[25;10H\u001b[?25letc/emacs/site-start.d/50dictionaries-common\u001b[6P\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      9.5e-05,
+      "\u001b[25;35H\u001b[?25lglobal.el (source)...\u001b[K\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000304,
+      "\u001b[25;56H\u001b[?25ldone\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000156,
+      "\u001b[25;35H\u001b[?25llatex-cjk-common.el (source)...\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000288,
+      "\u001b[25;9H\u001b[?25lcjk-enc...\u001b[K\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.00133,
+      "\u001b[25;19H\u001b[?25ldone\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      6.8e-05,
+      "\u001b[25;9H\u001b[?25l/etc/emacs/site-start.d/50latex-cjk-common.el (source)...done\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000175,
+      "\u001b[25;45H\u001b[?25lthai.el (source)...\u001b[K\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000283,
+      "\u001b[25;64H\u001b[?25ldone\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000174,
+      "\u001b[25;35H\u001b[?25lmu4e.el (source)...\u001b[K\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.00043,
+      "\u001b[25;54H\u001b[?25ldone\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000169,
+      "\u001b[25;35H\u001b[?25lsystemtap-common.el (source)...\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.00026,
+      "\u001b[25;66H\u001b[?25ldone\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000195,
+      "\u001b[25;35H\u001b[?25ltexlive-lang-english.el (source)...\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000254,
+      "\u001b[25;70H\u001b[?25ldone\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.327428,
+      "\u001b[25d\u001b[?25lIndicating of empty lines enabled globally\u001b[K\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.022734,
+      "\u001b[25d\u001b[?25lLoading /home/stw/.emacs.d/custom.el.new...\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.007018,
+      "\u001b[25;9H\u001b[?25lhelp-at-pt...\u001b[K\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.00082,
+      "\u001b[25;22H\u001b[?25ldone\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.003659,
+      "\u001b[25;9H\u001b[?25lprojectile...\u001b[K\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.104348,
+      "\u001b[25;22H\u001b[?25ldone\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.005618,
+      "\u001b[25;9H\u001b[?25lyasnippet...\u001b[K\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.155934,
+      "\u001b[25;21H\u001b[?25ldone\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.074181,
+      "\u001b[25d\u001b[?25l[yas] Prepared just-in-time loading of snippets successfully.\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000288,
+      "\u001b[25d\u001b[?25lLoading /home/stw/.emacs.d/custom.el.new...done\u001b[K\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.809414,
+      "\u001b[25d\u001b[?25lLoading /home/stw/.emacs.d/custom.el.new...done\u001b[K\u001b[H\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[30m\u001b[47m-UUU:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47m*scratch*   \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m   All (1,0)      (Fundamental yas)  -------------------------------------\u001b[39;49m\r\n\u001b[A\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.210366,
+      "\u001b[25d\u001b[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.27209,
+      "\u001b[25d\u001b[?25lFor information about GNU Emacs and the GNU system, type C-h C-a.\u001b[K\u001b[H\u001b[35mstruct\u001b[39;49m \u001b[32msome_data\u001b[39;49m\u001b[K\r\n{\u001b[K\n\b  \u001b[32mint\u001b[39;49m \u001b[31mf\u001b[39;49m;\u001b[K\r\n  \u001b[32mint\u001b[39;49m \u001b[31mg\u001b[39;49m;\u001b[K\r\n};\u001b[K\r\n\u001b[K\n\u001b[32mint\u001b[39;49m \u001b[34mmain\u001b[39;49m(\u001b[32mint\u001b[39;49m \u001b[31margc\u001b[39;49m, \u001b[32mchar\u001b[39;49m *\u001b[31margv\u001b[39;49m[])\u001b[K\r\n{\u001b[K\n\b  \u001b[31m// just adding some functions                                                                    \u001b[39;49m\r\n\u001b[A\n  \u001b[35mreturn\u001b[39;49m 0;\u001b[K\r\n}\u001b[K\n\b\u001b[K\n\u001b[32mint\u001b[39;49m \u001b[34mfoo\u001b[39;49m(\u001b[32mint\u001b[39;49m \u001b[31mbar\u001b[39;49m)\u001b[K\r\n{\u001b[K\n\b  \u001b[35mreturn\u001b[39;49m 42;\u001b[K\r\n}\u001b[K\n\b\u001b[K\n\u001b[K"
+    ],
+    [
+      3.3e-05,
+      "\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[30m\u001b[47m-UU-:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   All (1,0)      (C/l company GG FlyC yas Projectile[-] Abbrev)  -----\u001b[39;49m\r\n\u001b[A\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      1.758794,
+      "\u001b[25d\u001b[K\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m2\u001b[39;49m\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.128448,
+      "\u001b[?25l\u001b[46m{\u001b[39;49m\n\n\n\b\u001b[46m}\u001b[39;49m\u001b[H\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.030212,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m3\u001b[39;49m\u001b[H\n\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.12777,
+      "\u001b[A\u001b[?25l{\n\n\n\b}\u001b[H\n\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.03513,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m4\u001b[39;49m\u001b[4;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.156067,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m5\u001b[39;49m\u001b[5;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.307501,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m6\u001b[39;49m\u001b[6;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.196242,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m7\u001b[39;49m\u001b[7;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.413776,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m6\u001b[39;49m\u001b[6;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.145163,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m5\u001b[39;49m\u001b[5;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.297081,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m4\u001b[39;49m\u001b[4;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.172572,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m3\u001b[39;49m\u001b[H\n\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.257982,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m4\u001b[39;49m\u001b[4;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.183909,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m5\u001b[39;49m\u001b[5;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.163159,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m6\u001b[39;49m\u001b[6;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.384379,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m7\u001b[39;49m\u001b[7;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      2.722141,
+      "\u001b[19d\u001b[?25l\u001b[30m\u001b[47m-UU-:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   All (7,0)      (C/l company GG FlyC yas Projectile[-] Abbrev)  -----\u001b[39;49m\r\n\u001b[34mimenu \u001b[39;49m\r\n-> \u001b[1mClass\u001b[0m\n\b\b\b\b\bmain\n\b\b\b\bfoo\r\n\u001b[K\u001b[20;7H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      1.605886,
+      "\u001b[?25lm[ain]\u001b[21;4H\u001b[1m\u001b[32mm\u001b[0m\u001b[39;49m\u001b[32main\u001b[39;49m\u001b[K\r\n\u001b[K\n\u001b[K\u001b[20;8H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.105991,
+      "\u001b[?25la[\n\b\b\b\b\b\u001b[1m\u001b[32ma\u001b[0m\u001b[39;49m\u001b[A\t\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.742316,
+      "\r"
+    ],
+    [
+      0.004509,
+      "\u001b[A\u001b[K\n\u001b[K\n\u001b[K\n\n\n\u001b[?25l\u001b[30m\u001b[47m-UU-:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   All (7,0)      (C/l company GG FlyC yas Projectile[-] Abbrev)  -----\u001b[39;49m\r\n\u001b[7d\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      1.082016,
+      "\u001b[19d\u001b[?25l\u001b[30m\u001b[47m-UU-:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   All (7,0)      (C/l company GG FlyC yas Projectile[-] Abbrev)  -----\u001b[39;49m\r\n\u001b[34mimenu \u001b[39;49m\r\n-> \u001b[1mClass\u001b[0m\n\b\b\b\b\bmain\n\b\b\b\bfoo\r\n\u001b[K\u001b[20;7H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.735867,
+      "\u001b[?25lf[oo]\u001b[21;4H\u001b[1m\u001b[32mf\u001b[0m\u001b[39;49m\u001b[32moo\u001b[39;49m\u001b[K\r\n\u001b[K\n\u001b[K\u001b[20;8H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.122785,
+      "\u001b[?25lo[\n\b\b\b\b\b\u001b[1m\u001b[32mo\u001b[0m\u001b[39;49m\u001b[A\t\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.555932,
+      "\r"
+    ],
+    [
+      0.004705,
+      "\u001b[A\u001b[K\n\u001b[K\n\u001b[K\n\n\n\u001b[?25l\u001b[30m\u001b[47m-UU-:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   All (13,0)     (C/l company GG FlyC yas Projectile[-] Abbrev)  -----\u001b[39;49m\r\n\u001b[13d\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      1.271687,
+      "\u001b[25d\u001b[?25lMark set\u001b[13;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.317172,
+      "\u001b[25d\u001b[K\u001b[13d\u001b[?25l\u001b[32m\u001b[43mint\u001b[39;49m\u001b[43m \u001b[39;49m\u001b[34m\u001b[43mfoo\u001b[39;49m\u001b[43m(\u001b[39;49m\u001b[32m\u001b[43mint\u001b[39;49m\u001b[43m \u001b[39;49m\u001b[31m\u001b[43mbar\u001b[39;49m\u001b[43m)                                                                                   \u001b[39;49m\r\n\u001b[24;38H\u001b[30m\u001b[47m4\u001b[39;49m\u001b[14;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.128517,
+      "\u001b[?25l\u001b[46m{\u001b[39;49m\n\n\b\u001b[46m}\u001b[39;49m\u001b[14;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.014452,
+      "\u001b[C\u001b[?25l\u001b[43m                                                                                                  \u001b[39;49m\r\n\u001b[24;38H\u001b[30m\u001b[47m5\u001b[39;49m\u001b[15;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.126483,
+      "\u001b[A\u001b[?25l\u001b[43m{\u001b[39;49m\n\n\b}\u001b[A\b\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.022041,
+      "\u001b[?25l\u001b[43m  \u001b[39;49m\u001b[35m\u001b[43mreturn\u001b[39;49m\u001b[43m 42;                                                                                       \u001b[39;49m\r\n\u001b[24;38H\u001b[30m\u001b[47m6\u001b[39;49m\u001b[16;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.14032,
+      "\u001b[?25l\u001b[43m}                                                                                                  \u001b[39;49m\r\n\u001b[24;38H\u001b[30m\u001b[47m7\u001b[39;49m\u001b[17;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.306329,
+      "\u001b[?25l\u001b[43m                                                                                                   \u001b[39;49m\r\n\u001b[24;38H\u001b[30m\u001b[47m8\u001b[39;49m\u001b[18;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.259254,
+      "\u001b[13d\u001b[?25l\u001b[32mint\u001b[39;49m \u001b[34mfoo\u001b[39;49m(\u001b[32mint\u001b[39;49m \u001b[31mbar\u001b[39;49m)\u001b[K\r\n{\u001b[K\n\b  \u001b[35mreturn\u001b[39;49m 42;\u001b[K\r\n}\u001b[K\n\b\u001b[K\n\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      1.29494,
+      "\u001b[25d\u001b[?25lMark set\u001b[18;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.077259,
+      "\u001b[?25l\u001b[32mint\u001b[39;49m \u001b[34mfoo\u001b[39;49m(\u001b[32mint\u001b[39;49m \u001b[31mbar\u001b[39;49m)\r\n{\n\u001b[C\u001b[35mreturn\u001b[39;49m 42;\r\n}\u001b[24;6H\u001b[30m\u001b[47m**\u001b[39;49m\u001b[18;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.867499,
+      "\u001b[25d\u001b[K\u001b[24;40H\u001b[?25l\u001b[30m\u001b[47m3\u001b[39;49m\u001b[18;4H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.216347,
+      "\u001b[24;40H\u001b[?25l\u001b[30m\u001b[47m7\u001b[39;49m\u001b[18;8H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.128564,
+      "\u001b[?25l\u001b[46m(\u001b[39;49m\u001b[32mint\u001b[39;49m \u001b[31mbar\u001b[39;49m\u001b[46m)\u001b[39;49m\r\t\b\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.296897,
+      "\b\b\b\u001b[?25l\u001b[3P\u001b[24;40H\u001b[30m\u001b[47m4\u001b[39;49m\u001b[18;5H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.573592,
+      "\u001b[?25l\u001b[1@\u001b[34mb\u001b[39;49m\u001b[24;40H\u001b[30m\u001b[47m5\u001b[39;49m\u001b[18;6H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.128056,
+      "\u001b[?25l\u001b[1@\u001b[34ma\u001b[39;49m\u001b[24;40H\u001b[30m\u001b[47m6\u001b[39;49m\u001b[18;7H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.146644,
+      "\u001b[?25l\u001b[1@\u001b[34mr\u001b[39;49m\u001b[24;40H\u001b[30m\u001b[47m7\u001b[39;49m\u001b[18;8H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.914595,
+      "\u001b[25;1H\u001b[?25lSaving file /tmp/screencast/demo.c...\u001b[18;8H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.007864,
+      "\u001b[25;1H\u001b[?25lWrote /tmp/screencast/demo.c\u001b[K\u001b[18;8H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.041375,
+      "\u001b[24;6H\u001b[?25l\u001b[30m\u001b[47m--\u001b[39;49m\u001b[18d\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.537576,
+      "\u001b[25;1H\u001b[K\u001b[18;8H"
+    ],
+    [
+      0.285661,
+      "\u001b[25;1H\u001b[?25lMark set\u001b[18;8H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.001631,
+      "\u001b[24;38H\u001b[?25l\u001b[30m\u001b[47m,0) \u001b[39;49m\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.129256,
+      "\u001b[18;8H\u001b[?25l(\u001b[32mint\u001b[39;49m \u001b[31mbar\u001b[39;49m)\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.748117,
+      "\u001b[25d\u001b[K\u001b[19d\u001b[?25l\u001b[30m\u001b[47m-UU-:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   Top (1,0)      (C/l company GG FlyC yas Projectile[-] Abbrev)  -----\u001b[39;49m\r\n\u001b[34mimenu \u001b[39;49m\u001b[K\r\n-> \u001b[1mClass\u001b[0m\n\b\b\b\b\bmain\n\b\b\b\bfoo\r\n   bar\u001b[K\u001b[20d\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.482932,
+      "\u001b[?25lb[ar]\u001b[21;4H\u001b[1m\u001b[32mb\u001b[0m\u001b[39;49m\u001b[32mar\u001b[39;49m\u001b[K\r\n\u001b[K\n\u001b[K\n\u001b[K\u001b[20;8H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.128248,
+      "\u001b[?25la[\n\b\b\b\b\b\u001b[1m\u001b[32ma\u001b[0m\u001b[39;49m\u001b[A\t\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.113575,
+      "\u001b[?25lr\u001b[K\n\b\b\b\b\u001b[1m\u001b[32mr\u001b[0m\u001b[39;49m\u001b[20;10H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.427705,
+      "\r"
+    ],
+    [
+      0.00563,
+      "\u001b[A\u001b[?25l{\u001b[K\n\b  \u001b[35mreturn\u001b[39;49m 42;\r\n}\u001b[K\n\n\n\b\u001b[30m\u001b[47m-UU-:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   All (18,0)     (C/l company GG FlyC yas Projectile[-] Abbrev)  -----\u001b[39;49m\r\n\u001b[18d\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      1.371297,
+      "\n\u001b[?25l\u001b[30m\u001b[47m-UU-:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   Top (18,0)     (C/l company GG FlyC yas Projectile[-] Abbrev)  -----\u001b[39;49m\r\n\u001b[34mimenu \u001b[39;49m\u001b[K\r\n-> \u001b[1mClass\u001b[0m\n\b\b\b\b\bmain\n\b\b\b\bfoo\r\n   bar\u001b[K\u001b[20d\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.522196,
+      "\r"
+    ],
+    [
+      0.003052,
+      "\u001b[21;4H\u001b[?25l\u001b[32msome_data\u001b[39;49m\r\n\u001b[K\n\u001b[K\n\u001b[K\u001b[20;7H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.731832,
+      "\r"
+    ],
+    [
+      0.00788,
+      "\u001b[A\u001b[?25l{\u001b[K\n\b  \u001b[35mreturn\u001b[39;49m 42;\r\n}\u001b[K\n\n\n\b\u001b[30m\u001b[47m-UU-:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   All (1,0)      (C/l company GG FlyC yas Projectile[-] Abbrev)  -----\u001b[39;49m\r\n\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.454813,
+      "\u001b[24;39H\u001b[?25l\u001b[30m\u001b[47m16)\u001b[39;49m\u001b[H\t\t\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.426677,
+      "\u001b[?25l\u001b[32m2\u001b[39;49m\u001b[24;6H\u001b[30m\u001b[47m**--F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   All (1,17\u001b[39;49m\u001b[1;18H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.188932,
+      "\u001b[?25l\u001b[32m2\u001b[39;49m\u001b[24;40H\u001b[30m\u001b[47m8\u001b[39;49m\u001b[1;19H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.458764,
+      "\u001b[?25l\u001b[32m2\u001b[39;49m\u001b[24;40H\u001b[30m\u001b[47m9\u001b[39;49m\u001b[1;20H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.624062,
+      "\u001b[25;1H\u001b[?25lSaving file /tmp/screencast/demo.c...\u001b[1;20H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.018096,
+      "\u001b[25;1H\u001b[?25lWrote /tmp/screencast/demo.c\u001b[K\u001b[1;20H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.016292,
+      "\u001b[24;6H\u001b[?25l\u001b[30m\u001b[47m--\u001b[39;49m\u001b[1;20H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      1.303055,
+      "\u001b[25;1H\u001b[K\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m2,1) \u001b[39;49m\u001b[2;2H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.146768,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m3,8\u001b[39;49m\u001b[3;9H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.152187,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m4\u001b[39;49m\u001b[4;9H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.659855,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m5,2\u001b[39;49m\u001b[5;3H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.040899,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m6,0\u001b[39;49m\u001b[6;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.040439,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m7,19)\u001b[39;49m\u001b[7;20H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.040855,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m8,1) \u001b[39;49m\u001b[8;2H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.040334,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m9,19)\u001b[39;49m\u001b[9;20H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.041614,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m10,11)\u001b[39;49m\u001b[10;12H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.039864,
+      "\u001b[24;38H\u001b[?25l\u001b[30m\u001b[47m1,1) \u001b[39;49m\u001b[11;2H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.128803,
+      "\u001b[8;1H\u001b[?25l\u001b[46m{\u001b[39;49m\n\n\n\b\u001b[46m}\u001b[39;49m\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.447591,
+      "\u001b[24;38H\u001b[?25l\u001b[30m\u001b[47m2,0\u001b[39;49m\u001b[12;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.128843,
+      "\u001b[8d\u001b[?25l{\n\n\n\b}\n\b\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.099792,
+      "\u001b[24;38H\u001b[?25l\u001b[30m\u001b[47m3,16)\u001b[39;49m\u001b[13;17H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.128734,
+      "\r\t\b\u001b[?25l\u001b[46m(\u001b[39;49m\u001b[32mint\u001b[39;49m \u001b[31mbar\u001b[39;49m\u001b[46m)\u001b[39;49m\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.504477,
+      "\u001b[19;1H\u001b[?25l\u001b[30m\u001b[47m-UU-:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   Top (13,16)    (C/l company GG FlyC yas Projectile[-] Abbrev)  -----\u001b[39;49m\r\n\u001b[34mimenu \u001b[39;49m\u001b[K\r\n-> \u001b[1mClass\u001b[0m\n\b\b\b\b\bmain\n\b\b\b\bfoo\r\n   bar\u001b[K\u001b[20d\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.12835,
+      "\u001b[13;8H\u001b[?25l(\u001b[32mint\u001b[39;49m \u001b[31mbar\u001b[39;49m)\u001b[20;7H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.397057,
+      "\r"
+    ],
+    [
+      0.006709,
+      "\u001b[21;4H\u001b[?25l\u001b[32msome_data222\u001b[39;49m\r\n\u001b[K\n\u001b[K\n\u001b[K\u001b[20;7H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.456921,
+      "\r"
+    ],
+    [
+      0.005052,
+      "\u001b[A\u001b[?25l{\u001b[K\n\b  \u001b[35mreturn\u001b[39;49m 42;\r\n}\u001b[K\n\n\n\b\u001b[30m\u001b[47m-UU-:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   All (1,0)      (C/l company GG FlyC yas Projectile[-] Abbrev)  -----\u001b[39;49m\r\n\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      2.2695,
+      "\u001b[25d\u001b[?25lMark set\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.001592,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m23,0)\u001b[39;49m\r\u001b[A\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.723309,
+      "\u0007"
+    ],
+    [
+      0.000382,
+      "\n\n\u001b[C\u001b[?25l-[ 1 ; 5 a is undefined\u001b[23;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.306752,
+      "\n\n\u001b[K\u001b[22d\u001b[?25l\u001b[43m                                                                                                   \u001b[39;49m\r\n\u001b[24;38H\u001b[30m\u001b[47m2\u001b[39;49m\u001b[22;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.175837,
+      "\u001b[A\u001b[?25l\u001b[43m}                                                                                                  \u001b[39;49m\r\n\u001b[24;38H\u001b[30m\u001b[47m1\u001b[39;49m\u001b[21;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.149066,
+      "\u001b[A\u001b[?25l\u001b[43m  \u001b[39;49m\u001b[35m\u001b[43mreturn\u001b[39;49m\u001b[43m 42;                                                                                       \u001b[39;49m\r\n\u001b[24;38H\u001b[30m\u001b[47m0\u001b[39;49m\u001b[20;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.116688,
+      "\u001b[A\u001b[?25l\u001b[43m{                                                                                                  \u001b[39;49m\r\n\u001b[24;37H\u001b[30m\u001b[47m19\u001b[39;49m\u001b[19;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.132764,
+      "\u001b[?25l\u001b[46m{\u001b[39;49m\n\n\b\u001b[46m}\u001b[39;49m\u001b[19;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.00882,
+      "\u001b[A\u001b[?25l\u001b[32m\u001b[43mint\u001b[39;49m\u001b[43m \u001b[39;49m\u001b[34m\u001b[43mbar\u001b[39;49m\u001b[43m(\u001b[39;49m\u001b[32m\u001b[43mint\u001b[39;49m\u001b[43m \u001b[39;49m\u001b[31m\u001b[43mbar\u001b[39;49m\u001b[43m)                                                                                   \u001b[39;49m\r\n"
+    ],
+    [
+      0.000265,
+      "\u001b[24;38H\u001b[30m\u001b[47m8\u001b[39;49m\u001b[18;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.128998,
+      "\n\u001b[?25l\u001b[43m{\u001b[39;49m\n\n\b\u001b[43m}\u001b[39;49m\u001b[18;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.179608,
+      "\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\u001b[24;6H\u001b[?25l\u001b[30m\u001b[47m**\u001b[39;49m\u001b[18;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.971478,
+      "\u001b[25d\u001b[?25lMark set\u001b[18;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.001886,
+      "\u001b[24;38H\u001b[?25l\u001b[30m\u001b[47m,0) \u001b[39;49m\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      1.008203,
+      "\u001b[?25l\u001b[32mint\u001b[39;49m \u001b[34mbar\u001b[39;49m(\u001b[32mint\u001b[39;49m \u001b[31mbar\u001b[39;49m)\u001b[K"
+    ],
+    [
+      7e-05,
+      "\u001b[3;3H\u001b[35mreturn\u001b[39;49m 42;\r\n}\u001b[K\n\b\u001b[K\n\u001b[35mstruct\u001b[39;49m \u001b[32msome_data222\u001b[39;49m\r\n{\u001b[K\n\b  \u001b[32mint\u001b[39;49m \u001b[31mf\u001b[39;49m;\u001b[9;3H\u001b[32mint\u001b[39;49m \u001b[31mg\u001b[39;49m;\u001b[K\r\n};\u001b[K\r\n\u001b[K\n\u001b[32mint\u001b[39;49m \u001b[34mmain\u001b[39;49m(\u001b[32mint\u001b[39;49m \u001b[31margc\u001b[39;49m, \u001b[32mchar\u001b[39;49m *\u001b[31margv\u001b[39;49m[])\r\n{\u001b[K\n\b  \u001b[31m// just adding some functions                                                                    \u001b[39;49m\r\n\t"
+    ],
+    [
+      3.3e-05,
+      "\u001b[C0;\u001b[K\r\n\n\n\u001b[32mint\u001b[39;49m \u001b[34mfoo\u001b[39;49m(\u001b[32mint\u001b[39;49m \u001b[31mbar\u001b[39;49m)"
+    ],
+    [
+      0.000626,
+      "\r\n{\n\u001b[C\u001b[35mreturn\u001b[39;49m 42;\r\n}\u001b[24;37H\u001b[30m\u001b[47m6\u001b[39;49m\u001b[6;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      2.580235,
+      "\u001b[25d\u001b[K\u001b[6d"
+    ],
+    [
+      0.07565,
+      "\u001b[25d\u001b[?25lSaving file /tmp/screencast/demo.c...\u001b[6;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.020337,
+      "\u001b[25d\u001b[?25lWrote /tmp/screencast/demo.c\u001b[K\u001b[6;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.071245,
+      "\u001b[24;6H\u001b[?25l\u001b[30m\u001b[47m--\u001b[39;49m\u001b[6;1H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.607513,
+      "\u001b[25d\u001b[K\u001b[19d\u001b[?25l\u001b[30m\u001b[47m-UU-:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   Top (6,0)      (C/l company GG FlyC yas Projectile[-] Abbrev)  -----\u001b[39;49m\r\n\u001b[34mimenu \u001b[39;49m\u001b[K\r\n-> \u001b[1mClass\u001b[0m\n\b\b\b\b\bbar\n\b\b\bmain\r\n   foo\u001b[K\u001b[20d\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      1.353422,
+      "\n\b\b\b\u001b[?25l\u001b[1mbar\u001b[0m\u001b[K\n\b\b\bmain\n\b\b\b\bfoo\u001b[K\n\b\b\bClass\u001b[20;7H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.720781,
+      "\r"
+    ],
+    [
+      0.005281,
+      "\u001b[A\u001b[?25l{\u001b[K\n\b  \u001b[35mreturn\u001b[39;49m 42;\r\n}\u001b[K\n\b\u001b[K\n\u001b[K\n\u001b[30m\u001b[47m-UU-:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   All (1,0)      (C/l company GG FlyC yas Projectile[-] Abbrev)  -----\u001b[39;49m\r\n\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      1.301202,
+      "\u001b[25d\u001b[?25lMark set\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.000746,
+      "\u001b[24;37H\u001b[?25l\u001b[30m\u001b[47m23,0)\u001b[39;49m\r\u001b[A\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      1.81082,
+      "\n\n\u001b[K\u001b[H\u001b[?25l  \u001b[31m// just adding some functions                                                                    \u001b[39;49m\r\n"
+    ],
+    [
+      0.000133,
+      "  \u001b[35mreturn\u001b[39;49m 0;\r\n}\u001b[K\n\b\u001b[K\n\u001b[32mint\u001b[39;49m \u001b[34mfoo\u001b[39;49m(\u001b[32mint\u001b[39;49m \u001b[31mbar\u001b[39;49m)\r\n{\u001b[K\n\b  \u001b[35mreturn\u001b[39;49m 42;\r\n}\u001b[K\n\b\u001b[K\n\u001b[K\n\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\u001b[K\n\n\u001b[K\n\u001b[30m\u001b[47m-UU-:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   Bot (23,0)     (C/l company GG FlyC yas Projectile[-] Abbrev)  -----\u001b[39;49m\r\n\u001b[34mimenu \u001b[39;49m\u001b[K\r\n-> \u001b[1mClass\u001b[0m\n\b\b\b\b\bbar\n\b\b\bmain\r\n   foo\u001b[K\u001b[20d\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.666999,
+      "\u001b[?25lb[ar]\u001b[21;4H\u001b[1m\u001b[32mb\u001b[0m\u001b[39;49m\u001b[32mar\u001b[39;49m\u001b[K\r\n\u001b[K\n\u001b[K\n\u001b[K\u001b[20;8H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.114574,
+      "\u001b[?25la[\n\b\b\b\b\b\u001b[1m\u001b[32ma\u001b[0m\u001b[39;49m\u001b[A\t\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.133642,
+      "\u001b[?25lr\u001b[K\n\b\b\b\b\u001b[1m\u001b[32mr\u001b[0m\u001b[39;49m\u001b[20;10H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.433706,
+      "\r"
+    ],
+    [
+      0.004604,
+      "\u001b[H\u001b[?25l\u001b[32mint\u001b[39;49m \u001b[34mbar\u001b[39;49m(\u001b[32mint\u001b[39;49m \u001b[31mbar\u001b[39;49m)\u001b[K"
+    ],
+    [
+      0.000122,
+      "\r\n{\u001b[K\n\b  \u001b[35mreturn\u001b[39;49m 42;\r\n}\n\b\u001b[K\n\u001b[35mstruct\u001b[39;49m \u001b[32msome_data222\u001b[39;49m\r\n{\u001b[K\n\b  \u001b[32mint\u001b[39;49m \u001b[31mf\u001b[39;49m;\u001b[9;3H\u001b[32mint\u001b[39;49m \u001b[31mg\u001b[39;49m;\r\n};\r\n\n\u001b[32mint\u001b[39;49m \u001b[34mmain\u001b[39;49m(\u001b[32mint\u001b[39;49m \u001b[31margc\u001b[39;49m, \u001b[32mchar\u001b[39;49m *\u001b[31margv\u001b[39;49m[])\r\n{\n\u001b[C\u001b[31m// just adding some functions                                                                    \u001b[39;49m\r\n\u001b[C\u001b[C\u001b[35mreturn\u001b[39;49m 0;\r\n}\n\n\b\u001b[32mint\u001b[39;49m \u001b[34mfoo\u001b[39;49m(\u001b[32mint\u001b[39;49m \u001b[31mbar\u001b[39;49m)"
+    ],
+    [
+      0.000275,
+      "\r\n{\u001b[K\n\b  \u001b[35mreturn\u001b[39;49m 42;\r\n}\u001b[K\n\n\n\b\u001b[30m\u001b[47m-UU-:----F1  \u001b[39;49m\u001b[1m\u001b[30m\u001b[47mdemo.c      \u001b[0m\u001b[39;49m\u001b[30m\u001b[47m[\u001b[39;49m\u001b[1m\u001b[32m\u001b[47m?\u001b[0m\u001b[39;49m\u001b[30m\u001b[47m]   All (1,0)      (C/l company GG FlyC yas Projectile[-] Abbrev)  -----\u001b[39;49m\r\n\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      4.160752,
+      "\u001b[25d\u001b[?25lSaving file /home/stw/.emacs.d/ido.last...\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.149903,
+      "\u001b[25d\u001b[?25lWrote /home/stw/.emacs.d/ido.last\u001b[K\u001b[H\u001b[?12l\u001b[?25h\u001b[?25h"
+    ],
+    [
+      0.006977,
+      "\u001b[25d\u001b[K\u001b[?1l\u001b>\u001b[?12l\u001b[?25h\u001b[?1049l\u001b[39;49m\r"
+    ],
+    [
+      0.004164,
+      "\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                                                  \r \r"
+    ],
+    [
+      0.029584,
+      "\r\u001b[0m\u001b[27m\u001b[m\u001b[J\u001b[37m\u001b[1mstw\u001b[0m\u001b[00m:\u001b[34m\u001b[1mscreencast/\u001b[0m\u001b[00m $ \u001b[K\u001b[71C[3:44:19]\u001b[80D"
+    ],
+    [
+      2.8e-05,
+      "\u001b[?1h\u001b=\u001b[?2004h"
+    ],
+    [
+      0.974622,
+      "\u001b[?2004l\r\r\n"
+    ]
+  ]
+}
