@@ -300,6 +300,14 @@ kopierar från en som fungerar.
 
 Det klassiska första programmet att skriva i varje programspråk är "Hello, world!"
 
+Börja med att skapa filen =hello.c= så här: [[key:C-x]] [[key:C-f]]
+=hello.c=. Tangentbordskombinationen [[key:C-x]] [[key:C-f]] i Emacs är
+bunden till funktionen =find-file= som alltså öppnar en fil, eller
+skapar en fil -- om filen inte finns. För att spara filen trycker
+du [[key:C-x]] [[key:C-s]] som är bunden till funktionen =save-buffer= som
+sparar innehållet i den /buffer/ som du editerar i, i den /fil som
+den är knuten till/. 
+
 Det finns många sätt att skriva detta program. Ett enkelt sätt är:
 
 #+BEGIN_SRC c
@@ -440,6 +448,18 @@ x = 2
 y = 1
 #+end_example
 
+#+begin_hint
+Använd [[key:tab]]-tangenten för att indentera kod! Du kommer att
+märka att Emacs kommer att göra "rätt" (naturligtvis beroende på
+vad rätt är -- och allt går att konfigurera!) så att du slipper
+tänka på hur många mellanslag etc. Pröva gärna att markera flera
+rader och trycka key:tab. 
+
+Förresten, du kan markera utan mus! Tryck [[key:C-<space>]] för att
+börja markera och flytta sedan markören med tangentbordet som
+vanligt.
+#+end_hint
+
 ** Skriv ut talföljden 1--10
 
 Skriv ett program ~p1~ som, när det körs, skriver ut talen 1 till 10 så här:
@@ -499,8 +519,11 @@ datatyper som blir tillgängliga i och med att man skriver
 
 ** Skriv ut talföljden 10--1
 
-Kopiera programmet ~p1.c~ ovan till ~p2.c~ och skriv om det så att
-talföljden går ned från 10 till 1 istället:
+Kopiera programmet ~p1.c~ ovan till ~p2.c~[fn::Det kan du göra
+genom att gå till terminalen och skriva =cp p1.c p2.c= eller
+använda [[key:C-x]] [[key:C-w]] =p2.c= om du står i =p1.c= i Emacs, dvs.
+"spara som".] och skriv om det så att talföljden går ned från 10
+till 1 istället:
 
 #+begin_example
 $ gcc p2.c
@@ -716,6 +739,13 @@ Betänk följande:
 - Programmet blir lättare att läsa och förstå om du sparar
   ~argv[1]~ och ~argv[2]~ i variabler med vettiga namn.
 - Programmet klarar inte av kommandoradsargument som inte är tal
+
+
+#+begin_hint
+Du kan använda key:M-g [[key:g]] för att hoppa till en speciell rad i
+bufferten.  key:M-g [[key:g]] =42= [[key:<ret>]].
+#+end_hint
+
 
 
 ** Primtalstest
@@ -1011,6 +1041,12 @@ int dead_code_example()
 Det är viktigt att hitta död kod och ta bort den av flera skäl --
 inte minst säkerhet!
 #+end_attention
+
+#+begin_hint
+Du kan använda key:M-i för att navigera till vilken funktion som
+helst i filen. Pröva!
+#+end_hint
+
 
 ** Extrauppgifter
 
