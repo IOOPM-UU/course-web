@@ -98,6 +98,14 @@ If you use a [[file:makefiles.org][Makefile]], it is easy to always use the fanc
 option.
 #+end_tip
 
-* TODO Compiling Java Code
+* TODO Compiling and Running Java Code
+In contrast to the C compiler, the Java compiler will find
+dependencies on files other than the one given as argument to the
+=javac= command. 
+- Differences between Java 1.8 and Java 9; what's on the Ubuntu 18.04 machines?
+- =-Xlint=, =-Xlint:unchecked=
+- =-ea=
+- =-d=
+- =-cp=
 
 #+include: "./footer.org"

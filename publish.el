@@ -1,5 +1,5 @@
 ;; This is the assumed theme to get colours right of code
-(load-theme 'hc-zenburn)
+(load-theme 'gruvbox-dark-medium)
 
 (defun tw/escape-brackets (text)
   (let ((text (replace-regexp-in-string "<" "&lt;" text)))

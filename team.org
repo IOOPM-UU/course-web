@@ -204,7 +204,6 @@ Under fyra separata rubriker:
 3. Sammafatta kort vad ni vill få ut av kursen
 4. Sammafatta kort om ni har önskemål på oss som ger kursen 
 
-
 ** Instruktioner för möte 3 eller 4 (beroende på när det hålls)
 
 *Tillägg till rapportmailet:* 
@@ -214,7 +213,6 @@ Under tre separata rubriker:
 1. Hur upplever ni programspråket C? 
 2. Hur upplevde ni styrning kontra frihet i inlämningsuppgift 1 och 2? 
 3. Vad bör vi göra annorlunda nästa år (eller i fas 2)? 
-
 
 ** TODO Instruktioner för möte 5 eller 6 (beroende på när det hålls)
 

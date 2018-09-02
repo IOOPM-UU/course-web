@@ -4,7 +4,8 @@
 #+begin_note
 Get course material at the [[https://github.com/TobiasWrigstad/ioopm18][course's GitHub page]] \\
 Ask questions and discuss with other students on [[https://piazza.com/class/jkd32onglxi2vb][Piazza]]  \\
-Request demonstrations and track your progress at the [[http://auportal.herokuapp.com/][AU Portal]]
+Request demonstrations and track your progress at the [[http://auportal.herokuapp.com/][AU Portal]] \\
+Ask questions *during lectures* [[https://docs.google.com/forms/d/e/1FAIpQLSedqlhkDtKUo6yiP3Z9Ha6007MJtEBQAFTNoImOvJNarsWUWg/viewform][using this webform]] (or put your hand up!)
 #+end_note
 
 * How IOOPM Works
@@ -52,23 +53,23 @@ roughly corresponds to one assignment.
 |     3 | Week 49 | Week 3  | Software Project                        |
 
 ** Phase 1 (Imperative Programming)
-| Date  | Contents                                                                                                                                                               | Achievements                  | fab:slideshare |
-|-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------+----------------|
-|       |                                                                                                                                                                        |                               | <c>            |
-| 3/9   | Grundläggande datatyper (inkl. arrayer), deklaration, uttryck och satser (inkl. loopar). Funktioner. Introduktion till standard-I/O och grundläggande stränghantering. | [[aua:1][A1]] ([[aua:13][F13]], [[aua:15][G15]])                 | [[file:misc/c-bootstrap-lectures.pdf][Slides]] [[https://github.com/TobiasWrigstad/ioopm18/tree/master/lectures/f01-04#extramaterial][Code]]    |
-| 6/9   | Poster och unioner. Typnamnsdefinitioner. Funktionspekare. Separatkompilering och headerfiler.                                                                         | [[aua:3][A3]], [[aua:9][D9]], [[aua:15][G15]], [[aua:16][G16]], ([[aua:22][I22]]), [[aua:30][K30]]. | -''-           |
-| 10/9  | Dynamisk minnesallokering. Pekare.                                                                                                                                     | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:27][J27]], [[aua:38][M38]]       | -''-           |
-| 13/9  | Introduktion till resten av kursen. Skillnad mellan funktionell och imperativ programmering. SIMPLE. Det agila upplägget.                                              | [[aua:7][C7]]                            | TBA            |
-| 17/9  | Hur strukturerar man? Top-down, bottom-up. Lagertänkande.                                                                                                              | [[aua:41][N41]], [[aua:45][P45]]                      | TBA            |
-| 19/9  | Automatisering (Make, scripting).                                                                                                                                      | [[aua:55][T55]], [[aua:57][U57]], [[aua:58][V58]]                 | TBA            |
-| 24/9  | Introduction to testing with CUnit                                                                                                                                     | [[aua:18][G18]], [[aua:49][Q49]], [[aua:50][Q50]]                 | TBA            |
-| 27/9  | Recap: Pekare, arrayer. Dynamiska arrayer. Pekararrayer.                                                                                                               | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:36][M36]]            | TBA            |
-| 1/10  | Länkade strukturer och iteratorer.                                                                                                                                     | [[aua:27][J27]], [[aua:37][M37]], [[aua:39][M39]]                 | TBA            |
-| 4/10  | Const, Preprocessorn, Coupling & Cohesion                                                                                                                              | TBA                           | TBA            |
-| 8/10  | Defensiv programmering. Läsbar kod.                                                                                                                                    | [[aua:22][I22]], [[aua:45][P45]]                      | TBA            |
-| 11/10 | Preprocessorn. Bitmanipulering. Optimering.                                                                                                                            | [[aua:42][O42]], [[aua:43][O43]], [[aua:44][O44]]                 | TBA            |
-| 15/10 | /Backup/                                                                                                                                                               |                               | TBA            |
-| 18/10 | Prepping for code exam                                                                                                                                                 |                               | TBA            |
+| Date  | Contents                                                                                                                  | Achievements                  | fab:slideshare |
+|-------+---------------------------------------------------------------------------------------------------------------------------+-------------------------------+----------------|
+|       |                                                                                                                           |                               | <c>            |
+| 3/9   | Grundläggande datatyper, deklaration, uttryck och satser. Funktioner. Enkel I/O. Enkel  stränghantering.                  | [[aua:1][A1]] ([[aua:13][F13]], [[aua:15][G15]])                 | [[file:misc/c-bootstrap-lectures.pdf][Slides]] [[https://github.com/TobiasWrigstad/ioopm18/tree/master/lectures/f01-04#extramaterial][Code]]    |
+| 6/9   | Poster och unioner. Typnamnsdefinitioner. Funktionspekare. Separatkompilering och headerfiler.                            | [[aua:3][A3]], [[aua:9][D9]], [[aua:15][G15]], [[aua:16][G16]], ([[aua:22][I22]]), [[aua:30][K30]]. | -''-           |
+| 10/9  | Dynamisk minnesallokering. Pekare.                                                                                        | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:27][J27]], [[aua:38][M38]]       | -''-           |
+| 13/9  | Introduktion till resten av kursen. Skillnad mellan funktionell och imperativ programmering. SIMPLE. Det agila upplägget. | [[aua:7][C7]]                            | -''- (p160)    |
+| 17/9  | Stack och heap, länkade strukturer, pekare 1/2.                                                                           | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:36][M36]]            | [[file:misc/w4.pdf][Slides]]         |
+| 19/9  | Stack och heap, länkade strukturer, pekare 2/2.                                                                           | [[aua:27][J27]], [[aua:37][M37]], [[aua:39][M39]]                 | -''-           |
+| 24/9  | Introduction to testing with CUnit                                                                                        | [[aua:18][G18]], [[aua:49][Q49]], [[aua:50][Q50]]                 | [[file:misc/w3.pdf][Slides]]         |
+| 27/9  | Automatisering (Make, scripting) och optimering.                                                                          | [[aua:55][T55]], [[aua:57][U57]], [[aua:58][V58]], [[aua:45][P45]]            | -''-           |
+| 1/10  | Design & metodologi. Hur strukturerar man? Top-down, bottom-up. Lagertänkande.                                            | [[aua:41][N41]]                           | [[file:misc/w5.pdf][Slides]]         |
+| 4/10  | Modularisering, separatkompilering, coupling & cohesion.                                                                  | TBA                           | -''-           |
+| 8/10  | Defensiv programmering. Läsbar kod.                                                                                       | [[aua:22][I22]], [[aua:45][P45]]                      | [[file:misc/w6.pdf][Slides]]         |
+| 11/10 | Preprocessorn. Bitmanipulering.                                                                                           | [[aua:42][O42]], [[aua:43][O43]], [[aua:44][O44]]                 | -''-           |
+| 15/10 | /Backup/                                                                                                                  |                               | TBA            |
+| 18/10 | Prepping for code exam                                                                                                    |                               | TBA            |
 ** Phase 2 (Object-Oriented Programming)
 | Date  | Contents                                                                                      | Achivements                                                | fab:slideshare |
 |-------+-----------------------------------------------------------------------------------------------+------------------------------------------------------------+----------------|
@@ -153,7 +154,6 @@ A minimal FAQ is [[file:about.org::*FAQ][available]].
 ** TODO Links
 - [[http://wrigstad.com/ioopm17][Old website for IOOPM 2015--2017]]
 - [[http://wrigstad.com/ioopm/links.php][The old link library]]
-
 * Recent Changes
 Substantial changes are announced in Piazza. For everything else,
 use the git log. Complete change tracking is possible by following

@@ -1,8 +1,144 @@
 #+title: Pointers 
 #+INCLUDE: "./setup.org" 
 
-* TODO Pointers
+* Pointers
+Pointers were invented by Harold W. Lawson in 1964--65 in the
+context of the PL/I programming language. In 2000, he received the
+IEEE Computer Pioneer Award for this.
 
+A pointer in C is an /address/ to a place in memory where there
+may or may not be some accessible data. Pointers are offsets into
+the array of bytes that is the memory, and so could technically be
+integers, but we are usually not interested in the value of the
+pointer (i.e., the address of a location), but the /value/ stored
+at that location. In C, the type of a pointer to a location
+holding a value of type ~T~ is written ~T *~. Here are some pointer
+types and their interpretation:
+
+| Type     | Interpretation                                                |
+|----------+---------------------------------------------------------------|
+| ~int~    | an integer value                                              |
+| ~int *~  | a pointer to (a place in memory holding) an ~int~             |
+| ~int **~ | a pointer to place in memory that holds a pointer to an ~int~ |
+| ~void *~ | a pointer to a data of unknown type                           |
+
+By convention, we write variable declarations of pointer type thus:
+
+#+BEGIN_SRC c
+int *iptr; /// pointer to an int (note where the * goes!)
+#+END_SRC
+
+Given the above declaration, an ~iptr~ is a pointer variable,
+i.e., a variable that holds a location to a place in memory.
+Furthermore, at that place in memory, a value of type ~int~ is
+stored. 
+
+To take the address of something, we use the ~&~ operator
+(*address-of*). The following code declares a variable ~x~ that
+holds the value 42 (an ~int~) and another variable ~iptr~ that
+holds a location in memory -- the address of the ~x~ variable,
+written ~&x~.
+
+#+BEGIN_SRC c
+int x = 42; 
+int *iptr = &x;
+#+END_SRC
+
+The type of ~iptr~ is ~int *~ (pointer to an int). To get to the
+actual ~int~ value, we must /dereference/ it using the ~*~
+operator (*dereference*). The type of ~*iptr~ is thus ~int~ not
+~int *~. Furthermore, the value of ~*iptr~ is 42, and it is the
+very same value as stored in ~x~. Thus, if we change ~x~ like so
+~x = 43~ -- the new value is also visible through ~*iptr~. And
+conversely, ~*iptr = 44~ changes the value of ~x~ (but not the
+value of ~iptr~ -- it still points to the same location in memory,
+even though the value at this location has changed).
+
+Every time you take the address of something, you add a level of
+indirection. Whenever you dereference something, you move closer
+to some concrete value. 
+
+Using ~&~ and ~*~ works very much like balancing an equation $e:t$
+where $e$ is some expression and $t$ is a type: 
+- (*take address*) Adding ~&~ on the left-hand side of the $:$ adds a corresponding ~*~ on the right-hand side. 
+- (*dereference*) Adding ~*~ on the left-hand side of the $:$ removes a corresponding ~*~ on the right-hand side. 
+
+You cannot add more than one ~&~ operator: ~&&x~ is never well-defined
+because the result of the first ~&x~ has not yet been stored in a
+place that has a location that we can take using another ~&~. 
+
+#+begin_danger
+A classic mistake when programming with references is writing
+e.g., ~int *x = 42~, thinking that this creates a pointer variable
+~x~ that stores some /unknown location/ where the integer ~42~ is
+stored. This is not the case! This creates a pointer variable ~x~
+that stores the location ~42~, where an /unknown value/ is stored.
+
+If you really need an unknown location, create it using ~malloc()~:
+~int *x = malloc(sizeof(int));~ and then ~*x = 42~. Now, ~x~ really
+points to some location (as returned by ~malloc()~) that stores the
+integer value ~42~. 
+#+end_danger
+
+** Pointers are Powerful
+Pointers lets us /share data/. Instead of passing in a copy of a
+value to a function, I can share the value with the function. No
+matter the size of the value -- hundreds of bytes to gigabytes --
+its address still fits in 8 bytes (on a 64 bit machine), so that
+way of sharing is clearly more efficient. 
+
+In C, pointers allow us to define recursive data structures
+because implicit in each pointer value is its possibility of being
+~NULL~, i.e., the absence of the location of some value.
+
+** Pointers are Dangerous
+The main problem with pointers surface when you use them to share
+mutable state. This is a typical C pattern, but one that must be
+handled with care. The most subtle problems happen when two or
+more "agents" /unknowingly/ shares a common value via pointers. A
+simple example:
+
+#+BEGIN_SRC c
+void example(int *a, int *b)
+{
+  *a = 42;
+  *b = 4711;
+}
+#+END_SRC
+
+If ~example()~ happens to get called with the same pointer as both
+~a~ and ~b~, the second update will overwrite the first! This might
+come as a surprise! 
+
+Furthermore, pointers in combination with ~malloc()~ needs to be
+freed using ~free()~. However, in many programs it can be very
+hard to figure out e.g., 
+- Who is responsible for freeing something? 
+- When is it safe to free something? (What if it is shared!?)
+
+Not freeing causes the program to leak memory. 
+Freeing more than once usually causes the program to explode. 
+
+Last, a pointer is just an address which is in no way connected
+to the value it points to. For example, I can do this:
+
+#+BEGIN_SRC c
+int *x = ...;
+free(x);
+printf("x: %d\n", *x);
+*x = 42;
+#+END_SRC
+
+This code accesses ~x~ twice after it is freed: once to
+dereference it and read its value, and once to dereference and
+update the value. Neither is legal after the ~free()~ call! After
+the ~free()~ call, ~x~ holds a /dangling pointer/ which must never
+be referenced. A defensive programming technique is to always set
+a varialble you have ~free()~'d to ~NULL~ so that accesses
+segfault rather than live on for some part of some program! 
+
+Throughout the course, we will see examples of when pointers are
+both great and cause all kinds of problems. 
 * An Extra Level of Indirection: Pointers to Pointer Values
 Historically, pointers has been a hard concept to grasp, and
 pointers to pointers therefore logically must be exponentially

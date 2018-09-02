@@ -270,7 +270,7 @@ eller =for= key:tab, etc. Navigation mellan de olika "delarna" i
 en snippet sker också med tab.
  
 #+BEGIN_EXPORT html
-<asciinema-player src="/ioopm18/misc/yas-demo.cast"></asciinema-player>
+<asciinema-player src="/ioopm18/misc/yas-demo.cast" rows="25" cols="100"></asciinema-player>
 #+END_EXPORT
 
 Observera att yasnippets optimerar editeringshastighet, men att det
@@ -440,7 +440,34 @@ test-filer i underkatalogen "debug".
 
 Ös!
 
-#+include: "./footer.org"
+* Emacs på macOS
+Om du installerar Emacs på macOS så är key:Alt din Meta-tangent.
+Det är inget fel med det, /men/ avsaknaden av key:AltGr (en Mac
+har två key:Alt istället) gör att vissa tecken som är vanligt
+förekommande i programmering inte går att skriva:
+- =[= tolkas som kortkommandot [[key:M-8]] och =]= som kortkommandot
+  [[key:M-9]].
+- ={= tolkas som kortkommandot [[key:M-7]] och =}= som kortkommandot
+  [[key:M-0]].
+- =$= tolkas som kortkommandot [[key:M-4]].
 
+Lösningen på detta är att lägga till följande i filen =init.el=
+som finns i katalogen =.emacs.d= i din hemkatalog. Kopiera och 
+klistra in (och starta sedan om Emacs)! 
+
+#+begin_src emacs-lisp
+(define-key key-translation-map (kbd "M-8") (kbd "["))
+(define-key key-translation-map (kbd "M-9") (kbd "]"))
+(define-key key-translation-map (kbd "M-7") (kbd "{"))
+(define-key key-translation-map (kbd "M-0") (kbd "}"))
+(define-key key-translation-map (kbd "M-4") (kbd "$"))
+#+END_SRC
+
+Tips: klistra in i Emacs är [[key:C-y]]. För att slippa starta om
+Emacs för att inställningarna skall gälla kan du markera den
+inklippta texten och köra [[key:M-x]] =eval-region=. 
+
+
+#+include: "./footer.org"
 
 

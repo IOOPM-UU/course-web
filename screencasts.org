@@ -1,5 +1,6 @@
 #+title: Screencasts
 #+include: "./setup.org"
+#+include: "./asciinema-setup.org"
 
 * Tools
 ** Vagrant Demo
@@ -7,6 +8,23 @@ Tobias shows =vagrant up= and plays around a little in the course
 Vagrant box.
 
 [[movie:http://user.it.uu.se/~writo649/vagrant-ioopm.mp4]]
+
+** Emacs Demos
+*** Showing basic open, save, close
+#+BEGIN_EXPORT html
+<asciinema-player src="/ioopm18/misc/basic-emacs-demo.cast" rows="25" cols="100"></asciinema-player>
+#+END_EXPORT
+
+*** Showing off snippet expansion
+#+BEGIN_EXPORT html
+<asciinema-player src="/ioopm18/misc/yas-demo.cast" rows="25" cols="100"></asciinema-player>
+#+END_EXPORT
+
+*** Showing off basic imenu navigation
+*Note:* The hotkey to jump around is [[key:M-i]].
+#+BEGIN_EXPORT html
+<asciinema-player src="/ioopm18/misc/imenu.cast" rows="25" cols="100"></asciinema-player>
+#+END_EXPORT
 
 * Old screencasts
 

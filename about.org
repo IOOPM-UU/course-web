@@ -9,9 +9,19 @@ paper]] (15 pages).
 #+end_attention
 
 * TODO Changes from 2017
-- Presentation
-- Inluppar
-- mer? 
+*This will be updated for Lecture 4*
+
+# ** Changelog
+# 1. Completely new Assignment 1 
+# 2. Overhaul of Assignment 2--4
+# 3. New course website
+# 4. Stricter group meetings
+# 5. New vagrant machine for using own laptops/computers 
+# 6. Changed Emacs shortcuts and settings 
+# 7. New lecture material on some lectures 
+# ** Rooms for Improvement 
+# 1. Queuing time on labs -- not solved 
+
 * Kursöversikt
 ** Faser och sprintar
 Kursen är uppdelad i tre faser, fas 1, 2 och 3. Fas 1 och 2
@@ -77,11 +87,10 @@ de länkar och bokreferenser som finns i kursmaterialet, men också
 fritt med hjälp av t.ex. Google och Wikipedia. Föreläsningarnas
 syfte är att måla en övergripande bild och introducera viktiga
 koncept och ibland även göra praktiska övningar. 
-** TODO Kurslitteratur
-- Ingen specifik bok
-- Fråga om du vill ha en bok, beroende på vad du söker
-- K&R, Shaw, Modern C
-- Lewis & Loftus
+** Kurslitteratur
+This course does not follow any specific book. If you like following books (great!!!), please
+come talk to me and we can discuss what kind of book would be good for you. The course goes on
+forever, so no sweat if you don't have a book the first 1-2 weeks!
 ** Arbetsgrupper och programmeringspar
 Under kursens gång kommer du att ingå i en framslumpad arbetsgrupp
 med ca 10-12 personer. Dessa grupper byggs successivt upp under

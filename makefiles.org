@@ -224,7 +224,7 @@ använder =make= det första målet i =makefile=:n, alternativt om du
 angivit ett target =main= som då blir "default".
 
 
-* TODO GNU Make Examples
+* GNU Make Examples
 ** A First Simple Makefile
 #+BEGIN_SRC makefile
 main:	myprog
@@ -269,7 +269,6 @@ above, I hope.[fn::Like with most things, we tend to like long
 descriptive names in the start (because we need the help), and
 then favour short names later (because we are experts, and the
 explanation is just noise).]
-
 
 ** Make Test
 In addition to the above, we add:
