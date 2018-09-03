@@ -150,14 +150,12 @@ However, a finishied program rarely gives us any idea of all the
 intermediate steps -- and buggy variants of the final program --
 that the programmers went through to get there.
 
-As a guide to the personal programming process, [[file:~/t/ioopm/2018/site/simple.org][we recommend
-following the steps of the SIMPLE programming methodology]]. It
+As a guide to the personal programming process, [[../simple.org][we recommend following the steps of the SIMPLE programming methodology]]. It
 provides some good practises and introduces some key tricks that
 experienced programmers often use to incrementally approach a
 solution to a problem.
 
-Even if you have programming experience from before, please [[file:~/t/ioopm/2018/site/simple.org][take a
-look at SIMPLE]]!
+Even if you have programming experience from before, please [[../simple.org][take a look at SIMPLE]]!
 * Labb 1: Grundläggande koncept
 
 #+begin_important
@@ -180,7 +178,7 @@ Emacs inbyggda pakethanterare.
 Emacs-resurser på kurswebben: 
 - [[file:../editors.org::*Introduktion%20till%20Emacs][Introduktion till Emacs]]
 - [[file:../screencasts.org::*Screencasts%20om%20verktyg][Screencasts om Emacs]]
-- [[file:../site/misc/cheatsheet.pdf][Emacs lathund]]
+- [[http://wrigstad.com/ioopm18/misc/cheatsheet.pdf][Emacs lathund]]
 
 Nu följer två olika uppsättningar instruktioner beroende på om du
 kör Linux eller OS X/macOS. För dig som kör Windows har vi tyvärr
@@ -278,6 +276,7 @@ som finns i katalogen =.emacs.d= i din hemkatalog. Kopiera och
 klistra in!
 
 #+begin_src emacs-lisp
+(define-key key-translation-map (kbd "M-/") (kbd "\\"))
 (define-key key-translation-map (kbd "M-8") (kbd "["))
 (define-key key-translation-map (kbd "M-9") (kbd "]"))
 (define-key key-translation-map (kbd "M-7") (kbd "{"))
@@ -445,7 +444,7 @@ kommer första utskriften av ~x~ att bli 5 och den andra 42.
 *** Mini-övning
 
 Skriv av följande program och ändra ~...~ till kod som byter plats
-på värdena i variablerna ~x~ och ~y~:
+på värdena i variablerna ~x~ och ~y~ genom att tilldela dem till varandra (din lösning kan alltså *inte* vara t.ex. ~x = 2; y = 1;~):
 
 #+BEGIN_SRC c
 #include <stdio.h>

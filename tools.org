@@ -27,13 +27,20 @@ Vagrant has [[https://www.vagrantup.com/intro/getting-started/][pretty decent do
 1. [[https://www.vagrantup.com/downloads.html][Download Vagrant]] and run the downloaded file (Windows, macOS) or install it with your package manager (Linux)
 2. Open a terminal, navigate to your IOOPM GitHub repository 
 3. Create a directory for Vagrant with =mkdir vagrant= 
-4. Tell =git= to ignore this directory with =git-ignore vagrant=
+4. Tell =git= to ignore this directory with =git-ignore vagrant=  (see below if you have problems with this)
 5. Go into that directory with =cd vagrant= 
 6. [[file:misc/Vagrantfile.txt][Download this Vagrantfile]] into the =vagrant= directory *and rename it* =Vagrantfile= without any =.txt= ending (e.g., =curl http://wrigstad.com/ioopm18/misc/Vagrantfile.txt -o Vagrantfile=)
 7. Run the command =vagrant up= -- this will (*only the first time*, unless you destroy your virtual machine) download the vitual machine according to the specification in =Vagrantfile= and install the necessary packages 
 
 #+begin_important
 If you are prompted with a dialogue for choosing =LOCALE= during =vagrant up=, choose =utf-8= (should be pre-selected).
+#+end_important
+
+#+begin_important
+Vissa (möjligen endast Windows-användare) har problem med
+=git-ignore=. Lös detta genom att skapa en fil som heter
+=.gitignore= (observera inledande =.=) och som innehåller ordet
+=vagrant= på första raden.
 #+end_important
 
 ** Using Vagrant
