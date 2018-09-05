@@ -199,17 +199,22 @@ skall fungera.
 
 #+begin_example
 $ cd ~
+$ mv .emacs .emacs.old                                       # Not 1 nedan
 $ mkdir .emacs.d
 $ cd .emacs.d
-$ curl http://wrigstad.com/ioopm18/misc/emacs.zip -o e.zip
+$ curl http://wrigstad.com/ioopm18/misc/emacs.zip -o e.zip   # Not 2 nedan
 $ unzip e.zip
 $ rm -f e.zip
 #+end_example
 
-Notera att om du skriver fel i den långa URL:en ovan kommer du
-fortfarande att få en fil =e.zip= men som inte går att
-packa upp. Om =unzip=-steget inte fungerar -- kontrollera din
-stavning i =curl=-steget!
+*Not 1:* Om filen =.emacs= inte finns får du fel i steg 2, men det
+gör ingenting eftersom steg 2 handlar om att "bli av med den
+filen".
+
+*Not 2:* Om du skriver fel i den långa URL:en ovan kommer du
+fortfarande att få en fil =e.zip= men som inte går att packa upp.
+Om =unzip=-steget inte fungerar -- kontrollera din stavning i
+=curl=-steget!
 
 *** OS X/macOS
 
@@ -269,7 +274,7 @@ förekommande i programmering inte går att skriva:
   [[key:M-9]].
 - ={= tolkas som kortkommandot [[key:M-7]] och =}= som kortkommandot
   [[key:M-0]].
-- =$= tolkas som kortkommandot [[key:M-4]].
+- =$= tolkas som kortkommandot [[key:M-4]], etc. 
 
 Lösningen på detta är att lägga till följande i filen =init.el=
 som finns i katalogen =.emacs.d= i din hemkatalog. Kopiera och 
@@ -318,7 +323,7 @@ $
 
 Om du kör på institutionens Linux och inte har gjort någon egen
 konfigurering kan du växla mellan program med =Alt+Tab=. Vi kommer
-att använda **editorn** för att skriva text och **terminalen** för
+att använda *editorn* för att skriva text och *terminalen* för
 att kompilera och köra programmet. Pröva att växla några gånger
 mellan programmen.
 
@@ -399,7 +404,7 @@ flyttal, minnesadresser etc.
 *Pröva gärna* att titta på skillnaden mellan ~puts()~ och
 ~printf()~ genom att skriva ~man puts~ och ~man printf~ i
 terminalen och titta på manualsidorna för funktionerna. Du
-scrollar med mellanslag och avslutar med **q**. (Du kan skriva
+scrollar med mellanslag och avslutar med *q*. (Du kan skriva
 ~man pager~ för att läsa vilka kortkommandon som finns för att
 läsa manualsidor med man-kommandot. Du kan också skriva ~man man~
 för att få veta mer om man-kommandot.)
@@ -469,7 +474,7 @@ int main(void)
 }
 #+END_SRC
 
-**Tips** Använd en tredje variabel ~tmp~ för att "komma ihåg"
+*Tips* Använd en tredje variabel ~tmp~ för att "komma ihåg"
 värdet på ~x~ så att du kan skriva över ~x~ med ~y~ och sen ~y~
 med ~tmp~. Var noggrann med skillnaden mellan ~int x = 1~, som
 introducerar en /ny/ variabel ~x~ med värdet 1, och ~x = 1~, som
@@ -680,7 +685,7 @@ nya /parametrar/ har lagts till:
 Minns att ~char *~ är C:s strängtyp -- det efterföljande ~[]~ visar
 att ~argv~ inte är bara en sträng, utan en hel array av strängar.
 
-Minns att **en array** är som en lista -- dvs. en sekvens av
+Minns att *en array* är som en lista -- dvs. en sekvens av
 värden, men till skillnad från en lista (i t.ex. Haskell) kan en
 array inte utökas. Om arrayen ~arr~ är en array med tre element
 kan vi komma åt element 1 med ~arr[0]~, element 2 med ~arr[1]~ och
@@ -881,7 +886,7 @@ gcd(a, b) = gdc(a - b, b)    om a > b
 gcd(a, b) = gdc(a, b - a)    om a < b
 #+end_example
 
-Använd en **while-loop** eller en **for-loop** för att lösa
+Använd en *while-loop* eller en *for-loop* för att lösa
 problemet. Varje varv i loopen kommer variabeln ~a~ eller
 variabeln ~b~ att ändra värde beroende på vilken som innehåller det
 största värdet. Till slut är de lika och då har vi svaret.
@@ -1050,7 +1055,7 @@ ske i ~is_number()~ eftersom ~is_number()~ stöder negativa tal.
 Som du har märkt har du blivit instruerad att placera funktioner
 högre upp i filen än där de anropas. C-kompilatorn läser filen i
 radordning, och om den inte först har sett en funktions
-**deklaration** så kan den inte kontrollera att anropen till den
+*deklaration* så kan den inte kontrollera att anropen till den
 är korrekta, till exempel med avseende på antalet parametrar.
 Redan i nästa labb skall vi se hur man kan komma runt detta med
 så-kallade ~header~-filer.
@@ -1238,7 +1243,7 @@ Strukturera programmet så här:
 3. En funktion ~void print_number(int num)~ som anropas för varje /T/ och skriver /T_, Fizz, Buzz eller Fizz Buzz
 4. Fundera på hur du skall göra för att inte ha något sista avslutande ~,~-tecken
 
-**Tips:** i C är modulo-operatorn ~%~, dvs. ~10 % 5 = 0~ och ~10 % 3 = 1~.
+*Tips:* i C är modulo-operatorn ~%~, dvs. ~10 % 5 = 0~ och ~10 % 3 = 1~.
 
 
 ** I/O
@@ -1477,7 +1482,7 @@ Ta därför alltid för vana när du läser in data i ett C-program att
 enbart använda funktioner som låter dig ange hur många tecken som
 ryms på den plats där det inlästa datat skall sparas!
 
-Här är en **regelvidrig** (och dessutom **felaktig** -- testa
+Här är en *regelvidrig* (och dessutom *felaktig* -- testa
 själv) inläsningsfunktion som absolut aldrig får användas. Här
 använder vi en array med 255 tecken som inläsningsbuffert (vi har
 alltså plats för 254 tecken + null-tecknet), och använder oss av
@@ -1607,7 +1612,7 @@ kan spara den inlästa strängen.
 
 ** Gör om ~utils.c~ till ett "riktigt bibliotek"
 
-Nu skall vi skapa vår första **header-fil**! Skapa ~utils.h~ i
+Nu skall vi skapa vår första *header-fil*! Skapa ~utils.h~ i
 samma katalog som ~utils.c~ och /flytta/ dit samtliga
 funktionsprototyper från ~utils.c~. I ~utils.h~ borde det nu alltså
 åtminstone stå:
@@ -1775,7 +1780,7 @@ utility-bibliotek!
 Implementera funktione ~ask_question_float()~ i termer av
 ~read_string()~ och en ~is_float()~ som du själv måste skriva. Du
 kan utgå från ~is_number()~ men också tillåta förelkomsten av
-**en** punkt ~.~ någonstans i strängen. Funktionen ~atof()~ i
+*en* punkt ~.~ någonstans i strängen. Funktionen ~atof()~ i
 ~ctype.h~ vet hur man omvandlar en sträng till ett flyttal.
 
 
@@ -1831,15 +1836,17 @@ dvs. hoppa över början.
 
 Att arbeta med fler än en fil i Emacs är lämpligt att göra genom
 att öppna flera /windows/ i samma Emacs-fönster (eller /frame/ med
-Emacs-termer). 
+Emacs-termer). Nedan använder jag ordet *frame* för det som du
+normalt kallar för fönster, och ordet *window* för en del av en
+*frame* som visar en *buffer* med text. 
 
 #+CAPTION: Ett Emacs-frame med tre windows 
 file:../misc/emacs-frames-windows-buffers.png
 
 För att återskapa ovanstående split i tre windows. Gör så här efter att du startat Emacs:
 
-1. key:C-x [[key:&minus;]] för att dela (det aktuella) fönstret horizontellt
-2. key:C-x [[key:&mid;]] för att dela (det aktuella) fönstret vertikalt
+1. key:C-x [[key:&minus;]] för att dela (det aktuella) window:et horizontellt
+2. key:C-x [[key:&mid;]] för att dela (det aktuella) window:et vertikalt
 
 Navigera mellan de olika Emacs-window:arna så här:
 [[key:C-x]] [[key:&larr;]], [[key:C-x]] [[key:&rarr;]], [[key:C-x]] [[key:&uarr;]] 
@@ -1854,6 +1861,9 @@ och tryck [[key:&crarr;]].
 Om du gillar att ha många filer öppna i Emacs samtidigt kan du pröva att trycka till 
 exempel key:C-x key:C-b för att lista alla öppna buffrar. Nu kan du navigera till 
 den buffer du vill öppna med piltangenterna och trycka enter. 
+
+Om du vill stänga window:et som du står i: [[key:C-x]] [[key:0]]. 
+Om du vill stänga alla andra windows utom det du står i: [[key:C-x]] [[key:1]]. 
 
 Två anledningar till att det *inte* är bra att köra =emacs fil.c
 &= flera gånger i terminalen är att det startar flera instanser av
@@ -1876,8 +1886,8 @@ en fil i det fönstret.
 Skapa ett program ~str.c~.
 
 Som du säkert minns är C:s strängtyp ~char *~. Det betyder en
-adress till en plats i minnet där det finns lagrat **ett eller
-fler tecken**. Det är i de flesta avseenden ekvivalent med typen
+adress till en plats i minnet där det finns lagrat *ett eller
+fler tecken*. Det är i de flesta avseenden ekvivalent med typen
 ~char []~ som avser en array av ett eller fler tecken. Strängar
 innehåller ingen information om hur långa de är -- istället
 används ett speciellt tecken som ett stopptecken: det s.k.
@@ -1949,14 +1959,13 @@ skriva tecken för tecken. Om jag t.ex. har en sträng ~s~ kan jag
 skriva ~putchar(s[3])~ för att skriva ut dess fjärde tecken.
 
 1. Implementera funktionen ~print()~ som tar en sträng och skriver
-   ut den på terminalen (med hjälp av ~putchar()~) fast **utan**
+   ut den på terminalen (med hjälp av ~putchar()~) fast *utan*
    avslutande radbrytning.
 2. Implementera ~println()~ -- en egen motsvarighet till ~puts()~,
    som tar en sträng och skriver ut den på terminalen (med hjälp
-   av ~print()~) **med** en avslutande radbrytning. Jämför med
+   av ~print()~) *med* en avslutande radbrytning. Jämför med
    ~puts()~ i ditt program för att kontrollera att du gör rätt.
 3. Lägg till ~print()~ och ~println()~ i ~utils~-biblioteket!
-
 
 
 ** Rekursion i C
@@ -2079,10 +2088,10 @@ long sum(int numbers[], int numbers_siz)
 }
 #+END_SRC
 
-**Nu återgår vi till uppgiften**: skriv om ~fib()~-funktionen i
-programmet längst upp på sidan så att den är **rekursiv**.
+*Nu återgår vi till uppgiften*: skriv om ~fib()~-funktionen i
+programmet längst upp på sidan så att den är *rekursiv*.
 
-**Ledning:**
+*Ledning:*
 Vi upprepar den rekursiva definitionen av Fibonacci-serien från labb 1:
 
 #+BEGIN_EXAMPLE
@@ -2105,7 +2114,7 @@ med en väldigt stor array kommer sannolikt att krascha programmet
 om inte kompilatorn är smart nog att översätta rekursionen till
 en loop -- mer om detta senare alltså.
 
-**Testa** att ditt program är korrekt genom att jämföra dess resultat
+*Testa* att ditt program är korrekt genom att jämföra dess resultat
 med resultatet från ditt imperativa program.
 
 ** Funktionspekare
@@ -2156,12 +2165,12 @@ Koden ovan definierar typen ~int_fold_func~ som en funktion som
 tar som argument två ~int~:ar och returnerar en ~int~. I Haskell
 skulle typen skrivas ~Int -> Int -> Int~. Asterisken ~*~ framför
 namnet ~int_fold_func~ ovan är det som gör det hela till en
-pekare. **Denna skall dock inte vara med i namnet**.
+pekare. *Denna skall dock inte vara med i namnet*.
 
 Om jag har en funktion ~add(...)~ och vill skicka en pekare till
 den funktionen skriver jag alltså ~add~. Funktionens namn utan
 parenteser och argument. Om jag skriver ~add(2,2)~ är det ju
-ett helt vanligt **anrop** till funktionen och det som skickas
+ett helt vanligt *anrop* till funktionen och det som skickas
 in är resultatet!
 
 Nu kan vi använda ~int_fold_func~ som en datatyp och deklarara
@@ -2199,7 +2208,7 @@ den användas tillsammans med ~foldl/int/int~. För att skicka med
 en funktion som en parameter skriver du bara funktionens namn, i
 detta fall alltså ~add~.
 
-**Uppgift:** Skriv om ~sum()~-funktionen ovan med hjälp av
+*Uppgift:* Skriv om ~sum()~-funktionen ovan med hjälp av
 ~foldl/int/int()~ och ~add()~. Du behöver inte ändra i vare sig
 ~foldl/int/int()~ eller ~add()~.
 
@@ -2242,7 +2251,7 @@ en sträng och returnerar sant eller falskt.
 
 Typen på konverteringsfunktionen skall vara ~char * -> answer_t~ --
 vilket introducerar en ny typ som vi ännu inte har sätt, nämligen
-typen ~answer_t~ som är en s.k. **union**:
+typen ~answer_t~ som är en s.k. *union*:
 
 #+BEGIN_SRC c
 typedef union { // Not: undvik gärna så här korta namn på variabler! Varför?
@@ -2260,7 +2269,7 @@ sträng via ~val.string_value = ...~ och ~... = val.string_value~. Namnen ~int_v
 har jag valt i min definition av ~answer_t~ och kan bytas ut mot
 andra namn om man så önskar.
 
-**Uppgift!** Använd ~typedef~ för att definiera typerna
+*Uppgift!* Använd ~typedef~ för att definiera typerna
 ~check_func~ och ~convert_func~ med typerna ovan. Utgå från
 exemplet från ~int_fold_func~.
 
@@ -2303,7 +2312,7 @@ att säga är en delmängd av ~answer_t~.
 Dock: Om man försöker skicka in ~atoi~ som argument till en
 funktion vars motsvarande parameter är ~convert_func~ kommer
 kompilatorn att klaga eftersom ~answer_t~ och ~int~ inte är samma
-typ. Det kan man lösa med hjälp av en **typomvandling** (eng. type
+typ. Det kan man lösa med hjälp av en *typomvandling* (eng. type
 cast):
 
 #+BEGIN_EXAMPLE
@@ -2311,7 +2320,7 @@ atoi                     // har typen char * -> int
 (convert_func) atoi      // har typen char * -> answer_t
 #+END_EXAMPLE
 
-**Uppgift!** Nu är det dags att skriva funktionen ~ask_question()~
+*Uppgift!* Nu är det dags att skriva funktionen ~ask_question()~
 med signaturen:
 
 #+BEGIN_SRC c
@@ -2537,14 +2546,14 @@ Alternativ implementation:
 
 * Labb 4: Del 1 -- pekare
 
-# **OBS!!** Om du känner dig stressad -- börja med den fråga som du skall redovisa och hoppa över resten av labben och spara den till senare! **OBS!!**
+# *OBS!!* Om du känner dig stressad -- börja med den fråga som du skall redovisa och hoppa över resten av labben och spara den till senare! *OBS!!*
 
 Pekare -- adresser till platser i minnet där data är lagrat -- är
 en viktig del av C-programmering. Genom att dela information
 mellan funktioner om /var/ något är lagrat sker två saker:
 
-1. mottagaren kan **läsa** datat på platsen
-2. mottagaren kan **ändra** datat på platsen
+1. mottagaren kan *läsa* datat på platsen
+2. mottagaren kan *ändra* datat på platsen
 
 Att skicka platsen där datat finns istället för att skicka själva
 datat kan vara väldigt effektivt. Om funktion /A/ har en array med
@@ -2555,7 +2564,7 @@ för sökningen. Genom att /dela med sig/ av datat via en pekare
 istället för att kopiera hela rasket blir programmet mycket mer
 effektivt.
 
-Den stora **risken** med pekare ligger bland annat i att /B/ också
+Den stora *risken* med pekare ligger bland annat i att /B/ också
 får rätt att ändra i datat (det går ibland att lösa med hjälp av
 nyckelordet ~const~ som vi skall se senare) -- och att det inte
 finns något sätt för implementatören av /A/ att veta att /B/
@@ -2594,7 +2603,7 @@ int main(void)
 Om det råder minsta tvekan -- kör programmet!
 
 Programmet exemplifierar *värdesemantik*, dvs. att vid anrop
-överförs argumentens värde genom **kopiering**. ~a~ och ~b~ i
+överförs argumentens värde genom *kopiering*. ~a~ och ~b~ i
 ~swap()~ har samma värde som ~x~ respektive ~y~ initialt, men
 förändringar av ~a~ och ~b~ påverkar inte ~x~ och ~y~.
 
@@ -2612,7 +2621,7 @@ int *b  // b är en variabel som innehåller en adress till en plats i minnet d�
 
 Variabeln ~b~ ovan innehåller alltså en adress. För att komma åt
 det heltal som ligger på den adressen skriver vi ~*b~. Vi säger
-att vi **avrefererar** ~b~. Vi har tidigare sett **adresstagningsoperatorn**
+att vi *avrefererar* ~b~. Vi har tidigare sett *adresstagningsoperatorn*
 ~&~ som vi kan använda för att få platsen i minnet där något data finns.
 Vi kan t.ex. skriva ~&a~ för att avse platsen där ~a~:s värde finns lagrat.
 Om ~a~ och ~b~ är deklarerade enligt ovan kan vi skriva:
@@ -2629,7 +2638,7 @@ printf("%d, %d\n", a, *b);  // skriver ut 42, 42
 
 Med hjälp av pekartypen ~int *~, adresstagningsoperatorn ~&~ och
 avrefereringsoperatorn ~*~ kan vi nu skriva om ~swap()~ så att
-funktionen tar in två **pekare** (aka adresser) till heltal, och
+funktionen tar in två *pekare* (aka adresser) till heltal, och
 byter plats på värdena som finns lagrade på dessa två platser.
 Målet är att skriva om Program 1 ovan så att ~42, 7~ skrivs ut när
 det körs.
@@ -2654,7 +2663,7 @@ tillsvidare kan vi betrakta pekare och arrayer som samma sak.*
 Typerna ~t *~ och ~t[]~ är i regel utbytbara, för varje typ ~t~.
 Det betyder t.ex. att ~char *argv[]~ också kan skrivas ~char
 **argv~. Ovan sade vi att ~int *~ betyder en pekare till en plats
-i minnet där det finns **ett** heltal. Det var en vit lögn -- det
+i minnet där det finns *ett* heltal. Det var en vit lögn -- det
 borde vara "där det finns ett eller flera heltal."
 
 Arrayer i C överförs med pekare, dvs. när man skickar en array
@@ -2666,10 +2675,10 @@ antal tecken fram till ~'\0'~). C kan alltså inte själv räkna ut
 hur många bytes som skall kopieras när man kopierar en array, så
 det enda alternativ som återstår är att överföra pekaren istället.
 
-**Pekararitmetik** är aritmetik som innefattar adresser. Om ~a~
+*Pekararitmetik* är aritmetik som innefattar adresser. Om ~a~
 har typen ~int *~ pekar ~a~ på ett heltal och ~a + 1~ på "nästa
 heltal". Uttrycket ~a + 1~ skapar en ny adress från adressen i
-~a~. Observera att ~a + 1~ **alltid** kan beräknas, oavsett om det
+~a~. Observera att ~a + 1~ *alltid* kan beräknas, oavsett om det
 finns något "nästa heltal" eller inte -- analogt med att C inte
 vet längden på en array och därmed inte kan förhindra åtkomst till
 element 26 i en array med bara 20 element. Det är helt enkelt
@@ -2743,7 +2752,7 @@ void print(char *str)
 Använd ~str~ som en pekare och använd inte array-indexering
 (alltså inte ~str[12]~).
 
-**Ledning:** Vi kan implementera ~trim()~-funktionen från labb 3 på
+*Ledning:* Vi kan implementera ~trim()~-funktionen från labb 3 på
 motsvarande sätt:
 
 #+BEGIN_SRC c
@@ -2768,11 +2777,11 @@ char *trim(char *str)
 
 # Labb 4: Del 2 -- struktar
 
-**Struktar** är grupperingar av värden. En strukt-deklaration skapar
+*Struktar* är grupperingar av värden. En strukt-deklaration skapar
 en ny typ som kan användas i ett C-program.
 
-En strukt deklareras precis som en **union** men använder
-nyckelordet **strukt** istället:
+En strukt deklareras precis som en *union* men använder
+nyckelordet *strukt* istället:
 
 #+BEGIN_SRC c
 struct point
@@ -2782,7 +2791,7 @@ struct point
 };
 #+END_SRC
 
-Strukten ~point~ innehåller två **fält** (aka poster, ibland
+Strukten ~point~ innehåller två *fält* (aka poster, ibland
 medlemmar eller medlemsvariabler), ~x~ och ~y~ -- båda av
 heltalstyp. Ett värde av ~point~-typ, "en point", grupperar alltså
 två värden som hör ihop, i detta fall x- och y-koordinaterna hos
@@ -2839,7 +2848,7 @@ printf("point(x=%d,y=%d)\n", p.x, p.y);
 #+END_SRC
 
 Värt att notera med ~{ .x = 10, .y = -42 }~-syntaxen är att det är
-tillåtet att **utelämna** fält som då får defaultvärden enligt följande:
+tillåtet att *utelämna* fält som då får defaultvärden enligt följande:
 
 1. heltalsfält får värdet 0
 2. flyttalsfält får värdet 0
@@ -2885,8 +2894,8 @@ void translate(point_t *p1, point_t *p2)
 #+END_SRC
 
 Observera att ~.~-notationen för att komma åt fält i en strukt
-byts ut mot pilar ~->~ när man gör åtkomst till fält i en **pekare
-till en strukt**.
+byts ut mot pilar ~->~ när man gör åtkomst till fält i en *pekare
+till en strukt*.
 
 En anledning till pilnotationen är för att förtydliga att vi inte
 vet så mycket om värdet vars fält vi läser och skriver. I den
@@ -2957,17 +2966,17 @@ den sista ~translate()~-funktionen.
    alla punkter som som finns i både /R1/ och /R2/. Testa den
    med de positiva exemplen från föregående fråga.
 
-0. **Frivillig** Definiera en strukt för cirklar med en ~point_t~
+0. *Frivillig* Definiera en strukt för cirklar med en ~point_t~
    som mittpunkt och ett heltal som radie.
 
-0. **Frivillig** Definiera ett typalias ~circle_t~ för cirklar.
+0. *Frivillig* Definiera ett typalias ~circle_t~ för cirklar.
 
-0. **Frivillig** Definiera en ~print_circle()~ som skriver ut
+0. *Frivillig* Definiera en ~print_circle()~ som skriver ut
    ~circle(center=point(x,y), radius=r)~.
 
-0. **Frivillig** Definiera en ~make_circle()~.
+0. *Frivillig* Definiera en ~make_circle()~.
 
-0. **Frivillig** Definiera en ~area_circle()~ som räknar ut arean
+0. *Frivillig* Definiera en ~area_circle()~ som räknar ut arean
    på en cirkel som ~pi * radien^2~. Du kan använda lämpliga
    funktioner och konstanter i ~math.h~ för att lösa uppgiften.
    Returtypen på ~area_circle()~ skall vara ett flyttal.
@@ -2975,8 +2984,8 @@ den sista ~translate()~-funktionen.
 
 ** Databas                                                        :redovisas:
 
-Detta program skall skrivas i filen ~db.c~. **Du kommer att kunna återanvända
-delar av detta program i en inlämningsuppgift senare på kursen!**
+Detta program skall skrivas i filen ~db.c~. *Du kommer att kunna återanvända
+delar av detta program i en inlämningsuppgift senare på kursen!*
 
 En vara har ett namn, en beskrivning, ett pris och en lagerhylla
 som avser platsen där den är lagrad.
@@ -3006,7 +3015,7 @@ Price: XX.XX SEK
 Shelf: XXX   (t.ex. A25)
 #+END_EXAMPLE
 
-**Tips:** decimalkommat i ~Price~ går lätt att göra med
+*Tips:* decimalkommat i ~Price~ går lätt att göra med
 heltalsdivision, modulo och ~printf~ då vi vet att priset alltid är
 i ören. T.ex. ~price / 100~ blir alltid jämna kronor och ~.~:en
 kan vara en del av det som skrivs ut.
@@ -3334,7 +3343,7 @@ börjar med ett radnummer. Här är ett exempel från texten i labben:
 #+end_tip
 
 
-**Uppvärmning: Frivilliga utökningar av cat**
+*Uppvärmning: Frivilliga utökningar av cat*
 
 1. Utöka programmet så att när flera filer skrivs ut (stöds redan) börjar radräknaren /inte/ om från 0 vid varje ny fil
 2. Innan varje fil skrivs ut, skriv ut ~==== filnamn.ext ====~ i terminalen
@@ -3464,7 +3473,7 @@ Implementera stöd för att ångra. Detta omfattar:
 
 * Ladda upp alla dina labbar på GitHub
 
-Du borde ha fått ett GitHub-konto från oss på en adress som liknar
+Du bör ha fått ett GitHub-repo från oss på en adress som liknar
 https://github.com/IOOPM-UU/fornamn.efternamn.1234, där
 =fornamn.efternamn.1234= är ditt student-ID (om du inte har fått
 det, följ [[file:~/t/ioopm/2018/site/github.org][dessa instruktioner]]. Här ska du ladda upp alla uppgifter
