@@ -1,0 +1,19 @@
+#+title: Kodprov 2018-08-30
+#+include: "../setup.org" 
+#+include: "../../exams/preamble.org"
+#+PROPERTY: KODPROV_DATE 180830
+#+PROPERTY: KODPROV_FILENAME mandel
+
+* C-uppgift
+#+include: "../../exams/c/circular-linked-list/task.org"
+
+-----
+
+* Java-uppgift
+#+include: "../../exams/java/arrayset/task.org"
+
+-----
+
+# #+include: "./postamble.org"
+
+#+include: "../footer.org" 
