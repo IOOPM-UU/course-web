@@ -456,10 +456,17 @@ som finns i katalogen =.emacs.d= i din hemkatalog. Kopiera och
 klistra in (och starta sedan om Emacs)! 
 
 #+begin_src emacs-lisp
+;; Teach Emacs Swedish keyboard layout
 (define-key key-translation-map (kbd "M-8") (kbd "["))
 (define-key key-translation-map (kbd "M-9") (kbd "]"))
-(define-key key-translation-map (kbd "M-7") (kbd "{"))
-(define-key key-translation-map (kbd "M-0") (kbd "}"))
+
+(define-key key-translation-map (kbd "M-(") (kbd "{"))
+(define-key key-translation-map (kbd "M-)") (kbd "}"))
+
+(define-key key-translation-map (kbd "M-7") (kbd "|"))
+(define-key key-translation-map (kbd "M-/") (kbd "\\"))
+
+(define-key key-translation-map (kbd "M-2") (kbd "@"))
 (define-key key-translation-map (kbd "M-4") (kbd "$"))
 #+END_SRC
 
