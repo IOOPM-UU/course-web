@@ -25,6 +25,8 @@ Vagrant box.
 #+BEGIN_EXPORT html
 <asciinema-player src="/ioopm18/misc/imenu.cast" rows="25" cols="100"></asciinema-player>
 #+END_EXPORT
+*** Frames, windows, buffers and files
+movie:http://user.it.uu.se/~writo649/emacs-frame-window-buffer-file.mp4
 
 * Old screencasts
 
