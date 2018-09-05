@@ -1,5 +1,5 @@
 ;; This is the assumed theme to get colours right of code
-(load-theme 'gruvbox-dark-medium)
+;; (load-theme 'gruvbox-dark-medium)
 
 (defun tw/escape-brackets (text)
   (let ((text (replace-regexp-in-string "<" "&lt;" text)))
@@ -119,7 +119,7 @@
 
         ("misc"
          :base-directory "/home/stw/t/ioopm/2018/site/misc/"
-         :base-extension "el\\|pdf\\|c\\|h\\|java\\|txt\\|cast"
+         :base-extension "el\\|pdf\\|c\\|h\\|java\\|txt\\|cast\\|png"
          ;; :publishing-directory "/tmp/ioopm18/misc/"
          :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/ioopm18/misc/"
          :publishing-function org-publish-attachment)
