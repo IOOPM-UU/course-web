@@ -166,7 +166,7 @@ out in pink.
 [[file:./images/pp_argv-tail-f.jpg]]
 
 In this document, we will look at pointers to pointers and their
-use. We will look at [[file:lists.org][linked lists]] as our driving example, because
+use. We will look at [[file:assignments/lists.org][linked lists]] as our driving example, because
 we know them well from previous "modules" in this course.
 ** Pointers Into Structures 
 To grasp the use of pointers to pointers in the upcoming example,
@@ -264,7 +264,7 @@ Above, ~c~ exemplifies a pointer /into/ a structure.
 Pointers to pointers can often simplify implementations by making
 things more regular, and getting rid of corner cases.
 ** Using Pointers-to-Pointers to Implement Unlinking
-When we implemented [[file:lists.org][linked lists]], we used a clever trick of
+When we implemented [[file:assignments/lists.org][linked lists]], we used a clever trick of
 inserting a sentinel link at the start of the node to
 simplify the implementation. This allowed us to define a find
 function that returned the /preceding/ node. This allowed the find

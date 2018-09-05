@@ -439,7 +439,7 @@ förslag på hur det kan se ut är så här:
 
 #+CAPTION: Köanimering
 #+NAME: fig:köanimering
-file:queue.gif
+file:../images/queue.gif
 
 
 ** Uppgiften

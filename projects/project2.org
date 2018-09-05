@@ -213,10 +213,10 @@ arean är objekten kompakterade, dvs. lagda intill varandra. På
 detta vis undviks minnesfragmentering.
 
 #+CAPTION: Precis innan skräpsamling.
-file:two-space-1.png 
+file:../images/two-space-1.png 
 
 #+CAPTION: Precis efter skräpsamling.
-file:two-space-2.png 
+file:../images/two-space-2.png 
 
 
 ** En kompakterande, konservativ skräpsamlare för C
@@ -284,10 +284,10 @@ ett skräp-objekt inte tas bort för att det råkar ligga på samma
 sida som ett osäkert utpekat objekt.
 
 #+CAPTION: Precis innan skräpsamling.
-file:bartlett-1.png 
+file:../images/bartlett-1.png 
 
 #+CAPTION: Precis efter skräpsamling.
-file:bartlett-2.png 
+file:../images/bartlett-2.png 
 
 
 ** Allokeringskarta
