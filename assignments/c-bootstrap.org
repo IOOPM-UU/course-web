@@ -276,11 +276,17 @@ som finns i katalogen =.emacs.d= i din hemkatalog. Kopiera och
 klistra in!
 
 #+begin_src emacs-lisp
-(define-key key-translation-map (kbd "M-/") (kbd "\\"))
+;; Teach Emacs Swedish keyboard layout
 (define-key key-translation-map (kbd "M-8") (kbd "["))
 (define-key key-translation-map (kbd "M-9") (kbd "]"))
-(define-key key-translation-map (kbd "M-7") (kbd "{"))
-(define-key key-translation-map (kbd "M-0") (kbd "}"))
+
+(define-key key-translation-map (kbd "M-(") (kbd "{"))
+(define-key key-translation-map (kbd "M-)") (kbd "}"))
+
+(define-key key-translation-map (kbd "M-7") (kbd "|"))
+(define-key key-translation-map (kbd "M-/") (kbd "\\"))
+
+(define-key key-translation-map (kbd "M-2") (kbd "@"))
 (define-key key-translation-map (kbd "M-4") (kbd "$"))
 #+end_src
 
@@ -937,7 +943,7 @@ Nu har det blivit dags för oss att skriva vår första funktion (förutom
 ~main()~-funktionen då) -- vilket vi kommer att ägna oss åt under nästa
 labb. Vi skall skriva funktionen ~is_number()~ som tar emot en sträng
 (~char *~) och returnerar en boolean (~bool~) -- ~true~ om den inskickade
-strängen är ett tal, annars ~false~.
+strängen är ett /positivt eller negativt/ tal, annars ~false~. 
 
 Av historiska skäl måste stöd för booleaner inkluderas explicit i C på
 följande sätt:
@@ -1034,8 +1040,9 @@ förutom det första tecknet som också kan vara ett minustecken ~-~.
 Nu har du nog med information för att skriva programmet! När du
 fått det att fungera, kopiera funktionen (och import-satser) över
 in i ~p6.c~ och använd funktionen för att kontrollera att
-kommandoradsargumenten är heltal. Lägg också in en kontroll att de
-inte är negativa (dvs. ~talet >= 0~).
+kommandoradsargumenten är heltal. *Lägg också in en kontroll att
+de inte är negativa (dvs. ~tal >= 0~).* Denna kontroll skall inte
+ske i ~is_number()~ eftersom ~is_number()~ stöder negativa tal.
 
 #+begin_attention
 *Om funktioners ordning i filen*
@@ -1714,6 +1721,37 @@ kommer detta inte att fungera eftersom det då finns två
 tillåtet!
 
 
+#+begin_note
+*Angående slumptal*
+
+Om man vill använda slumptal i produktion är det bra att initiera
+slumptalsgeneratorn. Detta görs genom att anropa funktionen
+~srand()~ med ett s.k. /seed/, dvs. input till en funktion som ser
+till att datorn producerar hyggligt slumpvisa tal. Denna funktion
+anropas *en* gång i programmet, t.ex. i ~main()~ med något
+"slumpvist" värde, t.ex. antalet sekunder sedan midnatt första
+januari 1970. Alltså så här: 
+
+#+BEGIN_SRC c
+#include <stdlib.h>
+#include <time.h>
+
+...
+
+srand(time(NULL)); 
+#+END_SRC
+
+Observera att en upplösning på 1 sekund inte är mycket att hänga i
+julgranen! Om du skriver ett program som skriver ut ett slumptal 
+och kör det två gånger samma sekund får du samma "slumptal". 
+
+Jag rekommenderar att du *inte* använder ~srand()~ på kursen
+eftersom det gör det svårare att felsöka ditt program om du t.ex.
+inte kan lita på gissa-talet-programmet stabilt drar 4711 ur
+hatten varje gång...
+#+end_note
+
+
 ** Extrauppgifter
 
 För dig som är tidigt färdig eller känner att du vill arbeta mer
@@ -1789,6 +1827,49 @@ Om du känner att du är stressad och har ont om tid -- kan det
 ibland vara en god idé att pröva att gå direkt på funktionspekare,
 dvs. hoppa över början.
 
+** Att arbeta med flera filer i Emacs
+
+Att arbeta med fler än en fil i Emacs är lämpligt att göra genom
+att öppna flera /windows/ i samma Emacs-fönster (eller /frame/ med
+Emacs-termer). 
+
+#+CAPTION: Ett Emacs-frame med tre windows 
+file:../misc/emacs-frames-windows-buffers.png
+
+För att återskapa ovanstående split i tre windows. Gör så här efter att du startat Emacs:
+
+1. key:C-x [[key:&minus;]] för att dela (det aktuella) fönstret horizontellt
+2. key:C-x [[key:&mid;]] för att dela (det aktuella) fönstret vertikalt
+
+Navigera mellan de olika Emacs-window:arna så här:
+[[key:C-x]] [[key:&larr;]], [[key:C-x]] [[key:&rarr;]], [[key:C-x]] [[key:&uarr;]] 
+och [[key:C-x]] [[key:&darr;]]. 
+
+Positionera dig längst ned (med kommandona ovan) och öppa =utils.c= med [[key:C-x]] [[key:C-f]] =utils.c= [[key:&crarr;]].
+Positionera dig i övre vänstre window:et ned (med kommandona ovan) och öppa =tmp.c= med [[key:C-x]] [[key:C-f]] =tmp.c= [[key:&crarr;]].
+Positionera dig i övre högra window:et och växla så att den visar samma buffert 
+som någon av de andra window:arna med [[key:C-x]] [[key:b]]. Skriv sedan namnet på buffern (du kan använda tab för autocomplete)
+och tryck [[key:&crarr;]]. 
+
+Om du gillar att ha många filer öppna i Emacs samtidigt kan du pröva att trycka till 
+exempel key:C-x key:C-b för att lista alla öppna buffrar. Nu kan du navigera till 
+den buffer du vill öppna med piltangenterna och trycka enter. 
+
+Två anledningar till att det *inte* är bra att köra =emacs fil.c
+&= flera gånger i terminalen är att det startar flera instanser av
+Emacs och:
+
+1. det åtgår en massa mer minne -- $N$ gånger för $N$ instanser
+2. de olika instanserna är inte medvetna om varandra -- och en fil som är öppen i flera instanser kan hamna i osynk 
+
+Ovanstående gäller inte bara Emacs utan generellt. På macOS med
+ett grafiskt Emacs kommer =emacs fil.c &= att öppna ett redan
+körande Emacs om ett sådant finns. 
+
+Om du föredrar att ha flera separata fönster öppet på skärmen kan
+du använda kommandot key:M-x =make-frame= [[key:&crarr;]] för att öppna
+ett nytt fönster och sedan key:C-x key:C-f som vanligt för att öppna
+en fil i det fönstret. 
 
 ** Uppvärmning: strängfunktioner
 
@@ -2122,6 +2203,13 @@ detta fall alltså ~add~.
 ~foldl/int/int()~ och ~add()~. Du behöver inte ändra i vare sig
 ~foldl/int/int()~ eller ~add()~.
 
+#+begin_note
+Du har väl inte glömt att du kan tycka key:M-i för att få upp en 
+lista med alla funktioner och struktar i din C-fil så att du kan
+söka och snabbt hoppa mellan funktionerna i Emacs? 
+#+end_note
+
+
 ** Generell inläsningsrutin
 Skapa en ny fil med ett lämpligt namn, t.ex. ~experiment.c~ med
 en tom ~main()~-funktion. Skriv all kod för denna uppgift här,
@@ -2158,17 +2246,17 @@ typen ~answer_t~ som är en s.k. **union**:
 
 #+BEGIN_SRC c
 typedef union { // Not: undvik gärna så här korta namn på variabler! Varför?
-  int   i;
-  float f;
-  char *s;
+  int   int_value;
+  float float_value;
+  char *string_value;
 } answer_t;
 #+END_SRC
 
-Typen ~answer/t~ avser ett värde som /antingen/ är en ~int~ /eller_
+Typen ~answer_t~ avser ett värde som /antingen/ är en ~int~ /eller_
 en ~float~ /eller/ en sträng (~char *~). Om ~val~ är en variabel av
-typen ~answer_t~ så kan jag tilldela den ett heltal via ~val.i =
-42~ och läsa det på motsvarande sätt ~... = val.i~, eller en
-sträng via ~val.s = ...~ och ~... = val.s~. Namnen ~i~, ~f~ och ~s~
+typen ~answer_t~ så kan jag tilldela den ett heltal via ~val.int_value =
+42~ och läsa det på motsvarande sätt ~... = val.int_value~, eller en
+sträng via ~val.string_value = ...~ och ~... = val.string_value~. Namnen ~int_value~, ~float_valu~ och ~string_value~
 har jag valt i min definition av ~answer_t~ och kan bytas ut mot
 andra namn om man så önskar.
 
@@ -2218,10 +2306,10 @@ kompilatorn att klaga eftersom ~answer_t~ och ~int~ inte är samma
 typ. Det kan man lösa med hjälp av en **typomvandling** (eng. type
 cast):
 
-#+BEGIN_SRC c
+#+BEGIN_EXAMPLE
 atoi                     // har typen char * -> int
 (convert_func) atoi      // har typen char * -> answer_t
-#+END_SRC
+#+END_EXAMPLE
 
 **Uppgift!** Nu är det dags att skriva funktionen ~ask_question()~
 med signaturen:
@@ -2247,7 +2335,7 @@ att definiera nya. T.ex. kan vi definiera ~ask_question_int()~ så här:
 int ask_question_int(char *question)
 {
   answer_t answer = ask_question(question, is_number, (convert_func) atoi);
-  return answer.i; // svaret som ett heltal
+  return answer.int_value; // svaret som ett heltal
 }
 #+END_SRC
 
@@ -2259,9 +2347,9 @@ att göra detta måste vi skapa en funktion som skapar ett
 #+BEGIN_SRC c
 answer_t make_float(char *str)
 {
-  answer_t a;      // skapa ett oinitierat answer_t-värde
-  a.f = atof(str); // gör det till en float, via atof
-  return a;        // returnera värdet
+  answer_t a;                // skapa ett oinitierat answer_t-värde
+  a.float_value = atof(str); // gör det till en float, via atof
+  return a;                  // returnera värdet
 }
 #+END_SRC
 
@@ -2271,18 +2359,18 @@ som vi skall behandla i mer detalj på nästa labb:
 #+BEGIN_SRC c
 answer_t make_float(char *str)
 {
-  return (answer_t) { .f = atof(str) };
+  return (answer_t) { .float_value = atof(str) };
 }
 #+END_SRC
 
 Här skriver vi ~ask_question_float()~ utan den onödiga variabeln
-~answer~ bara för att visa att det också är möjligt (notera ~.f~
+~answer~ bara för att visa att det också är möjligt (notera ~.float_value~
 på slutet!).
 
 #+BEGIN_SRC c
 double ask_question_float(char *question)
 {
-  return ask_question(question, is_float, make_float).f;
+  return ask_question(question, is_float, make_float).float_value;
 }
 #+END_SRC
 
@@ -2319,7 +2407,7 @@ Nu kan vi skriva klar ~ask_question_string()~ så här:
 #+BEGIN_SRC c
 char *ask_question_string(char *question)
 {
-  return ask_question(question, not_empty, (convert_func) strdup).s;
+  return ask_question(question, not_empty, (convert_func) strdup).string_value;
 }
 #+END_SRC
 
@@ -2432,7 +2520,7 @@ Exempel på in- och utdata:
 | ="  \nhej  "=      | ="hej"=              |
 | ="  hej\n "=       | ="hej"=              |
 
-(En modifierad version av detta program var nyligen på ett kodprov.)
+(En modifierad version av detta program var nyligen på ett [[file:~/t/ioopm/2018/site/code-exam.org][kodprov]].)
 
 Alternativ implementation:
 
@@ -2449,7 +2537,7 @@ Alternativ implementation:
 
 * Labb 4: Del 1 -- pekare
 
-**OBS!!** Om du känner dig stressad -- börja med den fråga som du skall redovisa och hoppa över resten av labben och spara den till senare! **OBS!!**
+# **OBS!!** Om du känner dig stressad -- börja med den fråga som du skall redovisa och hoppa över resten av labben och spara den till senare! **OBS!!**
 
 Pekare -- adresser till platser i minnet där data är lagrat -- är
 en viktig del av C-programmering. Genom att dela information
@@ -2511,7 +2599,7 @@ Programmet exemplifierar *värdesemantik*, dvs. att vid anrop
 förändringar av ~a~ och ~b~ påverkar inte ~x~ och ~y~.
 
 
-** Skriv om ~swap()~ med pekarsemantik
+** Skriv om ~swap()~ med pekarsemantik :redovisas:
 
 Namnet ~swap()~ i programmet ovan är misledande -- det antyder
 något som i programmet ovan inte stämmer. Nu skall vi skriva om
@@ -3419,16 +3507,17 @@ $ git commit -m "Lade till labb 2"
    kommandot ~git push~. Nu ska du kunna se ändringarna på GitHub!
 
 Om du vill lära dig mer om Git och GitHub finns det många guider
-online. Du hittar några av dem i vårt [[file:links.org][länkbibliotek]]. Det finns
+online. Du hittar några av dem i vårt [[http://wrigstad.com/ioopm/links.php][länkbibliotek]]. Det finns
 också en [[file:~/t/ioopm/2018/site/github.org][kortare lathund]] med de vanligaste Git-kommandona.
 En gammal students anteckningar ligger till grund för ytterligare
 en [[https://github.com/IOOPM-UU/ioopm17/blob/master/extramaterial/lathundar/github][GitHub-guide]].
 
-#+BEGIN_CENTER
+#+begin_note
 *Nu är du klar med C-labbarna.* Bra jobbat! Det är dags att pusta
 ut, kanske föra några anteckningar om saker som du tänkt på,
-frågor som du vill ställa, misstag som du verkar upprepa, etc. När
-du har tagit en paus är det dags för [[file:assignment1.org][inlämningsuppgift 1]]!
-#+END_CENTER
+frågor som du vill ställa, misstag som du verkar upprepa, etc. 
+
+När du har tagit en paus är det dags för [[file:assignment1.org][inlämningsuppgift 1]]!
+#+end_note
 
 #+include: "../footer.org" 
