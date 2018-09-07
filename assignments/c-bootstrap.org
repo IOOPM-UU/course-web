@@ -1503,7 +1503,7 @@ char *ask_question_string(char *question)
       printf("%s\n", question);
       scanf("%s", result); // <-- scanf vet ej bufferstorlek! (inläsning av >254 tecken möjligt!)
     }
-  while (strlen(result) > 0);
+  while (strlen(result) == 0);
   return strdup(result);
 }
 #+END_SRC
@@ -1695,7 +1695,9 @@ Programmet skall alltså:
 6. Om /G/ når 15, skriva ut "Nu har du slut på gissningar! Jag tänkte på /T/!"
 
 #+begin_warning
-På vissa maskiner fungerar ~rand()~ bättre än ~random()~.
+På vissa maskiner fungerar ~rand()~ bättre än ~random()~. Den senare är en 
+del av POSIX, den förra är en del av C:s standardbibliotek. Jag har låtit mig
+förstå att ~rand()~-funktionen har problem, men på kursen fungerar den fint!
 #+end_warning
 
 Funktionen ~random()~ i ~stdlib.h~ returnerar ett slumptal som kan vara mycket
@@ -1731,11 +1733,12 @@ tillåtet!
 
 Om man vill använda slumptal i produktion är det bra att initiera
 slumptalsgeneratorn. Detta görs genom att anropa funktionen
-~srand()~ med ett s.k. /seed/, dvs. input till en funktion som ser
+~srandom()~ med (alt. ~srand()~ om du använde ~rand()~ istf.
+~random()~) ett s.k. /seed/, dvs. input till en funktion som ser
 till att datorn producerar hyggligt slumpvisa tal. Denna funktion
 anropas *en* gång i programmet, t.ex. i ~main()~ med något
 "slumpvist" värde, t.ex. antalet sekunder sedan midnatt första
-januari 1970. Alltså så här: 
+januari 1970. Alltså så här:
 
 #+BEGIN_SRC c
 #include <stdlib.h>
@@ -1743,17 +1746,19 @@ januari 1970. Alltså så här:
 
 ...
 
-srand(time(NULL)); 
+srandom(time(NULL)); 
 #+END_SRC
 
 Observera att en upplösning på 1 sekund inte är mycket att hänga i
 julgranen! Om du skriver ett program som skriver ut ett slumptal 
 och kör det två gånger samma sekund får du samma "slumptal". 
 
-Jag rekommenderar att du *inte* använder ~srand()~ på kursen
-eftersom det gör det svårare att felsöka ditt program om du t.ex.
-inte kan lita på gissa-talet-programmet stabilt drar 4711 ur
-hatten varje gång...
+Jag rekommenderar att du *inte* använder ~srandom()~ (~srand()~)
+på kursen eftersom det gör det svårare att felsöka ditt program om
+du t.ex. inte kan lita på gissa-talet-programmet stabilt drar 4711
+ur hatten varje gång...
+
+Läs mer om generering av slumptal på t.ex. [[https://en.wikipedia.org/wiki/Pseudorandom_generator][Wikipedia]].
 #+end_note
 
 
@@ -1830,7 +1835,7 @@ else
 
 Om du känner att du är stressad och har ont om tid -- kan det
 ibland vara en god idé att pröva att gå direkt på funktionspekare,
-dvs. hoppa över början.
+dvs. hoppa över början. Så går du tillbaka /efter/ att du har redovisat. 
 
 ** Att arbeta med flera filer i Emacs
 
