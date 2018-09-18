@@ -17,7 +17,7 @@ This assignment serves several purposes:
   editors, compilers and debuggers. In particular, we will be
   using a profiler (=gprof=), a coverage tracker (=gcov=), and a
   memory leak detector (=valgrind=). And of course version control.
-- Create multiple opportunities to [[file:~/t/ioopm/2018/site/about.org::*Redovisning%20och%20AU-Portalen][demonstrate mastery of
+- Create multiple opportunities to [[~/t/ioopm/2018/site/about.org::*Redovisning%20och%20AU-Portalen][demonstrate mastery of
   achievements.]]
 - Force you to code -- reading and writing code are the only two
   techniques that work when learning how to program, and only if
@@ -33,7 +33,7 @@ program.] of data structures for C programs together with some
 minimal "driver programs" that use your data structures, and tests
 for your data structures.
 
-Note that [[file:assignment2.org][Assignment 2]] will be built on-top of the data structures
+Note that [[assignment2.org][Assignment 2]] will be built on-top of the data structures
 you develop now, and be *a lot* more free. Thus, it will pay off
 to do a good job now, as it will simplify the work of the next
 assignment.
@@ -58,8 +58,8 @@ By the end of this sprint you should have:
 1. You should have finished the C boot-strapping exercises, which involves:
    1. Having familiarised yourself with the [[../simple.org][SIMPLE programming methodology]], and understanding key concepts like /dodging/ and /cheating/.
    2. Having familiarised yourself with Emacs, [[../editors.org][the editor we are using for at least the C part of the course]].
-2. You should have found a [[file:~/t/ioopm/2018/site/pair-programming.org][partner to work with from your team]].
-3. You should have [[file:../github.org][gotten a GitHub account *from the course*]].
+2. You should have found a [[~/t/ioopm/2018/site/pair-programming.org][partner to work with from your team]].
+3. You should have [[~/t/ioopm/2018/site/github.org][gotten a GitHub repo *from the course*]].
    Naturally, you are to place all files belonging to this
    assignment in the folder for Assignment 1.
 4. Make sure you have [[file:../tools.org][a working development environment for C]].
@@ -473,7 +473,7 @@ number of entries.
 Always make a note of dodges and cheats so that you can revisit
 them and "fix them" later. Without such a log, it is easy to
 forget to e.g. undo a simplification later. You can mark this in
-your code e.g., ~/// DODGE: ...~, ~/// CHEET: ...~, etc. like the
+your code e.g., ~/// DODGE: ...~, ~/// CHEAT: ...~, etc. like the
 ~/// FIXME: ...~, and ~/// TODO: ...~ that is used in code on
 this page. 
 #+end_attention
@@ -514,7 +514,7 @@ non-NULL pointer pointing to the datum on the right.
 [[../images/hashtable01.png]]
 
 #+NAME: fig_ht_2
-#+CAPTION: Hash table with keys 4 => bar, 17 => foo, and 208 => "baz".
+#+CAPTION: Hash table with keys 4 => bar, 17 => foo, and 208 => "baz". 
 #+RESULTS: 
 [[../images/hashtable02.png]]
 
@@ -1339,7 +1339,7 @@ times more.)
 
 Luckily, there is an easy fix to fix this error -- which may not
 be intuitive unless you have seen it before: /initialise each
-bucket's list to start with an entry that we never use except as
+bucket's list to start with an/ /entry that we never use except as
 the previous node to the actual first entry/. This trick is common
 and such an entry is commonly referred to as a "dummy" or the
 "sentinel".
@@ -1354,14 +1354,17 @@ Here are two ways to add a dummy entry to the buckets' lists:
 
 I personally prefer the 2nd alternative (there is an even better
 way which we will return to later). Figures [[fig_ht_3]] and [[fig_ht_4]]
-show the changes to the hash table structure in memory.
+show the changes to the hash table structure in memory. For 
+clarity, the entry with key 4 is the /previous entry/ of the entry with key 208. 
+Furthermore, its previous entry of the entry is the sentinel (with
+key 0, value ~NULL~ and next pointer pointing to it.)
 
 #+CAPTION: Newly initialised hash table with inlined dummy entries.
 #+NAME: fig_ht_3
 #+RESULTS:
 [[../images/hashtable03.png]]
 
-#+CAPTION: Newly initialised hash with inlined dummy entries with 4 => bar, 17 => foo and 208 => baz.
+#+CAPTION: Newly initialised hash with inlined dummy entries with 4 => bar, 17 => foo and 208 => baz. The entry with key 4 is the /previous entry/ of the entry with key 208.
 #+NAME: fig_ht_4
 #+RESULTS:
 [[../images/hashtable04.png]]
@@ -1668,10 +1671,10 @@ location cannot be ~NULL~).
 
 With this design, the signature of ~ioopm_hash_table_lookup()~
 changes to return a ~char **~ -- a pointer to a pointer to a
-character ([[file:~/t/ioopm/2018/site/pointers.org][if your mind boggles at the thought of pointers to
-pointer, you can look here]]). 
+character ([[file:~/t/ioopm/2018/site/pointers.org][if your mind boggles at the thought of a pointer to
+another pointer, you can look here]]). 
 
-This design now very neatly supports book looking up and replacing
+This design now very neatly supports both looking up and replacing
 an existing entry:
 
 #+BEGIN_SRC c
@@ -2943,7 +2946,7 @@ specification (or more correctly -- documentation).
 
 *** Optional: Const Annotations
 
-*Note that this is optional* The C ~con st~ qualifier provides a
+*Note that this is optional* The C ~const~ qualifier provides a
 way to indicate that a value will not (or shall not) change. For
 example, the ~strncpy(dst, src, n)~ function that copies n bytes
 from the string ~src~ to the string ~dst~ has the signature ~char
@@ -3530,10 +3533,10 @@ control flow that are covered. For example, imagine that you have
 a complex nested conditional -- it is easy to miss executing all
 combinations of branching, e.g., true followed by false, false
 followed by false, etc. (or more complicated). As part of this
-final step, run a code coverage tool (hint, [[https://en.wikipedia.org/wiki/Gcov][gov]] is installed
+final step, run a code coverage tool (hint, [[https://en.wikipedia.org/wiki/Gcov][gcov]] is installed
 already, but feel free to try something more fancy) and construct
 a code coverage report for your files. If you use gov, you can
-[[https://qiaomuf.wordpress.com/2011/05/26/use-gcov-and-lcov-to-know-your-test-coverage/][easily add Lvov to your tool chain]] ([[https://embeddedinn.wordpress.com/tutorials/test-coverage-analysis-with-gcov/][alternative guide]]) to produce
+[[https://qiaomuf.wordpress.com/2011/05/26/use-gcov-and-lcov-to-know-your-test-coverage/][easily add Lcov to your tool chain]] ([[https://embeddedinn.wordpress.com/tutorials/test-coverage-analysis-with-gcov/][alternative guide]]) to produce
 a much more appealing visual code coverage report.
 
 Knowing the code coverage of your test is important -- it gives us
