@@ -82,7 +82,7 @@ efterföljande labb. Varje labbs /hårda deadline/ är alltså
 efterföljande labbtillfälle.
 
 Om du av någon anledning tror att du inte kommer klara någon hård
-deadline, hör av dig till en [[file:~/t/ioopm/2018/site/tas2018.org][senior assistent]] eller till Tobias så
+deadline, hör av dig till en [[../tas2018.org][senior assistent]] eller till Tobias så
 hittar vi en lösning!
 
 ** Om du kör fast
@@ -176,8 +176,8 @@ själv, eller ladda ned dem och installera dem själv eller via
 Emacs inbyggda pakethanterare.
 
 Emacs-resurser på kurswebben: 
-- [[file:../editors.org::*Introduktion%20till%20Emacs][Introduktion till Emacs]]
-- [[file:../screencasts.org::*Screencasts%20om%20verktyg][Screencasts om Emacs]]
+- [[../editors.org::*Introduktion%20till%20Emacs][Introduktion till Emacs]]
+- [[../screencasts.org::*Screencasts%20om%20verktyg][Screencasts om Emacs]]
 - [[http://wrigstad.com/ioopm18/misc/cheatsheet.pdf][Emacs lathund]]
 
 Nu följer två olika uppsättningar instruktioner beroende på om du
@@ -1194,7 +1194,7 @@ inte alltid ligger precis där kompilatorn varnar så betyder en
 varning att någonting är fel i programmet, eller borde skrivas
 om. Om man tar för vana att inte fixa "ofarliga varningar" kommer
 det att vara svårare att hitta "de farliga varningarna" i allt
-mummel som kompilatorn spottar ur sig. ([[file:~/t/ioopm/2018/site/compiling.org::*Compiling%20C%20Code][Läs mer om att kompilera C-program här!]])
+mummel som kompilatorn spottar ur sig. ([[../compiling.org::*Compiling%20C%20Code][Läs mer om att kompilera C-program här!]])
 
 #+begin_important
 Goda vanor är enklast att etablera om man tar de till sig redan
@@ -1515,7 +1515,7 @@ ett heltal och som läser in en sträng i bufferten. Det avslutande
 Funktionens signatur skall vara:
 
 #+BEGIN_SRC c
-int read_string(char *buf, int buf/siz)
+int read_string(char *buf, int buf_siz)
 #+END_SRC
 
 Där returvärdet är antalet inlästa tecken, alltså hur många av de
@@ -1619,7 +1619,7 @@ funktionsprototyper från ~utils.c~. I ~utils.h~ borde det nu alltså
 
 #+BEGIN_SRC c
 #include <stdbool.h>
-int read_string(char *buf, int buf/siz);
+int read_string(char *buf, int buf_siz);
 bool is_number(char *str);
 int ask_question_int(char *question);
 char *ask_question_string(char *question, char *buf, int buf_siz);
@@ -1746,7 +1746,9 @@ januari 1970. Alltså så här:
 
 ...
 
-srandom(time(NULL)); 
+srandom(time(NULL)); /// initialize randomness -- call once per program run
+...
+int r = rand(); /// generate a random value
 #+END_SRC
 
 Observera att en upplösning på 1 sekund inte är mycket att hänga i
@@ -1972,7 +1974,6 @@ skriva ~putchar(s[3])~ för att skriva ut dess fjärde tecken.
    ~puts()~ i ditt program för att kontrollera att du gör rätt.
 3. Lägg till ~print()~ och ~println()~ i ~utils~-biblioteket!
 
-
 ** Rekursion i C
 Du är bekant med rekursionsbegreppet sedan förut. Rekursion i C
 fungerar i stort sett likadant. I labb 1 var en extrauppgift att implementera ett
@@ -1993,7 +1994,7 @@ int fib(int num)
   int ppf = 0; // the two given fib values
   int pf  = 1;
 
-  for (int i = 0; i < num; ++i)
+  for (int i = 1; i < num; ++i)
   {
     int tmp = pf;
     pf = ppf + pf;
@@ -2209,20 +2210,19 @@ int add(int a, int b)
 #+END_SRC
 
 Eftersom ~add()~ är en funktion av typen ~Int -> Int -> Int~ kan
-den användas tillsammans med ~foldl/int/int~. För att skicka med
+den användas tillsammans med ~foldl_int_int~. För att skicka med
 en funktion som en parameter skriver du bara funktionens namn, i
 detta fall alltså ~add~.
 
 *Uppgift:* Skriv om ~sum()~-funktionen ovan med hjälp av
-~foldl/int/int()~ och ~add()~. Du behöver inte ändra i vare sig
-~foldl/int/int()~ eller ~add()~.
+~foldl_int_int()~ och ~add()~. Du behöver inte ändra i vare sig
+~foldl_int_int()~ eller ~add()~.
 
 #+begin_note
 Du har väl inte glömt att du kan tycka key:M-i för att få upp en 
 lista med alla funktioner och struktar i din C-fil så att du kan
 söka och snabbt hoppa mellan funktionerna i Emacs? 
 #+end_note
-
 
 ** Generell inläsningsrutin
 Skapa en ny fil med ett lämpligt namn, t.ex. ~experiment.c~ med
@@ -2259,7 +2259,7 @@ vilket introducerar en ny typ som vi ännu inte har sätt, nämligen
 typen ~answer_t~ som är en s.k. *union*:
 
 #+BEGIN_SRC c
-typedef union { // Not: undvik gärna så här korta namn på variabler! Varför?
+typedef union { 
   int   int_value;
   float float_value;
   char *string_value;
@@ -2534,7 +2534,7 @@ Exempel på in- och utdata:
 | ="  \nhej  "=      | ="hej"=              |
 | ="  hej\n "=       | ="hej"=              |
 
-(En modifierad version av detta program var nyligen på ett [[file:~/t/ioopm/2018/site/code-exam.org][kodprov]].)
+(En modifierad version av detta program var nyligen på ett [[../code-exam.org][kodprov]].)
 
 Alternativ implementation:
 
@@ -2982,7 +2982,7 @@ den sista ~translate()~-funktionen.
 0. *Frivillig* Definiera en ~make_circle()~.
 
 0. *Frivillig* Definiera en ~area_circle()~ som räknar ut arean
-   på en cirkel som ~pi * radien^2~. Du kan använda lämpliga
+   på en cirkel som $\pi \cdot{} r^2$ (där $r$ = radie). Du kan använda lämpliga
    funktioner och konstanter i ~math.h~ för att lösa uppgiften.
    Returtypen på ~area_circle()~ skall vara ett flyttal.
 
@@ -3335,9 +3335,11 @@ Titta på programmet ovan: i funktionen ~cat()~ läser vi infilen
 tecken för tecken. Nu vill vi skriva ut filen så att varje rad
 börjar med ett radnummer. Här är ett exempel från texten i labben:
 
-    1   Titta på programmet ovan: ...
-    2   tecken för tecken. Nu vill ...
-    3   börjar med ett radnummer ...
+#+BEGIN_EXAMPLE
+1   Titta på programmet ovan: ...
+2   tecken för tecken. Nu vill ...
+3   börjar med ett radnummer ...
+#+END_EXAMPLE
 
 #+begin_tip
 - Ha en räknare för antalet rader i ~cat()~ som börjar på 1
@@ -3453,7 +3455,8 @@ motsvarande menyval. För ångra-valet skall ett meddelande ~Not yet
 implemented!~ skrivas ut. Och vid avsluta skall ~event_loop()~
 funktionen terminera och programmet avslutas.
 
-*** Utökad vara
+*** Frivilligt: Utökad vara
+# TODO 2019: Ta bort frivilligt här 
 
 Utöka definitionen av en vara till att också ha ett antal
 (~amount~) som avser hur många av en vara som lagrats på
@@ -3481,7 +3484,7 @@ Implementera stöd för att ångra. Detta omfattar:
 Du bör ha fått ett GitHub-repo från oss på en adress som liknar
 https://github.com/IOOPM-UU/fornamn.efternamn.1234, där
 =fornamn.efternamn.1234= är ditt student-ID (om du inte har fått
-det, följ [[file:~/t/ioopm/2018/site/github.org][dessa instruktioner]]. Här ska du ladda upp alla uppgifter
+det, följ [[../github.org][dessa instruktioner]]. Här ska du ladda upp alla uppgifter
 som du har redovisat under de här veckorna. Det finns många sätt
 att ladda upp filer till GitHub, och här går vi igenom ett sätt
 att göra det via terminalen.
@@ -3497,9 +3500,9 @@ att göra det via terminalen.
    du har sparat dina gamla labbar i en mapp som heter ~ioopm~ som
    ligger i samma mapp som ditt klonade repo kan du köra:
 #+begin_example
-$ cp ioopm/lab2/guess.c fornamn.efternamn.1234/labar/lab2/
-$ cp ioopm/lab2/utils.c fornamn.efternamn.1234/labar/lab2/
-$ cp ioopm/lab2/utils.h fornamn.efternamn.1234/labar/lab2/
+$ cp ioopm/lab2/guess.c fornamn.efternamn.1234/fas1/bootstrap/lab2/
+$ cp ioopm/lab2/utils.c fornamn.efternamn.1234/fas1/bootstrap/lab2/
+$ cp ioopm/lab2/utils.h fornamn.efternamn.1234/fas1/bootstrap/lab2/
 #+end_example
 3. [@3] För varje labb, gå till respektive mapp och markera att du vill
    synka dessa med kommandot ~git add~. Bunta sedan ihop
@@ -3507,7 +3510,7 @@ $ cp ioopm/lab2/utils.h fornamn.efternamn.1234/labar/lab2/
    exempel (flaggan ~-m~ används för att ge en beskrivande text till en
    commit):
 #+begin_example
-$ cd fornamn.efternamn.1234/labbar/lab2
+$ cd fornamn.efternamn.1234/fas1/bootstrap/lab2
 $ ls
 README.md    utils.c
 guess.c      utils.h
@@ -3522,7 +3525,7 @@ $ git commit -m "Lade till labb 2"
 
 Om du vill lära dig mer om Git och GitHub finns det många guider
 online. Du hittar några av dem i vårt [[http://wrigstad.com/ioopm/links.php][länkbibliotek]]. Det finns
-också en [[file:~/t/ioopm/2018/site/github.org][kortare lathund]] med de vanligaste Git-kommandona.
+också en [[../github.org][kortare lathund]] med de vanligaste Git-kommandona.
 En gammal students anteckningar ligger till grund för ytterligare
 en [[https://github.com/IOOPM-UU/ioopm17/blob/master/extramaterial/lathundar/github][GitHub-guide]].
 
@@ -3531,7 +3534,7 @@ en [[https://github.com/IOOPM-UU/ioopm17/blob/master/extramaterial/lathundar/git
 ut, kanske föra några anteckningar om saker som du tänkt på,
 frågor som du vill ställa, misstag som du verkar upprepa, etc. 
 
-När du har tagit en paus är det dags för [[file:assignment1.org][inlämningsuppgift 1]]!
+När du har tagit en paus är det dags för [[./assignment1.org][inlämningsuppgift 1]]!
 #+end_note
 
 #+include: "../footer.org" 

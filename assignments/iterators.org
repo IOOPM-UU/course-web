@@ -2,7 +2,7 @@
 #+INCLUDE: "../setup.org" 
 
 * Introduction
-When we implemented [[file:lists.org][linked lists]], we implemented a function
+When we implemented [[./lists.org][linked lists]], we implemented a function
 ~list_apply()~ that took as argument a pointer to a function /f/
 and a pointer to some data /d/ and then for each element /e/ in
 the list, called /f(e, d)/ in list order. This pattern is often
@@ -56,7 +56,6 @@ the list is represented. Thus, iterators are generally implemented
 as part of a list, or a list exports some basic iterator interface
 on-top of which more fancy iterators can be built. 
 
-
 * The Iterator Interface
 Our iterator shall support the following standard operations:
 
@@ -73,7 +72,7 @@ Additionally, we must be able to create and destroy iterators.
 Following the principle of starting out with something simple that
 seems to be able to do most of what we want, let us define an
 iterator as simply a pointer to a link[fn::We assume we are
-building an iterator for the list we built [[file:lists.org][previously]], and will
+building an iterator for the list we built [[./lists.org][previously]], and will
 use types like ~list_t~ and ~link_t~ that we defined then.].
 
 #+BEGIN_SRC c
@@ -322,7 +321,6 @@ void iterator_remove(iter_t *iter)
   free(to_remove); /// Remove link
 }
 #+END_SRC
-
 
 * Improving the Public Interface
 

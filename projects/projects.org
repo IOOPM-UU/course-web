@@ -297,7 +297,7 @@ you pass Y68.
 
 In a relatively short text write a team retrospective in which you
 reflect on how the team has worked together. **A report template
-[[file:project-report.org][is found here]].** Using this template, you will be asked to reflect
+[[./project-report.org][is found here]].** Using this template, you will be asked to reflect
 on the questions listed at the top of this document, but also
 about:
 
@@ -566,7 +566,7 @@ header in each memory allocation, which is hidden from users,
 which stores a reference count for that object, and possibly other
 things.
 
-The full project description is [[file:project1.org][here]].
+The full project description is [[./project1.org][here]].
 
 ** Project Two
 
@@ -578,7 +578,7 @@ memory scanned for garbage. This involves scanning the stack of
 your application to find all possible pointers into that heap,
 which requires a bit of low-level trickery.
 
-The full project description is [[file:project2.org][here]].
+The full project description is [[./project2.org][here]].
 
 
 #+include: "../footer.org" 

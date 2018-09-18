@@ -828,7 +828,7 @@ som visades på exempelfilmen tidigare i detta dokument.
 *Nu är du klar med Java-labbarna.* Bra jobbat! Det är dags att pusta
 ut, kanske föra några anteckningar om saker som du tänkt på,
 frågor som du vill ställa, misstag som du verkar upprepa, etc. När
-du har tagit en paus är det dags för [[file:assignment3.org][inlämningsuppgift 3]]!
+du har tagit en paus är det dags för [[./assignment3.org][inlämningsuppgift 3]]!
 #+END_CENTER
 
 #+include: "../footer.org" 

@@ -65,7 +65,7 @@ Below are some recent coding exams.
 | 2017-12-08 | [[http://wrigstad.com/ioopm/entrekod.zip][available]]    | [[http://wrigstad.com/ioopm/2017/kodprov-dec-08.html][available]]  | Only C |
 | 2017-12-18 | [[http://wrigstad.com/ioopm/sorsele-fm.zip][available]]    | [[http://wrigstad.com/ioopm/2017/kodprov-dec-18.html][available]]  |        |
 | 2018-04-02 | [[http://wrigstad.com/ioopm/bridget.zip][available]]    |            |        |
-| 2018-08-30 | [[http://wrigstad.com/ioopm/mandel.zip][available]]    | [[file:exams/2018-08-30.org][available]]  |        |
+| 2018-08-30 | [[http://wrigstad.com/ioopm/mandel.zip][available]]    | [[./exams/2018-08-30.org][available]]  |        |
 
 In 2016, I was asked on Piazza to record a screencast that
 demonstrated what doing a code exam could be like. This was a
@@ -92,7 +92,7 @@ show what writing a code exam can be like).
 *A:* Böcker om programspråk. Vidare får du använda man-sidorna. Du får inte använda gammal kod, inte gå ut på nätet, etc. Elektroniska böcker är tillåtna. Vi föredrar att du har en läsplatta, men en bärbar dator utan Internet går också bra.
 
 *Q:* När går kodprovet? \\
-*A:* Kolla på [[file:index.org][schemat]]!
+*A:* Kolla på [[./index.org][schemat]]!
 
 *Q:* Hur anmäler jag mig? \\
 *A:* Länk postas i Piazza.

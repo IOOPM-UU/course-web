@@ -94,7 +94,7 @@ recompile =misc.c= into =misc.o= and relink. If compiling
 shaved off *a lot of time* by only redoing the necessary steps.
 
 #+begin_tip
-If you use a [[file:makefiles.org][Makefile]], it is easy to always use the fancy latter
+If you use a [[./makefiles.org][Makefile]], it is easy to always use the fancy latter
 option.
 #+end_tip
 

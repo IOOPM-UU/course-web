@@ -8,19 +8,42 @@ about why we are doing what we are doing, go ahead and [[http://uu.diva-portal.o
 paper]] (15 pages).
 #+end_attention
 
-* TODO Changes from 2017
-*This will be updated for Lecture 4*
+* DONE Changes from 2017
+** Changelog
+- Completely new Assignment 1 ::
+     Assignment 1 is now a cross-breed of traditional labs and
+     traditional assigments. The idea is to provide some more
+     safety and also steer thoughts a bit, but not have small
+     tasks that are too well-aligned to one or two specific
+     concepts.
 
-# ** Changelog
-# 1. Completely new Assignment 1 
-# 2. Overhaul of Assignment 2--4
-# 3. New course website
-# 4. Stricter group meetings
-# 5. New vagrant machine for using own laptops/computers 
-# 6. Changed Emacs shortcuts and settings 
-# 7. New lecture material on some lectures 
-# ** Rooms for Improvement 
-# 1. Queuing time on labs -- not solved 
+- Overhaul of Assignment 2--4 ::
+     Based on outcome of assignment 1. FEEDBACK, people! 
+
+- New course website ::
+     Toning down reliance on GitHub. Also, no markdown which
+     is a huge boon for me... 
+     
+- Stricter group meetings, with coaches ::
+     As described [[./teams.org][here]]. 
+
+- New vagrant machine for using own laptops/computers ::
+     As described [[./tools.org][here]].
+
+- Changed Emacs shortcuts and settings ::
+     As described all over the place. 
+
+- New lecture material on some lectures ::
+     Generally freshening things up and aligning content with
+     assignment 1.
+
+** Rooms for Improvement 
+- Queuing time on labs ::
+     Probably not solved (but you're fewer this year).
+
+** New things 2017 that we are keeping
+1. Two projects (but the simpler one needs beefing up)
+2. Survey for finding project groups 
 
 * Kursöversikt
 ** Faser och sprintar
@@ -221,7 +244,7 @@ Tanken med dessa möten är att ni ska kunna få hjälp att hålla en
 lämplig styrfart genom kursen och att komma loss om ni har kört
 fast. Om ni är osäkra på vilka mål som passar med er uppgift kan
 får ni diskutera saken med en assistent och ett annat
-programmeringspar. [[file:team.org::*Group%20Meetings][Läs mer här]].
+programmeringspar. [[./team.org::*Group%20Meetings][Läs mer här]].
 ** Labbar
 #+begin_important
 *SUPERVIKTIG SKILLNAD MOT PKD:* Labbar på denna kurs avser tid att
@@ -238,7 +261,7 @@ Java-labbar). Vid dessa tillfällen finns det möjlighet att få
 handledning och också möjlighet att redovisa mål (förutom
 inledande 6 labbar).
 
-Mer information om labbarna och redovisning finns [[file:labs.org][här]]. 
+Mer information om labbarna och redovisning finns [[./labs.org][här]]. 
 ** Betyg
 Målen har en betygsnivå kopplad till sig. Mål på högre nivå
 omfattar de på lägre nivå. Du kan inte byta ut ett mål på en
@@ -390,7 +413,7 @@ ingenting.
 ** Steg 4: Uppföljning
 Planering är bra, men du måste också följa upp utfallet så att du
 kan justera hur du planerar i framtiden. Detta görs tillsammans
-med andra i teamet, och finns beskrivet [[file:team.org::*Group%20Meetings][här]].
+med andra i teamet, och finns beskrivet [[./team.org::*Group%20Meetings][här]].
 ** Steg 5: Revidera planen
 Ditt burndown chart visar trenden -- vad har du för styrfart, och
 kommer du att nå ditt mål? Kanske blir du sjuk en vecka och tappar
@@ -434,7 +457,7 @@ Du hittar våra Trello-bräden [[https://trello.com/ioopm][här]].
 
 # På denna kurs tränar vi skriftlig framställning i projektrapporten
 # (det går alltså att bli underkänd på en undermålig rapport), men också
-# via en essä (för högre betyg). Du kan läsa om den bland [[file:achievements.org::*59][målen]].
+# via en essä (för högre betyg). Du kan läsa om den bland [[./achievements.org::*59][målen]].
 # * Träning i att hålla presentationer
 # Universitetskanslerämbetet åligger oss att träna studenter i att
 # hålla presentationer. Oavsett detta är det extremt viktigt att
@@ -484,7 +507,7 @@ If you have taken ideas from elsewhere or used code sourced from
 elsewhere, you must say so with utmost clarity in the
 documentation of your assignment. 
 
-When in doubt, ask [[file:tas2018.org::*Head%20Teacher:%20Tobias%20Wrigstad][Tobias]]. 
+When in doubt, ask [[./tas2018.org::*Head%20Teacher:%20Tobias%20Wrigstad][Tobias]]. 
 
 #+begin_important
 Make sure you have familiarised yourself with the rules of

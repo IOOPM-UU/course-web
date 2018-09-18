@@ -3,7 +3,7 @@
 #+include: "./asciinema-setup.org"
 
 #+begin_attention
-Most of this text is being written from scratch in 2018. For now, refer to the bootstrap sections on the [[file:assignments/c-bootstrap.org][C bootstap labs]].
+Most of this text is being written from scratch in 2018. For now, refer to the bootstrap sections on the [[./assignments/c-bootstrap.org][C bootstap labs]].
 #+end_attention
 
 * Introduktion till Emacs

@@ -235,10 +235,10 @@ C_LINK_OPTIONS = -lm
 CUNIT_LINK     = -lcunit
 
 %.o:	%.c
-	$(C_COMPILER) $(C_OPTIONS) $< -c
+	$(C_COMPILER) $(C_OPTIONS) $? -c
 
 myprog:	file1.o file2.o file3.o
-	$(C_COMPILER) $(C_LINK_OPTIONS) $< -o $@
+	$(C_COMPILER) $(C_LINK_OPTIONS) $? -o $@
 
 myprog.final:	file1.o file2.o file3.o
 # TODO: add e.g. optimisation flags, remove unnecessary linking, etc.
@@ -252,8 +252,9 @@ clean:
 =%.o: %.c= is a target that matches any =file.o= pattern and
 translates into a dependency to =file.c=. 
 
-=$<= expands to the dependency(ies) for the current target, i.e.,
+=$?= expands to the dependency(ies) for the current target, i.e.,
 =file.c= for =file.o= and =file1.o file2.o file3.o= for =myprog=. 
+(Only those with a newer date.)
 
 =$@= expands to the name of the target, e.g. =file.o= in the case
 of the =file.o= target, and =myprog= in the case of the =myprog=
@@ -275,10 +276,10 @@ In addition to the above, we add:
 
 #+BEGIN_SRC makefile
 test1: mytests1.o file1.o 
-	$(C_COMPILER) $(C_LINK_OPTIONS) $(CUNIT_LINK) $< -o $@
+	$(C_COMPILER) $(C_LINK_OPTIONS) $(CUNIT_LINK) $? -o $@
 
 test2: mytests2.o file2.o file3.o
-	$(C_COMPILER) $(C_LINK_OPTIONS) $(CUNIT_LINK) $< -o $@
+	$(C_COMPILER) $(C_LINK_OPTIONS) $(CUNIT_LINK) $? -o $@
 
 test: test1 test2
 	./test1 

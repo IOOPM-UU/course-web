@@ -32,20 +32,21 @@ people involved in running the course in 2018.
 - Michael Rehn
 - Sanna Kurdahl
 
-* TODO Teams and Coaches
-*Waiting for information*
+* DONE Teams and Coaches
+
 | Team | Coach               |
 |------+---------------------|
-| TBA  | Alexander Troshin   |
-| TBA  | Alexis Remmers      |
-| TBA  | Ardalan Samimi      |
-| TBA  | Benjamin Ek         |
-| TBA  | Elwira Johansson    |
-| TBA  | Erik Rimskog        |
-| TBA  | Joy van den Eijkhof |
-| TBA  | Linnea Ingmar       |
-| TBA  | Michael Rehn        |
-| TBA  | Sanna Kurdahl       |
+|    1 | Alexander Troshin   |
+|    2 | Alexis Remmers      |
+|    3 | Ardalan Samimi      |
+|    4 | Benjamin Ek         |
+|    5 | Elwira Johansson    |
+|    6 | Erik Rimskog        |
+|    7 | Joy van den Eijkhof |
+|    8 | Linnea Ingmar       |
+|    9 | Michael Rehn        |
+|   10 | Sanna Kurdahl       |
+|   11 | Gustaf Borgström    |
 
 * Getting in Touch
 - Talk to us during lectures and labs :: 
