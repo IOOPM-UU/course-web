@@ -16,7 +16,6 @@ elem_t ioopm_hash_table_lookup(ioopm_hash_table_t *h, elem_t key);
 elem_t ioopm_hash_table_remove(ioopm_hash_table_t *h, elem_t key);
 elem_t *ioopm_hash_table_keys(ioopm_hash_table_t *h);
 elem_t *ioopm_hash_table_values(ioopm_hash_table_t *h);
-void ioopm_hash_table_resize(ioopm_hash_table_t *h, int size);
 void ioopm_hash_table_clear(ioopm_hash_table_t *h);
 size_t ioopm_hash_table_size(ioopm_hash_table_t *h);
 bool ioopm_hash_table_is_empty(ioopm_hash_table_t *h);

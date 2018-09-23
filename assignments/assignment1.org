@@ -103,7 +103,7 @@ The main work of this assignment will be done in the files
 =hash_table.h= and =hash_table.c=. The former is the header file,
 which declares functions and some necessary types. The latter
 contains all struct definitions and function definitions. The =.c=
-file will include the =.h= file using ~#include "hash_table.c"~.
+file will include the =.h= file using ~#include "hash_table.h"~.
 To avoid multiple inclusion problems, the =.h= file will start 
 with ~#pragma once~.
 
@@ -296,7 +296,7 @@ int main(void)
 ** How Hash Tables Work Internally
 
 There is a wealth of information on the Internet on how hash
-tables work. This is a good opportunity to use your search fu.
+tables work. This is a good opportunity to use your "search fu"[fn::As in /search skills/, cf. "kung fu".].
 Below, I only include a minimal description.
 
 As we saw above, a hash table maps a key to a value. In pseudo
@@ -510,43 +510,42 @@ non-NULL pointer pointing to the datum on the right.
 
 #+NAME: fig_ht_1
 #+CAPTION: Newly initialised hash table.
-#+RESULTS: 
-[[../images/hashtable01.png]]
+[[../images/ht1.png]]
 
 #+NAME: fig_ht_2
-#+CAPTION: Hash table with keys 4 => bar, 17 => foo, and 208 => "baz". 
-#+RESULTS: 
-[[../images/hashtable02.png]]
+#+CAPTION: Hash table with keys 4 $\mapsto$ bar, 17 $\mapsto$ foo, and 208 $\mapsto$ "baz". 
+[[../images/ht2.png]]
 
+# This code can be used to generate uglier forms of the hash tables if keynote "sources" are ever lost
 
-#+begin_src dot :results file :file ../images/hashtable01.png :exports none
-  digraph G {
-      nodesep=.05;
-      rankdir=LR;
-      node [shape=record,width=.1,height=.1];
+# #+begin_src dot :results file :file ../images/hashtable01.png :exports none
+#   digraph G {
+#       nodesep=.05;
+#       rankdir=LR;
+#       node [shape=record,width=.1,height=.1];
 
-      node0 [label = "{0|NULL}|{1|NULL}|{2|NULL}|{3|NULL}|{4|NULL}|...|{16|NULL} ",height=2.5];
-      node [width = 1.5];
-    }      
-#+end_src
+#       node0 [label = "{0|NULL}|{1|NULL}|{2|NULL}|{3|NULL}|{4|NULL}|...|{16|NULL} ",height=2.5];
+#       node [width = 1.5];
+#     }      
+# #+end_src
 
-#+begin_src dot :results file :file ../images/hashtable02.png :exports none
-  digraph G {
-      nodesep=.05;
-      rankdir=LR;
-      node [shape=record,width=.1,height=.1];
+# #+begin_src dot :results file :file ../images/hashtable02.png :exports none
+#   digraph G {
+#       nodesep=.05;
+#       rankdir=LR;
+#       node [shape=record,width=.1,height=.1];
 
-      node0 [label = "{0|<f0> ADDR}|{1|NULL}|{2|NULL}|{3|NULL}|{4|<f4> ADDR}|...|{16|NULL} ",height=2.5];
-      node [width = 1.5];
-      node1 [label = "{<n> 17  | \"foo\" |NULL }"]; 
-      node2 [label = "{<n> 4   | \"bar\" |<nxt> ADDR}"]; 
-      node3 [label = "{<n> 208 | \"baz\" |NULL }"]; 
+#       node0 [label = "{0|<f0> ADDR}|{1|NULL}|{2|NULL}|{3|NULL}|{4|<f4> ADDR}|...|{16|NULL} ",height=2.5];
+#       node [width = 1.5];
+#       node1 [label = "{<n> 17  | \"foo\" |NULL }"]; 
+#       node2 [label = "{<n> 4   | \"bar\" |<nxt> ADDR}"]; 
+#       node3 [label = "{<n> 208 | \"baz\" |NULL }"]; 
 
-      node0:f0 -> node1:n; 
-      node0:f4 -> node2:n; 
-      node2:nxt -> node3:n; 
-    }      
-#+end_src
+#       node0:f0 -> node1:n; 
+#       node0:f4 -> node2:n; 
+#       node2:nxt -> node3:n; 
+#     }      
+# #+end_src
 
 *** Using Debuggers
 
@@ -1361,42 +1360,40 @@ key 0, value ~NULL~ and next pointer pointing to it.)
 
 #+CAPTION: Newly initialised hash table with inlined dummy entries.
 #+NAME: fig_ht_3
-#+RESULTS:
-[[../images/hashtable03.png]]
+[[../images/ht3.png]]
 
-#+CAPTION: Newly initialised hash with inlined dummy entries with 4 => bar, 17 => foo and 208 => baz. The entry with key 4 is the /previous entry/ of the entry with key 208.
+#+CAPTION: Newly initialised hash with inlined dummy entries with 4 $\mapsto$ bar, 17 $\mapsto$ foo and 208 $\mapsto$ baz. The entry with key 4 is the /previous entry/ of the entry with key 208.
 #+NAME: fig_ht_4
-#+RESULTS:
-[[../images/hashtable04.png]]
+[[../images/ht4.png]]
 
-#+begin_src dot :results file :file ../images/hashtable03.png :exports none
-  digraph G {
-      nodesep=.05;
-      rankdir=LR;
-      node [shape=record,width=.1,height=.1];
+# #+begin_src dot :results file :file ../images/hashtable03.png :exports none
+#   digraph G {
+#       nodesep=.05;
+#       rankdir=LR;
+#       node [shape=record,width=.1,height=.1];
 
-      node0 [label = "{0|{0|NULL|NULL}}|{1|{0|NULL|NULL}}|{2|{0|NULL|NULL}}|{3|{0|NULL|NULL}}|{4|{0|NULL|NULL}}|...|{16|{0|NULL|NULL}} ",height=2.5];
-      node [width = 1.5];
-    }      
-#+end_src
+#       node0 [label = "{0|{0|NULL|NULL}}|{1|{0|NULL|NULL}}|{2|{0|NULL|NULL}}|{3|{0|NULL|NULL}}|{4|{0|NULL|NULL}}|...|{16|{0|NULL|NULL}} ",height=2.5];
+#       node [width = 1.5];
+#     }      
+# #+end_src
 
-#+begin_src  dot :results file :file ../images/hashtable04.png :exports none
-  digraph G {
-      nodesep=.05;
-      rankdir=LR;
-      node [shape=record,width=.1,height=.1];
+# #+begin_src  dot :results file :file ../images/hashtable04.png :exports none
+#   digraph G {
+#       nodesep=.05;
+#       rankdir=LR;
+#       node [shape=record,width=.1,height=.1];
 
-      node0 [label = "{0|{0|NULL|<f0> ADDR}}|{1|{0|NULL|NULL}}|{2|{0|NULL|NULL}}|{3|{0|NULL|NULL}}|{4|{0|NULL|<f4> ADDR}}|...|{16|{0|NULL|NULL}} ",height=2.5];
-      node [width = 1.5];
-      node1 [label = "{<n> 17  | \"foo\" |NULL }"]; 
-      node2 [label = "{<n> 4   | \"bar\" |<nxt> ADDR}"]; 
-      node3 [label = "{<n> 208 | \"baz\" |NULL }"]; 
+#       node0 [label = "{0|{0|NULL|<f0> ADDR}}|{1|{0|NULL|NULL}}|{2|{0|NULL|NULL}}|{3|{0|NULL|NULL}}|{4|{0|NULL|<f4> ADDR}}|...|{16|{0|NULL|NULL}} ",height=2.5];
+#       node [width = 1.5];
+#       node1 [label = "{<n> 17  | \"foo\" |NULL }"]; 
+#       node2 [label = "{<n> 4   | \"bar\" |<nxt> ADDR}"]; 
+#       node3 [label = "{<n> 208 | \"baz\" |NULL }"]; 
 
-      node0:f0 -> node1; 
-      node0:f4 -> node2; 
-      node2:nxt -> node3:n; 
-    }      
-#+end_src
+#       node0:f0 -> node1; 
+#       node0:f4 -> node2; 
+#       node2:nxt -> node3:n; 
+#     }      
+# #+end_src
 
 
 To make this work, one more change is needed -- which is subtle
@@ -2159,11 +2156,6 @@ int *ioopm_hash_table_keys(ioopm_hash_table_t *h);
 /// @return an array of values for hash table h
 char **ioopm_hash_table_values(ioopm_hash_table_t *h);
 
-/// @brief change the number of buckets for hash table h
-/// @param h hash table operated upon
-/// @param size the new number of buckets
-void ioopm_hash_table_resize(ioopm_hash_table_t *h, int size);
-
 /// @brief check if a hash table has an entry with a given key
 /// @param h hash table operated upon
 /// @param key the key sought 
@@ -2218,7 +2210,7 @@ approach, make the same tests, but afterwards.
 An alternative design is to let the hash table keep track of its
 size and increment and decrement it on insertion and removal. This
 /amortises the cost/ of making size calculations over the entire
-life-time of a hash table, allowing use to get the current size of
+life-time of a hash table, allowing us to get the current size of
 a hash table in O(1) time. This design is good if we query the
 size often and otherwise less important or possibly even wasteful.
 In this design, add a size field to ~struct hash_table_t~, and
