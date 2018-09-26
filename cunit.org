@@ -14,7 +14,7 @@ institutionens datorsystem. Om tillämpligt, titta på några av
 enhetstesterna som distributerats med koden för
 inlämningsuppgifterna (här tar vi exempel från en fil
 =unittests.c= från en inlämningsuppgift från en forntida IOOPM,
-see [[unitests.c][här]]) och försök följa dem för att se hur enkelt enhetstest kan
+see [[unittests.c][här]]) och försök följa dem för att se hur enkelt enhetstest kan
 sättas upp.
 
 Ett enhetstest är ett test av en enhet, t.ex. en modul eller
@@ -38,7 +38,7 @@ komponenter:
 ** Grundläggande CUnit
 
 Ett enhetstest i CUnit består av ett antal testsviter som var och
-en innehåller ett antal olika test. Filen =unittests.c= ([[unitests.c]][här]]) i
+en innehåller ett antal olika test. Filen =unittests.c= ([[unittests.c][här]]) i
 som vi använder som löpande exempel har tre sviter, en för test av
 ett binärt sökträd, ett för en enkellänkade lista och ett för att
 läsa ord från en inström.
@@ -52,7 +52,7 @@ avsnitt. Om sviten inte skapades korrekt är värdet i ~pSuiteNW~ ~NULL~  vi st�
 avslutar genom att returnera en felkod (rad 10).
 
 Rad 13--16 lägger till ett test i sviten. Funktionen
-~CU_add_test~ lägger till testfunktionen ~testNEXTWORD~  en
+~CU_add_test~ lägger till testfunktionen ~test_next_word~  en
 funktion som vi (utvecklaren) skrivit själva, i sviten med ett
 beskrivande namn. Fel fångas upp och rapporteras på samma sätt som
 tidigare.
@@ -76,7 +76,7 @@ if (NULL == pSuiteNW) {
   return CU_get_error();
 }
 
-if (NULL == CU_add_test(pSuiteNW, "test of nextWord()", testNEXTWORD)) {
+if (NULL == CU_add_test(pSuiteNW, "test of nextWord()", test_next_word)) {
   CU_cleanup_registry();
   return CU_get_error();
 }
@@ -142,11 +142,11 @@ av testen gick enligt planen (~return 0~).
 ** Utföra tester
 
 Varje funktion vars namn börjar på ~test~ avser ett test av en
-funktion i enheten. Följande test som återfinns bland
-enhetstesterna till inlämningsuppgift 1 testar att insertering i
+funktion i enheten. Följande test som fanns bland
+enhetstesterna till en gammal inlämningsuppgift 1 (fram till 2017) testar att insertering i
 ett binärt sökträd skapar ett träd med förväntat djup. 
 
-Funktionen ~int depth(TreeLink)~ används för att ta reda på
+Funktionen ~int depth(tree_t *)~ används för att ta reda på
 trädets djup. Denna funktion är inte strikt nödvändig för
 insertering och sökning, men är en hjälpfunktion som utvecklaren
 av trädet tillhandahåller bl.a. just för att underlätta test av
@@ -166,8 +166,8 @@ fejlar, alt. misslyckas, på Svenska) under testet räknas testet
 som att det inte har passerat.
 
 #+BEGIN_SRC c
-void testBST_DEPTH(void) {
-  TreeLink t = insert(NULL, "ni", 1);
+void test_bst_depth(void) {
+  tree_t *t = insert(NULL, "ni", 1);
   CU_ASSERT(depth(t) == 1);
   t = insert(t, "spam", 2);
   CU_ASSERT(depth(t) == 2);
@@ -176,6 +176,8 @@ void testBST_DEPTH(void) {
   t = insert(t, "eki", 4);
   CU_ASSERT(depth(t) == 2);
   CU_ASSERT(strcmp(t->left->key, "eki") == 0); // Bryter mot abstraktionsprincipen!
+
+  /// OBS! Här borde vi städa bort data från heapen som allokerats av testet.
 #+END_SRC
 
 Observera att testet inte returnerar något. Om funktionen körs
@@ -189,11 +191,11 @@ nod i trädet som en del av trädmodulen. Man skulle t.ex. kunna
 skriva följande:
 
 #+BEGIN_SRC c
-char *keyForPath(TreeLink t, char *path) {
+char *key_for_path(tree_t *t, char *path) {
   if (!t) return NULL;
   switch (*path) {
-    case 'L':  return keyForPath(t->left, ++path);
-    case 'R':  return keyForPath(t->right, ++path);
+    case 'L':  return key_for_path(t->left, ++path);
+    case 'R':  return key_for_path(t->right, ++path);
     case '\0': return t->key;
     default: 
       printf(stderr, "Bogus path value '%c' expected L or R\n", *path);
@@ -210,7 +212,7 @@ trädet.
 Nu skulle man kunna skriva om sista raden i testet så här:
 
 #+BEGIN_SRC c
-  char *temp = keyForPath(t, "L");
+  char *temp = key_for_path(t, "L");
   CU_ASSERT(strcmp(temp, "eki") == 0);
 #+END_SRC
 
@@ -304,7 +306,7 @@ int main()
 }
 #+END_SRC
 
-* Filen =unittests.c= <<unitests.c>>
+* Filen =unittests.c= <<unittests.c>>
 #+caption: unittests.c
 #+BEGIN_SRC c
 #include <string.h>
@@ -361,60 +363,66 @@ int clean_suite_nw(void)
     }
 }
 
-void testBST_INSERT(void)
+void test_bst_insert(void)
 {
-  TreeLink t = insert(NULL, "spam\0", 1);
+  tree_t *t = tree_insert(NULL, "spam\0", 1);
   CU_ASSERT(strcmp(t->key, "spam\0") == 0);
   CU_ASSERT(t != NULL);
   CU_ASSERT(t->left == NULL);
   CU_ASSERT(t->right == NULL);
   CU_ASSERT(t->rowlist != NULL);
   CU_ASSERT(listlength(t->rowlist) == 1);
-  t = insert(t, "spam\0", 2);
+  t = tree_insert(t, "spam\0", 2);
   CU_ASSERT(listlength(t->rowlist) == 2);
 
-  TreeLink d = insert(NULL, "ni\0", 1);
-  d = insert(d, "spam\0", 2);
-  d = insert(d, "eki\0", 3);
+  tree_t *d = tree_insert(NULL, "ni\0", 1);
+  d = tree_insert(d, "spam\0", 2);
+  d = tree_insert(d, "eki\0", 3);
   CU_ASSERT(strcmp(d->key, "ni\0") == 0);
   CU_ASSERT(strcmp(d->right->key, "spam\0") == 0);
   CU_ASSERT(strcmp(d->left->key, "eki\0") == 0);
+
+  /// OBS! Här borde vi städa bort data från heapen som allokerats av testet.
 }
 
-void testBST_REMOVE(void)
+void test_bst_remove(void)
 {
   /* Note that this test is not run automatically, modifications
      further down are necessary */
 }
 
-void testBST_DEPTH(void)
+void test_bst_depth(void)
 {
-  TreeLink t = insert(NULL, "ni\0", 1);
+  tree_t *t = tree_insert(NULL, "ni\0", 1);
   CU_ASSERT(depth(t) == 1);
-  t = insert(t, "spam\0", 2);
+  t = tree_insert(t, "spam\0", 2);
   CU_ASSERT(depth(t) == 2);
-  t = insert(t, "eki\0", 3);
+  t = tree_insert(t, "eki\0", 3);
   CU_ASSERT(depth(t) == 2);
-  t = insert(t, "eki\0", 4);
+  t = tree_insert(t, "eki\0", 4);
   CU_ASSERT(depth(t) == 2);
   CU_ASSERT(strcmp(t->left->key, "eki\0") == 0);
+
+  /// OBS! Här borde vi städa bort data från heapen som allokerats av testet.
 }
 
-void testBST_SIZE(void)
+void test_bst_size(void)
 {
-  TreeLink t = insert(NULL, "ni\0", 1);
+  tree_t *t = tree_insert(NULL, "ni\0", 1);
   CU_ASSERT(size(t) == 1);
-  t = insert(t, "spam\0", 2);
+  t = tree_insert(t, "spam\0", 2);
   CU_ASSERT(size(t) == 2);
-  t = insert(t, "eki\0", 3);
+  t = tree_insert(t, "eki\0", 3);
   CU_ASSERT(size(t) == 3);
-  t = insert(t, "eki\0", 4);
+  t = tree_insert(t, "eki\0", 4);
   CU_ASSERT(size(t) == 3);
+
+  /// OBS! Här borde vi städa bort data från heapen som allokerats av testet.
 }
 
-void testLIST_LISTINSERT(void)
+void test_list_insert(void)
 {
-  ListLink l = listinsert(1, NULL);
+  link_t *l = listinsert(1, NULL);
   for (int i=2; i<=10; i++)
     {
       l = listinsert(i, l);
@@ -425,20 +433,24 @@ void testLIST_LISTINSERT(void)
       CU_ASSERT(l->value == i);
       l = l->next;
     }
+
+  /// OBS! Här borde vi städa bort data från heapen som allokerats av testet.
 }
 
-void testLIST_LISTLENGTH(void)
+void test_list_length(void)
 {
-  ListLink l = listinsert(1, NULL);
+  link_t *l = listinsert(1, NULL);
   CU_ASSERT(listlength(l) == 1);
   for (int i=2; i<=20; i++)
     {
       l = listinsert(i, l);
       CU_ASSERT(listlength(l) == i);
     }
+
+  /// OBS! Här borde vi städa bort data från heapen som allokerats av testet.
 }
 
-void testNEXTWORD(void)
+void test_next_word(void)
 {
   char buffer[20];
   CU_ASSERT(temp_file != NULL)  // Internal error
@@ -495,9 +507,9 @@ int main()
     }
 
   if (
-    (NULL == CU_add_test(pSuiteBst, "test of insert()", testBST_INSERT)) ||
-    (NULL == CU_add_test(pSuiteBst, "test of size()", testBST_SIZE)) ||
-    (NULL == CU_add_test(pSuiteBst, "test of depth()", testBST_DEPTH))
+    (NULL == CU_add_test(pSuiteBst, "test of insert()", test_bst_insert)) ||
+    (NULL == CU_add_test(pSuiteBst, "test of size()", test_bst_size)) ||
+    (NULL == CU_add_test(pSuiteBst, "test of depth()", test_bst_depth))
   )
     {
       CU_cleanup_registry();
@@ -505,8 +517,8 @@ int main()
     }
 
   if (
-    (NULL == CU_add_test(pSuiteList, "test of listinsert()", testLIST_LISTINSERT)) ||
-    (NULL == CU_add_test(pSuiteList, "test of listlength()", testLIST_LISTLENGTH))
+    (NULL == CU_add_test(pSuiteList, "test of listinsert()", test_list_insert)) ||
+    (NULL == CU_add_test(pSuiteList, "test of listlength()", test_list_length))
   )
     {
       CU_cleanup_registry();
@@ -514,7 +526,7 @@ int main()
     }
 
   if (
-    (NULL == CU_add_test(pSuiteNW, "test of nextWord()", testNEXTWORD))
+    (NULL == CU_add_test(pSuiteNW, "test of nextWord()", test_next_word))
   )
     {
       CU_cleanup_registry();
