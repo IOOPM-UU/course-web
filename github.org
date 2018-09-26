@@ -13,12 +13,10 @@ If you do not remember what version control is, or git, please
 start by reading [[https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control#ch01-getting-started][this]] and then [[https://git-scm.com/book/en/v2/Getting-Started-Git-Basics][this]]. If you want some basic help
 in installing git, look [[https://git-scm.com/book/en/v2/Getting-Started-Installing-Git][here]].
 * How to Get a GitHub Account for the Course
-
 Du kommer att använda GitHub för att dela och versionshantera all
 kod som skrivs för kursen. För att undvika situationer som
 formellt räknas som [[http://www.ibg.uu.se/student/fusk-plagiat/][fusk]] kommer alla att få ett privat repo att
-använda i kursen. Följ de här stegen: <
-
+använda i kursen. Följ de här stegen: 
 ** 1. Skaffa ett GitHub-konto
 
 Först behöver du ett konto på [[http://www.github.com][GitHub]]. Om du redan har ett kan du
@@ -39,11 +37,16 @@ angav. Klicka på "Verify email address"
 file:./images/GitHub3.jpg
 
 ** 2. Ge oss dina uppgifter
+#+begin_important
+*NOTE* The signup for a GitHub repo is closed. Please email
+directy to [[file:tas2018.org::HeadTA][Gustaf]] to get a GitHub repo. Using a IOOPM-UU GitHub
+repo for development is *mandatory* on the course.
+#+end_important
 
 För att du ska kunna få ett privat repo behöver du bli inbjuden
 till vår GitHub-organisation IOOPM-UU. För att kunna ge dig ett
-konto måste vi ha dina uppgifter. Börja med att [[https://docs.google.com/forms/d/e/1FAIpQLSekNDUPCgFTjUfkyRrdqJ0kVWcQXFsoL4GYOQHPXSzALiwV9Q/viewform?usp=sf_link][klicka här]] och
-fyll i ditt student-ID och ditt användarnamn på GitHub.
+konto måste vi ha dina uppgifter. +Börja med att [[https://docs.google.com/forms/d/e/1FAIpQLSekNDUPCgFTjUfkyRrdqJ0kVWcQXFsoL4GYOQHPXSzALiwV9Q/viewform?usp=sf_link][klicka här]] och
+fyll i ditt student-ID och ditt användarnamn på GitHub.+
 
 file:./images/GitHubForm.jpg
 
@@ -158,6 +161,12 @@ etc.
 
 The section on Downloading Updates from GitHub to Your Local
 Machine covers how to pull changes from the server.
+
+Note that you can write
+#+BEGIN_SRC 
+$ git push --tags
+#+END_SRC
+To push all your tags to the server. Or simply =git push origin <tagname>= to push a single tag. 
 ** Making a Commit
 To make a commit, you must first add the files to be committed.
 Instructions for that is found under Adding Files.
@@ -264,7 +273,7 @@ it out to get a working assignment 1, simply do the following:
 $ git tag assignment1_done
 #+END_SRC
 
-Note that, by default, =git push= does not transfer tags to remote
+*IMPORTANT:* Note that, by default, =git push= does not transfer tags to remote
 servers! Thus, as a final step to tagging your commits, you must
 explicitly push tags: =git push origin <tagname>= where
 =<tagname>= is e.g., =assignment1_done=, etc.
