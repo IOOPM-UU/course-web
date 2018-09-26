@@ -171,3 +171,29 @@
 (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
 
 
+(require 'ox)
+(require 's)
+(defun mvr-html-src-block (src-block contents info)
+  "Transcode a SRC-BLOCK element from Org to HTML, adding a 'copy to clipboard' button."
+  (if (not (org-export-read-attribute :attr_html src-block :copy-button))
+      (org-export-with-backend 'html src-block contents info)
+    (let*((b-id (concat "btn_" (s-replace "-" "" (org-id-new))))
+          (content (let ((print-escape-newlines t))(prin1-to-string (org-export-format-code-default src-block info))))
+          (content- (s-chop-prefix "\"" (s-chop-suffix "\"" (s-replace "`" "\\`" content))))
+          (btn- "button")
+          (scr- "script")
+          (bquote- "`")
+          (script (concat "\n<" scr- " type='text/javascript'>\n var copyBtn" b-id "=document.querySelector('" btn- "[name=" b-id "]');\n"
+                          "copyBtn" b-id ".addEventListener('click', function(event) {\n"
+                          "copyTextToClipboard(" bquote- content- bquote- ");\n});\n</" scr- ">\n"))
+          (button (concat "<" btn- " class='copyBtn' name=" b-id ">Copy to clipboard</" btn- ">")))
+      (concat (org-export-with-backend 'html src-block contents info)  button script))))
+
+(org-export-define-derived-backend 'mvr-html 'html
+  :translate-alist '((src-block . mvr-html-src-block)))
+
+(defun org-export-to-html-with-button (file)
+  "Exports the current org-mode buffer to an HTML file, adding 'copy to clipboard' 
+  buttons to source code blocks."
+  (interactive "FFile Name: ")
+  (org-export-to-file 'mvr-html file))
