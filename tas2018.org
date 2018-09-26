@@ -13,7 +13,8 @@ people involved in running the course in 2018.
 - Office: 1356
 - Office hours: erratic, normally *not* physically in on Tuesdays
 - Email: [[mailto:tobias.wrigstad@it.uu.se][tobias.wrigstad@it.uu.se]]
-* Head Teaching Assistant: Gustaf Borgström
+* Head Teaching Assistant: Gustaf Borgström 
+<<HeadTA>>
 #+ATTR_HTML: :width 300px :align right :title: Gustaf Borgström
 [[file:images/gustaf-borgstrom.jpg]]
 - Office: 1328
@@ -27,11 +28,11 @@ people involved in running the course in 2018.
 - Benjamin Ek
 - Elwira Johansson
 - Erik Rimskog
+- Jonas Norlinder 
 - Joy van den Eijkhof
 - Linnea Ingmar
 - Michael Rehn
 - Sanna Kurdahl
-
 * DONE Teams and Coaches
 
 | Team | Coach               |
