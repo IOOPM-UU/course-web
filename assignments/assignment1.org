@@ -150,6 +150,7 @@ Consider the following Python program that uses a map to keep
 track of quantities of merchandise in a warehouse:
 
 #+CAPTION: Exploring how hash tables work through Python
+#+ATTR_HTML: :copy-button t
 #+BEGIN_SRC python
 # Starting a python interpreter
 $ python
@@ -230,6 +231,7 @@ Note that the program (still below) is quite awful for many reasons:
    they were stored).
 
 #+CAPTION: Toy program for exploring pointer-based structures through gdb
+#+ATTR_HTML: :copy-button t
 #+BEGIN_SRC c
 #include <stdio.h>
 #include <stdlib.h>
@@ -307,6 +309,7 @@ deeply into that in a bit). Here is an example where keys are
 integers and values are strings:
 
 #+BEGIN_SRC python
+#+ATTR_HTML: :copy-button t
 # Pseudo code (Python)
 M = {} # creates a new hash table
 M[0] = "foo"
@@ -2130,6 +2133,24 @@ features to quickly deliver a much richer interface. Thus, even
 though the list of features is a lot longer in Ticket #2 than in
 Ticket #1, the time to implement them is not proportional.
 
+In steps 6--9, we are going to add:
+
+- (Step 6) ~ioopm_hash_table_size()~ for getting the size of hash table,
+  ~ioopm_hash_table_empty()~ for checking if the hash table is empty, and
+  ~ioopm_hash_table_clear()~ for clearing all entries in a hash table 
+  without removing the table.
+- (Step 7) ~ioopm_hash_table_keys()~, and
+  ~ioopm_hash_table_values()~ for getting arrays of all keys and
+  values in the hash table.
+- (Step 8) ~ioopm_hash_table_has_key()~, and
+  ~ioopm_hash_table_has_value()~ which uses the functions in Step
+  7 for checking if a hash table contains a specific key or value. 
+- (Step 9) ~ioopm_hash_table_all()~ and ~ioopm_hash_table_any()~ --
+  two utility functions for checking if all (any) entries (entry)
+  satisfies a given predicate, and ~ioopm_hash_table_apply_to_all()~ --
+  a utility function for in-place bulk operation on entries. 
+
+
 #+CAPTION: Excerpt from =hash_table.h= -- functions to be implemented. 
 #+BEGIN_SRC c
 /// @brief returns the number of key => value entries in the hash table
@@ -2424,7 +2445,7 @@ for (int i = 0; i < size && result; ++i)
 #+END_SRC
 
 where ~P()~ is a function taking three arguments (~int~, ~char *~
-and ~void *~) and returning a ~bool~. We will return to the ~x~
+and ~void *~) and returning a ~bool~[fn::Hint -- make a typedef for this so the type becomes readable!]. We will return to the ~x~
 argument shortly, and the type ~void *~ which more or less means
 "pointer to data of unknown type", but for now think of ~x~ as
 giving us the ability to pass in any extra data that ~P()~ might
@@ -2473,7 +2494,7 @@ hash table.
 ioopm_hash_table_apply_to_all(ht, f, x);
 #+END_SRC
 
-*** Function Pointers
+*** Function Pointers (General Information, and a Good ~typedef~ for ~ioopm_apply_function~)
 
 To take a function pointer as argument, the corresponding
 parameter of the function must be typed as a function pointer.
@@ -2521,12 +2542,19 @@ This requires the definition of a function for comparing keys. We
 can call it ~key_equiv()~:
 
 #+BEGIN_SRC c
-static bool key_equiv(int key1, void *x)
+static bool key_equiv(int key, char *value_ignored, void *x)
 {
-  int *key2_ptr = x;
-  int key2 = *key2_ptr;
-  return key1 == key2;
+  int *other_key_ptr = x;
+  int other_key = *other_key_ptr;
+  return key == other_key;
 }
+#+END_SRC
+
+Note the signature of this function -- it takes an integer, a string and a "something" -- and returns a boolean.
+Let's make a typedef for this:
+
+#+BEGIN_SRC 
+typedef bool(*ioopm_apply_function)(int key, char *value, void *extra);
 #+END_SRC
 
 Now, we can check the presence of a key in a very straightforward
@@ -2535,7 +2563,7 @@ manner:
 #+BEGIN_SRC c
 bool ioopm_hash_table_has_key(ioopm_hash_table_t *ht, int key)
 {
-  ioopm_hash_table_any(ht, key_equiv, &key); 
+  return ioopm_hash_table_any(ht, key_equiv, &key); 
 }
 #+END_SRC
 
@@ -2543,21 +2571,21 @@ The ~key_equiv()~ function shows how C allows us to go from a
 pointer to something of unknown type (~void *~) to the actual
 value pointed to. For clarity of explanation, this code was
 written in three steps. *Step 1* stores the address ~x~ in a
-variable ~key2_ptr~ whose type is "pointer to integer". C will not
+variable ~other_key_ptr~ whose type is "pointer to integer". C will not
 allow us to do ~*x~ because ~x~ does not know what it points to
-(and hence not how many bytes to load on ~*x~). Since ~key2_ptr~
+(and hence not how many bytes to load on ~*x~). Since ~other_key_ptr~
 points to an integer, we are allowed to dereference it (i.e.,
-~*key2_ptr~). Note if ~x~ happened to point to something else,
+~*other_key_ptr~). Note if ~x~ happened to point to something else,
 this code is very unlikely to crash -- instead it will silently
 fail by reading bits from memory and interpreting this bit
 sequence as an integer. Thus, when you program with ~void~
 pointers, you have to be very careful, or things may go wrong in
-bad ways. In, *Step 2* we dereference ~key2_ptr~ and store the
+bad ways. In, *Step 2* we dereference ~other_key_ptr~ and store the
 results in a normal integer variable. *Step 3* finally compares
 the two values and returns the result.
 
 We can write this more succinctly as a single line of code using
-an explicit type cast: ~return key1 == *((int *)x);~. This line
+an explicit type cast: ~return key == *((int *)x);~. This line
 temporarily changes the type of ~x~ to ~int *~ so we are allowed
 to dereference it. It is just as brittle as the step-wise
 solution and just as efficient.
@@ -2569,7 +2597,9 @@ would probably find the second version more readable.
 
 *** Finish This Step
 
-1. Implement ~ioopm_hash_table_all()~ and ~ioopm_hash_table_any()~.
+1. Implement ~ioopm_hash_table_all()~, ~ioopm_hash_table_any()~, and 
+   ~ioopm_hash_table_apply_to_all()~
+   including giving a type for ~ioopm_apply_function~.
 2. Update your implementations of ~ioopm_hash_table_has_key()~, and
    ~ioopm_hash_table_has_value()~ to use ~ioopm_hash_table_any()~.
 3. The tests for ~ioopm_hash_table_has_key()~ and
@@ -2577,6 +2607,7 @@ would probably find the second version more readable.
    ~ioopm_hash_table_any()~, but does not test ~ioopm_hash_table_all()~.
    Thus, write tests for the latter function, before or after
    implementing it, depending on your way of working.
+   Also write a test for ~ioopm_hash_table_apply_to_all()~.
 4. Make sure that your code compiles with the [[../compiling.org][appropriate flags]]
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 5. Run your tests through Valgrind. Preferably using a [[../makefiles.org][Makefile]].
@@ -2588,7 +2619,8 @@ would probably find the second version more readable.
 
 The main work of this part of the assignment will be done in the
 files =list_linked.h=, =linked_list.c=, =iterator.h= and (possibly)
-=list_iterator.c=.
+=list_iterator.c=. We are going to build a linked list (Step 10)
+and an iterator (Step 11).
 
 
 ** Step 10: Linked Lists
@@ -2629,7 +2661,7 @@ Here are some questions to ponder:
 - Are there some recurring operations that could be broken out
   into private functions?
 - How should failure be handled (e.g., inserting at an invalid
-  index)? (You may alter signatures do deal with failure in the
+  index)? (You may alter signatures to deal with failure in the
   same way we did for the hash table.) The [[./lists.org][linked list overview]]
   implements a defensive approach that lets all indexes be valid
   by e.g. interpreting negative indexes in some way, etc.
@@ -2637,7 +2669,7 @@ Here are some questions to ponder:
   append, and size in constant time?
 
 Depending on your background and C proficiency, it may not be a
-good idea to design complete algorithms from the start, use
+good idea to design complete algorithms from the start. Use
 dodging to avoid having to deal with difficult cases from the
 start, etc. You can use /cheating/ or /stacking/ (or both),
 depending on whether you program in a top-down or bottom-up
@@ -2862,20 +2894,20 @@ like modularity, encapsulation, coupling and cohesion.
 * Ticket #4: Refactoring and Improvements
 
 In this step, we are going to polish the hash table and the linked
-list and make a few changes and general improvements.
+list and make a few changes and general improvements:
 
-- Make small changes that moves us closer to typical C code
-- Use the linked lists in the utility functions of the
-- Allow storing arbitrary data in the linked list and in the hash table
-- Add a hash function to the hash table
-- Run basic performance tests
+- Make small changes that moves us closer to typical C code (Step 12)
+- Use the linked lists in the utility functions of the (Step 12)
+- Allow storing arbitrary data in the linked list and in the hash table (Step 13)
+- Add a hash function to the hash table (Step 13)
+- Run basic performance tests (Step 14)
+- Check in the final code and write the final documentation (Step 15)
 
-Some of these changes will be optional.
+/Note: some of these changes will be optional./
 
 
 ** Step 12: Refactoring of Hash Table and Linked List
-
-*** The ~size_t~ Data Type
+*** Use the ~size_t~ Data Type Instead of ~int~ in the Right Places
 
 So far, we have used the ~int~ data type to store integers. For
 various reason, this data type has different sizes on different
@@ -2904,7 +2936,7 @@ positive numbers) and is used to represent the size of C object
 (including arrays). The ~sizeof()~ macro that we have used several
 times already, for example, returns value of type a ~size_t~.
 
-In this step, *we will change usages of integer types in our
+Your task is to *change usages of integer types in our
 programs* where the ~int~ refers to a size. Keys for example,
 should stay ~int~ (those are not sizes, and moreover are only a
 placeholder). However, the return from ~ioopm_hash_table_size()~
@@ -2912,8 +2944,7 @@ clearly reflects a size, and so we should change that to a
 ~size_t~. Carefully inspect the functions and change your types
 accordingly.
 
-
-*** Use the Linked List to Return Keys
+*** Use the Linked List to Return the Keys for a Hash Table
 
 The ~ioopm_hash_table_keys()~ function returns an array of keys.
 Change the function so that it returns a linked list instead,
@@ -2928,17 +2959,17 @@ backed by an array (generally referred to as an /array list/).
 (This would be an ambitious way to demonstrate e.g., modularity
 and encapsulation.)
 
-As a result, the return type of ~ioopm_hash_table_keys()~ should
-change to ~ioopm_list_t *~. Updating the function to use the list
+Your task is to change the return type of ~ioopm_hash_table_keys()~ to
+ ~ioopm_list_t *~ and update the function's implementation 
+accordingly. Updating the function to use the list
 interface instead of the array should be straightforward. Spend a
 few minutes (not more) thinking about the time complexity, and
 what order the keys should be in the list according to the
 specification (or more correctly -- documentation).
 
-
 *** Optional: Const Annotations
 
-*Note that this is optional* The C ~const~ qualifier provides a
+*Note that this bit is optional.* The C ~const~ qualifier provides a
 way to indicate that a value will not (or shall not) change. For
 example, the ~strncpy(dst, src, n)~ function that copies n bytes
 from the string ~src~ to the string ~dst~ has the signature ~char
@@ -2952,10 +2983,16 @@ only does ~const~ communicate something to the a /client/ to
 with respect to not writing to ~src~, and then helps enforcing
 that intention.
 
+Your (optional) task is to add the ~const~ qualifier to all
+functions. Do it piece by piece. You can start bottom-up (e.g.,
+change in internal functions and have it propagate) or top-down
+(e.g., start from the interface, using an understanding of how
+functions should behave). 
 
 *** Finish This Step
-
-1. Make the required (and, optionally, optional) changes above.
+1. Make the required (and, optionally, optional) changes above: 
+   refactor to use ~size_t~ and return a list of keys instead of 
+   an array (and optionally add ~const~ qualifiers).
    Don't forget to update header files too.
 2. Extend the documentation to match changes. 
 3. Update the tests to adapt to the changes, before or after the
@@ -2967,17 +3004,23 @@ that intention.
 7. [[../github.org][Check your code into the appropriate GitHub repos. Tag your
    commit with =assignment1_step12=.]]
 
-
 ** Step 13: Supporting Arbitrary Data as Elements, Keys and Values
-
 As you were looking at [[./lists.org][the text on linked lists]], you may have
 scrolled all the way down to the section /Adding Genericity/ that
 deals with how to support lists that can hold arbitrary data. Now,
 time has come to change both the list and the hash table to store
-arbitrary data. We will follow the trick in [[./lists.org][the text on linked
+arbitrary data. We will follow the trick in [[./lists.org::*Adding%20Genericity][the text on linked
 lists]] and have each element (in the case of the list), key and
 value (in the case of the hash table) be a union of the possible
-element types. Since C does not have run-time type information, we
+element types, /henceforth referred to as/ ~elem_t~. (This union 
+is very similar to ~answer_t~ in the C bootstrap labs.) There is
+a definition of ~elem_t~ you can use [[./lists.org::elem_t][here]]. 
+
+Function pointers are going to be stored inside the list and hash
+table structs and be passed in as arguments to the constructors,
+[[Pass Function Pointers to the List's Constructor][which will be discussed shortly]].
+
+Since C does not have run-time type information, we
 cannot query a union for its type. This means that the list cannot
 compare to unions for equality, because it does not know what to
 compare (and thus not how). This means that the user needs to
@@ -3022,8 +3065,8 @@ work.
 
 *** Where Does ~elem_t~ belong?
 
-It is interesting to ask the question where should ~elem_t~ be
-defined. If both ~iterator.h~ and ~hash_table.h~ includes
+It is interesting to ask the question /where/ the definition of ~elem_t~ 
+should be placed. If both ~iterator.h~ and ~hash_table.h~ includes
 ~list.h~, it would seem that it would suffice to define ~elem_t~
 in ~list.h~. However, there seems to be a number of recurring
 definitions across several data structures, and it would be good
@@ -3039,7 +3082,8 @@ For example, =stdlib.h= defines the type ~__compare_fn_t~ thus:
 ~typedef int (*__compar_fn_t) (const void *, const void *);~
 This type is thus defined everywhere where =stdlib.h= is included.
 
-Where does the hash function type belong?
+Soon we will be adding a hash function type. Then you will have to 
+think in similar ways: where does it's function type belong?
 
 *** Pass Function Pointers to the List's Constructor
 
@@ -3048,7 +3092,7 @@ we will store the necessary function pointers in the list at
 creation time. Look through the list and see what operations that
 requires operating on (e.g., comparing, but not storing or
 returning, elements) -- and define function pointer types for
-these, e.g.,
+these, e.g., 
 
 #+BEGIN_SRC c
 /// Compares two elements and returns true if they are equal
@@ -3057,9 +3101,12 @@ typedef (bool)(cmp_element_fun)(elem_t *a, elem_t *b);
 
 Put this type definition in the =list.h= header file and extend
 ~ioopm_linked_list_create()~ to take an extra argument of type
-~cmp_element_fun~ and store that in the ~ioopm_list_t~ object.
+~cmp_element_fun~ and store that in the ~ioopm_list_t~ object, beside ~first~, ~last~, etc..
 Note that this requires a change to the constructor signature,
-both in the header file and in the =.c= file.
+both in the header file and in the =.c= file. *Alternatively*, we
+could rely on the aforementioned ~__compare_fn_t~ (and not use or
+define ~cmp_element_fun~) noting that this will lose what little
+type information we have.
 
 *** Using Function Pointers to Operate on Elements
 
@@ -3090,11 +3137,55 @@ function is the function that takes a key, and returns an integer
 hash code for the key that allows us to map the key to a bucket.
 So far, we dodged this bullet, and pretended that all keys were
 integers. To support generic keys, the key type changes from ~int~
-to ~elem_t~, and bucket selection uses the hash function (stored
+to ~elem_t~, and bucket selection uses the hash function (passed 
+in as argument to the constructor and stored
 in the ~hash_table_t~). Note that we do not need to store a key's
 hash code in the hash table -- since we can always compute it
 using the key and the hash function if we were to need the hash
-code again.
+code again. Some example hash functions are [[hash_function][further down in this
+document]]. (You can look at those to extract a good function
+pointer type to use in the constructor.)
+
+You can allow a user of the hash table to *not* supply a hash
+function for example if all keys are integers (i.e., the ~elem_t~
+values passed as keys contain integers). This can be implemented
+either by using an if-statement, e.g., something like this:
+
+#+BEGIN_SRC c
+if (ht->hash_function == NULL)
+  {
+    // treat keys as integers
+    int_key = key.i; // .i reads the integer part of the elem_t
+  }
+else
+  {
+    int_key = ht->hash_function(key); 
+  }
+#+END_SRC
+
+Alternatively, you can define a function that simply returns the
+integer value from a ~elem_t~ and store that function in the hash
+table unless the user provides another. (This happens only once,
+per constructor.) That way you can always rely on the existance of
+a hash function in ~ht->hash_function~ in subsequent functions,
+which simplifies the code above greatly -- especially good if it
+is repeated many times:
+
+#+BEGIN_SRC c
+int_key = ht->hash_function(key); 
+#+END_SRC
+
+*An bonus of this trick* is that your existing tests should more
+of less keep working as-is, since they are all written with
+integers as hash table keys.
+
+#+CAPTION: A function that extracts a given int key from an ~elem_t~ (we could improve this by hashing on the int key, but that's out of scope for this course!)
+#+BEGIN_SRC c
+int extract_int_hash_key(elem_t key)
+{
+  return key.i; // following a very terse naming scheme -- improve? 
+}
+#+END_SRC
 
 *** Update ~ioopm_hash_table_values()~ to Return a Linked List
 
@@ -3104,13 +3195,11 @@ were not integers and the list only supported integer elements.
 This is no longer a problem, so go ahead and update
 ~ioopm_hash_table_values()~ to return a list just like
 ~ioopm_hash_table_keys()~.
-
 *** Finish This Step
-
 1. Change the type of elements, keys and values to ~elem_t~ in the
-   signature of functions and in structs.
+   signature of functions (including constructors) and in structs. 
 2. Create =common.h= and populate it with suitable type
-   definitions and declarations.
+   definitions and declarations (including a typedef for the hash function).
 3. Extend the appropriate constructors to take in the necessary
    function pointers. In particular, add a hash function argument
    to the hash table constructor.
@@ -3124,7 +3213,6 @@ This is no longer a problem, so go ahead and update
 8. Make sure that the code passes your tests.
 9. [[../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step13=.
-
 
 ** Step 14: Performance Testing
 
@@ -3369,16 +3457,21 @@ function.
 
 It is not uncommon that a hash table implementation includes some
 kind of precomputed table of prime number sizes to quickly find
-the next size to grow.
+the next size to grow. The below figure provides such a table (for
+small sizes) that you can use /if you want/.
 
+#+CAPTION: Exponential growth in prime steps from $\approx 2^4$ upto $\approx 2^{14}$
+#+BEGIN_SRC c
+size_t primes[] = {17, 31, 67, 127, 257, 509, 1021, 2053, 4099, 8191, 16381};
+#+END_SRC
 
-*** Hash Function for Strings and Other Objects 
+*** Hash Function for Strings and Other Objects <<hash_function>>
 
 As we have discussed previously -- a hash function gives a stable
-interpretation of a datum as an integer. There is single best-fit,
+interpretation of a datum as an integer. There is no single best-fit,
 and the same hash function may perform differently in different
 cases. [[https://en.wikipedia.org/wiki/Hash_function][Wikipedia's article on hash functions]] is a good starting
-place to explore this concept further than what we do here. 
+place to explore this concept further than what we do on this course. 
 
 A very simple way of [[https://en.wikipedia.org/wiki/Universal_hashing#Hashing_strings][hashing a string]] is to simply summarise the
 values of its characters:
@@ -3434,19 +3527,21 @@ we could take the sum of the hash for the name and the age and
 gender values interpreted as integers. The same reasoning for sums
 as above apply. Moreover -- consider the effect of using *mutable*
 data as keys! If object /o/ is used as a key and subsequently
-changes, will we be able to find it again if we look it up?
+changes, will we be able to find it again if we look it up? (Here 
+the optional ~const~ annotations from before could be handy -- 
+still optional though.)
 
 
 *** Optional: Optimising the Hash Table
 
-*Note that this is optional* You may have noted that getting the
+*Note that this bit is optional.* You may have noted that getting the
 keys in the hash table includes iterating over a number of
 buckets, and iterating over a linked structure in each bucket, to
 create one big linked list of keys. In the words of Brian Wilson,
 /wouldn't it be nice if we/ could somehow "just" stitch together
 the separate bucket lists into a single list, and return that.
 
-Actually, instead of ~null~-terminating each bucket, we could have
+Actually, instead of ~NULL~ terminating each bucket, we could have
 a /single/ linked list serving all the buckets, where, logically,
 a subsequence of all the links belongs to a specific bucket. There
 are several schemes to make this work. Ideally, we would be able
@@ -3469,6 +3564,13 @@ buckets correctly.
 
 Try drawing your optimised representation and use insert and
 remove in the hash table to drive the implementation.
+
+Furthermore (or alternatively), now that we are growing the size
+of the hash table dynamically to keep buckets small, does it make
+sense to keep entries in a bucket ordered? How we do find out? (By
+measuring of course -- but on what data set?) If we could retire
+some complexity in the insert function (or any function), we have
+simplified maintenance of this code which is great for the future.
 
 *** Finish This Step
 
@@ -3496,7 +3598,7 @@ remove in the hash table to drive the implementation.
 
 ** Step 15: Wrapping Up
 
-This concludes the first assignment.
+This concludes the first assignment. *WELL DONE!*
 
 The following header files show what you should have implemented
 -- with some slight modification e.g. to handle errors and other
@@ -3539,7 +3641,7 @@ procedure and stick it in your Makefile.*
 
 *** Finishing the Assignment
 
-1. Go over your backlog of cheats and dodges and see which ones
+1. Go over your backlog of [[../simple.org::*The%20Three%20Rules%20of%20Cheating][cheats]] and [[../simple.org::*Dodging:%20Not%20Quite%20Cheating][dodges]] and see which ones
    need taking care of. *Ideally this stack should be empty.*
 2. Write up the documentation of your program, documenting e.g.
    how failure is handled, any assumptions you are making about
@@ -3575,7 +3677,7 @@ specific things, ask questions in conjunction with your
 presentations, or add your name to the help list.
 
 * Known Bugs
-- As of 2018-09-01, this document has no known bugs. 
+- As of 2018-09-27, this document has no known bugs. 
 
 # == Backlog ==
 # - Double check that all forward references are resolved above
@@ -3610,3 +3712,8 @@ presentations, or add your name to the help list.
 
 
 #+include: "../footer.org" 
+
+# TODO: 
+# Add clarification that Cunit must be used
+# add clarification that test must be written regardless of branch
+# add a forward pointer to the hash function

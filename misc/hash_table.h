@@ -3,6 +3,8 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+/// FIXME: add documentation!!!
+
 typedef struct hash_table ioopm_hash_table_t;
 
 typedef int (*ioopm_hash_function)(elem_t);

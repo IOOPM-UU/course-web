@@ -862,13 +862,15 @@ that it is able to store arbitrary values.
 The first step is to redefine ~elem_t~. If we wanted lists to only
 hold pointers of some kind, we could define ~elem_t~ as ~void *~,
 but to allow lists with primitive data, we will make ~elem_t~ a
-/union/:
+/union/: 
 #+CAPTION: A union for holding elements of different types in a list.
+#+NAME: elem_t
 #+BEGIN_SRC c
 typedef union elem elem_t;
 
 union elem
 {
+  /// TODO: update the names of the fields to something better? 
   int i;
   unsigned int u;
   bool b;
