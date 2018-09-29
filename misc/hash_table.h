@@ -9,7 +9,8 @@ typedef struct hash_table ioopm_hash_table_t;
 
 typedef int (*ioopm_hash_function)(elem_t);
 typedef bool (*ioopm_eq_function)(elem_t, elem_t);
-typedef bool (*ioopm_apply_function)(elem_t, void *);
+typedef bool (*ioopm_predicate)(elem_t key, elem_t value, void *extra);
+typedef void (*ioopm_apply_function)(elem_t key, elem_t *value, void *extra);
 
 ioopm_hash_table_t *ioopm_hash_table_create(size_t size, ioopm_hash_function hash_fun, ioopm_eq_function key_eq_fun);
 void ioopm_hash_table_destroy(ioopm_hash_table_t *h);
