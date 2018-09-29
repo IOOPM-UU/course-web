@@ -23,8 +23,8 @@ Vagrant has [[https://www.vagrantup.com/intro/getting-started/][pretty decent do
 
 ** Installing Vagrant
 
-0. As a prerequisite, download and install [[https://www.virtualbox.org/][Virtualbox]]
-1. [[https://www.vagrantup.com/downloads.html][Download Vagrant]] and run the downloaded file (Windows, macOS) or install it with your package manager (Linux)
+0. As a prerequisite, download and install [[https://www.virtualbox.org/][Virtualbox]] (on macOS with [[https://brew.sh/][homebrew]]: =brew cask install vagrant=)
+1. [[https://www.vagrantup.com/downloads.html][Download Vagrant]] and run the downloaded file (Windows) or install it with your package manager (Linux),  (on macOS with [[https://brew.sh/][homebrew]]: =brew cask install vagrant=)
 2. Open a terminal, navigate to your IOOPM GitHub repository 
 3. Create a directory for Vagrant with =mkdir vagrant= 
 4. Tell =git= to ignore this directory with =git-ignore vagrant=  (see below if you have problems with this)
