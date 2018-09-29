@@ -44,9 +44,13 @@ demonstration form -- mirroring information in the AU Portal:
 
 #+HTML: <a name="A"></a>
 * A: Abstraktion 
+<<A1>>
 #+include: "../achievements/A1.org"
+<<A2>>
 #+include: "../achievements/A2.org"
+<<A3>>
 #+include: "../achievements/A3.org"
+<<A4>>
 #+include: "../achievements/A8.org"
 #+HTML: <a name="B"></a>
 * B: Arv 
@@ -58,9 +62,11 @@ demonstration form -- mirroring information in the AU Portal:
 #+include: "../achievements/C7.org"
 #+HTML: <a name="D"></a>
 * D: Dokumentation 
+<<D9>>
 #+include: "../achievements/D9.org"
-#+HTML: <a name="D"></a>
-* D: Genericitet 
+#+HTML: <a name="E"></a>
+* E: Genericitet 
+<<E10>>
 #+include: "../achievements/E10.org"
 #+include: "../achievements/E11.org"
 #+include: "../achievements/E12.org"
@@ -70,6 +76,7 @@ demonstration form -- mirroring information in the AU Portal:
 #+include: "../achievements/F14.org"
 #+HTML: <a name="G"></a>
 * G: Inkapsling 
+<<G15>>
 #+include: "../achievements/G15.org"
 #+include: "../achievements/G16.org"
 #+include: "../achievements/G17.org"
@@ -78,6 +85,7 @@ demonstration form -- mirroring information in the AU Portal:
 H18???
 #+HTML: <a name="H"></a>
 * H: Objekt, identitet och struktur 
+<<H19>>
 #+include: "../achievements/H19.org"
 #+include: "../achievements/H20.org"
 #+include: "../achievements/H21.org"
@@ -85,13 +93,18 @@ H18???
 * I: Metodik 
 #+include: "../achievements/I22.org"
 #+include: "../achievements/I23.org"
+<<I24>>
 #+include: "../achievements/I24.org"
 #+include: "../achievements/I25.org"
 #+HTML: <a name="J"></a>
 * J: Minneshantering 
+<<J26>>
 #+include: "../achievements/J26.org"
+<<J27>>
 #+include: "../achievements/J27.org"
+<<J28>>
 #+include: "../achievements/J28.org"
+<<J29>>
 #+include: "../achievements/J29.org"
 #+HTML: <a name="K"></a>
 * K: Modularisering 
@@ -100,9 +113,13 @@ H18???
 #+include: "../achievements/K32.org"
 #+HTML: <a name="M"></a>
 * M: Pekare 
+<<M36>>
 #+include: "../achievements/M36.org"
+<<M37>>
 #+include: "../achievements/M37.org"
+<<M38>>
 #+include: "../achievements/M38.org"
+<<M39>>
 #+include: "../achievements/M39.org"
 #+HTML: <a name="N"></a>
 * N: Pragmatics 
@@ -110,8 +127,11 @@ H18???
 #+include: "../achievements/N41.org"
 #+HTML: <a name="O"></a>
 * O: Profilering och Optimering 
+<<O42>>
 #+include: "../achievements/O42.org"
+<<O43>>
 #+include: "../achievements/O43.org"
+<<O44>>
 #+include: "../achievements/O44.org"
 #+HTML: <a name="P"></a>
 * P: Kodgranskning 
@@ -120,16 +140,21 @@ H18???
 #+include: "../achievements/P47.org"
 #+include: "../achievements/P48.org"
 #+HTML: <a name="Q"></a>
+<<Q>>
 * Q: Testning 
 #+include: "../achievements/Q49.org"
 #+include: "../achievements/Q50.org"
 #+include: "../achievements/Q51.org"
 #+HTML: <a name="R"></a> <a name="S"></a> <a name="T"></a> <a name="U"></a> <a name="V"></a>
 * TODO R--V: Verktyg 
+<<R52>>
 #+include: "../achievements/R52.org"
 #+include: "../achievements/S53.org"
+<<T55>>
 #+include: "../achievements/T55.org"
+<<T56>>
 #+include: "../achievements/T56.org"
+<<U57>>
 #+include: "../achievements/U57.org"
 #+include: "../achievements/V58.org"
 #+HTML: <a name="X"></a>
