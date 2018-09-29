@@ -97,6 +97,26 @@ intended velocity of 1-2 steps per weekday (on average). Not all
 steps have equal length, and how long each step will take is going
 to be very individual. 
 
+** Organisation of Files
+If you are relatively new to programming, it may not be clear to
+you what the file structure could look like for this assignment.
+Here is an example of what your directory /could/ look like when you
+are done with the entire assignment.
+
+#+BEGIN_EXAMPLE
+assig1/                # the directory containing all files
+├── common.h              # all common declarations
+├── hash_table.c          # hash table code
+├── hash_table.h          # hash table declarations
+├── hash_table_tests.c    # hash table tests
+├── list_linked.c         # linked list and iterator code 
+├── list_linked.h         # linked list declarations
+├── list_linked_tests.c   # linked list tests
+├── iterator.h            # iterator declarations
+├── Makefile              # for compiling, testing, running
+└── README.md             # report and build instructions (written by you)
+#+END_EXAMPLE
+
 * Ticket #1: Implement a Basic Hash Table
 
 The main work of this assignment will be done in the files
@@ -550,7 +570,39 @@ non-NULL pointer pointing to the datum on the right.
 #     }      
 # #+end_src
 
+*** Placement of ~struct hash_table~ and ~struct entry~ etc.
+
+The placement of structs is important. We want data structures to
+be opaque, meaning it should not be possible for a client to know
+how they are implemented. This preserves maximal freedom for us to
+change the implementation as we continue to improve our code, and 
+also helps us protect the invariants of the data structure. 
+
+Structs such as ~struct hash_table~ and ~struct entry~ are
+internal implementation details and as such should be in the
+=hash_table.c= file, not the =.h= file. Structs like ~option~ (if
+you implemented it) /needs/ to go into the =.h= file, as a user
+must be able to look inside the struct to search values. 
+
+Placement inside the =.c= file has impact on the testing instead
+-- how will tests be able to access the structs? 
+
+Place the structs in the right places, and know your motivation
+for what you chose. 
+
+#+begin_tip
+This is a good time to start thinking about [[../achievements.org::A3][Achievement A3]].
+#+end_tip
+
+
 *** Using Debuggers
+
+#+begin_tip
+Once you are done with this bit, you know enough =gdb= to debug
+your own problems in the subsequent steps. If and when you have 
+a tricky situation to debug, *after you solved it*, you should
+definitely use that to demonstrate [[../achievements.org::R52][Achievement R52]].
+#+end_tip
 
 Debuggers like =gdb= and =lldb= are great tools for understanding
 programs and fixing bugs. You need to familiarise yourself with a
@@ -687,7 +739,6 @@ backtrace[fn::A backtrace is a list of all the functions that were
 called (but not returned) on the way to the current point of the
 program.] in the event of a segfault.
 #+end_tip
-
 
 
 ** A Fork in The Road
@@ -1134,13 +1185,18 @@ We already have a working ~ioopm_hash_table_create()~, so we are
 almost done. To finish this step, you should:
 
 1. Make sure that your code compiles with the [[../compiling.org][appropriate flags]]
-   turned on. Preferably using a [[../makefiles.org][Makefile]].
+   turned on. Preferably using a [[../makefiles.org][Makefile]]. Once your makefile 
+   has grown a bit (and there are more files and more tests), 
+   you should use it to demonstrate [[../achievements.org::U57][Achievement U57]].
 2. [[../github.org][Check your code into the approprate GitHub repos]]. Tag your
    commit with =assignment1_step0= following the instructions
    in the previous link. 
 
 
 **  Step 1: Inserting a new (key, value) entry <<step1>>
+#+begin_tip
+This is a good time to start /thinking/ about [[../achievements.org::A1][Achievement A1]].
+#+end_tip
 
 A first algorithm for inserting a new (~key~, ~value~) entry into
 our hash map could involve the following steps:
@@ -1192,7 +1248,7 @@ and code it up. Here:
     /// Set the key and value fields to the key and value
     new_entry->key = key;
     new_entry->value = value
-    /// Make the first bucket the next bucket of the new bucket
+    /// Make the first entry the next entry of the new entry
     new_entry->next = first_entry;
     /// Make the new entry the first entry in the bucket
     ht->buckets[bucket] = new_entry;
@@ -1514,6 +1570,11 @@ our options?
 3. Use some other means of signalling an error to the user.
 
 We now go through these approaches in more detail. 
+
+#+begin_tip
+This aspect of the assignment is a good fit for [[../achievements.org::I24][Achievement I24]].
+#+end_tip
+
 
 *** Returning More than a Single Value from a Function
 
@@ -2381,6 +2442,10 @@ current increment, our values are strings so we can use the
 ~strcmp()~ function from ~string.h~. (Do not forget to include
 ~string.h~ in your ~hash_table.c~ file.)
 
+#+begin_tip
+This could be used as part of demonstrating [[../achievements.org::H19][Achievement H19]].
+#+end_tip
+
 An alternative way to search for a value is to use
 ~ioopm_hash_table_values()~ to get an array of values and iterate
 over the array. That approach can make the code a tiny bit
@@ -2567,6 +2632,28 @@ bool ioopm_hash_table_has_key(ioopm_hash_table_t *ht, int key)
 }
 #+END_SRC
 
+One drawback of this signature is that it does not allow
+exchanging the value for a different pointer. We may use e.g.
+~strcpy()~ to change value (~strcpy(value, other_string)~) but we
+cannot make the value point to another string. One possible
+solution to this problem is to add an extra pointer indirection to
+~value~: ~char **~. This however allows dangerous behaviour in
+~ioopm_hash_table_any()~ and ~ioopm_hash_table_all()~. One possible
+solution is to use two different function pointer types -- one of
+supposedly pure functions, and one where side-effects are intended.
+This also let's us drop the return type in the latter case.
+This would work, for example:
+
+#+BEGIN_SRC 
+typedef bool(*ioopm_predicate)(int key, char *value, void *extra);
+typedef void(*ioopm_apply_function)(int key, char **value, void *extra);
+#+END_SRC
+
+Note that we do not want to give the ability to change ~key~ as
+that could destroy the integrity of the hash table. For example,
+if we increment a key's value by 1, the containing entry should
+also be moved to the next bucket! 
+
 The ~key_equiv()~ function shows how C allows us to go from a
 pointer to something of unknown type (~void *~) to the actual
 value pointed to. For clarity of explanation, this code was
@@ -2675,7 +2762,7 @@ start, etc. You can use /cheating/ or /stacking/ (or both),
 depending on whether you program in a top-down or bottom-up
 fashion.
 
-#+CAPTION: list.h
+#+CAPTION: linked_list.h
 #+BEGIN_SRC c
 #pragma once
 #include <stdbool.h>
@@ -2766,7 +2853,7 @@ bool ioopm_linked_list_any(ioopm_list_t *list, bool (*prop)(int, int), void *x);
 /// @param list the linked list
 /// @param fun the function to be applied
 /// @param x an additional argument (may be NULL) that will be passed to all internal calls of fun
-void ioopm_linked_apply_to_all(ioopm_list_t *list, void (*fun)(int, int), void *x);
+void ioopm_linked_apply_to_all(ioopm_list_t *list, void (*fun)(int *, int *), void *x);
 #+END_SRC
 
 The initial steps were very small in comparison with this step,
@@ -2989,6 +3076,11 @@ change in internal functions and have it propagate) or top-down
 (e.g., start from the interface, using an understanding of how
 functions should behave). 
 
+#+begin_tip
+~const~ qualifiers could be used to demonstrate [[../achievements.org::G15][Achievement G15]].
+#+end_tip
+
+
 *** Finish This Step
 1. Make the required (and, optionally, optional) changes above: 
    refactor to use ~size_t~ and return a list of keys instead of 
@@ -3005,6 +3097,10 @@ functions should behave).
    commit with =assignment1_step12=.]]
 
 ** Step 13: Supporting Arbitrary Data as Elements, Keys and Values
+#+begin_tip
+[[../achievements.org::E10][Achievement E10]] is related to this step. 
+#+end_tip
+
 As you were looking at [[./lists.org][the text on linked lists]], you may have
 scrolled all the way down to the section /Adding Genericity/ that
 deals with how to support lists that can hold arbitrary data. Now,
@@ -3028,6 +3124,14 @@ supply one or more function pointers to the data structures for
 operations on unions. For example, if a list contains strings
 (i.e., the union holds a string pointer), a function pointer that
 compares strings is needed to implement the contains function.
+
+If we are sticking with the two function pointer types from before,
+here is how to update them to work with ~elem_t~ instead of ~int~ and
+~char *~ (or ~char **~). 
+#+BEGIN_EXAMPLE
+typedef bool (*ioopm_predicate)(elem_t key, elem_t value, void *extra);
+typedef void (*ioopm_apply_function)(elem_t key, elem_t *value, void *extra);
+#+END_EXAMPLE
 
 Note that when we change the list to support generic types, we are
 going to break the code of the hash table -- because it uses the
@@ -3066,9 +3170,9 @@ work.
 *** Where Does ~elem_t~ belong?
 
 It is interesting to ask the question /where/ the definition of ~elem_t~ 
-should be placed. If both ~iterator.h~ and ~hash_table.h~ includes
-~list.h~, it would seem that it would suffice to define ~elem_t~
-in ~list.h~. However, there seems to be a number of recurring
+should be placed. If both =iterator.h= and =hash_table.h= includes
+=linked_list.h=, it would seem that it would suffice to define ~elem_t~
+in =linked_list.h=. However, there seems to be a number of recurring
 definitions across several data structures, and it would be good
 from a modularisation standpoint (why!?) to break the dependency
 chain. To this end, define a header file =common.h= for all common
@@ -3099,7 +3203,7 @@ these, e.g.,
 typedef (bool)(cmp_element_fun)(elem_t *a, elem_t *b);
 #+END_SRC
 
-Put this type definition in the =list.h= header file and extend
+Put this type definition in the =linked_list.h= header file and extend
 ~ioopm_linked_list_create()~ to take an extra argument of type
 ~cmp_element_fun~ and store that in the ~ioopm_list_t~ object, beside ~first~, ~last~, etc..
 Note that this requires a change to the constructor signature,
@@ -3265,6 +3369,11 @@ words (string) will be our keys, mapping to integer values that
 represent the number of times the key word has appeared in the
 file.
 
+*If you are feeling stressed to finish, you can [[../misc/freq-count.c][grab a copy of
+this almost finished =freq-count.c=]] to start you off!* (Otherwise,
+it is good to write the code yourself. Read the section below to
+understand what the code does.)
+
 *** A Top-Down Approach
 
 Imagine that we already have all the words that we want to count.
@@ -3354,6 +3463,10 @@ quick and dirty binary tree.
 
 *** Profiling our Program 
 
+#+begin_tip
+This step is closely related to [[../achievements.org::O42][Achievement O42]] and [[../achievements.org::O43][Achievement O43]] (at least).
+#+end_tip
+
 Start by thinking a bit about where your program spends the most
 time. What would you guess? Let's find out! 
 
@@ -3384,11 +3497,12 @@ the following questions.
 - Do the results correspond with your expectations? 
 - Based on these results, do you see a way to make your program go faster? 
 
-Write down the answers as a note in =initial-profiling.md= and
-check it into your GitHub repository in a suitable directory. Feel
+Write down the answers as a note in the =README.md= file in the
+directory parallel to the files and check it into your GitHub
+repository. Use =# Initial Profiling Results= as the heading. Feel
 free to be very brief but make sure you can come back to these
 notes in 10 weeks and still understand them as well as you
-understand them now. Also note down how the numbers were obtained. 
+understand them now. Also note down how the numbers were obtained.
 
 
 *** Adapting the Number of Buckets
@@ -3464,6 +3578,30 @@ small sizes) that you can use /if you want/.
 #+BEGIN_SRC c
 size_t primes[] = {17, 31, 67, 127, 257, 509, 1021, 2053, 4099, 8191, 16381};
 #+END_SRC
+
+#+begin_note
+*OPTIONAL -- BUT READ THIS!*
+
+Note that with a design like this, that makes each bucket only
+hold a few entries, the overhead of having one dummy node per
+bucket gets pretty big. 
+
+We can remove the dummy nodes by using the double pointer trick
+used for the linked list: rewrite ~find_previous_entry_for_key()~
+to return a ~entry_t **~ -- a pointer to the pointer to the 
+entry we are looking for (which may be ~NULL~ or another entry,
+just like with ~find_previous_entry_for_key()~). This requires
+a name change to the function, which is cheap because it is 
+not public. 
+
+With this change, the ~buckets~ array becomes the type ~entry_t
+*buckets[]~, and each pointer in ~buckets[]~ gets initialised to
+~NULL~.
+
+Fixing this is a great opportunity to do the [[../achievements.org::O44][memory optimisation
+achievement]].
+#+end_note
+
 
 *** Hash Function for Strings and Other Objects <<hash_function>>
 
@@ -3572,6 +3710,12 @@ measuring of course -- but on what data set?) If we could retire
 some complexity in the insert function (or any function), we have
 simplified maintenance of this code which is great for the future.
 
+#+begin_note
+This step should give you what you need to do the two first
+[[../achievements.org::O42][profiling]] and [[../achievements.org::O43][optimisation]] achievements.
+
+#+end_note
+
 *** Finish This Step
 
 1. Implement the program that uses the hash table according to its
@@ -3607,11 +3751,20 @@ only show the /public functions/ not any internal functions and
 structs described in the text above.
 
 - [[../misc/hash_table.h][=hash_table.h=]]
-- [[../misc/list.h][=list.h=]]
+- [[../misc/list.h][=linked_list.h=]]
 - [[../misc/iterator.h][=iterator.h=]]
 
 By now you should have demonstrated a few achievements, or at
 least have accumulated enough insights to be able to demonstrate.
+For example, in addition to the one's hinted above, you likely 
+grasp and have evidence for demonstrating [[../achievements.org::J26][Achievement J26]] and
+[[../achievements.org::J27][Achievement J27]], possibly also [[../achievements.org::D9][Achievement D9]] -- as long as you've
+gone above and beyond what's been handed out. You probably have
+code related to [[../achievements.org::M36][Achievement M36]]. Some error handling options are
+related to [[../achievements.org::M38][Achievement M38]]. Your unittests -- regardless of what
+approach you followed -- should get you at least one of the [[../achievements.org::Q][Q achievements]].
+If you used Emacs diligently, then you're likely good to demonstrate [[../achievements.org::T55][Achievement T55]] (if not more). 
+
 Experience shows that different students approach the achievement
 system in different ways: some like to interleave working and
 demonstrating, and some like to first finishing an assignment and
@@ -3676,14 +3829,11 @@ have got from the oral presentations. If you want more feedback on
 specific things, ask questions in conjunction with your
 presentations, or add your name to the help list.
 
-* Known Bugs
-- As of 2018-09-27, this document has no known bugs. 
-
 # == Backlog ==
 # - Double check that all forward references are resolved above
 # - *DONE* The whole leg on test-driven development is TODO (MVP in place)
 # - need to enable updating of a value without inserting a new key!
-# - +Give a catalogue structure *TODO* -- in the repos already+
+# - *DONE* Give a catalogue structure 
 # - +Step 14 probably need a brief explanation of unions or a pointer to some place where it can be read about+
 # - +Explain why we don't do everything right from the start+
 # - +Add a "don't blindly copy code!"+
@@ -3717,3 +3867,4 @@ presentations, or add your name to the help list.
 # Add clarification that Cunit must be used
 # add clarification that test must be written regardless of branch
 # add a forward pointer to the hash function
+# exemplify with file structure 
