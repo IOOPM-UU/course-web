@@ -3019,7 +3019,7 @@ to iterate over more than 32 thousand elements, ~int~ is a fine
 choice. When in doubt, use ~int32_t~, ~int64_t~ etc.
 
 The ~size_t~ type is an unsigned integer (i.e., only contains
-positive numbers) and is used to represent the size of C object
+positive numbers) and is used in many places in the standard libraries, for example to represent the size of C object
 (including arrays). The ~sizeof()~ macro that we have used several
 times already, for example, returns value of type a ~size_t~.
 
@@ -3029,7 +3029,10 @@ should stay ~int~ (those are not sizes, and moreover are only a
 placeholder). However, the return from ~ioopm_hash_table_size()~
 clearly reflects a size, and so we should change that to a
 ~size_t~. Carefully inspect the functions and change your types
-accordingly.
+accordingly[fn::If you want to restrict ~size_t~ to only talk
+about byte sizes of objects, you can use e.g. ~unsigned int~, or
+why not something like ~uint32_t~ for e.g., the number of objects
+in a list]. 
 
 *** Use the Linked List to Return the Keys for a Hash Table
 
