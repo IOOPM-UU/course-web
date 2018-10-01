@@ -766,6 +766,7 @@ long as you try both -- seriously -- during the course.*
 
 (Now you've read the two paragraphs! Go left or right?)
 
+<<TDD>>
 * Left: Test-Driven Approach
 Test-driven development is based on the idea that tests should be
 written before the code they are testing, and thus serve as a
@@ -2909,7 +2910,20 @@ ioopm_list_iterator_t *ioopm_list_iterator(ioopm_list_t *list);
 The implementation of the iterator should follow the header file
 =iterator.h=. Note that if you have implemented a generic list
 (that can store elements of any type), you will need to change the
-below interface accordingly.
+below interface accordingly. 
+
+#+begin_note
+Like with the hash table and list, you will need to adapt the
+header file below to handle errors. What happens if
+~ioopm_iterator_current()~ is called before the first call to
+~ioopm_iterator_next()~? How do we handle /too many/ calls to
+~ioopm_iterator_next()~? How are changes to the list's size
+triggered through ~ioopm_iterator_remove()~ tracked in the list?
+What happens with the list's ~last~ pointer if
+~ioopm_iterator_remove()~ is used to remove the last link of the
+list with respect to the lists's ~last~ pointer? Lots of
+interesting cases to ponder!
+#+end_note
 
 #+CAPTION: Iterator header file iterator.h
 #+BEGIN_SRC c
@@ -2961,7 +2975,7 @@ like modularity, encapsulation, coupling and cohesion.
 
 *** Finish This Step
 
-1. Implement /all/ the functions listed in the header file.
+1. Implement /all/ the functions listed in the header file. 
 2. *If needed* -- extend the documentation with how you deal with
    failures and all other assumptions or caveats. You are allowed
    to change function signatures when needed for failure handling
