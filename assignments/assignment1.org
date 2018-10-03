@@ -2724,15 +2724,22 @@ table. However, because the linked list is a fundamental data
 structure, it pays off to have implemented one from the ground up.
 So that's what we are going to do next.
 
-Following the instructions [[./lists.org][here]] as well as above, we will now
-switch tasks for a second, to implement a linked list. Although
-the instructions in the link above mention pointers to pointers,
-sticking with the dummy node is a fine choice. For now, we will
-dodge and consider only lists that store integers. (Feel free to
-tackle storing generic elements now if you feel up to it, but if
-you are new to C, better to wait.) We will undo this
-simplification later, but it a good initial simplification that
-makes things easy to test.
+*Note:* The [[./lists.org][linked list instructions]] are given in a separate
+document, which was not written specifically for this assignment.
+Thus, they are not divided into steps etc. The "Finish This Step"
+summary is below in /this/ document. You may want to read about
+linke lists first and then go here and implement the linked list
+-- or whatever works for you.
+
+Following the [[./lists.org][linked list instructions]] in combination withe the
+points above, we will now switch tasks for a second, to implement
+a linked list. Although the instructions in the link above mention
+pointers to pointers, sticking with the dummy node is a fine
+choice. For now, we will [[../simple.org::*Dodging:%20Not%20Quite%20Cheating][dodge]] and consider only lists that store
+integers. (Feel free to tackle storing generic elements now if you
+feel up to it, but if you are new to C, better to wait.) We will
+undo this simplification later, but it a good initial
+simplification that makes things easy to test.
 
 Here are the functions you should implement. They are reminiscent
 of the functions in the hash table. Stick with the same approach
