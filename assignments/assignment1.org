@@ -3768,6 +3768,10 @@ This step should give you what you need to do the two first
 
 This concludes the first assignment. *WELL DONE!*
 
+#+BEGIN_EXPORT html
+<iframe src="https://giphy.com/embed/oBPOP48aQpIxq" width="480" height="308" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/thumbs-up-oBPOP48aQpIxq">via GIPHY</a></p>
+#+END_EXPORT
+
 The following header files show what you should have implemented
 -- with some slight modification e.g. to handle errors and other
 design decisions or optional tasks. Note that the header files
