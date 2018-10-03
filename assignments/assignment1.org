@@ -3224,16 +3224,16 @@ these, e.g.,
 
 #+BEGIN_SRC c
 /// Compares two elements and returns true if they are equal
-typedef (bool)(cmp_element_fun)(elem_t *a, elem_t *b);
+typedef bool(*ioopm_eq_function)(elem_t a, elem_t b);
 #+END_SRC
 
 Put this type definition in the =linked_list.h= header file and extend
 ~ioopm_linked_list_create()~ to take an extra argument of type
-~cmp_element_fun~ and store that in the ~ioopm_list_t~ object, beside ~first~, ~last~, etc..
+~ioopm_eq_function~ and store that in the ~ioopm_list_t~ object, beside ~first~, ~last~, etc..
 Note that this requires a change to the constructor signature,
 both in the header file and in the =.c= file. *Alternatively*, we
 could rely on the aforementioned ~__compare_fn_t~ (and not use or
-define ~cmp_element_fun~) noting that this will lose what little
+define ~ioopm_eq_function~) noting that this will lose what little
 type information we have.
 
 *** Using Function Pointers to Operate on Elements

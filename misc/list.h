@@ -89,7 +89,7 @@ bool ioopm_linked_list_any(ioopm_list_t *list, bool (*prop)(elem_t, elem_t), voi
 /// @param list the linked list
 /// @param fun the function to be applied
 /// @param x an additional argument (may be NULL) that will be passed to all internal calls of fun
-void ioopm_linked_apply_to_all(ioopm_list_t *list, void (*fun)(elem_t, elem_t), void *x);
+void ioopm_linked_apply_to_all(ioopm_list_t *list, void (*fun)(elem_t *, elem_t *), void *x);
 
 /// @brief Create an iterator for a given list
 /// @param the list to be iterated over
