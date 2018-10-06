@@ -1,10 +1,1797 @@
 #+title: Assignment 2 (Phase 1, Sprint 2)
 #+include: "../setup.org"
 
+#+begin_warning
+This is a new version of this assignment from 2018. Please report
+all bugs and ask questions for things that are not clear. Because 
+the assignment is new, expect bugs! 
+#+end_warning
+
+* Simple Webstore Backend
+In Assignment 2, we are going to put the data structures we
+implemented in Assignment 1 to use as we build a small program
+that pretends to be a back-end for a shopping website, which draws
+upon Labs 4 and 5. Like the labs, the program will be an
+interactive TUI program (TUI = Text User Interface or Terminal
+User Interface). The reason for going with an interactive program
+is because it tends to make things easier -- if the program
+segfaults right after I hit "edit item", then it is quite easy to
+know where to start looking for bugs.
+
 #+begin_note
-Assignment 2 is being updated and significantly changed for 2018.
-It will be published here when it is finished.
+Most programs do not have a user interface at all! Most programs
+interact with other programs, the surrounding OS and/or hardware.
+This is a surprising thought for many -- after all, we tend to
+interact with software and often equate the program with its user
+interface. 
+
+Programming user interfaces is outside the scope of this course.
+We do not even use fancy libraries for dealing with TUIs like
+ncurses -- because we don't have the time to learn complex APIs. 
+
+User interfaces also come with lots of new interesting challenges,
+for example with respect to testing. How do we test that the
+program behaves like we want it to -- e.g. that clicking button
+$B$ takes us to dialog window $D$, with field $f$ in focus, etc.
+When developing for the web, for example, making sure things are
+legible, visible or even on the screen can be daunting. (Luckily,
+there are lots of tools and infrastructure for doing these kinds
+of things.)
 #+end_note
 
+During the course of this assignment, feel free to pretend that we
+are coding (part of) the logic for the backend of a website that
+sells stuff. We will focus on what goods are in stock, the
+quantities, the locations for these in a warehouse, and management
+of shopping carts. (There is of course /tons/ more in the backend
+than what we will implement, like recommendations, search,
+tracking user's movements through the store for A/B testing, etc.)
+
+** Terminology
+
+Key terminology in this document:
+
+- Merchandise (aka merch) :: 
+     Goods sold in this web store that may or may not be in stock.
+     An example merch is "Wouldn't it be Nice" (/name/) which is
+     "a book by Brian Wilson and Todd Gould" (/description/) which
+     costs 100 SEK (/price/ -- quite a bargain).
+- Stock :: 
+     Inventory for a specific merch, e.g. we might have 1000
+     copies of "Wouldn't it be Nice" that we hope might get
+     into the hands of eager buyers. These 1000 copies might
+     be spread across different storage locations.
+- Storage Location :: 
+     A place that holds at least 1 copy of some merch. For
+     example, the 1000 copies of "Wouldn't it be Nice" could be
+     stored at storage locations A25, B17 and C04. We do not
+     keep track of empty storage locations. We also do not 
+     support mixing the items stored on a single location. 
+- Be in stock ::
+     A merch is considered in stock if there is at least one
+     storage location that holds at least 1 copy of it.
+- Shopping cart ::
+     A "list" of merch that a customer is interested in with
+     an associated quantity for each. For example, a shopping
+     cart can be empty, or hold 29 copies of "Wouldn't it be 
+     Nice". 
+
+* The Frontend
+To test the interaction of all the parts of our program, we are
+going to build a small frontend in the form of a text user
+interface. We could easily imagine the commands being issued by a
+store front. Some good news is that lots of the frontend work is
+already done -- by you, during the labs. We have infrastructure
+for reading user inputs and parsing them. 
+** Actions
+The system should support the following actions through the
+text-user interface. When the program starts, it should enter into
+an event loop with the following actions, similar to what we did
+in the labs.
+
+The system should ask for names, quantities, etc. and ask to
+confirm destructive updates like removing things. For example, if
+the text below reads /add some quantity of a merchandise/, this is
+to be interpreted as "ask the user for a name of a merchandise in
+the form of a string and a quantity of a merchandise in the form
+of an int".
+*** Add Merchandise
+- This adds a new merch to the warehouse with a name (string),
+  description (string), and price (integer).
+- A newly added merch is not in stock. 
+*** List Merchandise
+- This should list all items in the store. Items should
+  /preferably/ (soft requirement) be printed in alphabetical order
+  on their names. Because there may be more things in the database
+  than might fit on a screen, items should be printed 20 at a
+  time, and the user is asked to continue listing (if possible) or
+  return to the main menu.
+- In the implementation of /Edit Merchandise/, /Remove
+  Merchandise/ and /Show Stock/, show all Merchandise in the same
+  fashion as /List Merchandise/ and allow the user to pick an item by
+  number from this list.
+*** Remove Merchandise
+- Removes an item completely from the warehouse, including all its
+  stock.
+*** Edit Merchandise
+- Allows changing the name, description and price of a merch. Note
+  that this does not affect its stock.
+*** Show Stock
+- List all the storage locations for a particular merch, along with
+  the quantities stored on each location. Storage locations should
+  preferably be listed in alphabetical order (e.g., A20 before B01
+  and C01 before C10).
+- Names of storage locations follow this format always: one capital letter (A-Z) followed by two digits (0-9). 
+*** Replenish 
+- Increases the stock of a merch by at least one. 
+- You can replenish on an existing storage location or a new one. 
+- The stock for a merch is the sum of all items on all storage locations holding that merch. 
+- A storage location stocks items of one (type of) merch, never more. 
+- For simplicity, there is no limit to the amount of storage
+  locations nor is there a limit on the number of items a location
+  can hold.
+*** Create Cart
+- Creates a new shopping cart in the system which is empty. 
+- A shopping cart represents a possible order.
+- Adding/removing merch to/from a cart does /not/ change the stock
+  for that merch -- stocks are changed only during checkout.
+- Shopping carts are identified by a monotonically increasing
+  number, i.e., the number of the $i$'th shopping cart created is
+  $i$, regardless of how many shopping carts have been removed.
+*** Remove Cart
+- Removes a shopping cart from the system. 
+*** Add To Cart
+- Adds some quantity of a merch to a specific shopping cart.
+- All possible orders in the system must be fullfillable. For
+  example, we may only have one or more carts with 12 items of a
+  merge $M$ if the total stock of $M$ in the system at least 12.
+  Thus, if all users go to checkout at the same time, they should
+  all succeed.
+*** Remove From Cart
+- Removes zero or more items of some merch from a particular cart. 
+*** Calculate Cost
+- Calculate the cost of a shopping cart. If a cart holds 2 items
+  of a merch $M_1$ with a price of $50$ and 8 items of a merch
+  $M_2$ with a price of $3$ the cost of the cart is $2\times 50 +
+  8\times 3 = 124$.
+*** Checkout 
+- This action represent the user going through with a purchase of
+  all the items in a particular shopping cart. 
+- Decrease the stock for the merches in the cart. 
+- Remove the shopping cart from the system.
+*** Undo 
+- Undos an action. 
+- Multiple undos should be supported (i.e., pressing undo $N$ times undos the $N$ last actions for $N \leq 16$.)
+- You cannot "undo an undo" (aka "redo"). 
+*** Quit 
+- Quits the program. 
+*** Persistance on File                                            :optional: 
+- The program should save its data on disk between runs. There is
+  a discussion about how to implement this further down in this
+  document.
+#+begin_note
+*Notes on storage locations and items*
+
+- A storage location can only store items of one (kind of) merch
+- Always stores at least one item (not zero)
+- Items of a single merch can be stored at multiple storage locations
+#+end_note
+* The Backend
+We can pretend that the frontend is queries and information going
+back and forth between some fancy website interface and the
+backend, which holds all the logic of the system.
+** Data Design
+Analysing the functional specification of the program, it is clear
+that we navigate through the data in several different ways. 
+
+1. Given the name of an item, find its information
+2. Given the name of an item, find its storage locations in the warehouse 
+3. Given a storage location, find what is stored on it
+
+We can design a struct $S$ that holds the information about an
+item $i$ as well as a list $L$ of the locations in the warehouse
+storing $i$'s, including the number of items at each location. We
+can then use our hash table from Assignment 1 using names of items
+as keys and pointers to instances of $S$ as values. With this
+design, given a name of an item, we can easily find its
+information and storage locations, satisfying Requirement 1 and 2
+in the list above. Let us call this hash table $HT_{n\to S}$.
+
+However, let us see what happens under that data design, if we try
+to find what is stored on storage location $s$ (Requirement 3).
+
+With the current data design, we would have to get all values of
+the hash table (i.e., all $S$ structs) and for each $S$, go
+through its $L$ in search for $s$. That seems both complicated and
+inefficient. 
+
+Thus, we can extend our data design with a second hash table that
+uses storage location names as keys and items (or item names) as
+values. This allows us to satisfy Requirement 3 just as
+straightforward as Requirements 1 and 2. Let us call the second
+hash table $HT_{s\to n}$.
+
+The price for this extra complexity in the data design is keeping
+$HT_{n\to S}$ and $HT_{s\to n}$ in sync. 
+
+In summary, the key data structures in the system are: 
+
+1. $HT_{n\to S}$: a central hash table mapping names of items to their information 
+2. $HT_{s\to n}$ a central hash table mapping names of storage locations to names of items stored on the location 
+3. for each item $S$, a list $L$ of the locations where it is stored, and the amount stored at each location 
+** Shopping Cart
+A shopping cart is basically a mapping from names of items to
+quantities greater than zero. Thus, on a first iteration (at
+least!) we can use a hash map as a shopping cart.
+
+We can use a linked list to hold all the shopping carts in the
+system. Or, if we give each shopping cart a unique identifier (for
+example, some username of the user to which the cart belongs), we
+can use another hash map to hold all the shopping carts in the
+system.
+** Handling faulty inputs
+The system should not allow entering values that are not in the
+allowed range. If the user enters bad input, an error message
+should be printed and the user asked to try again. 
+This is how we have built up the ~ask_question_...~ functions from before. 
+* Non-Functional Requirements
+The above specification details the /functional requirements/
+i.e., /what the software does/. In contrast, non-functional
+requirements are about /how the software does what it does/, and
+its constraints. 
+
+Non-functional requirements are often every bit as important for a
+piece of software as the functional requirements. For example, if
+we must fit the program withing 1 Mb or memory, or always respond
+within 10 milliseconds, etc. -- it may well be that a /functionally perfect/ software
+is unusable for the customer if we fail to deliver on these.
+
+In this assignment, the non-functional requirements are a bit
+unusual in that they come in the form of constraints on your
+implementation which are meant to guide to write good code, or
+face interesting situations. Nevertheless, these requirements are
+indeed non-functional ones.
+** Separation Into Modules 
+The program should be divided into at least four /modules/:
+
+- generic data structures ::
+     Lists, hashmaps, and more -- if you need them. 
+- generic utils ::
+     Utilities (many of which we have implemented before) which
+     are not specific to a program.
+- business logic ::
+     All non-user interface logic that concerns the system, e.g. 
+     shopping carts, merchandise, adding and removing items from
+     the "database" (most of which will delegate to e.g. the 
+     hash table library), etc. 
+- user interface ::
+     Everything that has to do with the program's user interface. 
+     This does not mean e.g., ~ask_question_string()~ and the like --
+     these are generic library routines not specific to this program.
+     However, functions like printing options and reading input of
+     data specific to the program in question belongs in this module. 
+
+The two first modules are called generic for a reason: they should
+be usable across many programs, which neither know of -- nor wants
+to know of -- merchendise or what input is valid in some
+particular dialog. If you find that you want =utils.c= to include
+=db.h= or =ui.h= (or whatever they might be called), something is
+*wrong*.
+
+** Quality Assurance
+*** Code Reviews
+As part of the quality assurance, you will enlist the help of some
+other team in your group to review your code. [[https://en.wikipedia.org/wiki/Code_review][You can read more
+about code reviews here]]. The other team will report on your code
+through GitHub as an issue with feedback and you will respond to
+their issue through comments. 
+*** Reliance on Testing
+Testing is of utmost importance here. You are going to use CUnit
+for your unittests.
+
+Note that we are not going to test the user interface part of
+the assignment. *We should*, but there is no time. We could 
+e.g., use a behaviour-driven test tool that is able to parse
+output and so on. 
+
+Unittests will focus on invididual methods in the backend. For
+example, adding a new merchendise will test the behaviour on good
+and back input (how handle duplicates?), and check that stock for
+new merchendise come back as zero. 
+
+Note that you are building on data structure libraries that come
+with a set of tests. We don't need to test that e.g., the hash
+table is correct in our tests -- we should test that the treatment
+of merchendise, items, storage locations etc. are correct. That
+means we are staying (at least) one solid level of abstraction
+above the hash table, list, etc.
+
+*As a rule of thumb, all functions outside of the user interface module need to be properly tested.*
+*** Koddokumentation
+#+begin_note
+This applies to the generic utils and the business logic modules,
+and of course basic data structures (but that part is almost 100%
+handed out).
+#+end_note
+Använd verktyget doxygen för att dokumentera din kod. Du kan börja
+med att titta på exempel i headerfiler från Inlupp 1.
+Målet med koddokumentation är att förklara för en användare av
+koden (inte programmet) hur den skall användas.
+
+Tänk dig att vi plötsligt skulle byta ut din implementation mot en
+annan grupps implementation, som du aldrig har sett. Förmodligen
+är många funktioner väldigt lika, men det finns säkert också stora
+skillnader. Funktioner som du aldrig har sett blir betydligt
+enklare att använda om de har en beskrivande text och funktioner
+som du också har, men som skiljer sig litet, är ännu viktigare att
+ha dokumentation för eftersom din förförståelse för hur de
+fungerar kommer att vara fel.
+
+Dokumentation är med fördel kort för enkla saker och längre för
+komplexa saker. För komplexa funktioner kan man t.ex. ha ett
+exempel på hur man kan använda den för att göra något.
+
+Tänk på att dokumentation kostar! När programmet ändras måste
+dokumentationen också ändras för att fortfarande vara korrekt.
+Felaktig dokumentation är en klassisk felkälla.
+** Integrating Code from Different Sources
+This assignment reuses components from earlier in the course:
+
+1. Hash table (assignment 1)
+2. Linked list (assignment 1)
+3. Utils (C bootstrap labs)
+
+You are doing Assigment 2 in a team of two people. As a starting
+point of this work, you need to pick components 1--3 above from 3
+*discrete* sources from within the same group. For example, let
+Alice, Bob and Cecil be members of the same group, and Alice and
+Bob work together on Assignment 2. In the start of their work, 
+Alice and Bob compile the following: 
+
+1. Hash table comes from Alice's Assignment 1
+2. Linked list comes from Cecil's Assignment 1
+3. Utils comes from Bob's C bootstrap labs 
+
+This is documented in the =README.md= file in their Assignment 2
+directory.
+
+Note that goods, shelves etc. from the bootstrap labs were /not/
+part of Utils. Alice and Bob are free to reuse their old goods and
+shelves stuff from the bootstrap labs, or start afresh as they
+please. 
+
+During their work, Alice and Bob discover a bug in Cecil's linked
+list implementation. They *report this bug* as an issue on GitHub.
+If they have a suggested fix locally, they can even make a /pull
+request/ so that Cecil simply needs to vet their code, not write
+an own solution.
+* Tips: omdirigering av stdin för att testa programmet
+I UNIX-miljö kan indata till ett program komma från en textfil. När
+programmet körs läses svaren till programmets frågor från en fil
+istället för att matas in för hand. Detta kommer att vara nyttigt för
+att testa ditt program i denna uppgift eftersom det kommer att krävas
+många inmatningar för att fylla programmet med intressant data.
+
+Du kan t.ex. pröva att styra en minimal interaktion med programmet
+så här. Nedanstående *antar* att menyvalen är =Q= för Quit, =A=
+för Add Item, =L= för List Items, och att ordningen på indata i
+Add Item är namn, beskrivning och pris.
+
+1. Skapa en fil =test.txt= med innehållet =Q= och en radbrytning. (=Q=
+   för att avsluta programmet -- byt till annat tecken om du gjort
+   ändringar.)
+2. Kör programmet så här: =./myprog < test.txt= där =myprog= är det
+   kompilerade programmet.
+
+Nu kan du pröva att ändra i =test.txt=. T.ex. så här:
+
+#+BEGIN_EXAMPLE
+A
+Kritor
+Vita kritor
+20
+L
+Q
+#+END_EXAMPLE
+
+Detta skall lägga till en vara (kritor), lista hela varukatalogen, och
+sedan avsluta. (Notera att ditt program kanske tar emot indata i en
+annan ordning!)
+* Implementing Undo
+#+begin_warning
+This is a candidate for axing if we need to make the assignment
+smaller. It makes sense to schedule this last in your
+implementation.
+#+end_warning
+
+Implementing support for undoing actions is possible by
+maintaining a LIFO stack of actions in the program (we call this
+the undo stack). Every time the user performs an undoable action
+through the frontend, we /push/ its counter-action to the undo
+stack. When the user wants to undo, we simply /pop/ the last
+counter-action from the undo stack and perform it.
+
+Some actions might require that we reset the undo stack. For
+example, support for opening another database file could be such
+an event. 
+
+/Note that we can use our list to implement a LIFO stack -- push
+using prepend and pop using remove with index 0./
+
+Examples: 
+
+- The counter-action for adding a merchandise $m$ is the removal of $m$. 
+- The counter-action for the removal of shopping cart $c$ is adding $c$ back to the carts list. 
+- The counter-action for checkout of shopping cart $c$ is adding $c$ back to the carts list, and replenishing the stock for all merchandise that was removed when $c$ was checked-out. 
+- There is no counter-action for calculating the costs of a shopping cart. 
+
+One possible design is to create a struct ~action~ which holds a
+pointer to an undo function that should be called, all the
+arguments to this function, and a pointer to the next action to be
+performed in case the undo action requires several function calls.
+Because different functions take different arguments, the
+arguments part of ~action~ should probably be a ~union~.
+
+Here is an *incomplete sketch* of how we could implement undo functionality. 
+It adds a type for the undo stack, and create, push and pop functions for it.
+It shows how the add merchandise backend function -- in addition to adding
+a merchandise to the database -- creates an undo action datum, populates it,
+and pushes it to the undo stack. Last, it shows the undo function that pops
+from the undo stack, and calls the function of the popped action. 
+
+#+BEGIN_SRC c
+typedef undo_stack_t list_t;
+
+undo_stack_t *undo_stack_create()
+{
+  return ioopm_linked_list_create();
+}
+
+action_t *undo_stack_pop(undo_stack_t *undo_stack)
+{
+  if (ioopm_hash_table_size(undo_stack) > 0)
+    {
+      elem_t e = ioopm_linked_list_remove(undo_stack, 0);
+      return e.pointer; 
+    }
+  else
+    {
+      return NULL;
+    }
+}
+
+void undo_stack_push(undo_stack_t *undo_stack, action_t *action)
+{
+  ioopm_linked_list_prepend(undo_stack, action);
+
+  /// if the size of the stack is > 16, remove from the end and 
+  /// free actions and (possibly) their associated memory 
+}
+
+bool add_merch(db_t *db, undo_stack_t *undo_stack, merch_t *m) 
+{
+  ioopm_hash_table_insert(db, m.name, m);
+
+  action_t *undo = calloc(1, sizeof(action_t)); /// FIXME: move to a create function
+  undo->func = undo_add_merch; 
+  undo->args.db = db;
+  undo->args.merch_id = m.name;
+
+  undo_stack_push(undo_stack):
+}
+
+bool undo(undo_stack_t *undo_stack)
+{
+  action_t *action = pop_undo(undo_stack);
+  if (action == NULL) return false; /// Nothing to undo
+
+  do 
+   {
+     action.func(action.args); /// call the undo function with its arguments
+     action_t *tmp = action; 
+     action = action->next;
+
+     free(tmp); 
+   }
+  while (action); //7 to support several linked actions
+
+  return true;
+}
+
+void undo_add_merch(undo_args_t *args)
+{
+  remove_merch(args->db, args->merch_id); 
+  /// any calls to free necessary
+}
+#+END_SRC
+
+#+begin_note
+The greatest difficulty of supporting undo in our C program is
+figuring out how to manage memory. For example, we cannot call 
+free on a merchendise when we remove it, because we need it in 
+the undo stack. 
+
+The upper bound on the undo history is 16 meaning that pushing
+more than 16 actions should trigger calls to free due to old
+actions in the undo stack being "retired". 
+#+end_note
+
+* Persistens på fil :optional:
+Nu skall vi lägga till stöd för att spara databasen på fil och läsa upp
+den igen. Börja med att bekanta dig med hur funktionerna =fopen=,
+=fread= och =fclose= fungerar, lämpligen genom att implementera en egen
+version av UNIX-programmet =cat= (skriv =man cat= om du inte känner till
+programmet).
+
+Programmet skall ta som kommandoradsargument, namnet på den fil som
+innehåller databasen. Om denna fil inte finns skall den skapas och
+databasen skall vara tom. När programmet avslutas skall databasen sparas
+ned på filen så att den kan läsas upp igen nästa gång programmet
+startar. Det finns inga kommandon i programmet för att spara eller ladda
+databasen -- det sker automatiskt.
+
+För att spara datat i databasen har du två val:
+
+1. Spara datat som radorienterad text där varje vara tar upp minst
+   3 rader (namn, beskrivning, pris, ...); en lagerplats tar upp
+   minst tre rader (lagerplats, vilken vara, vilken kvantitet,
+   ...), och motsvarande för en shopping cart.
+   För enkelhets skull kan du ha en separat fil för varje typ av data
+   du vill spara (varor, lagerplatser, kundvagnar, ...) -- så kan du
+   läsa rätt antal rader och skapar en post i databasen från den. 
+   När man når =EOF= -- end of file -- är du klar med en fil.
+2. Definiera ett binärt filformat på motsvarande sätt. En hyfsat bra
+   start för varor är detta:
+
+#+BEGIN_SRC C
+    int siz;             // antal bytes i posten
+    int name_siz;        // antal tecken i nästföljande sträng
+    char[name_siz] name; // namnet
+    int desc_siz;        // antal tecken i nästföljande sträng
+    char[desc_siz] desc; // beskrivningen
+    int price;           // pris
+#+END_SRC
+
+Man kan till och med tänka sig att själva filen startar med en =int= som
+berättar hur många poster den innehåller, men det går förstås också bra
+att leta efter =EOF= -- end of file.
+
+
+* Additions                                                        :optional:
+These are meant for those who like to tinker with the assignment, wants
+to do more, or needs an idea for an extension to demonstrate something. 
+
+1. Find the cheapest or most expensive merchendise
+2. Print the sum of all items in stock
+3. Compaction: move all items of the same merchendise to a single storage location 
+4. Support for multiple sort orders when printing merchendise
+5. Search for a certain merchendise and see all storage locations for that 
+6. Support some degree of "fuzzy matching" for 5.
+7. Add an upper limit on how many items can be stored on a storage
+   location. Note the interaction with this and 3. above -- make
+   sure that all items of a single merchendise are stored
+   consequtively.
+8. Make the program case insensitive, meaning the following will
+   be considered three different merches: "foo", "Foo" and "FOO".
+9. Support changing the name of a merchendise -- this might affect its key!
+10. Support for saving the database to file and opening a
+    different database file while the program is running.
+
+
+* Finishing the Assignment
+
+1. At the end, go over your backlog of [[../simple.org::*The%20Three%20Rules%20of%20Cheating][cheats]] and [[../simple.org::*Dodging:%20Not%20Quite%20Cheating][dodges]] and see which ones
+   need taking care of. *Ideally this stack should be empty.* If you have 
+   made any special deals for some parts of your code, make sure these are
+   documented somewhere (in the repo). 
+2. As the /first/ section of =README.md=, add instructions for how
+   to build the program and run its tests. Ideally this should be
+   as easy as =make test=. In this section, also state the line
+   coverage and branch coverage per =.c= file and what tool you
+   used to obtain these numbers. 
+3. Write a /minimal/ documentation of how to use your program --
+   after building it, how does one start it, and what files etc.
+   (if anything) must be present. Put this in a =README.md= in the
+   top-level directory for this assignment.
+4. Prepare a demonstration of z101 to give at the next lab. In
+   addition to z101, pick another 2-3 achievements to tick off,
+   and include these in your demonstration preparation. To back up
+   your presentation, present evidence like places in your code
+   where relevant things show up, documentation, paper drawings,
+   etc. -- things that support your demonstration. Think carefully
+   about what things fit together (ask for help if you feel
+   uncertain after trying) and what achievements tell a good story
+   together. Make sure that not one person dominates the
+   demonstration or answers all questions to avoid someone failing
+   the demonstration because there was no evidence of achievements
+   mastery.
+5. Send an email to [[mailto:z100@wrigstad.com][z101@wrigstad.com]] with your names and
+   usernames, a link to the GitHub repository where the code can
+   be checked out. 
+6. Create a final commit for the assignment and [[../github.org][check it into
+   GitHub]]. Tag the commit with =assignment2_done=. 
+7. *Optional* Please take time to [[mailto:z101-feedback@wrigstad.com][feedback on the assignment]]. 
+
+*Note:* Don't expect any feedback on your program over what you
+have got from the oral presentations. If you want more feedback on
+specific things, ask questions in conjunction with your
+presentations, or add your name to the help list.
+
+
+
+# * Below this point it is all old stuff
+
+# map from name to good
+# map from name to storage location (list)
+# map from storage location to name 
+
+# user interface: 
+# - non-functional requirements
+#   - no tangling of logic for ui and business
+
+# recommendation based on past purchases? 
+# full undo stack 
+
+# pointer semantics vs. value semantics
+# track aliasing
+# strategy for freeing memory
+
+# A global list of storage locations that can hold a maximum number of things
+
+# packa en pall
+
+# en automat för att generera artikelnummer 
+
+# -----
+# * Enkelt lagerhanteringssystem
+#   :PROPERTIES:
+#   :CUSTOM_ID: enkelt-lagerhanteringssystem
+#   :END:
+
+# Denna uppgift går ut på att skriva ett enkelt lagerhanteringssystem med
+# ett interaktivt användargränssnitt i terminalen. Det kommer att ta många
+# timmar att skriva färdigt. I nästa sprint kommer du att /utöka/ detta
+# program med nya funktioner.
+
+# /OBS!/ Du har redan skrivit vissa delar av detta under labbarna. Nedan
+# beskrivs dessa funktioner /iallafall/ -- men det står dig fritt att
+# återanvända allt ditt =utils=-bibliotek i detta projekt (och utöka det).
+
+# *TIPS!* Ta fram anteckningspapper och penna. Den här specifikationen är
+# lång och det kommer att löna sig att ta anteckningar om vad du skall
+# göra. Det ingår alltså i problemet som du skall lösa att /förstå
+# problemet/.
+
+# *TIPS!* Efter att du har läst igenom denna uppgift kan du också titta på
+# sidan om [[http://wrigstad.com/ioopm/simple.php][simple]] som tar denna
+# uppgift som ett löpande exempel på hur man griper an ett
+# programmeringsproblem. En work breakdown i olika tasks (inkomplett, som
+# inspiration!) finns i [[https://trello.com/ioopm][vår Trello]].
+
+# Systemet skall hålla reda på en "databas" med varor. När programmet
+# startar går det in i den såkallade "main-loopen" där användaren får ett
+# antal alternativ:
+
+# -  Lägga till en vara
+# -  Ta bort en vara *OBS! (1)*
+# -  Redigera en vara
+# -  Ångra senaste ändringen
+# -  Lista hela varukatalogen
+# -  Avsluta
+
+# *(1) Behöver inte implementeras förrän i nästa inlupp, men det kan vara
+# värt att fundera över redan nu.*
+
+# Main-loopen skriver ut alternativen och frågar vad användaren vill göra.
+# De olika valen tar användaren ned i olika funktioner (se nedan) med eget
+# beteende. Efter att sådana funktioner har avslutats återvänder de till
+# huvudloopen igen. Detta förfarande fortsätter tills användaren väljer
+# att avsluta programmet. Exempel:
+
+# #+BEGIN_EXAMPLE
+#     Välkommen till lagerhantering 1.0
+#     =================================
+
+#     [L]ägga till en vara
+#     [T]a bort en vara
+#     [R]edigera en vara
+#     Ån[g]ra senaste ändringen
+#     Lista [h]ela varukatalogen
+#     [A]vsluta
+
+#     Vad vill du göra idag? _
+# #+END_EXAMPLE
+
+# De bokstäver som användaren skall trycka för att välja ett alternativ
+# står inom klamrar. Stor eller liten bokstav spelar ingen roll.
+
+# Du får gärna ändra på alla kommandon och skriva programmet på engelska
+# om du vill. Det viktiga är inte att det fungerar /exakt/ med dessa
+# tecken etc., bara att det är uppenbart för användaren hur systemet
+# fungerar.
+
+# En kort film som visar interaktionen med ett liknande (opolerat)
+# lagerhanteringssystem finns
+# [[http://wrigstad.com/ioopm/images/lager.gif][här]].
+
+# ** Generellt för uppgiften
+#    :PROPERTIES:
+#    :CUSTOM_ID: generellt-för-uppgiften
+#    :END:
+
+# *** Hantering av felaktig inmatning
+#     :PROPERTIES:
+#     :CUSTOM_ID: hantering-av-felaktig-inmatning
+#     :END:
+
+# Vid felaktig inmatning skall programmet inte krascha; istället skall
+# användaren få ett felmeddelande och den aktuella frågan skall ställas
+# igen. Exempel:
+
+# #+BEGIN_EXAMPLE
+#     Mata in nytt pris: asdf
+#     Felaktig inmatning: 'asdf'
+#     Mata in nytt pris: tusen
+#     Felaktig inmatning: 'tusen'
+#     Mata in nytt pris: 1000
+# #+END_EXAMPLE
+
+# *TIPS!* Hantering av felaktig inmatning är ett bra exempel på något som
+# man kan /ducka/ (se [[http://wrigstad.com/ioopm/simple.php][simple]])
+# vid en första implementation.
+
+# *TIPS!* Det är enkelt att utöka =ask_question()= till att skriva ut
+# =Felaktig inmatning 'foo'= om kontrollfunktionen returnerar =false=.
+
+# *** Vara
+#     :PROPERTIES:
+#     :CUSTOM_ID: vara
+#     :END:
+
+# Varan som vi definierade på labben hade ett *namn*, en *beskrivning*,
+# ett *pris* och en *lagerhylla* som avser platsen där den är lagrad:
+
+# -  Namn och beskrivning skall vara en sträng (=char *=)
+# -  Pris skall vara i ören och är därför ett heltal (=int=)
+# -  Lagerhylla skall vara en bokstav åtföljd av en eller flera siffror
+#    t.ex. /A25/ men inte /A 25/ eller /25A/
+
+# I denna uppgift skall varan vara i stort densamma, *men* vi vill också
+# hålla reda på *antalet* varor av denna typ som är lagrad på den varje
+# hyllplats. Detta kommer att leda till att varan definieras något
+# annorlunda: vi måste göra en separat strukt för en lagerhylla och ett
+# antal, och varje vara i databasen kommer att peka ut en lista med sådana
+# struktar. Det betyder också att informationen om en vara bara finns
+# sparad en gång i databasen (alla kritor har samma pris och beskrivning).
+
+# Nu har vi mött den stora skillnaden i denna inlämningsuppgift mot vad
+# som gjordes på labben: hur vi organiserar datat i vår databas. Vi kommer
+# inte att använda oss av arrayer längre, utan av *träd* och *listor* som
+# är dynamiska, länkade strukturer. (En länkad struktur är en som består
+# av en eller flera delar sammanlänkade med pekare. En dynamisk struktur
+# är en vars storlek kan öka och minska och vars uppbyggnad kan ändras
+# under programmets körning.)
+
+# ** Lägga till en vara
+#    :PROPERTIES:
+#    :CUSTOM_ID: lägga-till-en-vara
+#    :END:
+
+# Programmet skall fråga användaren efter all den information som en vara
+# innehåller (se ovan). Om något värde matas in felaktigt (t.ex. priset
+# var "tusen" och inte "1000") skall ett felmeddelande skrivas ut och
+# användaren får mata in värdet igen tills det blir rätt. När samtliga
+# värden matats in skall användaren få en listning av varan och måste
+# sedan svara på frågan om varan skall läggas in i databasen eller inte.
+# Svarsalternativen är /Ja/, /Nej/ och /Redigera/. /Ja/ lägger till varan,
+# /Nej/ avbryter tilläggningen, och /Redigera/ ger möjlighet att redigera
+# informationen, lämpligen på samma sätt som *Redigera en vara* nedan.
+# (*Tips!* Kanske inte bara på samma sätt -- utan med hjälp av samma kod.)
+
+# Varje post i databasen avser en unik lagringsplats. Det går därför bra
+# att t.ex. lagra hushållspapper både på lagerhylla A25 och B12. Däremot
+# är det *inte* tillåtet att lagra två /olika/ varor på /samma/
+# lagerhylla, dvs. om det redan finns hushållspapper på A25 får vi inte
+# också lägga kritor på A25. Ett försök att lägga till en vara där en
+# annan redan finns sparad skall ge upphov till ett felmeddelande. Det
+# skall heller inte gå att skapa en sådan situation genom att redigera en
+# vara.
+
+# ** Visa en vara
+#    :PROPERTIES:
+#    :CUSTOM_ID: visa-en-vara
+#    :END:
+
+# Först listas samtliga varors namn med indexnummer:
+
+# #+BEGIN_EXAMPLE
+#     1 Hushållspapper
+#     2 Kritor
+#     3 Målarfärg
+# #+END_EXAMPLE
+
+# Användaren erbjuds sedan att mata in numret på den vara som hen vill se,
+# alternativt trycka =a= för avbryta och återgå till huvudmenyn. Om det
+# finns fler än 20 varor ges också alternativet att se fler varor. Då
+# visas nästa 20 varor indexerade från 1.
+
+# Den valda varan listas på skärmen så här:
+
+# #+BEGIN_EXAMPLE
+#     Namn: Hushållspapper
+#     Beskrivning: Tvålagerspapper med perforering. Varje pappersremsa
+#     har en liten bild av två blåmusslor som försiktigt vänslas.
+#     Pris: 20 kr
+#     Lagerhylla: A25
+#     Antal: 12
+# #+END_EXAMPLE
+
+# ** Redigera en vara
+#    :PROPERTIES:
+#    :CUSTOM_ID: redigera-en-vara
+#    :END:
+
+# Vara väljs på samma sätt som /Visa en vara/.
+
+# När användaren väljer en vara skall varan visas på skärmen. Användaren
+# får sedan frågan vilken /rad/ som skall redigeras:
+
+# #+BEGIN_EXAMPLE
+#     [B]eskrivning
+#     [P]ris
+#     [L]agerhylla
+#     An[t]al
+
+#     Välj rad eller [a]vbryt: _
+# #+END_EXAMPLE
+
+# Observera att namn inte kan ändras. Om användaren matar in t.ex. =p=
+# skall först det gamla priset skrivas ut och direkt efteråt visas en
+# input för det nya priset:
+
+# #+BEGIN_EXAMPLE
+#     Nuvarande pris: 20 kr
+#     --------------------------------------------------------
+#     Nytt pris: _
+# #+END_EXAMPLE
+
+# ** Lista hela varukatalogen
+#    :PROPERTIES:
+#    :CUSTOM_ID: lista-hela-varukatalogen
+#    :END:
+
+# Varukatalogen listas i bokstavsordning, max 20 varor åt gången:
+
+# #+BEGIN_EXAMPLE
+#     1 Hushållspapper
+#     2 Kritor
+#     3 Målarfärg
+# #+END_EXAMPLE
+
+# Varje "sida" i listningen rymmer 20 varor. Om det finns fler än 20 varor
+# ges alternativet att se fler varor. Varje vara ges ett index, som alltid
+# är mellan 1 och 20 och som börjar om på 1 varje sida.
+
+# Ingen detaljinformation om varje vara visas.
+
+# ** Ångra senaste ändringen
+#    :PROPERTIES:
+#    :CUSTOM_ID: ångra-senaste-ändringen
+#    :END:
+
+# Alla ändringar skall gå att ångra. Det räcker med ångra ett steg och man
+# kan inte "ångra ett ångrande" eller ångra innan någon förändring har
+# gjorts i programmet. I både dessa fall skall meddelandet "Det finns
+# inget att ångra" skrivas ut.
+
+# Ett sätt att implementera detta är att för varje händelse med
+# sidoeffekter (add, remove, edit) spara data som kan återställa
+# databasen. Så här såg denna datastruktur ut i min implementation av
+# uppgiften.
+
+# #+BEGIN_SRC C
+#     struct action
+#     {
+#       enum { NOTHING, ADD, REMOVE, EDIT } type;
+#       union
+#       {
+#         struct { goods saved; };      // REMOVE
+#         struct { goods *edited; goods original; }; // EDIT
+#       };
+#     };
+# #+END_SRC
+
+# *Notera att borttagning kommer först i nästa inlämningsuppgift.*
+
+# Här använder jag både =enum=- och =union=-begreppen i C, vilket kanske
+# är lite tidigt i kursen för de flesta. En enklare variant är denna:
+
+# #+BEGIN_SRC C
+#     struct action
+#     {
+#       int type; // NOTHING = 0, ADD = 1, REMOVE = 2, EDIT = 3
+#       goods_s *merch;
+#       goods_s copy;
+#     };
+# #+END_SRC
+
+# Här används ~type == 1~ för tillägg, ~type == 2~ för borttag etc.
+
+# Varje gång användaren gör något i main-loopen sparar vi information så
+# att vi kan ångra. Det räcker med en enda variabel =undo= av typen
+# =struct action=.
+
+# Vid tillägg används =merch= för att peka ut vilket värde som lagts till
+# och =copy= används ej.
+
+# Vid borttagning sparas det gamla värdet i =copy= och =merch= används ej.
+
+# Vid edit sparas det gamla värdet i =copy= och =merch= används för att
+# peka ut det modifierade värdet i databasen.
+
+# Om användaren väljer att ångra kan vi se i =undo= vilken typ av händelse
+# som skall ångras (från =undo.type=). Om vi behöver återskapa information
+# kan vi titta i =undo.copy=. För att veta vad som lagts till eller
+# ändrats kan vi använda pekaren i =undo.merch=.
+
+# * Datarepresentationen
+#   :PROPERTIES:
+#   :CUSTOM_ID: datarepresentationen
+#   :END:
+
+# Nu beskriver vi en egenskap hos programmet som inte är synlig för
+# användaren, men är nog så viktig: användning av dynamiska, länkade
+# strukturer för att hantera programmets minne.
+
+# Under labben använde vi en statisk array av =goods= för att hålla
+# programmets data. Det duger förstås inte i ett riktigt program eftersom
+# det
+
+# 1. kräver att vi har ett hårt maxtak på /n/ antal varor i systemet, och
+# 2. medför att systemet använder minne för /n/ antal varor, oavsett hur
+#    många som faktiskt finns.
+
+# I inluppen skall vi skriva lagerprogrammet så att dessa två problem
+# undviks. Vi kommer att göra det genom att *först skriva två helt nya
+# delar av programmet* för att hantera en dynamisk lista av lagerplatser
+# samt ett binärt sökträd av varor (båda dessa togs upp på PKD). Sedan
+# skall vi ändra i det gamla programmet så att det använder dem. Analogt
+# med =utils=-bilioteket som du redan har byggt.
+
+# En schematisk bild över datat:
+
+# #+CAPTION: En schematisk bild över datat
+# [[file:abstract-structure.png]]
+
+# Trädet består av /Varor/ och varje vara har en lista av /Hyllor/ som
+# lagrar information om plats och antal. =Vara2= finns inte längre i
+# lagret vilket representeras av en tom lista. Om vi också ritar ut trädet
+# som håller i alla varor, samt de listor som håller i varje varas hyllor
+# får vi följande:
+
+# #+CAPTION: Datat med träd och listor
+# [[file:concrete-structure.png]]
+
+# Vi ställer följande krav på den nya datastrukturen som skall hålla i
+# programmets databas:
+
+# 1. Det skall inte finnas något hårt maxtak på antalet varor i systemet
+#    (förutom vad som ryms i det lediga minnet).
+# 2. Sökning efter varor skall ske i O(log n) tid (*OBS!* du behöver
+#    /inte/ balansera trädet utan kan förutsätta att indatat matas in en
+#    en lämplig ordning som ger bra balans).
+# 3. Systemet skall inte använda minne för varor som inte finns (och
+#    frigöra minne för varor som tas bort), likaså för lagerplatser.
+
+# Headerfiler för gränssnitten (alltså listan av funktioner som en klient
+# kan använda) för lista och träd finns [[file:list.h][här]] och
+# [[file:tree.h][här]]. Du /skall/ använda dessa filer -- det kommer att
+# underlätta senare under kursen.
+
+# *TIPS!* Fundera över vad som är en lämplig moduluppdelning för
+# programmet så att relaterade funktioner grupperas och icke-relaterade
+# funktioner inte blandas med varandra.
+
+# *TIPS!* Fundera över inkapsling. Vad behöver vara synligt för
+# programmet? Behöver programmet t.ex. veta något om listorna som finns
+# sparade i varje nod i trädet?
+
+# Sammanfattningsvis:
+
+# -  Nycklarna i sökträdet är varunamn
+# -  Varor med samma namn anses vara identiska
+# -  Varje vara har informationen från föregående uppgift, och dessutom en
+#    pekare till en lista med lagerplatser där varan finns lagrad
+# -  Listan med lagerplatser innehåller information om vilken kvantitet av
+#    varan som finns på platsen
+
+# För att ett binärt sökträd skall vara korrekt med avseende på sortering
+# av dess index är det viktigt att det inte går att modifiera dess nycklar
+# från en annan plats i programmet. Vi använder varornas namn i detta
+# program -- varje namn representeras alltså som en array av tecken. Om
+# man ändrar innehållet i en array =A= från t.ex. ="Anrikare av uran"=
+# till ="Öljetter"= och =A= används som en nyckel i det binära trädet =T=
+# har man förmodligen just förstört =T= så tillvida att man inte kan nå
+# öljetterna i trädet längre (varför?). Ännu värre: vad händer om någon
+# gör =free(A)= fast =A= fortfarande används av trädet?
+
+# För att skydda sig mot denna typ av beteende krävs att nycklarna i
+# trädet inte är åtkomliga utanför trädet. Det går t.ex. att lösa genom
+# att skapa en kopia av alla nycklar inuti trädet. Glöm inte bort att
+# frigöra allt minne som allokeras!
+
+# Samma typ av problem uppstår vid redigering av ett namn på en vara
+# (vilket är varför vi inte skall stödja detta i version 1.0 av detta
+# program). Om du implementerat *borttagning* ur trädet redan nu är
+# redigering av namn enkelt -- ta bort den den gamla varan, byt namn och
+# stoppa tillbaka den igen. Om du inte har implementerat borttagning får
+# du stänga av möjligheten att redigera namnet tills nästa
+# inlämningsuppgift!
+
+# ** Funktionen för att lägga till en vara
+#    :PROPERTIES:
+#    :CUSTOM_ID: funktionen-för-att-lägga-till-en-vara
+#    :END:
+
+# Det program som vi byggde på den sista labben tillät en vara att vara
+# lagrad flera gånger i databasen på olika platser. I och med skiftet till
+# ett binärt sökträd kommer en vara nu enbart finnas lagrad en gång. När
+# man lägger till en vara fler än en gång manipuleras nu den länkade
+# listan med lagerplatser.
+
+# Exempel: För att lägga till ett antal minecraftsvärd på flera
+# lagerplatser kan du först lägga till varan på precis samma sätt som på
+# labben. Användaren märker ingen skillnad men internt sparas svärden i
+# trädet =T= med en lista =L= av lagerplatser vars längd kommer att vara
+# ett (1) initialt. Nästa gång varan läggs till måste systemet se att
+# varan redan finns. Denna kontroll sker lämpligen efter att namnet matas
+# in genom en sökning i =T=. Om varan redan finns behöver vi inte fråga
+# efter beskrivning eller pris. Istället frågar vi bara om lagerplats och
+# kvantitet och uppdaterar =L= med den informationen.
+
+# Så här kan man tänka sig att interaktionen med användaren ser ut (text
+# inom =<=vinkelparenteser=>= avser text som användaren matat in).
+
+# #+BEGIN_EXAMPLE
+#     Vad vill du göra idag? <L>
+
+#     Lägg till vara
+#     ==============
+
+#     Namn: <Minecraftsvärd>
+
+#     Minecraftsvärd finns redan i databasen.
+#     Använder samma pris och beskrivning.
+
+#     Lagerplats: <C12>
+#     Antal: <350>
+# #+END_EXAMPLE
+
+# Om samma lagerplats används flera gånger aggregeras varorna på denna
+# plats.
+
+# * Implementation
+#   :PROPERTIES:
+#   :CUSTOM_ID: implementation
+#   :END:
+
+# Här följer några tips för implementationen.
+
+# -  Ett bra sätt att implementera ett program är att göra det i olika
+#    diskreta steg, "inkrement", där varje steg för någon eller några
+#    delar av implementationen framåt.
+# -  Du kan modularisera -- t.ex. skriva hela listan, sedan hela trädet
+#    och sedan uppgiften "ovanpå" dessa (du har redan en bra start i
+#    =db.c=) -- eller arbeta top-down där du först skriver gränssnittet,
+#    och steg för steg kopplar på funktioner som hanterar den faktiska
+#    logiken i programmet.
+# -  En strukt =goods= är en central datatyp vars definition går att
+#    extrahera ur ovanstående. Likaså strukten för varor sparade på en
+#    lagerhylla. Samt träd och listor.
+# -  Det är lämpligt att ha en funktion per alternativ i huvudloopen och
+#    som ställer alla relevanta underfrågor. Vi kallar dessa för
+#    gränssnittsfunktioner och de kan vara till exempel:
+# -  =add_goods= -- lägga till vara
+# -  =remove_goods= -- ta bort vara (räcker med en *stub* i denna inlupp)
+# -  =edit_goods= -- redigera vara (se not ovan om redigering av namn)
+# -  =list_goods= -- lista hela varukatalogen
+# -  =display_goods= -- visa en specifik vara
+# -  =undo_action= -- ångra
+# -  =exit_program= -- avsluta programmet
+# -  Blanda inte /gränssnittslogik/ med /varulogik/, dvs. =add_goods=
+#    huvuduppgift är att visa alternativ för användaren, och ställa frågor
+#    i rätt ordning, etc. -- men all logik för att visa varor, kolla vad
+#    som är lagrat på en specifik lagerhylla, etc. sker i specika
+#    funktioner, som förmodligen kommer att användas av flera
+#    gränssnittsfunktioner. (I ett senare skede i programmets utveckling
+#    skulle vi förmodligen separera gränssnittslogik och varulogik i två
+#    olika moduler.)
+# -  Återkommande uppgifter bör brytas ut och läggas i separata
+#    funktioner. Ett typiskt sådant standard-mönster som programmet
+#    upprepar är att ställa en fråga tills ett lämpligt svar har tagits
+#    emot. För enkelhets skull kan vi implementera flera frågor för olika
+#    typer av förväntat indata. (I ett senare skede i utvecklingen kanske
+#    vi skulle slå samman dem till en enda och mer flexibel funktion.)
+#    Till exempel:
+# -  =ask_question_string= -- förväntar sig svar i form av hela strängar
+#    (t.ex. namn på vara eller beskrivning av vara)
+# -  =ask_question_int= -- förväntar sig ett svar i form av ett heltal
+#    (t.ex. priset på en vara)
+# -  =ask_question_char= -- förväntar sig ett svar i form av ett enskilt
+#    tecken (t.ex. ett alternativ som användaren presenteras för)
+# -  Ytterligare ett exempel på ett lämpligt beteende som bör ges en egen
+#    funktion är att skriva ut en vara på terminalen, =print_goods=, något
+#    som sker flera gånger i olika skeden av programmet.
+# -  Både =add_goods= och =edit_goods= kommer att behöva en funktion som
+#    kontrollerar /vad/ som finns lagrat på en specifik lagerhylla, för
+#    att uppfylla kravet att enbart en vara finns per lagerhyllsplats.
+#    Till exempel funktionen =get_goods_for_storage_location=.
+
+# ** Ett par lämpliga första steg
+#    :PROPERTIES:
+#    :CUSTOM_ID: ett-par-lämpliga-första-steg
+#    :END:
+
+# Se [[http://wrigstad.com/ioopm/simple.php][simple]] för en mer
+# detaljerad diskussion.
+
+# 1. Börja med att skriva =ask_question_char= och använd den för att
+#    implementera programmets huvudloop. På detta vis har du alltid ett
+#    program som går att köra och det underlättar både utveckling och
+#    testning.
+# 2. Definiera struktarna för varuinformation och varor sparade på
+#    hyllplatser. Skriv en funktion som lägger till några exempelvaror i
+#    databasen genom att direkt skriva till den array (eller motsvarande)
+#    som håller datat. Detta vill vi göra för att nästa två steg skall
+#    kännas meningsfulla och gå att testa. (Observera att en stor del av
+#    detta är gjort på labbarna.)
+# 3. Implementera =display_goods= vilket kommer att leda till att du måste
+#    implementera flera hjälpfunktioner, t.ex. =print_goods=.
+# 4. Implementera =list_goods=.
+# 5. Fortsätt med =edit_goods=. För denna funktion behövs
+#    =get_goods_for_storage_location= så att du kan kontrollera att
+#    lagringsplatserna för varje vara är unika.
+# 6. Nu borde du kunna implementera =add_goods= tämligen enkelt och
+#    mestadels förlita dig på de hjälpfunktioner du redan har.
+
+# * Frivilliga utökningar
+#   :PROPERTIES:
+#   :CUSTOM_ID: frivilliga-utökningar
+#   :END:
+
+# För dig som vill sitta och pilla med uppgiften och vill göra mer. (Eller
+# vill göra en utökning för att redovisa fler mål.)
+
+# 1.  Stöd för att ångra flera steg.
+# 2.  Hitta dyraste respektive billigaste varan.
+# 3.  Skriv ut försäkringsvärdet, dvs. totalsumman av pris x antal för
+#     alla varor.
+# 4.  Omorganisera lagret genom att slå samman alla varor av samma typ och
+#     lägga dem på samma hyllplats.
+# 5.  Möjlighet att välja sorteringsordning vid utskrift av varor
+#     (bokstavsordning angivet ovan, men man kan tänka sig hyllplats, pris
+#     stigande, pris fallande, etc.).
+# 6.  Söka efter en viss vara och få ut alla hyllplatser där den finns.
+# 7.  Stöd för att lägga varor i olika kvantiteter i en "korg" vars
+#     kostnad skall visas vid varje interaktion med användaren; det skall
+#     vara möjligt att lägga varor i korgen, ta bort dem ur korgen (då
+#     hamnar de på hyllan igen), och tömma korgen.
+# 8.  Stöd för storlekar. Varje hyllplats rymmer bara ett visst antal
+#     kubikcentimeter och varubegreppet utökas med en storlek i
+#     kubikcentimeter. Se till att varorna får plats genom att tvinga
+#     användaren att bryta upp stora varukvantiteter över flera
+#     hyllplatser.
+# 9.  Stöd för kompaktering, dvs. omorganisera lagret så att en vara är
+#     lagrad på angränsande hyllplatser.
+# 10. Skriv enhetstester för dina funktioner (detta kommer som ett krav i
+#     nästa utökning).
+# 11. Stöd fär skiftlägesokänslighet vid inmatning av vara. Det vill säga,
+#     "kritor", "Kritor", "KRITOR" är samma vara.
+# 12. Vid inmatning av existerande vara, lista existerande lagerplats och
+#     kvantitet.
+# 13. Balansera binärträdet av varor.
+# 14. Stöd för att byta namn på en vara. Om man byter namn på en vara =V1=
+#     till ett redan existerande namn på en vara =V2= skall man få frågan
+#     om man vill slå ihop posterna. Då flyttas alla lagerplatser från
+#     =V1= till =V2= och =V1= tas bort ur databasen.
+# 15. Utöka stödet för att ångra till att omfatta alla förändringar och
+#     utökningar som du har gjort, samt implementera "ångra ångra" (aka
+#     redo).
+
+# * Förslag på mål att redovisa
+#   :PROPERTIES:
+#   :CUSTOM_ID: förslag-på-mål-att-redovisa
+#   :END:
+
+# Du använder uppgiften till att redovisa mål -- när du redovisar ett mål
+# skall det finnas en tydlig koppling till uppgiften eller någon
+# föreslagen utökning till uppgiften. Det ingår i uppgiften (eller
+# egentligen i hela kursupplägget) att förstå mappningen från uppgift
+# (eller del av uppgift) till lämpliga mål. Vi ger förslag -- färre och
+# färre ju längre in i kursen vi kommer. Notera att det inte räcker med
+# att bara följa förslagen för att bli godkänd.
+
+# 1. [[http://auportal.herokuapp.com/achievements/100][Inluppsmål 1]]
+# 2. [[http://auportal.herokuapp.com/achievements/15][G15]] -- ett måste
+#    vid inläsning med hjälp av en buffert. Vad kan hända annars?
+# 3. [[http://auportal.herokuapp.com/achievements/20][H20]] -- vad är det
+#    för skillnad på att skicka in/returnera ett heltal respektive en
+#    sträng till/från en funktion? Kan relateras till ovanstående mål.
+# 4. [[http://auportal.herokuapp.com/achievements/36][M36]] -- vid
+#    interaktion eller iteration över databasen, t.ex.
+# 5. [[http://auportal.herokuapp.com/achievements/57][W57]] -- speciellt
+#    om du delar upp programmet i flera filer
+# 6. [[http://auportal.herokuapp.com/achievements/1][A1]] -- genomgående
+#    inslag i denna uppgift
+# 7. Börja på [[http://auportal.herokuapp.com/achievements/7][C7]] -- du
+#    vill inte behöva efterskapa saker sedan (*Du kan alltså inte redovisa
+#    detta redan nu.*)
+
+# * Inlupp 2: Utökat lagerhanteringssystem
+#   :PROPERTIES:
+#   :CUSTOM_ID: inlupp-2-utökat-lagerhanteringssystem
+#   :END:
+
+# Som namnet antyder bygger denna inlämningsuppgift vidare på föregående
+# uppgift. Eftersom ni byter par kommer ni att ha två lagerhanterare 1.0
+# att bygga vidare på. Ni kan välja att:
+
+# 1. Ta person A:s lagerhanterare och bygga vidare på den
+# 2. Ta person B:s lagerhanterare och bygga vidare på den
+# 3. Plocka de bästa bitarna ur bådas lagerhanterare och bygga vidare på
+#    dem
+# 4. Börja om från början med en ny lagerhanterare
+
+# Alla alternativ är lika goda men ni kommer att lära er olika saker
+# beroende på vad ni går vidare med. Notera att fall 3. bäst genomförs
+# genom att ni börjar om från början, men istället för att skriva ny kod,
+# kopierar kod från någon av lagerhanterarna -- bit för bit -- och testar
+# under tiden. En av fördelarna med att bygga vidare på ett gammalt system
+# är att ni får en känsla för hur det kan kännas att komma till kod som
+# någon annan skrivit, får _{lida} njuta av _{tveksam} bra namngivining av
+# funktioner och variabler, etc. En fördel med att börja om från början är
+# att ni får möjlighet att bygga programmet "rätt från början" eftersom ni
+# nu har insikter i programmet som ni omöjligen kunde ha haft i början av
+# föregående inlupp.
+
+# I inlämningsuppgift 1 fokuserade vi till största delen på att få ett
+# fungerande program. Vi har pratat om god praxis map. modularisering,
+# informationsgömning, namngivning, etc. -- men det har hittills varit
+# "ett plus". Från och med denna inlämningsuppgift är dessa aspekter
+# *självklara* att beakta!
+
+# Utökningen av lagerhanteringssystemet som vi gör in denna
+# inlämningsuppgift omfattar flera olika steg (ordningen oviktig):
+
+# 1. Användning C:s standardbibliotek (filer, ev. sortering via dynamiska
+#    arrayer för den som vill)
+# 2. Stöd för persistens på fil (alltså spara databasen till disk och läsa
+#    upp den igen)
+# 3. Grundläggande testning med hjälp av enhetstester för programmet i
+#    CUnit
+# 4. Generalisering av list och träd-modulerna från förra
+#    inlämningsuppgiften
+# 5. Integration med kod från annat kodpar på kursen
+# 6. Koddokumentation!
+
+# En bra idé är att börja med 4 följt av 5 eftersom 5 kräver interaktion
+# med ett annat kodpar vilket ofta medför några dagars väntan. (YMMV.)
+
+# ** Användning av C:s standardbibliotek
+#    :PROPERTIES:
+#    :CUSTOM_ID: användning-av-cs-standardbibliotek
+#    :END:
+
+# Vi har delar av använt C:s standardbibliotek förut (=malloc=, =free=,
+# strängmanipulering, etc.). Nu skall vi utöka detta med användning av
+# funktioner för filmanipulering. Du kan använda =man stdio= för att se
+# standardfunktioner för I/O. Vi kommer att behöva ganska få av dessa:
+# förmodligen räcker det med öppna, läsa, skriva och stänga. Läs vidare
+# under *Persistens på fil* nedan. Notera att det finns olika funktioner
+# för att läsa =int=:ar, strängar, etc.
+
+# Balansering av binärträdet kan ske på följande sätt:
+
+# 1. Implementera ett självbalanserande binärträd med någon känd algoritm,
+#    t.ex. ett AVL-träd
+# 2. Dumpa trädet inorder i en array och bygg ett nytt träd genom att
+#    stoppa in elementen i rätt ordning (ungefär som en binärsökning,
+#    alltså börja med mittenelementet -- en rolig rekursiv algoritm!)
+
+# Ett mindre direkt alternativ som ger oss tillfälle att använda oss av
+# C:s inbyggda stöd för sortering för är att använda preorder istället för
+# inorder ovan och sedan använda C:s implementation av
+# quicksort-algoritmen på arrayen. Du kan använda =man qsort= för att läsa
+# om den. Det är alltså krångligare att göra så -- men du får jobba med en
+# rolig del av standardbiblioteket!
+
+# Nedan finns ett litet Python-program som bygger upp trädet från en
+# sorterad array. Notationen [:] nedan betyder att om =a = [1,2,3,4,5]= så
+# är =a[middle] == 3=, =a[:middle] == [1,2]= och =a[middle+1:] == [4,5]=.
+
+# #+BEGIN_SRC python
+#     def build_tree_from_array(a):
+#         middle = len(a) / 2
+#         tree_insert(a[middle])
+#         if middle > 0:
+#             build_tree_from_array(a[:middle])
+#         if middle > 1:
+#             build_tree_from_array(a[middle+1:])
+# #+END_SRC
+
+# Om du inte gör ett självbalanserande träd skall balansering av trädet
+# göras tillgänglig från huvudloopen:
+
+# #+BEGIN_EXAMPLE
+#     [S]ortera databasen
+# #+END_EXAMPLE
+
+# Oavsett hur balansering är implementerat skall ytterligare ett
+# menyalternativ läggas till:
+
+# #+BEGIN_EXAMPLE
+#     [K]ontrollera databasens sortering
+# #+END_EXAMPLE
+
+# Denna operation skall kontrollera om trädet är sorterat eller inte.
+# Trädet anses osorterat om det finns ett subträd där djupet på det
+# vänstra subträdet (VD) och djupet på det högra subträdet (HD) skiljer
+# med strikt mer än 1. Alltså, =N = abs(VD - HD)= och om =N > 1= är trädet
+# osorterat.
+
+# Skriv ut "Sorterat" eller "Osorterat N" där N är den högsta N i trädet.
+
+# ** Funktionen för att ta bort en vara
+#    :PROPERTIES:
+#    :CUSTOM_ID: funktionen-för-att-ta-bort-en-vara
+#    :END:
+
+# Nu är det dags att implementera stöd för att ta bort en vara. När detta
+# är gjort kan du också implementera stöd för att redigera en varas namn!
+
+# När man tar bort en vara tar man endast bort en enskild lagerplats för
+# varan. *När samtliga lagerplatser för en vara har tagits bort skall
+# också varan tas bort ur trädet.*
+
+# Exempel:
+
+# #+BEGIN_EXAMPLE
+#     Vad vill du göra idag? <T>
+
+#     Ta bort vara
+#     ============
+
+#     1. Kritor
+#     2. Hushållspapper
+#     3. Minecraftsvärd
+
+#     Välj vara att ta bort: <3>
+
+#     Minecraftsvärd finns lagrat på följande platser:
+
+#     1. A88 (100 stycken)
+#     2. B2 (150 stycken)
+#     3. C11 (350 stycken)
+
+#     Vilken plats skall tas bort (0 för ingen)? <3>
+# #+END_EXAMPLE
+
+# ** Ångra
+#    :PROPERTIES:
+#    :CUSTOM_ID: ångra
+#    :END:
+
+# Om du får tidsbrist kan du få dispens från att implementera stöd för att
+# ångra de nya funktionerna.
+
+# För tydlighets skull: det skall inte gå att ångra sortering av
+# databasen.
+
+# ** Generalisering av datastrukturerna
+#    :PROPERTIES:
+#    :CUSTOM_ID: generalisering-av-datastrukturerna
+#    :END:
+
+# I förra versionen av lagerhanteringen bytte vi lagringsformat från en
+# statisk array (som på labbarna) till dynamiska träd och listor. Nu skall
+# vi generalisera träden och listorna på ett sådant sätt att det går att
+# använda dem i godtyckliga C-program.
+
+# Det betyder att du måste ändra på datastrukturerna på följande sätt:
+
+# -  Nycklar och poster i trädet/element i listan måste vara av typen
+#    =element_t= som är en union:
+
+# #+BEGIN_SRC C
+#     typedef struct element element_t;
+#     struct element
+#     {
+#       void *p;
+#       int   i;
+#       uint  u;
+#       float f;
+#     };
+# #+END_SRC
+
+# Observera att vi hanterar =element_t= med /värdesemantik/ men att ett
+# element kan /innehålla/ en pekare.
+
+# -  All jämförelse eller operation på data av typen =element_t= måste ske
+#    med hjälp av funktionspekare.
+# -  Alla funktioner som trädet behöver skall skickas med som argument i
+#    och med att datastrukturen skapas (alltså som argument till
+#    =tree_new= etc.) =NULL= skall vara ett godtagbart alternativ med en
+#    vettig semantik.
+# -  Det skall vara möjligt att ha flera träd och listor som håller data
+#    av olika typ i samma program.
+
+# För att arbeta med funktionspekare är =typedef= ovärdeligt för att hålla
+# koden läsbar. Följande C-kod deklarerar typen =cmp_t= som en funktion
+# som tar två pekare av elementtyp (=element_t=) och returnerar en =int=.
+# Tanken är att funktionen skall fungera som biblioteksfunktionen =strcmp=
+# som jämför strängar. Låt =x = strcmp(a,b)=. Om =x < 0= är =a= före =b= i
+# aktuell sorteringsordning. Om =x > 0= är =b= före =a=. Om =x == 0= är
+# =a= och =b= exvivalenta.
+
+# #+BEGIN_SRC C
+#     /// @returns like strcmp
+#     typedef int(*cmp_t)(element_t, element_t);
+# #+END_SRC
+
+# Nu kan vi modifiera funktionen som skapar en lista till att ta en pekare
+# till en funktion för att jämföra elementen:
+
+# #+BEGIN_SRC C
+#     list_t *list_new(cmp_t *cmp)
+#     {
+#       list_t *result = malloc(sizeof(list_t));
+#       if (result)
+#       {
+#         *result = { .cmp_f = cmp };
+#       }
+#       return result;
+#     }
+# #+END_SRC
+
+# Och sedan använda denna funktion när vi behöver jämföra element, t.ex.
+# när vi vill göra insättning i sorteringsordning:
+
+# #+BEGIN_SRC C
+#     void list_insert(list_t *l, element_t elem)
+#     {
+#       node_t **c = &(l->first);
+#       while (*c && l->cmp_f((*c)->elem, elem)
+#         {
+#           c = &((*c)->next);
+#         }
+#       *c = node_new(elem, *c);
+#     }
+# #+END_SRC
+
+# (Observera användandet av dubbelpekare ovan!)
+
+# *TIPS!*
+
+# Om listan/trädet behöver kopiera element behövs en funktion för det. Om
+# listan/trädet behöver ta bort ett element ur minnet behövs en funktion
+# för det (eftersom elementet kan innehålla pekare till andra strukturer
+# som måste frigöras explicit). Och så vidare.
+
+# *Koden för listan eller trädet får inte innehålla någon som helst kod
+# som är specifik för lagerhanteraren!*
+
+# Om du t.ex. behöver skriva ut alla element i en lista kan du lösa det på
+# två sätt:
+
+# 1. Implementera en *extern* iterator
+# 2. Implementera en *intern* iterator
+
+# En *extern* iterator är ett protokoll som låter en användare vandra
+# igenom en datastruktur. Så här:
+
+# #+BEGIN_SRC C
+#     iter_t *iter = list_iterator(mylist);
+#     while (iter_has_next(iter))
+#       {
+#         element_t elem = iter_next(iter);
+#         shelf_t *s = elem->p;
+#         printf("Shelf: %c%d\n", s->letter, s->number);
+#       }
+# #+END_SRC
+
+# Iteratorn vet att listan innehåller element av typen =element_t=, men
+# programmeraren måste hålla koll på vad som finns i =element_t=-objekten
+# som returnerars och hämta ut
+
+# En *intern* iterator tar en funktionspekare och applicerar den på alla
+# element i turordning:
+
+# #+BEGIN_SRC C
+#     void list_iterate(list_t *l, iter_fun_t *f)
+#     {
+#       for (elem_t *c = l->first; c; c = c->next)
+#         {
+#             f(c->elem);
+#         }
+#     }
+# #+END_SRC
+
+# Här är =iter_fun_t= en typ för en funktion som tar ett =element_t= och
+# inte returnerar något utan bara har sido-effekted. T.ex. kunde vi ha en
+# funktion:
+
+# #+BEGIN_SRC C
+#     void print_shelf(element_t elem)
+#     {
+#       shelf_t *s = elem->p;
+#       printf("Shelf: %c%d\n", s->letter, s->number);
+#     }
+# #+END_SRC
+
+# som kan användas så här:
+
+# #+BEGIN_SRC C
+#     list_iterate(mylist, print_element);
+# #+END_SRC
+
+# *När ni är klara med denna del, flytta trädet och listan egna kataloger
+# som inte ligger tillsammans med kod från lagerhanteringssystemet.*
+
+# ** Integration med andras kod
+#    :PROPERTIES:
+#    :CUSTOM_ID: integration-med-andras-kod
+#    :END:
+
+# Denna del av uppgiften går ut på att uppleva integration med kod som man
+# inte själv har skrivit. För denna uppgift skall ni para ihop er med ett
+# annat kodpar på kursen. Använd Piazza för att hitta ett annat par. Det
+# nya paret skall helst vara från en annan grupp och får under inga
+# omständigheter innehålla en gammal partner från inlupp 1.
+
+# I denna del av uppgiften skall ni *byta träd och lista* med varandra. Ni
+# klonar (eller forkar) det andra kodparets repository och kompilerar och
+# länkar mot den koden istället för er egen list/trädkod. *HETT TIPS:*
+# hitta ett kodpar att byta med så innan ni skriver koden och försök
+# *komma överens* om hur ni måste utöka headerfilerna (vilket är tillåtet
+# i denna uppgift!) för att kunna byta kod med varandra. Idealiskt har ni
+# *en gemensam* .h-fil.
+
+# Om ni gör allt rätt skall ni kunna ta det andra kodparets .c-filer,
+# kompilera om, och så skall allt fungera.
+
+# Använd det andra kodparets dokumentation (eller den gemensamma) och
+# försök undvika att läsa kod för att förstå hur något skall använda.
+# Programmera alltså mot /gränssnittet/ som det är tänkt att man skall
+# göra -- man har inte alltid tillgång till koden. Med mindre än att ni
+# kan påvisa buggar i det andra kodparets kod får ni *INTE* ändra deras
+# kod -- ni måste anpassa ert program att fungera med de nya träd- och
+# listmodulerna. Använd issue trackern på GitHub för att få det andra
+# kodparet att laga sina fel!
+
+# Skriv en kort rapport om era erfarenheter som en issue på GitHub för det
+# andra kodparets repository. (Använd detta för att redovisa relevanta
+# mål.)
+
+# -  Hur stora var skillnaderna mellan implementationerna?
+# -  Var dokumentationen välskriven och användbar?
+# -  Även om gränssnitten var lika, fanns det ibland skillnader i
+#    beteenden?
+# -  Hur upplevde ni kvaliteten på namn i den andra koden?
+# -  Saknades någon funktion?
+# -  Fanns det något som var extra bra i den andra koden som saknades i
+#    er?
+
+# ** Enhetstester
+#    :PROPERTIES:
+#    :CUSTOM_ID: enhetstester
+#    :END:
+
+# Nu skall vi på allvar enhetstesta vår kod (se föreläsningen om
+# testning). Egentligen skall all kod enhetstestas, men det räcker med en
+# delmängd i detta fall.
+
+# Testa *alla* funktioner i list- och trädmodulerna! Det kommer att vara
+# bra att ha när ni skall använda kod från ett annat par. Vidare skall ni
+# testa åtminstone /alla funktioner/ som används för att lägga till och ta
+# bort en vara ur lagrets databas, samt undo-funktionen. Med alla
+# funktioner avses här alla funktioner som ni har skrivit i ert program
+# som som anropas i samband med tillägg av vara, etc.
+
+# *Observera:* Ni skall inte testa funktioner som läser in data från
+# användaren. Om det är omöjligt att göra det (för att det är inläsningar
+# överallt ... hm ...bra program???) behöver ert program /refaktoreras/,
+# så att inläsningslogik och applikationslogik separeras från varandra.
+# Exempelvis, om det finns en =add_goods= som ser ut så här (pseudokod):
+
+# #+BEGIN_SRC python
+#     def add_goods(DB):
+#       name = input_string("Namn: ")
+#       desc = input_string("Beskrivning: ")
+#       cost = input_int("Pris: ")
+#       # logik för att kolla att indatat är OK (utelämnad här)
+#       ware = new_ware(name, desc, cost)
+#       if ask_save_true():
+#         DB.add_ware(ware)
+# #+END_SRC
+
+# så skall den ändras till två funktioner:
+
+# #+BEGIN_SRC python
+#     def add_goods_ui(DB):
+#       name = input_string("Namn: ")
+#       desc = input_string("Beskrivning: ")
+#       cost = input_int("Pris: ")
+#       if ask_save_true():
+#         add_goods(DB, name, desc, cost)
+
+#     def add_goods(DB, name, desc, cost):
+#       # logik för att kolla att indatat är OK (utelämnad här)
+#       ware = new_ware(name, desc, cost)
+#       DB.add_ware(ware)
+# #+END_SRC
+
+# Här ser vi att alla inläsningar (=input_...= och =ask_...=) är i
+# funktionen som heter =add_goods_ui=. Denna funktion behöver inte testas
+# -- det räcker med den där logiken för att kolla att indatat är OK
+# ligger, tillsammans med den faktiska tilläggningen.
+
+# Skriv ett enhetstest för varje funktion, alltså testa exempelvis skapa
+# ny lista, stoppa in och ta bort separat -- alltså i tre olika test.
+
+# Börja varje test med att skapa en ny "ren" testsituation. I fallet den
+# länkade listan handlar det alltså om att skapa en ny lista det första vi
+# gör i varje test. Syftet är att minska de möjliga felkällorna när vi
+# sedan skall leta efter varför ett test inte passerar. I slutet av varje
+# test skall vi också ta bort alla temporära data.
+
+# ** Namngivning och refaktorering
+#    :PROPERTIES:
+#    :CUSTOM_ID: namngivning-och-refaktorering
+#    :END:
+
+# När du skrev den förra lagerhanteraren var ditt fokus kanske på att få
+# programmet att fungera. Det är lika viktigt att programmet fungerar som
+# att det är *läsbart* och *förändringsbart*.
+
+# Gå igenom ditt program och titta på alla namn. Vad heter funktioner? De
+# bör ha namn som förklarar vad de gör t.ex. =save_product_to_db= eller
+# =ask_yes_no_question=. Detsamma gäller för variabler! Variabelnamnet
+# =amount= är mindre informativt än =number_of_fish= såvida det inte är
+# fullständigt uppenbart från det kontext där =amount= används att det är
+# antalet /fiskar/ som avses.
+
+# En bra tumregel är att ju längre variablernas räckvidd är -- desto
+# längre namn skall de ha. Globala variabler bör alltså ha långa namn, och
+# en loopvariabel för ett index in i en array kan heta =i=.
+
+# Sök också igenom ditt program efter repetitioner. Om du ser att samma
+# följd av instruktioner förekommer flera gånger för att åstadkomma samma
+# sak men kanske med olika input är det läge att skapa en funktion för
+# det. Till exempel, om denna kod förekommer på flera ställen:
+
+# #+BEGIN_SRC C
+#     int merch_id = ask_selection("Välj vara", db);
+#     bool remove = ask_yes_no_question("Ta bort vara?");
+#     if (remove)
+#       {
+#          db_remove(db, merch_id);
+#       }
+# #+END_SRC
+
+# Kan man tänka sig att skapa funktionen =remove_merch_from_db=:
+
+# #+BEGIN_SRC C
+#     void remove_merch_from_db(db_t *db)
+#     {
+#       // koden ovan
+#     }
+# #+END_SRC
+
+# och anropa den. Då blir det enklare att ändra på interaktionen med
+# databasen eftersom man bara behöver ändra på ett ställe.
+
+# Ofta kan det vara så att man använder olika parameterar på olika platser
+# i koden, t.ex. olika frågesträngar till =ask_selection=. Då kan de bli
+# extra parametrar till funktionen:
+
+# #+BEGIN_SRC C
+#     void remove_merch_from_db(db_t *db, char *query, char *conf_query)
+#     {
+#       int merch_id = ask_selection(query, db);
+#       bool remove = ask_yes_no_question(conf_query);
+#       if (remove)
+#         {
+#            db_remove(db, merch_id);
+#         }
+#     }
+# #+END_SRC
+
+# ** Koddokumentation
+#    :PROPERTIES:
+#    :CUSTOM_ID: koddokumentation
+#    :END:
+
+# Använd verktyget doxygen för att dokumentera din kod. Du kan börja med
+# att titta på exempel i headerfilen för den länkade listan. Målet med
+# koddokumentation är att förklara för en användare av /koden/ (inte
+# programmet) hur den skall användas.
+
+# Tänk dig att vi plötsligt skulle byta ut din implementation av
+# lagerhanteraren mot en annan grupps implementation, som du aldrig har
+# sett. Förmodligen är många funktioner väldigt lika, men det finns säkert
+# också stora skillnader. Funktioner som du aldrig har sett blir betydligt
+# enklare att använda om de har en beskrivande text och funktioner som du
+# också har, men som skiljer sig litet, är ännu viktigare att ha
+# dokumentation för eftersom din förförståelse för hur de fungerar kommer
+# att vara fel.
+
+# Dokumentation är med fördel kort för enkla saker och längre för komplexa
+# saker. För komplexa funktioner kan man t.ex. ha ett exempel på hur man
+# kan använda den för att göra något.
+
+# Tänk på att dokumentation kostar! När programmet ändras måste
+# dokumentationen också ändras för att fortfarande vara korrekt. Felaktig
+# dokumentation är en klassisk felkälla.
+
+# * Åtta möjliga utökningar
+#   :PROPERTIES:
+#   :CUSTOM_ID: åtta-möjliga-utökningar
+#   :END:
+
+# 1. Möjlighet att spara och ladda en annan databasfil under körning av
+#    programmet
+# 2. Automatisk balansering av databasträdet istället för att användaren
+#    måste göra det manuellt
+# 3. Utöka makefilen med ett test-direktiv som kör alla tester
+# 4. Använd ett "coverage-verktyg" typ =gcov= för att ta reda på hur stor
+#    del av er kod testerna testar
+# 5. Konfigurera GitHub för att köra enhetstester automatiskt när kod
+#    checkas in
+# 6. Använd listmodul och trädmodul från två olika kodpar
+# 7. Utöka lagerplatsinformation med datum -- om datumet är före dagens
+#    datum finns varan, annars avser datumet
+# 8. Tillämpa defensiv programmering på hela programmet (se föreläsning
+#    12)
+
+# * Förslag på 3-mål att redovisa
+#   :PROPERTIES:
+#   :CUSTOM_ID: förslag-på-3-mål-att-redovisa
+#   :END:
+
+# 1. [[http://auportal.herokuapp.com/achievements/101][Inluppsmål 2]]
+# 2. [[http://auportal.herokuapp.com/achievements/10][E10]] -- om du
+#    implementerar databasen t.ex. med ett binärt sökträd eller en länkad
+#    lista som är kan lagra godtyckligt data
+# 3. [[http://auportal.herokuapp.com/achievements/13][F13]] -- finns flera
+#    lämpliga delar av programmet där man t.ex. letar efter data eller
+#    räknar ut totalsumman
+# 4. [[http://auportal.herokuapp.com/achievements/22][I22]] -- indata både
+#    från användaren och andra delar av programmet att tänka på
+# 5. [[http://auportal.herokuapp.com/achievements/26][J26]] -- vad behöver
+#    sparas på heapen, och varför?
+# 6. [[http://auportal.herokuapp.com/achievements/9][D9]] -- ett direkt
+#    krav ovan
+# 7. Fortsätt med [[http://auportal.herokuapp.com/achievements/7][C7]] --
+#    du vill inte behöva efterskapa saker sedan (*Du kan alltså inte
+#    redovisa detta redan nu.*)
+
+# * Förslag på 4/5-mål att redovisa
+#   :PROPERTIES:
+#   :CUSTOM_ID: förslag-på-45-mål-att-redovisa
+#   :END:
+
+# 1. [[http://auportal.herokuapp.com/achievements/3][A3]] -- om du delar
+#    upp programmet i olika moduler som antytts ovan
+# 2. [[http://auportal.herokuapp.com/achievements/31][K31]] -- motivera
+#    din modularisering
+# 3. [[http://auportal.herokuapp.com/achievements/39][M39]] -- vid
+#    insättning/uttag ur länkade strukturer
+# 4. [[http://auportal.herokuapp.com/achievements/47][P47]] -- hjälp en
+#    annan grupp förbättra sin kod med en pull request
+# 5. [[http://auportal.herokuapp.com/achievements/50][Q50]] -- försök
+#    avgöra hur bra dina tester är
+
+
 #+include: "../footer.org" 
+
 
