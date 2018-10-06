@@ -2847,7 +2847,7 @@ void ioopm_linked_list_clear(ioopm_list_t *list);
 /// @param prop the property to be tested
 /// @param x an additional argument (may be NULL) that will be passed to all internal calls of prop
 /// @return true if prop holds for all elements in the list, else false
-bool ioopm_linked_list_all(ioopm_list_t *list, bool (*prop)(int, int), void *x);
+bool ioopm_linked_list_all(ioopm_list_t *list, bool (*prop)(int, void *), void *x);
 
 /// @brief Test if a supplied property holds for any element in a list.
 /// The function returns as soon as the return value can be determined.
@@ -2855,13 +2855,13 @@ bool ioopm_linked_list_all(ioopm_list_t *list, bool (*prop)(int, int), void *x);
 /// @param prop the property to be tested
 /// @param x an additional argument (may be NULL) that will be passed to all internal calls of prop
 /// @return true if prop holds for any elements in the list, else false
-bool ioopm_linked_list_any(ioopm_list_t *list, bool (*prop)(int, int), void *x);
+bool ioopm_linked_list_any(ioopm_list_t *list, bool (*prop)(int, void *), void *x);
 
 /// @brief Apply a supplied function to all elements in a list.
 /// @param list the linked list
 /// @param fun the function to be applied
 /// @param x an additional argument (may be NULL) that will be passed to all internal calls of fun
-void ioopm_linked_apply_to_all(ioopm_list_t *list, void (*fun)(int *, int *), void *x);
+void ioopm_linked_apply_to_all(ioopm_list_t *list, void (*fun)(int *, void *), void *x);
 #+END_SRC
 
 The initial steps were very small in comparison with this step,
@@ -3509,14 +3509,14 @@ other tools, like =Instruments.app= on macOS.)
 
 To develop an execution profile, we are going to run the program
 on some files of various shapes and sizes. To save you some time 
-cooking those up, you can get such files [[https://github.com/IOOPM-UU/ioopm18][here]]. 
+cooking those up, you can get such files [[../misc/freq-count.zip][here]]. 
 
 Run your program on each input file and inspect the result. Answer
 the following questions.
 
 - For each input, what are the top 3 functions? 
-- For each input, what are the top 3 functions *in your program*? 
-- Are the top 3 functions *in your program* consistent across the inputs? Why? Why not? 
+- For each input, what are the top 3 functions *in your code*[fn::Meaning, "in your program" -- that you have written.], or is it library functions? 
+- Are the top 3 functions *in your code* consistent across the inputs? Why? Why not? 
 - Is there some kind of trend? (Possibly several.)
 - Do the results correspond with your expectations? 
 - Based on these results, do you see a way to make your program go faster? 
@@ -3527,6 +3527,58 @@ repository. Use =# Initial Profiling Results= as the heading. Feel
 free to be very brief but make sure you can come back to these
 notes in 10 weeks and still understand them as well as you
 understand them now. Also note down how the numbers were obtained.
+
+#+begin_note
+You can use the tool =time= to test your program's performance
+thus: =time ./prog input=. That produces output like so:
+=./freq_count 10k-words.txt 0,65s user 0,01s system 98% cpu 0,670
+total= This means that it took 0.67 seconds to run the program
+from start to finish, out of which 0.65 seconds were spend in the
+program's code and 0.01 seconds in calls to operating system
+functions. That the program got 98% of a CPU means that one CPU
+was running the program almost all the time in that 0.67 seconds
+-- if that number had been 50%, the total time would have been
+doubled, because the program only ran half of the time.
+
+When you run =time= to test if an optimisation paid of, you should
+ideally run the program many times and pick e.g. the 5 best out of
+10 to avoid measuring jitter in the system. Also think about the
+input you are using -- more input means longer run-time which 
+is more resilient to jitter. Also think about what input to use
+that exercises the functions you are interested in. Ideally, the
+input should also be representative for the program so we are
+optimising under as real conditions as possible. 
+
+Example, using the =--verbose= flag to also see e.g., memory 
+consumption: 
+
+#+BEGIN_EXAMPLE
+stw:inlupp1/ (master✗) $ /usr/bin/time --verbose ./freq_count freq-count-files/10k-words.txt
+        Command being timed: "./freq_count freq-count-files/10k-words.txt"
+        User time (seconds): 0.86
+        System time (seconds): 0.00
+        Percent of CPU this job got: 98%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.87
+        Average shared text size (kbytes): 0
+        Average unshared data size (kbytes): 0
+        Average stack size (kbytes): 0
+        Average total size (kbytes): 0
+        Maximum resident set size (kbytes): 1812
+        Average resident set size (kbytes): 0
+        Major (requiring I/O) page faults: 0
+        Minor (reclaiming a frame) page faults: 90
+        Voluntary context switches: 1
+        Involuntary context switches: 18
+        Swaps: 0
+        File system inputs: 0
+        File system outputs: 16
+        Socket messages sent: 0
+        Socket messages received: 0
+        Signals delivered: 0
+        Page size (bytes): 4096
+        Exit status: 0
+#+END_EXAMPLE
+#+end_note
 
 
 *** Adapting the Number of Buckets

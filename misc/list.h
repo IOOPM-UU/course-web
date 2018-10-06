@@ -75,7 +75,7 @@ void ioopm_linked_list_clear(ioopm_list_t *list);
 /// @param prop the property to be tested
 /// @param x an additional argument (may be NULL) that will be passed to all internal calls of prop
 /// @return true if prop holds for all elements in the list, else false
-bool ioopm_linked_list_all(ioopm_list_t *list, bool (*prop)(elem_t, elem_t), void *x);
+bool ioopm_linked_list_all(ioopm_list_t *list, bool (*prop)(elem_t, void *), void *x);
 
 /// @brief Test if a supplied property holds for any element in a list.
 /// The function returns as soon as the return value can be determined.
@@ -83,13 +83,13 @@ bool ioopm_linked_list_all(ioopm_list_t *list, bool (*prop)(elem_t, elem_t), voi
 /// @param prop the property to be tested
 /// @param x an additional argument (may be NULL) that will be passed to all internal calls of prop
 /// @return true if prop holds for any elements in the list, else false
-bool ioopm_linked_list_any(ioopm_list_t *list, bool (*prop)(elem_t, elem_t), void *x);
+bool ioopm_linked_list_any(ioopm_list_t *list, bool (*prop)(elem_t, void *), void *x);
 
 /// @brief Apply a supplied function to all elements in a list.
 /// @param list the linked list
 /// @param fun the function to be applied
 /// @param x an additional argument (may be NULL) that will be passed to all internal calls of fun
-void ioopm_linked_apply_to_all(ioopm_list_t *list, void (*fun)(elem_t *, elem_t *), void *x);
+void ioopm_linked_apply_to_all(ioopm_list_t *list, void (*fun)(elem_t *, void *), void *x);
 
 /// @brief Create an iterator for a given list
 /// @param the list to be iterated over
