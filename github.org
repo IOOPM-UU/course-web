@@ -276,7 +276,8 @@ $ git tag assignment1_done
 *IMPORTANT:* Note that, by default, =git push= does not transfer tags to remote
 servers! Thus, as a final step to tagging your commits, you must
 explicitly push tags: =git push origin <tagname>= where
-=<tagname>= is e.g., =assignment1_done=, etc.
+=<tagname>= is e.g., =assignment1_done=, or write =git push --tags= 
+followed by a normal =git push= to push both tags and normal commits.
 
 If you realise that mistagged something, or you later find a bug
 so that you want another commit to be the finished assignment one,

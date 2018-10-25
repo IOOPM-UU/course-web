@@ -1147,8 +1147,7 @@ defects is a good way to avoid breaking the current flow by
 switching into debugging mode, and helps us remember it so it
 eventually gets fixed.
 
-* The Three Rules of Cheating
-
+* The Three Rules of Cheating <<cheat>>
 Cheating is one of the best tools in the programming toolbox, and
 a trick you should be using all the time. The rule of cheating is
 this (also repeated above):
@@ -1196,8 +1195,7 @@ By giving a proper name to each function invented by cheating, we
 make sure that the code reads more high-level, and it also helps
 us remember what problem the function in question should solve.
 
-
-* Dodging: Not Quite Cheating
+* Dodging: Not Quite Cheating <<dodge>>
 When doing the initial database design, we made proper use of
 dodging twice to make immediate simplifications that help us make
 progress and construct good increments. Here are two examples of

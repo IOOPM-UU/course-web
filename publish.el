@@ -119,7 +119,7 @@
 
         ("misc"
          :base-directory "/home/stw/t/ioopm/2018/site/misc/"
-         :base-extension "el\\|pdf\\|c\\|h\\|java\\|txt\\|cast\\|png"
+         :base-extension "el\\|pdf\\|c\\|h\\|java\\|txt\\|cast\\|png\\|zip"
          ;; :publishing-directory "/tmp/ioopm18/misc/"
          :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/ioopm18/misc/"
          :publishing-function org-publish-attachment)

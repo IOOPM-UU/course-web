@@ -11,7 +11,7 @@ använda den för att redovisa
 
 ** Tärningar
 
-I filen [[https://github.com/IOOPM-UU/ioopm17/tree/master/labbar/Die.java][Die.java]] ligger en [[https://docs.oracle.com/javase/tutorial/java/concepts/class.html][klass]] som representerar en tärning.
+I filen [[https://github.com/IOOPM-UU/ioopm17/blob/master/labbar/java/Die.java][Die.java]] ligger en [[https://docs.oracle.com/javase/tutorial/java/concepts/class.html][klass]] som representerar en tärning.
 Kompilera programmet med kommandot =javac Die.java=. [fn::Om du
 vill kan du pröva att skriva ~javac -help~ för att se vilka växlar
 du kan ge till Java-kompilatorn.] Detta skapar en fil i den

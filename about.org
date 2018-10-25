@@ -227,8 +227,8 @@ understanding that achievement. /Failures with or without
 push-back are not counted towards any grade./
 
 #+begin_note
-In 2017, about 30\% of all demonstrations were at least partially
-failed. About 5\% got puch-backs. 
+In 2017, about 30% of all demonstrations were at least partially
+failed. About 5% got push-backs. 
 #+end_note
 
 *An examiner's decision is final*, and the examiner does not "have

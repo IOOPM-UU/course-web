@@ -1,6 +1,21 @@
 #+title: Coding Exam
 #+include: "./setup.org"
 
+#+begin_note
+Pro tips during the coding exam:
+
+1. Don't panic
+2. Read the instructions before you start coding
+3. Take things in strides
+4. Drawing on paper always pays off...
+5. ...as does coding on paper if you get stuck
+6. You can use dodging and cheating just as usual
+7. If you are not certain -- test in a different source file
+8. gdb is your friend...
+9. ...and so is valgrind
+10. If you comment out tests etc. to get stuff to work -- say so!
+#+end_note
+
 * What is a Coding Exam?
 A coding exam is an individual exam that runs in the normal
 computer halls. You have to pass *two* coding exams on this

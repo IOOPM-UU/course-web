@@ -5,8 +5,7 @@
 This text is being written from scratch in 2018. For now, refer to the bootstrap sections on the [[./assignments/c-bootstrap.org][C bootstap labs]] and [[./assignments/assignment1.org][Assignment 1]].
 #+end_attention
 
-* Installing a Development Environment on Your Own Machine :optional:
-
+* Installing a Development Environment on Your Own Machine :optional: <<vagrant>>
 For those who do not want to tinker with their own machines, we
 suggest installing Vagrant to run a small virtualized Linux
 machine inside your computer to compile, debug, profile, etc. This

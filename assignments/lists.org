@@ -397,7 +397,7 @@ void list_append(list_t *list, elem_t element)
   if (list->last == NULL)
     { 
       /// Append on an empty list is same as prepend
-      list_prepend(element);
+      list_prepend(list, element);
     }
   else
     {
@@ -415,7 +415,7 @@ when inserting into an empty list.
 #+BEGIN_SRC c
 void list_prepend(list_t *list, elem_t element)
 {
-  link_t *link = link_new(element, NULL);
+  link_t *link = link_new(element, list->first);
 
   /// If list is empty, make the new element the last element
   if (list->first == NULL)
@@ -663,7 +663,6 @@ elem_t list_get(list_t *list, int index)
 }
 #+END_SRC
 
-
 * Inserting Elements at Any Valid Index
 Appending and prepending elements is useful, but given that lists
 are ordered sequences, it makes sense to support insertion of
@@ -789,7 +788,6 @@ We also have a ~/// TODO~ regarding ~list_append()~. There are
 
 Arguments can be made as to what solution is preferable. **Make up
 your own mind, and apply the fix!**
-
 
 * Deleting Lists 
 So far we are missing the dual function of ~list_new()~ --
