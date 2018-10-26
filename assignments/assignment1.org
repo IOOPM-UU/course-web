@@ -3023,14 +3023,14 @@ platforms. Quoting the [[https://en.wikipedia.org/wiki/C_data_types][Wikipedia a
 
 #+BEGIN_QUOTE
 [An int is a basic] signed integer type. Capable of containing
-at least the $[−32,767, +32,767]$ range; thus, it is at least 16
+at least the $[−32,768, +32,767]$ range; thus, it is at least 16
 bits in size.
 #+END_QUOTE
 
 The current C standard defines multiple integer data types (for
 example), which have invariant size across all platforms. For
 example, an ~int32_t~ is always 32 bits and is therefore capable
-of containing the $[−2,147,483,647, +2,147,483,647]$ range. On the
+of containing the $[−2,147,483,648, +2,147,483,647]$ range. On the
 computer on which I am editing this document right now, ~int32_t~
 is a type alias of ~int~, i.e., it is defined using ~typedef~ as
 ~int~ (because ~int~ is 32 bits on this machine). It is perfectly
