@@ -1,5 +1,5 @@
 #+title: Assignment 1 (Phase 1, Sprint 1)
-#+include: "../setup.org" 
+#+include: "../setup.org"
 
 #+begin_important
 *Intended start*: 2018-09-17 \\
@@ -51,7 +51,8 @@ By the end of this sprint you should have:
 - Have written about 1000 lines of code (LOC) plus another 1000
   lines of test code. (This of course depends on your coding
   style. If you hit say 2000 LOC without counting tests, you
-  probably need some help.)
+  probably need some help. Data point: Students on IOOPM who
+  finished early wrote 1700--2500 LOC.)
 
 ** Prerequisites to Start
 
@@ -65,9 +66,9 @@ By the end of this sprint you should have:
 4. Make sure you have [[../tools.org][a working development environment for C]].
 
 Both 3. and 4. should trivially be the case if you are done
-with 1. 
+with 1.
 
-** Organisation of this Document 
+** Organisation of this Document
 
 Rather than simply giving you a list of things to do based on the
 knowledge one has after having implemented similar things, the
@@ -75,27 +76,41 @@ assignment is going to have a story line. Thus, we will be making
 judgment calls, backing out of decisions that turned out to be
 sub-optimal, refactoring parts of the code as we develop better
 ways of accomplishing tasks and want to back-port them to be used
-everywhere, etc. etc. 
+everywhere, etc. etc. Because we are going to *incrementally
+evolve this code*, make sure to use version control properly. At a
+minimum, follow the instructions to check in at the end of each
+step. That way, it will be much simpler to dig up old versions of
+a function etc. if needed. If you find yourself making *copies* of
+source files, like =hash_table_step12.c=, /you are doing it
+wrong/. (Please ask for help if you don't understand why!)
 
 If you are already a good C programmer, you may be frustrated by
 the way this assignment progresses. In that case, I'd like to know
 when you are feedbacking to me at the end of this assignment. If
-you are a good C programmer paired with a novice programmer,
+you are a seasoned C programmer paired with a novice programmer,
 remember that the goal of the assignment is not to implement
 something -- it is to learn something, and implementing is a means
-to this end. 
+to this end.
 
 #+begin_attention
-Also, please -- *unless asked to* -- do not Google how to write
-/X/ in C until you have read and tinkered with the explanations of
-this document. In general, please refrain from using Google and
-Stackoverflow (etc.) during this assignment -- use Piazza instead.
+Also, please -- *unless explicitly asked to* -- do not Google how
+to write /X/ in C until you have read and tinkered with the
+explanations of this document. In general, please refrain from
+using Google and Stackoverflow (etc.) during this assignment --
+use Piazza instead.
 #+end_attention
 
 The entire assignment is laid out as a series of steps with the
-intended velocity of 1-2 steps per weekday (on average). Not all
-steps have equal length, and how long each step will take is going
-to be very individual. 
+intended velocity of 1-2 steps per weekday *on average*. Note that
+not all steps have equal length. Expect early steps to take longer
+(inverse proportional to your past coding experience perhaps?). If
+you want to plan ahead, *read ahead* and take notes of what is
+coming up. Early on, expect to be stuck on a compile error on a
+single line for an hour at times (ask for help if stuck on a
+compile error >20 minutes). Later on, expect to be mostly stuck
+debugging some behaviour in your program.
+/Bottom-line: how long each step will take is hard to plan, and is
+going to be very individual./
 
 ** Organisation of Files
 If you are relatively new to programming, it may not be clear to
@@ -109,31 +124,52 @@ assig1/                # the directory containing all files
 ├── hash_table.c          # hash table code
 ├── hash_table.h          # hash table declarations
 ├── hash_table_tests.c    # hash table tests
-├── list_linked.c         # linked list and iterator code 
-├── list_linked.h         # linked list declarations
-├── list_linked_tests.c   # linked list tests
+├── linked_list.c         # linked list and iterator code
+├── linked_list.h         # linked list declarations
+├── linked_list_tests.c   # linked list tests
 ├── iterator.h            # iterator declarations
 ├── Makefile              # for compiling, testing, running
 └── README.md             # report and build instructions (written by you)
 #+END_EXAMPLE
 
 * Ticket #1: Implement a Basic Hash Table
-
 The main work of this assignment will be done in the files
 =hash_table.h= and =hash_table.c=. The former is the header file,
 which declares functions and some necessary types. The latter
 contains all struct definitions and function definitions. The =.c=
 file will include the =.h= file using ~#include "hash_table.h"~.
-To avoid multiple inclusion problems, the =.h= file will start 
-with ~#pragma once~.
+To avoid multiple inclusion problems, the =.h= file will start
+with ~#pragma once~[fn::All lines starting with ~#~ are
+/preprocessor macros/, which are handled automatically before
+compilation. The macro ~#pragma once~ prevents a header file from
+being included more than once in a program, which usually leads to
+the compiler complaining about identically named things being
+defined more than once.].
 
 #+CAPTION: Initial header file =hash_table.h= for a basic hash table.
 #+BEGIN_SRC c
 #pragma once
 
+/**
+ * @file hash_table.h
+ * @author write both your names here
+ * @date 1 Sep 2019
+ * @brief Simple hash table that maps integer keys to string values.
+ *
+ * Here typically goes a more extensive explanation of what the header
+ * defines. Doxygens tags are words preceeded by either a backslash @\
+ * or by an at symbol @@.
+ *
+ * @see http://wrigstad.com/ioopm19/assignments/assignment1.html
+ */
+
 /// @brief Create a new hash table
 /// @return A new empty hash table
 ioopm_hash_table_t *ioopm_hash_table_create();
+
+/// @brief Delete a hash table and free its memory
+/// param ht a hash table to be deleted
+void ioopm_hash_table_destroy(ioopm_hash_table_t *ht);
 
 /// @brief add key => value entry in hash table ht
 /// @param ht hash table operated upon
@@ -155,7 +191,6 @@ char *ioopm_hash_table_remove(ioopm_hash_table_t *ht, int key);
 #+END_SRC
 
 ** Recap: Hash Tables
-
 A hash table data structure is a map from keys to values that uses
 the concept of hashing internally for performance. Many
 programming languages have support for maps, either as a library
@@ -185,7 +220,7 @@ $ python
 >>> quantities['answers']
 42
 >>>
->>> # Dump the contents of quantities
+>>> # Dump the contents of quantities (note the order)
 >>> quantities
 {'perfumes': 4711, 'primes_under_10': 4, 'answers': 42}
 >>>
@@ -211,8 +246,8 @@ more) in a number of discrete steps. These steps are structured to
 tell a story where we incrementally arrive at a final program.
 There is no complete concise specification -- you will have to
 work through this document bit by bit, because it discusses pros
-and cons, gets philosophical, etc. The point of this assignment
-is carrying it out, not having carried it out. 
+and cons, gets philosophical, etc. *The point of this assignment
+is carrying it out, not having carried it out.*
 
 ** The Above Code in C
 
@@ -239,10 +274,14 @@ key: perfumes => value: 4711
 key: primes_under_10 => value: 4
 #+end_example
 
-Note that the program (still below) is quite awful for many reasons:
+Note that the program that you are going to read is quite awful
+for many reasons:
 
 1. The number of entries in the map is static -- chosen at
-   compile-time.
+   compile-time[fn::This means that we must know what the user is
+   going to do before the program runs, and that a user's
+   interaction must not vary too much, or we will have to change
+   the size in the source code and recompile the program.]).
 2. Even though we only use 3 entries, we pay for 10 with respect
    to memory consumption.
 3. We don't yet use a hash, meaning that time complexity of
@@ -361,11 +400,12 @@ puts(M[1]); // prints barbara
 Good news about this representation:
 
 - It is very simple to understand and program for (this is *great*)
-- Insertion and lookup are fast, and O(1)
+- Insertion and lookup are fast, and $O(1)$[fn::This is usually
+  pronounced "constant time".]
 
 Bad news about this representation:
 
-- Only handles integer keys (we knew that, but worth repeating)
+- Only handles integer keys (we knew that, but worth repeating, lest we forget!)
 - Only works if we know the largest key value when the map is created
 - Does not work well for a sparse representation (e.g., few keys of widely different values)
 - Does not support deletion
@@ -408,13 +448,15 @@ array. A similar scheme can be used to (possibly) move to a
 smaller array on deletion.
 
 It is possible to solve all of the problems above by changing the
-representation so that:
+representation (meaning how the abstract notion of a hash table
+mapping keys to values is stored in memory) so that:
 
-1. Each index in the array covers a number of keys instead of a
-   single key; and
-2. Each value in the array is a ordered sequence of (key,value)
+1. Each index in the array covers a dynamic number of keys[fn::By
+   dynamic, we mean a value which is decided at run-time, and is
+   not fixed.] instead of a single key; and
+2. Each value in the array is a sequence of (key,value)
    pairs so that each entry in the map is represented by a
-   corresponding (key,value) pair.
+   corresponding (key,value) pair (that we will call /an entry/).
 
 In that representation, then index ~0~ in the array could (for
 example) cover all keys in the set ~{0, 15, 31, 47, ...}~. Looking
@@ -424,7 +466,7 @@ is 47. If no such pair exists, then there is no entry for the key
 47 in the map. Adding an entry for key 47 means adding a
 (key,value) pair to a sequence, possibly updating or replacing a
 previous entry. In typical hash table parlance, we talk about an
-array of *buckets*.
+array of *buckets*, each with zero or more *entries*.
 
 To avoid having to know the range of keys in use for a particular
 program, we use modulo (C syntax: ~%~). So, when inserting a key
@@ -436,9 +478,10 @@ to the good and bad news from above:
 
 - Still very simple to understand and program for
 - Insertion and lookup are still fast -- the array let's us jump
-  to the right *bucket* in O(1) time, after which we can search in
-  the bucket (typically O(/n/), where /n/ is the number of entries
-  in the bucket -- typically a quite small number)
+  to the right *bucket* in $O(1)$ time, after which we can search in
+  the bucket (typically $O(n)$[fn::This is normally pronounced
+  "linear time."], where $n$ is the number of entries in the
+  bucket -- typically a quite small number)
 - It handles /sparse representations/ well because it only stores
   data (in the form of pairs) for the entries in the map (as
   opposed to all possible entries as before).
@@ -446,7 +489,7 @@ to the good and bad news from above:
   of an entry for a key.
 - The same strategy for growing and shrinking the array to not
   need a priori knowledge about the possible keys can be applied.
-  Additionally, we can also adapt by changing the number of 
+  Additionally, we can also adapt by changing the number of
   *buckets* (this involves moving entries across buckets).
 
 Now, what remains is to lift the restriction that only integers
@@ -458,16 +501,38 @@ datum returns an integer -- a /hash code/. The hash code is
 usually some kind of semi-unique "fingerprint" of a datum, so that
 the hash code for similar data still have different hash codes. We
 use the hash code internally to select the bucket for a key (in
-O(1) time).
+$O(1)$ time).
 
 Development of hash functions is super interesting, quite
 subtle and out of scope for this course.
+
+For concreteness, here is a very basic hash function for hashing
+a string which produces an integer from a string by calculating
+the sum of all ASCII values of all the characters.
+#+BEGIN_SRC c
+unsigned long string_sum_hash(const char *str)
+{
+  unsigned long result = 0;
+  do
+    {
+      result += *str; /// *str is the ASCII value of
+    }
+  while (*++str != '\0');
+  return result;
+}
+#+END_SRC
+(Later in this document, we will see at least one better hash
+function implementation.)
 
 Using non-integer keys in a hash table thus requires the existence
 of a function that for a given value in the key domain returns an
 integer (and always the same value for the same key). Typically,
 we hide this to the users, except for the fact that we ask them to
 provide such a function that we subsequently use internally.
+
+*For now, we will [[../simple.org::*Dodging:%20Not%20Quite%20Cheating][dodge]] and consider only lists that store
+integers.* This seems like a good simplification, and innocuous
+too -- we know how to undo it later by adding a hash function.
 
 
 ** Hash Table Representation
@@ -482,7 +547,8 @@ by letting each entry know the location in memory of the next
 entry (using a pointer). Using an array is of course possible, and
 comes with all of the pros and cons from above[fn::Plus a few
 others, for example relating to the efficiency of changing bucket
-size.]. For now, we will stick with a linked structure.
+size.]. For the rest of this assignment, we will stick with a
+linked structure.
 
 Following the [[../simple.org][SIMPLE methodology]], we are going to /dodge/ and
 simplify the specification. Our first hash table implementation
@@ -493,21 +559,27 @@ number of buckets is fixed, each bucket can have an "unbounded"
 number of entries.
 
 #+begin_attention
-Always make a note of dodges and cheats so that you can revisit
+Always make a note of [[../simple.org::dodge][dodges]] and [[../simple.org::cheat][cheats]] so that you can revisit
 them and "fix them" later. Without such a log, it is easy to
 forget to e.g. undo a simplification later. You can mark this in
 your code e.g., ~/// DODGE: ...~, ~/// CHEAT: ...~, etc. like the
 ~/// FIXME: ...~, and ~/// TODO: ...~ that is used in code on
-this page. 
+this page.
+
+*Tip:* the =fixmee= Emacs package allows you to quickly jump
+between ~FIXME~, ~TODO~ etc. tags in code, or list all such tags
+and navigate to them. If you use the course's Emacs settings, it
+also understands ~CHEAT~ and ~DODGE~.
 #+end_attention
 
 Below are the initial definitions of the structs we will be using.
-Remember that ~typedef~ creates a /type alias/. Also note that we
-prefix the hash table type with ~ioopm_~. This will be a naming
-convention for all /public/ types on this course, *meaning, you
-will use this naming scheme for things in your code!* The
-~entry_t~ type is only used internally by the hash table, so it
-will not get a public name.
+We will be revising these several times as we go. Remember that
+~typedef~ creates a /type alias/. Also note that we prefix the
+hash table type with ~ioopm_~. This will be a naming convention
+for all /public/ types on this course, *meaning, you will use this
+naming scheme for things in your code!* The ~entry_t~ type is only
+used internally by the hash table, so it will not get a public
+name.
 
 #+CAPTION: Structure definitions
 #+BEGIN_SRC c
@@ -529,14 +601,14 @@ struct hash_table
 
 The figure [[fig_ht_1]] and Figure [[fig_ht_2]] show the hash table newly
 initialised and with three entries respectively. =ADDR= means a
-non-NULL pointer pointing to the datum on the right. 
+non-NULL pointer pointing to the datum on the right.
 
 #+NAME: fig_ht_1
 #+CAPTION: Newly initialised hash table.
 [[../images/ht1.png]]
 
 #+NAME: fig_ht_2
-#+CAPTION: Hash table with keys 4 $\mapsto$ bar, 17 $\mapsto$ foo, and 208 $\mapsto$ "baz". 
+#+CAPTION: Hash table with keys 4 $\mapsto$ bar, 17 $\mapsto$ foo, and 208 $\mapsto$ "baz".
 [[../images/ht2.png]]
 
 # This code can be used to generate uglier forms of the hash tables if keynote "sources" are ever lost
@@ -549,7 +621,7 @@ non-NULL pointer pointing to the datum on the right.
 
 #       node0 [label = "{0|NULL}|{1|NULL}|{2|NULL}|{3|NULL}|{4|NULL}|...|{16|NULL} ",height=2.5];
 #       node [width = 1.5];
-#     }      
+#     }
 # #+end_src
 
 # #+begin_src dot :results file :file ../images/hashtable02.png :exports none
@@ -560,14 +632,14 @@ non-NULL pointer pointing to the datum on the right.
 
 #       node0 [label = "{0|<f0> ADDR}|{1|NULL}|{2|NULL}|{3|NULL}|{4|<f4> ADDR}|...|{16|NULL} ",height=2.5];
 #       node [width = 1.5];
-#       node1 [label = "{<n> 17  | \"foo\" |NULL }"]; 
-#       node2 [label = "{<n> 4   | \"bar\" |<nxt> ADDR}"]; 
-#       node3 [label = "{<n> 208 | \"baz\" |NULL }"]; 
+#       node1 [label = "{<n> 17  | \"foo\" |NULL }"];
+#       node2 [label = "{<n> 4   | \"bar\" |<nxt> ADDR}"];
+#       node3 [label = "{<n> 208 | \"baz\" |NULL }"];
 
-#       node0:f0 -> node1:n; 
-#       node0:f4 -> node2:n; 
-#       node2:nxt -> node3:n; 
-#     }      
+#       node0:f0 -> node1:n;
+#       node0:f4 -> node2:n;
+#       node2:nxt -> node3:n;
+#     }
 # #+end_src
 
 *** Placement of ~struct hash_table~ and ~struct entry~ etc.
@@ -575,20 +647,20 @@ non-NULL pointer pointing to the datum on the right.
 The placement of structs is important. We want data structures to
 be opaque, meaning it should not be possible for a client to know
 how they are implemented. This preserves maximal freedom for us to
-change the implementation as we continue to improve our code, and 
-also helps us protect the invariants of the data structure. 
+change the implementation as we continue to improve our code, and
+also helps us protect the invariants of the data structure.
 
 Structs such as ~struct hash_table~ and ~struct entry~ are
 internal implementation details and as such should be in the
 =hash_table.c= file, not the =.h= file. Structs like ~option~ (if
 you implemented it) /needs/ to go into the =.h= file, as a user
-must be able to look inside the struct to search values. 
+must be able to look inside the struct to search values.
 
 Placement inside the =.c= file has impact on the testing instead
--- how will tests be able to access the structs? 
+-- how will tests be able to access the structs?
 
 Place the structs in the right places, and know your motivation
-for what you chose. 
+for what you chose.
 
 #+begin_tip
 This is a good time to start thinking about [[../achievements.org::A3][Achievement A3]].
@@ -599,7 +671,7 @@ This is a good time to start thinking about [[../achievements.org::A3][Achieveme
 
 #+begin_tip
 Once you are done with this bit, you know enough =gdb= to debug
-your own problems in the subsequent steps. If and when you have 
+your own problems in the subsequent steps. If and when you have
 a tricky situation to debug, *after you solved it*, you should
 definitely use that to demonstrate [[../achievements.org::R52][Achievement R52]].
 #+end_tip
@@ -615,7 +687,7 @@ time.
 So, in that spirit, let us spend a few minutes in =gdb= to explore
 the hash table representation of above. Below is a program that
 (on the stack for simplicity) creates a hash table. Compile this
-fprogram like so: =gcc -pedantic -Wall -g gdb-test.c= ([[../compiling.org][read about
+program like so: =gcc -pedantic -Wall -g gdb-test.c= ([[../compiling.org][read about
 what the flags mean here]]). This produces a file =a.out= that you
 can run through =gdb=. Note that compiling this program will
 produce a warning that you're declaring a variable ~ht~ that you
@@ -664,23 +736,23 @@ We are now going to run this program in =gdb=:
 1. =gdb ./a.out= Start =gdb= with =a.out= being the program we are running.
 2. =r one two three four five six= Run the program. This will
    finish nicely and print something like "[Inferior 1
-   (process 17723) exited normally]". The "one ... six" are the command-line 
-   arguments to the program meaning ~argv[1]~ will be "one", etc. 
+   (process 17723) exited normally]". The "one ... six" are the command-line
+   arguments to the program meaning ~argv[1]~ will be "one", etc.
 3. =b main= Set a breakpoint at the start of the ~main()~ function causing
    the program to stop and return control to =gdb= when we hit this point
    in the program.
 4. =r one two three four five six= Start the program again. This time, the
-   program will be paused immediately at the start. 
+   program will be paused immediately at the start.
 5. =list= Print the source code of the current line and
    surrounding lines.
 6. =n= (repeat this until you reach line 27, aka line 7 in
    ~main()~) Steps the program further, one step at the time. You
    can see what line is being executed.
-7. =p a= Print the contents of the ~a~ variable. 
+7. =p a= Print the contents of the ~a~ variable.
 8. =n= (repeat until you reach line 30, aka line 10 in ~main()~)
 9. =p ht.buckets[3]->next->next->key= Go to the fourth element in
    ~buckets~ in ~ht~, and follow the ~next~ pointer, twice, and
-   print the key in the corresponding entry. 
+   print the key in the corresponding entry.
 10. =c= Go back to executing the program until finish, or we hit
     another breakpoint. This will finish the program again.
 
@@ -688,7 +760,7 @@ In addition to =n= (next), there is also =s= (step), which /steps
 into/ an operation. For example, if the debugger is positioned on
 the line ~x = foo()~, =n= will run ~foo()~ and store the returned
 value in ~x~, whereas =s= will start ~foo()~ and immediately break
-at its first line, allowing you to step through ~foo()~ as well. 
+at its first line, allowing you to step through ~foo()~ as well.
 
 The =gdb= (and =lldb=) debuggers are /great/! For example if you
 run your program through =gdb= and you experience a crash, =gdb=
@@ -773,18 +845,18 @@ written before the code they are testing, and thus serve as a
 definition of correctness for that code. By starting with the
 tests, we are forced to decide what are valid behaviours and what
 is the semantics of the function *before* we start coding it up,
-which is very nice. 
+which is very nice.
 
 The test-driven approach will thus work very much like the
 classical approach, but change in two important ways:
 
 - For each step, we start by defining the success criteria of that
   step, expressed as a test -- and equate finishing the step with
-  the passing of the test. 
+  the passing of the test.
 - Because we are test-driven, the order in which we implement
   things might sometimes change because in order to test
   something, we usually need ways of inspecting it, or at least
-  getting some data for it. 
+  getting some data for it.
 
 A possible order of basic features for a hash table is this:
 
@@ -814,8 +886,8 @@ because it will only be able to interact with empty hash tables.
 #+begin_important
 Before we begin, [[../cunit.org][read the page on the CUnit test framework]] which
 is the mandated framework to use for unit testing on this course.
-Those instructions will give you a minimal unit test file that you 
-can populate with tests for the hash table. 
+Those instructions will give you a minimal unit test file that you
+can populate with tests for the hash table.
 #+end_important
 
 How do we test creation and destruction of a data structure?
@@ -831,7 +903,7 @@ Here is what such a test could look like:
 void test_create_destroy()
 {
    ioopm_hash_table_t *ht = ioopm_hash_table_create();
-   CU_ASSERT_PTR_NULL(ht); 
+   CU_ASSERT_PTR_NULL(ht);
    ioopm_hash_table_destroy(ht);
 }
 #+END_SRC
@@ -842,13 +914,13 @@ success criteria for the implementation of
 that whatever data was created by the first is removed by the
 second. Note that as tests go, this is no super great -- if we
 leave the definition of both functions under test empty, the tests
-will pass. However, as our feature sets grow, so will our tests, 
-which will take care of this. 
+will pass. However, as our feature sets grow, so will our tests,
+which will take care of this.
 
 Now that we have a test for both functions, now is the time to
 start thinking about how to implement them. Look at the discussion
 in [[step0][Step 0]] and [[step4][Step 4]] from the "Classical Approach". Then return
-here. 
+here.
 
 #+begin_important
 Ideally, after writing the test, you want to execute it and see
@@ -880,7 +952,7 @@ testing perspective, we could try to manually construct a hash
 table and use it for looking up, but this is brittle and will
 haunt us if we ever need to change the internal representation.
 Instead, for now, let us as a test simply verify that a newly
-created hash table is completely empty. 
+created hash table is completely empty.
 
 We can draw on our knowledge of the internal representation in our
 choice of lookup operations. If we know that the number of bucket
@@ -900,7 +972,7 @@ Should they be possible? How should they be handled?)
 void test_lookup()
 {
    ioopm_hash_table_t *ht = ioopm_hash_table_create();
-   for (int i = 0; i < 18; ++i) /// 18 is a bit magical 
+   for (int i = 0; i < 18; ++i) /// 18 is a bit magical
      {
        CU_ASSERT_PTR_NULL(ioopm_hash_table_lookup(ht, i));
      }
@@ -935,7 +1007,7 @@ Dijkstra's classical quote about testing -- that testing can only
 prove the presence of errors, not the absence -- stems from the
 fact that we, in the general case, cannot (be sure to) test all
 possible cases. Thus, if all tests pass, we cannot claim
-correctness, just that "all tests pass". 
+correctness, just that "all tests pass".
 
 Testing is to a large extent about being clever and economic about
 what tests to execute. If we are going to test a linked list, for
@@ -946,7 +1018,7 @@ against the empty list is important, as is a list with a single
 element, and a list with "a couple of" elements. These typically
 represent the important states of a list. For example, in a list
 with a single element, there is no middle element, so we need one
-with "a couple of" elements to cover that case. 
+with "a couple of" elements to cover that case.
 
 For inserting values, there are going to be two, possibly three
 important basic cases to test for:
@@ -961,7 +1033,7 @@ errors. For example, maybe a bug in inserting with an existing key
 leaves the hash table in a corrupted state that triggers an error
 on the next lookup. When that error happens, we would like to be
 able to deduce that the error is in the implementation of insert
-with an existing key. 
+with an existing key.
 
 Thus, to reduce the search space for the root cause of a bug, we
 test the cases 1-3 separately. After this, it makes sense to test
@@ -969,7 +1041,7 @@ the interaction between the cases, e.g. testing the sequences
 =1;1=, =1;2=, =2;2=, etc. And possibly longer sequences. Thus, if
 the tests for 1, 2 and =1;1= passes, but the test =1;2= fails, we
 know that it is the interaction between 1 and 2, and that the bug
-is likely in 2 given that =1;1= worked fine. 
+is likely in 2 given that =1;1= worked fine.
 
 #+begin_important
 In a nut shell, test design is about finding a small enough number
@@ -988,7 +1060,7 @@ example, a minimal test for case 1 above would be:
 2. Verify that key $k$ is not in $h$ using lookup
 3. Insert a value $v$ with key $k$ in $h$
 4. Use lookup to verify that $k$ maps to $v$
-5. Destroy $h$ 
+5. Destroy $h$
 
 Go ahead and code up that test in this function skeleton:
 
@@ -1026,7 +1098,7 @@ accidentally break stuff!
 Now you know basic [[https://en.wikipedia.org/wiki/Test-driven_development][test-driven development]]! Granted, details are
 still a bit sketchy, but we are only on Assignment 1. This diagram
 shows the process of test-driven development quite clearly,
-especially after having completed it once. 
+especially after having completed it once.
 
 #+CAPTION: The life-cycle of test-driven design (from Wikipedia)
 https://upload.wikimedia.org/wikipedia/commons/0/0b/TDD_Global_Lifecycle.png
@@ -1069,8 +1141,8 @@ Compile *often*. Initially, perhaps once for every line of code
 you edit. It is better to capture errors immediately and to fix
 small errors all the time rather than face a mountain of errors to
 fix later. Along the same lines, try to have a working program at
-all times -- so that you can run it and see where it crashes. 
-#+end_attention 
+all times -- so that you can run it and see where it crashes.
+#+end_attention
 
 Remember that the C compiler reads files top-down. Thus, if
 function /f/ appears before function /g/ in the source, C does not
@@ -1082,7 +1154,7 @@ When you are compiling a program that does not have a ~main()~
 function, you need to use /separate compilation/ by adding the
 =-c= flag when you compile. This produces object code (e.g.
 =file.o=) rather than an executable, and thus does not need any
-main function. 
+main function.
 
 When you read the output from the compiler, don't read it from the
 end, but *scroll up and read from the start.* It is very likely,
@@ -1155,14 +1227,14 @@ ioopm_hash_table_t *ioopm_hash_table_create()
 }
 #+END_SRC
 
-#+begin_tip 
+#+begin_tip
 There is a companion function to ~malloc()~, called ~calloc()~,
 that initialised allocated memory by setting all its bits to zero.
 The ~calloc()~ function is intented to be used to allocate arrays,
 but can always be used in place of ~malloc()~. To avoid nasty bugs
 due to use of uninitialised memory, *always* use ~calloc()~ and
 *never* use ~malloc()~.
-#+end_tip 
+#+end_tip
 
 Using ~calloc()~ we can rewrite the create function thus:
 
@@ -1186,12 +1258,12 @@ We already have a working ~ioopm_hash_table_create()~, so we are
 almost done. To finish this step, you should:
 
 1. Make sure that your code compiles with the [[../compiling.org][appropriate flags]]
-   turned on. Preferably using a [[../makefiles.org][Makefile]]. Once your makefile 
-   has grown a bit (and there are more files and more tests), 
+   turned on. Preferably using a [[../makefiles.org][Makefile]]. Once your makefile
+   has grown a bit (and there are more files and more tests),
    you should use it to demonstrate [[../achievements.org::U57][Achievement U57]].
 2. [[../github.org][Check your code into the approprate GitHub repos]]. Tag your
    commit with =assignment1_step0= following the instructions
-   in the previous link. 
+   in the previous link.
 
 
 **  Step 1: Inserting a new (key, value) entry <<step1>>
@@ -1315,13 +1387,14 @@ the possibility of solving big problems!
 
 Before we code up the ~find_entry_for_key()~ and ~entry_create()~
 functions, let us consider one more aspect of the code. We always
-insert new entries at the head of a bucket's list (i.e., a
+insert new entries at the front of a bucket's list (i.e., a
 /prepend/). This means that entries in buckets are unsorted, which
 in turn means that we must always search the whole list before we
 can determine that it does not contain an entry with the key we
 are looking for. If we tweaked our insertion so that the list was
 ordered by keys, searching for a key $k_1$ can terminate as soon as
-we see a key $k_2$ such that $k_2 < k_1$.
+we see a key $k_2$ such that $k_2 < k_1$. This seems like a good
+choice if buckets have lots of entries.
 
 This is an /optimisation/ of the find operation. We can (and will)
 discuss later the case against premature optimisation (and whether
@@ -1330,10 +1403,10 @@ to implement this optimisation, it is important that we can do so
 without making it too costly to insert entries in a way that
 maintains the desired order. (Note that always inserting at the
 head of the list is very fast, and we will lose this now. Will
-losing this O(1) insertion to speed up search be an optimisation
+losing the $O(1)$ insertion to speed up search be an optimisation
 on the whole? If you have a moment to spare, this is an
 interesting question worth pondering. Also ask yourself if there
-is more information that we need to answer the question.) 
+is more information that we need to answer the question.)
 
 Speaking of optimisation, we would like to also avoid e.g. using
 one search operation to find an existing entry with a given key,
@@ -1342,13 +1415,14 @@ insert the new entry.
 
 After some thinking (and with experience, you'll learn to see
 these kinds of things immediately) we note that the two find
-operations are strikingly similar. Let (~key~, ~value~) be the
-entry we are trying to add. If the first search comes across an
-entry /e/ such that /e/ = ($k_1$, $v_1$) such that $k_1 > key$, then
-not only can we conclude that there is no entry with key $key$,
-but that ($key$,$value$) should be added right before /e/. Thus,
-with a little bit of cleverness, a single find can serve both
-purposes at once.
+operations we have been discussing are strikingly similar. Let
+(~key~, ~value~) be the entry we are trying to add. If the first
+search comes across an entry /e/ such that /e/ = ($k_1$, $v_1$)
+such that $k_1 > key$, then not only can we conclude that there is
+no entry with key $key$, but that ($key$,$value$) should be added
+right before /e/. Thus, with a little bit of cleverness, a single
+find can serve both purposes with a single function and a single
+function call. .
 
 To this end, we can change the ~find_entry_for_key()~ function --
 which is super cheap, as we haven't written it yet! -- to
@@ -1363,7 +1437,7 @@ How can we distinguish between the two possible cases for
 ~find_previous_entry_for_key()~?
 #+end_caution
 
-Here is a first (but buggy -- do you see it!) draft of the insert function:
+Here is a first (*but buggy -- do you see it!??*) draft of the insert function:
 
 #+BEGIN_SRC c
   void ioopm_hash_table_insert(ioopm_hash_table_t *ht, int key, char *value)
@@ -1413,9 +1487,9 @@ Here are two ways to add a dummy entry to the buckets' lists:
 
 I personally prefer the 2nd alternative (there is an even better
 way which we will return to later). Figures [[fig_ht_3]] and [[fig_ht_4]]
-show the changes to the hash table structure in memory. For 
-clarity, the entry with key 4 is the /previous entry/ of the entry with key 208. 
-Furthermore, its previous entry of the entry is the sentinel (with
+show the changes to the hash table structure in memory. For
+clarity, the entry with key 4 is the /previous entry/ of the entry with key 208.
+Furthermore, its previous entry of the entry is the dummy (with
 key 0, value ~NULL~ and next pointer pointing to it.)
 
 #+CAPTION: Newly initialised hash table with inlined dummy entries.
@@ -1434,7 +1508,7 @@ key 0, value ~NULL~ and next pointer pointing to it.)
 
 #       node0 [label = "{0|{0|NULL|NULL}}|{1|{0|NULL|NULL}}|{2|{0|NULL|NULL}}|{3|{0|NULL|NULL}}|{4|{0|NULL|NULL}}|...|{16|{0|NULL|NULL}} ",height=2.5];
 #       node [width = 1.5];
-#     }      
+#     }
 # #+end_src
 
 # #+begin_src  dot :results file :file ../images/hashtable04.png :exports none
@@ -1445,14 +1519,14 @@ key 0, value ~NULL~ and next pointer pointing to it.)
 
 #       node0 [label = "{0|{0|NULL|<f0> ADDR}}|{1|{0|NULL|NULL}}|{2|{0|NULL|NULL}}|{3|{0|NULL|NULL}}|{4|{0|NULL|<f4> ADDR}}|...|{16|{0|NULL|NULL}} ",height=2.5];
 #       node [width = 1.5];
-#       node1 [label = "{<n> 17  | \"foo\" |NULL }"]; 
-#       node2 [label = "{<n> 4   | \"bar\" |<nxt> ADDR}"]; 
-#       node3 [label = "{<n> 208 | \"baz\" |NULL }"]; 
+#       node1 [label = "{<n> 17  | \"foo\" |NULL }"];
+#       node2 [label = "{<n> 4   | \"bar\" |<nxt> ADDR}"];
+#       node3 [label = "{<n> 208 | \"baz\" |NULL }"];
 
-#       node0:f0 -> node1; 
-#       node0:f4 -> node2; 
-#       node2:nxt -> node3:n; 
-#     }      
+#       node0:f0 -> node1;
+#       node0:f4 -> node2;
+#       node2:nxt -> node3:n;
+#     }
 # #+end_src
 
 
@@ -1460,12 +1534,17 @@ To make this work, one more change is needed -- which is subtle
 but important. In the call to ~find_previous_entry_for_key()~,
 change ~ht->buckets[bucket]~ to ~&ht->buckets[bucket]~. This
 passes in /the address/ to the entry in the bucket rather than
-passes in the entry. This is a classic issue of value semantics
-vs. pointer semantics (aka pass by value vs. pass by pointer).
+passes in a copy of the entire entry. This is a classic issue of
+pointer semantics vs value semantics (aka pass by pointer vs. pass
+by value).
 
 This implementation represents a classic trade-off: we pay a few
 extra bytes of memory for a nicer and cleaner implementation. This
-is almost always worth it, as long as the costs moderate.
+is almost always worth it, so long as the costs are moderate. If
+we have a large number of buckets, and a small number of entries
+in each bucket, the ratio of dummies per entry will be high. As
+long as the number of buckets is fixed to 17, the overhead is 17
+entries, which is negligible on a modern machine.
 
 *** Finish This Step
 
@@ -1494,7 +1573,7 @@ be used from inside the hash table. That means both should be
 declared ~static~, like so:
 
 #+BEGIN_SRC c
-static entry_t *create_entry(...TODO...)
+static entry_t *entry_create(...TODO...)
 {
   ...TODO...
 }
@@ -1503,9 +1582,9 @@ static entry_t *create_entry(...TODO...)
 
 **  Step 2: Looking Up the Value for a Key <<step2>>
 
-Interestingly enough, the code for insertion already required that
+The code for insertion already required that
 we write some code for finding an entry for a given key. We were
-also diligent enough to refactor our code to /extract the
+diligent enough to refactor our code to /extract the
 searching code as a function/. That will immediately pay off
 because we can /reuse/ that function in the implementation of
 ~ioopm_hash_table_lookup()~ that looks up the value for a given
@@ -1559,18 +1638,18 @@ those to simplify the problem to make progress, in exchange to not
 forget them indefinitely.
 
 So, if we cannot use ~NULL~ (or any other special value), what are
-our options?
+our options? Here are some:
 
 1. Let the function return /two/ values, adding one boolean value
-   that indicates success (the other value is only sensible if the
-   boolean is ~true~).
+   that indicates success (accessing the other returned value is
+   only alloed if success is ~true~).
 2. Add a separate public function for checking whether a key is
    mapped to a value, and only accept valid keys, and terminating
    the program using e.g., an [[../glossary.org][assertion]] if an invalid key is
    detected.
 3. Use some other means of signalling an error to the user.
 
-We now go through these approaches in more detail. 
+We now go through these approaches in more detail.
 
 #+begin_tip
 This aspect of the assignment is a good fit for [[../achievements.org::I24][Achievement I24]].
@@ -1591,7 +1670,7 @@ define a struct ~option~ for this very purpose:
 typedef struct option option_t;
 struct option
 {
-  bool defined;
+  bool success;
   char *value;
 };
 #+END_SRC
@@ -1602,12 +1681,12 @@ to ~option_t~, and update the return statements:
 #+BEGIN_SRC c
   if (next && next->value)
     {
-      option_t result = { .defined = true, .value = next->value };
+      option_t result = { .success = true, .value = next->value };
       return result;
     }
   else
     {
-      option_t result = { .defined = false };
+      option_t result = { .success = false };
       return result;
     }
 #+END_SRC
@@ -1616,7 +1695,7 @@ Note the 2nd creation of the ~result~ value -- it omits the
 ~value~ field, having it implicitly initialised to ~NULL~ (one of
 the few times C actually forces initialisation of something -- all
 bits that are not explicitly initialised are zeroed out). As
-~false~ is 0, the ~.defined = false~ is actually redundant, but
+~false~ is 0, the ~.success = false~ is actually redundant, but
 leaving it out would lose a lot of clarity in the code so it makes
 every bit of sense to leave it in.
 
@@ -1627,11 +1706,45 @@ variable, like so:
 #+BEGIN_SRC c
   if (next && next->value)
     {
-      return (option_t) { .defined = true, .value = next->value };
+      return (option_t) { .success = true, .value = next->value };
     }
   else
     {
-      return (option_t) { .defined = false };
+      return (option_t) { .success = false };
+    }
+#+END_SRC
+
+While we are at it, we can define some macros that raise the level
+of abstraction for us. The code below defines four macros, two for
+creating option values (~Success~ and ~Failure~) and two more for
+inspecting option values (~Successful~ and ~Unsuccessful~).
+
+#+BEGIN_SRC c
+#define Success(v)      (option_t) { .success = true, .value = v };
+#define Failure()       (option_t) { .success = false };
+#define Successful(o)   (o.success == true)
+#define Unsuccessful(o) (o.success == false)
+#+END_SRC
+
+Now the code becomes a lot clearer:
+
+#+BEGIN_SRC c
+  if (next && next->value)
+    {
+      return Success(next->value);
+    }
+  else
+    {
+      return Failure();
+    }
+#+END_SRC
+
+And likewise code for inspecting an option value:
+
+#+BEGIN_SRC c
+  if (Successful(result))
+    {
+      ... result.value ...
     }
 #+END_SRC
 
@@ -1716,7 +1829,7 @@ total function. One way to do so for ~ioopm_hash_table_lookup()~
 is to change the behaviours of the function so that it returns, not
 the value for the given key, but the /location of that value/.
 Think about it: if there is an entry for the key, there is a
-non-~NULL~ location in the hash table data structure that holds 
+non-~NULL~ location in the hash table data structure that holds
 the corresponding value. If there is no entry, there is no such
 location. In other words:
 
@@ -1729,12 +1842,12 @@ address\_of(v) & \text{if} ~ (k,v) \in h \\
 
 This works even when $v$ is ~NULL~ since the /location/ of that
 ~NULL~ value is guaranteed to be stored somewhere (i.e., the
-location cannot be ~NULL~). 
+location cannot be ~NULL~).
 
 With this design, the signature of ~ioopm_hash_table_lookup()~
 changes to return a ~char **~ -- a pointer to a pointer to a
 character ([[../pointers.org][if your mind boggles at the thought of a pointer to
-another pointer, you can look here]]). 
+another pointer, you can look here]]).
 
 This design now very neatly supports both looking up and replacing
 an existing entry:
@@ -1746,7 +1859,7 @@ if (value_ptr != NULL)
   {
     // key was in ht
     value = *value_ptr; // Value now points to the string key maps to in ht
-    *value_ptr = "Some other string"; // We just updated the value! 
+    *value_ptr = "Some other string"; // We just updated the value!
   }
 else
   {
@@ -1756,21 +1869,26 @@ else
 
 In this design, we only needed to lookup the value once -- once we
 found the location, we could hold on to that location and use it
-to update the value in the hash table in constant time. 
+to update the value in the hash table in constant time.
 
 Caveats:
 
-- This seems to work well for lookup, but not for remove since
-  remove must free the datum holding the location of the value
-  (read that sentence again until you get it). One possibility is
-  to change remove to simply not return the value removed, but
-  this may force situations where extra lookups must be
-  inserted[fn::On the other hand, lookups are typically a lot more
-  frequent than removes.]. 
-- Hanging on to a location of a value in a hash table can be
-  dangerous if something causes such locations to move while we
-  are keeping this pointer around. This needs to be reflected
-  in the documentation. 
+- This seems to work well for lookup, but not for remove since the
+  remove function frees the entry that holds the value whose
+  location we would return (read that sentence again until you get
+  it). In other words, by definition, remove cannot return a
+  pointer to a place in the hash table, because it needs to remove
+  that very place. One possibility is to change remove to simply
+  not return the value removed, but this may force situations
+  where extra lookups must be inserted[fn::On the other hand,
+  lookups are typically a lot more frequent than removes.]. (It is
+  also possible to hang on to the value even after the entry is
+  free'd, e.g. by storing it in the dummy, so that it is possible
+  to return it's address.)
+- Note that keeping a pointer to a value in a hash table can be
+  dangerous if something causes the value to move while we are
+  keeping this pointer around. This needs to be reflected in the
+  documentation.
 
 *** Using Built-in Mechanisms for Propagating Errors
 
@@ -1781,12 +1899,16 @@ manual pages. If you scan through them (you can scroll with space
 bar, go up with ~u~, quit with ~q~ and search using ~/~), you will
 find a nice error called ~EINVAL~ for invalid argument, which
 captures the situation in point -- the lookup function was called
-with an invalid argument that did not exist.
+with an invalid argument: a non-existing key.
 
-So, in the case of ~errno~ you will have to include ~errno.h~,
+In the case of ~errno~ you will have to include ~errno.h~,
 write ~EINVAL~ to the global ~errno~ variable in the ~else~
 branch, and return whatever value you want in case of a failed
-lookup.
+lookup. On the receiver side, a user will have to inspect
+the value of ~errno~ after each call.
+
+You should document how your functions interact with ~errno~ --
+what functions set it, to what, and under what circumstances.
 
 
 *** Finishing This Step
@@ -1798,7 +1920,9 @@ code above.
 1. Handle failing lookups by one of the alternatives above
    Note that your choice might force you to change
    the [[../glossary.org][signature]] of the function (changing the return type
-   and/or adding an additional parameter).
+   and/or adding an additional parameter). Make sure to
+   properly document your choice in the comments in the
+   header-file.
 2. Implement a couple of tests for ~ioopm_hash_table_lookup()~
    following the instructions in [[Feature 3: Looking up Values][Feature 3: Looking up Values]].
 3. Make sure that your code compiles with the [[../compiling.org][appropriate flags]]
@@ -1821,8 +1945,8 @@ points extrapolate an algorithm for removing an entry.
 Summarising lessons from insertion, we had to deal with:
 
 1. Manipulating a linked sequence of entries somewhere in the *middle*
-2. Manipulating the last element of a linked sequence of entries
-3. Manipulating the first element of a linked sequence of entries
+2. Manipulating the *last* element of a linked sequence of entries
+3. Manipulating the *first* element of a linked sequence of entries
 
 In the case of 1., there is both a previous and a next entry.
 In the case of 2., there is no next entry.
@@ -1878,14 +2002,15 @@ set]] for some pictures to go with that statement.)
 
 Calling ~free()~ on some memory and subsequently accessing it is a
 *classic bug* in C programs (and most systems where programmers
-manually manage memory). The /semantics/ of accessing memory that
-has been freed (or before it has been allocated) is /undefined/,
-which morally means that anything can happen (say the computer
-deleting all its files) but in practice generally means that the
-program will (at best) crash or produce incorrect results.
+manually manage memory). In C, The /semantics/ of accessing memory
+that has been freed (or before it has been allocated) is
+/undefined/, which morally means that anything can happen (say the
+computer deleting all its files) but in practice generally means
+that the program will (at best) crash or produce incorrect
+results.
 
-Although out of scope for this course, exploiting use-after-free
-is a classic security exploit of C programs.
+Although out of scope for this course, use-after-free bugs are
+classic security exploits of C programs.
 
 Here are some good rules of thumb to use from now on:
 
@@ -1901,7 +2026,7 @@ Here are some good rules of thumb to use from now on:
    behaviour of creating entries and lift the abstraction of the
    code in ~ioopm_hash_table_insert()~. The deallocation pairing
    with this should go into a function of its own, e.g.,
-   ~entry_destroy()~.
+   ~entry_destroy()~ (even if the latter only contains a call to ~free()~).
 
 Memorise these terms for classical memory bugs (we will extend
 this list later):
@@ -1930,7 +2055,8 @@ Finishing this step means finishing the implementation of
 1. Finish ~ioopm_hash_table_remove()~. Follow the algorithm above
    (or come up with a better one), and augment it to handle
    attempts to remove keys not in the hash table.
-2. Implement ~entry_destroy()~ and use it to delete entries.
+2. Implement ~entry_destroy()~ to free a single entry. Use it in
+   remove to free the memory for a successfully removed entry.
 3. "Walk through your code" manually and check that it is free of
    use-after-free, dangling pointers (not including temporary
    ones!) and memory leaks. Later, we will learn how to use tools
@@ -1949,30 +2075,31 @@ the hash table representation in memory for guidance.
 **  Step 4: Tearing Down a Hash Table <<step4>>
 
 We have now arrived at Step 4, the final step of Ticket #1, and
-the last step needed to honestly claim that we have implemented a
+the last step needed to rightfully claim that we have implemented a
 basic hash table. What remains is "tearing down", i.e., a function
 for destroying a hash table, and deallocating all its memory.
 
 The semantics of destroying a hash table are not obvious. Like
-most times, there are /design decisions/ that need to be made. We
-must answer the question: "What belongs to the hash table?" This
-is a crucial design decision, and an experienced programmer will
-have thought long and hard about that in the initial design. You
-may have asked yourself this question (possibly phrased
-differently) as you implemented ~ioopm_hash_table_remove()~ --
-should we also deallocate the /values/ of the entries?
+most times, there are /design decisions/ that must be made. In
+particular, we must answer the question: "What belongs to the hash
+table?" This is a crucial design decision, and an experienced
+programmer will have thought long and hard about that in the
+initial design. You may have asked yourself this question
+(possibly phrased differently) as you implemented
+~ioopm_hash_table_remove()~ -- should we also deallocate the
+/values/ of the entries?
 
 The answer to that question is (probably) *no*. Unless you make an
-*explicit* assumption that the hash table takes *ownership* over
-all values it stores, it seems unreasonable to assume that the
-life time of a value is tied to the life time of the hash table.
-For example, imagine a value that is mapped to different keys in
-two different tables. That seems like a reasonable thing, but if
-we cannot destroy one hash table without destroying all its
-values, the life times of the two hash tables are now implicitly
-tied to each other. This seems brittle and easy to get wrong. (Not
-to mention increasingly hairy if we want to use the value in
-additional hash tables.)
+*explicitly documented choice* that the hash table takes
+*ownership* over all values it stores, it seems unreasonable to
+assume that the life time of a value is tied to the life time of
+the hash table. For example, imagine a value that is mapped to
+different keys in two different tables. That seems like a
+reasonable thing, but if we cannot destroy one hash table without
+destroying all its values, the life times of the two hash tables
+are now implicitly tied to each other. This seems brittle and easy
+to get wrong. (Not to mention increasingly hairy if we want to use
+the value in additional hash tables or other structures.)
 
 We could imagine a design where the hash table makes a private
 copy of all the values, and takes ownership over the copies. This
@@ -1997,7 +2124,7 @@ creates memory leaks it is the fault of the programmer. This is an
 important design decision and really needs to be reflected in the
 hash table's documentation.
 
-Here is an algorithm for destroying the hash table:
+With that, here is an algorithm for destroying the hash table:
 
 #+begin_example
 1. Iterate over the buckets in the buckets array
@@ -2043,7 +2170,7 @@ are:
    18th bucket in our hash table with only 17 buckets).
 
 Valgrind is not a magic tool, so it will not be able to say "fix
-your program by adding a free on line 19". However, it will be
+your program by adding a free(x) on line 19". However, it will be
 able to say where the memory that is being misused was allocated,
 which is often the only hint you need to find the mistake in the
 code (and possibly in your line of thinking).
@@ -2066,7 +2193,6 @@ encounter cases where a program crashes when run normally but not
 when run under Valgrind. Do not be tempted to interpret this as a
 sign of the bug not being in your code.
 
-
 *** Finish This Step
 
 Finishing this step means finishing the implementation of
@@ -2081,23 +2207,22 @@ introduced along the way.
 3. Make sure that your code compiles with the [[../compiling.org][appropriate flags]]
    turned on. Preferably using a [[../makefiles.org][Makefile]].
 4. Run your tests through Valgrind. There are no reasons to see
-   any warnings or errors or memory leaks, and Valgrind should
-   print out "No leaks possible" at the end[fn::If you run
-   =valgrind= on a very recent release of macOS, you are not
-   likely to see this. Instead, you will see warnings and errors
-   listed in things outside of your program. Fix: run =valgrind=
-   on the department's Linux machines.]. If you are using a
-   Makefile, add an extra entry that allows you to run your tests
-   through Valgrind, e.g., =make memtest=.
+   *any warnings or errors* and in addition, Valgrind should print
+   out "No leaks possible" at the end[fn::If you run =valgrind= on
+   a very recent release of macOS, you are not likely to see this.
+   Instead, you will see warnings and errors listed in things
+   outside of your program. Solution: run =valgrind= on the
+   department's Linux machines, or run =valgrind= through
+   [[../tools.org::Vagrant][Vagrant]].]. If you are using a Makefile, add an extra entry that
+   allows you to run your tests through Valgrind, e.g., =make
+   memtest=.
 5. Make sure that the code passes your tests. Fix all memory
    errors reported by Valgrind.
 6. [[../github.org][Check your code into the appropriate GitHub repos]]. Tag your
    commit with =assignment1_step4=.
 
-
 **  Step 5: Refactoring
-
-Surprise! There is actually one more thing to do before we are
+/Surprise!/ There is actually one more thing to do before we are
 done with Ticket #1 -- [[../glossary.org][refactoring]]. For the time being, we will
 only consider three important aspects:
 
@@ -2173,7 +2298,7 @@ will get to work on generalising it to support non-integer keys
 and non-string values, but first, let us improve of the services
 our hash table offers to its clients.
 
-Typical operations on a hash table includes:
+Typical operations on a hash table include:
 - Checking how many entries it has
 - Checking if the hash table is empty
 - Obtaining all the keys
@@ -2199,26 +2324,26 @@ In steps 6--9, we are going to add:
 
 - (Step 6) ~ioopm_hash_table_size()~ for getting the size of hash table,
   ~ioopm_hash_table_empty()~ for checking if the hash table is empty, and
-  ~ioopm_hash_table_clear()~ for clearing all entries in a hash table 
+  ~ioopm_hash_table_clear()~ for clearing all entries in a hash table
   without removing the table.
 - (Step 7) ~ioopm_hash_table_keys()~, and
   ~ioopm_hash_table_values()~ for getting arrays of all keys and
   values in the hash table.
 - (Step 8) ~ioopm_hash_table_has_key()~, and
   ~ioopm_hash_table_has_value()~ which uses the functions in Step
-  7 for checking if a hash table contains a specific key or value. 
+  7 for checking if a hash table contains a specific key or value.
 - (Step 9) ~ioopm_hash_table_all()~ and ~ioopm_hash_table_any()~ --
   two utility functions for checking if all (any) entries (entry)
   satisfies a given predicate, and ~ioopm_hash_table_apply_to_all()~ --
-  a utility function for in-place bulk operation on entries. 
+  a utility function for in-place bulk operation on entries.
 
 
-#+CAPTION: Excerpt from =hash_table.h= -- functions to be implemented. 
+#+CAPTION: Excerpt from =hash_table.h= -- functions to be implemented.
 #+BEGIN_SRC c
 /// @brief returns the number of key => value entries in the hash table
 /// @param h hash table operated upon
 /// @return the number of key => value entries in the hash table
-size_t ioopm_hash_table_size(ioopm_hash_table_t *h);
+int ioopm_hash_table_size(ioopm_hash_table_t *h);
 
 /// @brief checks if the hash table is empty
 /// @param h hash table operated upon
@@ -2241,23 +2366,23 @@ char **ioopm_hash_table_values(ioopm_hash_table_t *h);
 
 /// @brief check if a hash table has an entry with a given key
 /// @param h hash table operated upon
-/// @param key the key sought 
+/// @param key the key sought
 bool ioopm_hash_table_has_key(ioopm_hash_table_t *h, int key);
 
 /// @brief check if a hash table has an entry with a given value
 /// @param h hash table operated upon
-/// @param value the value sought 
+/// @param value the value sought
 bool ioopm_hash_table_has_value(ioopm_hash_table_t *h, char *value);
 
 /// @brief check if a predicate is satisfied by all entries in a hash table
 /// @param h hash table operated upon
-/// @param pred the predicate 
+/// @param pred the predicate
 /// @param arg extra argument to pred
 bool ioopm_hash_table_all(ioopm_hash_table_t *h, ioopm_apply_function pred, void *arg);
 
 /// @brief check if a predicate is satisfied by any entry in a hash table
 /// @param h hash table operated upon
-/// @param pred the predicate 
+/// @param pred the predicate
 /// @param arg extra argument to pred
 bool ioopm_hash_table_any(ioopm_hash_table_t *h, ioopm_apply_function pred, void *arg);
 
@@ -2294,7 +2419,7 @@ An alternative design is to let the hash table keep track of its
 size and increment and decrement it on insertion and removal. This
 /amortises the cost/ of making size calculations over the entire
 life-time of a hash table, allowing us to get the current size of
-a hash table in O(1) time. This design is good if we query the
+a hash table in $O(1)$ time. This design is good if we query the
 size often and otherwise less important or possibly even wasteful.
 In this design, add a size field to ~struct hash_table_t~, and
 update insert and remove to do ~ht->size += 1~ or ~ht->size -= 1~.
@@ -2316,7 +2441,7 @@ bool ioopm_hash_table_is_empty(ioopm_hash_table_t *ht)
 #+END_SRC
 
 This is a fine way to implement this, but unless we can lookup the
-size of the hash table in O(1) time, it is not very efficient --
+size of the hash table in $O(1)$ time, it is not very efficient --
 at least not if the hash table is large. When counting the size,
 as soon as the count hits 1, we know that the hash table is not
 empty, but by building on ~ioopm_hash_table_size()~, we will keep
@@ -2326,7 +2451,7 @@ A more efficient way is to iterate over the buckets in the bucket
 array and check if there are any entries at all (not counting the
 dummy entries). As soon as we find one, we can return ~false~. If
 we manage to complete the iteration, simply return ~true~. If we
-can get the size of the hash table in O(1), that is of course more
+can get the size of the hash table in $O(1)$, that is of course more
 efficient.
 
 
@@ -2386,25 +2511,24 @@ table -- lucky we just implemented that function. Because
 ~ioopm_hash_table_values()~ returns an array of pointers, we could
 let the last pointer point to ~NULL~ and use that as an end
 marker. (If you do so, edit the documentation for the function to
-state the array is ~NULL~ terminated.) For the integer array, we 
-are not so lucky. 
+state the array is ~NULL~ terminated.) For the integer array, we
+are not so lucky.
 
 Coming up with an algorithm(s) for these functions is
-straightforward, and not be that different from previous
-functions.
+straightforward, and not that different from previous functions.
 
-*** Aside
+# *** Aside
 
-It can be a fun exercise to come up with ways to make these
-functions more efficient. For example, rather than having each
-bucket represented as a linked sequence of entries ending in
-~NULL~, we could have each final entry in a bucket point to the
-dummy node of the bucket, or even point to the first entry in the
-next bucket (but that requires that we have some other efficient
-means to identify the last entry in a bucket). With this
-representation, we could implement ~ioopm_hash_table_keys()~ and
-~ioopm_hash_table_values()~ in O(1) time if we allow returning a
-list instead of an array.
+# It can be a fun exercise to come up with ways to make these
+# functions more efficient. For example, rather than having each
+# bucket represented as a linked sequence of entries ending in
+# ~NULL~, we could have each final entry in a bucket point to the
+# dummy node of the bucket, or even point to the first entry in the
+# next bucket (but that requires that we have some other efficient
+# means to identify the last entry in a bucket). With this
+# representation, we could implement ~ioopm_hash_table_keys()~ and
+# ~ioopm_hash_table_values()~ in $O(1)$ time if we allow returning a
+# list instead of an array.
 
 
 *** Finish This Step
@@ -2450,7 +2574,7 @@ This could be used as part of demonstrating [[../achievements.org::H19][Achievem
 An alternative way to search for a value is to use
 ~ioopm_hash_table_values()~ to get an array of values and iterate
 over the array. That approach can make the code a tiny bit
-simpler, but -- unless you managed to implement that at O(1) cost
+simpler, but -- unless you managed to implement that at $O(1)$ cost
 -- at the cost of iterating over the values twice, and having to
 free the array in the end.
 
@@ -2490,7 +2614,7 @@ char *ioopm_strdup(char *str)
 ** Step 9: General Predicates and Function Application
 
 C allows us to pass around a /pointer to a function/. This allows
-us to higher-order functions in a crude but working way. 
+us to higher-order functions in a crude but working way.
 
 In many cases, we might want to check if all or any of the entries
 in a hash table satisfy some property. To code this up in the
@@ -2590,7 +2714,7 @@ arguments or ~()~) as the argument.
 #+BEGIN_SRC c
 typedef int (*fun_t)(int, int);
 
-int call_fun(fun_t fun, int a, int b) 
+int call_fun(fun_t fun, int a, int b)
 {
   return fun(a, b);
 }
@@ -2619,7 +2743,7 @@ static bool key_equiv(int key, char *value_ignored, void *x)
 Note the signature of this function -- it takes an integer, a string and a "something" -- and returns a boolean.
 Let's make a typedef for this:
 
-#+BEGIN_SRC 
+#+BEGIN_SRC
 typedef bool(*ioopm_apply_function)(int key, char *value, void *extra);
 #+END_SRC
 
@@ -2629,7 +2753,7 @@ manner:
 #+BEGIN_SRC c
 bool ioopm_hash_table_has_key(ioopm_hash_table_t *ht, int key)
 {
-  return ioopm_hash_table_any(ht, key_equiv, &key); 
+  return ioopm_hash_table_any(ht, key_equiv, &key);
 }
 #+END_SRC
 
@@ -2645,7 +2769,7 @@ supposedly pure functions, and one where side-effects are intended.
 This also let's us drop the return type in the latter case.
 This would work, for example:
 
-#+BEGIN_SRC 
+#+BEGIN_SRC
 typedef bool(*ioopm_predicate)(int key, char *value, void *extra);
 typedef void(*ioopm_apply_function)(int key, char **value, void *extra);
 #+END_SRC
@@ -2653,7 +2777,7 @@ typedef void(*ioopm_apply_function)(int key, char **value, void *extra);
 Note that we do not want to give the ability to change ~key~ as
 that could destroy the integrity of the hash table. For example,
 if we increment a key's value by 1, the containing entry should
-also be moved to the next bucket! 
+also be moved to the next bucket!
 
 The ~key_equiv()~ function shows how C allows us to go from a
 pointer to something of unknown type (~void *~) to the actual
@@ -2685,7 +2809,7 @@ would probably find the second version more readable.
 
 *** Finish This Step
 
-1. Implement ~ioopm_hash_table_all()~, ~ioopm_hash_table_any()~, and 
+1. Implement ~ioopm_hash_table_all()~, ~ioopm_hash_table_any()~, and
    ~ioopm_hash_table_apply_to_all()~
    including giving a type for ~ioopm_apply_function~.
 2. Update your implementations of ~ioopm_hash_table_has_key()~, and
@@ -2917,7 +3041,7 @@ ioopm_list_iterator_t *ioopm_list_iterator(ioopm_list_t *list);
 The implementation of the iterator should follow the header file
 =iterator.h=. Note that if you have implemented a generic list
 (that can store elements of any type), you will need to change the
-below interface accordingly. 
+below interface accordingly.
 
 #+begin_note
 Like with the hash table and list, you will need to adapt the
@@ -2978,11 +3102,11 @@ make a copy of the link struct in the iterator file, move the
 shared parts into a non-public header file shared by the list and
 the iterator, etc. Pick a solution that works and think about how
 this relates to (or even demonstrates) key concepts in the course
-like modularity, encapsulation, coupling and cohesion. 
+like modularity, encapsulation, coupling and cohesion.
 
 *** Finish This Step
 
-1. Implement /all/ the functions listed in the header file. 
+1. Implement /all/ the functions listed in the header file.
 2. *If needed* -- extend the documentation with how you deal with
    failures and all other assumptions or caveats. You are allowed
    to change function signatures when needed for failure handling
@@ -3053,7 +3177,7 @@ clearly reflects a size, and so we should change that to a
 accordingly[fn::If you want to restrict ~size_t~ to only talk
 about byte sizes of objects, you can use e.g. ~unsigned int~, or
 why not something like ~uint32_t~ for e.g., the number of objects
-in a list]. 
+in a list].
 
 *** Use the Linked List to Return the Keys for a Hash Table
 
@@ -3071,7 +3195,7 @@ backed by an array (generally referred to as an /array list/).
 and encapsulation.)
 
 Your task is to change the return type of ~ioopm_hash_table_keys()~ to
- ~ioopm_list_t *~ and update the function's implementation 
+ ~ioopm_list_t *~ and update the function's implementation
 accordingly. Updating the function to use the list
 interface instead of the array should be straightforward. Spend a
 few minutes (not more) thinking about the time complexity, and
@@ -3098,7 +3222,7 @@ Your (optional) task is to add the ~const~ qualifier to all
 functions. Do it piece by piece. You can start bottom-up (e.g.,
 change in internal functions and have it propagate) or top-down
 (e.g., start from the interface, using an understanding of how
-functions should behave). 
+functions should behave).
 
 #+begin_tip
 ~const~ qualifiers could be used to demonstrate [[../achievements.org::G15][Achievement G15]].
@@ -3106,11 +3230,11 @@ functions should behave).
 
 
 *** Finish This Step
-1. Make the required (and, optionally, optional) changes above: 
-   refactor to use ~size_t~ and return a list of keys instead of 
+1. Make the required (and, optionally, optional) changes above:
+   refactor to use ~size_t~ and return a list of keys instead of
    an array (and optionally add ~const~ qualifiers).
    Don't forget to update header files too.
-2. Extend the documentation to match changes. 
+2. Extend the documentation to match changes.
 3. Update the tests to adapt to the changes, before or after the
    changes are implemented, depending on your way of working.
 4. Make sure that your code compiles with the [[../compiling.org][appropriate flags]]
@@ -3122,7 +3246,7 @@ functions should behave).
 
 ** Step 13: Supporting Arbitrary Data as Elements, Keys and Values
 #+begin_tip
-[[../achievements.org::E10][Achievement E10]] is related to this step. 
+[[../achievements.org::E10][Achievement E10]] is related to this step.
 #+end_tip
 
 As you were looking at [[./lists.org][the text on linked lists]], you may have
@@ -3132,9 +3256,9 @@ time has come to change both the list and the hash table to store
 arbitrary data. We will follow the trick in [[./lists.org::*Adding%20Genericity][the text on linked
 lists]] and have each element (in the case of the list), key and
 value (in the case of the hash table) be a union of the possible
-element types, /henceforth referred to as/ ~elem_t~. (This union 
+element types, /henceforth referred to as/ ~elem_t~. (This union
 is very similar to ~answer_t~ in the C bootstrap labs.) There is
-a definition of ~elem_t~ you can use [[./lists.org::elem_t][here]]. 
+a definition of ~elem_t~ you can use [[./lists.org::elem_t][here]].
 
 Function pointers are going to be stored inside the list and hash
 table structs and be passed in as arguments to the constructors,
@@ -3151,7 +3275,7 @@ compares strings is needed to implement the contains function.
 
 If we are sticking with the two function pointer types from before,
 here is how to update them to work with ~elem_t~ instead of ~int~ and
-~char *~ (or ~char **~). 
+~char *~ (or ~char **~).
 #+BEGIN_EXAMPLE
 typedef bool (*ioopm_predicate)(elem_t key, elem_t value, void *extra);
 typedef void (*ioopm_apply_function)(elem_t key, elem_t *value, void *extra);
@@ -3193,7 +3317,7 @@ work.
 
 *** Where Does ~elem_t~ belong?
 
-It is interesting to ask the question /where/ the definition of ~elem_t~ 
+It is interesting to ask the question /where/ the definition of ~elem_t~
 should be placed. If both =iterator.h= and =hash_table.h= includes
 =linked_list.h=, it would seem that it would suffice to define ~elem_t~
 in =linked_list.h=. However, there seems to be a number of recurring
@@ -3210,7 +3334,7 @@ For example, =stdlib.h= defines the type ~__compare_fn_t~ thus:
 ~typedef int (*__compar_fn_t) (const void *, const void *);~
 This type is thus defined everywhere where =stdlib.h= is included.
 
-Soon we will be adding a hash function type. Then you will have to 
+Soon we will be adding a hash function type. Then you will have to
 think in similar ways: where does it's function type belong?
 
 *** Pass Function Pointers to the List's Constructor
@@ -3220,7 +3344,7 @@ we will store the necessary function pointers in the list at
 creation time. Look through the list and see what operations that
 requires operating on (e.g., comparing, but not storing or
 returning, elements) -- and define function pointer types for
-these, e.g., 
+these, e.g.,
 
 #+BEGIN_SRC c
 /// Compares two elements and returns true if they are equal
@@ -3265,7 +3389,7 @@ function is the function that takes a key, and returns an integer
 hash code for the key that allows us to map the key to a bucket.
 So far, we dodged this bullet, and pretended that all keys were
 integers. To support generic keys, the key type changes from ~int~
-to ~elem_t~, and bucket selection uses the hash function (passed 
+to ~elem_t~, and bucket selection uses the hash function (passed
 in as argument to the constructor and stored
 in the ~hash_table_t~). Note that we do not need to store a key's
 hash code in the hash table -- since we can always compute it
@@ -3287,7 +3411,7 @@ if (ht->hash_function == NULL)
   }
 else
   {
-    int_key = ht->hash_function(key); 
+    int_key = ht->hash_function(key);
   }
 #+END_SRC
 
@@ -3300,7 +3424,7 @@ which simplifies the code above greatly -- especially good if it
 is repeated many times:
 
 #+BEGIN_SRC c
-int_key = ht->hash_function(key); 
+int_key = ht->hash_function(key);
 #+END_SRC
 
 *An bonus of this trick* is that your existing tests should more
@@ -3311,7 +3435,7 @@ integers as hash table keys.
 #+BEGIN_SRC c
 int extract_int_hash_key(elem_t key)
 {
-  return key.i; // following a very terse naming scheme -- improve? 
+  return key.i; // following a very terse naming scheme -- improve?
 }
 #+END_SRC
 
@@ -3325,7 +3449,7 @@ This is no longer a problem, so go ahead and update
 ~ioopm_hash_table_keys()~.
 *** Finish This Step
 1. Change the type of elements, keys and values to ~elem_t~ in the
-   signature of functions (including constructors) and in structs. 
+   signature of functions (including constructors) and in structs.
 2. Create =common.h= and populate it with suitable type
    definitions and declarations (including a typedef for the hash function).
 3. Extend the appropriate constructors to take in the necessary
@@ -3344,7 +3468,7 @@ This is no longer a problem, so go ahead and update
 
 ** Step 14: Performance Testing
 
-Let's put our hash table to use! 
+Let's put our hash table to use!
 # A partially written program exists that from one or more files
 # loads descriptions of items that you could imagine be sold in
 # some online shop. Each item has a name, a description, an
@@ -3353,14 +3477,14 @@ Let's put our hash table to use!
 # location of that particular item.
 
 # We are going to use a hash table as a primitive in-memory database
-# that we can use to look up items sold in the store. 
+# that we can use to look up items sold in the store.
 
 # A function that models a user's interaction with the store will
 # fill a shopping cart (modelled as a linked list) and make
 # purchases (or empty the cart without a purchase).
 
 # *Ticket A:* Insert data loaded by the program (already written) into
-# the hash table. 
+# the hash table.
 
 # *Ticket B:* Finish the function that models a user's interaction
 # so that the stock quite for items that go into the user's shopping
@@ -3372,7 +3496,7 @@ Let's put our hash table to use!
 # *Ticket C:* After every 32 user interactions, remove items whose
 # stock quote is zero.
 
-# In the case of under-specification, feel free to be creative. 
+# In the case of under-specification, feel free to be creative.
 
 We are going to write a simple program that reads zero or more
 files, and counts the frequencies of the words in these files. A
@@ -3485,14 +3609,14 @@ through the ~qsort()~ function. Another simple way is to code up a
 quick and dirty binary tree.
 
 
-*** Profiling our Program 
+*** Profiling our Program
 
 #+begin_tip
 This step is closely related to [[../achievements.org::O42][Achievement O42]] and [[../achievements.org::O43][Achievement O43]] (at least).
 #+end_tip
 
 Start by thinking a bit about where your program spends the most
-time. What would you guess? Let's find out! 
+time. What would you guess? Let's find out!
 
 Profiling is a technique for understanding how programs behave at
 run-time by looking at what a program does. There are different
@@ -3508,18 +3632,18 @@ starting points to learning about these tools). (Other OS's have
 other tools, like =Instruments.app= on macOS.)
 
 To develop an execution profile, we are going to run the program
-on some files of various shapes and sizes. To save you some time 
-cooking those up, you can get such files [[../misc/freq-count.zip][here]]. 
+on some files of various shapes and sizes. To save you some time
+cooking those up, you can get such files [[../misc/freq-count.zip][here]].
 
 Run your program on each input file and inspect the result. Answer
 the following questions.
 
-- For each input, what are the top 3 functions? 
-- For each input, what are the top 3 functions *in your code*[fn::Meaning, "in your program" -- that you have written.], or is it library functions? 
-- Are the top 3 functions *in your code* consistent across the inputs? Why? Why not? 
+- For each input, what are the top 3 functions?
+- For each input, what are the top 3 functions *in your code*[fn::Meaning, "in your program" -- that you have written.], or is it library functions?
+- Are the top 3 functions *in your code* consistent across the inputs? Why? Why not?
 - Is there some kind of trend? (Possibly several.)
-- Do the results correspond with your expectations? 
-- Based on these results, do you see a way to make your program go faster? 
+- Do the results correspond with your expectations?
+- Based on these results, do you see a way to make your program go faster?
 
 Write down the answers as a note in the =README.md= file in the
 directory parallel to the files and check it into your GitHub
@@ -3543,14 +3667,14 @@ doubled, because the program only ran half of the time.
 When you run =time= to test if an optimisation paid of, you should
 ideally run the program many times and pick e.g. the 5 best out of
 10 to avoid measuring jitter in the system. Also think about the
-input you are using -- more input means longer run-time which 
+input you are using -- more input means longer run-time which
 is more resilient to jitter. Also think about what input to use
 that exercises the functions you are interested in. Ideally, the
 input should also be representative for the program so we are
-optimising under as real conditions as possible. 
+optimising under as real conditions as possible.
 
-Example, using the =--verbose= flag to also see e.g., memory 
-consumption: 
+Example, using the =--verbose= flag to also see e.g., memory
+consumption:
 
 #+BEGIN_EXAMPLE
 stw:inlupp1/ (master✗) $ /usr/bin/time --verbose ./freq_count freq-count-files/10k-words.txt
@@ -3660,15 +3784,15 @@ size_t primes[] = {17, 31, 67, 127, 257, 509, 1021, 2053, 4099, 8191, 16381};
 
 Note that with a design like this, that makes each bucket only
 hold a few entries, the overhead of having one dummy node per
-bucket gets pretty big. 
+bucket gets pretty big.
 
 We can remove the dummy nodes by using the double pointer trick
 used for the linked list: rewrite ~find_previous_entry_for_key()~
-to return a ~entry_t **~ -- a pointer to the pointer to the 
+to return a ~entry_t **~ -- a pointer to the pointer to the
 entry we are looking for (which may be ~NULL~ or another entry,
 just like with ~find_previous_entry_for_key()~). This requires
-a name change to the function, which is cheap because it is 
-not public. 
+a name change to the function, which is cheap because it is
+not public.
 
 With this change, the ~buckets~ array becomes the type ~entry_t
 *buckets[]~, and each pointer in ~buckets[]~ gets initialised to
@@ -3685,20 +3809,20 @@ As we have discussed previously -- a hash function gives a stable
 interpretation of a datum as an integer. There is no single best-fit,
 and the same hash function may perform differently in different
 cases. [[https://en.wikipedia.org/wiki/Hash_function][Wikipedia's article on hash functions]] is a good starting
-place to explore this concept further than what we do on this course. 
+place to explore this concept further than what we do on this course.
 
 A very simple way of [[https://en.wikipedia.org/wiki/Universal_hashing#Hashing_strings][hashing a string]] is to simply summarise the
 values of its characters:
 
 #+BEGIN_SRC c
-int string_sum_hash(const char *str)
+unsigned long string_sum_hash(const char *str)
 {
-  int_t result = 0;
+  unsigned long result = 0;
   do
     {
       result += *str;
     }
-  while (*++str != '\0'); 
+  while (*++str != '\0');
   return result;
 }
 #+END_SRC
@@ -3706,10 +3830,10 @@ int string_sum_hash(const char *str)
 This is simple enough but will assign equal codes to strings built
 from the same characters in different order. More importantly, if
 key strings are not very long, they are likely to have a fairly
-small range. 
+small range.
 
 A better approach is to compute a polynomial whose coefficients
-are the [[https://sv.wikipedia.org/wiki/ASCII][ASCII values]] of the individual chars. 
+are the [[https://sv.wikipedia.org/wiki/ASCII][ASCII values]] of the individual chars.
 
 The implementation of the hash function for strings in Java is a
 good and fast solution that produces larger numbers (note that
@@ -3717,14 +3841,14 @@ good and fast solution that produces larger numbers (note that
 likelihood of collisions:
 
 #+BEGIN_SRC c
-int string_knr_hash(const char *str)
+unsigned long string_knr_hash(const char *str)
 {
-  int_t result = 0;
+  unsigned long result = 0;
   do
     {
       result = result * 31 + *str;
     }
-  while (*++str != '\0'); 
+  while (*++str != '\0');
   return result;
 }
 #+END_SRC
@@ -3741,8 +3865,8 @@ we could take the sum of the hash for the name and the age and
 gender values interpreted as integers. The same reasoning for sums
 as above apply. Moreover -- consider the effect of using *mutable*
 data as keys! If object /o/ is used as a key and subsequently
-changes, will we be able to find it again if we look it up? (Here 
-the optional ~const~ annotations from before could be handy -- 
+changes, will we be able to find it again if we look it up? (Here
+the optional ~const~ annotations from before could be handy --
 still optional though.)
 
 
@@ -3795,12 +3919,12 @@ This step should give you what you need to do the two first
 *** Finish This Step
 
 1. Implement the program that uses the hash table according to its
-   (loose) specification. 
+   (loose) specification.
 2. Run the program with input of varying sizes, and produce
    execution profiles for the program runs. What are the 10 most
    time-consuming functions? Are they consistently the same? Or
-   are there functions that e.g. seem to run a lot slower if 
-   there is a little more data? 
+   are there functions that e.g. seem to run a lot slower if
+   there is a little more data?
 3. Implement the self-adapting logic that tunes the number of
    buckets.
 4. Experiment with various load factors -- how does that impact
@@ -3814,7 +3938,6 @@ This step should give you what you need to do the two first
 8. Make sure that the code passes your tests.
 9. [[../github.org][Check your code and the profiling results into the appropriate
    GitHub repos]]. Tag your commit with =assignment1_step14=.
-
 
 ** Step 15: Wrapping Up
 
@@ -3836,14 +3959,14 @@ structs described in the text above.
 
 By now you should have demonstrated a few achievements, or at
 least have accumulated enough insights to be able to demonstrate.
-For example, in addition to the one's hinted above, you likely 
+For example, in addition to the one's hinted above, you likely
 grasp and have evidence for demonstrating [[../achievements.org::J26][Achievement J26]] and
 [[../achievements.org::J27][Achievement J27]], possibly also [[../achievements.org::D9][Achievement D9]] -- as long as you've
 gone above and beyond what's been handed out. You probably have
 code related to [[../achievements.org::M36][Achievement M36]]. Some error handling options are
 related to [[../achievements.org::M38][Achievement M38]]. Your unittests -- regardless of what
 approach you followed -- should get you at least one of the [[../achievements.org::Q][Q achievements]].
-If you used Emacs diligently, then you're likely good to demonstrate [[../achievements.org::T55][Achievement T55]] (if not more). 
+If you used Emacs diligently, then you're likely good to demonstrate [[../achievements.org::T55][Achievement T55]] (if not more).
 
 Experience shows that different students approach the achievement
 system in different ways: some like to interleave working and
@@ -3884,7 +4007,7 @@ procedure and stick it in your Makefile.*
    to build and run the tests for the program in Step 14. Ideally,
    this should be as easy as =make test=. In this section, also
    state the line coverage and branch coverage per =.c= file and
-   what tool you used to obtain these numbers. 
+   what tool you used to obtain these numbers.
 4. Prepare a demonstration of z100 to give at the next lab. In
    addition to z100, pick another 2-3 achievements to tick off,
    and include these in your demonstration preparation. To back up
@@ -3899,10 +4022,10 @@ procedure and stick it in your Makefile.*
    mastery.
 5. Send an email to [[mailto:z100@wrigstad.com][z100@wrigstad.com]] with your names and
    usernames, a link to the GitHub repository where the code can
-   be checked out. 
+   be checked out.
 6. Create a final commit for the assignment and [[../github.org][check it into
-   GitHub]]. Tag the commit with =assignment1_done=. 
-7. *Optional* Please take time to [[mailto:z100-feedback@wrigstad.com][feedback on the assignment]]. 
+   GitHub]]. Tag the commit with =assignment1_done=.
+7. *Optional* Please take time to [[mailto:z100-feedback@wrigstad.com][feedback on the assignment]].
 
 *Note:* Don't expect any feedback on your program over what you
 have got from the oral presentations. If you want more feedback on
@@ -3913,7 +4036,7 @@ presentations, or add your name to the help list.
 # - Double check that all forward references are resolved above
 # - *DONE* The whole leg on test-driven development is TODO (MVP in place)
 # - need to enable updating of a value without inserting a new key!
-# - *DONE* Give a catalogue structure 
+# - *DONE* Give a catalogue structure
 # - +Step 14 probably need a brief explanation of unions or a pointer to some place where it can be read about+
 # - +Explain why we don't do everything right from the start+
 # - +Add a "don't blindly copy code!"+
@@ -3941,10 +4064,29 @@ presentations, or add your name to the help list.
 
 
 
-#+include: "../footer.org" 
+#+include: "../footer.org"
 
-# TODO: 
+# TODO:
 # Add clarification that Cunit must be used
 # add clarification that test must be written regardless of branch
 # add a forward pointer to the hash function
-# exemplify with file structure 
+# exemplify with file structure
+# Rewrite list step to extract list from the hash table
+# Give out tests for the iterator as a good example
+# Give out more instructions for finishing word frequency test
+# Hand out a tree map for their perusal and to compare performance
+# Divide text into separate files
+# Possibly kill TDD path
+# Work out a way to use macros to create typed data structures
+# Move hash functions up
+# Work with weekly google form evaluations to track stress and progress
+# Better tag instructions
+# Better function type instructions
+# Give them one more week
+# Practice hash functions in the labs?
+# Check against how to C in 2016
+# Add macOS keybindings to init
+# Add a guide for code formatting on the save hook
+# Explain the key hotkeys
+# TODO: add fixmee to course emacs package
+# first insert listing could use an animation that shows how the interation works

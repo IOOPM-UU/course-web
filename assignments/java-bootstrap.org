@@ -11,7 +11,7 @@ använda den för att redovisa
 
 ** Tärningar
 
-I filen [[https://github.com/IOOPM-UU/ioopm17/blob/master/labbar/java/Die.java][Die.java]] ligger en [[https://docs.oracle.com/javase/tutorial/java/concepts/class.html][klass]] som representerar en tärning.
+I filen [[../misc/Die.java][Die.java]] ligger en [[https://docs.oracle.com/javase/tutorial/java/concepts/class.html][klass]] som representerar en tärning.
 Kompilera programmet med kommandot =javac Die.java=. [fn::Om du
 vill kan du pröva att skriva ~javac -help~ för att se vilka växlar
 du kan ge till Java-kompilatorn.] Detta skapar en fil i den
@@ -618,7 +618,7 @@ statistiken.
 
 *** Klassen ~Simulator~
 
-~Simulator~ är given och innehåller bara programmets
+~Simulator~ är [[../misc/Simulator.java][given]] och innehåller bara programmets
 ~main()~-metod som skapar en ny ~Simulation~ och anropar ~step()~
 på den ett visst antal gånger. Varje ~step()~-anrop motsvarar en
 "puls" genom systemet. Mellan varje tidssteg skrivs simuleringen
@@ -647,7 +647,7 @@ Nu är det dags att börja implementera! Börja med att skriva
 klassen ~Customer~. Skriv ett enkelt program som testar att
 kund-klassen fungerar som den ska. Till exempel: skapa en kund med
 tre varor, anropa ~serve~ tre gånger och kontrollera att kunden är
-klar (med ~isDone~). Ett förslag finns i [[https://github.com/IOOPM-UU/ioopm17/tree/master/labbar/java/CustomerTest.java][CustomerTest.java]].
+klar (med ~isDone~). Ett förslag finns i [[../misc/CustomerTest.java][CustomerTest.java]].
 
 *** Steg 3: Queue
 
@@ -677,7 +677,7 @@ slags asserts som river ned programmet och skriver ett
 felmeddelande i terminalen.]. Du kan skapa en klass för eget
 undantag på följande vis
 
-#+BEGIN_SRC java -n
+#+BEGIN_SRC java
 public class EmptyQueueException extends RuntimeException{}
 #+END_SRC
 
@@ -703,7 +703,7 @@ samling kassor i en array. Många av metoderna går ut på att
 iterera över alla kassor och göra något särskilt. I Java kan du
 använda ~for~-loopar för att iterera över en samling:
 
-#+BEGIN_SRC java -n
+#+BEGIN_SRC java 
    for(Register r : this.registers) {
        ...
    }
@@ -730,7 +730,7 @@ Sist kan du skriva klassen ~Simulation~. Den viktigaste metoden är
 slumpa fram några tal. För att göra det kan du låta klassen ha
 följande attribut:
 
-#+BEGIN_SRC java -n
+#+BEGIN_SRC java
 Random random = new Random();
 #+END_SRC
 
@@ -745,7 +745,7 @@ lagrar all statistik och ha en metod som returnerar ett sådant
 objekt.
 
 Notera den magiska raden
-#+BEGIN_SRC java -n
+#+BEGIN_SRC java
  System.out.print("\033[2J\033[;H");
 #+END_SRC
 Den rensar skärmen så att det går att göra animationer av det slag

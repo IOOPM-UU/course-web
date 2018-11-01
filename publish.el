@@ -93,7 +93,7 @@
 
 (setq org-publish-project-alist
       '(("root"
-         :base-directory "/home/stw/t/ioopm/2018/site/"
+         :base-directory "/Users/stw/Teaching/ioopm18/2018/site/"
          :base-extension "org"
          :exclude "setup.org\\|footer.org\\|code-exams\\|readme.org"
          ;; :publishing-directory "/tmp/ioopm18/"
@@ -111,34 +111,34 @@
          :html-preamble t)
 
         ("images"
-         :base-directory "/home/stw/t/ioopm/2018/site/images/"
+         :base-directory "Users/stw/Teaching/ioopm18/2018/site/images/"
          :base-extension "jpg\\|gif\\|png"
          ;; :publishing-directory "/tmp/ioopm18/images/"
          :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/ioopm18/images/"
          :publishing-function org-publish-attachment)
 
         ("misc"
-         :base-directory "/home/stw/t/ioopm/2018/site/misc/"
+         :base-directory "Users/stw/Teaching/ioopm18/2018/site/misc/"
          :base-extension "el\\|pdf\\|c\\|h\\|java\\|txt\\|cast\\|png\\|zip"
          ;; :publishing-directory "/tmp/ioopm18/misc/"
          :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/ioopm18/misc/"
          :publishing-function org-publish-attachment)
 
         ("css"
-         :base-directory "/home/stw/t/ioopm/2018/site/css/"
+         :base-directory "Users/stw/Teaching/ioopm18/2018/site/css/"
          :base-extension "css"
          ;; :publishing-directory "/tmp/ioopm18/css/"
          :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/ioopm18/css/"
          :publishing-function org-publish-attachment)
 
         ("fonts"
-         :base-directory "/home/stw/t/ioopm/2018/site/css/fonts/"
+         :base-directory "Users/stw/Teaching/ioopm18/2018/site/css/fonts/"
          :base-extension "ttf"
          :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/ioopm18/css/fonts/"
          :publishing-function org-publish-attachment)
 
         ("js"
-         :base-directory "/home/stw/t/ioopm/2018/site/js/"
+         :base-directory "Users/stw/Teaching/ioopm18/2018/site/js/"
          :base-extension "js"
          ;; :publishing-directory "/tmp/ioopm18/js/"
          :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/ioopm18/js/"

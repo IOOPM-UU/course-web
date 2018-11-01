@@ -99,6 +99,8 @@ of an int".
 - This adds a new merch to the warehouse with a name (string),
   description (string), and price (integer).
 - A newly added merch is not in stock. 
+- Adding a new merch with the same name as an existing merch is
+  not allowed.
 *** List Merchandise
 - This should list all items in the store. Items should
   /preferably/ (soft requirement) be printed in alphabetical order
@@ -116,6 +118,10 @@ of an int".
 *** Edit Merchandise
 - Allows changing the name, description and price of a merch. Note
   that this does not affect its stock.
+- Changing the name of a merch to the name of an existing merch is
+  not allowed.
+- Note that changing the name may mean changing the key unless you
+  use a unique id for each merch. 
 *** Show Stock
 - List all the storage locations for a particular merch, along with
   the quantities stored on each location. Storage locations should
@@ -216,9 +222,17 @@ $HT_{n\to S}$ and $HT_{s\to n}$ in sync.
 
 In summary, the key data structures in the system are: 
 
-1. $HT_{n\to S}$: a central hash table mapping names of items to their information 
+1. $HT_{n\to S}$: a central hash table mapping names[fn::As as
+   alternative to names, we could also use some unique identifier
+   for each item, like an integer. This id is not visible to the
+   user, but is used internally in the backend.] of items to their
+   information
 2. $HT_{s\to n}$ a central hash table mapping names of storage locations to names of items stored on the location 
 3. for each item $S$, a list $L$ of the locations where it is stored, and the amount stored at each location 
+
+#+CAPTION: An overview of what the first hash table ($HT_{n\to S}$) could look like, including $L$.
+file:../misc/data_rep.png
+
 ** Shopping Cart
 A shopping cart is basically a mapping from names of items to
 quantities greater than zero. Thus, on a first iteration (at
@@ -556,7 +570,6 @@ Man kan till och med tänka sig att själva filen startar med en =int= som
 berättar hur många poster den innehåller, men det går förstås också bra
 att leta efter =EOF= -- end of file.
 
-
 * Additions                                                        :optional:
 These are meant for those who like to tinker with the assignment, wants
 to do more, or needs an idea for an extension to demonstrate something. 
@@ -576,8 +589,32 @@ to do more, or needs an idea for an extension to demonstrate something.
 9. Support changing the name of a merchendise -- this might affect its key!
 10. Support for saving the database to file and opening a
     different database file while the program is running.
+11. Merge two merches into one, with one name, description and all the
+    stock of the original two. 
+* Hints and Examples
+** Creating a Hash Table Mapping Names to Merch
+Imagine we have a type ~merch_t~ (for example) which has a field
+~name~ of type ~char *~. We know that names of merch are unique,
+so names are good keys.
 
+We can create a hash table like so: 
 
+#+BEGIN_SRC c
+ioopm_hash_table_t *ht = ioopm_hash_table_create(17, string_knr_hash, string_key_eq);
+#+END_SRC
+
+Clearly, ~ht~ is not a very good name. The role of the hash table in
+the program is a much better naming strategy than "it's a hash table".
+
+The ~string_key_eq()~ function simply extracts strings from the
+~elem_t~ typed keys and delegates to ~strcmp()~ like so:
+
+#+BEGIN_SRC c
+bool string_key_eq(elem_t k1, elem_t k2)
+{
+  return strcmp(k1.string, k2.string); // if elem_t has field char *string
+}
+#+END_SRC
 * Finishing the Assignment
 
 1. At the end, go over your backlog of [[../simple.org::*The%20Three%20Rules%20of%20Cheating][cheats]] and [[../simple.org::*Dodging:%20Not%20Quite%20Cheating][dodges]] and see which ones
