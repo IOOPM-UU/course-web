@@ -329,7 +329,8 @@ top\_level  & ::= & \textit{statement} ~ \textbf{EOL}\qquad & \text{One line of 
             &  |  & \textit{assignment}  \\
 \textit{command}     & ::= & \texttt{quit} & \text{Quit the calculator}\\
             &  |  & \texttt{vars} & \text{Print the variables}\\
-\textit{assignment}  & ::= & \textit{lhs} ~ \textit{rhs} \\
+\textit{assignment}  & ::= & \textit{lhs} \\
+            &  |  & \textit{lhs} ~ \textit{rhs} \\
 \textit{lhs}         & ::= & \textit{expression}  \\
 \textit{rhs}         & ::= & = \textit{identifier} \\
             &  |  & = \textit{identifier} ~ \textit{rhs}  & \text{(note the recursive definition)} \\
@@ -339,6 +340,7 @@ top\_level  & ::= & \textit{statement} ~ \textbf{EOL}\qquad & \text{One line of 
 \textit{term}        & ::= & \textit{factor} \mathop{*} \textit{factor}  & \text{Multiplication}\\
             &  |  & \textit{factor} \mathop{/} \textit{factor}  & \text{Division} \\
             &  |  & \textit{primary} \\
+\textit{factor} & ::= & \textit{primary} & \text{You can unify factor and primary} \\
 \textit{primary}     & ::= & \texttt{(}~ \textbf{assignment} ~\texttt{)} \\
             &  |  & \textit{unary} \\
             &  |  & \textbf{number}  & \text{An integer or floating point number} \\
@@ -385,7 +387,8 @@ statement  ::= command
             |  assignment
 command    ::= *quit*
             |  *vars*
-assignment ::= lhs rhs
+assignment ::= lhs
+            |  lhs rhs
 lhs        ::= expression
 rhs        ::= = identifier
             |  = identifier rhs
@@ -395,6 +398,7 @@ expression ::= term + term
 term       ::= factor * factor
             |  factor / factor
             |  primary
+factor     ::= primary
 primary    ::= ( assignment )
             |  unary
             |  number
@@ -581,7 +585,37 @@ AST (meaning all classes that we are currently concerned with).
 The second package will contain the parser logic. The third
 package will contain all other classes. Start each class in the
 AST with ~package org.ioopm.calculator.ast;~ (and similar for
-parser classes and all other classes when we get there).
+parser classes and all other classes when we get there). 
+
+#+begin_note
+*Writing software with multiple packages*
+
+Note that if you have a class that wants to use a class from
+another package (except for ~java.lang~), you must import that
+package explicitly. For example, if you create a small test
+class in ~Test.java~ and want to play around with AST classes,
+you will have to write ~import org.ioopm.calculator.ast.*;~ 
+at the top of ~Test.java~ (or place the file in the same 
+package, but that is a bit weird). 
+
+*Example:*
+#+CAPTION: Foo.java
+#+BEGIN_SRC java
+package foo.bar;
+
+public class Foo {}
+#+END_SRC
+
+#+CAPTION: Test.java
+#+BEGIN_SRC java
+import foo.bar.*;
+
+public class Test {
+    foo.bar.Foo foo; /// always works because we give the absolute name of Foo
+    Foo foo; /// yields a "duplicate class error" unless Foo is imported (like it is here)
+}
+#+END_SRC
+#+end_note
 
 
 * Parsing the Calculator's Language

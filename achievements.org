@@ -80,11 +80,10 @@ demonstration form -- mirroring information in the AU Portal:
 #+include: "../achievements/G15.org"
 #+include: "../achievements/G16.org"
 #+include: "../achievements/G17.org"
-#+include: "../achievements/H18.org" 
 
-H18???
 #+HTML: <a name="H"></a>
 * H: Objekt, identitet och struktur 
+#+include: "../achievements/H18.org" 
 <<H19>>
 #+include: "../achievements/H19.org"
 #+include: "../achievements/H20.org"
