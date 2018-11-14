@@ -303,7 +303,7 @@ Infinity
 * The Language of the Calculator
 The language of the calculator is pretty simple and is hopefully
 familiar. Parsing starts at the top-level, by parsing a single
-/statement/ followed by an "end of line" (aka ~'\n'~).
+/statement/ followed by an "[[https://gerardnico.com/data/type/text/newline][end of line]]" (aka ~'\n'~).
 
 Below is the grammar for the input language that the calculator
 will understand expressed in BNF form. Words formatted like this:
@@ -354,7 +354,8 @@ top\_level  & ::= & \textit{statement} ~ \textbf{EOL}\qquad & \text{One line of 
 
 *EOL* means ~\n~. *number* means any positive number e.g., 0,
 3.14159, 42, etc. *identifier* means a single word comprised of
-letters a-z and A-Z.
+letters a-z and A-Z. *Note* that keywords like *quit* and *vars* 
+should not be accepted as idenfiers. 
 
 Note that the grammar describes a tree where the leaves will be
 terminal symbols and all other nodes be non-terminals.
@@ -617,7 +618,6 @@ public class Test {
 #+END_SRC
 #+end_note
 
-
 * Parsing the Calculator's Language
 We are going to implement the parser using a technique called
 recursive descent. If we were developing this program not as a
@@ -648,7 +648,8 @@ expression  ::= term
              |  subtraction
 addition    ::= term + expression
 subtraction ::= term - expression
-term        ::= factor * term
+term        ::= factor
+             |  factor * term
 factor      ::= number
              |  '(' expression ')'
 #+END_EXAMPLE
@@ -829,20 +830,20 @@ compile. For now, the class can be mostly empty:
 #+BEGIN_SRC java
 package org.ioopm.calculator.ast; /// could place this in parser *for now*
 
-public abstrac class SymbolicExpression {
+public abstract class SymbolicExpression {
     private String name; 
     private String[] subExpressions;
     /// The second argument allows us to pass in 0 or more arguments
-    public SymbolicExpression(String name, Object subExpressions...) {
+    public SymbolicExpression(String name, Object... subExpressions) {
         this.name = name;
         this.subExpressions = new String[subExpressions.length];
         for (int i = 0; i < subExpressions.length; ++i) {
-            this.subExpressions[i] = subExpressions[i].toString());
+            this.subExpressions[i] = subExpressions[i].toString();
         }
     }
 
     /// Returns e.g., "Constant(42)" if name is "Constant" and subExpressions is ["42"]
-    public SymbolicExpression toString(String msg...) {
+    public String toString(String msg) {
         StringBuilder sb = new StringBuilder();
         sb.append(this.name);
         sb.append("(");
@@ -897,6 +898,25 @@ If you already created the AST nodes, you might want to opt for
 this solution from the start, but on the other hand, it might be
 nice to only debug one part of the code at a time.
 
+** A Word on Parsing Identifiers
+Allowing keywords (commands) like =quit= and =vars= to be parsed as
+identifiers is not great as illustrated by the following example:
+#+BEGIN_EXAMPLE
+? 42 = id
+id
+#+END_EXAMPLE
+If =id= is a non-keyword, like =x=, this program sets the varible
+=x= to 42.0 on the first line and then prints the contents of the
+variable on the second. If =id= is =quit=, the first line sets the
+variable =quit= to 42.0 on the first line and then -- rather than
+printing the contents of the variable on the second, quits the
+program!
+
+To handle that problem, keywords should not be valid identifiers.
+That can be handled in the rule for parsing an identifier, e.g. by
+checking a just parsed idenfifier against a set of known keywords
+and throwing an exception if the identifier happens to be in that
+set.
 ** A Better Stream Tokenizer
 In the parser that you are going to write, we are going to avoid
 connecting the tokenizer directly to ~System.in~. Instead we are
@@ -1949,7 +1969,7 @@ static modifier makes the method part of the class, not part of
 the object.
 
 Now, to get hold of a reference to the only instance of the ~Vars~
-class, one can not write ~Vars.instance()~.
+class, one can now simply  write ~Vars.instance()~.
 
 Also, add an ~isCommand()~ method to the class hierarchy that
 returns ~true~ for all command and ~false~ otherwise.

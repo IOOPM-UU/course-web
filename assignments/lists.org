@@ -897,7 +897,7 @@ by simply returning ~b - a~[fn::Can you see why?].
 #+BEGIN_SRC c
 int compare_int_elements(elem_t a, elem_t b)
 {
-  return b - a;
+  return b.i - a.i;
 }
 #+END_SRC
 To simplify passing this function in as argument to
