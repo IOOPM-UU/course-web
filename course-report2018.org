@@ -1,0 +1,522 @@
+#+title: Course Report 2018
+#+include: "./setup.org" 
+
+This is the course report for IOOPM 2018. The last change to this
+document was 2019-02-18. [[https://github.com/IOOPM-UU/course-web/blob/master/course-report2018.org][The entire change history is visible on
+GitHub]]. 
+
+* Introduction
+
+Every year, a non-trivial amount of time is spent on encouraging
+students to fill out the course evaluation. In particular, filling
+out the course evaluation is mentioned several times daily on
+Piazza in the last week or so of the course, and at the end of
+each project seminar, a few minutes are spent on encouraging
+students to fill it out, including a motivation why. I have been
+asked several times how the answer rate can be so high despite the
+large number of questions. I hope that some of the reason is that
+we have demonstrated -- not just by word but by action -- that we
+take feedback and input seriously at IOOPM.
+
+In 2018, the course evaluation was answered by 63% (85/134) of the
+respondents. This is exactly the same number as 2017, /making it a
+tie for the all-time high./ 
+
+The number of active students in the course was approximately 100,
+not counting old students coming back to either improve on their
+grades (about 3-4) and previous students coming back to finish off
+some missing pieces (about 10-15). The number of student git repos
+that I constantly pulled during the course was 108. A total of 93
+students embarked on the project (3 dropped out during the project).
+
+We managed a total number of 141 students in the AUPortal out of
+which at least 20 were old students. Out of these 16 demonstrated
+no achievements at all. 4 demonstrated fewer than 7 achievements.
+
+* Examination Results
+
+Some marking is still on-going, in particular some trailing
+project work. Some students have also missed filing the paperwork
+for their [[aua:C7][C7]] to be ticked off.
+
+Only listing students registered on the course for the first time
+this year, here are the numbers:
+
+| Course Part          | Passed Students | Comments |
+| Assigments 1         |              70 | 5 ECTS   |
+| Assigments 2         |              75 | 5 ECTS   |
+| Project              |              78 | 5 ECTS   |
+| Coding Exam I (C)    |              75 | 2.5 ECTS |
+| Coding Exam O (Java) |              79 | 2.5 ECTS |
+
+Scanning the list of the 25 students who have not yet passed
+Assignments 1, I recognise 7 whom I have discussions with about
+how they are going to fix that within the next month or so. Most
+students who are not done with the project have successfully
+completed the project but are lacking a couple or demonstrations
+for a full set, such as [[aua:C7][C7]]. 
+
+I would say this is on par with the course, for this course. 
+
+* Teacher's Report
+I was very scared about IOOPM in fall of 2018. Not only was a key
+person gone not just from the course but from the university, but
+the number of senior TAs had been reduced from 3 or 4 to just 1. I
+knew that replacing senior TAs with junior would be possible in
+most cases, but not all. Delegating *responsibility* was no longer
+an option, and the wiggle room for change mid-air greatly
+constrained. 
+
+I did my best to push for as much resources as possible, and also
+to recruit really good junior TAs from previous years. I had laid
+some groundwork for that already in 2017, but things proved an
+uphill struggle with a new TA recruitment system, and no clear
+picture of who my TAs were going to be until the week before the
+course started. In the end, I was not able to provide coaches for
+the students during the project phase of the course. /This should
+not have to happen again./
+
+I was therefore very greatful that students self-organised some
+seminars on various things on Fridays. (Thank you UPDATE!)
+
+In order to streamline the course somewhat -- to reduce the
+reliance on senior TAs helping students out during the course -- I
+felt a need to rewrite the assignments. While doing so, I
+attempted to rectify a problem of students not wanting to read
+"theory" in a programming course. This led to me "hiding" the
+assignments (especially Assignment 1) in a discussion which would
+happen automatically on-demand with more and more senior staff in
+previous years (not with all students of course). There is a lot
+of room for improvement, given that I have not been able to spend
+much time on this, but so far the results are quite promising. I
+say this knowing full and well that I accidentally wore a lot of
+people down with Assignment 1. This is something I regret, but I
+think it is fixable, especially with all the nice and constructive
+feedback that the class of 2018 have provided during the fall.
+
+In addition to the staff shortage, it turned out the only senior
+TA was having a baby the same week I needed to be elsewhere for a
+conference. In the end a colleague stepped up to give 3 lectures
+while I was away, but it ended up with him feeling bad about not
+preparing them properly and students complaining that he did not
+do a great job. In the end, I did not find time to give the
+overview of the SPLASH/OOPSLA research field that I had planned,
+but instead focus on recaping some key things. 
+
+In the end I was offered one more senior resource, but this was
+too late. I had no time to onboard that person, and the person
+also was not expert enough on the matters at hand. This led to
+much frustration and lack of coordination where constant requests
+from me for this person to reach out to students fell short. I did
+not have time to deal with this properly during the course since I
+was already short on time before this happened. 
+
+*Red flag for the future:* Me an the senior TA were discovering
+things that had not been handled properly at several times during
+the course. The root cause of this is the departing key person and
+the difficulty of hand-over of an organically developed process
+that has never been properly documented. /This situation must be
+seen to or this will happen again in the future./
+
+Under the circumstances, I think that the course ran very well. I
+am super pleased with the team of TAs, and there are lot of
+potential TA material in the class of 2018 that I will be reaching
+out to now that most grades have been reported in. To compensate
+for the staff shortage, I overworked myself quite heavily, and
+towards mid-November I was pretty worn out and started to drop too
+many balls, without having someone to delegate to. A reasonable
+mitigation strategy would be to lower one's expectations and
+standards, but that is much more easily said than done. 
+
+Thus, I am extremely pleased that students remark that they have
+been treated as individuals, and that they have found the teaching
+team to be flexible and adaptive. This does not come cheap, and I
+would not want to run the course with strict rules for everything
+and no flexibilty to cater to the very different needs of the
+individual students. 
+
+This year, I have not yet investigated gender imbalance in grades,
+but will do so at the earliest convenience (read: any year now,
+but it will get done). On a related note, I was *extremely* happy
+to have four female TAs on the team in 2018, and I hope that this
+trend can continue in 2019. 
+
+Working with the students have been a pleasure. In the midst of
+all chaos, they have remained civil and constructive. The tone of
+voice in Piazza has been mostly impeccable and there have been a
+good discussion climate during lectures, at least from where I
+have been standing. I have witnessed some personal tragedies, lots
+of frustration, some let downs and some great personal successes. 
+
+In the remainder of this report, I go through the result of the
+course evalution and focus on select feedback. There have been
+many great and constructive suggestions. I am happy that almost
+all of the viewpoints put forward I already knew, either on my
+own, or from continuous feedback solicitation. 
+
+* Student Feedback
+** Strong Points
+34 students gave specific answers to this question. Their feedback is
+thankfully quite similar to previous years. I illustrate my bullets with selected quotes.
+*** Students learned a lot 
+#+BEGIN_QUOTE
+Man har lärt sig mycket mer jämfört med andra kurser
+
+Har lärt mig väldigt mycket om programmering.
+
+Har lärt mig otroligt mycket!
+
+Verkligen lärt mig programeringstänket
+
+Inlupparna man vart verkligen tvingad att förstå
+#+END_QUOTE
+*** Students Appreciate Working with Achievments
+#+BEGIN_QUOTE
+Systemet med mål har varit ett bra upplägg där man lätt kan se vad man behöver göra för att klara kursen
+
+Jag tycker att det har varit bra att man blir examinerad kontinuerligt genom kursens gång
+
+Bra med mål för att kolla att vi lär oss
+
+Mycket lärorik att redovisa mål.
+
+Jag gillade upplägget med mål på kursen. Det gjorde att man själva kunde välja vad man ville lära sig för dagen.
+#+END_QUOTE
+*** Accessible Teachers
+#+BEGIN_QUOTE
+Stor eloger till fantastiskt tålmodiga, engagerade och ständigt uppmuntrande lärare och assistenter!
+
+Tobias commitment and engagment to help everyone in the course
+
+alla som varit med och lärt oss. Labbassarna var varit super!
+
+Bra labassar och alltid tillgänglig lärare!
+
+Tobias och assarna har varit riktigt bra
+#+END_QUOTE
+
+The lectures get a few mentions but not very many. I'll return to
+this in the Lecture section below. Students also explicitly mention
+flexibility of the teaching team. 
+
+** Weak Points
+36 students gave specific answers to this question. 
+*** Assignment 1 was an Absolute Killer
+Given that I revamped Assignment 1, tried an entirely new methodology, and
+wrote everything up mostly at night time during my vacation, I was not surprised
+that Assignment 1 still needs work. It became apparent during the first sprint
+of the course that /many/ students were struggling, across all programming
+backgrounds. 
+#+BEGIN_QUOTE
+Inlupparna var lite väl stora så hade svårt att komma ikapp
+
+Inlupp 1 skulle kunna kortas ner, den var väldigt stor och tog lång tid (mer än vad jag tycker är rimligt).
+
+Kanske inte ändra på inlämningar så nära inpå att dom ska göras.
+
+Making the first assignment easier, since the difficulty on the first one made almost everybody fall behind in the course
+
+Första inlämningsuppgiften kunde ha varit lite mindre.
+
+Inlupp1 kändes väldigt (och onödigt) överdimensionerad
+#+END_QUOTE
+For Assignment 1, I envision a number of changes:
+
+- Rewrite parts of it to make it easier to read
+- Completely rewrite the text on linked lists and interators
+  instead of reusing old texts
+- Foreshadow some of the coming bits to help with structure and
+  time planning. Possibly move some bit over to Assignment 2. 
+- Possibly reduce the requirements, but I have a strong suspicion
+  that the main source of pain is the structure of the text, not
+  the complexity of the programming. Some students have implored
+  me /not/ to lower the requirements of this assignment. I will do
+  my best not to.
+
+*** Waiting Times for Demonstrations
+Remarkably, this year we managed to lower the waiting time in
+demonstrations. Some students remark that the very large
+Assignment 1 made many students aim for lower grades (meaning
+fewer demonstrations) but the proportions of students aiming for 3
+or higher grades were about the same as last year.
+#+BEGIN_QUOTE
+Man har inte råd att slösa 4 timmar per vecka på att stå i väntekön för att få redovisa!!! Det är seriöst den enda grejen som jag tycker är helt oacceptabel i kursen
+
+Precis som alla andra kurser med labbar - kortare kötider
+
+Det tog alldeles för lång tid att få redovisa mål
+
+lägga mer vikt vid att få folk att ta mål i början så att det inte blir så långa köer i mitten och slutet av kursen
+
+[D]e långa redovisnings tiderna.
+#+END_QUOTE
+
+Until I have an idea of what the TA resources will be for fall of
+2019, I wont bother with this issue for fear of wasting time. 
+
+Some students remarked on the workload being very high. 
+Some remarked on the workload being reasonable.
+
+Some called for more air in the schedule to allow for some breaks.
+This will not happen, but I will integrate into the suggestions
+for next year for students to build breaks into their plans. If I
+try to schedule them it will just make a mess. 
+
+For the first time (IIRC), differences between TAs find its way to
+things that warrant improvement more than once.
+
+Students also remark negatively on me chasing updates to the
+course material during the course. This is of course something to
+avoid always. (Not that one always succeeds, though.)
+** Statistics from the Course Evaluation
+*** Course Satisfaction
+Course satisfaction is up $0.1$ point average over 2017. 
+Last year, there were more 4's than 5's.
+
+#+CAPTION: Question 1 from Course Evaluation
+file:images/cr18/01-satisfaction.png
+
+*** Student Effort
+Student effort is up $0.1$ point average over 2017.
+#+CAPTION: Question 2 from Course Evaluation
+file:images/cr18/02-effort.png
+
+*** Lecture Satisfaction
+Students are generally satisfied with the lectures. The average is up by $0.3$. 
+The comments on the lectures are roughly the same as usual. It is hard to 
+plan a fixed lecture content when so many students work at such different paces. 
+
+#+CAPTION: Question 3 from Course Evaluation
+file:images/cr18/03-lectures.png
+
+*** Lecture Attendance
+Lecture attendance is about the same as in 2017. Personally I feel
+that there were fewer students than even attending the lectures, but
+I did not make consistent counds. I also had several students remark
+that they had never seen such high lecture attendance so far into a course. 
+It seems that lectures are dying slowly finally. 
+
+In general, most students seem quite happy about the lectures, but that may
+be more related to delivery than to content or payoff. 
+
+#+CAPTION: Question 4 from Course Evaluation
+file:images/cr18/04-attendance.png
+
+15% of all students think the number of lectures should be lower in favour of
+video content in 2019. 8% of all students think all lectures should be 
+replaced by video content. 
+
+13% think video material is not needed on this course. 
+
+And lastly, 52% thinks video lecture are a good supplement to traditional lectures. 
+
+In the comments about the lectures, some students called for more
+coding during lectures. I toned this down because of how previous studenst
+have expressed concerns about the value of code-oriented lecturing. 
+
+** Assignments
+*** Imperative Programming in C 
+I was particularly interested in seeing the feedback on the assignments, given that
+almost all assignments were either completely rewritten or completely overhauled. 
+
+The difficulty level of the C assignments are at the right level. 
+#+CAPTION: Question 9 from Course Evaluation
+file:images/cr18/09-c-difficulty.png
+Students seem to agree that assignment 1 was too large (60% think
+it was somewhat or overly large).
+#+CAPTION: Question 10 from Course Evaluation
+file:images/cr18/10-c-extent.png 
+I was happy to see that even though it was frustrating to extract the
+assignement text from a large body of text, it seems to have been. I believe
+that the high value on value is because of the mix of theory and practice. 
+#+CAPTION: Question 11 from Course Evaluation
+file:images/cr18/11-c-value.png
+
+*** Imperative OOP in Java 
+
+The difficulty level of the Java assignments seem to be well-placed.
+#+CAPTION: Question 12 from Course Evaluation
+file:images/cr18/12-java-difficulty.png
+Students seem to agree that assignment 1 was too large (60% think
+it was somewhat or overly large).
+#+CAPTION: Question 13 from Course Evaluation
+file:images/cr18/13-java-extent.png 
+I was happy to see that even though it was frustrating to extract the
+assignement text from a large body of text, it seems to have been. I believe
+that the high value on value is because of the mix of theory and practice. 
+#+CAPTION: Question 14 from Course Evaluation
+file:images/cr18/14-java-value.png
+
+I also asked the students to discuss their feelings for the
+current design in which each assignment comes in two parts, a
+fairly strictly scoped assignment, and then a freer assignment
+that builds on the previous. Students disagree wildly on this
+point. Some argue that it is both good and bad. About 30% of the students
+think that the assignments should be a lot freer. About 35% wants wants
+just a little more freedom. 18% are satisfied as-is. 
+
+** Project Work
+There were an unusual amount of positive remarks about the project. >80% of all
+students believe the scope of the project is about right. 80% believe they have
+learned a lot about software development in teams. 
+
+As I already remarked above, there were no coaches for the projects this year. 
+This was a catastrophe, and made the correction a lot harder because one single
+person (myself) had to understand all the projects very quickly for the seminars. 
+
+Several students state that the project was sort of leisurely,
+which I fully condone given how hard they have worked up to this
+point. There are many students that have a significant backlog
+still, so this design is good from many perspectives.
+
+We formed the group in the same way as last year, using a form
+with question about how one wanted to work, from where, etc.
+Several students commented very positively about this in the
+evaluation. One student felt "tricked" because it was possible to
+only tick 1 box in the "when would you prefer working" box, which
+led him/her to believe the project could be pulled off in a very
+short time frame (it could not).
+** Code Exam
+Students seem to agree with me that the course is a good
+preparation for the coding exam.
+#+CAPTION: Question 23 from Course Evaluation
+file:images/cr18/23-code-exam-prep.png
+75% of all students think that the difficulty and extent is good. 
+#+CAPTION: Question 24 from Course Evaluation
+file:images/cr18/24-code-exam-extent.png
+Still, quite a few number of students remark that some exams were easy and
+some were hard. I believe there are several factors at work here:
+
+1. If an exam task was based on assignment code from this year, it
+   felt (was) easier (for the current students) because they were
+   familiar with the code. Code exams which targeted students from
+   previous years had tasks which were less familiar. 
+2. There is no objective measurement for what constitutes a hard
+   or easy examination. Just because a student thinks that one
+   particular assignment was easy, it might just mean that if fell
+   under the familiarity argument of above, etc. 
+
+For next year, I recomment extending the time for writing the code
+exam with 1 hour to a total of 4 hours per slot to reduce stress. 
+At some point, I shall dig through old coding exam data and correlate
+finishing speed with grade. 
+
+Students strongly prefer writing code on computers rather than
+with pen and paper. Students also seem to believe that having more
+shots at passing the exam at the expense of more feedbck is the
+right choice. One student remarks that the feedback on the coding
+exam is ready quite good. 
+
+** Achievements
+
+82% of all students think that the flexibility of the achievement
+system has helpt to some extent (40%) or great extent (42%) to
+devour the contents of the course.
+#+CAPTION: Question 28 from Course Evaluation
+file:images/cr18/28-flexibility.png
+
+65% of all students think that giving them the responsibility to 
+manage their own study work is positive. 
+#+CAPTION: Question 29 from Course Evaluation
+file:images/cr18/29-responsibility.png
+
+Finally 92% of all students think that is it relatively clear
+(20%) or very clear (72%) what their grade will be. This is an
+all-time high for the course.
+
+89% of the students think that they have sharpened their abilities
+to explain, motivate and transfer knowledge as a consequence of
+the oral examination.
+
+The answer to this question is interesting, and points (IMO) to
+the importance of personal preference.
+#+CAPTION: Question 32 from Course Evaluation
+file:images/cr18/32-more-less.png
+
+72% of all students prefer immediate oral feedback to delayed
+written feedback.
+#+CAPTION: Question 33 from Course Evaluation
+file:images/cr18/33-feedback.png
+
+74% of all students have to some extent explored synergy between
+achievements in an effort to find goals that go well together. 
+Several students remark in the comment section that this worked
+well in the beginning but less well later due to problems with
+finding a partner to demonstrate with. 
+
+73% of all students think that the course design have helped them
+stay clear of back-loaded study patterns.
+#+CAPTION: Question 35 from Course Evaluation
+file:images/cr18/35-continuous.png 
+
+A new question for this year was whether students agreed with the
+description of the course as front-loaded, and if so whether they
+think this should change. The result is that most students agree
+with this description, and don't think this should change. Those
+that think it should change either point to the overly large
+Assignment 1 problem, or disagree with the statement in favour of
+"the course is heavy loaded all the time". 
+
+This year there are an exceptional number of comments on TAs
+adressing demonstrations differently. Students seem to not mind
+e.g. the MO of the "hardest TA", but dislike that it is a bit of a
+lottery whether you get an easy or hard pass. This is probably an
+artefact of the person running the TAs for the last 5 years having
+moved on to postdoc life at KTH following his successful defense. 
+This is we be a priority ticket for next year. As usual, students
+seem to not consider TA inconsistencies a very big problem. 
+
+** Other
+
+Students think PKD did a good job at preparing them for working
+with Piazza, but a poor job at getting them acquianted with git. 
+I accidentally learned that PKD dropped Piazza entirely in 2018/2019. 
+To be continued.
+
+Students were asked to give advice to future students. These will be
+forwarded to next year's batch of students in an unfiltered manner. 
+
+** Sanity Check
+
+Students overwhelmingly agree that we are doing a good job. 
+#+CAPTION: Question 46 from Course Evaluation
+file:images/cr18/46-how-are-we-doing.png 
+#+BEGIN_QUOTE
+Som sagt ni har ett ryckte för att ha en av dom bästa kurserna på programmet (IT)! Tack för den här tiden!
+
+Helt fantastiskt engagemang från speciellt Tobias men också från Ardalan som gett mycket stöd utanför labtid.
+
+Bästa kursen jag läst.
+
+Tobias är grym!
+
+Ni gör ett fantastiskt jobb!
+
+Det finns ett oerhört bra engagemang från Tobias, tror dock han skulle behöva fler lika engagerade som hjälpte till i kursen.
+
+Stor bravur till Tobias och samtliga labbassar!
+
+Aldrig haft en bättre lärare än Tobias!
+
+Allt överlag är mycket bra, men inte perfekt. Däremot ser jag stort engagemang i en strävan efter att göra det perfekt. 5/5
+#+END_QUOTE
+
+Students overwhelmingly agree that the course is instructive.
+#+CAPTION: Question 51 from Course Evaluation
+file:images/cr18/51-useful.png 
+
+86% of all students think that the way the course is examined is testing actual "mastery" of the concepts. 
+#+CAPTION: Question 52 from Course Evaluation
+file:images/cr18/52-alignment.png 
+
+
+
+ #+include: "./footer.org" 
+* Final Words
+If you have read this document, whoever you are, could you
+/please/ send an email to me =cr@wrigstad.com= and tell me about
+it! Not only would I like your feedback, but---it is totally
+unclear to me who actually reads these reports, and thus, it is
+hard to know, both how to structure them but also how much time to
+spend on them. (I ended the report like this in 2017, and got 7
+replies.)
