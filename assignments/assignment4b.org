@@ -262,3 +262,38 @@ denna uppgift som en faktiskt MUD.
    sämre sättet som specificerats här.
 
 
+
+* Finishing the Assignment
+1. Go over your backlog of [[../simple.org::*The%20Three%20Rules%20of%20Cheating][cheats]] and [[../simple.org::*Dodging:%20Not%20Quite%20Cheating][dodges]] and see which ones
+   need taking care of. *Ideally this stack should be empty.*
+2. Write up any necessary documentation of your program, any extra
+   documentation needed because of design decisions you took or
+   deals made with the teachers. Put this in a =README.md= in the
+   top-level directory for this assignment.
+3. As the /first/ section of =README.md=, add instructions for how
+   to build and run the program. Ideally,
+   this should be as easy as =make= followed by =make run=.
+4. Prepare a demonstration of z104 to give at the next lab. In
+   addition to z104, pick another 2-3 achievements to tick off,
+   and include these in your demonstration preparation. To back up
+   your presentation, present evidence like places in your code
+   where relevant things show up, documentation, paper drawings,
+   etc. -- things that support your demonstration. Think carefully
+   about what things fit together (ask for help if you feel
+   uncertain after trying) and what achievements tell a good story
+   together. Make sure that not one person dominates the
+   demonstration or answers all questions to avoid someone failing
+   the demonstration because there was no evidence of achievements
+   mastery.
+5. Send an email to [[mailto:z100@wrigstad.com][z104@wrigstad.com]] with your names and
+   usernames, a link to the GitHub repository where the code can
+   be checked out.
+6. Create a final commit for the assignment and [[../github.org][check it into
+   GitHub]]. After the normal push, add a tag =assignment4_done= (be
+   careful to spell it just like that) and push the tag to the
+   server by adding =--tags= to the =git push= command. If your
+   partner wants to pull the tag, he or she needs to add a
+   =--tags= to the =git pull= command, but if you were careful to
+   have a commit which was just a tag, then having that synced is
+   not important.
+7. *Optional* Please take time to [[mailto:z104-feedback@wrigstad.com][feedback on the assignment]].

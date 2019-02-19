@@ -341,7 +341,7 @@ top\_level  & ::= & \textit{statement} ~ \textbf{EOL}\qquad & \text{One line of 
             &  |  & \textit{factor} \mathop{/} \textit{factor}  & \text{Division} \\
             &  |  & \textit{primary} \\
 \textit{factor} & ::= & \textit{primary} & \text{You can unify factor and primary} \\
-\textit{primary}     & ::= & \texttt{(}~ \textbf{assignment} ~\texttt{)} \\
+\textit{primary}     & ::= & \texttt{(}~ \textit{assignment} ~\texttt{)} \\
             &  |  & \textit{unary} \\
             &  |  & \textbf{number}  & \text{An integer or floating point number} \\
             &  |  & \textbf{identifier}  & \text{A name consisting of letters a-z and A-Z} \\
@@ -2296,8 +2296,8 @@ evaluated, e.g., down to =42.0= as opposed to =42.0 + a=.
 3. As the /first/ section of =README.md=, add instructions for how
    to build and run the program. Ideally,
    this should be as easy as =make= followed by =make run=.
-4. Prepare a demonstration of z102 to give at the next lab. In
-   addition to z102, pick another 2-3 achievements to tick off,
+4. Prepare a demonstration of z103 to give at the next lab. In
+   addition to z103, pick another 2-3 achievements to tick off,
    and include these in your demonstration preparation. To back up
    your presentation, present evidence like places in your code
    where relevant things show up, documentation, paper drawings,
@@ -2308,7 +2308,7 @@ evaluated, e.g., down to =42.0= as opposed to =42.0 + a=.
    demonstration or answers all questions to avoid someone failing
    the demonstration because there was no evidence of achievements
    mastery.
-5. Send an email to [[mailto:z100@wrigstad.com][z102@wrigstad.com]] with your names and
+5. Send an email to [[mailto:z100@wrigstad.com][z103@wrigstad.com]] with your names and
    usernames, a link to the GitHub repository where the code can
    be checked out.
 6. Create a final commit for the assignment and [[../github.org][check it into
@@ -2319,7 +2319,7 @@ evaluated, e.g., down to =42.0= as opposed to =42.0 + a=.
    =--tags= to the =git pull= command, but if you were careful to
    have a commit which was just a tag, then having that synced is
    not important.
-7. *Optional* Please take time to [[mailto:z102-feedback@wrigstad.com][feedback on the assignment]].
+7. *Optional* Please take time to [[mailto:z103-feedback@wrigstad.com][feedback on the assignment]].
 
 *Note:* Don't expect any feedback on your program over what you
 have got from the oral presentations. If you want more feedback on

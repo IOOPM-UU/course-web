@@ -75,13 +75,16 @@ kodprovet har hårda tidsgränser.
 * Recent Coding Exams
 Below are some recent coding exams.
 
-|       Date | Instructions | Postmortem | Note   |
-| 2017-10-26 | [[http://wrigstad.com/ioopm/agoster.zip][available]]    | [[http://wrigstad.com/ioopm/2017/kodprov-okt-17.html][available]]  |        |
-| 2017-12-08 | [[http://wrigstad.com/ioopm/entrekod.zip][available]]    | [[http://wrigstad.com/ioopm/2017/kodprov-dec-08.html][available]]  | Only C |
-| 2017-12-18 | [[http://wrigstad.com/ioopm/sorsele-fm.zip][available]]    | [[http://wrigstad.com/ioopm/2017/kodprov-dec-18.html][available]]  |        |
-| 2018-04-02 | [[http://wrigstad.com/ioopm/bridget.zip][available]]    |            |        |
-| 2018-08-30 | [[http://wrigstad.com/ioopm/mandel.zip][available]]    | [[./exams/2018-08-30.org][available]]  |        |
-| 2018-10-24 | [[http://wrigstad.com/ioopm/byzantin.zip][available]]    | [[./exams/2018-10-24.org][available]]  |        |
+|       Date | Files     | Instructions and/or Postmortem | Note   |
+| 2017-10-26 | [[http://wrigstad.com/ioopm/agoster.zip][available]] | [[http://wrigstad.com/ioopm/2017/kodprov-okt-17.html][available]]                      |        |
+| 2017-12-08 | [[http://wrigstad.com/ioopm/entrekod.zip][available]] | [[http://wrigstad.com/ioopm/2017/kodprov-dec-08.html][available]]                      | Only C |
+| 2017-12-18 | [[http://wrigstad.com/ioopm/sorsele-fm.zip][available]] | [[http://wrigstad.com/ioopm/2017/kodprov-dec-18.html][available]]                      |        |
+| 2018-04-02 | [[http://wrigstad.com/ioopm/bridget.zip][available]] |                                |        |
+| 2018-08-30 | [[http://wrigstad.com/ioopm/mandel.zip][available]] | [[./exams/2018-08-30.org][available]]                      |        |
+| 2018-10-24 | [[http://wrigstad.com/ioopm/byzantin.zip][available]] | [[./exams/2018-10-24.org][available]]                      |        |
+| 2018-12-11 | [[http://wrigstad.com/ioopm/equinox.zip][available]] | [[./exams/2018-12-11.org][available]]                      |        |
+| 2018-12-19 | [[http://wrigstad.com/ioopm/patata.zip][available]] | [[./exams/2018-12-19.org][available]]                      |        |
+| 2019-01-14 | [[http://wrigstad.com/ioopm/bergamott.zip][available]] | [[./exams/2019-01-14.org][available]]                      |        |
 
 In 2016, I was asked on Piazza to record a screencast that
 demonstrated what doing a code exam could be like. This was a

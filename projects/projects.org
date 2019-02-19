@@ -338,7 +338,7 @@ log on GitHub, should convince the examiner that you pass Y66.
 
 ** Individual Reflection
 Varje projektmedlem skall skriva en kort självreflektion[fn::About
-1000--1500 characters. Note -- all character counts in this
+1500--3000 characters. Note -- all character counts in this
 document are to be interpreted as "as outputted by the ~wc~ command".] om sin
 prestation. Vilka är dina styrkor och svagheter i ett
 projektarbete? Vilka egenskaper bör du förstärka och vilka behöver
@@ -545,9 +545,9 @@ Puh. Vi ses på seminarierna!
 
 * Nutshell Summaries of the two Projects
 
-#+begin_note
-Note that the project specifications are subject to change at any moment.
-#+end_note
+# #+begin_note
+# Note that the project specifications are subject to change at any moment.
+# #+end_note
 
 If nothing else is stated, then the projects are required to work
 on Linux X86 64 bit, Ubuntu 16.04 (which is what the department

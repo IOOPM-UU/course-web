@@ -1,0 +1,359 @@
+#+title: Kodprov 2018-12-11 (förmiddag)
+#+include: "../setup.org" 
+#+include: "../../exams/preamble.org"
+#+PROPERTY: KODPROV_DATE 181211
+#+PROPERTY: KODPROV_FILENAME equinox
+
+* C-uppgift
+
+Uppgiften går ut på att slå samman två länkade listor $A$ och $B$
+så att alla /länkar/ och deras element förs över från $A$ till $B$
+och att $A$ "töms". *För enkelhetens skull kan du utgå från att
+alla element är unika.*
+
+Anledningen till att vi inte bara vill flytta över elementen från
+$A$ till $B$, utan också länkarna, är att vi är intresserade av
+att anropa ~malloc()~ (eller motsvarande) så lite som möjligt,
+dvs. av rena prestandaskäl -- både den extra tiden det tar att
+allokera och frigöra minne, och det extra minnestrycket i att ha
+dubbelt så många länkar (som i $A$) en kort stund innan de togs
+bort (det skulle vi ha i en naiv implementation som flyttade över
+alla element i $A$ till $B$ och sedan tog bort alla länkar i $A$).
+
+Utöver ~list_merge()~ måste du också implementera funktionerna
+~list_size()~ som returnerar storleken på en lista och
+~list_destroy()~ som tar bort en lista ur minnet, tillsammans med
+dess innehåll. Intruktioner finns i kommentarer i koden. 
+
+Kod för listorna är given, förutom funktionerna som du skall
+implementera. All kod du skall skriva är i =yourcode.c= och all
+testkod är i =driver.c=. *OBS!!* Endast =yourcode.c= lämnas in!
+
+Du behöver inte ändra i =driver.c= men du kan vilja göra det för
+att t.ex. kommentera bort tester som inte fungerar, etc. Det kan
+också vara hjälpsamt att läsa koden i =driver.c= för ledning. 
+
+Som vanligt får du inte läcka minne, läsa oinitiera minne etc. 
+
+** Exempel på merge
+Ponera två länkade listor (OBS! Utan dummies, vilket de kan ha i
+implementationen.) Figuren nedan visa före och efter anrop till
+~list_merge(list1, list2)~. 
+
+#+ATTR_HTML: :width 800px
+file:../misc/merge-diagram-fm.png
+
+Observera att "C" ligger kvar i samma länk, liksom "B" etc. 
+
+
+** Testa din lösning
+
+=make compile= kompilerar =driver.c= och =yourcode.c= till =a.out=.
+
+=make test= kompilerar enligt =make compile= och kör sedan testerna. 
+
+=make memtest= kör testerna enligt =make test= under valgrind. 
+
+Testerna slår ihop två listor tre gånger, i tre olika test. *Du måste
+själv läsa outputen och tolka den för att se om allt gick bra!*
+
+Här är ett exempel på ett test som passerar:
+#+BEGIN_EXAMPLE
+=========================== TEST START =================================
+First random list 'a'
+'[k, r, v]'
+Second random list 'b'
+'[g, q, x]'
+Merging lists
+Expecting size of 'a' to be zero
+0 == 0 ... PASSED
+Expecting size of 'b' to be sum of 'a' and 'b' before merge
+6 == 6 ... PASSED
+Expecting the output of 'a' to be []
+'[]'
+Expecting the output of 'b' to be all elements of 'a' and 'b' before merge in ascending order (e.g. a < b, b < c, etc.)
+'[g, k, q, r, v, x]'
+Checking that the links, not just elements were moved
+... PASSED
+=========================== TEST STOP ==================================
+#+END_EXAMPLE
+
+Som synes skapas två listor (samma skapas varje gång du kör
+testet!), i detta fall båda av längden 3, med unika data.
+Först skrivs listorna ut så vi ser vad som händer, sedan
+slås de ihop. Efter detta förväntar vi oss att $a$ är tom,
+och att $b$ har fått samtliga element. Sista testet kollar
+att det faktiskt är /länkarna/ som flyttas över och inte
+enbart elementen. 
+
+
+
+* Lösningsförslag till C-uppgiften
+
+Det var några små skillnader mellan förmiddagens och
+eftermiddagens prov. T.ex. sorteringsordningen som användes av
+testerna och icke-funktionella krav på hur listans storlek skulle
+räknas ut (amorterad kostnas och size i konstant tid jmf. med size
+i linjär tid). 
+
+** De vanligaste felen 
+
+1. Missa att det var länkarna som skulle flyttas över och bara flytta elementen 
+2. Förutsätta något om sorteringsordningen istället för att använda funktionspekarna 
+3. Ignorera sorteringen och bara konkatenera listorna
+4. Blanda ihop listorna efter merge (båda listorna hade gemensamma länkar)
+5. Missa att uppdatera ~last~
+
+** Lösningsförslag ~list_size()~ 
+
+Visar endast i linjär tid:
+#+BEGIN_SRC c
+int list_size(list_t *list)
+{
+  int sum = 0;
+  for (link_t *cursor = list->first; cursor->next; cursor = cursor->next)
+    {
+      ++sum;
+    }
+  return sum;
+}
+#+END_SRC
+
+** Lösningsförslag ~list_destroy()~ 
+
+#+BEGIN_SRC c
+void list_destroy(list_t *list)
+{
+  /// Ta fram en pekare till första länken efter dummyn 
+  link_t *cursor = list->first->next;
+
+  while (cursor)
+    {
+      /// Spara undan next-pekaren
+      link_t *tmp = cursor->next;
+      /// Frigör elementet
+      free(cursor->element);
+      /// Frigör länken
+      free(cursor);
+      cursor = tmp;
+    }
+  /// Frigör dummy-länken (ej dess element eftersom det inte finns)
+  free(list->first);
+  /// Frigör själva listan
+  free(list);
+}
+#+END_SRC
+
+** Lösningsförslag ~list_merge()~ 
+
+Lösningsförslaget loopar över listan ~l1~ i den yttre loopen
+(~for~). Varje varv flyttas en länk från ~l1~ över till ~l2~.
+Pekaren ~prev_l2~ används för att hitta föregående länk i ~l2~ där
+länken från ~l1~ skall in. Den inre loopen (~while~) används för 
+att positionera ~prev_l2~ korrekt. 
+
+Efter den inre loopen pekar ~prev_l1->next~ på den länk som skall
+flyttas över, och ~prev_l2->next~ är den plats dit länken skall
+flyttas. 
+
+#+BEGIN_SRC c
+void list_merge(list_t *l1, list_t *l2)
+{
+  /// Varje varv i loopen flyttas prev_l1->next över
+  for (link_t *prev_l1 = l1->first; prev_l1->next;)
+    {
+      /// Bekvämt för jämförelsen i while-loopen
+      void *element = prev_l1->next->element;
+
+      link_t *prev_l2 = l2->first;
+
+      /// Flytta prev_l2 till platsen innan där prev_l1->next skall stoppas in 
+      while (prev_l2->next && l2->compare(prev_l2->next->element, element) < 0)
+        {
+          prev_l2 = prev_l2->next;
+        }
+
+      /// Låt link_l1 vara länken som skall flyttas
+      link_t *link_l1 = prev_l1->next;
+
+      /// Länka link_l1 ur l1
+      prev_l1->next = link_l1->next;
+      
+      /// Länka in link_l1 i l2
+      link_l1->next = prev_l2->next;
+      prev_l2->next = link_l1;
+
+      /// Uppdatera last-pekaren 
+      if (prev_l2 == l2->last)
+        {
+          l2->last = link_l1;
+        }
+    }
+
+    /// Uppdatera l1's last-pekare 
+    l1->last = l1->first;
+}  
+#+END_SRC
+
+Om vi hade haft amorterad ~list_size()~ hade vi också behövt följande kod:
+
+#+BEGIN_SRC c
+l2->elements += l1->elements; /// Eftersom vi kunde utgå från inga dubletter 
+l1->elements = 0; 
+#+END_SRC
+
+-----
+
+* Java-uppgift
+#+include: "../../exams/java/calc1/task.org"
+
+* Lösningsförslag till Java-uppgiften (fm + em)
+
+Eftermiddagens Java-uppgift skiljde sig från förmiddagens --
+istället för att lägga till en flyttalskonstant gick uppgiften
+istället ut på att lägga till en ny abstrakt klass för numeriska
+konstanter i ett system där flyttals- och heltalskonstanter redan
+fanns. 
+
+Att lägga till en flyttalskonstant är tämligen enkelt: 
+#+BEGIN_SRC java
+class Float extends Constant {
+    public Float(double value) {
+        super(value);
+    }
+
+    public boolean isFloat() {
+        return true;
+    }
+}
+#+END_SRC
+
+Båda kodproven krävde utökning av klassen ~Calculation~ för
+korrekt implementation av addition och subtraktion. Förmiddagens
+kodprov behövde hantera heltal och flyttal emedan eftermiddagens
+kodprov också behövde hantera strängar. Nedan följer unionen av
+båda kodproven, och det torde vara enkelt att bara blunda för den
+del som inte rörde eftermiddagen/förmiddagen vid behov.
+
+#+BEGIN_SRC java
+class Calculation {
+    public static Constant add(Constant a, Constant b) {
+        if (a.isInteger() && b.isInteger()) {
+            return new Integer(a.intValue() + b.intValue());
+        } else if (a.isString() && b.isString() || (a.isString() && b.isInteger()) || (b.isString() && a.isFloat())) {
+            return new StringLiteral(a.stringValue() + b.stringValue());
+        } else if (a.isFloat() && b.isFloat() || (a.isFloat() && b.isInteger()) || (b.isFloat() && a.isInteger())) {
+            return new Float(a.floatValue() + b.floatValue());
+        } else {
+            throw new RuntimeException("Bottom used as a value!");
+        }
+    }
+
+    public static Constant sub(Constant a, Constant b) {
+        if (a.isInteger() && b.isInteger()) {
+            return new Integer(a.intValue() - b.intValue());
+        } else if (a.isFloat() && b.isFloat() || (a.isFloat() && b.isInteger()) || (b.isFloat() && a.isInteger())) {
+            return new Float(a.floatValue() - b.floatValue());
+        } else if (a.isString() || b.isString()) {
+            throw new RuntimeException("Strings do not support subtraction!");
+        } else {
+            throw new RuntimeException("Bottom used as a value!");
+        }
+    }
+}
+#+END_SRC
+
+Många lösningar gav prov på en mer läsbar implementation, men med mer upprepning: 
+
+#+BEGIN_SRC java
+public static Constant sub(Constant a, Constant b) {
+    if (a.isInteger() && b.isInteger()) {
+        return new Integer(a.value().intValue() - b.value().intValue());
+    }
+    else if (a.isInteger() && b.isFloat()) {
+        return new Float(a.value().floatValue() - b.value().floatValue());
+    }
+    else if (a.isFloat() && b.isInteger()) {
+        return new Float(a.value().floatValue() - b.value().floatValue());
+    }
+    else if (a.isFloat() && b.isFloat()) {
+        return new Float(a.value().floatValue() - b.value().floatValue());
+    } else {
+        throw new RuntimeException("Bottom used as a value!");
+    }
+}
+#+END_SRC
+
+
+För subtypspolymorfins skull (eftersom ~a.isFloat()~ etc. ovan
+sker mot en statisk ~Constant~-typ) behövdes en ~isFloat()~ i
+konstant-klassen, vars standardimplementation var ~return false~:
+#+BEGIN_SRC java
+public boolean isFloat() {
+    return false;
+}
+#+END_SRC
+
+** Lösningsförslag till eftermiddagens kodprov 
+
+Utöver ~Calculation~-klassen som var delvis delad med förmiddagns
+kodprov gick eftermiddagens kodprov ut på att lägga till en ny
+klass ~NumberConstant~ för numeriska konstanter. Eftersom den
+ärver av en klass för godtyckliga konstanten (t.ex. även
+strängliteraler) bestod en av svårigheterna i att inse att en
+numerisk konstant alltid har ett ~value~ som är ett ~Number~. Så
+här kunde denna klass exempelvis implementeras:
+
+#+BEGIN_SRC java
+abstract class NumberConstant extends Constant {
+    /// TODO
+    public NumberConstant(Number value) {
+        super(value);
+    }
+
+    public Number value() {
+        return (Number) super.value();
+    }
+    
+    public int intValue() {
+        return this.value().intValue(); 
+    }
+
+    public double floatValue() {
+        return this.value().doubleValue(); 
+    }
+}
+#+END_SRC
+
+Observera att i och med att konstruktorn alltid tar in ett
+~Number~ som argument vet vi att ~value()~ som finns i
+~Constant~-klassen kommer att returnera ett ~Number~. Det
+möjliggör typomvandligen i ~value()~ vilket i sin tur möjliggör de
+smidigar implementationerna av ~intValue()~ och ~floatValue()~.
+
+Mindre eleganta (i mitt tycke) lösningar som räknades som helt
+godkända var struntade t.ex. i att override:a ~value()~ och 
+istället implementera ex. ~intValue()~ så här: 
+
+#+BEGIN_SRC java
+public int intValue() {
+    return ((Number) this.value()).intValue(); 
+}
+#+END_SRC
+
+
+* Statistik
+
+|                         | C | Java |
+|-------------------------+---+------|
+| Godkända                | 5 |   58 |
+| Godkända efter rest     | 0 |   21 |
+| Rester ej kompletterade | 1 |    1 |
+| Underkända              | 0 |    7 |
+
+/Observera att statistiken inte innefattar studenter som inte lämnade in någonting./
+
+-----
+
+#+include: "../footer.org" 
+

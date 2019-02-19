@@ -1,6 +1,15 @@
 #+title: Project 1
 #+include: "../setup.org" 
 
+#+BEGIN_note
+Feedback from 2017 said this project was to simple. To that end,
+there is now an addition called /Default destructors/ below. The
+rest of the text is unchanged because there was no time to update
+it. So first read everything through, then /Default destructors/
+and think of that as an extension which might augment or
+contradict other things stated elsewhere (like the size of the
+object header etc.).
+#+END_note
 
 * Introduction and Domain
 
@@ -27,9 +36,7 @@ Returning the same memory multiple times with ~free()~ tends to
 lead to hard crashes. /In short, manual memory management is an
 unforgiving undertaking./
 
-
 * Functional Requirements
-
 ** Reference Counting
 
 The system you are implementing should support reference counting.
@@ -86,7 +93,6 @@ no more objects to free.
 To reduce memory pressure, the system should also provide a
 ~cleanup()~ function that free's all objects whose reference count
 is 0, regardless of the cascade limit.
-
 
 ** Complete Header File
 
@@ -209,7 +215,6 @@ harden your implementation.
 
 You must document code coverage for your tests.
 
-
 * Demonstration
 
 As additional proof that your implementation is correct, you will
@@ -222,14 +227,12 @@ trees and lists storing object pointer elements call ~retain()~ on
 the elements on insertion (etc.). Naturally, removing an object
 pointer element from a list will call ~release()~ on it.
 
-
 * Simplifications and Assumptions
 
 You may have to make assumptions about the programs that your
 system supports. All such assumptions must be carefully
 documented. Any upper limit on reference count values, for example,
 fall under this category.
-
 
 * Example Use
 
@@ -280,6 +283,162 @@ int main(void)
 
 Naturally, you are allowed to ask for technical help (as well as
 help on anything else).
+
+* Addition in 2018: Default Destructors 
+
+To simplify programming, the system should support a notion of
+default destructors, that saves the programmer from the burden of
+writing a destructor manually. Let $o$ be an object with a default
+destructor that is just about to be freed. Before freeing $o$,
+the default destructor will call ~release()~ on all the pointers
+in $o$. For example, if $o$ is a linked list head in a list with a
+head and tail pointer, we are going to call ~release()~ on both
+the head and the tail. If $o$ is a link in the list, we are going
+to call ~release()~ on the next pointer.
+
+Implementing default destructors can be done in several ways.
+Here are two suggestions:
+
+1. Scan the object for pointers 
+2. Require the programmer to describe the object 
+
+** Scan the Object for Pointers 
+
+Sticking with the $o$ example from above, in this implementation,
+we need to look at all possible pointers in $o$ -- essentially all
+~sizeof(void *)~ blocks that could possibly hold a pointer, e.g.,
+all starting addresses $o+i$ where $i$ denotes all offsets into
+$o$ where a pointer could be stored. (Note that alignment rules
+for structs impose restrictions on the starting addresses of
+fields based on the sizes of fields.)
+
+For each /possible/ pointer, we need to check whether the data we
+are looking at is a pointer or not. For example, let's say that we
+look at ~sizeof(void *)~ bytes starting at $o+4$ (e.g., ~void
+*possible_pointer = o + 4;~) -- how can we know if that is a
+pointer to something, or the list's size field? One possibility to
+answer this question with relatively high probability is to keep
+track of where we have allocated data. Since all allocations go
+through our own functions, we can simply store that somewhere.
+
+Now, the algorithm is essentially this:
+
+1. For each possible starting location $p$ of a pointer inside $o$:
+  1. check if $p$ is an address where we currently have allocated memory 
+    1. if so, treat $p$ as a valid pointer and call ~release()~ on it
+    2. if not, ignore $p$ and move on to the next $p$
+
+This also requires:
+
+- Whenever we allocate at an address $p$, remember $p$ in some
+  collection $A$.
+- Whenever we free an object at an address $p$, remove $p$ from
+  $A$.
+- Add the size of each object to its metadata. 
+
+Aside: We would like to store $A$ in an efficient way. Naturally,
+we only optimise once we have something that works, so think of
+that second, not first. (A bitmap is a good idea.)
+
+*Feel free to improve on this technique if you want to!*
+
+
+** Require the Programmer to Describe the Object 
+
+A problem with the technique above is that it is approximate. If
+we happen to have an integer field in a place where a pointer
+could be stored, and the value of that integer happens to be a an
+address in $A$, then we might cause an error in the program due to
+premature deallocation. 
+
+An alternative approach is to require the programmer to specify
+where in the struct pointers are stored[fn::Note that this does
+not handle unions well.]. This can be handled in several ways. One
+method is explained in painful detail in [[file:project2.org][Project 2]], another way is
+to add a metadata function that uses C macros and require that the
+programmer names the fields which contain pointers, e.g., like
+this:
+
+#+BEGIN_SRC c
+// Register metadata about the pointer fields f1 .. fn of type type
+register_typeN(type, f1, f2, ... fn); 
+// Allocate using a registered type 
+allocate_from_type(type);
+#+END_SRC
+
+If these calls are implemented as macros, they can be turned into 
+calls to the "actual methods", here named with prefixing ~__~. 
+
+#+BEGIN_SRC c
+__register_typeN(#type, sizeof(type), offsetof(type, f1), offsetof(type, f2), ... offsetof(type, fn));
+__allocate_from_type(#type);
+#+END_SRC
+
+Note that ~#int~ in a macro returns the string ~"int"~ so if I write
+
+#+BEGIN_SRC c
+register_type2(list_t, first, last);
+allocate_from_type(list_t);
+#+END_SRC
+
+and my macro is defined thus (fill in the blanks for ~allocate_from_type()~):
+
+#+BEGIN_SRC c
+#define register_type2(type, f1, f2) \
+   __register_type2(#type, sizeof(type), offsetof(type, f1), offsetof(type, f2))
+#+END_SRC
+
+the resulting call after macro expansion is this:
+
+#+BEGIN_SRC c
+__register_type2("list_t", 24, 0, 8);
+__allocate_from_type("list_t");
+#+END_SRC
+
+if the size of ~list_t~ is 24 bytes and the offsets of the fields
+are 0 and 8 respectively. The ~offsetof()~ macro calculates the
+starting point of a field $f$ in a type $t$, so basically gives
+you the $i$'s discussed in the scanning strategy. 
+
+To support different numbers of fields, you either implement
+several functions for registering and allocating, e.g.,
+~register_type1()~, ~register_type2()~, ..., ~register_typeN()~,
+or use a [[https://stackoverflow.com/questions/11761703/overloading-macro-on-number-of-arguments][trick to get overloading based on the number of
+arguments]].
+
+The key difficulty with this implementation is to store the
+metadata somewhere. For this, we can use the hash table from
+Assignment 1 where the keys are the types and the values is the
+size of the types the offsets of the pointer fields. Abstractly
+speaking, ~__register_type2("list_t", 24, 0, 8);~ will map
+"list_t" to [24, 0, 8] and ~ __allocate_from_type("list_t");~ will
+look up 24 to know how many bytes to allocate.
+
+Each object now needs to know its type so that when an object $o$
+is destroyed we can do the following:
+
+1. Get $o$'s type $t$
+2. Use $t$ in the global hash map to get the offsets $i_1...i_n$ of all
+   the pointer fields in $t$
+3. For each offset $i$, call ~release(o+i)~.
+
+To make memory leaks easier to detect, we should also remove the
+hash table etc. in the ~shutdown()~ function whose job it is to 
+completely tear down the library and its associated data. 
+
+** Wrapping Up
+
+It should be possible to allocate an object and get a default
+destructor "for free". What "for free" means depends on your
+implementation. Strategy 1 (scanning) is truly for free but may
+under rare circumstances not work out in practise. Strategy 2
+(meta data) is a little harder on the programmer, but less brittle
+-- unless you use union types, in which case you need to fall back
+on explicit constructors. Feel free to come up with alternative
+ways of implementing support for default constructors. Always
+start by doing the simplest thing possible and once that works,
+move to e.g. a more efficient or general solution.
+
 
 # * TODOs
 # ** Bucket allocation

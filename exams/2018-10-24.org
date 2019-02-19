@@ -1,0 +1,657 @@
+#+title: Kodprov 2018-10-24
+#+include: "../setup.org" 
+#+PROPERTY: KODPROV_DATE 181024
+#+PROPERTY: KODPROV_FILENAME byzantin
+
+#+include: "../../exams/preamble.org"
+
+
+* C-uppgift: Interned Strings
+*Din uppgift är* att skriva färdigt filen =interned.c= så att den
+implementerar alla funktionerna i =interned.h= och passerar
+testerna i =driver.c=. Vad du måste göra är klart markerat med
+~///TODO~ i =interned.c=.
+
+Uppgiften går ut på att skriva klart ett bibliotek med sex publika
+funktioner som implementerar en teknik för att undvika flera
+kopior av samma sträng i ett program. Denna teknik kallas för
+/interned strings/ vilket jag försvenskat till /internerade
+strängar/. 
+
+Biblioteket fungerar så att det finns två typer av strängar:
+/vanliga strängar/ (som skapas som vanligt) och /internerade
+strängar/ (som endast kan skapas via ~intstr_create()~). En
+internerad sträng är en null-terminerad array av tecken precis som
+en vanlig sträng, men sättet som de skapas på garanterar att om
+två internerade strängar är lika, så är de också identiska. Mer om
+det strax.
+
+Varje gång en
+användare vill ha en internerad sträng anropar hen funktionen
+~intstr_create()~ med den sträng som hen vill ha internerad,
+t.ex.
+
+#+BEGIN_SRC c
+char *a = intstr_create("hej"); // skapa en interned string "hej"
+#+END_SRC
+#+CAPTION: Exempel på hur en internerad sträng skapas.
+
+Om det redan finns en internerad sträng för ~"hej"~ så returneras
+en pekare till denna sträng. Om inte, så skapar vi en kopia av
+~"hej"~ som blir den nya internerade strängen och returnerar en
+pekare till denna. Följden blir att två internerade strängar ~a~
+och ~b~ som är /lika/ (dvs. ~strcmp(a, b) == 0~) också är
+/identiska/ (dvs. ~a == b~):
+
+#+BEGIN_SRC c
+char *a = intstr_create("hej"); // skapa en interned string "hej"
+char *b = intstr_create("hej"); 
+assert(a == b); // strängar med samma innehåll är 
+#+END_SRC
+#+CAPTION: Internerade strängar skapade från likadana strängar är identiska.
+
+Inuti biblioteket används en *enkel hashtabell* för att hålla koll
+på vilka strängar som har internerats. För enkelhetens skull
+ligger denna hashtabell i en global variabel istället för att
+skickas in till alla funktioner.
+
+Vid första anropet av ~intstr_create()~ för en sträng skapas ett
+entry i hashtabellen som håller i den internerade motsvarigheten.
+Efterföljande anrop till ~intstr_create()~ hittar entry:t och
+returnerar pekaren till den internerade strängen. *Denna kod är
+given.*
+
+För att se om en sträng är internerad eller ej kan man använda
+funktionen ~intstr_is_interned()~ (*denna skall du skriva*):
+
+#+BEGIN_SRC c
+char *a = "hej";
+intstr_is_interned(a); // returnerar false
+char *b = intstr_create("hej"); 
+intstr_is_interned(b); // returnerar true
+intstr_is_interned(a); // returnerar true
+#+END_SRC
+#+CAPTION: Enbart strängar skapade med ~intstr_create()~ är internerade.
+
+Observera att ~intstr_is_interned(b)~ inte svarar på om ~b~ /är/
+en internerad sträng, utan om det /finns/ en likadan sträng 
+internerad. 
+
+För varje interned string finns en räknare som håller koll på hur
+många gånger ~intstr_create()~ har anropats på den strängen. Denna
+räknare kallas för /strängens refcount/ och vi kan få reda på en
+strängs refcount med funktionen ~intstr_refcount()~. Initialt är
+en internerad strängs refcount 1. *Denna kod är given.*
+
+#+BEGIN_SRC c
+char *a = "hej";
+intstr_refcount(a); // returnerar 0 -- a är inte internerad
+char *b = intstr_create("hej"); 
+intstr_refcount(b); // returnerar 1
+char *c = intstr_create("hej"); 
+intstr_refcount(b); // returnerar 2
+intstr_refcount(c); // returnerar 2
+#+END_SRC
+#+CAPTION: Exempel på hur anrop till ~intstr_create()~ ökar refcount.
+
+Funktionen ~intstr_destroy()~ används för att ange att man är klar
+med en sträng (*denna skall du skriva*). Varje gång
+~intstr_destroy()~ anropas på en internerad sträng minskas dess
+refcount med 1:
+
+#+BEGIN_SRC c
+char *b = intstr_create("hej"); 
+intstr_refcount(b); // returnerar 1
+char *c = intstr_create("hej"); 
+intstr_refcount(b); // returnerar 2
+intstr_destroy(b); 
+intstr_refcount(b); // returnerar 1
+intstr_destroy(b);  // nu blir refcount 0
+#+END_SRC
+#+CAPTION: Exempel på hur anrop till ~intstr_destroy()~ minskar refcount.
+
+Anrop till ~intstr_destroy()~ med icke-internerade strängar ignoreras. 
+
+När en internerad strängs refcount når 0 i samband med ett anrop
+till ~intstr_destroy()~ tas den bort ur hashtabellen. Det betyder
+att nästa gång ~intstr_create()~ anropas för samma sträng så är
+det som om det var första gången vi anropade ~intstr_create()~ för
+den strängen.
+
+#+BEGIN_SRC c
+char *b = intstr_create("hej"); 
+intstr_refcount(b); // returnerar 1
+intstr_destroy(b); 
+b = intstr_create("hej"); 
+intstr_refcount(b); // returnerar 1
+#+END_SRC
+#+CAPTION: Refcount kan nå noll. 
+
+Utöver ovan nämnda funktioner finns också ~intstr_init()~ som
+skall anropas innan det första anropet till ~intstr_create()~ och
+vars syfte är att initiera biblioteket. *Denna kod är given.*
+
+Sist finns ~intstr_done()~ (*denna skall du skriva*) som skall
+anropas efter sista användandet av en interned string i
+programmet, och före ~return~ i ~main()~ och som tar bort alla
+entries i hashtabellen. Typiskt börjar ett program som använder
+detta bibliotek med ett anrop till ~intstr_init()~ först i
+~main()~ och slutar med ett anrop till ~intstr_done()~. Testerna
+gör detta korrekt förstås. Det är inte meningen att
+~intstr_init()~ och ~intstr_done()~ skall anropas fler än en gång
+per program och det är ingenting som du behöver göra något med.
+
+*Din uppgift är* att skriva färdigt =interned.c= så att den
+implementerar alla funktionerna i =interned.h= och passerar
+testerna i =driver.c=. Vad du måste göra är klart markerat med
+~///TODO~ i =interned.c=.
+
+** Tips 1: funktioner som förväntar sig internerade strängar
+Funktioner som förväntar sig internerade strängar bör endast
+använda sig av ~==~ vid sökning i hashtabellen. 
+
+** Tips 2: upprepad logik
+Mer än hälften av funktionerna gör en sökning i hashtabellen för
+att hitta ett entry. Du kan antingen återanvända (mycket av)
+logiken i ~intstr_create()~ eller extrahera en generell
+"find-funktion" från den. Observera att om du vill ha en
+find-funktion som också fungerar för borttagning behöver du
+antingen en "find previous" eller dubbelpekare.
+** Tips 3: Läs =interned.h=
+Funktions-dokumentationen i =interned.h= är bra hjälp. 
+** Icke-funktionella krav
+1. Funktioner som opererar på hashtabellen skall använda sig av
+   den givna stränghashfunktionen för att hitta rätt bucket att
+   söka i (som vanligt i en hashtabell).
+2. Entries i buckets behöver /inte/ vara sorterade. 
+3. Du får använda en dummy om du vill -- i så fall kan du skapa 
+   dessa i ~intstr_init()~ eller genom att ändra typen på ~strings~
+   till ~entry_t~ istället för ~entry_t *~ (beroende på vad du föredrar). 
+4. Ditt program får inte läcka minne. Efter att ~intstr_done()~
+   har körts skall allt heap-minne som biblioteket använt vara
+   frigjort. Vidare skall ~intstr_destroy()~ städa bort entries
+   och internerade strängar löpande under programmets gång, när
+   refcount går ned till 0.
+** Testa din lösning (funktionella tester)
+Du kan kompilera din lösning mot =driver.c= som utför enklare
+operationer på listan och rapporterar eventuella funna fel. Detta
+gör du med hjälp av den medföljande makefilen enligt följande:
+
+- =make test= :: kompilerar =driver.c= och =interned.c= till =a.out= och kör 
+- =make memtest= :: som =make test=, men kör i valgrind för att hitta minnesfel
+
+#+begin_danger
+Du får inte ändra i någon annan fil än =interned.c= eftersom det är
+den enda fil som lämnas in.
+#+end_danger
+
+-----
+
+
+* Lösningsförslag till C-uppgiften
+
+I efterhand borde jag kanske inte ha haft utdelad kod som inte
+använde dummies. Alternativt -- mångas problem med att hantera kod
+utan dummies exponerar en brist i kursen. 
+
+Många har strulat med att lägga till dummies för att sedan kunna
+använda kända lösningsmanér och snubblat på t.ex. att endast ha
+ändrat typen med inte konstrukturn, eller att inte ha ändrat
+~instr_create()~ så att dummies hanterats korrekt, etc.
+
+Tre funktioner skulle implementeras: 
+
+1. ~instr_is_interned()~ -- testar med hjälp av ekvivalens om en sträng är internerad 
+2. ~instr_destroy()~ -- minskar en internerad strängs refcount med 1 och tar bort om refcount når 0
+3. ~instr_done()~ -- städar i minnet 
+
+Nedan följer exempel på hur dessa kunde lösas i ordning.
+
+Vid sökning i ~instr_is_interned()~ skall vi använda ekvivalens,
+dvs. ~strcmp()~. Här kunde man återanvända loopen i ~instr_create()~ som en mall:
+
+#+BEGIN_SRC c
+bool intstr_is_interned(char *str)
+{
+  /// NULL is never interned! 
+  if (str == NULL) return false;
+
+  /// Find the right bucket for the string 
+  unsigned long hash = string_hash(str);
+  entry_t *entry = strings[hash % No_Buckets];
+
+  /// If the bucket is not empty, search for str in the bucket
+  while (entry)
+    {
+      /// Seach using equivalence (and identity for speed -- optional)
+      if (str == entry->string || strcmp(str, entry->string) == 0) return true;
+      entry = entry->next;
+    }
+  return false;
+}
+#+END_SRC
+
+Vid sökning i ~instr_destroy()~ skall vi använda identitet,
+dvs. ~==~. Här kunde man återanvända loopen i ~instr_refcount()~ som en mall:
+
+#+BEGIN_SRC c
+void intstr_destroy(char *str)
+{
+  /// Getting called with the NULL string should be ignored
+  if (str == NULL) return;
+
+  /// Find the right bucket for the string 
+  unsigned long hash = string_hash(str);
+  entry_t **entry = &strings[hash % No_Buckets];
+
+  /// If the bucket is not empty, search for str in the bucket
+  while (*entry)
+    {
+      /// Identity comparison -- we are looking to remove an actual
+      /// interned string
+      if (str == (*entry)->string)
+        {
+          /// Cache a pointer to the correct entry 
+          entry_t *tmp = *entry;
+          if (--tmp->refcount == 0) /// Note decrement operator! 
+            {
+              *entry = (*entry)->next; /// Perform unlinking
+              free(tmp->string);       /// Remove string 
+              free(tmp);               /// Remove the unlinked entry 
+            }
+          return;
+        }
+      /// Advance the entry "cursor" (*)
+      entry = &(*entry)->next;
+    }
+}
+#+END_SRC
+
+Raden markerad =(*)=, ~entry = &(*entry)->next;~ är den som de
+flesta haft problem med som inte fått dubbelpekarna att fungera.
+Många har gissningsvis skrivit ~entry = (*entry)->next;~ och fått
+ett kompileringsfel och löst det genom att skriva ~*entry = ...~ 
+istället för ~... = &(*entry)->next;~. Detta medför en uppdatering
+av listan som ~entry~ pekar på, och inte en uppdatering av den
+lokala variabeln ~entry~ vilket gör att iterationen förstör listan
+samtidigt om listan itereras över! 
+
+I ~instr_done()~ var det en enkel iteration, liknande
+~instr_is_interned()~. Här var det viktigt att förstå att ändra 
+sin algoritm beroende på om hur dummies lades till eller inte. 
+
+#+BEGIN_SRC c
+void intstr_done()
+{
+  /// Iterate over the bucket's array destroying one bucket per iteration 
+  for (int i = 0; i < No_Buckets; ++i)
+    {
+      entry_t *entry = strings[i];
+      while (entry)
+        {
+          /// Store a pointer to the entry to be removed 
+          entry_t *tmp = entry;
+          /// Advance the entry "cursor"
+          entry = entry->next;
+          /// Free the string and then the entry
+          free(tmp->string);
+          free(tmp);
+        }
+    }
+    /// Free the array holding all buckets
+    free(strings);
+}
+#+END_SRC
+
+
+* Java-uppgift: Reseplanerare
+Uppgiften går ut på att utöka en existerande reseplanerare. Den
+centrala datastrukturen i programmet är en graf vars noder är
+stationer och vars bågar är resvägar mellan stationerna. Varje
+båge har en vikt som motsvarar restiden för sträckan. Noderna är
+instanser av klassen ~Node~ och bågarna instanser av klassen
+~Edge~ (det sista skall du ändra på). Klassen ~Network~ håller i
+alla noder i en mängd.
+
+Nedanstående ASCII-diagram visar ett litet nätverk med fyra kända
+platser från Göteborg, samt restiderna mellan dessa platser i
+minuter via det hypotetiska spårvagnsnätet "Prins Eugen".
+(Testerna på provet använder detta nätverk.)
+#+BEGIN_EXAMPLE
+// Modell 1
+
+             5               7
+Kortedala ------ Olskroken ----- Halta Lottas krog --, 4
+    |                                     |          |
+    '-------------------------------------'          |
+                     10                      S:t Sigfrids plan
+#+END_EXAMPLE
+När programmet startas (i klassen ~TripPlanner~) läses en fil in
+som skapar nätverket. Detta sker genom att en serie stationer och
+deras vikter skickas till metoden ~addLine()~ (som du kommer att
+behöva utöka). Klassen ~TripPlanner~ använder sig av en funktion i 
+~Network~ för att hitta det kortaste avståndet mellan två platser
+i nätverket. Resvägen representeras i form av en ordnad lista av
+stationer (noder i nätverket) och sparas i ~Trip~ i instansvariabeln ~route~.
+*Du behöver inte förstå denna algoritm för att lösa uppgiften, och
+algoritmen behöver heller inte ändras*. 
+
+Om jag till äventyrs befinner mig i Kortedala och vill till S:t
+Sigfrids plan kommer algoritmen att ge följande: 
+#+BEGIN_EXAMPLE
+Kortedala
+Halta Lottas krog
+S:t Sigfrids plan
+Total restid: 14 minuter
+#+END_EXAMPLE
+
+*I nuvarande system modelleras inte det faktum att spårvagnsnätet
+består av flera olika linjer.* Vi återbesöker exemplet ovan med
+lite mer detaljer och låter ~---...~ avse en sträcka trafikerad av
+linje 1 och ~===...~ en sträcka trafikerad av linje 2.
+#+BEGIN_EXAMPLE
+// Modell 2
+
+            5               7
+Kortedala ===== Olskroken ===== Halta Lottas krog === 4
+    |                                    |          ||
+    '------------------------------------'          ||
+                     10                      S:t Sigfrids plan
+#+END_EXAMPLE
+Diagrammet ovan visar att ettans spårvagn går mellan Kortedala och
+Halta Lottas krog, medan tvåans spårvagn trafikerar sträckan
+Kortedata, Olskroken, Halta Lottas krog, S:t Sigfrids plan. Om vi
+följer resplanen som gavs ovan måste vi alltså byta från ettan
+till tvåan vid Halta Lottas krog -- *men i nuvarande system
+modelleras inte bytestiden*. Du kommer att åtgärda båda de
+fetstilta bristerna ovan genom att skapa nya klasser av bågar och
+ändra i ~addLine()~.
+
+Att åka tvåan från Kortedala till S:t Sigfrids plan utan byten tar
+16 minuter. Såvida inte bytet vid Halta Lottas krog är snabbare än
+2 minuter kommer denna resa följaktligen att vara snabbare.
+
+Vi utökar därför modellen för att också innefatta bytestider genom
+att att representera spårnätverket ovan så här:
+
+#+BEGIN_EXAMPLE
+// Modell 3
+
+            5               7
+Kortedala ===== Olskroken ===== Halta Lottas krog === 4
+    *                                    *          ||
+    *                                    *          ||
+  8 *                                  8 *   S:t Sigfrids plan
+    *                                    *
+    *                                    *
+Kortedala ----------------------Halta Lottas krog
+                     10
+#+END_EXAMPLE
+
+Där ~---...~ är linje 1, ~===...~ är linje 2 och ~***...~ avser
+byten mellan linjer på samma station. 
+
+Stationer som knyter samman flera linjer förekommer nu flera
+gånger i grafen, en gång per linje (tänk "en gång per plattform"),
+och är sammankopplade med "bytes-bågar" med egen vikt som
+modellerar bytestiden (**för enkelhets skull alltid 8**). Så här
+skulle resan i exemplet ovan se ut om man inkluderar bytet. Notera
+att detta inte längre är den snabbaste resan från Kortedala till
+S:t Sigfrids plan:
+
+#+BEGIN_EXAMPLE
+Kortedala (start)
+  |
+  |  Linje 1, 10 minuter
+  |
+Halta Lottas krog 
+  *
+  *  Byte, 8 minuter
+  *
+Halta Lottas krog 
+  ||
+  || Linje 2, 4 minuter
+  ||
+S:t Sigfrids plan (stopp)
+#+END_EXAMPLE
+
+
+** Uppgiften
+
+Din uppgift är att utöka systemet med följande fyra "features": 
+
+*** Nya typer av bågar
+
+Inför två nya typer av bågar med hjälp av subklassning: ~Line~ och
+~StopOver~. En ~Line~-båge känner till vilken linje den tillhör
+och skall användas för att kunna skilja ut de olika
+spårvagnslinjerna. En ~StopOver~-båge avser ett byte och har
+alltid vikten 8 (den fastslagna tiden för ett byte enligt det
+Göteborgska SpårvagnsVärket).
+
+Observera att ~Edge~-klassen inte har någon default-konstruktor.
+Om du subklassar ~Edge~ måste subklassens konstruktor anropa
+superklassens konstruktor. Syntaxen för detta är ~super(...)~ där
+~...~ är argumenten. 
+
+Observera också att ~Edge~-klassen har en hel del privata data och
+metoder som inte får override:as. 
+
+*** Ändra hur spårnätverket byggs upp
+
+Metoden ~addLine()~ i klassen ~Trip~ lägger till en hel linje till
+nätverket (noder och bågar med vikter) i enlighet med Modell 1. Du
+skall ändra i ~addLine()~ så att nätverket byggs upp som i Modell 3.
+
+En enkel algoritm för att åstadkomma detta för en given linje är
+att hålla reda på om en station $n$ redan har lagts till i
+nätverket och i så fall skapa en kopia $n'$ av stationen, länka
+samman $n'$ med alla tidigare kopior $\{e_1,..,e_n\}$ av stationen med 
+bytes-bågar och sedan ersätta $n$ med $n'$ i linjen. Här kommer
+samma beskrivning lite mer precist:
+
+#+BEGIN_EXAMPLE
+1. För varje nod n i linjen
+   1.1. Låt E vara en mängd av alla existerande noder i nätverket 
+        med samma namn som n
+   1.1.1. Om E inte är tom,
+       1.1.1.1 skapa en ny nod n' med samma namn som n,
+       1.1.1.2 för varje nod e i E, koppla ihop e och n' 
+               med en bytes-båge (en ny båge för varje koppling),
+       1.1.1.3 ersätt n med n' i linjen (alltså arrayen av noder). 
+2. Fortsätt med existerande logik som addLine() men fundera på 
+   vilken sorts båge som skall användas.
+#+END_EXAMPLE
+
+Exempel: om linje 2 redan har lagts till och vi vill lägga till
+linje 1, kommer vi först att skapa en kopia av Kortedala, länka
+samman existerande Kortedala med kopian, och sedan uppdatera linje
+1 så att den använder kopian istället för originalet. 
+
+Tips på bra metoder/funktionalitet i interfacet ~Set~:
+
+- ~m.contains(n)~ -- returnerar ~true~ om ~n~ är med i mängden ~m~
+- ~m.isEmpty()~ -- returnerar ~true~ om mängden ~m~ är tom
+- ~for (Node n : m) { ... }~ -- itererar över alla ~n~ i mängden ~m~
+
+Kod för att generera ~E~ ovan finns redan i ~addLine()~. 
+
+*** Implementera funktionen ~numberOfStopOvers()~ i klassen ~Trip~
+
+Funktionen ~numberOfStopOvers()~ skall returnera antalet byten i
+en resa. Du kan se hur den anropas från ~TripPlanner~.
+
+*** Skriv färdigt funktionen ~routeToString()~ i klassen ~Trip~
+
+Denna funktion skall utökas med information om linjer, restid och
+byten. Du kan se hur den anropas från ~TripPlanner~.
+
+För varje /sträcka/ (båge i nätverket) i en resa skall följande
+skrivas ut:
+
+1. Linjen, om det är en linje -- annars Byte
+2. Restiden i minuter
+
+Det vill säga, vi går från, till exempel detta: 
+
+#+BEGIN_EXAMPLE
+"Kortedala
+Halta Lottas krog
+Halta Lottas krog
+S:t Sigfrids plan"
+#+END_EXAMPLE
+
+Till detta:
+
+#+BEGIN_EXAMPLE
+"Kortedala
+        Line 1, 10 minuter
+Halta Lottas krog
+        Byte, 8 minuter
+Halta Lottas krog
+        Line 2, 4 minuter
+S:t Sigfrids plan"
+#+END_EXAMPLE
+
+
+*OBS!* Skriv /all/ kod i filen =Trip.java= som redan innehåller en
+del kod. Nya klasser läggs i samma fil och skall därför inte vara
+~public~. Du kan söka på ~TODO~ i =Trip.java= för ledning.
+
+*OBS!* Ingen del av uppgiften skall lösas genom att parsa strängar. 
+Data om spårnätverket skall sparas i nätverket, inte i extra variabler
+i ~Trip~. 
+
+** Testning
+Du kan testa din inlämning med hjälp av =make test=. Då kompileras
+och körs programmet i =TripPlanner.java= och kör två tester.
+
+När du är klar bör programmets output vara följande:
+#+BEGIN_EXAMPLE
+Kortedala
+        Linje 2, 5 minuter
+Olskroken
+        Linje 2, 7 minuter
+Halta Lottas krog
+        Linje 2, 4 minuter
+S:t Sigfrids plan
+Total restid: 16 minuter, 0 byten 
+#+END_EXAMPLE
+
+Det finns också ett test där sträckan Olskroken--Halta Lottas krog
+med linje 2 för tillfället trafikeras av ersättningscykel och
+därför tar 17 minuter. För detta test förväntas följande output:
+#+BEGIN_EXAMPLE
+Kortedala
+        Linje 1, 10 minuter
+Halta Lottas krog 
+        Byte, 8 minuter
+Halta Lottas krog 
+        Linje 2, 4 minuter
+S:t Sigfrids plan
+Total restid: 22 minuter, 1 byten 
+#+END_EXAMPLE
+
+
+* Lösningsförslag
+
+Lösningen innefattar att skapa två klasser för kanter, en med
+linje-information och en för byten:
+#+BEGIN_SRC java
+class Line extends Edge {
+    /// Utöka med information om linjetillhörighet
+    public final int line;
+    public Line(final Node n1, final Node n2, final int weight, final int line) {
+        super(n1, n2, weight);
+        this.line = line;
+    }
+    /// Använd info-för att skriva ut information
+    public String info() {
+        return "Line " + this.line + ", " + super.info();
+    }
+}
+
+class StopOver extends Edge {
+    public StopOver(final Node n1, final Node n2) {
+        super(n1, n2, 8); /// Vikten 8 enligt specifikation
+    }
+
+
+    public String info() {
+        return "Byte, " + super.info();
+    }
+}
+#+END_SRC
+
+Bytesbågar läggs till genom att ~addLine()~ modifierades enligt
+följande i första loopen:
+
+#+BEGIN_SRC java
+for (int i = 0; i < line.length; ++i) {
+    Set<Node> existing = Network.getNodesByName(line[i].name());
+    /// If the node already exists in the graph -- we are adding 
+    /// a second platform to an existing station
+    if (existing.isEmpty() == false) {
+        /// Create a copy of the node -- aka "new platform"
+        Node n = new Node(line[i].name());
+        /// Replace the original with the copy in the line (the correct platform)
+        line[i] = n;
+        /// Connect the new platform with all existing platforms using stop-over edges
+        for (Node dup : existing) {
+            StopOver edge = new StopOver(dup, n);
+            n.connectTo(edge);
+            dup.connectTo(edge);
+        }
+    }
+}
+#+END_SRC
+
+Vidare skulle vi ersätta hur bågar skapades så att linjeinformation kom in i modellen. 
+~Edge edge = new Edge(from, to, weigths[i]);~ ersattes däför med
+~Edge edge = new Line(from, to, weigths[i], lineNumber);~. Observera subtypspolymorfismen.
+
+För att få fram strängrepresentationen av rutten kunde vi följa
+algoritmen i ~travelTime()~ enligt följande:
+
+#+BEGIN_SRC java
+    /// Calculates the travel time for the proposed route
+    public String routeToString() {
+        String result = "";
+
+        final LinkedList<Node> tmp = new LinkedList<>(route);
+        Node from = tmp.pop();
+        while (tmp.isEmpty() == false) {
+            Node to = tmp.pop();
+
+            result += from.name() + "\n\t";
+            /// Critical line: Use the info method from the edges!
+            result += from.getEdgeTo(to).info() + "\n";
+
+            from = to;
+        }
+        result += from.name() + "\n";
+
+        return result;
+    }
+#+END_SRC
+
+Slutligen, för att räkna antalet byten i ~numberOfStopOvers()~
+finns många olika varianter, t.ex.:
+
+1. Testa om bågen mellan två stationer var ~instanceof StopOver~ 
+2. Testa om två stationer efter varandra i en rutt avsåg samma station 
+
+
+* Statistik
+
+|                     |  C | Java |
+|---------------------+----+------|
+| Godkända            | 39 |    8 |
+| Godkända efter rest | 28 |    1 |
+| Underkända          | 21 |    4 |
+
+/Observera att statistiken inte innefattar studenter som inte lämnade in någonting./
+
+-----
+
+#+include: "../footer.org" 

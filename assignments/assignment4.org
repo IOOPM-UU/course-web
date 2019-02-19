@@ -4,7 +4,7 @@
 
 * This assignment is split in two (2018)
 
-- Assignment 4a (not yet published)
+- [[file:assignment4a.org][Assignment 4a]] (published 2018-11-20)
 - [[file:assignment4b.org][Assignment 4b]] (old assignment used 2014--2016)
 
 You are to do exactly one of these. 
