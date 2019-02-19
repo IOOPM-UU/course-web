@@ -2,7 +2,7 @@
 #+include: "./setup.org" 
 
 This is the course report for IOOPM 2018. The last change to this
-document was 2019-02-18. [[https://github.com/IOOPM-UU/course-web/blob/master/course-report2018.org][The entire change history is visible on
+document was 2019-02-19 ([[Reactions to Student Feedback][Reactions to Student Feedback]]). [[https://github.com/IOOPM-UU/course-web/blob/master/course-report2018.org][The entire change history is visible on
 GitHub]]. 
 
 * Introduction
@@ -154,6 +154,60 @@ many great and constructive suggestions. I am happy that almost
 all of the viewpoints put forward I already knew, either on my
 own, or from continuous feedback solicitation. 
 
+** Reactions to Student Feedback
+*** Students falling behind early
+Several students remark on the size of Assignment 1, the feeling
+of being overwhelmed early on in the course, and falling behind
+early and struggling to make up for that for the rest of the
+course. It seems clear that there is a group of students who
+struggle /too much/ with the course, seemingly because they do not
+understand how to use the support system.
+
+*Ideas moving forward:*
+- Move some of Assignment 1 over to the bootstrap, replacing old
+  bootstrap exercises which were more aligned with the previous
+  Assignment 1.
+- Spend some cycles on improving the text of Assignment 1 which
+  was written in haste, and there was no time to fix it up during
+  the course. 
+- Share information about how to set up an environment, etc. 
+  /before/ the course starts so that students can prepare. 
+- Have mandatory demonstrations during the bootstrap labs to get
+  people going with demonstrations earlier.
+- Reward asking for help through an achievement. (Asking for help in a clear and efficient way is a skill!) 
+- Totally rewrite the list and iterator parts of Assignment 1, possibly giving some of the list code for free.
+- Offer programming support or other help outside of lab hours, possibly assign office hours to head teacher
+*** Students need help with taking breaks
+Several students point out the need for taking breaks. This is
+something that the achievement system supports, and I do make
+continuous references to taking a week off during the course given
+that the planning holds. Maybe because many are behind and many
+more are stressed, this is not taken entirely seriously.
+
+*Ideas moving forward*
+- Have an AFK achievement which is essentially a reward for a break.
+- Be stricter with deadlines so that deadlines missed cannot get onto the backlog until the next course. 
+*** The problem with partners
+During the course (and also in the evaluation), students remarked
+on the problem of finding other partners to demonstrate with. The
+last 2 years, we have witnessed this problem becoming increasingly
+exacerbated. Clearly, this becomes a problem for too many late in
+the course. Some students also suffer bad matches with partners,
+like uneven pairs where one does all the work or one where the partner constantly promises to deliever but never follows through. 
+
+
+*Ideas moving forward*
+- Skip programming pairs, but requires pairs for demonstrations. Build support for pairing people up in the AU portal. 
+- Relax the constraint of pair demonstration towards the end of the course, but this will not work out unless the staff situation improves.
+- Skip the pair idea altogether (creates other problems!)
+- On a somewhat related note, some students have a hard time making synthesis and connecting achievements. Maybe the portal could connect students that want to demonstrate achievements which go well together, addressing both synthesis and pairing at the same time.
+*** Low Lecture Attendance
+Fewer students than even attended lectures (c.f. [[attendance][Figure 4]]). 
+
+*Ideas moving forward*
+- Provide video lectures 
+- Change format to more inactive lectures (note, our experiment with using "lektioner" 3 years back showed that students don't attend.)
+
 * Student Feedback
 ** Strong Points
 34 students gave specific answers to this question. Their feedback is
@@ -301,6 +355,7 @@ In general, most students seem quite happy about the lectures, but that may
 be more related to delivery than to content or payoff. 
 
 #+CAPTION: Question 4 from Course Evaluation
+#+NAME: attendance
 file:images/cr18/04-attendance.png
 
 15% of all students think the number of lectures should be lower in favour of
