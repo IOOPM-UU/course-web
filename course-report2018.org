@@ -278,6 +278,7 @@ file:images/cr18/01-satisfaction.png
 
 *** Student Effort
 Student effort is up $0.1$ point average over 2017.
+
 #+CAPTION: Question 2 from Course Evaluation
 file:images/cr18/02-effort.png
 
@@ -320,30 +321,40 @@ I was particularly interested in seeing the feedback on the assignments, given t
 almost all assignments were either completely rewritten or completely overhauled. 
 
 The difficulty level of the C assignments are at the right level. 
+
 #+CAPTION: Question 9 from Course Evaluation
 file:images/cr18/09-c-difficulty.png
+
 Students seem to agree that assignment 1 was too large (60% think
 it was somewhat or overly large).
+
 #+CAPTION: Question 10 from Course Evaluation
 file:images/cr18/10-c-extent.png 
+
 I was happy to see that even though it was frustrating to extract the
 assignement text from a large body of text, it seems to have been. I believe
 that the high value on value is because of the mix of theory and practice. 
+
 #+CAPTION: Question 11 from Course Evaluation
 file:images/cr18/11-c-value.png
 
 *** Imperative OOP in Java 
 
 The difficulty level of the Java assignments seem to be well-placed.
+
 #+CAPTION: Question 12 from Course Evaluation
 file:images/cr18/12-java-difficulty.png
+
 Students seem to agree that assignment 1 was too large (60% think
 it was somewhat or overly large).
+
 #+CAPTION: Question 13 from Course Evaluation
 file:images/cr18/13-java-extent.png 
+
 I was happy to see that even though it was frustrating to extract the
 assignement text from a large body of text, it seems to have been. I believe
 that the high value on value is because of the mix of theory and practice. 
+
 #+CAPTION: Question 14 from Course Evaluation
 file:images/cr18/14-java-value.png
 
@@ -376,14 +387,19 @@ evaluation. One student felt "tricked" because it was possible to
 only tick 1 box in the "when would you prefer working" box, which
 led him/her to believe the project could be pulled off in a very
 short time frame (it could not).
+
 ** Code Exam
 Students seem to agree with me that the course is a good
 preparation for the coding exam.
+
 #+CAPTION: Question 23 from Course Evaluation
 file:images/cr18/23-code-exam-prep.png
+
 75% of all students think that the difficulty and extent is good. 
+
 #+CAPTION: Question 24 from Course Evaluation
 file:images/cr18/24-code-exam-extent.png
+
 Still, quite a few number of students remark that some exams were easy and
 some were hard. I believe there are several factors at work here:
 
@@ -412,11 +428,13 @@ exam is ready quite good.
 82% of all students think that the flexibility of the achievement
 system has helpt to some extent (40%) or great extent (42%) to
 devour the contents of the course.
+
 #+CAPTION: Question 28 from Course Evaluation
 file:images/cr18/28-flexibility.png
 
 65% of all students think that giving them the responsibility to 
 manage their own study work is positive. 
+
 #+CAPTION: Question 29 from Course Evaluation
 file:images/cr18/29-responsibility.png
 
@@ -430,11 +448,13 @@ the oral examination.
 
 The answer to this question is interesting, and points (IMO) to
 the importance of personal preference.
+
 #+CAPTION: Question 32 from Course Evaluation
 file:images/cr18/32-more-less.png
 
 72% of all students prefer immediate oral feedback to delayed
 written feedback.
+
 #+CAPTION: Question 33 from Course Evaluation
 file:images/cr18/33-feedback.png
 
@@ -446,6 +466,7 @@ finding a partner to demonstrate with.
 
 73% of all students think that the course design have helped them
 stay clear of back-loaded study patterns.
+
 #+CAPTION: Question 35 from Course Evaluation
 file:images/cr18/35-continuous.png 
 
@@ -479,8 +500,12 @@ forwarded to next year's batch of students in an unfiltered manner.
 ** Sanity Check
 
 Students overwhelmingly agree that we are doing a good job. 
+
 #+CAPTION: Question 46 from Course Evaluation
 file:images/cr18/46-how-are-we-doing.png 
+
+The following are /all/ the comments to this question. 
+
 #+BEGIN_QUOTE
 Som sagt ni har ett ryckte för att ha en av dom bästa kurserna på programmet (IT)! Tack för den här tiden!
 
@@ -502,10 +527,12 @@ Allt överlag är mycket bra, men inte perfekt. Däremot ser jag stort engageman
 #+END_QUOTE
 
 Students overwhelmingly agree that the course is instructive.
+
 #+CAPTION: Question 51 from Course Evaluation
 file:images/cr18/51-useful.png 
 
 86% of all students think that the way the course is examined is testing actual "mastery" of the concepts. 
+
 #+CAPTION: Question 52 from Course Evaluation
 file:images/cr18/52-alignment.png 
 
