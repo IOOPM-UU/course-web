@@ -616,8 +616,6 @@ file:images/cr18/51-useful.png
 file:images/cr18/52-alignment.png 
 
 
-
- #+include: "./footer.org" 
 * Final Words
 If you have read this document, whoever you are, could you
 /please/ send an email to me =cr@wrigstad.com= and tell me about
@@ -626,3 +624,5 @@ unclear to me who actually reads these reports, and thus, it is
 hard to know, both how to structure them but also how much time to
 spend on them. (I ended the report like this in 2017, and got 7
 replies.)
+
+ #+include: "./footer.org" 
