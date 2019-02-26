@@ -161,6 +161,7 @@ all of the viewpoints put forward I already knew, either on my
 own, or from continuous feedback solicitation. 
 
 ** Some Data Mining Results
+*** How Much Code Do Students Write
 Pulling the repositories of the active students, I did a rough
 guesstimate as to how much code students write on the course (not
 counting the project). This only includes code checked into the
@@ -174,9 +175,21 @@ duplicates due to copy and paste.
 |----------+-----------+--------+-------|
 | Both	   | 8,5	     | 8,5	  | 31,9  |
 
-This suggests that a student writes on average 170 LOC (Lines Of
-Code) per full-time working day (remember the course runs at 66%
-speed). 
+This suggests that each student /pair/ writes on average 170 LOC
+(Lines Of Code) per full-time working day (remember the course
+runs at 66% speed) during the first two phases.
+
+*** Demonstrations
+Here is a histogram showing how many demonstrations the average
+student did. (*FIXME*) This histogram starts at 6 demonstration and
+therefore leaves out a number of students doing a very small
+number of demonstrations. These are predominantly old students
+showing up and finishing a few remaining achievements, typically
+some assignment plus 1--2 more achievements.
+
+#+CAPTION: Demonstrations done by students in 2018/2019
+file:images/cr18/demo-histogram.png
+
 
 ** Reactions to Student Feedback
 *** Students falling behind early
