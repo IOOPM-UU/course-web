@@ -1,9 +1,15 @@
 #+title: Course Report 2018
 #+include: "./setup.org" 
 
-This is the course report for IOOPM 2018. The last change to this
-document was 2019-02-19 ([[Reactions to Student Feedback][Reactions to Student Feedback]]). [[https://github.com/IOOPM-UU/course-web/blob/master/course-report2018.org][The entire change history is visible on
-GitHub]]. 
+This is the course report for IOOPM 2018. Changelog:
+
+- 2019-02-19 ([[Reactions to Student Feedback][Reactions to Student Feedback]]). 
+- 2019-02-26 ([[Some Data Mining Results][Some Data Mining Results]])
+
+[[https://github.com/IOOPM-UU/course-web/blob/master/course-report2018.org][The entire change history is visible on GitHub]]. 
+
+
+
 
 * Introduction
 
@@ -153,6 +159,24 @@ course evalution and focus on select feedback. There have been
 many great and constructive suggestions. I am happy that almost
 all of the viewpoints put forward I already knew, either on my
 own, or from continuous feedback solicitation. 
+
+** Some Data Mining Results
+Pulling the repositories of the active students, I did a rough
+guesstimate as to how much code students write on the course (not
+counting the project). This only includes code checked into the
+master branch, does not include deleted lines, but may include
+duplicates due to copy and paste.
+
+| (KLOC)	 | Average	 | Median | 	Max |
+|----------+-----------+--------+-------|
+| C 	     | 5,5	     | 5,6	  | 27,3  |
+| Java	   | 3,8	     | 3,6	  | 20,7  |
+|----------+-----------+--------+-------|
+| Both	   | 8,5	     | 8,5	  | 31,9  |
+
+This suggests that a student writes on average 170 LOC (Lines Of
+Code) per full-time working day (remember the course runs at 66%
+speed). 
 
 ** Reactions to Student Feedback
 *** Students falling behind early
