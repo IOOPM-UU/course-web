@@ -205,7 +205,8 @@ Consider the following Python program that uses a map to keep
 track of quantities of merchandise in a warehouse:
 
 #+CAPTION: Exploring how hash tables work through Python
-#+ATTR_HTML: :copy-button t
+#+ATTR_HTML: :no-copy t
+#+ATTR_HTML: :complete f
 #+BEGIN_SRC python
 # Starting a python interpreter
 $ python

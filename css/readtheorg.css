@@ -338,10 +338,16 @@ pre.src{
     font-family: "Input Mono Narrow", "Lucida Console","Lucida Sans Typewriter", "Courier New", Courier, monospace;
     font-size:12px;
     line-height:1.5;
-    margin:1px 0px 24px 0px;
+    margin:2px 0px 6px 0px;
     overflow:auto;
     padding:12px;
     white-space:pre;
+}
+
+div.org-src-container {
+    margin:2px 0px 22px 0px;
+	  overflow: auto;
+	  width: 100%
 }
 
 .example{
@@ -1443,5 +1449,24 @@ h4 span.tag span { padding: 1ex 1.5ex 1ex 1.5ex; }
 
 /* === STOP TAGS === */
 
+pre.raw-source {
+    display: none;   
+}
 
+div.pytutor-url {
+    display: none;   
+}
+
+button.btn-primary {
+    background-color: #2980B9;
+}
+
+button.btn-primary:hover {
+    background-color: #1960a0;
+}
+
+button.btn-right {
+    float: right;
+    margin-left: 1ex;
+}
 

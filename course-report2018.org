@@ -5,6 +5,8 @@ This is the course report for IOOPM 2018. Changelog:
 
 - 2019-02-19 ([[Reactions to Student Feedback][Reactions to Student Feedback]]). 
 - 2019-02-26 ([[Some Data Mining Results][Some Data Mining Results]])
+- 2019-03-25 (Fixing a stupid copy-paste bug in §4.4.2 -- thanks Martin E.!)
+- 2019-04-02 (Moved the footer to the right place -- thanks Linus S.!)
 
 [[https://github.com/IOOPM-UU/course-web/blob/master/course-report2018.org][The entire change history is visible on GitHub]]. 
 
@@ -437,8 +439,7 @@ The difficulty level of the Java assignments seem to be well-placed.
 #+CAPTION: Question 12 from Course Evaluation
 file:images/cr18/12-java-difficulty.png
 
-Students seem to agree that assignment 1 was too large (60% think
-it was somewhat or overly large).
+The extent of the Java assignments seem to also be well-placed.
 
 #+CAPTION: Question 13 from Course Evaluation
 file:images/cr18/13-java-extent.png 

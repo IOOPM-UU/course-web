@@ -98,7 +98,7 @@
          :exclude "setup.org\\|footer.org\\|code-exams\\|readme.org"
          ;; :publishing-directory "/tmp/ioopm18/"
          :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/ioopm18/"
-         :publishing-function org-html-publish-to-html
+         :publishing-function tw/org-html-publish-to-html
          :headline-levels 3
          :section-numbers t
          :with-toc t
@@ -173,27 +173,36 @@
 
 (require 'ox)
 (require 's)
-(defun mvr-html-src-block (src-block contents info)
-  "Transcode a SRC-BLOCK element from Org to HTML, adding a 'copy to clipboard' button."
-  (if (not (org-export-read-attribute :attr_html src-block :copy-button))
-      (org-export-with-backend 'html src-block contents info)
-    (let*((b-id (concat "btn_" (s-replace "-" "" (org-id-new))))
-          (content (let ((print-escape-newlines t))(prin1-to-string (org-export-format-code-default src-block info))))
-          (content- (s-chop-prefix "\"" (s-chop-suffix "\"" (s-replace "`" "\\`" content))))
-          (btn- "button")
-          (scr- "script")
-          (bquote- "`")
-          (script (concat "\n<" scr- " type='text/javascript'>\n var copyBtn" b-id "=document.querySelector('" btn- "[name=" b-id "]');\n"
-                          "copyBtn" b-id ".addEventListener('click', function(event) {\n"
-                          "copyTextToClipboard(" bquote- content- bquote- ");\n});\n</" scr- ">\n"))
-          (button (concat "<" btn- " class='copyBtn' name=" b-id ">Copy to clipboard</" btn- ">")))
-      (concat (org-export-with-backend 'html src-block contents info)  button script))))
+(require 'url-util)
 
-(org-export-define-derived-backend 'mvr-html 'html
-  :translate-alist '((src-block . mvr-html-src-block)))
+(defun ioopm-html-src-block (src-block contents info)
+  "Add pytutor and copy to clipboard information"
+  (let*((id          (org-id-new))
+        (no-tutor    (not (org-export-read-attribute :attr_html src-block :complete)))
+        (no-copy     (org-export-read-attribute :attr_html src-block :no-copy))
+        (raw         (org-export-format-code-default src-block info))
+        (source      (concat "<pre class='raw-source"
+                             (if no-tutor " no-tutor" "")
+                             (if no-copy " no-copy" "")
+                             "'>" (url-hexify-string raw) "</pre>")))
+    (concat "<div class='source-group' id='" id "'>"
+            (org-export-with-backend 'html src-block contents info)
+            source
+            "</div>")))
 
-(defun org-export-to-html-with-button (file)
+(org-export-define-derived-backend 'ioopm-html 'html
+  :translate-alist '((src-block . ioopm-html-src-block)))
+
+(defun tw/org-export-to-html-with-button (file)
   "Exports the current org-mode buffer to an HTML file, adding 'copy to clipboard' 
   buttons to source code blocks."
   (interactive "FFile Name: ")
-  (org-export-to-file 'mvr-html file))
+  (org-export-to-file 'ioopm-html file))
+
+(defun tw/org-html-publish-to-html (plist filename pub-dir)
+  (org-publish-org-to 'ioopm-html filename
+		      (concat "." (or (plist-get plist :html-extension)
+				      org-html-extension
+				      "html"))
+		      plist pub-dir))
+

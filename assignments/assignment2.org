@@ -599,6 +599,7 @@ so names are good keys.
 
 We can create a hash table like so: 
 
+#+ATTR_HTML: :partial t
 #+BEGIN_SRC c
 ioopm_hash_table_t *ht = ioopm_hash_table_create(17, string_knr_hash, string_key_eq);
 #+END_SRC
@@ -609,6 +610,7 @@ the program is a much better naming strategy than "it's a hash table".
 The ~string_key_eq()~ function simply extracts strings from the
 ~elem_t~ typed keys and delegates to ~strcmp()~ like so:
 
+#+ATTR_HTML: :partial t
 #+BEGIN_SRC c
 bool string_key_eq(elem_t k1, elem_t k2)
 {
@@ -926,6 +928,7 @@ presentations, or add your name to the help list.
 # databasen. Så här såg denna datastruktur ut i min implementation av
 # uppgiften.
 
+# #+ATTR_HTML: :partial t
 # #+BEGIN_SRC C
 #     struct action
 #     {

@@ -118,6 +118,54 @@ $(document).ready(function() {
     });
 });
 
+// == Add copy to clipboard and pytutor links for all source boxes ======================== 
+$(document).ready(function() {
+    $("div.source-group").each(function (){
+        /// Urlencoded string with source code
+        var rawSource = $(this).children("pre.raw-source")
+        /// Div enclosing all the elements of this source box
+        var sourceContainer = $(this).children("div.org-src-container")
+        /// The formatted source
+        var source = sourceContainer.children("pre")
+
+        var id = $(this).attr('id');
+
+        /// Determine what is the code style of the snippet, save in codeStyle
+        var codeStyle;
+        if (source.hasClass("src src-java")) {
+            codeStyle = "java";
+        }
+        else if (source.hasClass("src src-python")) {
+            codeStyle = "2";
+        }
+        else {
+            codeStyle = "c";
+        }
+
+        /// Unless opting out using no-copy, add copy to clipboard button
+        if (rawSource.hasClass("no-copy") == false) {
+            var cButtonText = '<i class="fas fa-copy"></i>'
+            source.after('<button id="c' + id + '" type="button" class="btn btn-primary btn-sm btn-right" data-toggle="tooltip" data-placement="left" title="Copy to clipboard">' + cButtonText + '</button>');
+            $(document.body).on('click', '#c' + id, function() {
+                copyTextToClipboard(decodeURIComponent(rawSource.html()));
+                $('#c' + id).html('   Copied!   ');
+                setTimeout(function(){
+                    $('#c' + id).html(cButtonText);
+                }, 2000);
+            });
+        }
+
+        /// Unless opting out using no-tutor, add tutor button
+        if (rawSource.hasClass("no-tutor") == false) {
+            source.after('<button id="p' + id + '" type="button" class="btn btn-secondary btn-sm btn-right" data-toggle="tooltip" data-placement="bottom" title="Open in Pytutor"><i class="fas fa-chalkboard-teacher"></i></button>');
+            $(document.body).on('click', '#p' + id, function() {
+                window.open('http://pythontutor.com/visualize.html#code=' + rawSource.html() + '&mode=edit&origin=opt-frontend.js&py=' + codeStyle + '&rawInputLstJSON=%5B%5D', '_blank');
+            });
+        }
+    });
+});
+
+
 // == Make footnotes also hover ======================== 
 // $(document).ready(function() {
 //     $(".footref").tooltip({
@@ -278,15 +326,3 @@ function copyTextToClipboard(text) {
   document.body.removeChild(textArea);
 }
 
-
-var copyBobBtn = document.querySelector('.js-copy-bob-btn'),
-  copyJaneBtn = document.querySelector('.js-copy-jane-btn');
-
-copyBobBtn.addEventListener('click', function(event) {
-  copyTextToClipboard('Bob');
-});
-
-
-copyJaneBtn.addEventListener('click', function(event) {
-  copyTextToClipboard('Jane');
-});
