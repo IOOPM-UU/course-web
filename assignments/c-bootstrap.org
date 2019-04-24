@@ -355,6 +355,7 @@ den är knuten till/.
 
 Det finns många sätt att skriva detta program. Ett enkelt sätt är:
 
+#+ATTR_HTML: :complete t
 #+BEGIN_SRC c
 #include <stdio.h>
 
@@ -457,6 +458,7 @@ kommer första utskriften av ~x~ att bli 5 och den andra 42.
 Skriv av följande program och ändra ~...~ till kod som byter plats
 på värdena i variablerna ~x~ och ~y~ genom att tilldela dem till varandra (din lösning kan alltså *inte* vara t.ex. ~x = 2; y = 1;~):
 
+#+ATTR_HTML: :complete t
 #+BEGIN_SRC c
 #include <stdio.h>
 
@@ -527,6 +529,7 @@ $ ./a.out
 Du ska använd en ~for~-loop och kan utgå från följande
 programskelett:
 
+#+ATTR_HTML: :complete t
 #+BEGIN_SRC c
 #include <stdio.h>
 
@@ -663,6 +666,7 @@ Kommandoradsargument skickas automagiskt in som argument till
 ~main()~-funktionen. Vi kan skriva programmet ~eko~ så här (som
 bara "ekar" alla kommandoradsargument):
 
+#+ATTR_HTML: :complete t
 #+BEGIN_SRC c
 #include <stdio.h>
 
@@ -1075,7 +1079,8 @@ inget värde.
 Felaktigt användande av ~return~ kan leda till /död kod/, dvs. kod
 som aldrig kommer att utföras, t.ex.:
 
-#+caption: OBS! Illustrerar död kod -- skriv inte så här!
+#+ATTR_HTML: :no-copy t
+#+CAPTION: OBS! Illustrerar död kod -- skriv inte så här!
 #+BEGIN_SRC c
 int dead_code_example()
 {
@@ -1984,6 +1989,7 @@ denna uppgift är att skriva om ~fib()~-funktionen så att den blir
 /rekursiv/. Efter koden nedan kommer ett exempel som visar hur man
 kan skriva en annan imperativ funktion med rekursion.
 
+#+ATTR_HTML: :complete t
 #+BEGIN_SRC c
 #include <stdio.h>
 #include <stdlib.h>
@@ -2585,6 +2591,7 @@ faktiskt inte modifierar datat, förutom att läsa all kod i /B/
 2. =42, 7=
 3. Något annat
 
+#+ATTR_HTML: :complete t
 #+BEGIN_SRC c
 #include <stdio.h>
 
@@ -3211,6 +3218,7 @@ en fil som normalt är knuten till terminalen i våra C-program.
 Skrivning sker analogt till ~stdout~ och allt som skrivs dit visas
 i terminalen i våra program.
 
+#+ATTR_HTML: :complete t
 #+BEGIN_SRC c
 /// passthrough.c
 #include <stdio.h>
@@ -3292,6 +3300,7 @@ skriver ut filen på terminalen (~stdout~). Programmet är väldigt
 likt ~passthrough.c~ ovan -- med skillnaden att vi vill öppna en
 namngiven fil, inte ~stdin~:
 
+#+ATTR_HTML: :complete t
 #+BEGIN_SRC c
 /// cat.c
 #include <stdio.h>

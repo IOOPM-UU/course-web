@@ -346,8 +346,6 @@ pre.src{
 
 div.org-src-container {
     margin:2px 0px 22px 0px;
-	  overflow: auto;
-	  width: 100%
 }
 
 .example{
@@ -1467,6 +1465,17 @@ button.btn-primary:hover {
 
 button.btn-right {
     float: right;
+    padding-right: 1ex;
+    margin-right: 1ex;
     margin-left: 1ex;
 }
 
+div.org-src-container + div {
+    margin:2px 0px 22px 0px;
+	  overflow: auto;
+	  width: 100%
+}
+
+div.outline-2 {
+    border-top: 2px solid #eeeeee;
+}
