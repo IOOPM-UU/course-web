@@ -1,4 +1,4 @@
-#+title: Assignment 4a (Phase 2, Sprint 2)
+#+title: Assignment 4 (Phase 2, Sprint 2)
 #+include: "../setup.org"
 #+LANGUAGE: sv
 
