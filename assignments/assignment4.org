@@ -1,10 +1,1132 @@
-#+title: Assignment 4 (Phase 2, Sprint 2)
+#+title: Assignment 4a (Phase 2, Sprint 2)
 #+include: "../setup.org"
 #+LANGUAGE: sv
 
-* This assignment is split in two (2018)
+# * Testing
+# ** Testing the strings of the language 
+# * TDD
+# * Support for Visitor Pattern
 
-- [[file:assignment4a.org][Assignment 4a]] (published 2018-11-20)
-- [[file:assignment4b.org][Assignment 4b]] (old assignment used 2014--2016)
+# * Use Visitor Pattern
+# ** External evaluation 
+# ** Type checking
+# ** Static checking that named constants are not reassigned
+# * Add Types
+# We extend the assignment with support for doubles. 
 
-You are to do exactly one of these. 
+# - Variables are typed with the variable they are first
+# assigned to. This type is fixed for life. 
+
+# Variables may not be assigned values of the wrong type. 
+# Integers may be coerced to floats, but not the other way around. 
+
+# - Add @override in appropriate places
+# - Symbolic visitor (implements current functionality)
+# - Non-symbolic visitor (throws exception if expressions are not fully reducible)
+# - Reducible visitor
+# - Annotate result with int / double / undefined
+# - Throw exceptions and build a stack in non-symbolic visitor
+# - Type-sensitive reassignment
+# - Catch errors statically from assignment 3
+# - map i sexpr med allt meta -- map från visitors klass
+# - no reassignment of variables 
+# - scopes {1=x} + {x} = 1 + x
+# - if-statements
+# - expr === x makes x a function with free vars as arguments
+# - make variables comparable to other variables for printing them in alphabetical order
+# - same trick for partial order? 
+# - use inferrence to track types of arguments to functions (int, float, polymorphic!)
+# - implement iterator
+# - print statement for debug
+# - börja med systemtest innan refaktorering!
+# - add a node factory that can create different nodes
+
+#+BEGIN_danger
+This assignment has been pushed out quickly which means there is
+likely room for improvement in the explanations and also
+quite possibly bugs or needs for clarification. Please post
+questions on Piazza.
+#+END_danger
+
+
+* Introduction 
+In this assigment, we are going to spend some time overhauling the
+simple calculator. Specifically, we are going to extend it so that
+it becomes like a small interpreted programming langauge. To do
+that, we need to first change its structure a bit so that it
+becomes easier to extend -- this is an application of
+*refactoring* (cf. [[../index.org::phase2lectures][the refactoring lecture]]) which means we will
+also want to start by fixing up some *tests* (cf. both unit tests
+in JUnit and integration tests) so that we can be sure that we
+don't accidentally inject bugs in our program during refactoring.
+
+*Note:* you must use JUnit for your tests.
+
+* Ticket 1: Adding Tests
+It is quite possible that you already have some proper tests even
+through Assignment 3 did not specifically ask for them. If you
+added them in, then good on you -- you probably saved time for
+adding them in, and you'll be mostly or completely done with this
+step. 
+
+** Step 1: Unit Tests of the AST
+For each class in the AST, test at least the following functions
+so that they behave correctly:
+- ~getValue()~
+- ~isConstant()~ 
+- ~getName()~ 
+- ~isCommand()~ 
+- ~priority()~ 
+- ~toString()~ (please read step 2 first)
+- ~equals()~ (please read step 2 first)
+- ~eval()~ (please read step 2 first)
+Some classes have other behaviour too, like accessors for getting
+left and right subexpressions, etc.
+
+** Step 2: Integration Tests in the AST Module 
+Based on ad hoc test you did in the past (or maybe you did better
+than that!), create a number of integration tests that tests the
+correctness of multiple AST nodes working together. This is comes
+natural when you are testing ~equals()~ and ~eval()~ (etc.) as
+soon as you move past constants.
+
+Try and test bad behaviour as well -- is it possible to (for
+example) create an assignment node with no subexpressions? If so,
+what happens if we try to compare it with another node? Or
+evaluate it.
+
+Naturally testing all possible trees is not possible (that's
+bounded only by computer memory!). So what shall we test? What are
+some good cases? 
+
+** Step 3: Unit and Integration Tests of the Parser
+Once the AST tests are in place, it is time to test the parser.
+The reason for picking this order is that there is a dependency
+from the parser to the AST, but not the other way around. 
+
+For these tests, we are lucky that we moved to an implementation
+of the parser that is not tied to ~System.in~ but allows us to
+feed it any old string. Using the ~equals()~ method and the
+~toString()~ method in the AST, write your tests thus:
+
+1. Programmatically create a valid AST, e.g. ~new Constant(42)~ or
+   ~new Addition(new Constant(42), new Negation(new
+   Constant(4711)))~
+2. Use the ~toString()~ methods on these nodes to get string
+   representation
+3. Feed the string representation to the parser to get back other
+   AST nodes
+4. Use ~equals()~ to compare your original nodes in 1. with the
+   ones you got back in 3.
+
+Depending on your implementation, there might be discrepancies --
+for example your ~toString()~ implementation might always insert
+parentheses, etc. If that is the case, you need to *complement*
+these tests with ones which leave out parentheses, meaning you'll
+have to manually insert the strings to parse. 
+
+The methods in the parser are so tightly integrated that it is
+difficult to test them alone in true unit test fashion (which is
+why this step is titled both unit tests and integration tests).
+You can apply a bottom-up technique in which you start at the very
+leaves of the grammar, e.g., variables, constants and named
+constants, then move up to the smallest possible expressions that
+can be built out of those, e.g. unaries, then move on to binaries,
+etc. -- always building your tests on subcomponents that we have
+already tested. So, for example, once we are confident that
+parsing of constants works well, meaning after having implemented
+and executed *both positive and negative* test cases, we can try
+negation of constants, knowing that any bugs we find are likely in
+the handling of the negation (unary) part. 
+
+As before, testing all possible expressions is not possible. So
+what shall we test? What are some good cases? Tricky and unusual
+cases like ~- - - x~ are nice for finding corner cases, but you
+cannot only work with those or you'll miss more severe bugs.
+
+#+begin_note
+Test both positive and negative cases! This means testing both
+that cases that you expect to work work, and that cases that you
+expect to fail fail, and moreover fail in the way they are
+expected to fail. For example, what happens if you leave out one
+of the parentheses in ~(1 = x)~? Do you get appropriate syntax
+errors? 
+#+end_note
+
+** Step 4: Tests at the System Level 
+
+Finally, we should add some tests at the system level. This means
+writing some tests for your program. There are several ways you
+can go about this. One example is to do the following: 
+
+1. Create a number of text files that contain the input line by line for the program 
+2. For each file in 1., create a companion text file that contains the expected output from the program for that input 
+3. For each file in 1., run the program and compare the actual output with the expected output
+
+You can use standard redirection of ~stdin~ and ~stdout~ like we
+did in C, like so:
+
+#+BEGIN_EXAMPLE
+$ java MyProgram < input.txt > output.txt
+#+END_EXAMPLE
+
+This uses ~input.txt~ as the user's input and writes the program's
+output to ~output.txt~. Now we can use the ~diff~ program to
+compare ~output.txt~ with the expected output:
+
+#+BEGIN_EXAMPLE
+$ diff output.txt expected_output.txt
+#+END_EXAMPLE
+
+If the files are identical, this command gives no output (it only
+reports the differences) and also returns with exit value 0. 
+
+Beware if you use ~stderr~ in your output (possibly for stack
+traces or error messages), you also need to direct it too to the
+output file:
+
+#+BEGIN_EXAMPLE
+$ java MyProgram < input.txt 2>&1 > output.txt
+#+END_EXAMPLE
+
+
+If you don't like scripting in the terminal, you can instead to
+all of this programmatically in Java. You can script each
+interaction by having e.g., a queue of input strings, and each
+turn in the loop pop an input off the queue and feed it to the
+parser. Then, instead of writing to ~System.out~, you can use a
+~PrintStream~ connected to a ~ByteArrayOutputStream~ and get a
+string from there which you can compare with the expected output.
+Here is an example of how that might be implemented:
+
+#+BEGIN_SRC java
+import java.io.*;
+
+public class Test {
+    public static void main(String[] args) {
+        // The expected string
+        String expected = "Foo";
+
+        ByteArrayOutputStream buf = new ByteArrayOutputStream();
+        PrintStream out = new PrintStream(buf);
+        // Write output to "out" instead of System.out
+        out.println("Foo");
+
+        // Get the string written to out
+        String output = buf.toString(); 
+
+        // Compare with expected 
+        System.out.print(output.equals(expected));
+    }
+}
+#+END_SRC
+
+
+** Finish this Ticket
+
+At the end of this ticket you should have a working unit and
+integration test suite that is runnable by ~make test~ in your
+makefile. Preferably, you should also have no failing tests. 
+
+Before we launch into the next ticket, we also need to make sure
+that we know the *baseline* -- the current status quo. To this
+end:
+
+1. Make sure that everything is committed to git and/or GitHub.
+   This will be great if we need to back out of a failed
+   refactoring.
+2. Execute all the tests and *write down* which tests are failing
+   (if any). This is needed so that we can ensure that the
+   refactored program is equivalent to the original program.
+
+Once you are done with this step, commit everything and tag it
+with =assignment4_ticket1=. 
+
+* Ticket 2: Refactoring
+Assignment 3 tangled the representation of the expression the
+programmer wrote (the AST) with how expressions are calculated
+(the ~eval()~ method in the AST classes). This is not so bad as
+long as the operations we want to do on the AST is just
+evaluation, but if that ever increases, then the logic is going to
+become hopelessly complicated. For one, it is spread across a
+large number of classes, and a change to one part of the
+functionality of the program will trigger a large number of
+changes to lots of classes. 
+
+A nice way to untangle the evaluation operation and the AST is to
+implement the [[https://en.wikipedia.org/wiki/Visitor_pattern][visitor pattern]]. This pattern installs in the
+classes an ability "to be visited" by some unknown logic that
+performs some operation which is unknown to the AST node. This
+way, we can add, remove and change /visitors/ without having to
+change the AST. 
+
+The visitor pattern uses the [[https://en.wikipedia.org/wiki/Double_dispatch][double dispatch pattern]], which is a
+way to handle the limitations of single dispatch -- the fact that
+/dynamically/, when we execute an expression like ~x.m(y)~, we
+only look at the dynamic type of the /receiver/ (the object
+pointed to by ~x~) and not the arguments (the object pointed to by
+~y~).
+
+I could have added a lengthy explanation of visitors here, but I
+did not for two reasons:
+
+1. Assignment 1 was criticised for having too much text
+2. There are a ton of videos, tutorials etc. online on the visitor pattern
+
+Now is a good point to read up on the visitor pattern before
+coming back here.
+
+
+# #+BEGIN_EXAMPLE
+#     +             +           5
+#    / \           / \
+#   -   7   ==>  -2   7   ==> 
+#  / \
+# 3   5
+# #+END_EXAMPLE
+
+
+
+
+
+
+** Step 1: Create a Visitor Interface
+
+All visitors shall implement a common interface which contains
+methods for visiting the concrete classes in the AST hierarchy.
+For simplicity, this interface is given. (Modifications are
+allowed but not foreseen.)
+
+#+BEGIN_SRC java
+package ...;
+
+public interface Visitor {
+    public SymbolicExpression visit(Addition n);
+    public SymbolicExpression visit(Assignment n);
+    public SymbolicExpression visit(Constant n);
+    public SymbolicExpression visit(Cos n);
+    public SymbolicExpression visit(Division n);
+    public SymbolicExpression visit(Exp n);
+    public SymbolicExpression visit(Log n);
+    public SymbolicExpression visit(Multiplication n);
+    public SymbolicExpression visit(Negation n);
+    public SymbolicExpression visit(Quit n);
+    public SymbolicExpression visit(Sin n);
+    public SymbolicExpression visit(Subtraction n);
+    public SymbolicExpression visit(Variable n);
+    public SymbolicExpression visit(Vars n);
+}
+#+END_SRC
+
+What this interface is expressing is that a visitor knows (in the
+sense of implements a method for) how to visit nodes of the
+above-mentioned types.   
+
+** Step 2: Implement an Evaluation Visitor
+
+In this step, we are going to refactor our program from its
+current state to use an evaluation visitor for evaluating
+expressions. This means that all the ~eval()~ methods will be
+removed, and the corresponding logic moved into the evaluation
+visitor.
+
+Fist, we must add an ~accept()~ method to /each concrete/ AST
+class, and also to the AST root class. It is imperative that you
+understand why this method must be overridden in each concrete
+subclass of ~SymbolicExpression~. First, here is the ~accept()~
+method in all its glory[fn::There are better ways to implement this, but more complicated so this will do for now.]:
+
+#+BEGIN_SRC java
+@Override
+public SymbolicExpression accept(Visitor v) {
+    return v.visit(this);
+}
+#+END_SRC
+
+Imagine that we have an evaluation visitor ~v~ and an addition
+node ~o~. AST nodes don't know anything about the visitors (more
+than that they implement the ~Visitor~ interface) and the visitor
+cannot statically know the type of ~o~ because that is determined
+by what the programmer feeds to the parser. Nevertheless, we need
+for the visitor to find the most specific of its methods to carry
+out the right instructions for visiting an addition node.
+
+When ~o.accept(v)~ ~o~ calls the visitor back with itself as
+argument, ~v.visit(this)~ as visible above. This might seem
+strange but is important because when the visitor calls
+~o.accept(this)~ it is using dynamic dispatch to find the most
+specific ~accept()~ method for the receiver, and when ~o~ calls
+the visitor's ~visit()~ method back with itself as argument, it is
+using the static type information about itself to be able to pick
+the right overloaded method in the visitor interface. In short:
+when the addition node calls the visitor's visit method, it knows
+that it should pick the visit method that takes an addition node.
+
+Below is a starting point for implementing the evaluation visitor.
+The "entry point" is the method ~evaluate()~ which takes a root of
+an expression tree (~SymbolicExpression topLevel~) and an
+environment. It then visits the expression tree by calling the
+~accept()~ method on the top-level, which returns a new tree in
+the same style as ~eval()~ in Assignment 3. 
+
+#+BEGIN_SRC java
+  public class EvaluationVisitor implements Visitor {
+      private Environment env = null;
+        
+      public SymbolicExpression evaluate(Symbolicexpression topLevel, Environment env) {
+          this.env = env;
+          return topLevel.accept(this);
+      }
+    
+      // This method gets called from Addition.accept(Visitor v) -- you should
+      // be able to see from the eval() methods how these should behave (i.e., 
+      // compare this method with your Addition::eval() and Symbolic.addition) 
+      public SymbolicExpression visit(Addition n) {
+          // Visit the left hand side and right hand side subexpressions
+          SymbolicExpression left = n.lhs().accept(this);
+          SymbolicExpression right = n.rhs().accept(this);
+          // When we come back here, the visitor has visited all subexpressions, 
+          // meaning left and right point to newly created trees reduced to 
+          // the extent possible (best case -- both are constants)
+        
+          // If subexpressions are fully evaluated, replace them in
+          // the tree with a constant whose value is the sub of the
+          // subexpressions, if not, simply construct a new addition
+          // node from the new subexpressions
+          if (left.isConstant() && right.isConstant()) {
+              return new Constant(left.getValue() + right.getValue());
+          } else {
+              return new Addition(left, right);
+          }
+      }
+
+      ... // Rest of all visit methods
+  }
+#+END_SRC
+
+#+begin_note
+*A Note About the Environment*
+
+Note that the environment is no longer chained through the
+evaluation as an argument -- instead it lives as an instance
+variable inside the visitor. This is because different visitors
+will be needing various extraneous data, so we cannot know ahead
+of time what should be the right parameters to our ~accept()~
+methods.
+#+end_note
+
+Once we have an evaluation visitor, we can remove all the ~eval()~
+code and change the main program to use the evaluation visitor
+instead.
+
+For example, if this was the original implementation:
+#+BEGIN_SRC java
+final SymbolicExpression topLevel = Parser.parse(expression); 
+final SymbolicExpression evaluationResult = topLevel.eval(variables);
+System.out.println(eval);
+#+END_SRC
+it will change to 
+#+BEGIN_SRC java
+final SymbolicExpression topLevel = Parser.parse(expression); 
+final Visitor evaluator = new EvaluationVisitor();
+final SymbolicExpression evaluationResult = evaluator.evaluate(topLevel, variables);
+System.out.println(eval);
+#+END_SRC
+
+
+
+** Step 3: @Override
+
+Add the ~@Override~ annotation to all method that override other
+method in your implementation. The reason why we do this is
+because we want to capture our intentions to override certain
+methods. If the Java compiler complains that you put ~@Override~
+in a place where there was no overriding, then you have likely
+discovered a bug (or you were sloppy with your placements!).
+
+
+#+BEGIN_CENTER
+/Note that after this point, we are technically leaving refactoring
+and moving into exending the system./
+#+END_CENTER
+ 
+** Step 4: Extend the Variable Class for the Sake of the Environment
+
+When we print the variables in the environment, we would like to
+print them in alphabetical order. To that end, we want to be able
+to sort instances of the ~Variable~ class. To accomplish this, we
+want the variable class to implements the ~Comparable~ interface.
+To make sure that only variables can be compared against other
+variables, we must parameterise the ~Comparable~ class with
+~Variable~ class itself as type parameter. (You can look at
+examples on comparable pairs in the lecture on equality and
+identity.) 
+
+In short, make it so that the variable class implements the
+comparable interface in such a way that variables can be compared
+against other variables (and nothing else -- /statically/). Look
+at the interface of the ~String~ class that you are using for your
+idenfiers for help on how to implement your ~compareTo()~ method.
+
+When you have implemented this, you can change the behaviour of
+the *vars* command so that it prints the variables in alphabetical
+order. One way to do so is to @Override the ~toString()~ method in
+~Environment~ and delgate to the environment to give its string
+representation. In the environment, get hold of all the keys
+(which will be variables or identifiers), and then crete a
+~TreeSet~ from that set which orders its elements using their
+/natural ordering/ (as determined by its implementation of
+~Comparable~). Then you can get an iterator from the ~TreeSet~ and
+print the variables. Something in the spirit of this:
+
+#+BEGIN_SRC java
+StringBuilder sb = new StringBuilder();
+sb.append("Variables: ");
+TreeSet<Variable> vars = new TreeSet<>(this.keySet());
+for (Variable v : vars) {
+    sb.append(v.getName());
+    sb.append(" = ");
+    sb.append(this.get(v));
+    sb.append(", ");
+}
+return sb.toString();
+#+END_SRC
+
+Now you can simply do ~System.out.println(environment);~ to print
+the environment nicely. Note that the code above always prints an
+extra ~", "~ at the end which is annoying. If you interact with 
+an iterator explicitly, this can be fixed easily. 
+
+#+BEGIN_SRC java
+for (Iterator<Variable> iter = vars.iterator(); iter.hasNext(); ) {
+    Variable v = iter.next();
+    ... 
+}
+#+END_SRC
+
+** Step 5: Extended Static Checking 
+
+In Assignment 3, we implemented named constants which we protected
+against reassignment in the evaluation by throwing an exception if
+we saw that an expression assigned to a named constant. That was
+nice, but now we will make this even nicer by adding a check that
+this is not the case before the evaluation even runs. That way, if
+we have a long or complicated expression, we can check it quickly
+for this error without wasting time on actually trying to
+implement it. 
+
+The way we implement this is by adding another visitor! This
+visitor will visit the entire tree (postorder -- meaning inside
+out as before), and when it finds an assignment, it will check
+that the variable being assigned is not a named constant. Here is
+a partial implementation of this Step with the most important
+method partially implemented:
+
+#+BEGIN_SRC java
+public class NamedConstantChecker implements Visitor {
+    // Recurse down the AST tree
+    public SymbolicExpression visit(Addition a) {
+        a.lhs().accept(this);
+        a.rhs().accept(this);
+        return this; // No need to create a new tree
+    }
+
+    // When we hit an assignment, make sure to check!
+    public SymbolicExpression visit(Assignment a) {
+        a.rhs().accept(this);
+        if (a.rhs().isNamedConstant()) { // or maybe you used just isConstant
+            ... // see below
+        }
+        return this;
+    }
+}
+#+END_SRC
+
+You will need to add a method similar to ~evaluate()~ in
+~EvaluationVisitor~ before. This method should be defined thus:
+~public boolean check(...)~, and return ~true~ if there are no
+illegal assignments to named constants in the AST we pass in as
+arguments. 
+
+Exactly how you implement the ~...~ in ~visit(Assignment a)~ above
+is up to you. You could throw an exception that you catch in
+~check()~ or you could keep a list around with information about
+what assignment nodes contain illegal assignment. 
+
+Extend the main program to check for assignments to named
+constants /before/ evaluating an expression and only if no such
+assignments exist, perform the evaluation. If such assignments
+exist, we should print an error message that contains at least one
+(in case of many) of the illegal assignments. Here is an example
+of what it could look like:
+
+#+BEGIN_EXAMPLE
+? (3.2 = pi) + (42 = L)
+Error, assignments to named constants:
+    3.2 = pi
+    42 = L
+#+END_EXAMPLE
+
+If needed, extend your tests to cover the named constant checker.
+
+** Step 6: More Checking
+
+In the same spirit as Step 5, implement a checker that checks that
+no variable is assigned more than once in an expression. The
+visitor class that implements this should be called
+~ReassignmentChecker~.
+
+#+BEGIN_EXAMPLE
+? (1 = x) + (2 = x)
+Error, the variable x is reassigned.
+
+? (1 = x) + (1 = x)
+Error, the variable x is reassigned.
+#+END_EXAMPLE
+
+Add this checker to the main program so that it is run after the
+named constant checker. *An expression entered by the user should
+be evaluated only if both checkers succeed.*
+
+Extend your tests to cover both positive and negative tests of the
+reassignment checker.
+
+*** Optional: Basic Visitor Class
+Even though it breaks the "rule of three", it may make sense to
+create a basic visitor /class/ at this point. This class should
+not do anything except recurse and make a copy of the current
+node:
+
+#+BEGIN_SRC java
+public class BasicVisitor implements Visitor {
+    public SymbolicExpression visit(Addition a) {
+        return new Addition(a.lhs().accept(this), a.rhs().accept(this));
+    }
+    public SymbolicExpression visit(Constant c) {
+        return new Constant(c.getValue()); 
+    }
+    ...
+}
+#+END_SRC
+
+This basic visitor will now become the default behaviour and we
+can create new visitor simply by subclassing this one and override
+it. If you go down this route, the simplest way to write this code
+is essentially to copy the ~NamedConstantChecker~ and rename it
+and remove the few lines of logic that isn't simpy recurse and
+copy. With this in place, we can write the ~NamedConstantChecker~
+simply like this:
+
+#+BEGIN_SRC java
+public class NamedConstantChecker extends BasicVisitor {
+    @Override
+    public SymbolicExpression visit(Assignment a) {
+        ... // the logic from before
+    }
+}
+#+END_SRC
+
+Of course, we can (and should!) do something similar in the
+implementation of the reassignment checker.
+
+** Step 7: More Evaluation :optional:
+
+Symbolic calculators are nice, but sometimes we would like to
+operate on expressions without free variables (meaning variables
+which have not been assigned a value). Subclassing the basic
+visitor or the evaluation visitor, create a new visitor
+~FullEvaluationVisitor~ which throws a
+~UndefinedVariableException~ (that you will have to define as a
+subclass to ~RuntimeException~) if it tries to read a variable
+which does not have a value in the environment.
+
+In the case of this error occuring, we would like to print out a
+full "backtrace" of the expression where the error occurs, like
+this:
+
+#+BEGIN_EXAMPLE
+Welcome!
+? 1 = y
+? 5 + 2 * x
+Error, 'x' is undefined in
+  2 * x in
+    5 + 2 * x
+
+? 1 + x = y
+Error, 'x' is undefined in
+  1 + x in
+    1 + x = y
+#+END_EXAMPLE
+
+The backtrace prints the expressions where the error occurs inside
+out. In the case of the first example above, first ~2 * x~ which
+contains the variable node that "blows up", and then its
+containing super expression ~5 + 2 * x~.
+
+Here are two suggestions for implementing the back trace:
+
+1. Add a ~List<SymbolicExpression> errorStack~ to the visitor and
+   wrap the body of each visit method in a ~try/catch~ statement
+   that catches a ~UndefinedVariableException~, pushes the current
+   node to the error stack (using some appropriate method in the
+   ~List~ interface), and then rethrows the same exception. Then,
+   once the exception has propagated back to the toplevel method
+   of the visitor, the error stack will contain all the
+   expressions in which the undefined variable access was nested.
+   (This implementation will leave you wanting something like
+   Aspect-Oriented Programming because of how this "concern" must
+   be manually added all over the place.)
+2. Extend the ~SymbolicExpression~ class with a parent field that
+   points to the parent expression, and method for setting and
+   getting the parent. This design will allow us to traverse an
+   AST inside out, but the cost is the added complexity when
+   creating new AST nodes -- now they must always be informed
+   about their parent nodes. The latter can be implemented in the
+   constuctors of all AST classes by using the current ~this~ as
+   arguments to the ~setParent()~ methods of all subexpressions.
+   An alternative to changing the constructors is to add a visitor
+   that simply sets the parents for all nodes in a tree. 
+
+Feel free to come up with other ideas. Note that the behaviour of
+this visitor is exactly the same as the evaluation visitor, except
+that if we access a variable that is not in the environment, we
+will throw an exception. 
+
+Add a switch to the program (a flag that the user passes in that
+is stored in the ~args[0]~ argument to ~main()~) that if set to
+=--not-symbolic= will use the ~FullEvaluationVisitor~ instead of
+the normal ~EvaluationVisitor~. Feel free to rename the latter to
+~SymbolicEvaluationVisitor~ if you think this makes things
+clearer.
+
+Extend your tests accordingly. 
+
+** Step 8: Even More Checking :optional:
+
+Following the logic in Step 6, create a checker that can be run
+before the ~FullEvaluationVisitor~ to detect if that would throw
+an exception so that we can avoid running the visitor in those
+cases. Note that we are writing a checker, not an evaluator --
+this means (for example) that we may not modify the environment. 
+
+A suggestion for implementation is to classify each variable as
+either /free/ or /bound/. A variable becomes bound when it is
+assigned, and all non-bound variables are free. If we visit an AST
+in the normal postorder, if we see an assignment to a variable
+~x~, we add ~x~ to the list of bound variables. If we see an
+access of a variable which is not bound, then we add that variable
+to the list of free variables.
+
+Note that a variable that is used before it is assigned will end
+up in both categories, which is fine -- that simply captures a
+behaviour which is illegal in the ~FullEvaluationVisitor~. Also
+note that all variables in the environment are bound.
+
+If you implement a ~FreeBoundVariableChecker~ according to this
+logic, you can have it visit an AST, and then simply look at the
+list of free variables. If that list is non-empty, we cannot run
+the ~FullEvaluationVisitor~ without throwing an exception.
+
+Add this checker to the program so that it is run if (and only if)
+the ~FullEvaluationVisitor~ is used. If an expression contains a
+free variable, it should not be evaluated. If you implemented the
+parent pointers, then producing the same backtrace as in Step 7
+should be straightforward (since you have a list of free variables
+which are ~SymbolicExpression~'s and thus have parent pointers).
+If you did not, then feel free to simplify matters and simply
+write the names of all free variables to the terminal:
+
+#+BEGIN_EXAMPLE
+Welcome!
+? 1 = y
+? 5 + 2 * x
+Error, 'x' is undefined.
+
+? 1 + x + z = y
+Error, 'x' and 'z' are undefined.
+#+END_EXAMPLE
+
+Extend/update your tests accordingly. 
+
+** Finishing this Ticket
+
+By now, you should have: 
+
+1. Torn out the old ~eval()~ and replaced it with a evaluation
+   visitor. 
+2. Decorated the code with @Override annotations where sensible
+   and gotten that to compile without warnings. 
+3. Extended the ~Variable~ class with the ~Comparable~ interface,
+   properly parameterized~, and used this in the ~toString()~
+   method of ~Environment~ to print variables in order for the
+   *vars* command.
+4. Retired the logic for trapping assignments to named constants
+   in the evaluation and replaced that with a specific checker
+   that runs before the evaluation. The main program should report
+   errors as explained above and not proceed to evaluation if
+   errors are found.
+5. Implemented a reassignment checker that traps cases of
+   reassignment to variables. The main program should report
+   errors as exemplified above and not proceed to evaluation if
+   errors are found.
+6. Implemented a stricter evaluation visitor that throws an
+   exception if it comes across an undefined variable.
+7. Implemented a free variable checker that traps accesses to
+   undefined variables and avoids calling the evaluator in 6. for
+   expressions that contain those.
+8. Extended your test cases to cover any additional behaviour of
+   the above. 
+
+Once you are satisifed that everything works, commit everything
+and tag it with =assignment4_ticket2=.
+
+* Ticket 3: Extensions 
+
+In this ticket, we are going to extend the calculator with new
+functions so that it becomes more like a proper programming
+language. Also, we are going to do this in test-driven development
+style, which means that we are going to start by writing one or
+more test cases for what we are doing next, as specification for
+what we want to accomplish, and /then/ write the implementation
+that meets that specification. 
+
+In a nutshell, this is what we will add:
+
+1. Scopes
+2. Conditionals
+3. Functions (declaration and call)
+
+
+** Step 1: Scopes
+
+We are going to extend the calculator's language with scopes which
+are denoted using ~{~ and ~}~.
+
+Scopes work like parentheses, but variables defined in a scope are
+only bound in that scope. Thus, that means that the following code
+is valid and behaves thus -- in the first expression, ~x~ is never
+reassigned -- instead we have two different ~x~'s. 
+#+BEGIN_EXAMPLE
+? {1 = x} + {1 = x}
+2.0
+
+? {1 = x} + {x}
+1.0 + x
+#+END_EXAMPLE
+Just like parentheses, scopes can be nested. Shadowing of variables
+in scopes is allowed (although it is a terrible idea in practice!). 
+#+BEGIN_EXAMPLE
+? {{1 = x} = x}
+1.0
+
+? {(2 = x) + {1 = x}}
+3.0
+#+END_EXAMPLE
+
+To implement shadowing, a simple is to keep a stack of
+environments around -- entering a new scope pushes a new
+environment at the top of the stack, and exiting a scope pops the
+current environment off the stack. Looking up a variable starts
+with the environment at the top of the stack, and then proceeds to
+loop in the next environment if the variable was not found, etc.
+Assignment, however, always creates or updates a variable in the
+scope at the top of the stack.
+
+The lookup rules are exemplified with this simple example: 
+
+#+BEGIN_EXAMPLE
+? (1 = x) + {(2 + x = x) + {3 + x = x}}
+10.0
+#+END_EXAMPLE
+
+First, in ~(1 = x)~, ~x~ is assigned 1 in the outermost, "global",
+scope. Then, in ~(2 + x = x)~, we first lookup ~x~ from the
+enclosing (outermost) scope to calculate ~2 + x~ and then we
+assign ~x~ in the current scope to the result, which is 3 as ~x~
+is 1 in the global scope. Then, in ~3 + x = x~, we again lookup
+~x~ from the enclosing (nested) scope, and see that its value is
+~3~, meaning ~3 + x~ is 6 which is the value we assign to ~x~ in
+the current scope. So, at this point, there are no less than three
+~x~ variables in the program -- one per scope -- bound to 1, 3 and
+6 respectively. (The sum of which is 10.)
+
+Note that only variables assigned in the top-level scope are
+stored between expressions, as demonstrated by the following
+example:
+
+#+BEGIN_EXAMPLE
+? {{1 = x} = x} = y
+1.0
+
+? x
+x
+
+? y
+1.0
+#+END_EXAMPLE
+
+To get scopes working you will need to:
+
+1. Add a ~Scope~ class to the AST. 
+2. Extend the parser with support for the scope syntax (which you
+   are free to extrapolate from the examples above).
+3. Extend the visitor interface and all visitors with support for
+   scopes (e.g., using a stack of environments maintained locally
+   (except the global one which is still passed in like before))
+   inside each visitor.
+
+Don't forget to work in a test-driven way! 
+
+** Step 2: Conditionals 
+
+We are going to extend the calculator with support for
+conditionals -- simple if-expressions that look like this:
+#+BEGIN_CENTER
+*if* /identifier/ /op/ /identifier/ /scope/ *else* /scope/
+#+END_CENTER
+An if-expression is (wait for it!) an expression, meaning we can
+have nested ifs.
+
+The possible /op/ operators are: $<$, $>$, $<=$, $>=$ and $==$
+which have the obvious semantics (which correspond to the
+semantics of the identical Java operators).
+
+Note that we are adding new keywords to the language, so we should
+not allow *if* and *else* to be used as variables (like with
+*cos*, etc.).
+
+Here is an example of an if-expression:
+#+BEGIN_EXAMPLE
+? 3 = x
+3.0
+
+? 4 = y
+4.0
+
+? if x < y { 42 } else { 4711 }
+42.0
+#+END_EXAMPLE
+
+The operators can only compare concrete values, meaning that
+comparing against a free variable should throw an exception.
+Luckily, we already have a visitor that traps accesses to free
+variables so we can reuse that logic.
+
+To get conditionals working you will need to:
+
+1. Add a ~Conditional~ class to the AST. 
+2. Extend the parser with support for the new syntax (which you
+   are free to extrapolate from the examples above).
+3. Extend the visitor interface and all visitors with support for
+   conditionals. 
+
+Don't forget to work in a test-driven way! 
+
+** Step 3: Functions
+
+Now, things will start to get really interesting! We are going to
+add functions. Function definitions will start with the keyword
+*function* followed by the name of the function (an identifier),
+followed by a list of parameter names, and then a newline. Then,
+each subsequent line is part of the function's body until the
+keyword *end* is entered on a single line. The last line before
+*end* is the return value. Thus, here is an example of how we
+might define a max function that takes two arguments and returns
+the greatest:
+
+#+BEGIN_EXAMPLE
+? function max(x, y)
+    if x < y { y } else { x }
+  end
+
+? max(5, 7)
+7.0
+
+? max(5)
+Error, function 'max' called with two few arguments. Expected 2, got 1.
+
+? max(5, 7, 9)
+Error, function 'max' called with two many arguments. Expected 2, got 3.
+#+END_EXAMPLE
+
+We are going to need a few more AST node for this one, i.e.,
+~FunctionDeclaration~ which keeps track of the name of the
+function, its parameters and its body in a ~Sequence~, and
+~FunctionCall~ which consists of an identifier and a list of
+arguments. To make things simple, arguments to a function should
+be only numbers or identifiers.
+
+We also need to extend the system with a list of known functions.
+This list can start empty and grow with each function definition.
+A function declaration that uses a name of an already declared
+function will overwrite the old declaration with the new
+declaration.
+
+*** Parsing Function Definition
+
+A straightforward albeit slightly hacky way to extend the parser
+to support function declarations is by adding *function*
+/identifier/ (/identifier_list/) and *end* as two top-level
+statements. Once the user enters a *function* ..., we go into
+function definition mode at which point any subsequent expression
+is not evaluated but instead added to the list of statements
+inside the body of the function. Finally, when we hit upon the
+*end*, we know that we are done with the body and can return back
+to normal mode of operation. This can be implemented as the main
+program keeping track of what we are parsing and choosing to use a
+parsed expression as something to evaluate or stick in the body of
+a function, or we can do this parsing entirely inside the parser.
+One problem with the latter is that the main program currently
+reads input from the user line by line, and we don't want the
+parser to read from e.g. stdin.
+
+Nested function definitions is not permitted and an end occurring
+anywhere but to close a function body is an error.
+
+*** Calling a Function
+
+Let us first consider calling a function without arguments. When
+calling ~foo()~, the evaluation visitor(s) can simply replace the
+~FunctionCall~ node with the body of the function (a ~Sequence~
+node) and call its ~accept()~ method. Evaluating a sequence should
+simply visit all the expressions in the sequence in order and then
+return the value of the last one. Note that function bodies always
+run inside a nested scope, so they do not introduce or update
+variables in a way that is visible outside of the function. 
+
+Now, how to implement arguments to a function? Well, we know the
+internal names of the parameters from the function definition, and
+we know the values of the arguments from the function call. For
+each parameter ~p~ bound to the argument ~a~ we are going to
+prepend a ~a = p~ to the function body ~Sequence~. Thus, in the
+case of the call to ~max(5, 7)~ it is as if we would have written
+the following:
+
+#+BEGIN_EXAMPLE
+5 = x
+7 = y
+if (x < y) { y } else { x }
+#+END_EXAMPLE
+
+As is visible from the erring examples of calls to max, we need
+yet another checker that checks that the arguments match the
+parameters of the call. If a function is ill-defined, e.g., it
+uses conditionals on a undefined variable, or has a command in its
+body, then the declaration needs to be rejected. So we will need
+some form of visitor for function declarations.
+
+To get functions working you will need to:
+
+1. Add a few classes to the AST, like ~FunctionDeclaration~,
+   ~FunctionCall~ and ~Sequence~.
+2. Extend the parser with support for the new syntax, probably by
+   moving some of the parser logic into the main program as
+   outlined above. The syntax of ~Sequence~ is several statements
+   separated by a newline.
+3. Extend the visitor interface and all visitors with support for
+   function calls and function definitions. 
+
+Don't forget to work in a test-driven way! 
+
+** Finishing this Ticket
+
+By now, you should have: 
+
+1. Test cases and implementation for scopes, conditionals,
+   function definitions and function calls.
+2. There are quite a few things in this ticket that are open to
+   intepretation. Feel free to ask questions on a by need basis.
+3. Write documentation for all the choices you made in the
+   implementation. What is the syntax for scopes? What is the
+   semantics of scopes? Etc. 
+4. Write down how to run all the tests. 
+
+
+Once you are satisifed that everything works, commit everything
+and tag it with =assignment4_ticket3=.
+
+
+** Ultimate Tests 
+
+Here are two programs that hopefully should work with your code.
+Note that they are both recursive. The last is a program that you
+wrote in lab 1 during the C bootstrap. We are back at the roots
+again, but this time, you did not write the program, but you
+implemented the /language/ that runs the program. Quite an
+achievement!
+
+#+BEGIN_EXAMPLE
+function factorial(n)
+  n - 1 = m
+  if n > 1 {factorial(m) * n} else {1}
+end
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+function gcd(a, b)
+  b - a = ba
+  a - b = ab
+  if a == b { a } else { if a < b { gcd(a, ba) } else { gcd { ab, b} } }
+end
+#+END_EXAMPLE
+
+* Finishing the Assignment
+1. Go over your backlog of [[../simple.org::*The%20Three%20Rules%20of%20Cheating][cheats]] and [[../simple.org::*Dodging:%20Not%20Quite%20Cheating][dodges]] and see which ones
+   need taking care of. *Ideally this stack should be empty.*
+2. Write up any necessary documentation of your program, any extra
+   documentation needed because of design decisions you took or
+   deals made with the teachers. Put this in a =README.md= in the
+   top-level directory for this assignment.
+3. As the /first/ section of =README.md=, add instructions for how
+   to build and run the program. Ideally,
+   this should be as easy as =make= followed by =make run=.
+4. Prepare a demonstration of z104 to give at the next lab. In
+   addition to z104, pick another 2-3 achievements to tick off,
+   and include these in your demonstration preparation. To back up
+   your presentation, present evidence like places in your code
+   where relevant things show up, documentation, paper drawings,
+   etc. -- things that support your demonstration. Think carefully
+   about what things fit together (ask for help if you feel
+   uncertain after trying) and what achievements tell a good story
+   together. Make sure that not one person dominates the
+   demonstration or answers all questions to avoid someone failing
+   the demonstration because there was no evidence of achievements
+   mastery.
+5. Send an email to [[mailto:z100@wrigstad.com][z104@wrigstad.com]] with your names and
+   usernames, a link to the GitHub repository where the code can
+   be checked out.
+6. Create a final commit for the assignment and [[../github.org][check it into
+   GitHub]]. After the normal push, add a tag =assignment4_done= (be
+   careful to spell it just like that) and push the tag to the
+   server by adding =--tags= to the =git push= command. If your
+   partner wants to pull the tag, he or she needs to add a
+   =--tags= to the =git pull= command, but if you were careful to
+   have a commit which was just a tag, then having that synced is
+   not important.
+7. *Optional* Please take time to [[mailto:z104-feedback@wrigstad.com][feedback on the assignment]].
+
+
+
+
+
+
+# - map i sexpr med allt meta -- map från visitors klass
+# ** Step 1: Checker for whether a statement is fully resolvable 
+# ** Step 2: Alternate evaluator
+# That prints the backtrace: add exceptions 
+
+
+
+# ** Step 3: Int, float, undefined types and checker for that 
+# - Type-sensitive reassignment
+# ** Step 4: Extensions
+# - scopes {1=x} + {x} = 1 + x
+# - if-statements
+# - print statement for debug
+# - expr === x makes x a function with free vars as arguments
+# - use inferrence to track types of arguments to functions (int, float, polymorphic!)
+# - implement iterator
+
+
+# - same trick for expressions based on their sizes
+# - add a node factory that can create different nodes
