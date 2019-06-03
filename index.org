@@ -1,10 +1,10 @@
 #+title: Imperative & Object-Oriented Programming Methodology
 #+include: "./setup.org"
 
-#+begin_important
-Next coding exam takes place [[https://cloud.timeedit.net/uu/web/wr_staff/ri1wZXY063ZZ34QwQ507m2Z2yQY37547o1yQZ40Q7Y3rc5a8cbQQn0.html%0A][2019-04-16 in the window of 8:15 to 17:00]]. 
-Sign up here: [[https://goo.gl/forms/pMTwD2k9Zw0bnp7d2][LINK to Google Form]].
-#+end_important
+# #+begin_important
+# Next coding exam takes place [[https://cloud.timeedit.net/uu/web/wr_staff/ri1wZXY063ZZ34QwQ507m2Z2yQY37547o1yQZ40Q7Y3rc5a8cbQQn0.html%0A][2019-04-16 in the window of 8:15 to 17:00]]. 
+# Sign up here: [[https://goo.gl/forms/pMTwD2k9Zw0bnp7d2][LINK to Google Form]].
+# #+end_important
 
 #+Begin_note
 Get course material at the [[https://github.com/TobiasWrigstad/ioopm18][course's GitHub page]] \\
@@ -169,5 +169,5 @@ use the git log. Complete change tracking is possible by following
 
 
 # Local Variables:
-# eval: (progn (find-file "publish.el") (eval-buffer "publish.el"))
+# eval: (progn (find-file "ioopm-publish.el") (eval-buffer "ioopm-publish.el"))
 # End:
