@@ -91,7 +91,7 @@
 
              ;; (format "%s <button type=\"button\" class=\"btn btn-secondary\" data-toggle=\"tooltip\" data-html=\"true\" title=\"%s\"><i class=\"fas fa-question-circle\"></button>" desc (org-export-string-as path 'html t)))))
 
-(setq ioopm-web-dir "/home/stw/t/ioopm-course-web/")
+(setq ioopm-web-dir (file-name-directory (buffer-file-name)))
 
 (setq org-publish-project-alist
       `(("root"
