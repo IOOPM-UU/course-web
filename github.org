@@ -39,7 +39,7 @@ file:./images/GitHub3.jpg
 ** 2. Ge oss dina uppgifter
 #+begin_important
 *NOTE* The signup for a GitHub repo is closed. Please email
-directy to [[file:tas2018.org::HeadTA][Gustaf]] to get a GitHub repo. Using a IOOPM-UU GitHub
+directy to [[file:teaching-staff.org::HeadTA][the head TA]] to get a GitHub repo. Using a IOOPM-UU GitHub
 repo for development is *mandatory* on the course.
 #+end_important
 

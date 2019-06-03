@@ -6,7 +6,8 @@
 This page describes how labs work on IOOPM, with the exception of
 the [[file:assignments/c-bootstrap.org][C]] and [[file:assignments/java-bootstrap.org][Java]] bootstrap labs. You will have two 4-hour labs per
 week, typically on Mondays and Thursdays. Labs will be staffed
-with 5+ TAs and Tobias will be at most labs, most of the time. 
+with 5+ TAs and one of the head teachers will be at most labs,
+most of the time.
 
 Labs on IOOPM serve the following purposes: 
 
@@ -25,7 +26,7 @@ Labs on IOOPM serve the following purposes:
 
 - They provide possibilities to get help from other students ::
      Discussing your ideas, approaches and solutions with others
-     is a great way to work. Computer Hall 1549 has a nice
+     is a great way to work. Computer Room 1549 has a nice
      whiteboard for visual exploration of ideas, or code.
 
 - They provide scheduled sync time for work with your partner ::

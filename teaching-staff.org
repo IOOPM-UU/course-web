@@ -1,53 +1,52 @@
-#+title: Course Staff of 2018
+#+title: Teaching Staff of 2019
 #+include: "./setup.org"
 
 #+begin_verse 
 Running IOOPM has always been a team effort. Nevertheless,
 different people play different roles. On this page, we list the
-people involved in running the course in 2018.
+people involved in running the course in 2019.
 #+end_verse
 
-* Head Teacher: Tobias Wrigstad
-#+ATTR_HTML: :width 300px :align right :title: Tobias Wrigstad
-[[http://wrigstad.com/images/self7.jpg]]
-- Office: 1356
-- Office hours: erratic, normally *not* physically in on Tuesdays
-- Email: [[mailto:tobias.wrigstad@it.uu.se][tobias.wrigstad@it.uu.se]]
-* Head Teaching Assistant: Gustaf Borgström 
-<<HeadTA>>
-#+ATTR_HTML: :width 300px :align right :title: Gustaf Borgström
-[[file:images/gustaf-borgstrom.jpg]]
-- Office: 1328
+* Head Teacher: Lars-Henrik Eriksson <<head_teacher>>
+#+ATTR_HTML: :width 300px :align right :title: Lars-Henrik Eriksson
+https://webb.uu.se/image/full_image?img_id=1134012&t=1383558678000
+- Office: 1137
 - Office hours: TBA
-- Email: [[mailto:gustaf.borgstrom@it.uu.se][gustaf.borgstrom@it.uu.se]]
-* TAs 
-- Akram Adinda
-- Alexander Troshin
-- Alexis Remmers
-- Ardalan Samimi
-- Benjamin Ek
-- Elwira Johansson
-- Erik Rimskog
-- Jonas Norlinder 
-- Joy van den Eijkhof
-- Linnea Ingmar
-- Michael Rehn
-- Sanna Kurdahl
-* DONE Teams and Coaches
-
-| Team | Coach               |
-|------+---------------------|
-|    1 | Alexander Troshin   |
-|    2 | Alexis Remmers      |
-|    3 | Ardalan Samimi      |
-|    4 | Benjamin Ek         |
-|    5 | Elwira Johansson    |
-|    6 | Erik Rimskog        |
-|    7 | Joy van den Eijkhof |
-|    8 | Linnea Ingmar       |
-|    9 | Michael Rehn        |
-|   10 | Sanna Kurdahl       |
-|   11 | Gustaf Borgström    |
+- Email: [[mailto:tobias.wrigstad@it.uu.se][lhe@it.uu.se]]
+* TODO Head Teaching Assistant: TBA
+<<HeadTA>>
+#+ATTR_HTML: :width 300px :align right :title: NN
+[[file:images/gustaf-borgstrom.jpg]]
+- Office: TBA
+- Office hours: TBA
+- Email: [[mailto:someone@it.uu.se][someone@it.uu.se]]
+* TODO TAs 
+# - Akram Adinda
+# - Alexander Troshin
+# - Alexis Remmers
+# - Ardalan Samimi
+# - Benjamin Ek
+# - Elwira Johansson
+# - Erik Rimskog
+# - Jonas Norlinder 
+# - Joy van den Eijkhof
+# - Linnea Ingmar
+# - Michael Rehn
+# - Sanna Kurdahl
+* TODO Teams and Coaches
+# | Team | Coach               |
+# |------+---------------------|
+# |    1 | Alexander Troshin   |
+# |    2 | Alexis Remmers      |
+# |    3 | Ardalan Samimi      |
+# |    4 | Benjamin Ek         |
+# |    5 | Elwira Johansson    |
+# |    6 | Erik Rimskog        |
+# |    7 | Joy van den Eijkhof |
+# |    8 | Linnea Ingmar       |
+# |    9 | Michael Rehn        |
+# |   10 | Sanna Kurdahl       |
+# |   11 | Gustaf Borgström    |
 
 * Getting in Touch
 - Talk to us during lectures and labs :: 
@@ -58,7 +57,8 @@ people involved in running the course in 2018.
      and often, many other students chip in to try and untangle some issue, 
      which is good for everyone.
 - Come by our offices :: 
-     Tobias is not in most Tuesdays, but otherwise he should be around unless he is not lecturing or labbing on IOOPM. 
+     *TBA* Lars-Henrik's office hours 
+# Tobias is not in most Tuesdays, but otherwise he should be around unless he is not lecturing or labbing on IOOPM. 
 - Send us an email ::
      This should be the last resort, really. Please use your student email so that we
      have an easier time knowing who we are talking to. 

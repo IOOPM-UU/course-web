@@ -507,7 +507,7 @@ If you have taken ideas from elsewhere or used code sourced from
 elsewhere, you must say so with utmost clarity in the
 documentation of your assignment. 
 
-When in doubt, ask [[./tas2018.org::*Head%20Teacher:%20Tobias%20Wrigstad][Tobias]]. 
+When in doubt, ask [[./teaching-staff.org::head_teacher][the head teacher]]. 
 
 #+begin_important
 Make sure you have familiarised yourself with the rules of
@@ -517,7 +517,7 @@ plagiarism at the department and the university.
 *Q*: Jag har delar av IOOPM från *före* 2013 kvar! Hur skall jag göra? \\
 *A*: Om du läste kursen innan den gjordes om 2013 så ska du
 göra olika saker beroende på vad du har kvar. Oavsett vad bör du
-börja med att skicka ett mejl till Tobias och berätta vad du har
+börja med att skicka ett mejl till den ansvariga läraren och berätta vad du har
 kvar, och att du har för avsikt att bli klar med kursen i år.
 
 Om du har kvar enstaka inlämningsuppgifter i C (två eller färre)
@@ -547,19 +547,19 @@ mål av upp till sju.
 *A*: Grupperna postas i Piazza och uppdateras löpande. Vi får uppgifter om registrerade studenter stötvis vid terminens början och det går därför knackigt ibland att bli instoppad i en grupp.
 
 *Q*: Jag är inte med i någon grupp! \\
-*A*: Maila [[mailto:gustaf.borgstrom@it.uu.se][Gustaf]].
+*A*: Maila [[teaching-staff.org::head_ta][huvudassistenten]].
 
 *Q*: Jag har inte något login i AU-portalen! \\
-*A*: Maila [[mailto:gustaf.borgstrom@it.uu.se][Gustaf]].
+*A*: Maila [[teaching-staff.org::head_ta][huvudassistenten]].
 
 *Q*: Jag har inte tillgång till Piazza! \\
-*A*: Maila [[mailto:gustaf.borgstrom@it.uu.se][Gustaf]].
+*A*: Maila [[teaching-staff.org::head_ta][huvudassistenten]].
 
 *Q*: Hur länge gäller delresultat på kursen som inte har rapporterats in i LADOK/UPPDOK? \\
 *A*: Avklarade kodprovsfrågor gäller till nästa kurstillfälle. Vad gäller enskilda mål gör vi en fall-för-fall-bedömning. Om du saknar färre än 10 mål från föregående tillfälle får du normalt tillgodoräkna dig dina tagna mål nästa år (= starta med dem avklarade). Läs mer här
 
 *Q*: Får man komma förbi er på rummet och fråga? \\
-*A*: Ja! Tobias sitter (2018) i rum 1356. 
+*A*: Ja! 
 
 *Q*: Räknas det som fusk att hjälpa en annan student som kört fast med programmeringen? \\
 *A*: Att hjälpa någon som kört fast att komma vidare räknas inte som fusk. Vi uppmuntrar till samarbete och framförallt till diskussion kring hur man kan lösa ett problem. Att skriva någon annans kod åt dem är inte att hjälpa dem! Att dela sin lösning med någon annan (utöver vad som krävs av uppgifter i kursen) räknas som fusk! Att passivt dela sin lösning på GitHub (etc.) är inte förbjudet så länge som ingen plagierar den.

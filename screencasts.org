@@ -4,7 +4,7 @@
 
 * Tools
 ** Vagrant Demo
-Tobias shows =vagrant up= and plays around a little in the course
+[[http://wrigstad.com][Tobias]] shows =vagrant up= and plays around a little in the course
 Vagrant box.
 
 [[movie:http://user.it.uu.se/~writo649/vagrant-ioopm.mp4]]

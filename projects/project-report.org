@@ -40,7 +40,7 @@ In the cases where you are asked to provide a number on a scale
 sum, average and explain that is how you arrived at the number you
 are giving.
 
-/The target audience for this report is Tobias, the coaches, the TAs and interested members of other teams that want to know what happend in your team. If you feel that your report is concise enough to be read by members of other teams while still getting something out of reading it, you are probably doing it right./
+/The target audience for this report is the head teacher, the coaches, the TAs and interested members of other teams that want to know what happend in your team. If you feel that your report is concise enough to be read by members of other teams while still getting something out of reading it, you are probably doing it right./
 
 
 * Group name
