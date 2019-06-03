@@ -10,7 +10,7 @@ Most of this text is being written from scratch in 2018. For now, refer to the b
 
 #+begin_note
 Skrevs av Elias Castegren, huvudassistent på IOOPM 2011--2017.
-Vissa tillägg av Tobias (speciella kortkommandon för IOOPM).
+Vissa tillägg av Tobias Wrigstad (huvudlärare på IOOPM 2011--2018) (speciella kortkommandon för IOOPM).
 
 [[https://www.youtube.com/watch?v=d6iY_1aMzeg&list=PLX2044Ew-UVVv31a0-Qn3dA6Sd_-NyA1n][Här finns en YouTube-kanal]] med 20+ Emacs-videos i tutorial-format,
 för dig som gillar video-orienterad kommunikation. 

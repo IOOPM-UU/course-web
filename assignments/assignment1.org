@@ -2999,9 +2999,9 @@ you get going:
 - Following good naming principles, including naming public
   function ~ioopm_~, etc.
 - Format your code nicely. You could even use a tool like =astyle=
-  or =indent=[fn::Use e.g. =indent -nut -gnu -npsl -i2 file.c= to
-  get the same code format as Tobias.], or, in Emacs' =C-x h= to
-  mark the entire buffer followed by =M-x indent-region=.
+  or =indent=[fn::Use e.g. =indent -nut -gnu -npsl -i2 file.c=.],
+  or, in Emacs' =C-x h= to mark the entire buffer followed by =M-x
+  indent-region=.
 
 *** Finish This Step
 

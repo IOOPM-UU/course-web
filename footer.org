@@ -11,6 +11,6 @@ a modified [[https://github.com/fniessen/org-html-themes][ReadTheOrg]] template,
 *Ended up here randomly?* These are the pages for a one-semester
 course at 67% speed on imperative and object-oriented programming
 at the [[http://it.uu.se][department of Information Technology]] at [[http://www.uu.se][Uppsala University]],
-ran by [[http://wrigstad.com][Tobias Wrigstad]]. 
+created by [[http://wrigstad.com][Tobias Wrigstad]]. 
 
 
