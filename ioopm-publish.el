@@ -91,11 +91,11 @@
 
              ;; (format "%s <button type=\"button\" class=\"btn btn-secondary\" data-toggle=\"tooltip\" data-html=\"true\" title=\"%s\"><i class=\"fas fa-question-circle\"></button>" desc (org-export-string-as path 'html t)))))
 
-(setq ioopm-web-dir "")
+(setq ioopm-web-dir "/home/stw/t/ioopm-course-web/")
 
 (setq org-publish-project-alist
-      '(("root"
-         :base-directory "/Users/stw/Teaching/ioopm18/course-web/"
+      `(("root"
+         :base-directory ,(concat ioopm-web-dir "")
          :base-extension "org"
          :exclude "setup.org\\|footer.org\\|code-exams\\|readme.org"
          ;; :publishing-directory "/tmp/ioopm18/"
@@ -113,34 +113,34 @@
          :html-preamble t)
 
         ("images"
-         :base-directory "/Users/stw/Teaching/ioopm18/course-web/images/"
+         :base-directory ,(concat ioopm-web-dir "images/")
          :base-extension "jpg\\|gif\\|png"
          ;; :publishing-directory "/tmp/ioopm18/images/"
          :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/images/"
          :publishing-function org-publish-attachment)
 
         ("misc"
-         :base-directory "/Users/stw/Teaching/ioopm18/course-web/misc/"
+         :base-directory ,(concat ioopm-web-dir "misc/")
          :base-extension "el\\|pdf\\|c\\|h\\|java\\|txt\\|cast\\|png\\|zip"
          ;; :publishing-directory "/tmp/ioopm18/misc/"
          :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/misc/"
          :publishing-function org-publish-attachment)
 
         ("css"
-         :base-directory "/Users/stw/Teaching/ioopm18/course-web/css/"
+         :base-directory ,(concat ioopm-web-dir "css/")
          :base-extension "css"
          ;; :publishing-directory "/tmp/ioopm18/css/"
          :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/css/"
          :publishing-function org-publish-attachment)
 
         ("fonts"
-         :base-directory "/Users/stw/Teaching/ioopm18/course-web/css/fonts/"
+         :base-directory ,(concat ioopm-web-dir "css/fonts/")
          :base-extension "ttf"
          :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/css/fonts/"
          :publishing-function org-publish-attachment)
 
         ("js"
-         :base-directory "/Users/stw/Teaching/ioopm18/course-web/js/"
+         :base-directory ,(concat ioopm-web-dir "js/")
          :base-extension "js"
          ;; :publishing-directory "/tmp/ioopm18/js/"
          :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/js/"
