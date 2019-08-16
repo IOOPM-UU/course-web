@@ -36,7 +36,7 @@ Throughout the course, this group will be your "team", and you
 will be [[./team.org::*Pair%20Programming][pairing with others from this team]], and [[./team.org::*Group%20Meetings][report back to the
 team]] regularly, and [[./team.org::*Group%20Meetings][meet with your coach]]. Your will also cooperate
 on [[au:63][your first deliverable]].
-** Who is Running the Course in 2018?
+** Who is Running the Course in 2019?
 Check out [[./tas2018.org][this page]].
 ** The Coding Exam
 The course does not use a traditional closed-book exam. Read [[./code-exam.org][this
@@ -115,8 +115,8 @@ Deadlines and important dates in chronological order. Read [[./about.org::*Deadl
 | 29/11         | [[./assignments/assignment4.org][Assignment 4]] (Soft)        |                                           |
 | 1/12          | Last day to hand in [[http://auportal.herokuapp.com/achievements/59][essay]]  | /Essay is for grades 4 and 5 only/        |
 | 10/12         | [[./code-exam.org][Coding Exam]] 2              | Sign-up not open yet.                     |
+| 12/12         | Last possibility to do [[http://auportal.herokuapp.com/achievements/62][X62]] | This is a *not mandatory* achievement     |
 | 13/12         | [[./assignments/assignment4.org][Assignment 4]] (Hard)        |                                           |
-| 13/12         | Last possibility to do [[http://auportal.herokuapp.com/achievements/62][X62]] | This is a *not mandatory* achievement     |
 | 17/12         | [[./code-exam.org][Coding Exam]] 3              | Sign-up not open yet.                     |
 | Week 51       | Essay feedback seminars    | *Mandatory presence for essay writers*    |
 | 14--16/1 2020 | [[./projects/projects.org][Project]] (Hard)             | Deadline is 24 h before seminars          |
