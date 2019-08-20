@@ -8,43 +8,6 @@ about why we are doing what we are doing, go ahead and [[http://uu.diva-portal.o
 paper]] (15 pages).
 #+end_attention
 
-* DONE Changes from 2017
-** Changelog
-- Completely new Assignment 1 ::
-     Assignment 1 is now a cross-breed of traditional labs and
-     traditional assigments. The idea is to provide some more
-     safety and also steer thoughts a bit, but not have small
-     tasks that are too well-aligned to one or two specific
-     concepts.
-
-- Overhaul of Assignment 2--4 ::
-     Based on outcome of assignment 1. FEEDBACK, people! 
-
-- New course website ::
-     Toning down reliance on GitHub. Also, no markdown which
-     is a huge boon for me... 
-     
-- Stricter group meetings, with coaches ::
-     As described [[./team.org][here]]. 
-
-- New vagrant machine for using own laptops/computers ::
-     As described [[./tools.org][here]].
-
-- Changed Emacs shortcuts and settings ::
-     As described all over the place. 
-
-- New lecture material on some lectures ::
-     Generally freshening things up and aligning content with
-     assignment 1.
-
-** Rooms for Improvement 
-- Queuing time on labs ::
-     Probably not solved (but you're fewer this year).
-
-** New things 2017 that we are keeping
-1. Two projects (but the simpler one needs beefing up)
-2. Survey for finding project groups 
-
 * Kursöversikt
 ** Faser och sprintar
 Kursen är uppdelad i tre faser, fas 1, 2 och 3. Fas 1 och 2
@@ -87,7 +50,7 @@ timmar varje vecka). Till labbarna kan du också gå för att få
 hjälp. Försök att alltid redovisa mål i sammanhängande klumpar.
 ** Om kursmålen
 För varje mål anges vilken nivå målet ligger på och hur det kan
-redovisas. 2018 finns ca 43 mål på nivå 3, 18 mål på nivå 4 och
+redovisas. 2019 finns ca 43 mål på nivå 3, 18 mål på nivå 4 och
 knappt 8 mål på nivå 5. Av de 43 målen på nivå 3 avser 4 mål
 avklarade inluppar och 6 mål redovisas i och med projektet. 
 

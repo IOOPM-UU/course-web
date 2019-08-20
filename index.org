@@ -1,10 +1,12 @@
 #+title: Imperative & Object-Oriented Programming Methodology
 #+include: "./setup.org"
 
-# #+begin_important
+#+begin_important
 # Next coding exam takes place [[https://cloud.timeedit.net/uu/web/wr_staff/ri1wZXY063ZZ34QwQ507m2Z2yQY37547o1yQZ40Q7Y3rc5a8cbQQn0.html%0A][2019-04-16 in the window of 8:15 to 17:00]]. 
+Next coding exam (re-exam) takes place 2019-08-30 at 08:15 in room 1515.
 # Sign up here: [[https://goo.gl/forms/pMTwD2k9Zw0bnp7d2][LINK to Google Form]].
-# #+end_important
+Sign up by sending e-mail to ioopm@it.uu.se.
+#+end_important
 
 #+Begin_note
 Get course material at the [[https://github.com/TobiasWrigstad/ioopm18][course's GitHub page]] \\

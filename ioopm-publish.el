@@ -1,4 +1,5 @@
 ;; This is the assumed theme to get colours right of code
+
 (load-theme 'dracula)
 
 (defun tw/escape-brackets (text)
