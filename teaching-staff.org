@@ -21,32 +21,41 @@ people involved in running the course in 2019.
 - Office hours: TBA
 - Email: [[mailto:someone@it.uu.se][someone@it.uu.se]]
 * TODO TAs 
-# - Akram Adinda
-# - Alexander Troshin
-# - Alexis Remmers
-# - Ardalan Samimi
-# - Benjamin Ek
-# - Elwira Johansson
-# - Erik Rimskog
-# - Jonas Norlinder 
-# - Joy van den Eijkhof
-# - Linnea Ingmar
-# - Michael Rehn
-# - Sanna Kurdahl
+- Alexander Troshin
+- Alexis Remmers
+- Benjamin Ek
+- Carl Enlund
+- Erik Rimskog
+- Henrik Johansson
+- Iza Alstergren
+- Lisa Bevemyr
+- Maja Danielsson
+- Markuss Sprogis
+- Martin Eriksson
+- Max Perea Düring
+- Michael Rehn
+- Pontus Ernstedt
+- Sanna Kurdahl
+- Siriann Göhl
 * TODO Teams and Coaches
-# | Team | Coach               |
-# |------+---------------------|
-# |    1 | Alexander Troshin   |
-# |    2 | Alexis Remmers      |
-# |    3 | Ardalan Samimi      |
-# |    4 | Benjamin Ek         |
-# |    5 | Elwira Johansson    |
-# |    6 | Erik Rimskog        |
-# |    7 | Joy van den Eijkhof |
-# |    8 | Linnea Ingmar       |
-# |    9 | Michael Rehn        |
-# |   10 | Sanna Kurdahl       |
-# |   11 | Gustaf Borgström    |
+| Team | Coach             |
+|------+-------------------|
+|    1 | Alexander Troshin |
+|    2 | Alexis Remmers    |
+|    3 | Benjamin Ek       |
+|    4 | Carl Enlund       |
+|    5 | Erik Rimskog      |
+|    6 | Henrik Johansson  |
+|    7 | Iza Alstergren    |
+|    8 | Lisa Bevemyr      |
+|    9 | Maja Danielsson   |
+|   10 | Markuss Sprogis   |
+|   11 | Martin Eriksson   |
+|   12 | Max Perea Düring  |
+|   13 | Michael Rehn      |
+|   14 | Pontus Ernstedt   |
+|   15 | Sanna Kurdahl     |
+|   16 | Siriann Göhl      |
 
 * Getting in Touch
 - Talk to us during lectures and labs :: 
