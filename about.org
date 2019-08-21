@@ -547,13 +547,13 @@ mål av upp till sju.
 *A*: Grupperna postas i Piazza och uppdateras löpande. Vi får uppgifter om registrerade studenter stötvis vid terminens början och det går därför knackigt ibland att bli instoppad i en grupp.
 
 *Q*: Jag är inte med i någon grupp! \\
-*A*: Maila [[teaching-staff.org::head_ta][huvudassistenten]].
+*A*: Maila [[./teaching-staff.org::head_ta][huvudassistenten]].
 
 *Q*: Jag har inte något login i AU-portalen! \\
-*A*: Maila [[teaching-staff.org::head_ta][huvudassistenten]].
+*A*: Maila [[./teaching-staff.org::head_ta][huvudassistenten]].
 
 *Q*: Jag har inte tillgång till Piazza! \\
-*A*: Maila [[teaching-staff.org::head_ta][huvudassistenten]].
+*A*: Maila [[./teaching-staff.org::head_ta][huvudassistenten]].
 
 *Q*: Hur länge gäller delresultat på kursen som inte har rapporterats in i LADOK/UPPDOK? \\
 *A*: Avklarade kodprovsfrågor gäller till nästa kurstillfälle. Vad gäller enskilda mål gör vi en fall-för-fall-bedömning. Om du saknar färre än 10 mål från föregående tillfälle får du normalt tillgodoräkna dig dina tagna mål nästa år (= starta med dem avklarade). Läs mer här

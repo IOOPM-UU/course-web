@@ -15,6 +15,7 @@ people involved in running the course in 2019.
 - Email: [[mailto:tobias.wrigstad@it.uu.se][lhe@it.uu.se]]
 * TODO Head Teaching Assistant: TBA
 <<HeadTA>>
+<<head_ta>>
 #+ATTR_HTML: :width 300px :align right :title: NN
 [[file:images/gustaf-borgstrom.jpg]]
 - Office: TBA
