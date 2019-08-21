@@ -37,7 +37,7 @@ will be [[./team.org::*Pair%20Programming][pairing with others from this team]],
 team]] regularly, and [[./team.org::*Group%20Meetings][meet with your coach]]. Your will also cooperate
 on [[au:63][your first deliverable]].
 ** Who is Running the Course in 2019?
-Check out [[./tas2018.org][this page]].
+Check out [[./teaching-staff.org][this page]].
 ** The Coding Exam
 The course does not use a traditional closed-book exam. Read [[./code-exam.org][this
 page]] for more information about he coding exam.
