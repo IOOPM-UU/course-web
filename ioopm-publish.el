@@ -18,7 +18,7 @@
  :export (lambda (path desc backend)
            (cond
             ((eq 'html backend)
-             (format "<a href=\"http://wrigstad.com/ioopm18/achievements.html#%s\">%s</i></a>" path desc))))
+             (format "<a href=\"http://wrigstad.com/ioopm19/achievements.html#%s\">%s</i></a>" path desc))))
              ;; (format "<a href=\"http://auportal.herokuapp.com/achievements/%s\">%s</i></a>" path desc))))
  :face '(:foreground "DarkGoldenrod3"))
 
