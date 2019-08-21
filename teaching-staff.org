@@ -9,7 +9,7 @@ people involved in running the course in 2019.
 
 * Head Teacher: Lars-Henrik Eriksson <<head_teacher>>
 #+ATTR_HTML: :width 300px :align right :title: Lars-Henrik Eriksson
-https://webb.uu.se/image/full_image?img_id=1134012&t=1383558678000
+[[file:images/lhe.png]]
 - Office: 1137
 - Office hours: TBA
 - Email: [[mailto:tobias.wrigstad@it.uu.se][lhe@it.uu.se]]
