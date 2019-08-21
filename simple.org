@@ -262,7 +262,7 @@ hour ago. Not because you were a worse programmer then, but
 because it was one hour ago! You probably don't remember what you
 were thinking back then, so you have to work hard at retracing
 your steps. If you try to make sure the code compiles every two
-minutes, [[https://www.theobjectivestandard.com/2013/09/spocks-illogic-the-needs-of-the-many-outweigh-the-needs-of-the-few/][logic dictates]] that solving these bugs is way way easier.
+minutes, [[http://3.bp.blogspot.com/-AlKC5E44CrA/VZQJPaaSKaI/AAAAAAAAHzY/PTQP-zDUiF4/s1600/LogicClearlyDictates.jpg][logic dictates]] that solving these bugs is way way easier.
 Good programmers likes easy.
 #+end_tip
 
