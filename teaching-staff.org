@@ -19,14 +19,14 @@ people involved in running the course in 2019.
 - Office: TBA
 - Office hours: TBA
 - Email: TBA
+
 * TODO Head Teaching Assistant: TBA
-<<HeadTA>>
 <<head_ta>>
 #+ATTR_HTML: :width 300px :align right :title: NN
-[[file:images/gustaf-borgstrom.jpg]]
+# #  file:images/gustaf-borgstrom.jpg]]
 - Office: TBA
 - Office hours: TBA
-- Email: [[mailto:someone@it.uu.se][someone@it.uu.se]]
+- Email: TBA
 * TODO TAs 
 - Alexander Troshin
 - Alexis Remmers
@@ -66,7 +66,7 @@ people involved in running the course in 2019.
 
 * Getting in Touch
 - Talk to us during lectures and labs :: 
-     See the [[https://cloud.timeedit.net/uu/web/schema/ri1875ZQ0QYZ01Q0wo7YwcQ25y6QZ6XfYxZ020g.html][schedule]] for details. 
+     See the [[https://cloud.timeedit.net/uu/web/schema/riq56QxY8Q5ZZXQ5y07Z565760Z0Y5g406g6600QQ1o00g6045Z4Yq6Qo.html][schedule]] for details. 
 - Use [[https://piazza.com/class/jkd32onglxi2vb][Piazza]] :: 
      For questions that are not sensitive, consdier asking a [[public][public question]] (/Entire Class/)
      rather than a [[private][private question]] (/Individual Student(s) / Instructor(s)/). Most questions are of interest to many students,
