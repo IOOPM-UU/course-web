@@ -156,6 +156,176 @@ experienced programmers often use to incrementally approach a
 solution to a problem.
 
 Even if you have programming experience from before, please [[../simple.org][take a look at SIMPLE]]!
+* Skillnader mellan Haskell och C 
+Skillnaderna mellan Haskell och C är så stora att de inte går att
+lista på ett vettigt sätt. Här fokuserar vi på några viktiga
+skillnader som brukar vara förvirrande i början. Läs detta först
+innan du sätter igång med labben!
+** Haskell är "lättjefullt" (lazy), C är ivrigt (eager)
+Evaluering i Haskell följer /normal order reduction/ vilket betyder
+att argument till en funktion evalueras när de behövs. Ponera följande
+enkla C-program som räknar ut summan av två kvadrater:
+#+BEGIN_SRC c
+int square(int a) {
+    return a * a;
+}
+int sum_of_squares(int a, int b) {
+    return square(a) + square(b); 
+}
+...
+sum_of_squares(5 + 2, 6 * 7);
+#+END_SRC
+I Haskell kan vi tänka på evaluering av detta program enligt följande:
+#+BEGIN_EXAMPLE
+sum_of_squares(5 + 2, 6 * 7); =>
+  square(5 + 2) + square(6 * 7); => 
+    ((5 + 2) * (5 + 2)) + ((6 * 7) * (6 * 7)); => 
+      (7 * 7) + (42 * 42) => 
+        49 + 1764 =>
+          1813
+#+END_EXAMPLE
+Dvs. vi "knuffar" argument-uttrycken ~5 + 2~ och ~6 * 7~ "inåt" i uträckningen
+tills vi inte längre kan fortsätta (progress) med mindre än att vi räknar ut 
+~5 + 2~ och ~6 * 7~. Så är *inte* fallet i C! 
+
+C använder /applicative order reduction/ vilket betyder att vi
+först evaluerar alla argument till en funktion, innan vi kan anropa funktionen.
+I C kan skall vi alltså tänka på evaluering av programmet enligt följande:
+#+BEGIN_EXAMPLE
+sum_of_squares(5 + 2, 6 * 7); =>
+  sum_of_squares(7, 42); =>
+    square(7) + square(42); => 
+      (7 * 7) + (42 * 42) => 
+        49 + 1764 =>
+          1813
+#+END_EXAMPLE
+Som synes är resultatet detsamma -- i detta fall! Men det är
+enkelt att konstruera program där ordningen i vilket argument
+utförs (eller inte utförs beroende på något villkor) påverkar
+resultatet. 
+
+
+** C tillåter godtyckliga sido-effekter
+
+I C kan en variabels värde ändras, t.ex. ~x = x + 1~ är ett
+uttryck som inte bara returnerar värdet på ~x + 1~, utan /ändrar/
+värdet på ~x~ så att nästa gång ~x~ läses av programmet har dess
+värde ökat. Enkelt exempel:
+#+BEGIN_SRC c
+int x = 42; // Nu är värdet på x 42
+x = x + 1; // Evalueras till 43, värdet på x ändras nu till 43
+x = x + 1; // Evalueras till 44, värdet på x ändras nu till 44
+#+END_SRC
+Konsekvensen av detta blir uppenbar om vi kombinerar detta med föregående punkt om lazy vs. eager. Ponera följande:
+#+BEGIN_SRC c
+sum_of_squares(x = x + 1, x = x - 1);
+#+END_SRC
+När vi inte har sidoeffekter spelar det ingen roll i vilken ordning
+argumenten till ~sum_of_squares()~ evalueras, men med sidoeffekter är
+det av största vikt. Ponera t.ex. att värdet på ~x~ är 1. Om ~x = x + 1~ körs
+före ~x = x - 1~ blir resultatet ~5~, men i fallet då ~x = x - 1~ körs först
+blir resultatet ~1~. Det faktum att programmets beteende påverkas av när tilldelningar
+till ~x~ görs är en anledning till (att vara tacksam för) att C är eager (applicative order reduction). 
+
+I C är det dessutom så att ordningen i vilken argumenten till en 
+funktion utförs är s.k. /implementation defined/, vilket betyder
+att beteendet kan skilja sig mellan olika implementationer av C. 
+Det betyder att man inte skall skriva program som gör som ovan under
+några som helst omständigheter! 
+
+Man skall överlag vara varsam med sidoeffekter, men det är något
+som kommer att komma upp både implicit och explicit under kursens
+gång.
+
+
+** Haskell är funktionellt, C är procedurellt och imperativt
+
+I Haskell är en funktion en process som utför en "uträkning" givet
+ett eller flera argument, och returnerar ett resultat. De
+Haskell-program som ni har skrivit tar ofta följande form:
+#+BEGIN_EXAMPLE
+  f(g(h(x) + 7))
+#+END_EXAMPLE
+dvs, resultatet av =h(x)= (plus 7) är argumentet till =g= och
+resultatet är i sin tur argumentet till =f=. Ett C-program har
+ofta formen (OBS! inte riktig C-kod och försöker inte vara
+ekvivalent med programmet ovan):
+#+BEGIN_EXAMPLE
+  y = h(x)
+  y = y + 42           // notera att vi ändrar y:s värde här
+  g()
+  f(y)
+#+END_EXAMPLE
+dvs, varje sats i programmet avser ett diskret steg och vissa steg
+tar varken (synligen) input från tidigare steg eller ger output
+som skickas till efterföljande steg. *Satsernas inbördes  ordning i programmet*
+är det som (implicit) länkar samman dem -- inte något tillstånd som 
+flödar in eller ut. Det betyder att vi måste vara mer uppmärksamma
+på detta i C-program.
+
+Eftersom C inte är funktionellt finns det heller inget "krav" att
+funktioner skall returnera något. Det är ganska vanligt att en
+funktion inte har något returvärde (t.ex. en funktion som skriver
+ut text i terminalen, men många andra). Ett tydligt exempel är att
+=if=-villkoret i C inte returnerar något! Ett ganska vanligt
+mönster i imperativa program är att använda =if=-satser *utan*
+någon =else=-sats t.ex. så här (OBS! Inte valid C):
+#+BEGIN_SRC c
+/// Make a copy of a file (source) to a new file name (dest) byte
+/// by byte, and return the number of bytes copied
+int clone_file(file source, file dest) {
+  if (does_non_exist(source)) {
+    // Source file does not exist!
+    return 0;
+  }
+
+  if (exists(dest)) {
+    // Destination already exists!
+    return 0;
+  }
+
+  ... // now copy the file
+}
+#+END_SRC
+Observera att ingen av =if=-satserna ovan har en =else=-sats.
+I båda fallen utför vi helt enkelt ett "test" och avbryter exekveringen
+och returnerar 0 om testvillkoren är sanna. Vi kommer alltså enbart
+till raden ~... // now copy the file~, om inget av testvillkoren 
+håller. 
+
+En progammerare med ett funktionellt "mind set" skulle förmodligen skriva programmet så här istället:
+#+BEGIN_SRC c
+int clone_file(file source, file dest) {
+  if (does_non_exist(source)) {
+    // Source file does not exist!
+    return 0;
+  } else {
+    if (exists(dest)) {
+      // Destination already exists!
+       return 0;
+    } else {
+       ... // now copy the file
+    }
+}
+#+END_SRC
+eller mer kompakt, eftersom resultatet av båda testerna råka vara detsamma i detta exempel:
+#+BEGIN_SRC c
+int clone_file(file source, file dest) {
+  if (does_non_exist(source) || exists(dest)) { // || means "or"
+    // Source file does not exist or destination already exists!
+    return 0;
+  } else {
+    ... // now copy the file
+  }
+}
+#+END_SRC
+Observera att dessa versioner är likvärdiga och att det inte finns
+någon som är objektivt "bäst". Det finns däremot många
+programmerare med starka åsikter som kommer att försöka påtvinga
+sina normer på dig och övertyga dig om att den stil som hen gillar
+bäst också råkar vara bäst.
+
+
 * Labb 1: Grundläggande koncept
 
 #+begin_important
@@ -338,138 +508,6 @@ kan se all information alltid.
 Var noga med att spara en version av varje färdigt program! Ta för
 vana att experimentera i en ny fil som du antingen skapar tom eller
 kopierar från en som fungerar.
-
-** Skillnader mellan Haskell och C 
-Skillnaderna mellan Haskell och C är så stora att de inte går att
-lista på ett vettigt sätt. Här fokuserar vi på några viktiga skillnader
-som brukar vara förvirrande i början:
-*** Haskell är "lättjefullt" (lazy), C är ivrigt (eager)
-Evaluering i Haskell följer /normal order reduction/ vilket betyder
-att argument till en funktion evalueras när de behövs. Ponera följande
-enkla C-program som räknar ut summan av två kvadrater:
-#+BEGIN_SRC c
-int square(int a) {
-    return a * a;
-}
-int sum_of_squares(int a, int b) {
-    return square(a) + square(b); 
-}
-...
-sum_of_squares(5 + 2, 6 * 7);
-#+END_SRC
-I Haskell kan vi tänka på evaluering av detta program enligt följande:
-#+BEGIN_EXAMPLE
-sum_of_squares(5 + 2, 6 * 7); =>
-  square(5 + 2) + square(6 * 7); => 
-    ((5 + 2) * (5 + 2)) + ((6 * 7) * (6 * 7)); => 
-      (7 * 7) + (42 * 42) => 
-        49 + 1764 =>
-          1813
-#+END_EXAMPLE
-Dvs. vi "knuffar" argument-uttrycken ~5 + 2~ och ~6 * 7~ "inåt" i uträckningen
-tills vi inte längre kan fortsätta (progress) med mindre än att vi räknar ut 
-~5 + 2~ och ~6 * 7~. Så är *inte* fallet i C! 
-
-C använder /applicative order reduction/ vilket betyder att vi
-först evaluerar alla argument till en funktion, innan vi kan anropa funktionen.
-I C kan skall vi alltså tänka på evaluering av programmet enligt följande:
-#+BEGIN_EXAMPLE
-sum_of_squares(5 + 2, 6 * 7); =>
-  sum_of_squares(7, 42); =>
-    square(7) + square(42); => 
-      (7 * 7) + (42 * 42) => 
-        49 + 1764 =>
-          1813
-#+END_EXAMPLE
-Som synes är resultatet detsamma -- i detta fall! Men det är
-enkelt att konstruerar program där ordningen i vilket argument
-utförs (eller inte utförs beroende på något villkor) påverkar
-resultatet.
-*** Haskell är funktionellt, C är procedurellt och imperativt
-I Haskell är en funktion en process som utför en "uträkning" givet
-ett eller flera argument, och returnerar ett resultat. De
-Haskell-program som ni har skrivit tar ofta följande form:
-#+BEGIN_EXAMPLE
-  f(g(h(x) + 7))
-#+END_EXAMPLE
-dvs, resultatet av =h(x)= (plus 7) är argumentet till =g= och
-resultatet är i sin tur argumentet till =f=. Ett C-program har
-ofta formen (OBS! inte riktig C-kod och försöker inte vara
-ekvivalent med programmet ovan):
-#+BEGIN_EXAMPLE
-  y = h(x)
-  y = y + 42
-  g()
-  f(y)
-#+END_EXAMPLE
-dvs, varje sats i programmet avser ett diskret steg och vissa steg
-tar varken (synligen) input från tidigare steg eller ger output
-som skickas till efterföljande steg. *Satsernas inbördes  ordning i programmet*
-är det som (implicit) länkar samman dem -- inte något tillstånd som 
-flödar in eller ut. Det betyder att vi måste vara mer uppmärksamma
-på detta i C-program.
-
-Eftersom C inte är funktionellt finns det heller inget "krav" att
-funktioner skall returnera något. Det är ganska vanligt att en
-funktion inte har något returvärde (t.ex. en funktion som skriver
-ut text i terminalen, men många andra). Ett tydligt exempel är att
-=if=-villkoret i C inte returnerar något! Ett ganska vanligt
-mönster i imperativa program är att använda =if=-satser *utan*
-någon =else=-sats t.ex. så här (OBS! Inte valid C):
-#+BEGIN_SRC c
-/// Make a copy of a file (source) to a new file name (dest) byte
-/// by byte, and return the number of bytes copied
-int clone_file(file source, file dest) {
-  if (does_non_exist(source)) {
-    // Source file does not exist!
-    return 0;
-  }
-
-  if (exists(dest)) {
-    // Destination already exists!
-    return 0;
-  }
-
-  ... // now copy the file
-}
-#+END_SRC
-Observera att ingen av =if=-satserna ovan har en =else=-sats.
-I båda fallen utför vi helt enkelt ett "test" och avbryter exekveringen
-och returnerar 0 om testvillkoren är sanna. Vi kommer alltså enbart
-till raden ~... // now copy the file~, om inget av testvillkoren 
-håller. 
-
-En progammerare med ett funktionellt "mind set" skulle förmodligen skriva programmet så här istället:
-#+BEGIN_SRC c
-int clone_file(file source, file dest) {
-  if (does_non_exist(source)) {
-    // Source file does not exist!
-    return 0;
-  } else {
-    if (exists(dest)) {
-      // Destination already exists!
-       return 0;
-    } else {
-       ... // now copy the file
-    }
-}
-#+END_SRC
-eller mer kompakt, eftersom resultatet av båda testerna råka vara detsamma i detta exempel:
-#+BEGIN_SRC c
-int clone_file(file source, file dest) {
-  if (does_non_exist(source) || exists(dest)) { // || means "or"
-    // Source file does not exist or destination already exists!
-    return 0;
-  } else {
-    ... // now copy the file
-  }
-}
-#+END_SRC
-Observera att dessa versioner är likvärdiga och att det inte finns
-någon som är objektivt "bäst". Det finns däremot många
-programmerare med starka åsikter som kommer att försöka påtvinga
-sina normer på dig och övertyga dig om att den stil som hen gillar
-bäst också råkar vara bäst.
 
 ** Hello, world!
 
