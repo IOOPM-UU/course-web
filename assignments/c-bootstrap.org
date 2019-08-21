@@ -582,14 +582,14 @@ Pröva att ändra utskriften så här:
 
 #+BEGIN_SRC C
 char *msg = "Hello, world!";
-int year = 2017;
+int year = 2019;
 printf("%s in the year %d\n", msg, year);
 #+END_SRC
 
 Vi deklarerar nu en /variabel/ ~msg~ som är en sträng (i C är
 typen för sträng ~char *~, mer om detta senare) vars innehåll är
 texten "Hello, world!" och en variabel ~year~ som innehåller
-heltalet 2017. (Minns att en typ är ett namn på en samling värden
+heltalet 2019. (Minns att en typ är ett namn på en samling värden
 som delar vissa egenskaper. I C har vi t.ex. en typ för heltal, en
 för flyttal, etc.)
 
