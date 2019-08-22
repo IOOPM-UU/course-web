@@ -9,7 +9,7 @@ Sign up by sending e-mail to ioopm@it.uu.se.
 #+end_important
 
 #+Begin_note
-Get course material at the [[https://github.com/TobiasWrigstad/ioopm18][course's GitHub page]] \\
+Get course material at the [[https://github.com/TobiasWrigstad/ioopm19][course's GitHub page]] \\
 Ask questions and discuss with other students on [[https://piazza.com/class/jkd32onglxi2vb][Piazza]]  \\
 Request demonstrations and track your progress at the [[http://auportal.herokuapp.com/][AU Portal]] \\
 Ask questions *during lectures* [[https://docs.google.com/forms/d/e/1FAIpQLSedqlhkDtKUo6yiP3Z9Ha6007MJtEBQAFTNoImOvJNarsWUWg/viewform][using this webform]] (or put your hand up!)
