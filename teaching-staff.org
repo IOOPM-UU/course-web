@@ -13,15 +13,13 @@ people involved in running the course in 2019.
 - Office: 1137
 - Office hours: TBA
 - Email: [[mailto:lhe@it.uu.se][lhe@it.uu.se]]
-* Maria Andreina Francesca
-# #+ATTR_HTML: :width 300px :align right :title: Lars-Henrik Eriksson
+* Teacher: Maria Andreina Francesca
+#+ATTR_HTML: :width 300px :align right :title: Lars-Henrik Eriksson
 # https://webb.uu.se/image/full_image?img_id=1134012&t=1383558678000
 - Office: TBA
 - Office hours: TBA
 - Email: TBA
-
-* TODO Head Teaching Assistant: TBA
-<<head_ta>>
+* TODO Head Teaching Assistant: TBA <<head_ta>>
 #+ATTR_HTML: :width 300px :align right :title: NN
 # #  file:images/gustaf-borgstrom.jpg]]
 - Office: TBA
