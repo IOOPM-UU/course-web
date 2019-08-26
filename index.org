@@ -119,7 +119,7 @@ Deadlines and important dates in chronological order. Read [[./about.org::*Deadl
 | 10/12         | [[./code-exam.org][Coding Exam]] 2              | Sign-up not open yet.                     |
 | 12/12         | Last possibility to do [[http://auportal.herokuapp.com/achievements/62][X62]] | This is a *not mandatory* achievement     |
 | 13/12         | [[./assignments/assignment4.org][Assignment 4]] (Hard)        |                                           |
-| Week 51       | Essay feedback seminars    | *Mandatory presence for essay writers*    |
+# | Week 51       | Essay feedback seminars    | *Mandatory presence for essay writers*    |
 | 8/1 2020      | [[./code-exam.org][Coding Exam]] 3              | Sign-up not open yet.                     |
 | 14--16/1 2020 | [[./projects/projects.org][Project]] (Hard)             | Deadline is 24 h before seminars          |
 | 15/1 2020     | [[http://auportal.herokuapp.com/achievements/7][C7]] deadline                |                                           |
