@@ -135,7 +135,7 @@ Note that assignments mostly act as drivers to learn concepts and produce eviden
 | [[./assignments/java-bootstrap.org][Java bootstrap exercises]] | 21/10 | 25/10         | Finish an existing program skeleton for a simulation of cashier registers   |
 | [[./assignments/assignment3.org][Assignment 3 (Java)]]      | 28/10 | 15/11         | Implement a simple symbolic calculator                                      |
 | [[./assignments/assignment4.org][Assignment 4 (Java)]]      | 18/11 | 29/11         | Improve the symbolic calculator program using typical Java idioms           |
-| [[./projects/projects.org][Project group work]]       | 2/12  | 14--16/1 2019 | Implement memory management systems for C programs                          |
+| [[./projects/projects.org][Project group work]]       | 2/12  | 14--16/1 2020 | Implement memory management systems for C programs                          |
 * Resources
 ** TODO General 
 - An introduction to Emacs is found [[./editors.org][here]]
