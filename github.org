@@ -47,11 +47,11 @@ För att du ska kunna få ett privat repo behöver du bli inbjuden
 till vår GitHub-organisation IOOPM-UU. För att kunna ge dig ett
 konto måste vi ha dina uppgifter. 
 
-Du har inte möjlighet att lämna uppgifter ännu, men kommer att kunna göra det
-senast när kursen har startat. Läs denna sida igen då!
+#Du har inte möjlighet att lämna uppgifter ännu, men kommer att kunna göra det
+#senast när kursen har startat. Läs denna sida igen då!
 
-# Börja med att [[https://docs.google.com/forms/d/e/1FAIpQLSekNDUPCgFTjUfkyRrdqJ0kVWcQXFsoL4GYOQHPXSzALiwV9Q/viewform?usp=sf_link][klicka här]] och
-# fyll i ditt student-ID och ditt användarnamn på GitHub.
+Börja med att [[https://docs.google.com/forms/d/e/1FAIpQLSekNDUPCgFTjUfkyRrdqJ0kVWcQXFsoL4GYOQHPXSzALiwV9Q/viewform?usp=sf_link][klicka här]] och
+fyll i ditt student-ID och ditt användarnamn på GitHub.
 
 file:./images/GitHubForm.jpg
 
