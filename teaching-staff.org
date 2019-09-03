@@ -11,21 +11,21 @@ people involved in running the course in 2019.
 #+ATTR_HTML: :width 300px :align right :title: Lars-Henrik Eriksson
 [[file:images/lhe.png]]
 - Office: 1137
-- Office hours: TBA
+- Office hours: None in particular.
 - Email: [[mailto:lhe@it.uu.se][lhe@it.uu.se]]
-* Teacher: Maria Andreina Francesca
+* Teacher: Maria Andreina Francisco
 #+ATTR_HTML: :width 300px :align right :title: Lars-Henrik Eriksson
 # https://webb.uu.se/image/full_image?img_id=1134012&t=1383558678000
 - Office: TBA
 - Office hours: TBA
-- Email: TBA
-* TODO Head Teaching Assistant: TBA <<head_ta>>
+- Email: [[mailto:andreina@it.uu.se][andreina@it.uu.se]]
+* Head Teaching Assistant: Albin Stjerna <<head_ta>>
 #+ATTR_HTML: :width 300px :align right :title: NN
 # #  file:images/gustaf-borgstrom.jpg]]
 - Office: TBA
 - Office hours: TBA
-- Email: TBA
-* TODO TAs 
+- Email: [[mailto:albin.stjerna@gmail.com][albin.stjerna@gmail.com]
+* Teaching Assistants 
 - Alexander Troshin
 - Alexis Remmers
 - Benjamin Ek
@@ -65,13 +65,14 @@ people involved in running the course in 2019.
 * Getting in Touch
 - Talk to us during lectures and labs :: 
      See the [[https://cloud.timeedit.net/uu/web/schema/riq56QxY8Q5ZZXQ5y07Z565760Z0Y5g406g6600QQ1o00g6045Z4Yq6Qo.html][schedule]] for details. 
-- Use [[https://piazza.com/class/jkd32onglxi2vb][Piazza]] :: 
-     For questions that are not sensitive, consdier asking a [[public][public question]] (/Entire Class/)
+- Use [[https://piazza.com/class/k01yr6gds9m62i][Piazza]] :: 
+     For questions that are not sensitive, consider asking a [[public][public question]] (/Entire Class/)
      rather than a [[private][private question]] (/Individual Student(s) / Instructor(s)/). Most questions are of interest to many students,
      and often, many other students chip in to try and untangle some issue, 
      which is good for everyone.
 - Come by our offices :: 
-     *TBA* Lars-Henrik's office hours 
+     Lars-Henrik's office hour is in his office most of the time when he's
+     not teaching. 
 # Tobias is not in most Tuesdays, but otherwise he should be around unless he is not lecturing or labbing on IOOPM. 
 - Send us an email ::
      This should be the last resort, really. Please use your student email so that we
