@@ -1,6 +1,6 @@
 -----
 
-*Questions about stuff on these pages?* Use our [[https://piazza.com/class/jkd32onglxi2vb][Piazza]] forum. 
+*Questions about stuff on these pages?* Use our [[https://piazza.com/class/k01yr6gds9m62i][Piazza]] forum. 
 
 *Want to report a bug?* Please place an issue [[elisp:(format "<a href=\"https://github.com/IOOPM-UU/course-web/issues/new?title=Bug on page %s&body=Please describe the issue clearly, help me locate it on the page, and if possible suggest a fix.&assignee=TobiasWrigstad\">here</a>" (file-name-nondirectory (buffer-file-name)))]]. 
 Pull requests are graciously accepted (hint, hint). 
