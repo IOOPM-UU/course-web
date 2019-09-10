@@ -42,25 +42,20 @@ people involved in running the course in 2019.
 - Pontus Ernstedt
 - Sanna Kurdahl
 - Siriann Göhl
-* TODO Teams and Coaches
+* Teams and Coaches
 | Team | Coach             |
 |------+-------------------|
 |    1 | Alexander Troshin |
 |    2 | Alexis Remmers    |
 |    3 | Benjamin Ek       |
-|    4 | Carl Enlund       |
-|    5 | Erik Rimskog      |
-|    6 | Henrik Johansson  |
-|    7 | Iza Alstergren    |
-|    8 | Lisa Bevemyr      |
-|    9 | Maja Danielsson   |
-|   10 | Markuss Sprogis   |
-|   11 | Martin Eriksson   |
-|   12 | Max Perea Düring  |
-|   13 | Michael Rehn      |
-|   14 | Pontus Ernstedt   |
-|   15 | Sanna Kurdahl     |
-|   16 | Siriann Göhl      |
+|    4 | Henrik Johansson  |
+|    5 | Maja Danielsson   |
+|    6 | Markuss Sprogis   |
+|    7 | Martin Eriksson   |
+|    8 | Max Perea Düring  |
+|    9 | Pontus Ernstedt   |
+|   10 | Sanna Kurdahl     |
+|   11 | Siriann Göhl      |
 
 * Getting in Touch
 - Talk to us during lectures and labs :: 
