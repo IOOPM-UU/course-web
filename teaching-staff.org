@@ -24,24 +24,24 @@ people involved in running the course in 2019.
 # #  file:images/gustaf-borgstrom.jpg]]
 - Office: TBA
 - Office hours: TBA
-- Email: [[mailto:albin.stjerna@gmail.com][albin.stjerna@gmail.com]
+- Email: [[mailto:albin.stjerna@gmail.com][albin.stjerna@gmail.com]]
 * Teaching Assistants 
-- Alexander Troshin
-- Alexis Remmers
-- Benjamin Ek
-- Carl Enlund
-- Erik Rimskog
-- Henrik Johansson
-- Iza Alstergren
-- Lisa Bevemyr
-- Maja Danielsson
-- Markuss Sprogis
-- Martin Eriksson
-- Max Perea Düring
-- Michael Rehn
-- Pontus Ernstedt
-- Sanna Kurdahl
-- Siriann Göhl
+- Alexander Troshin, [[mailto:mail@novium.pw][mail@novium.pw]]
+- Alexis Remmers, [[mailto:alexis.remmers.8950@student.uu.se][alexis.remmers.8950@student.uu.se]]
+- Benjamin Ek, [[mailto:benjamin.ekh@gmail.com][benjamin.ekh@gmail.com]]
+- Carl Enlund, [[mailto:carl.enlund@gmail.com][carl.enlund@gmail.com]]
+- Erik Rimskog, [[mailto:erik.rimskog@gmail.com][erik.rimskog@gmail.com]]
+- Henrik Johansson, [[mailto:emmanuelhenrik@gmail.com][emmanuelhenrik@gmail.com]]
+- Iza Alstergren, [[mailto:izaalstergren@hotmail.com][izaalstergren@hotmail.com]]
+- Lisa Bevemyr, [[mailto:lisa@bevemyr.com][lisa@bevemyr.com]]
+- Maja Danielsson, [[mailto:danielsson.maja96@gmail.com][danielsson.maja96@gmail.com]]
+- Markuss Sprogis, [[mailto:markuss.sprogis.1122@student.uu.se][markuss.sprogis.1122@student.uu.se]]
+- Martin Eriksson, [[mailto:woodauncher@gmail.com][woodauncher@gmail.com]]
+- Max Perea Düring, [[mailto:maxpereaduring@gmail.com][maxpereaduring@gmail.com]]
+- Michael Rehn, [[mailto:rehn.michael@outlook.com][rehn.michael@outlook.com]]
+- Pontus Ernstedt, [[mailto:poer0276@student.uu.se][poer0276@student.uu.se]]
+- Sanna Kurdahl, [[mailto:sanna.kurdahl.8455@student.uu.se][sanna.kurdahl.8455@student.uu.se]]
+- Siriann Göhl, [[mailto:siriann.g@gmail.com][siriann.g@gmail.com]]
 * Teams and Coaches
 | Team | Coach             |
 |------+-------------------|
