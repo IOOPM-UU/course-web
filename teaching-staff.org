@@ -24,7 +24,7 @@ people involved in running the course in 2019.
 # #  file:images/gustaf-borgstrom.jpg]]
 - Office: TBA
 - Office hours: TBA
-- Email: [[mailto:albin.stjerna@gmail.com][albin.stjerna@gmail.com]]
+- Email: [[mailto:albin.stjerna@it.uu.sem][albin.stjerna@it.uu.se]]
 * Teaching Assistants 
 - Alexander Troshin, [[mailto:mail@novium.pw][mail@novium.pw]]
 - Alexis Remmers, [[mailto:alexis.remmers.8950@student.uu.se][alexis.remmers.8950@student.uu.se]]

@@ -248,20 +248,20 @@ kodprovet).
 
 *** Definitionen inluppar 1 avklarad
 
-- Två av Z-målen (inlupp 1--4) avbockade.
-- 14 avbockade mål på nivå 3 (du kan inte använda samma mål i flera faser)
+- Två av Z-målen (inlupp 1--4) avbockade, *och därutöver*
+- 15 "vanliga" avbockade mål på nivå 3 (du kan inte använda samma mål i flera faser)
 - Inga eftersläpande repetitionsmål
 
 *** Definitionen inluppar 2 avklarad
 
-- Resterande två av Z-målen (inlupp 1--4) avbockade.
-- 14 avbockade mål på nivå 3 (du kan inte använda samma mål i flera faser)
+- Resterande två av Z-målen (inlupp 1--4) avbockade, *och därutöver*
+- 15 "vanliga" avbockade mål på nivå 3 (du kan inte använda samma mål i flera faser)
 - Inga eftersläpande repetitionsmål
 
 *** Definitionen projektet avklarat
 
 - Målen Y64--Y69 uppfyllda, *och därutöver*
-- 4 avbockade mål på nivå 3 (du kan inte använda samma mål i flera faser)
+- 4 "vanliga"  avbockade mål på nivå 3 (du kan inte använda samma mål i flera faser)
 - Inga eftersläpande repetitionsmål
 
 * Arbetsflöde under kursen
