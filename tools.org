@@ -125,6 +125,30 @@ Download and install from http://www.oracle.com/technetwork/java/javase/download
 A step-by-step description of this, or information about how it is
 not possible, is much welcome.
 #+end_important
+
+To get up and running with a basic terminal-only environment follow the steps below. It takes about 30min depending on your internet connection, but most of the time will be spent installing and downloading packages so you will be able to do something else in the meantime.
+
+1. Open a PowerShell terminal with Administrator privileges and run the command below, restart your computer when promted.
+   =Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux=
+2. Go to the Microsoft Store app. From there, search and install =Ubuntu 18.04 LTS=. 
+3. From the start menu you can now open Ubuntu, or type =bash= in a command prompt. Do that and follow the on-screen instructions.
+4. Lastly, copy the command below to install most of the packages used during the course. This might take a while so grab a cup of coffee or tea in the meantime.
+#+BEGIN_EXAMPLE
+$  sudo apt-get install -y gcc clang libclang-dev lldb emacs25 vim tree make \
+       tmux curl astyle zsh linux-tools-common valgrind git libcunit1-dev doxygen \ 
+       xclip global zip unzip openjdk-8-jdk linux-tools-generic \
+       cscope cproto gcovr tig htop junit gnuplot graphviz cmake indent
+#+END_EXAMPLE
+
+Now, if you also want to be able to use GUI-applications there are a few more things that need to be installed. This is not necessary though.
+
+1. Open a =bash= terminal on your newly set-up environment and run =sudo apt-get install -y ubuntu-desktop=.
+2. Whilst step 1 is installing, download and install [[https://sourceforge.net/projects/vcxsrv/][VcXsrv]] (in Windows).
+3. Start the newly installed XLaunch, you can leave the default values in the wizard.
+4. When step 1 is finished, run the following command: =echo "export DISPLAY=localhost:0.0" >> ~/.bashrc=.
+5. Try running =emacs &=, it should open as a window on your desktop!
+
+
 * TODO A C Development Environment
 * TODO A Java Development Environment
 * TODO Project Tools
