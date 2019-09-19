@@ -472,8 +472,17 @@ klistra in (och starta sedan om Emacs)!
 
 Tips: klistra in i Emacs är [[key:C-y]]. För att slippa starta om
 Emacs för att inställningarna skall gälla kan du markera den
-inklippta texten och köra [[key:M-x]] =eval-region=. 
+inklippta texten och köra [[key:M-x]] =eval-region=.
 
+Ett annat sätt att lösa problemet är att använda [[key:⌘]] istället. Det betyder att Emacs ibland slåss med macOS om vad som händer när du trycker på kombinationer med den tangenten (macOS vinner typiskt), men över lag fungerar det och du kan i alla fall skriva brackets. I sådana fall behöver du klistra in följande rader i din =init.el=:
+
+#+begin_src emacs-lisp
+(setq mac-option-modifier nil
+      mac-command-modifier 'meta
+      mac-command-key-is-meta t)
+#+end_src
+
+Det grundläggande problemet är förstås att de inte gör tangentbord med [[https://en.wikipedia.org/wiki/Space-cadet_keyboard][så många knappar som de hade förr]].
 
 #+include: "./footer.org"
 
