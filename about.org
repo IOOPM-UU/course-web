@@ -167,7 +167,10 @@ introduces a bug etc.
 *If the examiner finds the answer to 1--3 satisfactory*, she will
 hand over the running of the demonstration to you! Different
 examiners approach this task differently. Some will interrupt and
-ask questions. Some delay all questions to the end. 
+ask questions. Some delay all questions to the end.
+
+[[./misc/ioopm-rubrics.pdf][This "mind-map style" diagram]] shows what we're looking for
+(and not) in a presentation and also gives a checklist for passing.
 
 Only the achievements explicitly stated at the beginning of the
 demonstration can be passed in the demonstration. If you were to
