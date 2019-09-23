@@ -494,13 +494,14 @@ vad en uppgift gick ut på. Saknar man fler än två uppgifter i C
 krav för att klara av kursen gäller som för nuvarande studenter.
 
 Om du har kvar någon av tentorna kommer examineringen ske i två
-steg. Först implementerar du en av kursens senare
-inlämningsuppgifter -- C-tentan motsvaras av Lagerhanteraren 2.0
-(notera att uppgiften bygger på en tidigare uppgift som du får
-implementera också), Java-tentan av valfri uppgift från sprint 5.
-Du hittar kraven för uppgifterna här. När du är klar (och har
+steg. Om du har C-tentan kvar skall du först göra
+[[./assignments/assignment1.html][inlämningsuppgift 1 (C)]]
+Du hittar kraven för uppgiften här. När du är klar (och har
 meddelat det) kommer du att kallas till en muntlig examination där
-du får relatera din kod till några av kursens mål.
+du får relatera din kod till några av kursens mål. Om du har Java-tentan
+kvar så gör du på samma sätt, men det är
+[[./assignments/assignment3.html][inlämningsuppgift 3 (Java)]]
+du skall göra.
 
 Vid redovisning kommer vi att gå igenom slumpvis valda mål som du
 måste kunna diskutera utifrån din lösning. Du skall klara av fem
