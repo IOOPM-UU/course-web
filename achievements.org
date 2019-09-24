@@ -162,26 +162,7 @@ demonstration form -- mirroring information in the AU Portal:
 #+include: "../achievements/X60.org"
 #+include: "../achievements/X61.org"
 #+include: "../achievements/X62.org"
-
-# #+include: "../achievements/X63.org"
-
-#+html: <a name="63"></a>
-** TODO X63: Kommuniktion 1:M :G3:Special:
-
-#+BEGIN_SUMMARY
-Samtala avslappnat med andra gruppmedlemmar. Ditt ansvar för
-gruppen. Gruppens ansvar för dig.
-#+END_SUMMARY
-
-Detta mål *omfattar sex fysiska möten under kursens gång*. Varje möte
-skall dokumenteras med en /gemensam/ rapport. Se detaljerade 
-instruktioner [[./team.org::*Group%20Meetings][här]].
-
------
-
-*Report a bug on this achievement?* Please place an issue on [[https://github.com/IOOPM-UU/achievements/issues/new?title=Bug%20in%20achievement%20X63&body=Please%20describe%20the%20bug,%20comment%20or%20issue%20here&assignee=TobiasWrigstad][GitHub]].
-
-
+#+include: "../achievements/X63.org"
 #+HTML: <a name="Y"></a>
 * TODO Y: Mjukvaruutveckling / Programvaruteknik 
 #+include: "../achievements/Y64.org"
