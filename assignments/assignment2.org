@@ -1,6 +1,12 @@
 #+title: Assignment 2 (Phase 1, Sprint 2)
 #+include: "../setup.org"
 
+#+begin_important
+*Intended start*: 2019-10-07 \\
+*Soft deadline*: 2019-10-18 \\
+*Hard deadline*: 2019-11-01
+#+end_important
+
 #+begin_warning
 This is a new version of this assignment from 2018. Please report
 all bugs and ask questions for things that are not clear. Because 
@@ -644,12 +650,12 @@ bool string_key_eq(elem_t k1, elem_t k2)
    demonstration or answers all questions to avoid someone failing
    the demonstration because there was no evidence of achievements
    mastery.
-5. Send an email to [[mailto:z100@wrigstad.com][z101@wrigstad.com]] with your names and
+5. Send an email to [[mailto:ioopm@it.uu.se][ioopm@it.uu.se]] with your names and
    usernames, a link to the GitHub repository where the code can
    be checked out. 
 6. Create a final commit for the assignment and [[../github.org][check it into
    GitHub]]. Tag the commit with =assignment2_done=. 
-7. *Optional* Please take time to [[mailto:z101-feedback@wrigstad.com][feedback on the assignment]]. 
+7. *Optional* Please take time to [[mailto:ioopm@it.uu.se][feedback on the assignment]]. 
 
 *Note:* Don't expect any feedback on your program over what you
 have got from the oral presentations. If you want more feedback on

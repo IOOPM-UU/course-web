@@ -3,9 +3,9 @@
 #+include: "../asciinema-setup.org"
 
 #+begin_important
-*Intended start*: 2018-10-29 \\
-*Soft deadline*: 2018-11-16 \\
-*Hard deadline*: 2018-11-30
+*Intended start*: 2019-10-28 \\
+*Soft deadline*: 2019-11-15 \\
+*Hard deadline*: 2019-11-29
 #+end_important
 
 #+begin_important
@@ -2308,7 +2308,7 @@ evaluated, e.g., down to =42.0= as opposed to =42.0 + a=.
    demonstration or answers all questions to avoid someone failing
    the demonstration because there was no evidence of achievements
    mastery.
-5. Send an email to [[mailto:z100@wrigstad.com][z103@wrigstad.com]] with your names and
+5. Send an email to [[mailto:ioopm@it.uu.se][ioopm@it.uu.se]] with your names and
    usernames, a link to the GitHub repository where the code can
    be checked out.
 6. Create a final commit for the assignment and [[../github.org][check it into
@@ -2319,7 +2319,7 @@ evaluated, e.g., down to =42.0= as opposed to =42.0 + a=.
    =--tags= to the =git pull= command, but if you were careful to
    have a commit which was just a tag, then having that synced is
    not important.
-7. *Optional* Please take time to [[mailto:z103-feedback@wrigstad.com][feedback on the assignment]].
+7. *Optional* Please take time to [[mailto:ioopm@it.uu.se][feedback on the assignment]].
 
 *Note:* Don't expect any feedback on your program over what you
 have got from the oral presentations. If you want more feedback on
