@@ -904,7 +904,7 @@ Here is what such a test could look like:
 void test_create_destroy()
 {
    ioopm_hash_table_t *ht = ioopm_hash_table_create();
-   CU_ASSERT_PTR_NULL(ht);
+   CU_ASSERT_PTR_NOT_NULL(ht);
    ioopm_hash_table_destroy(ht);
 }
 #+END_SRC
