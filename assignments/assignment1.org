@@ -3351,16 +3351,16 @@ An easy way to fix this is to introduce macros for creating
 elements, e.g.:
 
 #+BEGIN_SRC c
-#define int_elem(i) (elem_t) { .i=(i) }
-#define str_elem(s) (elem_t) { .s=(i) }
+#define int_elem(x) (elem_t) { .i=(x) }
+#define ptr_elem(x) (elem_t) { .p=(x) }
 #+END_SRC
 
-which allows us to rewrite the above as ~ioopm_hash_table_insert(ht, int_elem(42), str_elem("4711"))~. 
+which allows us to rewrite the above as ~ioopm_hash_table_insert(ht, int_elem(42), ptr_elem("4711"))~. 
 Another option is to define a macro for the entire function:
 
 #+BEGIN_SRC c
 #define ioopm_int_str_ht_insert(ht, i, s) \
-   ioopm_hash_table_insert(ht, int_elem(i), str_elem(s))
+   ioopm_hash_table_insert(ht, int_elem(i), ptr_elem(s))
 #+END_SRC
 
 Now we can simply rename all calls to ~ioopm_hash_table_insert~ to
