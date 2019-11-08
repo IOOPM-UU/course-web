@@ -74,7 +74,7 @@ roughly corresponds to one assignment.
 | 3/10  | Modularisering, separatkompilering, coupling & cohesion.                                                                  | TBA                           | -''-           |
 | 7/10  | Defensiv programmering. Läsbar kod.                                                                                       | [[aua:22][I22]], [[aua:45][P45]]                      | [[file:misc/w6.pdf][Slides]]         |
 | 10/10 | Preprocessorn. Bitmanipulering.                                                                                           | [[aua:42][O42]], [[aua:43][O43]], [[aua:44][O44]]                 | -''-           |
-| 11/10 | /Backup/ (Terminalen)                                                                                                     | [[aua:15][V58]]                           | Demo           |
+| 11/10 | /Backup/ (Terminalen)                                                                                                     | [[aua:58][V58]]                           | Demo           |
 | 14/10 | Prepping for code exam                                                                                                    |                               | N/A            |
 ** Phase 2 (Object-Oriented Programming) <<phase2lectures>>
 | Date  | Contents                                                                                      | Achivements                                                | fab:slideshare |
