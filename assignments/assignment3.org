@@ -1718,7 +1718,7 @@ evaluation tests, manually reducing the expressions. Here is an
 example call of ~testEvaluating()~ with a composite expression and
 its expected reduction after evaluation.
 #+BEGIN_SRC java
-SymbolicExpression a = new Assignment(new Constant(5), new Constant(37));
+SymbolicExpression a = new Addition(new Constant(5), new Constant(37));
 SymbolicExpression b = new Constant(42);
 testEvaluating(b, a); /// Tests if reducing a returns b (it should!)
 #+END_SRC
