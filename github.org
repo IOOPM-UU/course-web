@@ -39,14 +39,19 @@ file:./images/GitHub3.jpg
 ** 2. Ge oss dina uppgifter
 #+begin_important
 *NOTE* The signup for a GitHub repo is closed. Please email
-directy to [[file:teaching-staff.org::HeadTA][the head TA]] to get a GitHub repo. Using a IOOPM-UU GitHub
+directy to [[file:teaching-staff.org::head_ta][the head TA]] to get a GitHub repo. Using a IOOPM-UU GitHub
 repo for development is *mandatory* on the course.
 #+end_important
 
 För att du ska kunna få ett privat repo behöver du bli inbjuden
 till vår GitHub-organisation IOOPM-UU. För att kunna ge dig ett
-konto måste vi ha dina uppgifter. +Börja med att [[https://docs.google.com/forms/d/e/1FAIpQLSekNDUPCgFTjUfkyRrdqJ0kVWcQXFsoL4GYOQHPXSzALiwV9Q/viewform?usp=sf_link][klicka här]] och
-fyll i ditt student-ID och ditt användarnamn på GitHub.+
+konto måste vi ha dina uppgifter. 
+
+#Du har inte möjlighet att lämna uppgifter ännu, men kommer att kunna göra det
+#senast när kursen har startat. Läs denna sida igen då!
+
+Börja med att [[https://docs.google.com/forms/d/e/1FAIpQLSekNDUPCgFTjUfkyRrdqJ0kVWcQXFsoL4GYOQHPXSzALiwV9Q/viewform?usp=sf_link][klicka här]] och
+fyll i ditt student-ID och ditt användarnamn på GitHub.
 
 file:./images/GitHubForm.jpg
 
@@ -60,7 +65,7 @@ då att få ett mejl med en inbjudan:
 file:./images/GitHub4.jpg
 
 Om du går till http://www.github.com/ioopm-uu kommer det se ut
-ungefär så här: </p>
+ungefär så här: 
 
 file:./images/GitHub5.jpg
 
@@ -281,22 +286,13 @@ followed by a normal =git push= to push both tags and normal commits.
 
 If you realise that mistagged something, or you later find a bug
 so that you want another commit to be the finished assignment one,
-use a versioning scheme where you create a new tag but add =_v1=
-to its end. Thus, we can have the following:
-
+you must first delete the tag:
 #+BEGIN_SRC 
-$ git tag 
-assignment1_step0
-...
-assignment1_step14
-assignment1_done
-assignment1_done_v1
-assignment1_done_v2
-$
+git tag -d assignment1_done
+git push origin :refs/tags/assignment1_done
 #+END_SRC
+Then you can go ahead and add the tag to the right commit.
 
-In this case, =assignment1_done_v2= will count as the finished
-assignment one as it has the highest version number.
 ** Pulling Updates from GitHub to Your Local Machine
 In git parlance we talk about fetching and pulling changes. For
 simplicity, we are only talking about pulling here, which

@@ -262,7 +262,7 @@ hour ago. Not because you were a worse programmer then, but
 because it was one hour ago! You probably don't remember what you
 were thinking back then, so you have to work hard at retracing
 your steps. If you try to make sure the code compiles every two
-minutes, [[https://www.theobjectivestandard.com/2013/09/spocks-illogic-the-needs-of-the-many-outweigh-the-needs-of-the-few/][logic dictates]] that solving these bugs is way way easier.
+minutes, [[http://3.bp.blogspot.com/-AlKC5E44CrA/VZQJPaaSKaI/AAAAAAAAHzY/PTQP-zDUiF4/s1600/LogicClearlyDictates.jpg][logic dictates]] that solving these bugs is way way easier.
 Good programmers likes easy.
 #+end_tip
 
@@ -637,7 +637,7 @@ The easiest way to understand how something works in programming
 is generally to test it out. To that end, make it really easy to
 start with an empty file, compile and run it. This could be
 hacking your editor, downloading a plugin to your IDE, or saving
-an empty file plus [[http://mrbook.org/tutorials/make/][makefile]] in a directory that you simply copy to
+an empty file plus [[http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/][makefile]] in a directory that you simply copy to
 make a new "testbed" for something.
 
 Understand that testing something out simplifies life
@@ -934,8 +934,7 @@ going to dodge in three discrete steps:
 The first database design will allow implementing everything
 except adding and removing with multiple wares, and listing
 multiple wares. The second design will allow us to do all that.
-The third design will make the program less of a [[http://www.catb.org/jargon/html/M/mickey-mouse-program.html][Mickey Mouse
-program]].
+The third design will make the program less of a [[http://www.catb.org/jargon/html/M/mickey-mouse-program.html][Mickey Mouse program]].
 
 Following the first database design, we can now define a struct
 for the database like so:

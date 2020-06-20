@@ -3,9 +3,9 @@
 #+include: "../asciinema-setup.org"
 
 #+begin_important
-*Intended start*: 2018-10-29 \\
-*Soft deadline*: 2018-11-16 \\
-*Hard deadline*: 2018-11-30
+*Intended start*: 2019-10-28 \\
+*Soft deadline*: 2019-11-15 \\
+*Hard deadline*: 2019-11-29
 #+end_important
 
 #+begin_important
@@ -334,12 +334,12 @@ top\_level  & ::= & \textit{statement} ~ \textbf{EOL}\qquad & \text{One line of 
 \textit{lhs}         & ::= & \textit{expression}  \\
 \textit{rhs}         & ::= & = \textit{identifier} \\
             &  |  & = \textit{identifier} ~ \textit{rhs}  & \text{(note the recursive definition)} \\
-\textit{expression}  & ::= & \textit{term} \mathop{+} \textit{term}  & \text{Addition}\\
-            &  |  & \textit{term} \mathop{-} \textit{term}  & \text{Subtraction}\\
+\textit{expression}  & ::= & \textit{expression} \mathop{+} \textit{term}  & \text{Addition}\\
+            &  |  & \textit{expression} \mathop{-} \textit{term}  & \text{Subtraction}\\
             &  |  & \textit{term} \\
-\textit{term}        & ::= & \textit{factor} \mathop{*} \textit{factor}  & \text{Multiplication}\\
-            &  |  & \textit{factor} \mathop{/} \textit{factor}  & \text{Division} \\
-            &  |  & \textit{primary} \\
+\textit{term}        & ::= & \textit{term} \mathop{*} \textit{factor}  & \text{Multiplication}\\
+            &  |  & \textit{term} \mathop{/} \textit{factor}  & \text{Division} \\
+            &  |  & \textit{factor} \\
 \textit{factor} & ::= & \textit{primary} & \text{You can unify factor and primary} \\
 \textit{primary}     & ::= & \texttt{(}~ \textit{assignment} ~\texttt{)} \\
             &  |  & \textit{unary} \\
@@ -393,12 +393,12 @@ assignment ::= lhs
 lhs        ::= expression
 rhs        ::= = identifier
             |  = identifier rhs
-expression ::= term + term
-            |  term - term
+expression ::= expression + term
+            |  expression - term
             |  term
-term       ::= factor * factor
-            |  factor / factor
-            |  primary
+term       ::= term * factor
+            |  term / factor
+            |  factor
 factor     ::= primary
 primary    ::= ( assignment )
             |  unary
@@ -644,12 +644,10 @@ study a somewhat simpler parser for a simpler language:
 
 #+BEGIN_EXAMPLE
 expression  ::= term
-             |  addition
-             |  subtraction
-addition    ::= term + expression
-subtraction ::= term - expression
+             |  expression + term
+             |  expression - term
 term        ::= factor
-             |  factor * term
+             |  term * factor
 factor      ::= number
              |  '(' expression ')'
 #+END_EXAMPLE
@@ -673,6 +671,22 @@ with the code of the ~ParserExample~ below.
       2. Since we are only trying to read a number, we can simply return 
    2. Back in the term rule, we see that the number is /not/ followed by a ~*~ so we return
 2. Back in the expression rule, we see that the number is /not/ followed by a ~+~ so we return
+
+#+Begin_note
+The rules for expressions and terms are "left-recursive". That is,
+one of the possible forms for expressions starts with another expression --
+similarly for terms.
+A straightforward implementation of a recursive descent parser for this grammar
+can get stuck in an infinite loop. Fortunately, it is easy to see that e.g.
+the rule for expressions means that an expression consists of a sequence of one
+or more terms separated by plus or minus signs. (See the syntax diagram
+in figure 4 of section 4.3.)  With this insight it is
+easy to write a recursive descent parser for this simple case of left
+recursion. Of course, the computations you make -- and the ASTs that 
+you build in the proper calculator code -- have to follow the actual structure 
+of the BNF rules. But that, too is easy to accomplish. See how it is done in
+the example below!
+#+end_note
 
 Here is the code for ~ParserExample~. Note that in addition to
 parsing expressions, the expressions are also /evaluated/. This
@@ -2308,7 +2322,7 @@ evaluated, e.g., down to =42.0= as opposed to =42.0 + a=.
    demonstration or answers all questions to avoid someone failing
    the demonstration because there was no evidence of achievements
    mastery.
-5. Send an email to [[mailto:z100@wrigstad.com][z103@wrigstad.com]] with your names and
+5. Send an email to [[mailto:ioopm@it.uu.se][ioopm@it.uu.se]] with your names and
    usernames, a link to the GitHub repository where the code can
    be checked out.
 6. Create a final commit for the assignment and [[../github.org][check it into
@@ -2319,7 +2333,7 @@ evaluated, e.g., down to =42.0= as opposed to =42.0 + a=.
    =--tags= to the =git pull= command, but if you were careful to
    have a commit which was just a tag, then having that synced is
    not important.
-7. *Optional* Please take time to [[mailto:z103-feedback@wrigstad.com][feedback on the assignment]].
+7. *Optional* Please take time to [[mailto:ioopm@it.uu.se][feedback on the assignment]].
 
 *Note:* Don't expect any feedback on your program over what you
 have got from the oral presentations. If you want more feedback on

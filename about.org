@@ -8,43 +8,6 @@ about why we are doing what we are doing, go ahead and [[http://uu.diva-portal.o
 paper]] (15 pages).
 #+end_attention
 
-* DONE Changes from 2017
-** Changelog
-- Completely new Assignment 1 ::
-     Assignment 1 is now a cross-breed of traditional labs and
-     traditional assigments. The idea is to provide some more
-     safety and also steer thoughts a bit, but not have small
-     tasks that are too well-aligned to one or two specific
-     concepts.
-
-- Overhaul of Assignment 2--4 ::
-     Based on outcome of assignment 1. FEEDBACK, people! 
-
-- New course website ::
-     Toning down reliance on GitHub. Also, no markdown which
-     is a huge boon for me... 
-     
-- Stricter group meetings, with coaches ::
-     As described [[./team.org][here]]. 
-
-- New vagrant machine for using own laptops/computers ::
-     As described [[./tools.org][here]].
-
-- Changed Emacs shortcuts and settings ::
-     As described all over the place. 
-
-- New lecture material on some lectures ::
-     Generally freshening things up and aligning content with
-     assignment 1.
-
-** Rooms for Improvement 
-- Queuing time on labs ::
-     Probably not solved (but you're fewer this year).
-
-** New things 2017 that we are keeping
-1. Two projects (but the simpler one needs beefing up)
-2. Survey for finding project groups 
-
 * Kursöversikt
 ** Faser och sprintar
 Kursen är uppdelad i tre faser, fas 1, 2 och 3. Fas 1 och 2
@@ -87,7 +50,7 @@ timmar varje vecka). Till labbarna kan du också gå för att få
 hjälp. Försök att alltid redovisa mål i sammanhängande klumpar.
 ** Om kursmålen
 För varje mål anges vilken nivå målet ligger på och hur det kan
-redovisas. 2018 finns ca 43 mål på nivå 3, 18 mål på nivå 4 och
+redovisas. 2020 finns ca 43 mål på nivå 3, 18 mål på nivå 4 och
 knappt 8 mål på nivå 5. Av de 43 målen på nivå 3 avser 4 mål
 avklarade inluppar och 6 mål redovisas i och med projektet. 
 
@@ -204,7 +167,10 @@ introduces a bug etc.
 *If the examiner finds the answer to 1--3 satisfactory*, she will
 hand over the running of the demonstration to you! Different
 examiners approach this task differently. Some will interrupt and
-ask questions. Some delay all questions to the end. 
+ask questions. Some delay all questions to the end.
+
+[[./misc/ioopm-rubrics.pdf][This "mind-map style" diagram]] shows what we're looking for
+(and not) in a presentation and also gives a checklist for passing.
 
 Only the achievements explicitly stated at the beginning of the
 demonstration can be passed in the demonstration. If you were to
@@ -285,20 +251,20 @@ kodprovet).
 
 *** Definitionen inluppar 1 avklarad
 
-- Två av Z-målen (inlupp 1--4) avbockade.
-- 14 avbockade mål på nivå 3 (du kan inte använda samma mål i flera faser)
+- Två av Z-målen (inlupp 1--4) avbockade, *och därutöver*
+- 15 "vanliga" avbockade mål på nivå 3 (du kan inte använda samma mål i flera faser)
 - Inga eftersläpande repetitionsmål
 
 *** Definitionen inluppar 2 avklarad
 
-- Resterande två av Z-målen (inlupp 1--4) avbockade.
-- 14 avbockade mål på nivå 3 (du kan inte använda samma mål i flera faser)
+- Resterande två av Z-målen (inlupp 1--4) avbockade, *och därutöver*
+- 15 "vanliga" avbockade mål på nivå 3 (du kan inte använda samma mål i flera faser)
 - Inga eftersläpande repetitionsmål
 
 *** Definitionen projektet avklarat
 
 - Målen Y64--Y69 uppfyllda, *och därutöver*
-- 4 avbockade mål på nivå 3 (du kan inte använda samma mål i flera faser)
+- 4 "vanliga"  avbockade mål på nivå 3 (du kan inte använda samma mål i flera faser)
 - Inga eftersläpande repetitionsmål
 
 * Arbetsflöde under kursen
@@ -528,13 +494,14 @@ vad en uppgift gick ut på. Saknar man fler än två uppgifter i C
 krav för att klara av kursen gäller som för nuvarande studenter.
 
 Om du har kvar någon av tentorna kommer examineringen ske i två
-steg. Först implementerar du en av kursens senare
-inlämningsuppgifter -- C-tentan motsvaras av Lagerhanteraren 2.0
-(notera att uppgiften bygger på en tidigare uppgift som du får
-implementera också), Java-tentan av valfri uppgift från sprint 5.
-Du hittar kraven för uppgifterna här. När du är klar (och har
+steg. Om du har C-tentan kvar skall du först göra
+[[./assignments/assignment1.html][inlämningsuppgift 1 (C)]]
+Du hittar kraven för uppgiften här. När du är klar (och har
 meddelat det) kommer du att kallas till en muntlig examination där
-du får relatera din kod till några av kursens mål.
+du får relatera din kod till några av kursens mål. Om du har Java-tentan
+kvar så gör du på samma sätt, men det är
+[[./assignments/assignment3.html][inlämningsuppgift 3 (Java)]]
+du skall göra.
 
 Vid redovisning kommer vi att gå igenom slumpvis valda mål som du
 måste kunna diskutera utifrån din lösning. Du skall klara av fem
@@ -547,13 +514,13 @@ mål av upp till sju.
 *A*: Grupperna postas i Piazza och uppdateras löpande. Vi får uppgifter om registrerade studenter stötvis vid terminens början och det går därför knackigt ibland att bli instoppad i en grupp.
 
 *Q*: Jag är inte med i någon grupp! \\
-*A*: Maila [[teaching-staff.org::head_ta][huvudassistenten]].
+*A*: Maila [[./teaching-staff.org::head_ta][huvudassistenten]].
 
 *Q*: Jag har inte något login i AU-portalen! \\
-*A*: Maila [[teaching-staff.org::head_ta][huvudassistenten]].
+*A*: Maila [[./teaching-staff.org::head_ta][huvudassistenten]].
 
 *Q*: Jag har inte tillgång till Piazza! \\
-*A*: Maila [[teaching-staff.org::head_ta][huvudassistenten]].
+*A*: Maila [[./teaching-staff.org::head_ta][huvudassistenten]].
 
 *Q*: Hur länge gäller delresultat på kursen som inte har rapporterats in i LADOK/UPPDOK? \\
 *A*: Avklarade kodprovsfrågor gäller till nästa kurstillfälle. Vad gäller enskilda mål gör vi en fall-för-fall-bedömning. Om du saknar färre än 10 mål från föregående tillfälle får du normalt tillgodoräkna dig dina tagna mål nästa år (= starta med dem avklarade). Läs mer här

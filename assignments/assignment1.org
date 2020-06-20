@@ -2,9 +2,9 @@
 #+include: "../setup.org"
 
 #+begin_important
-*Intended start*: 2018-09-17 \\
-*Soft deadline*: 2018-10-05 \\
-*Hard deadline*: 2018-10-19
+*Intended start*: 2019-09-16 \\
+*Soft deadline*: 2019-10-04 \\
+*Hard deadline*: 2019-10-18
 #+end_important
 
 * Introduction
@@ -904,7 +904,7 @@ Here is what such a test could look like:
 void test_create_destroy()
 {
    ioopm_hash_table_t *ht = ioopm_hash_table_create();
-   CU_ASSERT_PTR_NULL(ht);
+   CU_ASSERT_PTR_NOT_NULL(ht);
    ioopm_hash_table_destroy(ht);
 }
 #+END_SRC
@@ -2847,32 +2847,16 @@ Therefore, we are not going to bother refactoring the code to use
 the linked list instead of what we already have, in the hash
 table. However, because the linked list is a fundamental data
 structure, it pays off to have implemented one from the ground up.
-So that's what we are going to do next.
+So that's what we are going to do next: a /linked list/, and an /iterator/.
 
-*Note:* The [[./lists.org][linked list instructions]] are given in a separate
-document, which was not written specifically for this assignment.
-Thus, they are not divided into steps etc. The "Finish This Step"
-summary is below in /this/ document. You may want to read about
-linke lists first and then go here and implement the linked list
--- or whatever works for you.
-
-Following the [[./lists.org][linked list instructions]] in combination withe the
-points above, we will now switch tasks for a second, to implement
-a linked list. Although the instructions in the link above mention
-pointers to pointers, sticking with the dummy node is a fine
-choice. For now, we will [[../simple.org::*Dodging:%20Not%20Quite%20Cheating][dodge]] and consider only lists that store
-integers. (Feel free to tackle storing generic elements now if you
-feel up to it, but if you are new to C, better to wait.) We will
-undo this simplification later, but it a good initial
-simplification that makes things easy to test.
-
-Here are the functions you should implement. They are reminiscent
-of the functions in the hash table. Stick with the same approach
-(test-driven, classical) as before. The kinds of reasoning that we
-did for the hash table works here too, e.g., there are internal
-functions that can serve as the building blocks of public functions,
-and more specific public functions can (sometimes) delegate to
-more general public functions.
+The listing below lists the functions you should implement for the
+linked list. They are reminiscent of the functions in the hash
+table. Stick with the same approach (test-driven, classical) as
+before. The kinds of reasoning that we did for the hash table
+works here too, e.g., there are internal functions that can serve
+as the building blocks of public functions, and more specific
+public functions can (sometimes) delegate to more general public
+functions.
 
 Here are some questions to ponder:
 
@@ -2969,25 +2953,29 @@ void ioopm_linked_list_clear(ioopm_list_t *list);
 /// @brief Test if a supplied property holds for all elements in a list.
 /// The function returns as soon as the return value can be determined.
 /// @param list the linked list
-/// @param prop the property to be tested
-/// @param x an additional argument (may be NULL) that will be passed to all internal calls of prop
+/// @param prop the property to be tested (function pointer)
+/// @param extra an additional argument (may be NULL) that will be passed to all internal calls of prop
 /// @return true if prop holds for all elements in the list, else false
-bool ioopm_linked_list_all(ioopm_list_t *list, bool (*prop)(int, void *), void *x);
+bool ioopm_linked_list_all(ioopm_list_t *list, ioopm_char_predicate prop, void *extra);
 
 /// @brief Test if a supplied property holds for any element in a list.
 /// The function returns as soon as the return value can be determined.
 /// @param list the linked list
 /// @param prop the property to be tested
-/// @param x an additional argument (may be NULL) that will be passed to all internal calls of prop
+/// @param extra an additional argument (may be NULL) that will be passed to all internal calls of prop
 /// @return true if prop holds for any elements in the list, else false
-bool ioopm_linked_list_any(ioopm_list_t *list, bool (*prop)(int, void *), void *x);
+bool ioopm_linked_list_any(ioopm_list_t *list, ioopm_char_predicate prop, void *extra);
 
 /// @brief Apply a supplied function to all elements in a list.
 /// @param list the linked list
 /// @param fun the function to be applied
-/// @param x an additional argument (may be NULL) that will be passed to all internal calls of fun
-void ioopm_linked_apply_to_all(ioopm_list_t *list, void (*fun)(int *, void *), void *x);
+/// @param extra an additional argument (may be NULL) that will be passed to all internal calls of fun
+void ioopm_linked_apply_to_all(ioopm_list_t *list, ioopm_apply_char_function fun, void *extra);
 #+END_SRC
+
+*NOTE* that ~ioopm_char_predicate~ and ~ioopm_apply_char_function~ must be defined
+to work just like ~ioopm_predicate~ and ~ioopm_apply_function~, but with ~char~
+replaced with ~int~. [[step13][Later]], we will be able to merge these two functions. 
 
 The initial steps were very small in comparison with this step,
 but this step does not really include anything we have not done
@@ -2995,6 +2983,8 @@ before. See it as exercising the exact same elements as before,
 but on a slightly simpler data structure. A few more words before
 you get going:
 
+- Start with basic functions like create, destroy, append, and
+  prepend. Then move on to remove etc. Baby steps!
 - Avoid copy-pasting code! (Do you know why?)
 - Following good naming principles, including naming public
   function ~ioopm_~, etc.
@@ -3003,9 +2993,28 @@ you get going:
   or, in Emacs' =C-x h= to mark the entire buffer followed by =M-x
   indent-region=.
 
+
+*Note:* There are *optional*, generic [[./lists.org][linked list instructions]]
+available in a separate document, which was not written
+specifically for this assignment. Thus, they are not divided into
+steps etc. In 2018, many students were confused by this as they
+started following that document, which had a separate structure.
+The "Finish This Step" summary is below in /this/ document. You
+may want to read about linked lists first and then go here and
+implement the linked list -- or whatever works for you.
+
+In that spirit, although the instructions in the link above
+mention pointers to pointers, sticking with the dummy node is a
+fine choice. For now, we will [[../simple.org::*Dodging:%20Not%20Quite%20Cheating][dodge]] and consider only lists that
+store integers. (Feel free to tackle storing generic elements now
+if you feel up to it, but if you are new to C, better to wait
+until [[step13][Step 13]].) We will undo this simplification later, but it a
+good initial simplification that makes things easy to test.
+
+
 *** Finish This Step
 
-1. Implement /all/ the functions listed in the header file.
+1. Implement /all/ the functions listed in the header file above.
 2. Extend the documentation with how you deal with failures and
    all other assumptions or caveats. You are allowed to change
    function signatures when needed for failure handling (and
@@ -3025,12 +3034,24 @@ you get going:
 An iterator is an important concept that reifies the action of
 visiting all elements in a structure in some predefined order. An
 iterator typically allows visiting all elements and removing
-elements. An introduction to iterators that builds on the linked
-list page can be found [[./iterators.org][here]].
+elements. Iterators can make code simple. For example, here is
+a listing that prints all the integers in a linked list:
 
-To support iterators, we want to extend the list with the ability
-to create an iterator. Thus, such a function must be added to the
-public list interface:
+#+BEGIN_SRC c
+ioopm_list_iterator_t *iter = ioopm_list_iterator(my_list); 
+while(ioopm_iterator_has_next(iter))
+{
+  printf("%d\n", ioopm_iterator_next(iter));
+}
+ioopm_iterator_destroy(iter);
+#+END_SRC
+
+A generic introduction to iterators that builds on the
+generic linked list page can be found [[./iterators.org][here]].
+
+In this step, we shall extend the list with the ability to create
+an iterator. Thus, such a function must be added to the public
+list interface:
 
 #+BEGIN_SRC c
 /// @brief Create an iterator for a given list
@@ -3069,11 +3090,13 @@ bool ioopm_iterator_has_next(ioopm_list_iterator_t *iter);
 /// @return the next element
 int ioopm_iterator_next(ioopm_list_iterator_t *iter);
 
+/// NOTE: REMOVE IS OPTIONAL TO IMPLEMENT 
 /// @brief Remove the current element from the underlying list
 /// @param iter the iterator
 /// @return the removed element
 int ioopm_iterator_remove(ioopm_list_iterator_t *iter);
 
+/// NOTE: INSERT IS OPTIONAL TO IMPLEMENT 
 /// @brief Insert a new element into the underlying list making the current element it's next
 /// @param iter the iterator
 /// @param element the element to be inserted
@@ -3245,7 +3268,7 @@ functions should behave).
 7. [[../github.org][Check your code into the appropriate GitHub repos. Tag your
    commit with =assignment1_step12=.]]
 
-** Step 13: Supporting Arbitrary Data as Elements, Keys and Values
+** Step 13: Supporting Arbitrary Data as Elements, Keys and Values <<step13>>
 #+begin_tip
 [[../achievements.org::E10][Achievement E10]] is related to this step.
 #+end_tip
@@ -3281,6 +3304,7 @@ here is how to update them to work with ~elem_t~ instead of ~int~ and
 typedef bool (*ioopm_predicate)(elem_t key, elem_t value, void *extra);
 typedef void (*ioopm_apply_function)(elem_t key, elem_t *value, void *extra);
 #+END_EXAMPLE
+(Now we can also finally unify the various predicates etc.)
 
 Note that when we change the list to support generic types, we are
 going to break the code of the hash table -- because it uses the
@@ -3316,6 +3340,34 @@ spot the real errors.
 *Please read or skim all subsections below* before you get to
 work.
 
+#+begin_tip
+Changing the signatures of functions can be frustrating. Assume
+for example that you have lots of lines of code passing in
+integers to hash table functions. These will no longer work as
+keys and values expect ~elem_t~:s from now on. As an example, we
+can use ~ioopm_hash_table_insert(ht, 42, "4711")~. 
+
+An easy way to fix this is to introduce macros for creating
+elements, e.g.:
+
+#+BEGIN_SRC c
+#define int_elem(x) (elem_t) { .i=(x) }
+#define ptr_elem(x) (elem_t) { .p=(x) }
+#+END_SRC
+
+which allows us to rewrite the above as ~ioopm_hash_table_insert(ht, int_elem(42), ptr_elem("4711"))~. 
+Another option is to define a macro for the entire function:
+
+#+BEGIN_SRC c
+#define ioopm_int_str_ht_insert(ht, i, s) \
+   ioopm_hash_table_insert(ht, int_elem(i), ptr_elem(s))
+#+END_SRC
+
+Now we can simply rename all calls to ~ioopm_hash_table_insert~ to
+~ioopm_int_str_ht_insert~.
+#+end_tip
+
+
 *** Where Does ~elem_t~ belong?
 
 It is interesting to ask the question /where/ the definition of ~elem_t~
@@ -3337,6 +3389,10 @@ This type is thus defined everywhere where =stdlib.h= is included.
 
 Soon we will be adding a hash function type. Then you will have to
 think in similar ways: where does it's function type belong?
+
+Note: you don't want separate ~elem_t~'s for separate data
+structures. One for the entire program is enough, and declared in
+one place.
 
 *** Pass Function Pointers to the List's Constructor
 
@@ -4021,12 +4077,12 @@ procedure and stick it in your Makefile.*
    demonstration or answers all questions to avoid someone failing
    the demonstration because there was no evidence of achievements
    mastery.
-5. Send an email to [[mailto:z100@wrigstad.com][z100@wrigstad.com]] with your names and
+5. Send an email to [[mailto:ioopm@it.uu.se][ioopm@it.uu.se]] with your names and
    usernames, a link to the GitHub repository where the code can
    be checked out.
 6. Create a final commit for the assignment and [[../github.org][check it into
    GitHub]]. Tag the commit with =assignment1_done=.
-7. *Optional* Please take time to [[mailto:z100-feedback@wrigstad.com][feedback on the assignment]].
+7. *Optional* Please take time to [[mailto:ioopm@it.uu.se][feedback on the assignment]].
 
 *Note:* Don't expect any feedback on your program over what you
 have got from the oral presentations. If you want more feedback on

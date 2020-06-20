@@ -1,4 +1,5 @@
 ;; This is the assumed theme to get colours right of code
+
 (load-theme 'dracula)
 
 (defun tw/escape-brackets (text)
@@ -18,7 +19,7 @@
  :export (lambda (path desc backend)
            (cond
             ((eq 'html backend)
-             (format "<a href=\"http://wrigstad.com/ioopm18/achievements.html#%s\">%s</i></a>" path desc))))
+             (format "<a href=\"http://wrigstad.com/ioopm19/achievements.html#%s\">%s</i></a>" path desc))))
              ;; (format "<a href=\"http://auportal.herokuapp.com/achievements/%s\">%s</i></a>" path desc))))
  :face '(:foreground "DarkGoldenrod3"))
 
@@ -91,13 +92,15 @@
 
              ;; (format "%s <button type=\"button\" class=\"btn btn-secondary\" data-toggle=\"tooltip\" data-html=\"true\" title=\"%s\"><i class=\"fas fa-question-circle\"></button>" desc (org-export-string-as path 'html t)))))
 
+(setq ioopm-web-dir (file-name-directory (buffer-file-name)))
+
 (setq org-publish-project-alist
-      '(("root"
-         :base-directory "/Users/stw/Teaching/ioopm18/2018/site/"
+      `(("root"
+         :base-directory ,(concat ioopm-web-dir "")
          :base-extension "org"
          :exclude "setup.org\\|footer.org\\|code-exams\\|readme.org"
          ;; :publishing-directory "/tmp/ioopm18/"
-         :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/ioopm18/"
+         :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/"
          :publishing-function tw/org-html-publish-to-html
          :headline-levels 3
          :section-numbers t
@@ -111,44 +114,38 @@
          :html-preamble t)
 
         ("images"
-         :base-directory "Users/stw/Teaching/ioopm18/2018/site/images/"
+         :base-directory ,(concat ioopm-web-dir "images/")
          :base-extension "jpg\\|gif\\|png"
          ;; :publishing-directory "/tmp/ioopm18/images/"
-         :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/ioopm18/images/"
+         :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/images/"
          :publishing-function org-publish-attachment)
 
         ("misc"
-         :base-directory "Users/stw/Teaching/ioopm18/2018/site/misc/"
+         :base-directory ,(concat ioopm-web-dir "misc/")
          :base-extension "el\\|pdf\\|c\\|h\\|java\\|txt\\|cast\\|png\\|zip"
          ;; :publishing-directory "/tmp/ioopm18/misc/"
-         :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/ioopm18/misc/"
+         :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/misc/"
          :publishing-function org-publish-attachment)
 
         ("css"
-         :base-directory "Users/stw/Teaching/ioopm18/2018/site/css/"
+         :base-directory ,(concat ioopm-web-dir "css/")
          :base-extension "css"
          ;; :publishing-directory "/tmp/ioopm18/css/"
-         :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/ioopm18/css/"
+         :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/css/"
          :publishing-function org-publish-attachment)
 
         ("fonts"
-         :base-directory "Users/stw/Teaching/ioopm18/2018/site/css/fonts/"
+         :base-directory ,(concat ioopm-web-dir "css/fonts/")
          :base-extension "ttf"
-         :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/ioopm18/css/fonts/"
+         :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/css/fonts/"
          :publishing-function org-publish-attachment)
 
         ("js"
-         :base-directory "Users/stw/Teaching/ioopm18/2018/site/js/"
+         :base-directory ,(concat ioopm-web-dir "js/")
          :base-extension "js"
          ;; :publishing-directory "/tmp/ioopm18/js/"
-         :publishing-directory "/ssh:tobias@wrigstad.com:~/domains/wrigstad.com/www/ioopm18/js/"
+         :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/js/"
          :publishing-function org-publish-attachment)
-
-        ;; ("other"
-        ;;  :base-directory "~/other/"
-        ;;  :base-extension "css\\|el"
-        ;;  :publishing-directory "/ssh:user@host:~/html/other/"
-        ;;  :publishing-function org-publish-attachment)
 
         ("ioopm website" :components ("root" "misc" "fonts" "images" "css" "js"))))
 

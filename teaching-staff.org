@@ -1,63 +1,68 @@
-#+title: Teaching Staff of 2019
+#+title: Teaching Staff of 2020
 #+include: "./setup.org"
 
 #+begin_verse 
 Running IOOPM has always been a team effort. Nevertheless,
 different people play different roles. On this page, we list the
-people involved in running the course in 2019.
+people involved in running the course in 2020.
 #+end_verse
 
-* Head Teacher: Lars-Henrik Eriksson <<head_teacher>>
-#+ATTR_HTML: :width 300px :align right :title: Lars-Henrik Eriksson
-https://webb.uu.se/image/full_image?img_id=1134012&t=1383558678000
-- Office: 1137
-- Office hours: TBA
-- Email: [[mailto:tobias.wrigstad@it.uu.se][lhe@it.uu.se]]
-* TODO Head Teaching Assistant: TBA
-<<HeadTA>>
-#+ATTR_HTML: :width 300px :align right :title: NN
-[[file:images/gustaf-borgstrom.jpg]]
+* Head Teacher: Tobias Wrigstad <<head_teacher>>
+#+ATTR_HTML: :width 300px :align right :title: Tobias Wrigstad
+http://wrigstad.com/images/tobias-philly.jpg
+- Office: https://uu-se.zoom.us/my/wrigstad
+- Office hours: chaotic good
+- Email: [[mailto:tobias.wrigstad@it.uu.se][tobias.wrigstad@it.uu.se]]
+* Head Teaching Assistant: Albin Stjerna <<head_ta>>
+#+ATTR_HTML: :width 300px :align right :title: Albin Stjerna
+https://webb.uu.se/image/full_image?img_id=408664241&t=1570108351203
 - Office: TBA
 - Office hours: TBA
-- Email: [[mailto:someone@it.uu.se][someone@it.uu.se]]
-* TODO TAs 
-# - Akram Adinda
-# - Alexander Troshin
-# - Alexis Remmers
-# - Ardalan Samimi
-# - Benjamin Ek
-# - Elwira Johansson
-# - Erik Rimskog
-# - Jonas Norlinder 
-# - Joy van den Eijkhof
-# - Linnea Ingmar
-# - Michael Rehn
-# - Sanna Kurdahl
-* TODO Teams and Coaches
-# | Team | Coach               |
-# |------+---------------------|
-# |    1 | Alexander Troshin   |
-# |    2 | Alexis Remmers      |
-# |    3 | Ardalan Samimi      |
-# |    4 | Benjamin Ek         |
-# |    5 | Elwira Johansson    |
-# |    6 | Erik Rimskog        |
-# |    7 | Joy van den Eijkhof |
-# |    8 | Linnea Ingmar       |
-# |    9 | Michael Rehn        |
-# |   10 | Sanna Kurdahl       |
-# |   11 | Gustaf Borgström    |
+- Email: [[mailto:albin.stjerna@it.uu.sem][albin.stjerna@it.uu.se]]
+* Teaching Assistants 
+Coming soon
+# - Alexander Troshin, [[mailto:mail@novium.pw][mail@novium.pw]]
+# - Alexis Remmers, [[mailto:alexis.remmers.8950@student.uu.se][alexis.remmers.8950@student.uu.se]]
+# - Benjamin Ek, [[mailto:benjamin.ekh@gmail.com][benjamin.ekh@gmail.com]]
+# - Carl Enlund, [[mailto:carl.enlund@gmail.com][carl.enlund@gmail.com]]
+# - Erik Rimskog, [[mailto:erik.rimskog@gmail.com][erik.rimskog@gmail.com]]
+# - Henrik Johansson, [[mailto:emmanuelhenrik@gmail.com][emmanuelhenrik@gmail.com]]
+# - Iza Alstergren, [[mailto:izaalstergren@hotmail.com][izaalstergren@hotmail.com]]
+# - Lisa Bevemyr, [[mailto:lisa@bevemyr.com][lisa@bevemyr.com]]
+# - Maja Danielsson, [[mailto:danielsson.maja96@gmail.com][danielsson.maja96@gmail.com]]
+# - Markuss Sprogis, [[mailto:markuss.sprogis.1122@student.uu.se][markuss.sprogis.1122@student.uu.se]]
+# - Martin Eriksson, [[mailto:woodauncher@gmail.com][woodauncher@gmail.com]]
+# - Max Perea Düring, [[mailto:maxpereaduring@gmail.com][maxpereaduring@gmail.com]]
+# - Michael Rehn, [[mailto:rehn.michael@outlook.com][rehn.michael@outlook.com]]
+# - Pontus Ernstedt, [[mailto:poer0276@student.uu.se][poer0276@student.uu.se]]
+# - Sanna Kurdahl, [[mailto:sanna.kurdahl.8455@student.uu.se][sanna.kurdahl.8455@student.uu.se]]
+# - Siriann Göhl, [[mailto:siriann.g@gmail.com][siriann.g@gmail.com]]
+* Teams and Coaches
+Coming soon
+# | Team | Coach             |
+# |------+-------------------|
+# |    1 | Alexander Troshin |
+# |    2 | Alexis Remmers    |
+# |    3 | Benjamin Ek       |
+# |    4 | Henrik Johansson  |
+# |    5 | Maja Danielsson   |
+# |    6 | Markuss Sprogis   |
+# |    7 | Martin Eriksson   |
+# |    8 | Max Perea Düring  |
+# |    9 | Pontus Ernstedt   |
+# |   10 | Sanna Kurdahl     |
+# |   11 | Siriann Göhl      |
 
 * Getting in Touch
 - Talk to us during lectures and labs :: 
-     See the [[https://cloud.timeedit.net/uu/web/schema/ri1875ZQ0QYZ01Q0wo7YwcQ25y6QZ6XfYxZ020g.html][schedule]] for details. 
-- Use [[https://piazza.com/class/jkd32onglxi2vb][Piazza]] :: 
-     For questions that are not sensitive, consdier asking a [[public][public question]] (/Entire Class/)
+     See the [[https://cloud.timeedit.net/uu/web/schema/riq56QxY8Q5ZZXQ5y07Z565760Z0Y5g406g6600QQ1o00g6045Z4Yq6Qo.html][schedule]] for details. 
+- Use [[https://piazza.com/class/k01yr6gds9m62i][Piazza]] :: 
+     For questions that are not sensitive, consider asking a [[public][public question]] (/Entire Class/)
      rather than a [[private][private question]] (/Individual Student(s) / Instructor(s)/). Most questions are of interest to many students,
      and often, many other students chip in to try and untangle some issue, 
      which is good for everyone.
 - Come by our offices :: 
-     *TBA* Lars-Henrik's office hours 
+     In 2020, this means zoom. Book a time on email first. 
 # Tobias is not in most Tuesdays, but otherwise he should be around unless he is not lecturing or labbing on IOOPM. 
 - Send us an email ::
      This should be the last resort, really. Please use your student email so that we

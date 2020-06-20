@@ -160,18 +160,18 @@ courses later!
 * Project Infrastructure and Constraints
 ** Time: Lower bound, upper bound
 
-The project may start at December 4th, but not earlier. The
+The project may start at December 2th, but not earlier. The
 project will be handed in no later than 24 hours /before/ the
-seminar. For example, if your team's seminar is on the 11th of
-January at 15:00, the strict deadline is January 10th, at 15:00.
+seminar. For example, if your team's seminar is on the 16th of
+January at 15:00, the strict deadline is January 15th, at 15:00.
 *This is a strict deadline which may not be renegotiated.*
 The time slots for the seminars will be announced on the course
 web site or Piazza in December.
 
 We expect that you take some time off during Christmas and New
 Year. The definition of /some time/ is up to you. For example, in
-2017, there are exactly four holidays (December 25 and 26, 1st and
-5th of January), in addition to weekends. Feel free to handle this
+2020/21, there are exactly four holidays (December 24 and 25, 
+January 1 and 5), in addition to weekends. Feel free to handle this
 in whatever way you want, as long as you get the work done.
 
 In the past, I have had several panic calls from project members

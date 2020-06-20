@@ -133,7 +133,7 @@ komma med tips på passande mål! Avsluta med att visa era burndown
 charts för hela kursen och säg något om er nuvarande styrfart.
 
 *Teamet skriver en rapport för varje möte* som lämnas in via mail
-till coachen och till funktionsadressen [[mailto:ioopm@it.uu.se]], och
+till coachen och till funktionsadressen [[mailto:ioopm@it.uu.se][ioopm@it.uu.se]], och
 CC:as till samtliga i teamet. *Ämnesrad på mailet enligt tabell
 ovan!* Rapporten skall vara mycket kortfattad och innehålla:
 
@@ -220,7 +220,7 @@ Under tre separata rubriker:
 
 Under två separata rubriker:
 
-1. Hur upplever ni programspråket Java? 
+1. Hur upplever ni programspråket Java?
 2. Vad bör vi göra annorlunda nästa år (eller i fas 2)? 
 
 
