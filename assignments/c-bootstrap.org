@@ -472,21 +472,56 @@ inklippta texten och köra [[key:M-x]] =eval-region=.
 
 ** Steg 2: Setup
 
-Nu är det dags att skapa en katalog för kursen i din hemkatalog på
-Linux-maskinerna (eller på din egen dator, eller båda). Ett
-lämpligt namn för denna katalog är =ioopm=. Sedan skall vi skapa en
-underkatalog =lab1=, en tom fil =hello.c= i den och starta Emacs
-för att editera filen.
+Vi kommer från början att använda oss av versionshanteringsprogrammet
+Git. Att använda sig av Git är en viktig del i modern programvaruutveckling,
+då det underlättar samarbete och tillhandahåller en historik av koden.
+Ingen enskild komponent kring Git är speciellt svår, men det kan vara många
+aspekter att hålla reda på, så vi kommer att introducera detta stegvis under
+kursens gång.
+
+I denna kurs kommer vi att använda oss av GitHub som tillhandahåller en
+Git-server åt oss och du bör ha fått ett
+GitHub-repo från oss på en adress som liknar
+https://github.com/IOOPM-UU/fornamn.efternamn.1234, där
+=fornamn.efternamn.1234= är ditt student-ID (om du inte har fått
+det, följ [[../github.org][dessa instruktioner]]. Ett repo (förkortning av
+engelska ordet _repository_, som på svenska betyder förvar) kan ses som en
+speciell typ av filmapp i din dator. I denna mapp kommer du att spara allt
+ditt arbete under kursens gång. För att komma igång med ditt repo behöver du
+göra följande.
 
 #+begin_example
-$ cd ~              # gå till din hemkatalog
-$ mkdir ioopm       # skapa underkatalogen ioopm
-$ cd ioopm          # gå in i ioopm-katalogen
-$ mkdir lab1        # skapa underkatalogen lab1
-$ cd lab1           # gå in i lab1-katalogen
-$ touch hello.c     # skapa en tom fil hello.c
-$ emacs hello.c &   # starta Emacs för att editera filen
-$
+$ cd ~                                                         # gå till din hemkatalog
+$ git clone https://github.com/IOOPM-UU/fornamn.efternamn.1234 # klona ditt repot
+#+end_example
+
+Nu har du klonat repot och skapat en lokal kopia på din dator. I första kodexemplet
+ska vi skapa en fil =hello.c=. Låt oss förbereda oss för det genom att skapa
+en tom =hello.c= och se hur vi kan ladda upp denna fil till GitHub.
+
+#+begin_example
+$ cd ~/fornamn.efternamn.1234        # gå till ditt repo
+$ mkdir lab1 # skapa underkatalogen lab1
+$ cd lab1                            # gå in i lab1-katalogen
+$ touch hello.c # skapa en tom fil hello.c
+$ git add hello.c                    # lägg till filen som en del av din filuppladdning
+$ git commit -m "First Hello!" # ge din uppladdning en kommentar
+\$ git push # ladda upp till GitHub
+#+end_example
+
+Om allt fungerade bör du kunna se din fil om du öppnar webbläsaren och går
+in på [](https://github.com/IOOPM-UU/fornamn.efternamn.1234). För att
+sammanfatta det mest rudimentära arbetsflödet i Git:
+
+- Du skapar filer eller gör ändringar
+- Du markerar alla filer du har skapat eller gjort ändringar i genom =git add fil1 fil2 ... filXXX=
+- Du ger din uppladdning en kommentar genom =git commit -m "KOMMENTAR"=
+- Du genomför uppladdningen med =git push=
+
+Slutligen, öppna nu hello.c i Emacs
+#+begin_example
+$ cd ~/fornamn.efternamn.1234/lab1    # gå till lab1
+$ emacs hello.c &
 #+end_example
 
 Om du kör på institutionens Linux och inte har gjort någon egen
@@ -513,7 +548,7 @@ kopierar från en som fungerar.
 
 Det klassiska första programmet att skriva i varje programspråk är "Hello, world!"
 
-Börja med att skapa filen =hello.c= så här: [[key:C-x]] [[key:C-f]]
+Börja med att öppna filen =hello.c= så här: [[key:C-x]] [[key:C-f]]
 =hello.c=. Tangentbordskombinationen [[key:C-x]] [[key:C-f]] i Emacs är
 bunden till funktionen =find-file= som alltså öppnar en fil, eller
 skapar en fil -- om filen inte finns. För att spara filen trycker
@@ -545,13 +580,14 @@ Kompilera programmet med =gcc hello.c= -- nu skapas filen =a.out=
 som du kör så här: =./a.out=. Så här kan det se ut i terminalen:
 
 #+begin_example
-$ emacs hello.c &       # startar Emacs
-$ gcc hello.c           # kompilerar hello.c
-$ ls                    # listar filerna i terminalen
+$ cd ~/fornamn.efternamn.1234/lab1 # gå till lab1
+$ emacs hello.c &                  # startar Emacs
+$ gcc hello.c                      # kompilerar hello.c
+$ ls                               # listar filerna i terminalen
 a.out   hello.c
-$ ./a.out               # kör a.out
-Hello, world!           # programmets output
-$ _                     # väntande kommandoprompt
+$ ./a.out                          # kör a.out
+Hello, world!                      # programmets output
+$ _                                # väntande kommandoprompt
 #+end_example
 
 Funktionen ~puts()~ skriver ut en sträng på terminalen (~puts~ = "put
@@ -620,6 +656,17 @@ printf("%d\n", x);
 #+END_SRC
 
 kommer första utskriften av ~x~ att bli 5 och den andra 42.
+
+Ta till vana att spara dina ändringar i Git så fort det är lämpligt. Att "spara"
+något i Git brukar refereras som att man "committar" något.
+Committa ditt första program genom att
+
+#+begin_example
+$ git add hello.c              # markera att du har gjort 
+                                 ändringar i hello.c som du vill spara
+$ git commit -m "Add greeting" # skriv en högnivåförklaring
+$ git push                     # pusha upp dina ändringar
+#+end_example
 
 *** Mini-övning
 
