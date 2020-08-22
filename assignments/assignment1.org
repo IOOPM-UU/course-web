@@ -2997,7 +2997,7 @@ you get going:
 *Note:* There are *optional*, generic [[./lists.org][linked list instructions]]
 available in a separate document, which was not written
 specifically for this assignment. Thus, they are not divided into
-steps etc. In 2018, many students were confused by this as they
+steps etc. In the past, some students were confused by this as they
 started following that document, which had a separate structure.
 The "Finish This Step" summary is below in /this/ document. You
 may want to read about linked lists first and then go here and

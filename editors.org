@@ -3,478 +3,511 @@
 #+include: "./asciinema-setup.org"
 
 #+begin_attention
-Most of this text is being written from scratch in 2018. For now, refer to the bootstrap sections on the [[./assignments/c-bootstrap.org][C bootstap labs]].
+Until 2020, the course has relied on -- and enforced -- use of
+Emacs and/or vim for editing for several reasons. However, in the
+COVID year of 2020, we are switching to Cloud 9, an online
+platform. While Cloud 9 hides some parts of coding in a bad way
+(for learning, not for software development), it does allow for
+very nice and useful *collaborative editing* with multiple cursors
+visible in the same window. 
 #+end_attention
 
-* Introduktion till Emacs
+If you use Cloud 9 exclusively on the course, all the programming
+will happen in an editor in your browser, and there is no *need*
+for you to install anything locally. When interacting with
+teachers -- to get help and to demonstrate achievements -- you
+will need to use Cloud 9. However, if you want to install things
+locally on your machine and use your own favourite editor, feel
+free to. 
 
-#+begin_note
-Skrevs av Elias Castegren, huvudassistent på IOOPM 2011--2017.
-Vissa tillägg av Tobias Wrigstad (huvudlärare på IOOPM 2011--2018) (speciella kortkommandon för IOOPM).
+* Cloud 9
 
-[[https://www.youtube.com/watch?v=d6iY_1aMzeg&list=PLX2044Ew-UVVv31a0-Qn3dA6Sd_-NyA1n][Här finns en YouTube-kanal]] med 20+ Emacs-videos i tutorial-format,
-för dig som gillar video-orienterad kommunikation. 
-#+end_note
+We have not yet had the time to produce any local documentation
+for Cloud 9. Instead we refer you to the [[https://docs.aws.amazon.com/cloud9/latest/user-guide/welcome.html][official documentation]].
+You do not need to concern yourself with installation, setting up
+the enviroment and so forth. 
 
-det här är en kort genomgång av några väldigt grundläggande
-kommandon i Emacs. Dokumentet är inte utförligt eller ens särskilt
-pedagogiskt, utan jag har försökt sammanfatta de kommandon som jag
-själv har haft mest nytta av (och använder i princip dagligen).
-Det är inte en introduktion, utan snarare en resurs för den som
-har använt Emacs lite grand och vill lära sig att bli mer
-effektiv. Du kan också använda filen =init.el= (se ovan) som
-utgångspunkt om du vill konfigurera ditt eget Emacs. Emacs letar
-efter inställningar (bland annat) genom sökvägen
-=~/.emacs.d/init.el=.
+Beware of old tutorial videos that miss lots of the more recent
+features or simply looks different.
 
-Nästan alla kortkommandon i Emacs innehåller tangenterna Control
-och Meta (symbolen som ser ut som en diamant på tangentborden i
-datorsalarna). När man skriver ut kortkommandona skriver man [[key:C]]
-för Control och [[key:M]] för Meta. För att till exempel spara en fil
-trycker man key:C-x key:C-s, alltså först "Control x" (håll in
-Control och tryck "x"), och sen "Control s" (håll in key:Ctrl och
-tryck "s"). Det är ofta så att "Control bokstav" och "Meta
-bokstav" gör liknande saker. key:C-f flyttar till exempel fram
-markören ett tecken, medan key:M-f flyttar fram den ett helt ord.
-På datorer som inte har en Meta-tangent brukar man kunna använda
-key:ESC (i terminalen eller grafiskt) eller key:Alt (grafiskt)
-istället. På Mac-datorer funkar key:Cmd eller key:Alt (beroende på
-vilken version av Emacs man kör). I det här dokumentet skrivs
-specialtangenter som space, delete och return ut med vinkelhakar:
-[[key:<space>]], [[key:<del>]] och [[key:<ret>]].
+* Emacs 
 
-Det bästa sättet att lära sig är att helt enkelt försöka använda
-alla kommandon så ofta som möjligt. Varje gång man gör något, om
-det så är kopiera text eller bara flytta markören, så ska man
-fundera på hur man kan göra det med så få knapptryckningar som
-möjligt. I början kommer det kännas omständligt att leta upp
-kortkommandon för allt man ska göra, men efter ett tag sätter det
-sig i fingrarna och då kommer man att bli mer effektiv i sitt
-arbete. Sist i dokumentet finns en sida som sammanfattar några
-användbara kommandon. Den kan man med fördel skriva ut och låta
-ligga bredvid datorn när man arbetar. Här följer en kort
-beskrivning av dessa kommandon.
+*For those who want to install a local environment*, we recommend
+learning the Emacs editor. There are plenty testament from past
+students in the course that this has been extremely well-invested
+time. (Not counting the student who stated that Emacs was the best
+thing that had happened to him since meeting his wife.)
 
-** Öppna filer och hantera buffrar
+** Introduktion till Emacs
 
-När man startar Emacs är det första man vill göra att välja vilken
-fil man vill jobba med. För att öppna en fil är kommandot key:C-x
-key:C-f (*f* som i *find file*). Om filen inte finns kommer den
-att skapas. Sparar gör man med key:C-x key:C-s (*save file*),
-eller [[key:C-x]] key:C-w (*write file*) om man vill ange ett nytt
-namn på filen. Rent tekniskt skapas en ny fil när man sparar för
-första gången.
+ #+begin_note
+ Skrevs av Elias Castegren, huvudassistent på IOOPM 2011--2017.
+ Vissa tillägg av Tobias Wrigstad (huvudlärare på IOOPM 2011--2018, 2020) (speciella kortkommandon för IOOPM).
 
-När man öppnar en fil i Emacs läses den in till en buffer. Man kan
-ha flera buffrar inlästa samtidigt, och man byter buffer genom att
-trycka [[key:C-x]] [[key:b]] och ange namnet på buffern man vill byta
-till. key:C-x key:C-b visar en lista på alla inlästa buffrar, och
-[[key:C-x]] [[key:k]] (*kill buffer*) stänger den aktiva buffern.
+ [[https://www.youtube.com/watch?v=d6iY_1aMzeg&list=PLX2044Ew-UVVv31a0-Qn3dA6Sd_-NyA1n][Här finns en YouTube-kanal]] med 20+ Emacs-videos i tutorial-format,
+ för dig som gillar video-orienterad kommunikation. 
+ #+end_note
 
-Om man vill kunna se flera buffrar samtidigt kan man dela
-Emacs-fönstret horisontellt ([[key:C-x]] [[key:2]]) eller vertikalt ([[key:C-x]]
-[[key:3]]). Man byter mellan öppna fönster med [[key:C-x]] [[key:o]] (*other
-window*) eller genom att klicka i ett fönster. [[key:C-x]] [[key:0]]
-stänger det aktiva fönstret, och [[key:C-x]] [[key:1]] stänger alla
-fönster förutom det aktiva.
+ det här är en kort genomgång av några väldigt grundläggande
+ kommandon i Emacs. Dokumentet är inte utförligt eller ens särskilt
+ pedagogiskt, utan jag har försökt sammanfatta de kommandon som jag
+ själv har haft mest nytta av (och använder i princip dagligen).
+ Det är inte en introduktion, utan snarare en resurs för den som
+ har använt Emacs lite grand och vill lära sig att bli mer
+ effektiv. Du kan också använda filen =init.el= (se ovan) som
+ utgångspunkt om du vill konfigurera ditt eget Emacs. Emacs letar
+ efter inställningar (bland annat) genom sökvägen
+ =~/.emacs.d/init.el=.
 
-#+begin_note
-Om du använder inställningsfilen från IOOPM har du följande kortkommandon också: 
-- [[key:C-x]] [[key:|]] -- delar fönstret vertikalt
-- [[key:C-x]] [[key:-]] -- delar fönstret horisontellt
-- [[key:M-n]] [[key:n]]-- öppna en tom buffert (som knyts till en fil först vid spara)
-(De två första kortkommandona är inspirerade av =tmux=.)
-#+end_note
+ Nästan alla kortkommandon i Emacs innehåller tangenterna Control
+ och Meta (symbolen som ser ut som en diamant på tangentborden i
+ datorsalarna). När man skriver ut kortkommandona skriver man [[key:C]]
+ för Control och [[key:M]] för Meta. För att till exempel spara en fil
+ trycker man key:C-x key:C-s, alltså först "Control x" (håll in
+ Control och tryck "x"), och sen "Control s" (håll in key:Ctrl och
+ tryck "s"). Det är ofta så att "Control bokstav" och "Meta
+ bokstav" gör liknande saker. key:C-f flyttar till exempel fram
+ markören ett tecken, medan key:M-f flyttar fram den ett helt ord.
+ På datorer som inte har en Meta-tangent brukar man kunna använda
+ key:ESC (i terminalen eller grafiskt) eller key:Alt (grafiskt)
+ istället. På Mac-datorer funkar key:Cmd eller key:Alt (beroende på
+ vilken version av Emacs man kör). I det här dokumentet skrivs
+ specialtangenter som space, delete och return ut med vinkelhakar:
+ [[key:<space>]], [[key:<del>]] och [[key:<ret>]].
 
-** Navigering
+ Det bästa sättet att lära sig är att helt enkelt försöka använda
+ alla kommandon så ofta som möjligt. Varje gång man gör något, om
+ det så är kopiera text eller bara flytta markören, så ska man
+ fundera på hur man kan göra det med så få knapptryckningar som
+ möjligt. I början kommer det kännas omständligt att leta upp
+ kortkommandon för allt man ska göra, men efter ett tag sätter det
+ sig i fingrarna och då kommer man att bli mer effektiv i sitt
+ arbete. Sist i dokumentet finns en sida som sammanfattar några
+ användbara kommandon. Den kan man med fördel skriva ut och låta
+ ligga bredvid datorn när man arbetar. Här följer en kort
+ beskrivning av dessa kommandon.
 
-Du kan scrolla nedåt i ett fönster med key:C-v (*view next
-screen*) och upp med key:M-v. key:C-l (*center line*) centrerar
-fönstret vid markören. Trycker man key:C-l flera gånger så
-scrollas fönstret så att markören hamnar överst eller underst i
-fönstret. Utöver dessa kommandon fungerar key:PgUp och key:PgDn
-som vanligt, även om moderna laptops inte brukar ha särskilda
-tangenter för dessa kommandon längre. 
+*** Öppna filer och hantera buffrar
 
-Kortkommandona för att flytta markören är key:C-f (*forward*), key:C-b
-(*backward*), key:C-n (*next line*) och key:C-p (*previous line*).
-Håller man in meta-tangenten istället för control (alltså key:M-f
-och key:M-b) flyttar man markören hela ord istället. Det finns också
-kortkommandon för att (bland annat) flytta markören till början
-eller slutet av den nuvarande raden, meningen, funktionen eller
-buffern.
+ När man startar Emacs är det första man vill göra att välja vilken
+ fil man vill jobba med. För att öppna en fil är kommandot key:C-x
+ key:C-f (*f* som i *find file*). Om filen inte finns kommer den
+ att skapas. Sparar gör man med key:C-x key:C-s (*save file*),
+ eller [[key:C-x]] key:C-w (*write file*) om man vill ange ett nytt
+ namn på filen. Rent tekniskt skapas en ny fil när man sparar för
+ första gången.
 
-Man kan flytta markören med piltangenterna (även i kombination med
-control- och meta-tangenterna) eller genom att klicka med musen
-också, men med kortkommandona går det betydligt snabbare och man
-slipper flytta händerna.
+ När man öppnar en fil i Emacs läses den in till en buffer. Man kan
+ ha flera buffrar inlästa samtidigt, och man byter buffer genom att
+ trycka [[key:C-x]] [[key:b]] och ange namnet på buffern man vill byta
+ till. key:C-x key:C-b visar en lista på alla inlästa buffrar, och
+ [[key:C-x]] [[key:k]] (*kill buffer*) stänger den aktiva buffern.
 
-Varje gång man gör något "särskilt" i Emacs (markerar text,
-klipper ut eller kopierar något, söker, och så vidare) så sparas
-markörens nuvarande position högst upp i den så kallade
-mark-stacken. För att hoppa till den position som är överst i
-mark-stacken använder man key:C-u [[key:C-<space>]]. Det tar också bort den
-positionen från mark-stacken. Ett bra sätt att snabbt komma
-tillbaka till "där man nyss var" är att trycka key:C-u [[key:C-<space>]]
-några gånger.
+ Om man vill kunna se flera buffrar samtidigt kan man dela
+ Emacs-fönstret horisontellt ([[key:C-x]] [[key:2]]) eller vertikalt ([[key:C-x]]
+ [[key:3]]). Man byter mellan öppna fönster med [[key:C-x]] [[key:o]] (*other
+ window*) eller genom att klicka i ett fönster. [[key:C-x]] [[key:0]]
+ stänger det aktiva fönstret, och [[key:C-x]] [[key:1]] stänger alla
+ fönster förutom det aktiva.
 
-#+begin_note
-Om du använder inställningsfilen från IOOPM har du följande kortkommandon också: 
-- [[key:C-x]] [[key:högerpil]] -- flytta markören till fönstret till höger (fungerar också med vänster, upp och ned)
-- [[key:C-']] [[key:X]] -- låter dig snabbt hoppa till alla förekomster av tecknet =X= som finns på skärmen (du kan förstås byta ut =X= mot valfritt annat tecken)
-- [[key:M-g]] [[key:c]] [[key:X]] -- modernare variant av ovanstående funktion 
-- key:M-i -- låter dig hoppa till t.ex. en funktion, etc. i koden 
-- key:M-å -- färglägger ordet som markören står på i hela filen
-- key:M-ä -- hoppar till nästa förekomst av ordet som markören står på
-- key:M-ö -- hoppar till föregående förekomst av ordet som markören står på
-- key:M-p -- ersätt alla (efterföljande) förekomster av ordet som markören står på mot något annat
-- key:M-g [[key:m]] -- pusha en markering på mark-stacken
-- key:M-g [[key:<space>]] -- poppa en markering på mark-stacken och hoppa dit
-#+end_note
+ #+begin_note
+ Om du använder inställningsfilen från IOOPM har du följande kortkommandon också: 
+ - [[key:C-x]] [[key:|]] -- delar fönstret vertikalt
+ - [[key:C-x]] [[key:-]] -- delar fönstret horisontellt
+ - [[key:M-n]] [[key:n]]-- öppna en tom buffert (som knyts till en fil först vid spara)
+ (De två första kortkommandona är inspirerade av =tmux=.)
+ #+end_note
 
-** Redigera text
+*** Navigering
 
-Om man vill ta bort text i Emacs kan man ta bort enskilda tecken
-bakåt med [[key:<del>]] (backspace) och framåt med key:C-d
-(*delete*). När man tar bort mer text åt gången så klipper man
-egentligen ut den (så att man kan klistra in den igen). Man kan ta
-bort hela ord bakåt och framåt med [[key:M-<del>]] och key:M-d.
-Med key:C-k (*kill line*) tar man bort resten av raden från och
-med markören. [[key:C-0]] [[key:k]] tar bort raden fram till
-markören
+ Du kan scrolla nedåt i ett fönster med key:C-v (*view next
+ screen*) och upp med key:M-v. key:C-l (*center line*) centrerar
+ fönstret vid markören. Trycker man key:C-l flera gånger så
+ scrollas fönstret så att markören hamnar överst eller underst i
+ fönstret. Utöver dessa kommandon fungerar key:PgUp och key:PgDn
+ som vanligt, även om moderna laptops inte brukar ha särskilda
+ tangenter för dessa kommandon längre. 
 
-Trycker man [[key:C-<space>]] så börjar man markera text från
-markörens nuvarande position tills man gör något med markeringen
-(eller avbryter med key:C-g). Om man vill utvidga markeringen åt
-andra hållet kan man trycka key:C-x key:C-x (*exchange point and
-mark*) för att flytta markören till där man började markeringen
-(utan att förlora det man redan har markerat). Man kan också
-(bland annat) markera ett helt stycke, en hel funktion eller hela
-buffern.
+ Kortkommandona för att flytta markören är key:C-f (*forward*), key:C-b
+ (*backward*), key:C-n (*next line*) och key:C-p (*previous line*).
+ Håller man in meta-tangenten istället för control (alltså key:M-f
+ och key:M-b) flyttar man markören hela ord istället. Det finns också
+ kortkommandon för att (bland annat) flytta markören till början
+ eller slutet av den nuvarande raden, meningen, funktionen eller
+ buffern.
 
-När man har markerat text klipper man ut den med key:C-w (*wipe*)
-eller kopierar med key:M-w. Klistra in gör man sen med key:C-y
-(klistra in kallas *yank* i Emacs). För att komma åt gamla saker
-man har klippt ut kan man trycka key:M-y efter att man tryckt key:C-y.
-Då bläddrar man igenom allt man har klippt ut hittills.
+ Man kan flytta markören med piltangenterna (även i kombination med
+ control- och meta-tangenterna) eller genom att klicka med musen
+ också, men med kortkommandona går det betydligt snabbare och man
+ slipper flytta händerna.
 
-#+begin_note
-Om du använder inställningsfilen från IOOPM har du följande kortkommandon också: 
-- key:M-Ä -- starta [[http://emacsrocks.com/e13.html][multiple cursors mode]] (lägg till en till cursor på raden under)
-- key:M-Å -- starta [[http://emacsrocks.com/e13.html][multiple cursors mode]] (lägg till en till cursor på raden över)
-- [[key:C-c]] [[key:n]] -- rensar och indenterar bufferten (använd den på din källkod hela tiden!)
-- [[key:M-g]] [[key:b]] -- gå till första raden i filen
-- [[key:M-g]] [[key:e]] -- gå till sista raden i filen
-- key:M-j -- slå ihop aktuell rad med nedanstående rad
-- [[key:M-S-upp%C3%A5tpil]] -- flytta markerade rader (eller aktuell rad om ingen är markerad) uppåt i filen
-- [[key:M-S-ned%C3%A5tpil]] -- flytta markerade rader (eller aktuell rad om ingen är markerad) nedåt i filen
-#+end_note
+ Varje gång man gör något "särskilt" i Emacs (markerar text,
+ klipper ut eller kopierar något, söker, och så vidare) så sparas
+ markörens nuvarande position högst upp i den så kallade
+ mark-stacken. För att hoppa till den position som är överst i
+ mark-stacken använder man key:C-u [[key:C-<space>]]. Det tar också bort den
+ positionen från mark-stacken. Ett bra sätt att snabbt komma
+ tillbaka till "där man nyss var" är att trycka key:C-u [[key:C-<space>]]
+ några gånger.
 
-** Söka och ersätta
+ #+begin_note
+ Om du använder inställningsfilen från IOOPM har du följande kortkommandon också: 
+ - [[key:C-x]] [[key:högerpil]] -- flytta markören till fönstret till höger (fungerar också med vänster, upp och ned)
+ - [[key:C-']] [[key:X]] -- låter dig snabbt hoppa till alla förekomster av tecknet =X= som finns på skärmen (du kan förstås byta ut =X= mot valfritt annat tecken)
+ - [[key:M-g]] [[key:c]] [[key:X]] -- modernare variant av ovanstående funktion 
+ - key:M-i -- låter dig hoppa till t.ex. en funktion, etc. i koden 
+ - key:M-å -- färglägger ordet som markören står på i hela filen
+ - key:M-ä -- hoppar till nästa förekomst av ordet som markören står på
+ - key:M-ö -- hoppar till föregående förekomst av ordet som markören står på
+ - key:M-p -- ersätt alla (efterföljande) förekomster av ordet som markören står på mot något annat
+ - key:M-g [[key:m]] -- pusha en markering på mark-stacken
+ - key:M-g [[key:<space>]] -- poppa en markering på mark-stacken och hoppa dit
+ #+end_note
 
-Ett annat snabbt sätt att navigera i en fil är att söka efter
-textsträngar. Trycker man key:C-s (*search*) eller key:C-r
-(*reverse search*) kommer Emacs börja leta efter inmatad text
-framåt eller bakåt i filen. Trycker man key:C-s eller key:C-r igen
-så letar den efter nästa förekomst i filen. Om du står på ordet du
-vill söka efter kan du trycka key:C-s följt av key:C-w för att
-använda ordet som sökord. Du kan trycka key:C-w för att använda
-ytterligare ord som sökord.
+*** Redigera text
 
-Om man vill ersätta alla eller vissa förekomster av en textsträng
-kan man använda kommandot [[key:M-%]] (key:M-Shift-5 på vanliga svenska
-tangentbord). Man får då mata in texten man söker efter och vad
-man vill ersätta den med. För varje förekomst av söksträngen får
-man sen ange med [[key:y]] (*yes*) och [[key:n]] (*no*) om man vill att den
-ska bytas ut eller inte (trycker man [[key:?]] får man se fler möjliga
-svarsalternativ). För att byta ut alla förekomster kan man använda
-kommandot key:M-x =replace-string= istället.
+ Om man vill ta bort text i Emacs kan man ta bort enskilda tecken
+ bakåt med [[key:<del>]] (backspace) och framåt med key:C-d
+ (*delete*). När man tar bort mer text åt gången så klipper man
+ egentligen ut den (så att man kan klistra in den igen). Man kan ta
+ bort hela ord bakåt och framåt med [[key:M-<del>]] och key:M-d.
+ Med key:C-k (*kill line*) tar man bort resten av raden från och
+ med markören. [[key:C-0]] [[key:k]] tar bort raden fram till
+ markören
 
-** Terminal i Emacs
+ Trycker man [[key:C-<space>]] så börjar man markera text från
+ markörens nuvarande position tills man gör något med markeringen
+ (eller avbryter med key:C-g). Om man vill utvidga markeringen åt
+ andra hållet kan man trycka key:C-x key:C-x (*exchange point and
+ mark*) för att flytta markören till där man började markeringen
+ (utan att förlora det man redan har markerat). Man kan också
+ (bland annat) markera ett helt stycke, en hel funktion eller hela
+ buffern.
 
-Man kan köra enskilda terminalkommandon från Emacs genom att
-trycka [[key:M-!]] (key:M-Shift-1) och ange ett kommando. Anger man till
-exempel =ls= får man se alla filer som finns i samma katalog som
-den aktiva filen. Det går också att öppna en terminal i ett
-Emacs-fönster med kommandot =M-x shell=. Den fungerar precis som
-ett vanligt terminalfönster, med skillnaden att man måste hålla in
-control för att bläddra mellan tidigare inmatningar med hjälp av
-piltangenterna.
+ När man har markerat text klipper man ut den med key:C-w (*wipe*)
+ eller kopierar med key:M-w. Klistra in gör man sen med key:C-y
+ (klistra in kallas *yank* i Emacs). För att komma åt gamla saker
+ man har klippt ut kan man trycka key:M-y efter att man tryckt key:C-y.
+ Då bläddrar man igenom allt man har klippt ut hittills.
 
-Observera att för kommandon som key:M-Ö måste du använda [[key:Esc]]
-som meta i terminalen!
+ #+begin_note
+ Om du använder inställningsfilen från IOOPM har du följande kortkommandon också: 
+ - key:M-Ä -- starta [[http://emacsrocks.com/e13.html][multiple cursors mode]] (lägg till en till cursor på raden under)
+ - key:M-Å -- starta [[http://emacsrocks.com/e13.html][multiple cursors mode]] (lägg till en till cursor på raden över)
+ - [[key:C-c]] [[key:n]] -- rensar och indenterar bufferten (använd den på din källkod hela tiden!)
+ - [[key:M-g]] [[key:b]] -- gå till första raden i filen
+ - [[key:M-g]] [[key:e]] -- gå till sista raden i filen
+ - key:M-j -- slå ihop aktuell rad med nedanstående rad
+ - [[key:M-S-upp%C3%A5tpil]] -- flytta markerade rader (eller aktuell rad om ingen är markerad) uppåt i filen
+ - [[key:M-S-ned%C3%A5tpil]] -- flytta markerade rader (eller aktuell rad om ingen är markerad) nedåt i filen
+ #+end_note
 
-** Ångra och avbryt
+*** Söka och ersätta
 
-Om man vill ångra tidigare ändringar använder man antingen [[key:C-x]] [[key:u]]
-(*undo*) eller [[key:C-_]]. Om man råkar påbörja ett oönskat kommando
-kan man avbryta det med key:C-g. Slutligen kan man spara alla
-inlästa buffrar och avsluta Emacs med key:C-x key:C-c.
-** Och sen då?
+ Ett annat snabbt sätt att navigera i en fil är att söka efter
+ textsträngar. Trycker man key:C-s (*search*) eller key:C-r
+ (*reverse search*) kommer Emacs börja leta efter inmatad text
+ framåt eller bakåt i filen. Trycker man key:C-s eller key:C-r igen
+ så letar den efter nästa förekomst i filen. Om du står på ordet du
+ vill söka efter kan du trycka key:C-s följt av key:C-w för att
+ använda ordet som sökord. Du kan trycka key:C-w för att använda
+ ytterligare ord som sökord.
 
-När man har lärt sig vad som står i det här dokumentet kan man
-börja leta vidare efter mer utförliga källor. Ett ställe att börja
-kan till exempel vara lektionen man får om man trycker [[key:C-h t]] i
-Emacs. [[file:misc/cheatsheet.pdf][Referensbladet]] är baserat på ett
-större referensblad men medvetet förkortat och förenklat för att
-vara överskådligt. När man känner sig säker på det grundläggande
-så kan ett bra nästa steg vara att skaffa ett större referensblad,
-till exempel något av de många man hittar när man googlar "emacs
-cheat sheet". Man kan förstås också installera Emacs på sin
-hemdator.
+ Om man vill ersätta alla eller vissa förekomster av en textsträng
+ kan man använda kommandot [[key:M-%]] (key:M-Shift-5 på vanliga svenska
+ tangentbord). Man får då mata in texten man söker efter och vad
+ man vill ersätta den med. För varje förekomst av söksträngen får
+ man sen ange med [[key:y]] (*yes*) och [[key:n]] (*no*) om man vill att den
+ ska bytas ut eller inte (trycker man [[key:?]] får man se fler möjliga
+ svarsalternativ). För att byta ut alla förekomster kan man använda
+ kommandot key:M-x =replace-string= istället.
 
-En favoritfunktionalitet som det här dokumentet inte har tagit upp
-är inspelning och uppspelning av macron. Trycker man [[key:C-x (]] så
-börjar man spela in alla tangenttryckningar man gör, tills man
-avslutar med [[key:C-x )]]. Man kan sen spela upp sin senaste inspelning
-med [[key:C-x e]], som står för *execute macro*. Det är användbart om
-man vill upprepa någonting flera gånger. Som ett enkelt exempel
-kommer här ett macro som skriver en =printf=-sats med radbrytning
-och flyttar markören till argumentsträngens början:
+*** Terminal i Emacs
 
-#+begin_center
-key:C-x [[key:(]] =printf("\n");= key:M-b key:C-b key:C-x [[key:)]]
-#+end_center
+ Man kan köra enskilda terminalkommandon från Emacs genom att
+ trycka [[key:M-!]] (key:M-Shift-1) och ange ett kommando. Anger man till
+ exempel =ls= får man se alla filer som finns i samma katalog som
+ den aktiva filen. Det går också att öppna en terminal i ett
+ Emacs-fönster med kommandot =M-x shell=. Den fungerar precis som
+ ett vanligt terminalfönster, med skillnaden att man måste hålla in
+ control för att bläddra mellan tidigare inmatningar med hjälp av
+ piltangenterna.
 
-Efter att ha spelat in ovanstående macro kan man alltså trycka
-[[key:C-x e]] för att få en =printf=-sats med markören på rätt ställe.
-Det går också att upprepa vilket kommando som helst ett visst
-antal gånger genom att trycka [[key:C-u 5]] (för något värde på 5) och
-sen vilket kommando man vill upprepa. Vill man ta bort fyra på
-varandra följande rader kan man alltså trycka key:C-u [[key:4]] key:C-k. Prova
-också att skriva
+ Observera att för kommandon som key:M-Ö måste du använda [[key:Esc]]
+ som meta i terminalen!
 
-#+begin_center
-key:C-x [[key:(]] =Emacs är bäst= [[key:<ret>]] key:C-x [[key:)]] key:C-u =100= key:C-x [[key:e]]
-#+end_center
+*** Ångra och avbryt
 
-På frågan "Kan man göra det här i Emacs" är svaret nästan alltid
-"Ja", framförallt om det handlar om effektiv textredigering. Det
-går också att använda Emacs till exempel som webbläsare,
-e-postklient, chattklient, PDF-läsare, filhanterare, kalkylator,
-kalender och att-göra-lista. Hur insnöad man vill bli är upp till
-var och en (jag tycker till exempel inte att det är något fel på
-Chrome eller Firefox som webbläsare).
+ Om man vill ångra tidigare ändringar använder man antingen [[key:C-x]] [[key:u]]
+ (*undo*) eller [[key:C-_]]. Om man råkar påbörja ett oönskat kommando
+ kan man avbryta det med key:C-g. Slutligen kan man spara alla
+ inlästa buffrar och avsluta Emacs med key:C-x key:C-c.
+*** Och sen då?
 
-/Lycka till i ditt framtida liv som Emacs-fantast!/
+ När man har lärt sig vad som står i det här dokumentet kan man
+ börja leta vidare efter mer utförliga källor. Ett ställe att börja
+ kan till exempel vara lektionen man får om man trycker [[key:C-h t]] i
+ Emacs. [[file:misc/cheatsheet.pdf][Referensbladet]] är baserat på ett
+ större referensblad men medvetet förkortat och förenklat för att
+ vara överskådligt. När man känner sig säker på det grundläggande
+ så kan ett bra nästa steg vara att skaffa ett större referensblad,
+ till exempel något av de många man hittar när man googlar "emacs
+ cheat sheet". Man kan förstås också installera Emacs på sin
+ hemdator.
 
-#+caption: Dr. Elias Castegren, känd som Emacs-Jesus under IOOPM 2017
-file:http://wrigstad.com/images/dr-castegren.jpg
+ En favoritfunktionalitet som det här dokumentet inte har tagit upp
+ är inspelning och uppspelning av macron. Trycker man [[key:C-x (]] så
+ börjar man spela in alla tangenttryckningar man gör, tills man
+ avslutar med [[key:C-x )]]. Man kan sen spela upp sin senaste inspelning
+ med [[key:C-x e]], som står för *execute macro*. Det är användbart om
+ man vill upprepa någonting flera gånger. Som ett enkelt exempel
+ kommer här ett macro som skriver en =printf=-sats med radbrytning
+ och flyttar markören till argumentsträngens början:
 
-* Yas-snippets
-Yasnippets finns installerade i IOOPM-inställningarna. Yasnippets
-har stöd för templates som expaneras direkt i editorn. Varje gång
-text "magiskt" dyker upp i editorn är det för att jag trycker
-key:tab för att expandera texten. Pröva t.ex. =main= key:tab,
-eller =for= key:tab, etc. Navigation mellan de olika "delarna" i
-en snippet sker också med tab.
+ #+begin_center
+ key:C-x [[key:(]] =printf("\n");= key:M-b key:C-b key:C-x [[key:)]]
+ #+end_center
+
+ Efter att ha spelat in ovanstående macro kan man alltså trycka
+ [[key:C-x e]] för att få en =printf=-sats med markören på rätt ställe.
+ Det går också att upprepa vilket kommando som helst ett visst
+ antal gånger genom att trycka [[key:C-u 5]] (för något värde på 5) och
+ sen vilket kommando man vill upprepa. Vill man ta bort fyra på
+ varandra följande rader kan man alltså trycka key:C-u [[key:4]] key:C-k. Prova
+ också att skriva
+
+ #+begin_center
+ key:C-x [[key:(]] =Emacs är bäst= [[key:<ret>]] key:C-x [[key:)]] key:C-u =100= key:C-x [[key:e]]
+ #+end_center
+
+ På frågan "Kan man göra det här i Emacs" är svaret nästan alltid
+ "Ja", framförallt om det handlar om effektiv textredigering. Det
+ går också att använda Emacs till exempel som webbläsare,
+ e-postklient, chattklient, PDF-läsare, filhanterare, kalkylator,
+ kalender och att-göra-lista. Hur insnöad man vill bli är upp till
+ var och en (jag tycker till exempel inte att det är något fel på
+ Chrome eller Firefox som webbläsare).
+
+ /Lycka till i ditt framtida liv som Emacs-fantast!/
+
+ #+caption: Dr. Elias Castegren, känd som Emacs-Jesus under IOOPM 2017
+ file:http://wrigstad.com/images/dr-castegren.jpg
+
+** Yas-snippets
+ Yasnippets finns installerade i IOOPM-inställningarna. Yasnippets
+ har stöd för templates som expaneras direkt i editorn. Varje gång
+ text "magiskt" dyker upp i editorn är det för att jag trycker
+ key:tab för att expandera texten. Pröva t.ex. =main= key:tab,
+ eller =for= key:tab, etc. Navigation mellan de olika "delarna" i
+ en snippet sker också med tab.
  
-#+BEGIN_EXPORT html
-<asciinema-player src="/ioopm18/misc/yas-demo.cast" rows="25" cols="100"></asciinema-player>
-#+END_EXPORT
+ #+BEGIN_EXPORT html
+ <asciinema-player src="/ioopm18/misc/yas-demo.cast" rows="25" cols="100"></asciinema-player>
+ #+END_EXPORT
 
-Observera att yasnippets optimerar editeringshastighet, men att det
-knappast är det viktigaste när det gäller programmering, eller ens
-att vara produktiv när det kommer till programmering!
+ Observera att yasnippets optimerar editeringshastighet, men att det
+ knappast är det viktigaste när det gäller programmering, eller ens
+ att vara produktiv när det kommer till programmering!
 
-* Programmera Java i Emacs med meghanada
+** Programmera Java i Emacs med meghanada
 
-Här är steg-för-steg-beskrivningar för hur du kan installera
-[[https://github.com/mopemope/meghanada-emacs][meghanada]] i Emacs[fn::Notera att meghanada är två komponenter --
-en server som är oberoende av editor, och en klient som är olika
-för olika texteditorer. Här Emacs.], som alltså ger IDE-liknande
-funktionalitet, men inte "för mycket" (i min subjektiva bedömning
-alltså).
+ Här är steg-för-steg-beskrivningar för hur du kan installera
+ [[https://github.com/mopemope/meghanada-emacs][meghanada]] i Emacs[fn::Notera att meghanada är två komponenter --
+ en server som är oberoende av editor, och en klient som är olika
+ för olika texteditorer. Här Emacs.], som alltså ger IDE-liknande
+ funktionalitet, men inte "för mycket" (i min subjektiva bedömning
+ alltså).
 
-#+begin_note
-Observera att om du kör med en inställningsfil från IOOPM så
-behöver du endast utföra steg 1 och steg 7.
-#+end_note
+ #+begin_note
+ Observera att om du kör med en inställningsfil från IOOPM så
+ behöver du endast utföra steg 1 och steg 7.
+ #+end_note
 
-** Steg 1: Starta Emacs
-Starta Emacs. (Om Emacs redan är igång[fn::Visste du förresten att
-du kan köra [[key:M-x]] =emacs-uptime= för att se hur länge ditt Emacs
-varit igång?] kan du hoppa över detta steg!)
+*** Steg 1: Starta Emacs
+ Starta Emacs. (Om Emacs redan är igång[fn::Visste du förresten att
+ du kan köra [[key:M-x]] =emacs-uptime= för att se hur länge ditt Emacs
+ varit igång?] kan du hoppa över detta steg!)
 
-** Steg 2: Lägg till melpa
-Klistra in följande rad i en tom[fn::Du kan egentligen använda
-vilken buffer som helst.] buffer:
-#+BEGIN_SRC emacs-lisp
-(setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")))
-#+END_SRC
+*** Steg 2: Lägg till melpa
+ Klistra in följande rad i en tom[fn::Du kan egentligen använda
+ vilken buffer som helst.] buffer:
+ #+BEGIN_SRC emacs-lisp
+ (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")))
+ #+END_SRC
 
-** Steg 3: =eval-region= (kör kod!)
-Markera hela ovanstående rad och kör [[key:M-x]] =eval-region=[fn::Släpp
-musen! [[key:C-a]] för att gå till starten av raden, [[key:C-n]] eller [[key:C-p]]
-för pil ned/upp, [[key:C-<space>]] för att börja markera, [[key:C-e]] för gå
-till slutet av raden.]. Om du får ett felmeddelande om parsing
-beror det på att du antingen inte har markerat hela raden eller
-att en parentes i början eller slutet saknas -- kanske för att du
-"skrev av" raden fel.
+*** Steg 3: =eval-region= (kör kod!)
+ Markera hela ovanstående rad och kör [[key:M-x]] =eval-region=[fn::Släpp
+ musen! [[key:C-a]] för att gå till starten av raden, [[key:C-n]] eller [[key:C-p]]
+ för pil ned/upp, [[key:C-<space>]] för att börja markera, [[key:C-e]] för gå
+ till slutet av raden.]. Om du får ett felmeddelande om parsing
+ beror det på att du antingen inte har markerat hela raden eller
+ att en parentes i början eller slutet saknas -- kanske för att du
+ "skrev av" raden fel.
 
-** Steg 4: Starta Emacs pakethanterare
-Kör [[key:M-x]] =package-list-packages=. Nu öppnas en sida som visar
-hundratals paket som kan installeras i Emacs. Du kan markera ett
-paket för installation genom att ställa markören på paketet och
-trycka [[key:i]][fn::Om du råkar markera fel kan du avmarkera med
-[[key:u]].].
+*** Steg 4: Starta Emacs pakethanterare
+ Kör [[key:M-x]] =package-list-packages=. Nu öppnas en sida som visar
+ hundratals paket som kan installeras i Emacs. Du kan markera ett
+ paket för installation genom att ställa markören på paketet och
+ trycka [[key:i]][fn::Om du råkar markera fel kan du avmarkera med
+ [[key:u]].].
 
-#+CAPTION: Exempel på en paketlistning
-#+BEGIN_SRC 
-  Package            Version       Status [v] Description
-  ace-window         0.9.0         available  Quickly switch windows.
-  ack                1.5           available  interface to ack-like tools
-  ada-mode           5.3.1         available  major-mode for editing Ada sources
-  ada-ref-man        2012.3        available  Ada Reference Manual 2012
-  adaptive-wrap      0.5.1         available  Smart line-wrapping with wrap-prefix
-  adjust-parens      3.0           available  Indent and dedent Lisp code, automatically adjust cl$
-  aggressive-indent  1.8.3         available  Minor mode to aggressively keep your code always ind$
-  ahungry-theme      1.8.0         available  Ahungry color theme for Emacs.  Make sure to (load-t$
-  all                1.0           available  Edit all lines matching a given regexp
-  ampc               0.2           available  Asynchronous Music Player Controller
-  arbitools          0.71          available  Package for chess tournaments administration
-  ascii-art-to-un... 1.11          available  a small artist adjunct
-  async              1.9.2         available  Asynchronous processing in Emacs
-I auctex             11.91.0       available  Integrated environment for *TeX*
-  aumix-mode         7             available  run the aumix program in a buffer
-  auto-correct       1.1.3         available  Remembers and automatically fixes past corrections
-  auto-overlays      0.10.9        available  Automatic regexp-delimited overlays
+ #+CAPTION: Exempel på en paketlistning
+ #+BEGIN_SRC 
+   Package            Version       Status [v] Description
+   ace-window         0.9.0         available  Quickly switch windows.
+   ack                1.5           available  interface to ack-like tools
+   ada-mode           5.3.1         available  major-mode for editing Ada sources
+   ada-ref-man        2012.3        available  Ada Reference Manual 2012
+   adaptive-wrap      0.5.1         available  Smart line-wrapping with wrap-prefix
+   adjust-parens      3.0           available  Indent and dedent Lisp code, automatically adjust cl$
+   aggressive-indent  1.8.3         available  Minor mode to aggressively keep your code always ind$
+   ahungry-theme      1.8.0         available  Ahungry color theme for Emacs.  Make sure to (load-t$
+   all                1.0           available  Edit all lines matching a given regexp
+   ampc               0.2           available  Asynchronous Music Player Controller
+   arbitools          0.71          available  Package for chess tournaments administration
+   ascii-art-to-un... 1.11          available  a small artist adjunct
+   async              1.9.2         available  Asynchronous processing in Emacs
+ I auctex             11.91.0       available  Integrated environment for *TeX*
+   aumix-mode         7             available  run the aumix program in a buffer
+   auto-correct       1.1.3         available  Remembers and automatically fixes past corrections
+   auto-overlays      0.10.9        available  Automatic regexp-delimited overlays
 
-#+END_SRC
+ #+END_SRC
 
-Exemplet ovan visar en del av en paketlistning där paketet
-=auctex= är markerat för installation, vilket visas av =I= i
-första kolumnen. Blir du nyfiken på ett paket och vill veta mer
-kan du trycka [[key:?]] eller [[key:ENTER]] för att få mer information.
+ Exemplet ovan visar en del av en paketlistning där paketet
+ =auctex= är markerat för installation, vilket visas av =I= i
+ första kolumnen. Blir du nyfiken på ett paket och vill veta mer
+ kan du trycka [[key:?]] eller [[key:ENTER]] för att få mer information.
 
-** Steg 5: Markera paket för installation 
-Markera följande paket för installation[fn::Minns att du är i
-Emacs -- du kan söka med t.ex. [[key:C-s]] (I-search).]:
-- =meghanada=[fn::Ger Emacs möjligheten att förstå Java.]
-- =flycheck=[fn::Visar kompileringsfel och varningar direkt i
-  Emacs-buffern.]
-- =company=[fn::Stöd för 'autocomplete', dvs. att Emacs föreslår
-  vilka fält eller metoder du vill använda när du avrefererar en
-  variabel.]
-- =use-package=[fn::Ett paket som gör konfiguration av Emacs-paket
-  enklade och smidigare. Vi kommer att använda detta i Steg 8.]
-- =diminish=[fn::Ett paket som låter oss förkorta namnet på ett
-  /mode/, i detta fall /meghanada/. Används i Steg 8.]
+*** Steg 5: Markera paket för installation 
+ Markera följande paket för installation[fn::Minns att du är i
+ Emacs -- du kan söka med t.ex. [[key:C-s]] (I-search).]:
+ - =meghanada=[fn::Ger Emacs möjligheten att förstå Java.]
+ - =flycheck=[fn::Visar kompileringsfel och varningar direkt i
+   Emacs-buffern.]
+ - =company=[fn::Stöd för 'autocomplete', dvs. att Emacs föreslår
+   vilka fält eller metoder du vill använda när du avrefererar en
+   variabel.]
+ - =use-package=[fn::Ett paket som gör konfiguration av Emacs-paket
+   enklade och smidigare. Vi kommer att använda detta i Steg 8.]
+ - =diminish=[fn::Ett paket som låter oss förkorta namnet på ett
+   /mode/, i detta fall /meghanada/. Används i Steg 8.]
 
-Observera att vissa av dessa namn förekommer i beskrivningen av andra
-paket! Du måste alltså titta efter vad du gör! Om det finns flera
-versioner av samma paket, välj det som kommer från /melpa/.
+ Observera att vissa av dessa namn förekommer i beskrivningen av andra
+ paket! Du måste alltså titta efter vad du gör! Om det finns flera
+ versioner av samma paket, välj det som kommer från /melpa/.
 
-** Steg 6: Installera Emacspaket 
-Installera paketen genom att trycka [[key:x]] och sedan svara /yes/
-på frågan om du vill installera 5 paket. Det ser ut så här
-ungefär:
+*** Steg 6: Installera Emacspaket 
+ Installera paketen genom att trycka [[key:x]] och sedan svara /yes/
+ på frågan om du vill installera 5 paket. Det ser ut så här
+ ungefär:
 
-=Install these 5 packages (company, use-package, meghanada, flycheck, diminish)? (yes or no)=
+ =Install these 5 packages (company, use-package, meghanada, flycheck, diminish)? (yes or no)=
 
-Nu försöker Emacs kontakta melpa och ladda ned paketen. Du kan
-följa statusen längst ned i /minibuffern/. 
+ Nu försöker Emacs kontakta melpa och ladda ned paketen. Du kan
+ följa statusen längst ned i /minibuffern/. 
 
-**Problem?** Ibland är melpa överbelastat och svarar inte. I så
-fall kan du avbryta med [[key:C-g]] och pröva att trycka [[key:x]] igen. Om
-du inte ser att en massa filer laddas ned och installeras efter
-några sekunder brukar det betyda att melpa inte svarar och att du
-måste avbryta.
+ **Problem?** Ibland är melpa överbelastat och svarar inte. I så
+ fall kan du avbryta med [[key:C-g]] och pröva att trycka [[key:x]] igen. Om
+ du inte ser att en massa filer laddas ned och installeras efter
+ några sekunder brukar det betyda att melpa inte svarar och att du
+ måste avbryta.
 
-** Steg 7: Installera servern
-Kör [[key:M-x]] =meghanada-install-server=. 
+*** Steg 7: Installera servern
+ Kör [[key:M-x]] =meghanada-install-server=. 
 
-Nu laddas ett Java-program ned som är det som kör själva Java-logiken
-under huven och analyserar din källkod etc.
+ Nu laddas ett Java-program ned som är det som kör själva Java-logiken
+ under huven och analyserar din källkod etc.
 
-** Steg 8: Lägg till =meghanada-mode= i =init.el=
-Öppna =~/.emacs.d/init.el= och leta upp raden 
-~(package-initialize)~
+*** Steg 8: Lägg till =meghanada-mode= i =init.el=
+ Öppna =~/.emacs.d/init.el= och leta upp raden 
+ ~(package-initialize)~
 
-Lägg sedan till följande: 
-#+BEGIN_SRC emacs-lisp
-(use-package meghanada
-  :diminish meghanada-mode "Mm"
-  :config
-  (add-hook 'java-mode-hook
-            (lambda ()
-              (meghanada-mode t)
-              (flycheck-mode t)
-              (company-mode t)
-              (add-hook 'before-save-hook 'delete-trailing-whitespace))))
-#+END_SRC
+ Lägg sedan till följande: 
+ #+BEGIN_SRC emacs-lisp
+ (use-package meghanada
+   :diminish meghanada-mode "Mm"
+   :config
+   (add-hook 'java-mode-hook
+             (lambda ()
+               (meghanada-mode t)
+               (flycheck-mode t)
+               (company-mode t)
+               (add-hook 'before-save-hook 'delete-trailing-whitespace))))
+ #+END_SRC
 
-Hittar du inte ~(package-initialize)~, skriv då det längst ned i filen
-och sedan use-package, etc.
+ Hittar du inte ~(package-initialize)~, skriv då det längst ned i filen
+ och sedan use-package, etc.
 
-** Steg 9: Starta om Emacs.
-Starta om Emacs. /Klart!/
+*** Steg 9: Starta om Emacs.
+ Starta om Emacs. /Klart!/
 
-(Ett alternativ till att starta om Emacs är att markera alla rader
-ovan förutom ~(package-initialize)~ och köra [[key:M-x]] =eval-region=.)
+ (Ett alternativ till att starta om Emacs är att markera alla rader
+ ovan förutom ~(package-initialize)~ och köra [[key:M-x]] =eval-region=.)
 
-#+begin_important
-Meghanada kräver konfiguration för varje projekt! 
-#+end_important
+ #+begin_important
+ Meghanada kräver konfiguration för varje projekt! 
+ #+end_important
 
-Meghanada-mode vill helst att du kör maven eller gradle som är två
-Make-liknande verktyg som vi inte använder på kursen. Om du inte
-vill lära dig maven eller gradle just nu (*mycket rimligt!*) kan
-du istället lägga en konfigurationsfil i de kataloger där din
-Java-källkod finns.
+ Meghanada-mode vill helst att du kör maven eller gradle som är två
+ Make-liknande verktyg som vi inte använder på kursen. Om du inte
+ vill lära dig maven eller gradle just nu (*mycket rimligt!*) kan
+ du istället lägga en konfigurationsfil i de kataloger där din
+ Java-källkod finns.
 
-Denna fil skall heta =.meghanada.conf=[fn::Observera att namnet
-startar med en punkt!] och kan lämpligen innehålla följande:
+ Denna fil skall heta =.meghanada.conf=[fn::Observera att namnet
+ startar med en punkt!] och kan lämpligen innehålla följande:
 
-#+BEGIN_SRC 
-sources = ["."]
-output = "classes"
-test-output = "debug"
-#+END_SRC
+ #+BEGIN_SRC 
+ sources = ["."]
+ output = "classes"
+ test-output = "debug"
+ #+END_SRC
 
-Detta betyder: Leta efter källkod i den aktuella katalogen. Vi
-kompilering, lägg allt kompilerat i underkatalogen "classes" och alla
-test-filer i underkatalogen "debug".
+ Detta betyder: Leta efter källkod i den aktuella katalogen. Vi
+ kompilering, lägg allt kompilerat i underkatalogen "classes" och alla
+ test-filer i underkatalogen "debug".
 
-** Steg 10: Programmera Java!
+*** Steg 10: Programmera Java!
 
-Ös!
+ Ös!
 
-* Emacs på macOS
-Om du installerar Emacs på macOS så är key:Alt din Meta-tangent.
-Det är inget fel med det, /men/ avsaknaden av key:AltGr (en Mac
-har två key:Alt istället) gör att vissa tecken som är vanligt
-förekommande i programmering inte går att skriva:
-- =[= tolkas som kortkommandot [[key:M-8]] och =]= som kortkommandot
-  [[key:M-9]].
-- ={= tolkas som kortkommandot [[key:M-7]] och =}= som kortkommandot
-  [[key:M-0]].
-- =$= tolkas som kortkommandot [[key:M-4]].
+** TODO Programmera i Java och C i Emacs med lsp-mode
+** Emacs på macOS
+ Om du installerar Emacs på macOS så är key:Alt din Meta-tangent.
+ Det är inget fel med det, /men/ avsaknaden av key:AltGr (en Mac
+ har två key:Alt istället) gör att vissa tecken som är vanligt
+ förekommande i programmering inte går att skriva:
+ - =[= tolkas som kortkommandot [[key:M-8]] och =]= som kortkommandot
+   [[key:M-9]].
+ - ={= tolkas som kortkommandot [[key:M-7]] och =}= som kortkommandot
+   [[key:M-0]].
+ - =$= tolkas som kortkommandot [[key:M-4]].
 
-Lösningen på detta är att lägga till följande i filen =init.el=
-som finns i katalogen =.emacs.d= i din hemkatalog. Kopiera och 
-klistra in (och starta sedan om Emacs)! 
+ Lösningen på detta är att lägga till följande i filen =init.el=
+ som finns i katalogen =.emacs.d= i din hemkatalog. Kopiera och 
+ klistra in (och starta sedan om Emacs)! 
 
-#+begin_src emacs-lisp
-;; Teach Emacs Swedish keyboard layout
-(define-key key-translation-map (kbd "M-8") (kbd "["))
-(define-key key-translation-map (kbd "M-9") (kbd "]"))
+ #+begin_src emacs-lisp
+ ;; Teach Emacs Swedish keyboard layout
+ (define-key key-translation-map (kbd "M-8") (kbd "["))
+ (define-key key-translation-map (kbd "M-9") (kbd "]"))
 
-(define-key key-translation-map (kbd "M-(") (kbd "{"))
-(define-key key-translation-map (kbd "M-)") (kbd "}"))
+ (define-key key-translation-map (kbd "M-(") (kbd "{"))
+ (define-key key-translation-map (kbd "M-)") (kbd "}"))
 
-(define-key key-translation-map (kbd "M-7") (kbd "|"))
-(define-key key-translation-map (kbd "M-/") (kbd "\\"))
+ (define-key key-translation-map (kbd "M-7") (kbd "|"))
+ (define-key key-translation-map (kbd "M-/") (kbd "\\"))
 
-(define-key key-translation-map (kbd "M-2") (kbd "@"))
-(define-key key-translation-map (kbd "M-4") (kbd "$"))
-#+END_SRC
+ (define-key key-translation-map (kbd "M-2") (kbd "@"))
+ (define-key key-translation-map (kbd "M-4") (kbd "$"))
+ #+END_SRC
 
-Tips: klistra in i Emacs är [[key:C-y]]. För att slippa starta om
-Emacs för att inställningarna skall gälla kan du markera den
-inklippta texten och köra [[key:M-x]] =eval-region=. 
+ Tips: klistra in i Emacs är [[key:C-y]]. För att slippa starta om
+ Emacs för att inställningarna skall gälla kan du markera den
+ inklippta texten och köra [[key:M-x]] =eval-region=. 
 
 
-#+include: "./footer.org"
+ #+include: "./footer.org"
 
 

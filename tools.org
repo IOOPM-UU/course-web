@@ -2,8 +2,23 @@
 #+include: "./setup.org"
 
 #+begin_attention
-This text is being written from scratch in 2018. For now, refer to the bootstrap sections on the [[./assignments/c-bootstrap.org][C bootstap labs]] and [[./assignments/assignment1.org][Assignment 1]].
+Until 2020, the course has relied on -- and enforced -- use of
+Emacs and/or vim for editing for several reasons. However, in the
+COVID year of 2020, we are switching to Cloud 9, an online
+platform. While Cloud 9 hides some parts of coding in a bad way
+(for learning, not for software development), it does allow for
+very nice and useful *collaborative editing* with multiple cursors
+visible in the same window. 
 #+end_attention
+
+If you use Cloud 9 exclusively on the course, all the programming
+will happen in an editor in your browser, and there is no *need*
+for you to install anything locally. When interacting with
+teachers -- to get help and to demonstrate achievements -- you
+will need to use Cloud 9. However, if you want to install things
+locally on your machine and use your own favourite editor, feel
+free to. 
+
 
 * Installing a Development Environment on Your Own Machine :optional: <<vagrant>>
 For those who do not want to tinker with their own machines, we
@@ -19,6 +34,7 @@ Valgrind isn't up to date with the latest macOS release yet), etc.
 Running inside a faux Linux machine fixes these problems. 
 
 Vagrant has [[https://www.vagrantup.com/intro/getting-started/][pretty decent documentation]], that is way more comprehensive than below.
+
 
 ** Installing Vagrant
 
@@ -125,10 +141,11 @@ Download and install from http://www.oracle.com/technetwork/java/javase/download
 A step-by-step description of this, or information about how it is
 not possible, is much welcome.
 #+end_important
-* TODO A C Development Environment
-* TODO A Java Development Environment
-* TODO Project Tools
-- Trello etc. 
+
+# * TODO A C Development Environment
+# * TODO A Java Development Environment
+# * TODO Project Tools
+# - Trello etc. 
 
 
 #+include: "./footer.org"

@@ -14,19 +14,12 @@ Found a bug? Select the fauly text and hit key:C-x to start a GitHub issue.
 This page gathers all the achievements on the course for your
 perusal. Read about what each achievement corresponds here. Some
 are marked *TODO*, meaning they are being somewhat reworked
-for 2018. When they are finalised, the *TODO* marker will
+for 2020. When they are finalised, the *TODO* marker will
 disappear.
 
-You will use the [[http://auportal.herokuapp.com][AUPortal]] to select goals for demonstration and
-track your own progress. Starting in 2018, the AUPortal points
-back to this page for information about each achievement. I am
-testing gathering all achievement on a *single page* to facilitate
-searching -- I'm eager to get feedback on this design choice. An
-alternative would be to gather all Abstraction achievements on one
-page, all Inheritance achievements, on another etc.
-
-Each achievement is /tagged/ to reflect its grade level and
-demonstration form -- mirroring information in the AU Portal:
+You will use the [[FIXME][AUPortal]] to select goals for demonstration and
+track your own progress. Each achievement is /tagged/ to reflect
+its grade level and demonstration form:
 
 
 #+MACRO: tag @@html:<span class="tag" style="background-color: transparent;"><span class="$1">$1</span></span>@@

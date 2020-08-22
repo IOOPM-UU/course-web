@@ -157,8 +157,6 @@ Screencasts from old instances of the course are [[./screencasts.org][available]
 ** FAQ
 A minimal FAQ is [[./about.org::*FAQ][available]]. 
 ** TODO Links
-- [[http://wrigstad.com/ioopm17][Old website for IOOPM 2015--2017]]
-- [[http://wrigstad.com/ioopm18][Old website for IOOPM 2018]]
 - [[http://wrigstad.com/ioopm/links.php][The old link library]]
 * Recent Changes
 Substantial changes are announced in Piazza. For everything else,

@@ -1,16 +1,6 @@
 #+title: Project 1
 #+include: "../setup.org" 
 
-#+BEGIN_note
-Feedback from 2017 said this project was to simple. To that end,
-there is now an addition called /Default destructors/ below. The
-rest of the text is unchanged because there was no time to update
-it. So first read everything through, then /Default destructors/
-and think of that as an extension which might augment or
-contradict other things stated elsewhere (like the size of the
-object header etc.).
-#+END_note
-
 * Introduction and Domain
 
 This project is about /manual memory management/ in C. The are
@@ -284,7 +274,15 @@ int main(void)
 Naturally, you are allowed to ask for technical help (as well as
 help on anything else).
 
-* Addition in 2018: Default Destructors 
+* Late-coming requirements: Default Destructors 
+
+Suddenly, there is news that the marketing department has managed
+to sell a new feature that needs integration in the system by you
+-- the programmers. "How hard can it be, it is just a small
+feature", a person who has never programmed says in the meeting.
+"Great", you think. "Now I will just have to integrate this with
+the rest of the specification. Let's hope it does not contradict
+anything..."
 
 To simplify programming, the system should support a notion of
 default destructors, that saves the programmer from the burden of

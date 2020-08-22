@@ -7,12 +7,6 @@
 *Hard deadline*: End of Week 45
 #+end_important
 
-#+begin_warning
-This is a new version of this assignment from 2018. Please report
-all bugs and ask questions for things that are not clear. Because 
-the assignment is new, expect bugs! 
-#+end_warning
-
 * Simple Webstore Backend
 In Assignment 2, we are going to put the data structures we
 implemented in Assignment 1 to use as we build a small program

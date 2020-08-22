@@ -2,8 +2,8 @@
 #+include: "./setup.org"
 
 #+begin_note
-This page is very much a work in progress and will grow gradually
-during 2018. Feel free to make requests!
+This page is very much a work in progress. 
+Feel free to make requests!
 #+end_note
 
 #+caption: The beauty of C is that it is a small language, where almost nothing happens under the hood that you did not explicitly ask for.
