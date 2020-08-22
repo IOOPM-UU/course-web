@@ -22,6 +22,12 @@ computer halls. You have to pass *two* coding exams on this
 course, one imperative and one object-oriented in the programming
 languages that the course uses.
 
+#+begin_note
+It is not yet clear in 2020 how the code exams will run. This will 
+ultimately depend on the number of students on the course, the
+available computer halls, etc. We will now in September 2020.
+#+end_note
+
 Coding exams are given multiple times during the course (e.g., 4
 times in 2018) and each exam has two programming tasks -- one
 imperative and one object-oriented. A few students pass both
