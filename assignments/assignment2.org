@@ -625,7 +625,7 @@ bool string_key_eq(elem_t k1, elem_t k2)
 #+END_SRC
 * Finishing the Assignment
 
-1. At the end, go over your backlog of [[../simple.org::*The%20Three%20Rules%20of%20Cheating][cheats]] and [[../simple.org::*Dodging:%20Not%20Quite%20Cheating][dodges]] and see which ones
+1. At the end, go over your backlog of [[../simple.org::cheat][cheats]] and [[../simple.org::dodge][dodges]] and see which ones
    need taking care of. *Ideally this stack should be empty.* If you have 
    made any special deals for some parts of your code, make sure these are
    documented somewhere (in the repo). 

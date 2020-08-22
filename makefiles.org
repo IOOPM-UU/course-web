@@ -25,7 +25,7 @@ genom att skriva =make= (alt =make foo= för något namn på =foo=)
 och resten sköts automatiskt.
 
 Detta är *guld* värt, eftersom det nu blir lätt att hela tiden
-kompilera och [[file:simple.org::*The%20SIMPLE%20Approach][se till att du har ett körande program]].
+kompilera och [[file:simple.org::*The SIMPLE Approach][se till att du har ett körande program]].
 
 ** En minimal =makefile=
 

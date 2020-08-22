@@ -345,8 +345,8 @@ själv, eller ladda ned dem och installera dem själv eller via
 Emacs inbyggda pakethanterare.
 
 Emacs-resurser på kurswebben: 
-- [[../editors.org::*Introduktion%20till%20Emacs][Introduktion till Emacs]]
-- [[../screencasts.org::*Screencasts%20om%20verktyg][Screencasts om Emacs]]
+- [[../editors.org::*Introduktion till Emacs][Introduktion till Emacs]]
+- [[../screencasts.org::*Screencasts om verktyg][Screencasts om Emacs]]
 - [[http://wrigstad.com/ioopm18/misc/cheatsheet.pdf][Emacs lathund]]
 
 Nu följer två olika uppsättningar instruktioner beroende på om du
@@ -1374,7 +1374,7 @@ inte alltid ligger precis där kompilatorn varnar så betyder en
 varning att någonting är fel i programmet, eller borde skrivas
 om. Om man tar för vana att inte fixa "ofarliga varningar" kommer
 det att vara svårare att hitta "de farliga varningarna" i allt
-mummel som kompilatorn spottar ur sig. ([[../compiling.org::*Compiling%20C%20Code][Läs mer om att kompilera C-program här!]])
+mummel som kompilatorn spottar ur sig. ([[../compiling.org::*Compiling C Code][Läs mer om att kompilera C-program här!]])
 
 #+begin_important
 Goda vanor är enklast att etablera om man tar de till sig redan
@@ -2760,7 +2760,7 @@ faktiskt inte modifierar datat, förutom att läsa all kod i /B/
 
 ** Värdesemantik vs. pekarsemantik
 
-*Fråga:* [[quiz:Alternativ%201%20%C3%A4r%20korrekt.][Vad skriver detta program ut på skärmen när det körs?]]
+*Fråga:* [[quiz:Alternativ 1 %C3%A4r korrekt.][Vad skriver detta program ut på skärmen när det körs?]]
 
 1. =7, 42=
 2. =42, 7=
@@ -3645,7 +3645,7 @@ funktionen terminera och programmet avslutas.
 Utöka definitionen av en vara till att också ha ett antal
 (~amount~) som avser hur många av en vara som lagrats på
 lagerhyllan. Hur går du tillväga för att utöka programmet? 
-[[quiz:Genom%20att%20definiera%20om%20nyckelfunktioner%20f%C3%B6r%20att%20t.ex.%20ta%20ett%20extra%20argument%20kan%20du%20f%C3%A5%20kompilatorn%20att%20driva%20f%C3%B6r%C3%A4ndringsarbetet.%20][Kan C:s kompilator hjälpa dig på något sätt?]]
+[[quiz:Genom att definiera om nyckelfunktioner f%C3%B6r att t.ex. ta ett extra argument kan du f%C3%A5 kompilatorn att driva f%C3%B6r%C3%A4ndringsarbetet. ][Kan C:s kompilator hjälpa dig på något sätt?]]
 
 
 *** Frivilligt: stöd för ångra

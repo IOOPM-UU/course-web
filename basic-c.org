@@ -297,7 +297,7 @@ in both the postfix and prefix positions.
 | ~x--~      | ~5~          | ~x = 4~     |
 | ~--x~      | ~4~          | ~x = 4~     |
 ** Exercise I
-[[quiz:42%2044%2044][What does the following code print?]]
+[[quiz:42 44 44][What does the following code print?]]
 #+BEGIN_SRC c
 int x = 42;
 printf("%d ", x++);
@@ -305,7 +305,7 @@ printf("%d ", ++x);
 printf("%d.", x)
 #+END_SRC
 
-[[quiz:43%2043%2044][What does the following code print?]]
+[[quiz:43 43 44][What does the following code print?]]
 #+BEGIN_SRC c
 int x = 42;
 printf("%d ", ++x);
@@ -313,7 +313,7 @@ printf("%d ", x++);
 printf("%d.", x)
 #+END_SRC
 
-[[quiz:Compiling%20this%20program%20generates%20a%20warning%20saying%20that%20this%20operation%20may%20be%20underfined.%20On%20the%20computer%20where%20I%20am%20writing%20this,%20using%20gcc%20(Ubuntu%206.3.0-12ubuntu2)%206.3.0%2020170406%20on%20an%20X86%2064%20running%20Ubuntu%2017.04,%20the%20result%20is%2085.][Brain teaser (and sort-of trick question) What does the following code print?]]
+[[quiz:Compiling this program generates a warning saying that this operation may be underfined. On the computer where I am writing this, using gcc (Ubuntu 6.3.0-12ubuntu2) 6.3.0 20170406 on an X86 64 running Ubuntu 17.04, the result is 85.][Brain teaser (and sort-of trick question) What does the following code print?]]
 #+BEGIN_SRC c
 int x = 42;
 printf("%d.", x+++x);
@@ -432,7 +432,7 @@ dereference in parentheses: ~(*ip)++~ means increase the value of
 ** Exercise II
 Look at the following implementation of ~strcpy()~, the string
 copying function, that copies a string from ~b~ to ~a~. 
-[[quiz:First,%20~x%20=%20y~%20returns%20the%20value%20of%20~y~.%20Second,%20~'\0'~%20has%20the%20value%20~0~%20meaning%20it%20is%20the%20same%20as%20~false~.][Do you understand how it works?]]
+[[quiz:First, ~x = y~ returns the value of ~y~. Second, ~'\0'~ has the value ~0~ meaning it is the same as ~false~.][Do you understand how it works?]]
 #+BEGIN_SRC c
 void strcpy(char *a, char *b)
 {
@@ -485,7 +485,7 @@ instead. The ~++~ and ~--~ are seductive, and it may be hard to
 stop using them once you have grown accustomed to them.
 
 * Avoid Global Variables
-[[file:misc/inga%20globala%20variabler.pdf][This slide set]] discusses this statement further, and explains how
+[[file:misc/inga globala variabler.pdf][This slide set]] discusses this statement further, and explains how
 to refactor yourself free from global variables.
 
 #+include: "./footer.org"

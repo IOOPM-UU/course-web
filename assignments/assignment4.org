@@ -1077,7 +1077,7 @@ end
 #+END_EXAMPLE
 
 * Finishing the Assignment
-1. Go over your backlog of [[../simple.org::*The%20Three%20Rules%20of%20Cheating][cheats]] and [[../simple.org::*Dodging:%20Not%20Quite%20Cheating][dodges]] and see which ones
+1. Go over your backlog of [[../simple.org::cheat][cheats]] and [[../simple.org::dodge][dodges]] and see which ones
    need taking care of. *Ideally this stack should be empty.*
 2. Write up any necessary documentation of your program, any extra
    documentation needed because of design decisions you took or

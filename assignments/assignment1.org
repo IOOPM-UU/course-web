@@ -17,7 +17,7 @@ This assignment serves several purposes:
   editors, compilers and debuggers. In particular, we will be
   using a profiler (=gprof=), a coverage tracker (=gcov=), and a
   memory leak detector (=valgrind=). And of course version control.
-- Create multiple opportunities to [[../about.org::*Redovisning%20och%20AU-Portalen][demonstrate mastery of
+- Create multiple opportunities to [[../about.org::*Redovisning och AU-Portalen][demonstrate mastery of
   achievements.]]
 - Force you to code -- reading and writing code are the only two
   techniques that work when learning how to program, and only if
@@ -531,7 +531,7 @@ integer (and always the same value for the same key). Typically,
 we hide this to the users, except for the fact that we ask them to
 provide such a function that we subsequently use internally.
 
-*For now, we will [[../simple.org::*Dodging:%20Not%20Quite%20Cheating][dodge]] and consider only lists that store
+*For now, we will [[../simple.org::dodge][dodge]] and consider only lists that store
 integers.* This seems like a good simplification, and innocuous
 too -- we know how to undo it later by adding a hash function.
 
@@ -1998,7 +1998,7 @@ when we are done with it. Heap memory must be returned
 *explicitly* through a call to ~free()~ with a pointer to the heap
 memory that you want to free as argument. It is not possible to
 partially free a memory block returned by calloc (malloc, etc.),
-or use a single free to free more than one block. (See [[../misc/l%C3%A4nkade%20strukturer,%20notation%20och%20free.pdf][this slide
+or use a single free to free more than one block. (See [[../misc/l%C3%A4nkade strukturer, notation och free.pdf][this slide
 set]] for some pictures to go with that statement.)
 
 Calling ~free()~ on some memory and subsequently accessing it is a
@@ -3005,7 +3005,7 @@ implement the linked list -- or whatever works for you.
 
 In that spirit, although the instructions in the link above
 mention pointers to pointers, sticking with the dummy node is a
-fine choice. For now, we will [[../simple.org::*Dodging:%20Not%20Quite%20Cheating][dodge]] and consider only lists that
+fine choice. For now, we will [[../simple.org::dodge][dodge]] and consider only lists that
 store integers. (Feel free to tackle storing generic elements now
 if you feel up to it, but if you are new to C, better to wait
 until [[step13][Step 13]].) We will undo this simplification later, but it a
@@ -3277,7 +3277,7 @@ As you were looking at [[./lists.org][the text on linked lists]], you may have
 scrolled all the way down to the section /Adding Genericity/ that
 deals with how to support lists that can hold arbitrary data. Now,
 time has come to change both the list and the hash table to store
-arbitrary data. We will follow the trick in [[./lists.org::*Adding%20Genericity][the text on linked
+arbitrary data. We will follow the trick in [[./lists.org::*Adding Genericity][the text on linked
 lists]] and have each element (in the case of the list), key and
 value (in the case of the hash table) be a union of the possible
 element types, /henceforth referred to as/ ~elem_t~. (This union
@@ -4054,7 +4054,7 @@ procedure and stick it in your Makefile.*
 
 *** Finishing the Assignment
 
-1. Go over your backlog of [[../simple.org::*The%20Three%20Rules%20of%20Cheating][cheats]] and [[../simple.org::*Dodging:%20Not%20Quite%20Cheating][dodges]] and see which ones
+1. Go over your backlog of [[../simple.org::cheat][cheats]] and [[../simple.org::dodge][dodges]] and see which ones
    need taking care of. *Ideally this stack should be empty.*
 2. Write up the documentation of your program, documenting e.g.
    how failure is handled, any assumptions you are making about

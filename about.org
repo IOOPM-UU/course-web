@@ -210,7 +210,7 @@ Tanken med dessa möten är att ni ska kunna få hjälp att hålla en
 lämplig styrfart genom kursen och att komma loss om ni har kört
 fast. Om ni är osäkra på vilka mål som passar med er uppgift kan
 får ni diskutera saken med en assistent och ett annat
-programmeringspar. [[./team.org::*Group%20Meetings][Läs mer här]].
+programmeringspar. [[./team.org::*Group Meetings][Läs mer här]].
 ** Labbar
 #+begin_important
 *SUPERVIKTIG SKILLNAD MOT PKD:* Labbar på denna kurs avser tid att
@@ -379,7 +379,7 @@ ingenting.
 ** Steg 4: Uppföljning
 Planering är bra, men du måste också följa upp utfallet så att du
 kan justera hur du planerar i framtiden. Detta görs tillsammans
-med andra i teamet, och finns beskrivet [[./team.org::*Group%20Meetings][här]].
+med andra i teamet, och finns beskrivet [[./team.org::*Group Meetings][här]].
 ** Steg 5: Revidera planen
 Ditt burndown chart visar trenden -- vad har du för styrfart, och
 kommer du att nå ditt mål? Kanske blir du sjuk en vecka och tappar

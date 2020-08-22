@@ -17,16 +17,16 @@ Ask questions *during lectures* [[https://docs.google.com/forms/d/e/1FAIpQLSedql
 
 * How IOOPM Works
 If you are visiting this page for the first time, you should
-probably [[./about.org][read the page about the course first]]. [[mark:Mandatory%20reading!]]
+probably [[./about.org][read the page about the course first]]. [[mark:Mandatory reading!]]
 ** What You Should be Doing the First Week
 In no particular order, and preferably somewhat in parallel:
 
 - Look through this website! Especially read about [[./about.org][how this course
   works]], [[*Deadlines][deadlines]] and [[./labs.org][labs]], and form a mental model for what you
   need to do to pass with the [[./about.org::*Betyg][grade that you want]].
-- Get a [[./github.org::*How%20to%20Get%20a%20GitHub%20Account%20for%20the%20Course][GitHub account and let us know about its username]] so we
+- Get a [[./github.org::*How to Get a GitHub Account for the Course][GitHub account and let us know about its username]] so we
   can connect it to the course. Once this is done, you should
-  [[./github.org::*Checking%20Out%20the%20Repository%20for%20the%20First%20Time][check out your GitHub repository]].
+  [[./github.org::*Checking Out the Repository for the First Time][check out your GitHub repository]].
 - If you want to work on your own machine, [[./tools.org][install the necessary
   tools]].
 - Start working on the [[./assignments/c-bootstrap.org][C bootstrap exercises]].
@@ -35,8 +35,8 @@ In addition to this, and outside of your control[fn::No, you
 cannot form your own team, no matter what the reasons are.], you
 will be placed in a group with about 10-12 other students.
 Throughout the course, this group will be your "team", and you
-will be [[./team.org::*Pair%20Programming][pairing with others from this team]], and [[./team.org::*Group%20Meetings][report back to the
-team]] regularly, and [[./team.org::*Group%20Meetings][meet with your coach]]. Your will also cooperate
+will be [[./team.org::*Pair Programming][pairing with others from this team]], and [[./team.org::*Group Meetings][report back to the
+team]] regularly, and [[./team.org::*Group Meetings][meet with your coach]]. Your will also cooperate
 on [[au:63][your first deliverable]].
 ** Who is Running the Course in 2020?
 Check out [[./teaching-staff.org][this page]].

@@ -19,7 +19,7 @@
  :export (lambda (path desc backend)
            (cond
             ((eq 'html backend)
-             (format "<a href=\"http://wrigstad.com/ioopm19/achievements.html#%s\">%s</i></a>" path desc))))
+             (format "<a href=\"http://wrigstad.com/ioopm20/achievements.html#%s\">%s</i></a>" path desc))))
              ;; (format "<a href=\"http://auportal.herokuapp.com/achievements/%s\">%s</i></a>" path desc))))
  :face '(:foreground "DarkGoldenrod3"))
 
@@ -100,7 +100,7 @@
          :base-extension "org"
          :exclude "setup.org\\|footer.org\\|code-exams\\|readme.org"
          ;; :publishing-directory "/tmp/ioopm18/"
-         :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/"
+         :publishing-directory "/ssh:ioopm-website:/home/ioopm19/course-web/"
          :publishing-function tw/org-html-publish-to-html
          :headline-levels 3
          :section-numbers t
@@ -117,34 +117,34 @@
          :base-directory ,(concat ioopm-web-dir "images/")
          :base-extension "jpg\\|gif\\|png"
          ;; :publishing-directory "/tmp/ioopm18/images/"
-         :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/images/"
+         :publishing-directory "/ssh:ioopm-website:/home/ioopm19/course-web/images/"
          :publishing-function org-publish-attachment)
 
         ("misc"
          :base-directory ,(concat ioopm-web-dir "misc/")
          :base-extension "el\\|pdf\\|c\\|h\\|java\\|txt\\|cast\\|png\\|zip"
          ;; :publishing-directory "/tmp/ioopm18/misc/"
-         :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/misc/"
+         :publishing-directory "/ssh:ioopm-website:/home/ioopm19/course-web/misc/"
          :publishing-function org-publish-attachment)
 
         ("css"
          :base-directory ,(concat ioopm-web-dir "css/")
          :base-extension "css"
          ;; :publishing-directory "/tmp/ioopm18/css/"
-         :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/css/"
+         :publishing-directory "/ssh:ioopm-website:/home/ioopm19/course-web/css/"
          :publishing-function org-publish-attachment)
 
         ("fonts"
          :base-directory ,(concat ioopm-web-dir "css/fonts/")
          :base-extension "ttf"
-         :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/css/fonts/"
+         :publishing-directory "/ssh:ioopm-website:/home/ioopm19/course-web/css/fonts/"
          :publishing-function org-publish-attachment)
 
         ("js"
          :base-directory ,(concat ioopm-web-dir "js/")
          :base-extension "js"
          ;; :publishing-directory "/tmp/ioopm18/js/"
-         :publishing-directory "/ssh:ioopm-website:/home/ioopm/course-web/js/"
+         :publishing-directory "/ssh:ioopm-website:/home/ioopm19/course-web/js/"
          :publishing-function org-publish-attachment)
 
         ("ioopm website" :components ("root" "misc" "fonts" "images" "css" "js"))))
