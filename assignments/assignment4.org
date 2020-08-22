@@ -42,9 +42,9 @@
 # - add a node factory that can create different nodes
 
 #+begin_important
-*Intended start*: 2019-11-18 \\
-*Soft deadline*: 2019-11-29 \\
-*Hard deadline*: 2019-12-13
+*Intended start*: Start of Week 47 \\
+*Soft deadline*:  End of Week 49 \\
+*Hard deadline*:  End of Week 51
 #+end_important
 
 #+BEGIN_danger

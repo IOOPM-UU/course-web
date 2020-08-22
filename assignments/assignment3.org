@@ -3,9 +3,9 @@
 #+include: "../asciinema-setup.org"
 
 #+begin_important
-*Intended start*: 2019-10-28 \\
-*Soft deadline*: 2019-11-15 \\
-*Hard deadline*: 2019-11-29
+*Intended start*: Start of Week 44 \\
+*Soft deadline*: End of Week 46 \\
+*Hard deadline*: End of Week 48
 #+end_important
 
 #+begin_important

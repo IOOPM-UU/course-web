@@ -2,9 +2,9 @@
 #+include: "../setup.org"
 
 #+begin_important
-*Intended start*: 2019-09-16 \\
-*Soft deadline*: 2019-10-04 \\
-*Hard deadline*: 2019-10-18
+*Intended start*: Start of Week 38 \\
+*Soft deadline*: End of Week 41 \\
+*Hard deadline*: End of Week 43
 #+end_important
 
 * Introduction
