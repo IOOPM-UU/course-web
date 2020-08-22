@@ -21,10 +21,10 @@
 
 #+begin_danger
 The course web pages are being updated for 2020. This is a *big*
-change, because the head teacher has changed as well. 
-As long as this note remains on this page, any information *is
-subject to change* and broken links, etc. are to be expected.
-Please be restrictive in reporting any errors for now.
+change given the move to digital teaching. As long as this note
+remains on this page, any information *is subject to change* and
+broken links, etc. are to be expected. Please be restrictive in
+reporting any errors for now.
 #+end_danger
 
 # #+begin_note
