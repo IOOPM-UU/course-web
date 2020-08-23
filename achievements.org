@@ -17,7 +17,7 @@ are marked *TODO*, meaning they are being somewhat reworked
 for 2020. When they are finalised, the *TODO* marker will
 disappear.
 
-You will use the [[FIXME][AUPortal]] to select goals for demonstration and
+You will use the AU portal to select goals for demonstration and
 track your own progress. Each achievement is /tagged/ to reflect
 its grade level and demonstration form:
 
