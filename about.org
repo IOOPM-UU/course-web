@@ -8,6 +8,20 @@ about why we are doing what we are doing, go ahead and [[http://uu.diva-portal.o
 paper]] (15 pages).
 #+end_attention
 
+* IOOPM Communication Channels and Course Tools in 2020
+
+- We use [[https://mp.uu.se/documents/432512/342111259/Zoom_student_version2_eng.pdf/dee75c6d-00fa-f25c-0920-6e59c6ae2362][Zoom]] for live lectures, to connect students during pair programming, and connect students and teachers for help requests and demonstrations. 
+- We use YouTube to distribute any prerecorded lecture material.
+- We use Cloud 9 to pair program, collaborativly edit code, and interact with examiners for demonstrations.
+- We use [[https://piazza.com/class/ke6uvtli7x05er][Piazza]] as a forum to discuss, ask for help between labs, and for teachers to broadcast information.
+- We use MatterMost as an interactive chat tool to ask questions during lectures, and for quick text chatting between students, and between students and teachers.
+- We use the AU Portal during the scheduled lab sessions to request live help and demonstrate progress which will then take place over Cloud 9 and Zoom.
+- We use GitHub to manage all code students write during the course, and to share code between students for pair programming.
+- We do *NOT* use the Student Portal or Studium for anything on this course.
+
+A lot of this is new for 2020, and we are learning and experimenting as we go. We appreciate your constructive feedback during the course. 
+
+
 * Kursöversikt
 ** Faser och sprintar
 Kursen är uppdelad i tre faser, fas 1, 2 och 3. Fas 1 och 2
@@ -25,6 +39,7 @@ sprint inom samma fas växer kraven på uppgifterna som också blir
 mer komplicerade, och du får fler uppgifter att välja mellan. För
 att bli godkänd på kursen måste du göra minst en uppgift per
 sprint.
+
 ** Inlämningsuppgifter, mål och redovisning
 För att bli godkänd på kursen kommer du att behöva demonstrera att
 du uppnått alla kursmål (detta gäller på alla kurser). För att
@@ -48,6 +63,7 @@ reda på/förstå vilka mål du bör redovisa och när.
 Målen redovisar du i stort sett uteslutande på labbarna (ca 8
 timmar varje vecka). Till labbarna kan du också gå för att få
 hjälp. Försök att alltid redovisa mål i sammanhängande klumpar.
+
 ** Om kursmålen
 För varje mål anges vilken nivå målet ligger på och hur det kan
 redovisas. 2020 finns ca 43 mål på nivå 3, 18 mål på nivå 4 och
@@ -58,7 +74,8 @@ Du måste bocka av mål löpande under kursens gång. Det är ca 25
 labbar att redovisa på och totalt 55 mål att redovisa på labbar
 (för nivå 5). Det finns ett maxtak på 4 avbokade mål per
 labbtillfället -- du måste alltså redovisa på minst 17 labbar för
-att få betyget 5.
+att få betyget 5. (Observera att för enkelhets skull hanterar vi
+introlabbar i C och Java samt kodprov som om de vore kursmål.)
 
 För att bli godkänd på kursen måste alla mål vara godkända, och
 kodprovet avklarat. För att få betyget 3 på kursen måste samtliga
@@ -73,10 +90,18 @@ de länkar och bokreferenser som finns i kursmaterialet, men också
 fritt med hjälp av t.ex. Google och Wikipedia. Föreläsningarnas
 syfte är att måla en övergripande bild och introducera viktiga
 koncept och ibland även göra praktiska övningar. 
+
+** The Coding Exam
+The course does not use a traditional closed-book exam. Read [[./code-exam.org][this
+page]] for more information about he coding exam. You will get
+multiple shots at this exam throughout the course, and typically
+more throughout the year.
+
 ** Kurslitteratur
 This course does not follow any specific book. If you like following books (great!!!), please
 come talk to me and we can discuss what kind of book would be good for you. The course goes on
 forever, so no sweat if you don't have a book the first 1-2 weeks!
+
 ** Arbetsgrupper och programmeringspar
 Under kursens gång kommer du att ingå i en framslumpad arbetsgrupp
 med ca 10-12 personer. Dessa grupper byggs successivt upp under
@@ -96,22 +121,24 @@ på annat sätt. Alla bedömningar är individuella och det är möjligt
 att en student blir godkänd och en underkänd på samma redovisning.
 Det är också möjligt att ha en redovisning där endast en student
 bockar av högre mål, etc.
+
 ** Redovisning och AU-Portalen
 With few exceptions (essay, C7, communication and project
 achievements), demonstrations take the form of oral examination in
 front of a computer terminal with one examiner and two students
-working in a pair.
+working in a pair. In 2020, these will happen remotely over Zoom,
+using Cloud 9 as a shared editor. 
 
-Checks are individual, meaning that both respondents must
-demonstrate mastery for both to pass. A mostly passive respondent
-will not pass a check even with a brilliant partner. The
-responsibility for making sure that both respondents actively
-participate is on the respondents -- not on the examiner. For this
-reason, and because it tends to speed things up, we encourage you
-to prepare your demonstrations and discuss who says what. In our
-experience, this makes demonstrations run faster, have higher
-quality, and increase your reflection (e.g., you will remember it
-better).
+Demonstration results are individual, meaning that both
+respondents must demonstrate mastery in order for both to pass. A
+mostly passive respondent will not pass a check no matter how
+brilliant the partner is. The responsibility for making sure that
+both respondents actively participate is on the respondents -- not
+on the examiner. For this reason, and because it tends to speed
+things up, we encourage you to prepare your demonstrations and
+discuss who says what. In our experience, this makes
+demonstrations run faster, have higher quality, and increase your
+reflection (e.g., you will remember it better).
 
 The choice of oral examination serves several purposes. Explaining
 interactively is time-efficient, both for you and us, and feedback
@@ -119,8 +146,9 @@ is given immediately when the demonstration is still fresh in your
 mind. Technical communication is an important soft-skill that is
 trained automatically in this setting. 
 
-Demonstrations take place in 1515, 1549 and (for students with
-laptops also 1245), during the lab sessions, excluding bootstrap
+Demonstrations take place 
+# in 1515, 1549 and (for students with laptops also 1245), 
+during the lab sessions, excluding bootstrap
 labs (where you will be demonstrating lab tasks instead). You
 request to demonstrate through the [[http://auportal.herokuapp.com/][AU Portal]] where you can choose
 which achievements you wish to demonstrate.
@@ -201,7 +229,8 @@ failed. About 5% got push-backs.
 to" motivate failing a presentation. Examiners are however
 expected to explain and motivate both passing and failing grades
 on demonstration.
-** Uppföljningsmöten
+
+** TODO Uppföljningsmöten
 Vid sex tillfällen under kursen kommer du att kallas till ett kort
 uppföljningsmöte där du (och din labbpartner) får presentera hur
 det går för er i den pågående sprinten. Där kan ni visa vad ni har
@@ -211,7 +240,8 @@ lämplig styrfart genom kursen och att komma loss om ni har kört
 fast. Om ni är osäkra på vilka mål som passar med er uppgift kan
 får ni diskutera saken med en assistent och ett annat
 programmeringspar. [[./team.org::*Group Meetings][Läs mer här]].
-** Labbar
+
+** TODO Labbar
 #+begin_important
 *SUPERVIKTIG SKILLNAD MOT PKD:* Labbar på denna kurs avser tid att
 *redovisa* och *få hjälp med programmering*. Den mesta
@@ -220,14 +250,15 @@ timmars* arbete utanför labbar och föreläsningar i snitt per
 vecka.
 #+end_important
 
-Hela kursens finns det ungefär 8 timmar schemalagd i datorsalar
+Hela kursens finns det ungefär 10 timmar schemalagd i datorsalar
 per vecka, s.k. labbtillfällen. Deltagande vid dessa tillfällen är
-inte obligatoriskt (förutom inledande 6 C-labbar och 3
+inte obligatoriskt (förutom inledande 6 C-labbar och 2
 Java-labbar). Vid dessa tillfällen finns det möjlighet att få
 handledning och också möjlighet att redovisa mål (förutom
 inledande 6 labbar).
 
 Mer information om labbarna och redovisning finns [[./labs.org][här]]. 
+
 ** Betyg
 Målen har en betygsnivå kopplad till sig. Mål på högre nivå
 omfattar de på lägre nivå. Du kan inte byta ut ett mål på en
@@ -236,6 +267,7 @@ högre nivå mot ett mål på en lägre nivå (det vore inte vettigt).
 - För att få betyget tre måste du klara av /alla/ mål på nivå 3.
 - För att få betyget fyra måste du klara av /alla/ mål på nivå 3 och 4.
 - För att få betyget fem måste du klara av /alla/ mål på nivå 3, 4 och 5.
+
 ** Högskolepoäng och kursfordringar
 Kursen ger totalt 20 hp uppdelat på fem delar:
 
@@ -268,6 +300,7 @@ kodprovet).
 - Inga eftersläpande repetitionsmål
 
 * Arbetsflöde under kursen
+
 Kursens upplägg härmar avsiktligt lättrörliga eller agila
 processer, främst Kanban och Scrum. Under projektdelen (fas 3)
 skall du och din projektgrupp själva lägga upp en plan, följa upp
@@ -275,6 +308,7 @@ och revidera den, etc. Fram till dess kommer ni att öva genom att
 arbeta på motsvarande sätt med kursen. Vi betraktar kursen som ett
 projekt vars slutmål är att du skall vara godkänd med det betyg
 som du siktar på.
+
 ** Steg 1: Sätt ditt personliga mål
 Vilket betyg vill du ha? Du styr själv vilket betyg du vill uppnå
 -- vilken nivå av insikt vill du nå, etc.? Målen på nivå 4 och 5
@@ -284,6 +318,7 @@ bestämma dig för det och aktivt arbeta för att nå dit. Fatta ett
 beslut. Du kan ändra dig senare. För att minska stressen kan du
 redan nu planera in en tidpunkt (t.ex. 1:a oktober) för att
 eventuellt revidera beslutet.
+
 ** Steg 2: Styrfart
 Hur blir du godkänd på en kurs? Det går inte att arbeta på att
 "bli godkänd", det är för flummigt och abstrakt. "Problemet" måste
@@ -341,6 +376,7 @@ För dig som tycker att det mesta på kursen är nytt kan det vara
 vanskligt att försöka avgöra om ett visst mål är värt 1 eller 3
 story points. Då är det bättre att planera i enheten avklarade
 mål, åtminstone till en början.
+
 ** Steg 3: Vad skall jag göra denna sprint?
 Så länge vi håller styrfarten behöver vi inte planera för vad vi
 skall göra resten av projektet (kursen), utan kan fokusera på den
@@ -376,10 +412,12 @@ tid. Det är också okej att inte lyckas med sin plan hela tiden
 -- du är ju här för att öva. Om du inte är ärlig mot dig själv och
 andra i din planering lär du dig ingenting och vinner heller
 ingenting.
+
 ** Steg 4: Uppföljning
 Planering är bra, men du måste också följa upp utfallet så att du
 kan justera hur du planerar i framtiden. Detta görs tillsammans
 med andra i teamet, och finns beskrivet [[./team.org::*Group Meetings][här]].
+
 ** Steg 5: Revidera planen
 Ditt burndown chart visar trenden -- vad har du för styrfart, och
 kommer du att nå ditt mål? Kanske blir du sjuk en vecka och tappar
@@ -391,11 +429,13 @@ I slutet av varje sprint är det läge att göra en liten kort
 postmortem som sammanfattar hur det gick och hur verkligheten
 avvek från din plan. Det är högst personliga reflektioner som kan
 hjälpa dig att planera bättre nästa gång. Är du tidsoptimist? Etc.
+
 ** Steg 6: Retrospektiv
 Mot kursens slut kommer du att göra en mer djuplodande uppföljning
 och analys av arbetet har fungerat, och hur styrfart, stress,
 förväntat/eftersträvat betyg, etc. har ändrats under kursens.
 Detta redovisas i målet [[aua:7][C7: Planering och uppföljning]].
+
 ** Verktygsstöd: Trello
 Vi rekommenderar att du använder ett verktyg för att hantera ditt
 arbete. Trello är ett gratis verktyg för att arbeta med
@@ -444,17 +484,20 @@ Du hittar våra Trello-bräden [[https://trello.com/ioopm][här]].
 # # den sista gemensamma redovisningen är den stora och att du skall
 # # få tillfälle att träna och få återkoppling innan dess.
 * Deadlines
+
 ** Hur funkar deadlines?
 De flesta inlämningsuppgifter har två deadlines, en mjuk och en
 hård. Den mjuka deadlinen avser det datum då vi tycker att du bör
 ha redovisat en uppgift. Den hårda deadlinen avser det datum då du
 måste ha redovisat. Den hårda deadlinen ligger alltid en eller två
 veckor efter den mjuka, och ofta i samband med en annan deadline.
+
 ** Att missa en hård deadline
 Ett kodpar som missar en hård deadline blir kallad till ett
 /uppföljningsmöte med obligatorisk närvaro/ för att diskutera
 anledningen och eventuella påföljder. Undvik att missa hårda
 deadlines!
+
 * Academic Honesty and Integrity
 Honesty and integrity are of utmost importance.
 
@@ -479,6 +522,7 @@ When in doubt, ask [[./teaching-staff.org::head_teacher][the head teacher]].
 Make sure you have familiarised yourself with the rules of
 plagiarism at the department and the university.
 #+end_important
+
 * FAQ
 *Q*: Jag har delar av IOOPM från *före* 2013 kvar! Hur skall jag göra? \\
 *A*: Om du läste kursen innan den gjordes om 2013 så ska du

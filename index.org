@@ -15,103 +15,121 @@ Ask questions and discuss with other students on [[https://piazza.com/class/ke6u
 Request demonstrations and track your progress at the [[http://auportal.herokuapp.com/][AU Portal]] \\
 #+end_note
 
-* IOOPM Communication Channels and Course Tools
+* [[mark:Information For New Students in 2020]]
 
-- We use [[https://mp.uu.se/documents/432512/342111259/Zoom_student_version2_eng.pdf/dee75c6d-00fa-f25c-0920-6e59c6ae2362][Zoom]] for live lectures, to connect students during pair programming, and connect students and teachers for help requests and demonstrations. 
-- We use YouTube to distribute any prerecorded lecture material 
-- We use Cloud 9 to pair program, collaborativly edit code, and interact with examiners for demonstrations
-- We use [[https://piazza.com/class/ke6uvtli7x05er][Piazza]] as a forum to discuss, ask for help between labs, and for teachers to broadcast information
-- We use MatterMost as an interactive chat tool to ask questions during lectures, and for quick text chatting between students, and between students and teachers
-- We use the AU Portal during the scheduled lab sessions to request live help and demonstrate progress which will then take place over Cloud 9 and Zoom
-- We use GitHub to manage all code students write during the course, and to share code between students for pair programming
-- We do *NOT* use the Student Portal or Studium for anything on this course
+#+begin_important
+The first thing you do should be to go [[./about.org][here]] and read about how the
+course will run in 2020. Then come back here and on you go!
+#+end_important
 
-A lot of this is new for 2020, and we are learning and experimenting as we go. We appreciate your constructive feedback during the course. 
+** Action Points Day One
+
+- Enter the information we need about you in the AU Portal to complete the setup:
+  - Your GitHub account ([[./github.org::*How to Get a GitHub Account for the Course][get one if you need one]])
+  - Your ZOOM number 
+- Perform the necessary steps to connect to Cloud 9
+- [[./github.org::*Checking Out the Repository for the First Time][Checkout your git repository]] in Cloud 9  
 
 
-* How IOOPM Works
-If you are visiting this page for the first time, you should
-probably [[./about.org][read the page about the course first]]. [[mark:Mandatory reading!]]
-** What You Should be Doing the First Week
-In no particular order, and preferably somewhat in parallel:
+** Action Points Week One
 
 - Look through this website! Especially read about [[./about.org][how this course
   works]], [[*Deadlines][deadlines]] and [[./labs.org][labs]], and form a mental model for what you
   need to do to pass with the [[./about.org::*Betyg][grade that you want]].
-- Get a [[./github.org::*How to Get a GitHub Account for the Course][GitHub account and let us know about its username]] so we
-  can connect it to the course. Once this is done, you should
-  [[./github.org::*Checking Out the Repository for the First Time][check out your GitHub repository]].
-- If you want to work on your own machine, [[./tools.org][install the necessary
+- Familiarise yourself with the [[./simple.org][SIMPLE methodology]] -- an attempt
+  at codifying some good practises for thinking about coding,
+  actual coding, and refactoring.
+- If you want to work on your own machine without Internet access, [[./tools.org][install the necessary
   tools]].
 - Start working on the [[./assignments/c-bootstrap.org][C bootstrap exercises]].
+- Make sure you have a working setup for collaborating with other
+  students, and taking demonstrations. *Notably, this includes a
+  working web camera so that we can see your face.*
+- Get in touch with your [[./groups.org][group]], find someone to pair program with
+  during the labs. 
 
-In addition to this, and outside of your control[fn::No, you
-cannot form your own team, no matter what the reasons are.], you
-will be placed in a group with about 10-12 other students.
-Throughout the course, this group will be your "team", and you
-will be [[./team.org::*Pair Programming][pairing with others from this team]], and [[./team.org::*Group Meetings][report back to the
-team]] regularly, and [[./team.org::*Group Meetings][meet with your coach]]. Your will also cooperate
-on [[au:63][your first deliverable]].
-** Who is Running the Course in 2020?
-Check out [[./teaching-staff.org][this page]].
-** The Coding Exam
-The course does not use a traditional closed-book exam. Read [[./code-exam.org][this
-page]] for more information about he coding exam.
-** The SIMPLE Methodology
-The [[./simple.org][SIMPLE methodology]] is an attempt at codifying some good
-practises for thinking about coding, actual coding, and
-refactoring. Read about in on [[./simple.org][this page]].
-* Lecture Schedule with Slides
-Note that without exception, all lectures start at 10:15 and are
-scheduled to end at 12:00. The [[https://cloud.timeedit.net/uu/web/schema/riq56QxY8Q5ZZXQ5y07Z565760Z0Y5g406g6600QQ1o00g6045Z4Yq6Qo.html][full schedule]] is available on
-TimeEdit. The course is divided into 3 /phases/. Phases 1 and 2
-are furthermore divided into 2 /sprints/ each, and each sprint
-roughly corresponds to one assignment.
+
+# ** What You Should be Doing the First Week
+# In no particular order, and preferably somewhat in parallel:
+
+# In addition to this, and outside of your control[fn::No, you
+# cannot form your own team, no matter what the reasons are.], you
+# will be placed in a group with about 10-12 other students.
+# Throughout the course, this group will be your "team", and you
+# will be [[./team.org::*Pair Programming][pairing with others from this team]], and [[./team.org::*Group Meetings][report back to the
+# team]] regularly, and [[./team.org::*Group Meetings][meet with your coach]]. Your will also cooperate
+# on [[au:63][your first deliverable]].
+
+* Course Staff and How to Get In Touch
+
+Check out [[./teaching-staff.org][this page]] for details. The primary mode of 1-1 contact
+is MatterMost. Use Piazza to ask general questions. The course has
+en email address [[mailto:ioopm@it.uu.se][ioopm@it.uu.se]] which is checked at least once a
+week. Never use the teachers' normal addresses unless asked to
+explicitly because we need to be able to keep everything else we
+are doing outside of the IOOPM stream .
+
+* Course Time Lines
+
+The course is divided into 3 /phases/. Phases 1 and 2 are
+furthermore divided into 2 /sprints/ each, and each sprint roughly
+corresponds to one assignment.
+
 | Phase | Start   | Finish  | Remark                                  |
 |-------+---------+---------+-----------------------------------------|
 |     1 | Week 36 | Week 42 | Getting started, Imperative programming |
 |     2 | Week 43 | Week 48 | Object-Oriented Programming             |
-|     3 | Week 49 | Week 3  | Software Project                        |
+|     3 | Week 49 | Week 2  | Software Project                        |
+
+Note that without exception, all lectures start at 10:15 and are
+scheduled to end at 12:00. The [[https://cloud.timeedit.net/uu/web/schema/riq56QxY8Q5ZZXQ5y07Z565760Z0Y5g406g6600QQ1o00g6045Z4Yq6Qo.html][full schedule]] is available on
+TimeEdit. We aim to be able to deliver some content ahead-of-time.
+More details will emerge. Until then, plan as if the lectures are
+given live and recorded for posterity.
 
 ** Phase 1 (Imperative Programming)
 | Date  | Contents                                                                                                                  | Achievements                  | fab:slideshare |
 |-------+---------------------------------------------------------------------------------------------------------------------------+-------------------------------+----------------|
-|       |                                                                                                                           |                               | <c>            |
-| 2/9   | Grundläggande datatyper, deklaration, uttryck och satser. Funktioner. Enkel I/O. Enkel  stränghantering.                  | [[aua:1][A1]] ([[aua:13][F13]], [[aua:15][G15]])                 | [[file:misc/w1-2.pdf][Slides]] [[https://github.com/TobiasWrigstad/ioopm19/tree/master/lectures/f01-04#extramaterial][Code]]    |
-| 5/9   | Poster och unioner. Typnamnsdefinitioner. Funktionspekare. Separatkompilering och headerfiler.                            | [[aua:3][A3]], [[aua:9][D9]], [[aua:15][G15]], [[aua:16][G16]], ([[aua:22][I22]]), [[aua:30][K30]]. | -''-           |
-| 9/9   | Dynamisk minnesallokering. Pekare.                                                                                        | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:27][J27]], [[aua:38][M38]]       | -''-           |
-| 12/9  | Introduktion till resten av kursen. Skillnad mellan funktionell och imperativ programmering. SIMPLE. Det agila upplägget. | [[aua:7][C7]]                            | -''- (p160)    |
-| 16/9  | Stack och heap, länkade strukturer, pekare 1/2.                                                                           | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:36][M36]]            | [[file:misc/w3.pdf][Slides]]         |
-| 18/9  | Stack och heap, länkade strukturer, pekare 2/2.                                                                           | [[aua:27][J27]], [[aua:37][M37]], [[aua:39][M39]]                 | -''-           |
-| 23/9  | Introduction to testing with CUnit                                                                                        | [[aua:18][G18]], [[aua:49][Q49]], [[aua:50][Q50]]                 | [[file:misc/w4.pdf][Slides]]         |
-| 26/9  | Automatisering (Make, scripting) och optimering.                                                                          | [[aua:55][T55]], [[aua:57][U57]], [[aua:58][V58]], [[aua:45][P45]]            | -''-           |
-| 30/9  | Design & metodologi. Hur strukturerar man? Top-down, bottom-up. Lagertänkande.                                            | [[aua:41][N41]]                           | [[file:misc/w5.pdf][Slides]]         |
-| 3/10  | Modularisering, separatkompilering, coupling & cohesion.                                                                  | TBA                           | -''-           |
-| 7/10  | Defensiv programmering. Läsbar kod.                                                                                       | [[aua:22][I22]], [[aua:45][P45]]                      | [[file:misc/w6.pdf][Slides]]         |
-| 10/10 | Preprocessorn. Bitmanipulering.                                                                                           | [[aua:42][O42]], [[aua:43][O43]], [[aua:44][O44]]                 | -''-           |
-| 11/10 | /Backup/ (Terminalen)                                                                                                     | [[aua:58][V58]]                           | Demo           |
-| 14/10 | Prepping for code exam                                                                                                    |                               | N/A            |
+|       |                                                                                                                           |                               |      <c>       |
+| 1/9   | Grundläggande datatyper, deklaration, uttryck och satser. Funktioner. Enkel I/O. Enkel  stränghantering.                  | [[aua:1][A1]] ([[aua:13][F13]], [[aua:15][G15]])                 |  [[file:misc/w1-2.pdf][Slides]] [[https://github.com/TobiasWrigstad/ioopm19/tree/master/lectures/f01-04#extramaterial][Code]]   |
+| 4/9   | Poster och unioner. Typnamnsdefinitioner. Funktionspekare. Separatkompilering och headerfiler.                            | [[aua:3][A3]], [[aua:9][D9]], [[aua:15][G15]], [[aua:16][G16]], ([[aua:22][I22]]), [[aua:30][K30]]. |      -''-      |
+| 7/9   | Dynamisk minnesallokering. Pekare.                                                                                        | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:27][J27]], [[aua:38][M38]]       |      -''-      |
+| 10/9  | Introduktion till resten av kursen. Skillnad mellan funktionell och imperativ programmering. SIMPLE. Det agila upplägget. | [[aua:7][C7]]                            |  -''- (p160)   |
+| 14/9  | Stack och heap, länkade strukturer, pekare 1/2.                                                                           | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:36][M36]]            |     [[file:misc/w3.pdf][Slides]]     |
+| 17/9  | Stack och heap, länkade strukturer, pekare 2/2.                                                                           | [[aua:27][J27]], [[aua:37][M37]], [[aua:39][M39]]                 |      -''-      |
+| 21/9  | Introduction to testing with CUnit                                                                                        | [[aua:18][G18]], [[aua:49][Q49]], [[aua:50][Q50]]                 |     [[file:misc/w4.pdf][Slides]]     |
+| 24/9  | Automatisering (Make, scripting) och optimering.                                                                          | [[aua:55][T55]], [[aua:57][U57]], [[aua:58][V58]], [[aua:45][P45]]            |      -''-      |
+| 28/9  | Design & metodologi. Hur strukturerar man? Top-down, bottom-up. Lagertänkande.                                            | [[aua:41][N41]]                           |     [[file:misc/w5.pdf][Slides]]     |
+| 1/10  | Modularisering, separatkompilering, coupling & cohesion.                                                                  | TBA                           |      -''-      |
+| 5/10  | Defensiv programmering. Läsbar kod.                                                                                       | [[aua:22][I22]], [[aua:45][P45]]                      |     [[file:misc/w6.pdf][Slides]]     |
+| 8/10  | Preprocessorn. Bitmanipulering.                                                                                           | [[aua:42][O42]], [[aua:43][O43]], [[aua:44][O44]]                 |      -''-      |
+| 12/10 | /Backup/ (Terminalen)                                                                                                     | [[aua:58][V58]]                           |      Demo      |
+| 15/10 | Prepping for code exam                                                                                                    |                               |      N/A       |
+
 ** Phase 2 (Object-Oriented Programming) <<phase2lectures>>
 | Date  | Contents                                                                                                                   | Achivements                                                | fab:slideshare |
 |-------+----------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------+----------------|
-| 21/10 | Introduktion till objektorientering.                                                                                       | Många kursivt                                              | [[file:misc/j1.pdf][Slides]]         |
-| 24/19 | Översikt: skräpsamling, undantagshantering, JVM:en, JIT-kompilering.                                                       | Många kursivt                                              | [[file:misc/j2.pdf][Slides]]         |
-| 25/10 | Objektorienterad analys och design. Konstruktorer. Instantiering, referenser, klassvariabler.                              | [[aua:2][A2]], [[aua:4][B4]], [[aua:5][B5]], [[aua:6][B6]], [[aua:8][C8]], [[aua:19][H19]], [[aua:20][H20]], [[aua:21][H21]], [[aua:11][E11]], [[aua:12][E12]], [[aua:30][K30]], [[aua:31][K31]], [[aua:32][K32]] | [[file:misc/j3-5.pdf][Slides]]         |
-| 4/11  | Arv och klasshierarkier. Överlagring. Overriding. Överlagring av konstruktorer. Abstrakta klasser. Interface. Genericitet. | [[aua:2][A2]], [[aua:4][B4]], [[aua:5][B5]], [[aua:6][B6]], [[aua:8][C8]], [[aua:19][H19]], [[aua:20][H20]], [[aua:21][H21]], [[aua:11][E11]], [[aua:12][E12]], [[aua:30][K30]], [[aua:31][K31]], [[aua:32][K32]] | -''-           |
-| 7/11  | Typer, subtyper, Liskovs substitutionsprincip. Undantagshantering.                                                         | [[aua:2][A2]], [[aua:15][G15]], [[aua:16][G16]], [[aua:17][G17]]                                          | [[file:misc/j7.pdf][Slides]]         |
-| 11/11 | Identitet och ekvivalens, JUnit                                                                                            | [[aua:15][G15]], [[aua:16][G16]], [[aua:18][G18]], [[aua:46][P46]], [[aua:49][Q49]], [[aua:50][Q50]], [[aua:51][Q51]]                          | [[file:misc/j8.pdf][Slides]] [[file:misc/junit.zip][Junit]]   |
-| 14/11 | Profilering. JIT-kompilering. Bytecode.                                                                                    | [[aua:40][N40]], [[aua:41][N41]], [[aua:42][O42]], [[aua:43][O43]], [[aua:44][O44]]                                    | [[file:misc/j9.pdf][Slides]]         |
-| 18/11 | Refactoring.                                                                                                               | [[aua:18][A2]]                                                         | [[file:misc/j10.pdf][Slides]]         |
-| 21/11 | Garbage collection in-depth, and its relation to resource management.                                                      | [[aua:26][J26]], [[aua:27][J27]], [[aua:28][J28]], [[aua:29][J29]]                                         | [[file:misc/j11.pdf][Slides]]         |
-| 25/11 | Inkapsling. Inre och nästlade klasser. Wrapperklasser.                                                                     | [[aua:15][G15]], [[aua:16][G16]], [[aua:17][G17]]                                              | TBA            |
-| 28/11 | Reservtid.                                                                                                                 |                                                            |                |
+| 26/10 | Introduktion till objektorientering.                                                                                       | Många kursivt                                              | [[file:misc/j1.pdf][Slides]]         |
+| 29/10 | Översikt: skräpsamling, undantagshantering, JVM:en, JIT-kompilering.                                                       | Många kursivt                                              | [[file:misc/j2.pdf][Slides]]         |
+| 2/11  | Objektorienterad analys och design. Konstruktorer. Instantiering, referenser, klassvariabler.                              | [[aua:2][A2]], [[aua:4][B4]], [[aua:5][B5]], [[aua:6][B6]], [[aua:8][C8]], [[aua:19][H19]], [[aua:20][H20]], [[aua:21][H21]], [[aua:11][E11]], [[aua:12][E12]], [[aua:30][K30]], [[aua:31][K31]], [[aua:32][K32]] | [[file:misc/j3-5.pdf][Slides]]         |
+| 6/11  | Arv och klasshierarkier. Överlagring. Overriding. Överlagring av konstruktorer. Abstrakta klasser. Interface. Genericitet. | [[aua:2][A2]], [[aua:4][B4]], [[aua:5][B5]], [[aua:6][B6]], [[aua:8][C8]], [[aua:19][H19]], [[aua:20][H20]], [[aua:21][H21]], [[aua:11][E11]], [[aua:12][E12]], [[aua:30][K30]], [[aua:31][K31]], [[aua:32][K32]] | -''-           |
+| 9/11  | Typer, subtyper, Liskovs substitutionsprincip. Undantagshantering.                                                         | [[aua:2][A2]], [[aua:15][G15]], [[aua:16][G16]], [[aua:17][G17]]                                          | [[file:misc/j7.pdf][Slides]]         |
+| 12/11 | Identitet och ekvivalens, JUnit                                                                                            | [[aua:15][G15]], [[aua:16][G16]], [[aua:18][G18]], [[aua:46][P46]], [[aua:49][Q49]], [[aua:50][Q50]], [[aua:51][Q51]]                          | [[file:misc/j8.pdf][Slides]] [[file:misc/junit.zip][Junit]]   |
+| 16/11 | Profilering. JIT-kompilering. Bytecode.                                                                                    | [[aua:40][N40]], [[aua:41][N41]], [[aua:42][O42]], [[aua:43][O43]], [[aua:44][O44]]                                    | [[file:misc/j9.pdf][Slides]]         |
+| 19/11 | Refactoring.                                                                                                               | [[aua:18][A2]]                                                         | [[file:misc/j10.pdf][Slides]]         |
+| 23/11 | Garbage collection in-depth, and its relation to resource management.                                                      | [[aua:26][J26]], [[aua:27][J27]], [[aua:28][J28]], [[aua:29][J29]]                                         | [[file:misc/j11.pdf][Slides]]         |
+| 26/11 | Inkapsling. Inre och nästlade klasser. Wrapperklasser.                                                                     | [[aua:15][G15]], [[aua:16][G16]], [[aua:17][G17]]                                              | TBA            |
+| 30/11 | Reservtid.                                                                                                                 |                                                            |                |
 | 3/12  | Mjukvaruprojekt                                                                                                            | Samtliga projektmål                                        | TBA            |
-| 9/12  | Prepping for code exam                                                                                                     | Samtliga projektmål                                        | N/A            |
+| 7/12  | Prepping for code exam                                                                                                     | Samtliga projektmål                                        | N/A            |
+| 10/12 | /Backup/                                                                                                                   |                                                            |                |
+| 14/12 | /Backup/                                                                                                                  |                                                            |                |
+
 ** Phase 3 (Methodology and Tools)
 | Date  | Contents                                 | Achievements | fab:slideshare |
 |-------+------------------------------------------+--------------+----------------|
 # | 10/12 | Project presentations, software projects | TBA          | TBA            |
-| 17/1  | Retrospective & guest lecture            | TBA          | TBA            |
+| 15/1  | Retrospective & guest lecture            | TBA          | TBA            |
 
 * Deadlines
 Deadlines and important dates in chronological order. Read [[./about.org::*Deadlines][here]] about soft and hard deadlines.
@@ -151,27 +169,26 @@ Note that assignments mostly act as drivers to learn concepts and produce eviden
 | [[./assignments/assignment3.org][Assignment 3 (Java)]]      | 28/10 | 15/11         | Implement a simple symbolic calculator                                      |
 | [[./assignments/assignment4.org][Assignment 4 (Java)]]      | 18/11 | 29/11         | Improve the symbolic calculator program using typical Java idioms           |
 | [[./projects/projects.org][Project group work]]       | 2/12  | 14--16/1 2020 | Implement memory management systems for C programs                          |
+
 * Resources
-** TODO General 
+** General 
 - An introduction to Emacs is found [[./editors.org][here]]
 - An introduction to Makefiles is found [[./makefiles.org][here]]
 - An overview of the tools we use on the course is found [[./tools.org][here]]
 - A minimal set of commands for working with git and GitHub is found [[./github.org][here]]
 - An IOOPM-specific [[https://trello.com/ioopm][clonable Trello board]] that you can use to track your own progress and plan your phases and sprints
-- An IOOPM-specific [[https://docs.google.com/spreadsheets/d/171ME0XXa-7C7iSbRsHuwdwDwt912nGqHwdpuHQAhIVc/edit#gid=49659760][Google Spread Sheet for making burndown charts]] and tracking your velocity
 - [[http://www.it.uu.se/datordrift/maskinpark/linux][Machines at IT available for remote access]] and [[http://www.it.uu.se/datordrift/maskinpark/linux][instructions for accessing them remotely]]
-** TODO C Programming
+** C Programming
 - [[./compiling.org][Basic compiling]] instructions
 - [[./basic-c.org][Basic C constructs]] overview and discussion
 - [[./pointers.org][An introduction to pointers and pointers to pointers]]
-** TODO Java Programming
+** Java Programming
 - [[./compiling.org][Basic compiling]] instructions
 ** Screencasts
 Screencasts from old instances of the course are [[./screencasts.org][available]].
 ** FAQ
 A minimal FAQ is [[./about.org::*FAQ][available]]. 
-** TODO Links
-- [[http://wrigstad.com/ioopm/links.php][The old link library]]
+
 * Recent Changes
 Substantial changes are announced in Piazza. For everything else,
 use the git log. Complete change tracking is possible by following
