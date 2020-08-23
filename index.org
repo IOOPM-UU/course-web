@@ -8,12 +8,26 @@
 # Sign up by sending e-mail to ioopm@it.uu.se.
 # #+end_important
 
+# Get course material at the [[https://github.com/TobiasWrigstad/ioopm19][course's GitHub page]] \\
+
 #+Begin_note
-Get course material at the [[https://github.com/TobiasWrigstad/ioopm19][course's GitHub page]] \\
-Ask questions and discuss with other students on [[https://piazza.com/class/k01yr6gds9m62i][Piazza]]  \\
+Ask questions and discuss with other students on [[https://piazza.com/class/ke6uvtli7x05er][Piazza]]  \\
 Request demonstrations and track your progress at the [[http://auportal.herokuapp.com/][AU Portal]] \\
-Ask questions *during lectures* [[https://docs.google.com/forms/d/e/1FAIpQLSedqlhkDtKUo6yiP3Z9Ha6007MJtEBQAFTNoImOvJNarsWUWg/viewform][using this webform]] (or put your hand up!)
 #+end_note
+
+* IOOPM Communication Channels and Course Tools
+
+- We use [[https://mp.uu.se/documents/432512/342111259/Zoom_student_version2_eng.pdf/dee75c6d-00fa-f25c-0920-6e59c6ae2362][Zoom]] for live lectures, to connect students during pair programming, and connect students and teachers for help requests and demonstrations. 
+- We use YouTube to distribute any prerecorded lecture material 
+- We use Cloud 9 to pair program, collaborativly edit code, and interact with examiners for demonstrations
+- We use [[https://piazza.com/class/ke6uvtli7x05er][Piazza]] as a forum to discuss, ask for help between labs, and for teachers to broadcast information
+- We use MatterMost as an interactive chat tool to ask questions during lectures, and for quick text chatting between students, and between students and teachers
+- We use the AU Portal during the scheduled lab sessions to request live help and demonstrate progress which will then take place over Cloud 9 and Zoom
+- We use GitHub to manage all code students write during the course, and to share code between students for pair programming
+- We do *NOT* use the Student Portal or Studium for anything on this course
+
+A lot of this is new for 2020, and we are learning and experimenting as we go. We appreciate your constructive feedback during the course. 
+
 
 * How IOOPM Works
 If you are visiting this page for the first time, you should
