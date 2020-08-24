@@ -136,14 +136,14 @@ Deadlines and important dates in chronological order. Read [[./about.org::*Deadl
 
 | Date          | Deadline                   | Comment                                   |
 |---------------+----------------------------+-------------------------------------------|
-| 13/9          | [[http://auportal.herokuapp.com/achievements/63][Groupie Achievement]]        | Only one hand-in *per group*              |
-| 13/9          | [[file:assignments/c-bootstrap.org][C Bootstrap]]                | Prerequisite for starting on Assignment 1 |
-| 4/10          | [[./assignments/assignment1.org][Assignment 1]] (Soft)        |                                           |
-| 18/10         | [[./assignments/assignment1.org][Assignment 1]] (Hard)        |                                           |
-| 18/10         | [[./assignments/assignment2.org][Assignment 2]] (Soft)        |                                           |
-| 23/10         | [[./code-exam.org][Coding Exam]] 1              | Sign-up not open yet.                     |
-| 1/11          | [[./assignments/assignment2.org][Assignment 2]] (Hard)        |                                           |
+| 11/9          | [[http://auportal.herokuapp.com/achievements/63][Groupie Achievement]]        | Only one hand-in *per group*              |
+| 11/9          | [[file:assignments/c-bootstrap.org][C Bootstrap]]                | Prerequisite for starting on Assignment 1 |
+| 2/10          | [[./assignments/assignment1.org][Assignment 1]] (Soft)        |                                           |
+| 16/10         | [[./assignments/assignment1.org][Assignment 1]] (Hard)        |                                           |
+| 16/10         | [[./assignments/assignment2.org][Assignment 2]] (Soft)        |                                           |
+| 22/10         | [[./code-exam.org][Coding Exam]] 1              | Sign-up not open yet.                     |
 | 1/11          | [[./assignments/java-bootstrap.org][Java Bootstrap]]             | Prerequisite for starting on Assignment 3 |
+| 30/10         | [[./assignments/assignment2.org][Assignment 2]] (Hard)        |                                           |
 | 15/11         | [[./assignments/assignment3.org][Assignment 3]] (Soft)        |                                           |
 | 29/11         | [[./assignments/assignment3.org][Assignment 3]] (Hard)        |                                           |
 | 29/11         | [[./assignments/assignment4.org][Assignment 4]] (Soft)        |                                           |

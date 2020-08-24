@@ -1,0 +1,51 @@
+#+title: Zoom on IOOPM
+#+include: "./setup.org"
+
+#+begin_important
+In order to demonstrate achievements on IOOPM, you need to have the Zoom client installed. 
+This is necessary for using your web camera so that we can see your face. 
+#+end_important
+
+* How to Get Hold of Your Zoom Number
+
+We need your Zoom Number so that we can pair you together with examiners for demonstration. 
+Below are the steps needed to get hold of your 10-digit Zoom number. You should enter this
+number in the AU Portal software when you login for the first time. 
+
+** Open the Zoom Client 
+
+#+NAME: fig_zoom_1
+#+ATTR_HTML: :width 75%
+#+CAPTION: Open your Zoom client (screenshot from Mac, but Linux looks quite similar)
+[[./images/zoom1.png]]
+
+#+NAME: fig_zoom_2
+#+ATTR_HTML: :width 45%
+#+CAPTION: Access your account -- this will open a web browser
+[[./images/zoom2.png]]
+
+#+NAME: fig_zoom_3
+#+ATTR_HTML: :width 75%
+#+CAPTION: In the web browser, select SSO login at the bottom
+[[./images/zoom3.png]]
+
+#+NAME: fig_zoom_4
+#+ATTR_HTML: :width 75%
+#+CAPTION: In the SSO dialogue, enter =uu-se= (lowercaps) as the domain 
+[[./images/zoom4.png]]
+
+#+NAME: fig_zoom_5
+#+ATTR_HTML: :width 75%
+#+CAPTION: Click on show to get your 10-digit Zoom number
+[[./images/zoom5.png]]
+
+
+* How to Start A Zoom Meeting for A Demonstration
+
+#+NAME: fig_zoom_1
+#+ATTR_HTML: :width 75%
+#+CAPTION: Always use the link from the AU Portal software to ensure that all participants share the same meeting ID
+[[./images/zoom6.png]]
+
+
+#+include: "./footer.org"
