@@ -40,7 +40,7 @@ number in the AU Portal software when you login for the first time.
 [[./images/zoom5.png]]
 
 
-* How to Start A Zoom Meeting for A Demonstration
+* How to Start A Zoom Meeting for A Demonstration or Help Request
 
 #+NAME: fig_zoom_1
 #+ATTR_HTML: :width 75%
