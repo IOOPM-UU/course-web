@@ -3,8 +3,8 @@
 
 #+begin_important
 *Intended start*: Start of Week 38 \\
-*Soft deadline*: End of Week 41 \\
-*Hard deadline*: End of Week 43
+*Soft deadline*: End of Week 40 \\
+*Hard deadline*: End of Week 42
 #+end_important
 
 * Introduction

@@ -3,8 +3,8 @@
 
 #+begin_important
 *Intended start*: Start of Week 41 \\
-*Soft deadline*: End of Week 43 \\
-*Hard deadline*: End of Week 45
+*Soft deadline*: End of Week 42 \\
+*Hard deadline*: End of Week 44
 #+end_important
 
 * Simple Webstore Backend
