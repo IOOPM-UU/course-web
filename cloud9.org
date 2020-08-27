@@ -1,0 +1,8 @@
+#+title: Using Cloud 9 on IOOPM 
+#+include: "./setup.org"
+
+- Bjud in assistent
+- Dela länken över Zooms chat
+- Om du störs över denna obefintliga integration är du välkommen att bygga vidare på mjukvaran 
+
+#+include: "./footer.org"
