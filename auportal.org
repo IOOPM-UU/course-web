@@ -1,0 +1,167 @@
+#+title: AUPortal
+#+include: "./setup.org"
+
+* Introduction to the AU Portal Software
+
+A normal year, we take close to 2000 oral demonstrations during
+this course. Every student's progress needs to be tracked as
+roughly 50--70 achievements, etc. You can imagine the complexity.
+
+Being technology-oriented people, we naturally come to the
+conclusion that we need software to help coordinate all of this so
+that our time can be spent interacting with you rather than with
+the clerical tasks of tracking your progress. In the pandemic year
+of 2020, if we can shave of 2-3 minutes for each demonstration on
+finding the bleeping zoom link, that will not just go a long way
+towards protecting our sanity, but with 2000 demonstrations (plus
+help requests!), that's like having one more TA on the course. 
+
+Later in the course, we'll talk about how this software is built,
+as a case study in the course. Not because it is the greatest
+thing, but because it is something you can relate to, and maybe
+even want to improve to scratch some itch you've been having. 
+
+At the time the course starts, the AU portal allows you to do the
+following:
+
+1. During labs (technically 24/7) -- put a help request in a queue
+   that is being served by TA's who will connect to you with Zoom
+   and Cloud 9
+2. Similar to help requests, you can put in a request to
+   demonstrate that you master some of the achivements on the
+   course. 
+3. You can get an overview over what have accomplished, what you
+   have still to do, and if you are on track to finish the course
+   on time.
+
+** Accessing the AU Portal
+
+To access the AU portal, you will need your normal CAS login that
+you use to access most of UU's services, like say Studentportalen.
+Just click on the CAS link. 
+
+
+
+** First-Time Set-Up
+
+The first time you login to the AU portal, you will be taken
+through a setup wizard that wants your:
+
+1. Profile picture
+2. Your initial target grade (feel free to leave this at 3 from the start)
+3. Your [[./zoom.org::number][Zoom number]]
+
+Once you are done with that, we also want your [[Link to GitHub][Link to GitHub]]. 
+
+The profile picture is used by the teachers on this course in two ways:
+
+1. It helps us recall who you are (most people are bad at names
+   but good with faces) when we see your name in the list of requests
+2. It helps us with legal certainty-aspects of examination: before
+   you are allowed to demonstrate, we will ask you to show us your 
+   ID and compare that to your profile picture, so that we can be
+   reasonably certain you are who you claim to be :) 
+
+*** Who can see whos profile picture?
+
+1. You can see your own picture, but not those of other students
+2. You can see the profile picture of all teachers 
+3. All teachers can see the profile pictures of all students 
+
+
+*** Target Grade?
+
+The target grade is the grade you want to show in the burndown
+chart. It also filters the achievements shown in the TODO list.
+The number is saved in the database -- this is necesary for us to
+support some filtering and remember your settings between
+sessions. Teachers do not have access in the system to specific
+students' target grades.
+
+You can change this settting as often as you like. 
+
+
+*** Enable Notifications
+
+When you load the page for the first time, it will (depending on
+your browser) ask to be allowed to display notifications. This is
+of course optional, but we hope you will allow them to reduce the
+chance of missing that a TA is waiting to help you, etc.
+
+
+** Requesting Help
+
+To request help, click on the help request button on the side menu
+to get to the help request page. In the middle, you will see the
+queue of help request tickets , which are typically being served
+in FIFO order, modulo circumstances.
+
+When you request help, please list the people who are asking for
+help together -- typically you and your pair programming partner.
+You are also able to write a short message. This is optional. It
+may be good for getting the attention of a specific teacher, or
+put a link to a Piazza thread, or something else. 
+
+You will also note there is a Zoom button. This button links to
+the Zoom room of the person making the request, and it is in the
+Zoom room of this person that help will be given. 
+
+The TAs collaborate on claiming the tickets. When your ticket has
+been claimed, you will be notified -- in the browser if you have
+opted out of system notification. When you see the notification,
+we expect you to -- if you have not done so already -- immediately
+go into Zoom so that you are there when help arrives. 
+
+Because of TA's being so few (in relative terms), their time is
+valuable so please help us making sure it does not go to waste!
+
+When you are all done, the TA will click on the done button to
+remove the ticket from the queue. We take internal measurements of
+the time it takes from submitting a request to having it claimed
+and marked done. We use these for our internal quality control. 
+
+You can of course cancel a help request if you feel like it. You
+are not allowed to be listed in more than one help request at a
+time.
+
+
+** Requesting a Demonstration
+
+Requesting a demonstration is very similar to requesting help.
+List the partner you will be demonstrating with. Pick the
+achievements you want to demonstrate. 
+
+Read more about the non-technical aspects of demonstrations [[./about.org::* Redovisning och AU-Portalen][here]].
+
+
+** Exploring Your Progress 
+
+In the dashboard, we show the number of achievements remaining to
+finish the course with the current target grade, some information
+about your current and average velocity, and the target grade. The
+burndown visualises this. We also show the achievements remaining
+in a list, which is clickable such that it takes you to the
+descriptions of the achievements. 
+
+
+** Code Space
+
+In this tab we have collected all your login information to set up
+and access Cloud 9. Click on the pink button to get information
+about how to setup. 
+
+
+** Link to GitHub
+
+The first time you click the GitHub icon, the AU portal will
+request to read the public information from your GitHub account.
+You will need to allow this to continue. The only information that
+we want is the name of your GitHub account. Once you have allowed
+us to access this name, we send an invite to you to join the
+IOOPM-UU organisation on GitHub and link your account to the
+private repository where you are required to host your code during
+this course.
+
+
+
+#+include: "./footer.org"
