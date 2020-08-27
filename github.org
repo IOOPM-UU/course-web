@@ -37,30 +37,17 @@ angav. Klicka på "Verify email address"
 file:./images/GitHub3.jpg
 
 ** 2. Ge oss dina uppgifter
-#+begin_important
-*NOTE* The signup for a GitHub repo is closed. Please email
-directy to [[file:teaching-staff.org::head_ta][the head TA]] to get a GitHub repo. Using a IOOPM-UU GitHub
-repo for development is *mandatory* on the course.
-#+end_important
 
-För att du ska kunna få ett privat repo behöver du bli inbjuden
-till vår GitHub-organisation IOOPM-UU. För att kunna ge dig ett
-konto måste vi ha dina uppgifter. 
-
-#Du har inte möjlighet att lämna uppgifter ännu, men kommer att kunna göra det
-#senast när kursen har startat. Läs denna sida igen då!
-
-Börja med att [[https://docs.google.com/forms/d/e/1FAIpQLSekNDUPCgFTjUfkyRrdqJ0kVWcQXFsoL4GYOQHPXSzALiwV9Q/viewform?usp=sf_link][klicka här]] och
-fyll i ditt student-ID och ditt användarnamn på GitHub.
-
-file:./images/GitHubForm.jpg
+Once you have a GitHub account, simply click on the GitHub icon in
+the AU Portal. This will prompt an authentication song-and-dance
+with GitHub which ultimately allows us to read your user name from
+GitHub and attach to your repository. 
 
 ** 3. Tacka ja till inbjudan
 
-Så snart någon ser att du har skickat in dina uppgifter (vi kommer
-kolla listan ungefär en gång per dag under den första veckan)
-kommer vi att lägga till dig i vår GitHub-organisation. Du kommer
-då att få ett mejl med en inbjudan:
+Så snart du har skickat in dina uppgifter kommer vi att lägga till
+dig i vår GitHub-organisation. Du kommer då att få ett mejl med en
+inbjudan:
 
 file:./images/GitHub4.jpg
 

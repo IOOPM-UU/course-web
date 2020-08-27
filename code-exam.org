@@ -16,7 +16,15 @@ Pro tips during the coding exam:
 10. If you comment out tests etc. to get stuff to work -- say so!
 #+end_note
 
+#+begin_important
+This information is written pre 2020. It will be updated in
+September 2020 with information about how the exams will be
+conducted during 2020. *They may be scheduled physically
+on-campus, just like described below.*
+#+end_important
+
 * What is a Coding Exam?
+
 A coding exam is an individual exam that runs in the normal
 computer halls. You have to pass *two* coding exams on this
 course, one imperative and one object-oriented in the programming

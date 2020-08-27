@@ -4,7 +4,8 @@
 
 * Common
 ** Backlog
-*TODO*
+A backlog is an accumulation of uncompleted work or matters
+needing to be dealt with. Basically what's on your TODO list.
 ** Dummy function
 See [[Stub]].
 ** Signature 

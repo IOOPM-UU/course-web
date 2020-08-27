@@ -79,20 +79,59 @@ Som nämnt ovan går det utmärkt att ha ett par där en (A) siktar på
 ett högre betyg än en annan (B). Det kan t.ex. manifestera sig
 genom att A gör vissa utökningar på egen hand, eller vissa
 redovisningar på egen hand.
+
+
 ** Parprogrammering på distans
-Om ett par har svårt att sitta tillsammans och koda i fysisk
-bemärkelse kan de använda bra online-verktyg. Du kan t.ex. ha
-motsvarande Skype igång, en chatt uppe, använda GitHubs issue
-tracker, etc. för att minska avståndet och synka. Det är bra att
-använda system som ger en automatisk historik som går att gå
-tillbaka till när vid felsökning eller jakt på bakomliggande
-orsaker till missförstånd, etc.
+
+Vi rekommenderar:
+
+1. Att ni använder en mix av solo-programmering och
+   parprogrammering. Parprogrammeringen är lämplig för att se till
+   att ni är synkade, drar åt samma håll och är överens om viktiga
+   designbeslut -- implementera vissa saker tillsammans för att
+   komma överens om stil, hjälpas åt med komplex logik etc., men
+   det är inte så att allt arbete måste ske samtidigt.
+2. Använd git och GitHub för att dela all kod -- utgå från att kod
+   som inte är versionhanterad i molnet kommer att gå förlorad.
+3. Skriv tydliga och vettiga commit-meddelanden så att din partner
+   lätt kan förstå vad du har gjort.
+4. Använd en delad Cloud 9-yta för parprogrammering som är kopplad
+   till ert GitHub-repository.
+5. Komplettera Cloud 9 (editeringen) med en videochat typ Zoom
+   eller motsvarande och en textchatt typ MatterMost.
+
+
+** How to find a Pair Programming Partner
+
+Every new sprint on the course should start by you finding a new
+programming partner. Start planning for this a couple of days
+ahead. Since you are not joined at the hip, nor have to work
+synchronously on everything, it is not imperative that you and
+your partner are fully aligned time-wise. For example, maybe you
+are already done with assignment $N$ but your new partner
+estimates they will need some more time a few hours each day to
+finish assignment $N$. This is not a showstopper. The most
+important thing is communicating your expectations, and be clear
+with the other person what he or she can expect.
+
+Use the groups MatterMost channel to announce that you will be
+needing a new partner soon.
+
+Plan ahead so you don't have to lose time blocking on a new
+partner. 
+
+If you have problems finding a partner, talk to your coach. 
+
+
 
 * Group Meetings
 
-Sex gånger under kursen möts teamet för ett uppföljningsmöte, som
-coachen kallar till. Här är en förteckning av mötena, samt vad
-ämnesraden för rapportmailet skall vara för detta möte (se nedan).
+Sex gånger under kursen möts[fn::Lämpligtvis online med hjälp av
+Zoom eller motsvarande -- men det är förstås upp till er alla att
+bestämma hur ni vill göra.] teamet för ett uppföljningsmöte, som
+coachen (en assistent) kallar till. Här är en förteckning av
+mötena, samt vad ämnesraden för rapportmailet skall vara för detta
+möte (se nedan).
 
 | Möte                          | Ämnesrad på rapportmail                  |
 |-------------------------------+------------------------------------------|
@@ -106,20 +145,12 @@ coachen kallar till. Här är en förteckning av mötena, samt vad
 Till varje uppföljningsmöte skall du ta med dig åtminstone:
 
 - Planeringen för den aktuella sprinten (inlämningsuppgiften)
-- [[https://en.wikipedia.org/wiki/Burn_down_chart][Burndown chart]] för den aktuella sprinten (inlämningsuppgiften)
-- [[https://en.wikipedia.org/wiki/Burn_down_chart][Burndown chart]] för måluppfyllnad hela kursen
+- [[https://en.wikipedia.org/wiki/Burn_down_chart][Burndown chart]] för måluppfyllnad hela kursen (det räcker med den som tillhandahålls av AU-portalen)
 
 Under uppföljningsmötet kommer vi att gå igenom den aktuella
 sprinten (hur har du planerat = vilka deluppgifter har du
 identifierat, vad har du klarat av, vad har du för styrfart, etc.)
 och takten för måluppfyllnad för hela kursen.
-
-Tips! Om du använder Trello för planering, och någon annan digital
-tjänst för att rita burndown-charts så kan ni använda assistentens
-(eller din egen) laptop för att visa allting ovan. Vi
-[[https://docs.google.com/spreadsheets/d/171ME0XXa-7C7iSbRsHuwdwDwt912nGqHwdpuHQAhIVc/edit#gid=49659760][tillhandahåller ett Google spreadsheet]] för att generera
-burndown-charts för kursen. Du kan kopiera eller ladda hem det för
-att få en skrivbar version.
 
 Under mötet får varje kodpar några minuter på sig att presentera
 sina framsteg. Börja med att visa planeringen för den aktuella
@@ -214,7 +245,7 @@ Under tre separata rubriker:
 2. Hur upplevde ni styrning kontra frihet i inlämningsuppgift 1 och 2? 
 3. Vad bör vi göra annorlunda nästa år (eller i fas 2)? 
 
-** TODO Instruktioner för möte 5 eller 6 (beroende på när det hålls)
+** Instruktioner för möte 5 eller 6 (beroende på när det hålls)
 
 *Tillägg till rapportmailet:* 
 

@@ -1,6 +1,11 @@
 #+title: How Labs Work on IOOPM
 #+include: "./setup.org"
 
+#+begin_important
+You are allowed to demonstrate up to 4 achievements per lab.
+#+end_important
+
+
 * IOOPM Labs
 
 This page describes how labs work on IOOPM, with the exception of
@@ -13,21 +18,25 @@ Labs on IOOPM serve the following purposes:
 
 - They provide opportunities to demonstrate mastery of achievements ::
      At your own leisure, you register to demonstrate on the [[http://auportal.herokuapp.com/][AU
-     Portal]]. This triggers the oral examination process. 
-     [[mark:1][You may demonstrate up to 4 achievements per lab.]] 
+     Portal]]. This triggers the oral examination process which in 2020 will be handled over Zoom.. 
+     [[mark:1][You may demonstrate up to 4 achievements per lab.]] The reason for the throttling is to 
+     distribute the TA's time over as many students as possible. 
 
 - They provide possibilities to get help from TAs ::
-     [[mark:1][Sign up on the help list in Computer Hall 1515 to get help
+     [[mark:1][Make a help request in the AU portal to get help
      from course staff]]. You can ask about anything -- e.g., "what
      does this compile error mean", "how do I start with this
      assignment", "what grade should I aim for", etc. If you want
-     a specific TA or teacher, write e.g., =(Tobias)= beside your
-     name on the help list. 
+     help from a specific TA or teacher, write e.g., =(Tobias)= in 
+     the comment field on the help list. (There is no guarantee
+     that this will happen, but we will try to accommodate.)
 
 - They provide possibilities to get help from other students ::
      Discussing your ideas, approaches and solutions with others
-     is a great way to work. Computer Room 1549 has a nice
-     whiteboard for visual exploration of ideas, or code.
+     is a great way to work. While we cannot physically be together
+     in the same room, we can use MatterMost to chat and form ad hoc
+     zoom meetings, and use tools like [[http://mural.co][Mural]] to illustrate and 
+     explain.
 
 - They provide scheduled sync time for work with your partner ::
      This means there are at least one full work-day every week
@@ -60,12 +69,15 @@ other courses:
 
 * Att redovisa under en labb
 För att redovisa under en labb använder du [[http://auportal.herokuapp.com/][AU-portalen]]. Under
-"Dashboard" kan du välja vilka mål du vill redovisa (notera att du
-måste vara inloggad). När du skickat in din ansökan om att
-redovisa syns den i vårt system, och så fort det finns en ledig
-assistent kommer hen till dig för att ta din redovisning.
-Assistenterna kommer bara ta redovisningar som anmälts under
-schemalagd handledningstid.
+"Demonstrate Goal" kan du välja vilka mål du vill redovisa. När du
+skickat in din ansökan om att redovisa syns den i vårt system. Då
+ser du också en Zoom-länk som du kan trycka på för att starta ett
+Zoom-möte. Till detta möte kommer en assistent när hem blir ledig.
+Senast när assistenten trycker bekräftar att hen är på väg är det
+dags för dig att dra igång Zoom-mötet så att vi inte slösar tid
+med setup om och om igen. Assistenterna kommer bara ta
+redovisningar som anmälts under schemalagd handledningstid och vi
+nollställer listan vid starten av varje labb.
 
 Efter att du redovisat kommer assistenten att bocka av de mål du
 framgångsrikt redovisat och signera rapporten. Om du misslyckades
@@ -88,12 +100,6 @@ relevant att prata om pekararitmetik"). Syftet med att tvingas
 återbesöka ett redan avbockat mål är för att stimulera till att
 hålla goda vanor och kunskaper vid liv!
 
-* Hur många mål får jag redovisa under en labb? 
-Du får redovisa max 4 godkända mål vid varje labbtillfälle
-(typiskt 25-30 labbar under kursen initialt planerat). Det extra
-mål som systemet lägger till själv räknas inte in bland dessa.
-
-*Du får inte redovisa mål under bootstrap-labbarna.*
 
 
 #+include: "./footer.org"

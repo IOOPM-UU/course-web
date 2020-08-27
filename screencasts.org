@@ -2,6 +2,13 @@
 #+include: "./setup.org"
 #+include: "./asciinema-setup.org"
 
+#+begin_important
+These screencasts are old and were made for previous instalments
+of the course which took place predominently face-to-face on campus. 
+Please suggest new screencasts to replace these. 
+#+end_important
+
+
 * Tools
 ** Vagrant Demo
 [[http://wrigstad.com][Tobias]] shows =vagrant up= and plays around a little in the course

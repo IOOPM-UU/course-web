@@ -1,6 +1,11 @@
 #+title: C Bootstrapping (2 weeks)
 #+include: "../setup.org"
 
+#+begin_important
+During the C bootstrap labs, you may only demonstrate Lab 1 -- Lab 5 from below. 
+(Exception: old students coming back to finish the course.)
+#+end_important
+
 #+begin_tip
 Did you know that you can collapse ([[fas:minus-circle][]]) and expand ([[fas:plus-circle][]]) entire sections of
 these pages? Try clicking a heading! Try "scrolling" to content
@@ -10,6 +15,12 @@ Found a bug? Select the faulty text and hit key:C-x to start a GitHub issue.
 #+end_tip
 
 * Introduktionslabbar i C (V1-2)
+
+#+begin_important
+Du kan inte redovisa andra mål än C-labbuppgifterna under
+C-introduktionslabbarna. Undantaget är om du är en gammal student
+som kommer tillbaka för att jobba undan något.
+#+end_important
 
 Välkommen till vad som i IOOPM-mytologin kallas för Adams
 Weckor[fn::De är döpta efter Adam Woods som var student på kursen
@@ -324,7 +335,6 @@ någon som är objektivt "bäst". Det finns däremot många
 programmerare med starka åsikter som kommer att försöka påtvinga
 sina normer på dig och övertyga dig om att den stil som hen gillar
 bäst också råkar vara bäst.
-
 
 * Labb 1: Grundläggande koncept
 

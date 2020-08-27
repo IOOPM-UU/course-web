@@ -241,23 +241,32 @@ fast. Om ni är osäkra på vilka mål som passar med er uppgift kan
 får ni diskutera saken med en assistent och ett annat
 programmeringspar. [[./team.org::*Group Meetings][Läs mer här]].
 
-** TODO Labbar
+** Labbar
 #+begin_important
 *SUPERVIKTIG SKILLNAD MOT PKD:* Labbar på denna kurs avser tid att
 *redovisa* och *få hjälp med programmering*. Den mesta
 programmeringen sker *utanför* schemalagd tid! Beräkna *14-15
-timmars* arbete utanför labbar och föreläsningar i snitt per
-vecka.
+timmars* arbete utöver labbar och föreläsningar i snitt per
+vecka.g
 #+end_important
 
-Hela kursens finns det ungefär 10 timmar schemalagd i datorsalar
-per vecka, s.k. labbtillfällen. Deltagande vid dessa tillfällen är
-inte obligatoriskt (förutom inledande 6 C-labbar och 2
-Java-labbar). Vid dessa tillfällen finns det möjlighet att få
-handledning och också möjlighet att redovisa mål (förutom
-inledande 6 labbar).
+Hela kursens finns det ungefär 10 timmar schemalagd per vecka,
+s.k. labbtillfällen. Deltagande vid dessa tillfällen är inte
+obligatoriskt men det är endast i samband med dessa tillfällen som
+du kan redovisa framsteg på kursen. Det är också då vi har ett
+större antal hjälplärare på plats. 
 
 Mer information om labbarna och redovisning finns [[./labs.org][här]]. 
+
+Hjälp under labbarna sker över Zoom där du (och eventuellt andra
+studenter) samtalar med någon lärare samtidigt som ni delar på en
+gemensam editor i Cloud 9. Du ber om hjälp i AU portalen och kan 
+följa din plats i kön och få en notifikation när någon har svarat
+på din förfrågan. 
+
+För instruktioner för att dela din Cloud 9-instans med en annan
+student eller lärare, klicka [[./cloud9.org][här]].
+
 
 ** Betyg
 Målen har en betygsnivå kopplad till sig. Mål på högre nivå
@@ -351,9 +360,10 @@ skulle det "idealiska" vara en rät linje med start i (0,30) och
 slut i (5,0). Verklighetens kurva kommer att se annorlunda ut.
 
 En graf av detta slag kallas för en burndown chart, och du kommer
-att göra flera sådana under kursens gång. En burndown chart är
-enkel att tolka och ger direkt en känsla för om det "går bra"
-eller inte -- kommer jag till slut att komma i mål på utsatt tid?
++att göra flera sådana under kursens gång+ att se detta
+automatgenererat för dig i AU Portalen. En burndown chart är enkel
+att tolka och ger direkt en känsla för om det "går bra" eller inte
+-- kommer jag till slut att komma i mål på utsatt tid?
 
 #+CAPTION: Exempel på burndown chart.
 file:images/SampleBurndownChart.png

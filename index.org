@@ -27,6 +27,7 @@ course will run in 2020. Then come back here and on you go!
 - Enter the information we need about you in the AU Portal to complete the setup:
   - Your GitHub account ([[./github.org::*How to Get a GitHub Account for the Course][get one if you need one]])
   - Your ZOOM number 
+  - A clear picture that looks reasonably like your ID or Passport
 - Perform the necessary steps to connect to Cloud 9
 - [[./github.org::*Checking Out the Repository for the First Time][Checkout your git repository]] in Cloud 9  
 
@@ -87,88 +88,90 @@ TimeEdit. We aim to be able to deliver some content ahead-of-time.
 More details will emerge. Until then, plan as if the lectures are
 given live and recorded for posterity.
 
+*Note. The schedule below points to the old slides from 2019. These will be updated incrementally for 2020 at which points these links will change to simply ''Slides''.* 
+
 ** Phase 1 (Imperative Programming)
-| Date  | Contents                                                                                                                  | Achievements                  | fab:slideshare |
-|-------+---------------------------------------------------------------------------------------------------------------------------+-------------------------------+----------------|
-|       |                                                                                                                           |                               |      <c>       |
-| 1/9   | Grundläggande datatyper, deklaration, uttryck och satser. Funktioner. Enkel I/O. Enkel  stränghantering.                  | [[aua:1][A1]] ([[aua:13][F13]], [[aua:15][G15]])                 |  [[file:misc/w1-2.pdf][Slides]] [[https://github.com/TobiasWrigstad/ioopm19/tree/master/lectures/f01-04#extramaterial][Code]]   |
-| 4/9   | Poster och unioner. Typnamnsdefinitioner. Funktionspekare. Separatkompilering och headerfiler.                            | [[aua:3][A3]], [[aua:9][D9]], [[aua:15][G15]], [[aua:16][G16]], ([[aua:22][I22]]), [[aua:30][K30]]. |      -''-      |
-| 7/9   | Dynamisk minnesallokering. Pekare.                                                                                        | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:27][J27]], [[aua:38][M38]]       |      -''-      |
-| 10/9  | Introduktion till resten av kursen. Skillnad mellan funktionell och imperativ programmering. SIMPLE. Det agila upplägget. | [[aua:7][C7]]                            |  -''- (p160)   |
-| 14/9  | Stack och heap, länkade strukturer, pekare 1/2.                                                                           | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:36][M36]]            |     [[file:misc/w3.pdf][Slides]]     |
-| 17/9  | Stack och heap, länkade strukturer, pekare 2/2.                                                                           | [[aua:27][J27]], [[aua:37][M37]], [[aua:39][M39]]                 |      -''-      |
-| 21/9  | Introduction to testing with CUnit                                                                                        | [[aua:18][G18]], [[aua:49][Q49]], [[aua:50][Q50]]                 |     [[file:misc/w4.pdf][Slides]]     |
-| 24/9  | Automatisering (Make, scripting) och optimering.                                                                          | [[aua:55][T55]], [[aua:57][U57]], [[aua:58][V58]], [[aua:45][P45]]            |      -''-      |
-| 28/9  | Design & metodologi. Hur strukturerar man? Top-down, bottom-up. Lagertänkande.                                            | [[aua:41][N41]]                           |     [[file:misc/w5.pdf][Slides]]     |
-| 1/10  | Modularisering, separatkompilering, coupling & cohesion.                                                                  | TBA                           |      -''-      |
-| 5/10  | Defensiv programmering. Läsbar kod.                                                                                       | [[aua:22][I22]], [[aua:45][P45]]                      |     [[file:misc/w6.pdf][Slides]]     |
-| 8/10  | Preprocessorn. Bitmanipulering.                                                                                           | [[aua:42][O42]], [[aua:43][O43]], [[aua:44][O44]]                 |      -''-      |
-| 12/10 | /Backup/ (Terminalen)                                                                                                     | [[aua:58][V58]]                           |      Demo      |
-| 15/10 | Prepping for code exam                                                                                                    |                               |      N/A       |
+| Date  | Contents                                                                                                                  | Achievements                  | fab:slideshare  |
+|-------+---------------------------------------------------------------------------------------------------------------------------+-------------------------------+-----------------|
+|       |                                                                                                                           |                               |       <c>       |
+| 1/9   | Grundläggande datatyper, deklaration, uttryck och satser. Funktioner. Enkel I/O. Enkel  stränghantering.                  | [[aua:1][A1]] ([[aua:13][F13]], [[aua:15][G15]])                 | [[file:misc/w1-2.pdf][Old slides]] [[https://github.com/TobiasWrigstad/ioopm19/tree/master/lectures/f01-04#extramaterial][Code]] |
+| 4/9   | Poster och unioner. Typnamnsdefinitioner. Funktionspekare. Separatkompilering och headerfiler.                            | [[aua:3][A3]], [[aua:9][D9]], [[aua:15][G15]], [[aua:16][G16]], ([[aua:22][I22]]), [[aua:30][K30]]. |      -''-       |
+| 7/9   | Dynamisk minnesallokering. Pekare.                                                                                        | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:27][J27]], [[aua:38][M38]]       |      -''-       |
+| 10/9  | Introduktion till resten av kursen. Skillnad mellan funktionell och imperativ programmering. SIMPLE. Det agila upplägget. | [[aua:7][C7]]                            |   -''- (p160)   |
+| 14/9  | Stack och heap, länkade strukturer, pekare 1/2.                                                                           | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:36][M36]]            |   [[file:misc/w3.pdf][Old slides]]    |
+| 17/9  | Stack och heap, länkade strukturer, pekare 2/2.                                                                           | [[aua:27][J27]], [[aua:37][M37]], [[aua:39][M39]]                 |      -''-       |
+| 21/9  | Introduction to testing with CUnit                                                                                        | [[aua:18][G18]], [[aua:49][Q49]], [[aua:50][Q50]]                 |   [[file:misc/w4.pdf][Old slides]]    |
+| 24/9  | Automatisering (Make, scripting) och optimering.                                                                          | [[aua:55][T55]], [[aua:57][U57]], [[aua:58][V58]], [[aua:45][P45]]            |      -''-       |
+| 28/9  | Design & metodologi. Hur strukturerar man? Top-down, bottom-up. Lagertänkande.                                            | [[aua:41][N41]]                           |   [[file:misc/w5.pdf][Old slides]]    |
+| 1/10  | Modularisering, separatkompilering, coupling & cohesion.                                                                  | TBA                           |      -''-       |
+| 5/10  | Defensiv programmering. Läsbar kod.                                                                                       | [[aua:22][I22]], [[aua:45][P45]]                      |   [[file:misc/w6.pdf][Old slides]]    |
+| 8/10  | Preprocessorn. Bitmanipulering.                                                                                           | [[aua:42][O42]], [[aua:43][O43]], [[aua:44][O44]]                 |      -''-       |
+| 12/10 | /Backup/ (Terminalen)                                                                                                     | [[aua:58][V58]]                           |      Demo       |
+| 15/10 | Prepping for code exam                                                                                                    |                               |       N/A       |
 
 ** Phase 2 (Object-Oriented Programming) <<phase2lectures>>
-| Date  | Contents                                                                                                                   | Achivements                                                | fab:slideshare |
-|-------+----------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------+----------------|
-| 26/10 | Introduktion till objektorientering.                                                                                       | Många kursivt                                              | [[file:misc/j1.pdf][Slides]]         |
-| 29/10 | Översikt: skräpsamling, undantagshantering, JVM:en, JIT-kompilering.                                                       | Många kursivt                                              | [[file:misc/j2.pdf][Slides]]         |
-| 2/11  | Objektorienterad analys och design. Konstruktorer. Instantiering, referenser, klassvariabler.                              | [[aua:2][A2]], [[aua:4][B4]], [[aua:5][B5]], [[aua:6][B6]], [[aua:8][C8]], [[aua:19][H19]], [[aua:20][H20]], [[aua:21][H21]], [[aua:11][E11]], [[aua:12][E12]], [[aua:30][K30]], [[aua:31][K31]], [[aua:32][K32]] | [[file:misc/j3-5.pdf][Slides]]         |
-| 6/11  | Arv och klasshierarkier. Överlagring. Overriding. Överlagring av konstruktorer. Abstrakta klasser. Interface. Genericitet. | [[aua:2][A2]], [[aua:4][B4]], [[aua:5][B5]], [[aua:6][B6]], [[aua:8][C8]], [[aua:19][H19]], [[aua:20][H20]], [[aua:21][H21]], [[aua:11][E11]], [[aua:12][E12]], [[aua:30][K30]], [[aua:31][K31]], [[aua:32][K32]] | -''-           |
-| 9/11  | Typer, subtyper, Liskovs substitutionsprincip. Undantagshantering.                                                         | [[aua:2][A2]], [[aua:15][G15]], [[aua:16][G16]], [[aua:17][G17]]                                          | [[file:misc/j7.pdf][Slides]]         |
-| 12/11 | Identitet och ekvivalens, JUnit                                                                                            | [[aua:15][G15]], [[aua:16][G16]], [[aua:18][G18]], [[aua:46][P46]], [[aua:49][Q49]], [[aua:50][Q50]], [[aua:51][Q51]]                          | [[file:misc/j8.pdf][Slides]] [[file:misc/junit.zip][Junit]]   |
-| 16/11 | Profilering. JIT-kompilering. Bytecode.                                                                                    | [[aua:40][N40]], [[aua:41][N41]], [[aua:42][O42]], [[aua:43][O43]], [[aua:44][O44]]                                    | [[file:misc/j9.pdf][Slides]]         |
-| 19/11 | Refactoring.                                                                                                               | [[aua:18][A2]]                                                         | [[file:misc/j10.pdf][Slides]]         |
-| 23/11 | Garbage collection in-depth, and its relation to resource management.                                                      | [[aua:26][J26]], [[aua:27][J27]], [[aua:28][J28]], [[aua:29][J29]]                                         | [[file:misc/j11.pdf][Slides]]         |
-| 26/11 | Inkapsling. Inre och nästlade klasser. Wrapperklasser.                                                                     | [[aua:15][G15]], [[aua:16][G16]], [[aua:17][G17]]                                              | TBA            |
-| 30/11 | Reservtid.                                                                                                                 |                                                            |                |
-| 3/12  | Mjukvaruprojekt                                                                                                            | Samtliga projektmål                                        | TBA            |
-| 7/12  | Prepping for code exam                                                                                                     | Samtliga projektmål                                        | N/A            |
-| 10/12 | /Backup/                                                                                                                   |                                                            |                |
-| 14/12 | /Backup/                                                                                                                  |                                                            |                |
+| Date  | Contents                                                                                                                   | Achivements                                                | fab:slideshare   |
+|-------+----------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------+------------------|
+| 26/10 | Introduktion till objektorientering.                                                                                       | Många kursivt                                              | [[file:misc/j1.pdf][Old slides]]       |
+| 29/10 | Översikt: skräpsamling, undantagshantering, JVM:en, JIT-kompilering.                                                       | Många kursivt                                              | [[file:misc/j2.pdf][Old slides]]       |
+| 2/11  | Objektorienterad analys och design. Konstruktorer. Instantiering, referenser, klassvariabler.                              | [[aua:2][A2]], [[aua:4][B4]], [[aua:5][B5]], [[aua:6][B6]], [[aua:8][C8]], [[aua:19][H19]], [[aua:20][H20]], [[aua:21][H21]], [[aua:11][E11]], [[aua:12][E12]], [[aua:30][K30]], [[aua:31][K31]], [[aua:32][K32]] | [[file:misc/j3-5.pdf][Old slides]]       |
+| 6/11  | Arv och klasshierarkier. Överlagring. Overriding. Överlagring av konstruktorer. Abstrakta klasser. Interface. Genericitet. | [[aua:2][A2]], [[aua:4][B4]], [[aua:5][B5]], [[aua:6][B6]], [[aua:8][C8]], [[aua:19][H19]], [[aua:20][H20]], [[aua:21][H21]], [[aua:11][E11]], [[aua:12][E12]], [[aua:30][K30]], [[aua:31][K31]], [[aua:32][K32]] | -''-             |
+| 9/11  | Typer, subtyper, Liskovs substitutionsprincip. Undantagshantering.                                                         | [[aua:2][A2]], [[aua:15][G15]], [[aua:16][G16]], [[aua:17][G17]]                                          | [[file:misc/j7.pdf][Old slides]]       |
+| 12/11 | Identitet och ekvivalens, JUnit                                                                                            | [[aua:15][G15]], [[aua:16][G16]], [[aua:18][G18]], [[aua:46][P46]], [[aua:49][Q49]], [[aua:50][Q50]], [[aua:51][Q51]]                          | [[file:misc/j8.pdf][Old slides]] [[file:misc/junit.zip][Junit]] |
+| 16/11 | Profilering. JIT-kompilering. Bytecode.                                                                                    | [[aua:40][N40]], [[aua:41][N41]], [[aua:42][O42]], [[aua:43][O43]], [[aua:44][O44]]                                    | [[file:misc/j9.pdf][Old slides]]       |
+| 19/11 | Refactoring.                                                                                                               | [[aua:18][A2]]                                                         | [[file:misc/j10.pdf][Old slides]]       |
+| 23/11 | Garbage collection in-depth, and its relation to resource management.                                                      | [[aua:26][J26]], [[aua:27][J27]], [[aua:28][J28]], [[aua:29][J29]]                                         | [[file:misc/j11.pdf][Old slides]]       |
+| 26/11 | Inkapsling. Inre och nästlade klasser. Wrapperklasser.                                                                     | [[aua:15][G15]], [[aua:16][G16]], [[aua:17][G17]]                                              | TBA              |
+| 30/11 | Reservtid.                                                                                                                 |                                                            |                  |
+| 3/12  | Mjukvaruprojekt                                                                                                            | Samtliga projektmål                                        | TBA              |
+| 7/12  | Prepping for code exam                                                                                                     | Samtliga projektmål                                        | N/A              |
+| 10/12 | /Backup/                                                                                                                   |                                                            |                  |
+| 14/12 | /Backup/                                                                                                                   |                                                            |                  |
 
 ** Phase 3 (Methodology and Tools)
 | Date  | Contents                                 | Achievements | fab:slideshare |
 |-------+------------------------------------------+--------------+----------------|
-# | 10/12 | Project presentations, software projects | TBA          | TBA            |
 | 15/1  | Retrospective & guest lecture            | TBA          | TBA            |
+# | 10/12 | Project presentations, software projects | TBA          | TBA            |
 
 * Deadlines
 Deadlines and important dates in chronological order. Read [[./about.org::*Deadlines][here]] about soft and hard deadlines.
 
-| Date          | Deadline                   | Comment                                   |
-|---------------+----------------------------+-------------------------------------------|
-| 11/9          | [[http://auportal.herokuapp.com/achievements/63][Groupie Achievement]]        | Only one hand-in *per group*              |
-| 11/9          | [[file:assignments/c-bootstrap.org][C Bootstrap]]                | Prerequisite for starting on Assignment 1 |
-| 2/10          | [[./assignments/assignment1.org][Assignment 1]] (Soft)        |                                           |
-| 16/10         | [[./assignments/assignment1.org][Assignment 1]] (Hard)        |                                           |
-| 16/10         | [[./assignments/assignment2.org][Assignment 2]] (Soft)        |                                           |
-| 22/10         | [[./code-exam.org][Coding Exam]] 1              | Sign-up not open yet.                     |
-| 1/11          | [[./assignments/java-bootstrap.org][Java Bootstrap]]             | Prerequisite for starting on Assignment 3 |
-| 30/10         | [[./assignments/assignment2.org][Assignment 2]] (Hard)        |                                           |
-| 15/11         | [[./assignments/assignment3.org][Assignment 3]] (Soft)        |                                           |
-| 29/11         | [[./assignments/assignment3.org][Assignment 3]] (Hard)        |                                           |
-| 29/11         | [[./assignments/assignment4.org][Assignment 4]] (Soft)        |                                           |
-| 1/12          | Last day to hand in [[http://auportal.herokuapp.com/achievements/59][essay]]  | /Essay is for grades 4 and 5 only/        |
-| 10/12         | [[./code-exam.org][Coding Exam]] 2              | Sign-up not open yet.                     |
-| 12/12         | Last possibility to do [[http://auportal.herokuapp.com/achievements/62][X62]] | This is a *not mandatory* achievement     |
-| 13/12         | [[./assignments/assignment4.org][Assignment 4]] (Hard)        |                                           |
-# | Week 51       | Essay feedback seminars    | *Mandatory presence for essay writers*    |
-| 8/1 2020      | [[./code-exam.org][Coding Exam]] 3              | Sign-up not open yet.                     |
-| 14--16/1 2020 | [[./projects/projects.org][Project]] (Hard)             | Deadline is 24 h before seminars          |
-| 15/1 2020     | [[http://auportal.herokuapp.com/achievements/7][C7]] deadline                |                                           |
-| 15--17/1 2020 | [[./projects/projects.org][Project]] Seminars           | *Mandatory presence for all*              |
+| Date          | Deadline                   | Comment                                       |
+|---------------+----------------------------+-----------------------------------------------|
+| 1/9           | [[http://auportal.herokuapp.com/achievements/63][Presentation Achievement]]   | Handed in by mail                             |
+| 11/9          | [[file:assignments/c-bootstrap.org][C Bootstrap]]                | Prerequisite for starting on Assignment 1     |
+| 2/10          | [[./assignments/assignment1.org][Assignment 1]] (Soft)        |                                               |
+| 16/10         | [[./assignments/assignment1.org][Assignment 1]] (Hard)        |                                               |
+| 16/10         | [[./assignments/assignment2.org][Assignment 2]] (Soft)        |                                               |
+| 22/10         | [[./code-exam.org][Coding Exam]] 1              | Sign-up not open yet. Might happen on campus. |
+| 1/11          | [[./assignments/java-bootstrap.org][Java Bootstrap]]             | Prerequisite for starting on Assignment 3     |
+| 30/10         | [[./assignments/assignment2.org][Assignment 2]] (Hard)        |                                               |
+| 15/11         | [[./assignments/assignment3.org][Assignment 3]] (Soft)        |                                               |
+| 29/11         | [[./assignments/assignment3.org][Assignment 3]] (Hard)        |                                               |
+| 29/11         | [[./assignments/assignment4.org][Assignment 4]] (Soft)        |                                               |
+| 1/12          | Last day to hand in [[http://auportal.herokuapp.com/achievements/59][essay]]  | /Essay is for grades 4 and 5 only/            |
+| 10/12         | [[./code-exam.org][Coding Exam]] 2              | Sign-up not open yet. Might happen on campus. |
+| 12/12         | Last possibility to do [[http://auportal.herokuapp.com/achievements/62][X62]] | This is a *not mandatory* achievement         |
+| 13/12         | [[./assignments/assignment4.org][Assignment 4]] (Hard)        |                                               |
+| 8/1 2020      | [[./code-exam.org][Coding Exam]] 3              | Sign-up not open yet.                         |
+| 14--16/1 2021 | [[./projects/projects.org][Project]] (Hard)             | Deadline is 24 h before seminars              |
+| 15/1 2020     | [[http://auportal.herokuapp.com/achievements/7][C7]] deadline                |                                               |
+| 15--17/1 2021 | [[./projects/projects.org][Project]] Seminars           | *Might happen on-campus!*                     |
+
 
 * Exercises, Assignments and Projects
 Note that assignments mostly act as drivers to learn concepts and produce evidence for demonstrating mastery of achivements.
 
 | What                     | Start | End           | Capsule summary                                                             |
 |--------------------------+-------+---------------+-----------------------------------------------------------------------------|
-| [[./assignments/c-bootstrap.org][C bootstrap exercises]]    | 2/9   | 13/9          | Lots of small tasks to get familiar with C                                  |
-| [[./assignments/assignment1.org][Assignment 1 (C)]]         | 16/9  | 4/10          | Follow us on an excursion in C while implementing two basic data structures |
-| [[./assignments/assignment2.org][Assignment 2 (C)]]         | 7/10  | 18/10         | Put the above data structures to use in a larger program                    |
-| [[./assignments/java-bootstrap.org][Java bootstrap exercises]] | 21/10 | 25/10         | Finish an existing program skeleton for a simulation of cashier registers   |
-| [[./assignments/assignment3.org][Assignment 3 (Java)]]      | 28/10 | 15/11         | Implement a simple symbolic calculator                                      |
-| [[./assignments/assignment4.org][Assignment 4 (Java)]]      | 18/11 | 29/11         | Improve the symbolic calculator program using typical Java idioms           |
-| [[./projects/projects.org][Project group work]]       | 2/12  | 14--16/1 2020 | Implement memory management systems for C programs                          |
+| [[./assignments/c-bootstrap.org][C bootstrap exercises]]    | 2/9   | 11/9          | Lots of small tasks to get familiar with C                                  |
+| [[./assignments/assignment1.org][Assignment 1 (C)]]         | 14/9  | 2/10          | Follow us on an excursion in C while implementing two basic data structures |
+| [[./assignments/assignment2.org][Assignment 2 (C)]]         | 5/10  | 16/10         | Put the above data structures to use in a larger program                    |
+| [[./assignments/java-bootstrap.org][Java bootstrap exercises]] | 19/10 | 25/10         | Finish an existing program skeleton for a simulation of cashier registers   |
+| [[./assignments/assignment3.org][Assignment 3 (Java)]]      | 26/10 | 13/11         | Implement a simple symbolic calculator                                      |
+| [[./assignments/assignment4.org][Assignment 4 (Java)]]      | 16/11 | 27/11         | Improve the symbolic calculator program using typical Java idioms           |
+| [[./projects/projects.org][Project group work]]       | 30/11 | 14--16/1 2021 | Implement memory management systems for C programs                          |
 
 * Resources
 ** General 

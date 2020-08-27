@@ -20,9 +20,10 @@ number in the AU Portal software when you login for the first time.
 [[./images/zoom1.png]]
 
 #+NAME: fig_zoom_2
-#+ATTR_HTML: :width 45%
-#+CAPTION: Access your account -- this will open a web browser
+#+ATTR_HTML: :width 75%
+#+CAPTION: Access your account -- this will open a web browser. *Note: If you don't have a picture in Zoom, this will read CHANGE MY PICTURE instead. (Shown on the right-hand-side.)*
 [[./images/zoom2.png]]
+
 
 #+NAME: fig_zoom_3
 #+ATTR_HTML: :width 75%
@@ -48,4 +49,5 @@ number in the AU Portal software when you login for the first time.
 [[./images/zoom6.png]]
 
 
-#+include: "./footer.org"
+#+include:
+ "./footer.org"
