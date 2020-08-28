@@ -83,7 +83,7 @@ corresponds to one assignment.
 |     3 | Week 49 | Week 2  | Software Project                        |
 
 Note that without exception, all lectures start at 10:15 and are
-scheduled to end at 12:00. The [[https://cloud.timeedit.net/uu/web/schema/riq56QxY8Q5ZZXQ5y07Z565760Z0Y5g406g6600QQ1o00g6045Z4Yq6Qo.html][full schedule]] is available on
+scheduled to end at 12:00. The [[https://cloud.timeedit.net/uu/web/schema/ri14Q3ZY0QYZ09Q4f08Y62Q05y05Z6g59x5060gQX670.html][full schedule]] is available on
 TimeEdit. We aim to be able to deliver some content ahead-of-time.
 More details will emerge. Until then, plan as if the lectures are
 given live and recorded for posterity.

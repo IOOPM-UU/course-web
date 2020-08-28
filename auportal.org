@@ -62,11 +62,18 @@ The profile picture is used by the teachers on this course in two ways:
    ID and compare that to your profile picture, so that we can be
    reasonably certain you are who you claim to be :) 
 
+
 *** Who can see whos profile picture?
 
 1. You can see your own picture, but not those of other students
 2. You can see the profile picture of all teachers 
 3. All teachers can see the profile pictures of all students 
+
+#+NAME: setup_1
+#+ATTR_HTML: :width 75%
+#+CAPTION: Adding profile picture
+[[./images/setup1.png]]
+
 
 
 *** Target Grade?
@@ -80,6 +87,11 @@ students' target grades.
 
 You can change this settting as often as you like. 
 
+#+NAME: setup_2
+#+ATTR_HTML: :width 75%
+#+CAPTION: Setting your initial target grade 
+[[./images/setup2.png]]
+
 
 *** Enable Notifications
 
@@ -87,6 +99,11 @@ When you load the page for the first time, it will (depending on
 your browser) ask to be allowed to display notifications. This is
 of course optional, but we hope you will allow them to reduce the
 chance of missing that a TA is waiting to help you, etc.
+
+#+NAME: setup_3
+#+ATTR_HTML: :width 75%
+#+CAPTION: Adding Zoom data
+[[./images/setup3.png]]
 
 
 ** Requesting Help
@@ -125,6 +142,12 @@ are not allowed to be listed in more than one help request at a
 time.
 
 
+#+NAME: help_requests
+#+ATTR_HTML: :width 75%
+#+CAPTION: Help request page
+[[./images/helplist.png]]
+
+
 ** Requesting a Demonstration
 
 Requesting a demonstration is very similar to requesting help.
@@ -132,6 +155,12 @@ List the partner you will be demonstrating with. Pick the
 achievements you want to demonstrate. 
 
 Read more about the non-technical aspects of demonstrations [[./about.org::* Redovisning och AU-Portalen][here]].
+
+
+#+NAME: help_requests
+#+ATTR_HTML: :width 75%
+#+CAPTION: Demonstrations page
+[[./images/demonstrationns.png]]
 
 
 ** Exploring Your Progress 
@@ -142,6 +171,11 @@ about your current and average velocity, and the target grade. The
 burndown visualises this. We also show the achievements remaining
 in a list, which is clickable such that it takes you to the
 descriptions of the achievements. 
+
+#+NAME: dashboard
+#+ATTR_HTML: :width 75%
+#+CAPTION: Dashboard with burndown chart
+[[./images/dashboard.png]]
 
 
 ** Code Space
@@ -161,6 +195,35 @@ us to access this name, we send an invite to you to join the
 IOOPM-UU organisation on GitHub and link your account to the
 private repository where you are required to host your code during
 this course.
+
+
+* Join the Fun!
+
+Most of this code has been contributed by people working pro bono
+-- because it is fun to develop things and provide services to
+others. We will try to provide some starter bugs and low hanging
+fruits to get going. 
+
+Once the new system is stable enough, the code will be made public
+on GitHub here: https://github.com/IOOPM-UU/auportal2020/
+
+
+* Living With Shaky Software
+
+The new AU Portal is an infant. 
+It will contain bugs. 
+It will go down. 
+It will do stupid things. 
+
+What it will not do is lose data. And even if it does, that is
+frequently backed up and moved away from the server elsewhere. 
+
+
+* TODO Technological Choices
+
+** TODO Frontend: React
+
+** TODO Backend: Spring 
 
 
 
