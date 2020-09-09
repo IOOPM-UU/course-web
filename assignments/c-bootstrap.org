@@ -3343,7 +3343,7 @@ int main(int argc, char *argv[])
 
 *** Lista databasens innehåll
 
-Skriv en funktion ~void list_db(item_t *items, int no_items)~ som
+Skriv en funktion ~void list_db(item_t *item, int no_items)~ som
 skriver ut namnen på alla varor i databasen, samt deras index i
 arrayen + 1:
 
