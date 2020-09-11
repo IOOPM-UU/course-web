@@ -133,14 +133,14 @@ coachen (en assistent) kallar till. Här är en förteckning av
 mötena, samt vad ämnesraden för rapportmailet skall vara för detta
 möte (se nedan).
 
-| Möte                          | Ämnesrad på rapportmail                  |
-|-------------------------------+------------------------------------------|
-| Första möte under C-bootstrap | =[IOOPM/Meeting] <Grupp> C-Bootstrap=    |
-| Fas 1/Sprint 1                | =[IOOPM/Meeting] <Grupp> Fas 1/Sprint 1= |
-| Fas 1/Sprint 2                | =[IOOPM/Meeting] <Grupp> Fas 1/Sprint 2= |
-| Fas 2/Sprint 1                | =[IOOPM/Meeting] <Grupp> Fas 2/Sprint 1= |
-| Fas 2/Sprint 2                | =[IOOPM/Meeting] <Grupp> Fas 2/Sprint 2= |
-| Projekt                       | =[IOOPM/Meeting] <Grupp> Fas 3=          |
+| Möte                          | Ämnesrad på rapportmail                         |
+|-------------------------------+-------------------------------------------------|
+| Första möte under C-bootstrap | Ni behöver inte skicka ett mejl under Bootstrap |
+| Fas 1/Sprint 1                | =[IOOPM/Meeting] <Grupp> Fas 1/Sprint 1=        |
+| Fas 1/Sprint 2                | =[IOOPM/Meeting] <Grupp> Fas 1/Sprint 2=        |
+| Fas 2/Sprint 1                | =[IOOPM/Meeting] <Grupp> Fas 2/Sprint 1=        |
+| Fas 2/Sprint 2                | =[IOOPM/Meeting] <Grupp> Fas 2/Sprint 2=        |
+| Projekt                       | =[IOOPM/Meeting] <Grupp> Fas 3=                 |
 
 Till varje uppföljningsmöte skall du ta med dig åtminstone:
 
@@ -205,13 +205,6 @@ Om coachens schema kräver kan dessa möten behöva ledas av teamet självt.
 
 ** Instruktioner för det första mötet
 
-#+begin_important
-I samband med detta första möte skall ni ge gruppen ett namn som
-ni/vi kommer att få dras med under resten av kursen. (Vi
-förbehåller oss rätten att ändra uppenbara dumheter och
-dubletter.) *Skriv detta namn i mailet som ni skickar in.*
-#+end_important
-
 - Ta mötet på allvar. Låt det ta tid. Träffas gärna nere på stan
   på ett fik, eller över en öl på en nation.
 - Det är viktigt att du skaffar en relation till de andra
@@ -223,17 +216,15 @@ dubletter.) *Skriv detta namn i mailet som ni skickar in.*
   specifikt. Beskriv kort din programmeringsbakgrund. Vad vill du
   jobba med? Kanske kan ni komma överens om att träffas
   regelbundet och plugga/programmera/etc.?
-- Välj ett namn som ger er pepp! 
 
 *Tillägg till första rapportmailet:* 
 
 Under fyra separata rubriker:
 
-1. Skriv ned namnet ni har valt
-2. Sammafatta kort vad ni har för förhoppningar och farhågor inför
+1. Sammafatta kort vad ni har för förhoppningar och farhågor inför
    kursen
-3. Sammafatta kort vad ni vill få ut av kursen
-4. Sammafatta kort om ni har önskemål på oss som ger kursen 
+2. Sammafatta kort vad ni vill få ut av kursen
+3. Sammafatta kort om ni har önskemål på oss som ger kursen 
 
 ** Instruktioner för möte 3 eller 4 (beroende på när det hålls)
 
