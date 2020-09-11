@@ -39,6 +39,190 @@ students in the course that this has been extremely well-invested
 time. (Not counting the student who stated that Emacs was the best
 thing that had happened to him since meeting his wife.)
 
+** Steg 1: Emacs-fix
+
+Emacs är en
+utökningsbar editor som är skriven i C och programspråket
+Emacs-lisp. Man utökar och raffinerar sin egen Emacs genom
+ytterligare paket skrivna i Emacs-lisp. Man kan skriva dessa paket
+själv, eller ladda ned dem och installera dem själv eller via
+Emacs inbyggda pakethanterare.
+
+Emacs-resurser på kurswebben: 
+- [[*Introduktion till Emacs][Introduktion till Emacs]]
+- [[./screencasts.org::*Screencasts om verktyg][Screencasts om Emacs]]
+- [[http://wrigstad.com/ioopm18/misc/cheatsheet.pdf][Emacs lathund]]
+
+Nu följer två olika uppsättningar instruktioner beroende på om du
+kör Linux eller OS X/macOS. För dig som kör Windows har vi tyvärr
+ingen handledning, men vi råder dig att installera Linux under
+kursens gång då det är en bättre programmeringsmiljö för den
+C-programmering som vi skall göra.
+
+*** Linux
+
+#+begin_note
+Om du vill installera Emacs på din egen Linux-maskin kan du pröva
+t.ex. =apt-get install emacs=. Eventuellt med =sudo= före =apt-get=. 
+#+end_note
+
+Kör =emacs --version= i terminalen. Om du har en yngre Emacs än
+version 24 skall måste du uppgradera den för att nedanstående
+skall fungera.
+
+#+begin_example
+$ cd ~
+$ mv .emacs .emacs.old                                       # Not 1 nedan
+$ mkdir .emacs.d
+$ cd .emacs.d
+$ curl http://wrigstad.com/ioopm18/misc/emacs.zip -o e.zip   # Not 2 nedan
+$ unzip e.zip
+$ rm -f e.zip
+#+end_example
+
+*Not 1:* Om filen =.emacs= inte finns får du fel i steg 2, men det
+gör ingenting eftersom steg 2 handlar om att "bli av med den
+filen".
+
+*Not 2:* Om du skriver fel i den långa URL:en ovan kommer du
+fortfarande att få en fil =e.zip= men som inte går att packa upp.
+Om =unzip=-steget inte fungerar -- kontrollera din stavning i
+=curl=-steget!
+
+*** OS X/macOS
+
+Kör =emacs --version= i terminalen. Om du har en Emacs som är
+yngre än version 24 skall måste du uppgradera den för att
+nedanstående skall fungera. Vid behov kan du ladda hem och
+installera en okonfigurerad version från
+https://emacsformacosx.com som är tillräckligt ny. Om du vill att
+din nya version ska öppnas när du skriver =emacs= i terminalen kan
+du skapa ett alias. Skriv följande i en terminal:
+
+#+begin_example
+$ cd ~                  # Gå till hemkatalogen
+$ emacs .bash_profile   # Öppna din profil
+#+end_example
+
+I den öppnade filen, lägg till följande rad:
+
+#+begin_example
+alias emacs=/Applications/Emacs.app/Contents/MacOS/Emacs
+#+end_example
+
+Spara och avsluta (~C-x C-s~ ~C-x C-c~) och kör ytterligare ett
+kommando i terminalen:
+
+#+begin_example
+$ source ~/.bash_profile
+#+end_example
+
+Nu kommer du att öppna Emacs i ett eget fönster när du skriver
+=emacs=. Om du vill köra Emacs i terminalen kan du använda
+kommandot =emacs -nw=.
+
+För att skaffa kursens Emacs-konfiguration, kör nedanstående i en
+terminal.
+
+#+begin_example
+$ cd ~
+$ mkdir .emacs.d
+$ cd .emacs.d
+$ curl http://wrigstad.com/ioopm18/misc/emacs.zip -o e.zip
+$ unzip e.zip
+$ rm -f e.zip
+#+end_example
+
+Notera att om du skriver fel i den långa URL:en ovan kommer du
+fortfarande att få en fil =e.zip= men som förstås inte går att
+packa upp. Om =unzip=-steget inte fungerar -- kontrollera din
+stavning i =curl=-steget!
+
+#+begin_danger
+Om du installerar Emacs på macOS så är key:Alt din Meta-tangent.
+Det är inget fel med det, /men/ avsaknaden av key:AltGr (en Mac
+har två key:Alt istället) gör att vissa tecken som är vanligt
+förekommande i programmering inte går att skriva:
+- =[= tolkas som kortkommandot [[key:M-8]] och =]= som kortkommandot
+  [[key:M-9]].
+- ={= tolkas som kortkommandot [[key:M-7]] och =}= som kortkommandot
+  [[key:M-0]].
+- =$= tolkas som kortkommandot [[key:M-4]], etc. 
+
+Lösningen på detta är att lägga till följande i filen =init.el=
+som finns i katalogen =.emacs.d= i din hemkatalog. Kopiera och 
+klistra in!
+
+#+begin_src emacs-lisp
+;; Teach Emacs Swedish keyboard layout
+(define-key key-translation-map (kbd "M-8") (kbd "["))
+(define-key key-translation-map (kbd "M-9") (kbd "]"))
+
+(define-key key-translation-map (kbd "M-(") (kbd "{"))
+(define-key key-translation-map (kbd "M-)") (kbd "}"))
+
+(define-key key-translation-map (kbd "M-7") (kbd "|"))
+(define-key key-translation-map (kbd "M-/") (kbd "\\"))
+
+(define-key key-translation-map (kbd "M-2") (kbd "@"))
+(define-key key-translation-map (kbd "M-4") (kbd "$"))
+#+end_src
+
+Tips: klistra in i Emacs är [[key:C-y]]. För att slippa starta om
+Emacs för att inställningarna skall gälla kan du markera den
+inklippta texten och köra [[key:M-x]] =eval-region=. 
+
+#+end_danger
+
+** Att arbeta med flera filer i Emacs
+
+Att arbeta med fler än en fil i Emacs är lämpligt att göra genom
+att öppna flera /windows/ i samma Emacs-fönster (eller /frame/ med
+Emacs-termer). Nedan använder jag ordet *frame* för det som du
+normalt kallar för fönster, och ordet *window* för en del av en
+*frame* som visar en *buffer* med text. 
+
+#+CAPTION: Ett Emacs-frame med tre windows 
+file:../misc/emacs-frames-windows-buffers.png
+
+För att återskapa ovanstående split i tre windows. Gör så här efter att du startat Emacs:
+
+1. key:C-x [[key:&minus;]] för att dela (det aktuella) window:et horizontellt
+2. key:C-x [[key:&mid;]] för att dela (det aktuella) window:et vertikalt
+
+Navigera mellan de olika Emacs-window:arna så här:
+[[key:C-x]] [[key:&larr;]], [[key:C-x]] [[key:&rarr;]], [[key:C-x]] [[key:&uarr;]] 
+och [[key:C-x]] [[key:&darr;]]. 
+
+Positionera dig längst ned (med kommandona ovan) och öppa =utils.c= med [[key:C-x]] [[key:C-f]] =utils.c= [[key:&crarr;]].
+Positionera dig i övre vänstre window:et ned (med kommandona ovan) och öppa =tmp.c= med [[key:C-x]] [[key:C-f]] =tmp.c= [[key:&crarr;]].
+Positionera dig i övre högra window:et och växla så att den visar samma buffert 
+som någon av de andra window:arna med [[key:C-x]] [[key:b]]. Skriv sedan namnet på buffern (du kan använda tab för autocomplete)
+och tryck [[key:&crarr;]]. 
+
+Om du gillar att ha många filer öppna i Emacs samtidigt kan du pröva att trycka till 
+exempel key:C-x key:C-b för att lista alla öppna buffrar. Nu kan du navigera till 
+den buffer du vill öppna med piltangenterna och trycka enter. 
+
+Om du vill stänga window:et som du står i: [[key:C-x]] [[key:0]]. 
+Om du vill stänga alla andra windows utom det du står i: [[key:C-x]] [[key:1]]. 
+
+Två anledningar till att det *inte* är bra att köra =emacs fil.c
+&= flera gånger i terminalen är att det startar flera instanser av
+Emacs och:
+
+1. det åtgår en massa mer minne -- $N$ gånger för $N$ instanser
+2. de olika instanserna är inte medvetna om varandra -- och en fil som är öppen i flera instanser kan hamna i osynk 
+
+Ovanstående gäller inte bara Emacs utan generellt. På macOS med
+ett grafiskt Emacs kommer =emacs fil.c &= att öppna ett redan
+körande Emacs om ett sådant finns. 
+
+Om du föredrar att ha flera separata fönster öppet på skärmen kan
+du använda kommandot key:M-x =make-frame= [[key:&crarr;]] för att öppna
+ett nytt fönster och sedan key:C-x key:C-f som vanligt för att öppna
+en fil i det fönstret. 
+
 ** Introduktion till Emacs
 
  #+begin_note

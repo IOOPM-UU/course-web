@@ -1,13 +1,14 @@
 #+title: Java Bootstrapping (1 week)
 #+include: "../setup.org" 
 
+#+html: <a name="org8bd6bd0"></a>
 * Lab 6: Kom igång med Java                                       :redovisas:
 Målsättningen med denna uppgift är att du skall komma igång med
 Java och bekanta dig med några grundläggande Java-idiom. Du kan
 **inte** redovisa mål med den här uppgiften, och inte heller
 använda den för att redovisa
-[[http://auportal.herokuapp.com/achievements/103][Z103]] eller
-[[http://auportal.herokuapp.com/achievements/104][Z104]].
+[[http://wrigstad.com/ioopm20/achievements.html#103][Z103]] eller
+[[http://wrigstad.com/ioopm20/achievements.html#104][Z104]].
 
 ** Tärningar
 
@@ -380,6 +381,7 @@ med argument av godtycklig typ. Du kan använda operatorn
 viss klass (men det här är ett av få vettiga tillfällen att
 använda ~instanceof~!).
 
+#+html: <a name="org2b37e6a"></a>
 * Lab 7: Simulera kassor i ett varuhus                            :redovisas:
 
 ** Introduktion

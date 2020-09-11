@@ -1,0 +1,75 @@
+#+title: Recorded Lectures 2020
+#+include: "./setup.org"
+
+* Lecture 1 -- Introduction to course organisation, C-bootstrap labs kick-off
+
+#+begin_center
+#+BEGIN_EXPORT html
+<iframe width="560px" height="320px" allowfullscreen="true" src="https://uppsala.instructuremedia.com/embed/60bc1adb-591e-42a1-b81b-0bfe11c5c109" frameborder="0"></iframe>
+#+END_EXPORT
+#+end_center
+
+[[./misc/lecture1.pdf][Slide set]]
+
+(If anyone wonders why my face is half-cropped out, it is because
+the stupid recording feature on Zoom overlaid the participant
+window over my face, showing some students' cameras during the
+lecture.)
+
+* Lecture 2 -- C-bootstrap lab review
+
+- Assignment
+- Loops
+- Importance of readability 
+- Mental models for programming
+  - Substitution model (works well with lots of pure functional programming)
+  - Platter model + graph paper model (works well with imperative C programming)
+
+#+begin_center
+#+BEGIN_EXPORT html
+<iframe width="560px" height="320px" allowfullscreen="true" src="https://uppsala.instructuremedia.com/embed/28a3c0a9-0885-4bcb-9ae0-d1ad894e4199" frameborder="0"></iframe>
+#+END_EXPORT
+#+end_center
+
+[[./misc/lecture2.pdf][Slide set]]
+
+
+* Lecture 3 -- Pointers and dynamic memory management
+
+- Memory 
+  - Stack
+  - Heap
+- Pointers and pointer variables
+- Dynamic memory management
+- Sneak peak at linked structures
+
+#+begin_center
+#+BEGIN_EXPORT html
+<iframe width="560px" height="320px" allowfullscreen="true" src="https://uppsala.instructuremedia.com/embed/0583b920-03dd-420a-bbaf-77e9b77a5050" frameborder="0"></iframe>
+#+END_EXPORT
+#+end_center
+
+[[./misc/lecture3.pdf][Slide set]]
+
+
+* Lecture 4 -- Hur kursen fungerar, mål, redovisningar, projektarbete, etc., etc. 
+
+#+begin_center
+#+BEGIN_EXPORT html
+<iframe width="560px" height="320px" allowfullscreen="true" src="https://uppsala.instructuremedia.com/embed/d3c21903-7481-4338-b41d-c15b43d53e36" frameborder="0"></iframe>
+#+END_EXPORT
+#+end_center
+
+[[./misc/lecture4.pdf][Slide set]]
+
+#+begin_center
+*Föreläsningen i 1.25$\times$ fart:*
+#+BEGIN_EXPORT html
+<iframe width="560px" height="320px" allowfullscreen="true" src="https://uppsala.instructuremedia.com/embed/75e70d45-6cd4-4abd-96f8-83b17489e06b" frameborder="0"></iframe>
+#+END_EXPORT
+#+end_center
+
+
+#+include: "./footer.org"
+
+

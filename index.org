@@ -12,10 +12,16 @@
 
 #+Begin_note
 Ask questions and discuss with other students on [[https://piazza.com/class/ke6uvtli7x05er][Piazza]]  \\
-Request demonstrations and track your progress at the [[http://auportal.herokuapp.com/][AU Portal]] \\
+Request demonstrations and track your progress at the [[./auportal.org][AU Portal]] \\
 #+end_note
 
 * Information For New Students in 2020
+
+#+begin_center
+#+BEGIN_EXPORT html
+<iframe width="560px" height="320px" allowfullscreen="true" src="https://uppsala.instructuremedia.com/embed/095a20c7-9cb4-4a27-9880-cdcdfb559e08" frameborder="0"></iframe>
+#+END_EXPORT
+#+end_center
 
 #+begin_important
 The first thing you do should be to go [[./about.org][here]] and read about how the
@@ -24,7 +30,7 @@ course will run in 2020. Then come back here and on you go!
 
 ** Action Points Day One
 
-- Enter the information we need about you in the AU Portal to complete the setup:
+- Enter the information we need about you in the [[./auportal.org][AU Portal]] to complete the setup:
   - Your GitHub account ([[./github.org::*How to Get a GitHub Account for the Course][get one if you need one]])
   - Your ZOOM number 
   - A clear picture that looks reasonably like your ID or Passport
@@ -86,28 +92,28 @@ Note that without exception, all lectures start at 10:15 and are
 scheduled to end at 12:00. The [[https://cloud.timeedit.net/uu/web/schema/ri14Q3ZY0QYZ09Q4f08Y62Q05y05Z6g59x5060gQX670.html][full schedule]] is available on
 TimeEdit. We aim to be able to deliver some content ahead-of-time.
 More details will emerge. Until then, plan as if the lectures are
-given live and recorded for posterity.
+given live and recorded for posterity. Recorded lectures appear [[./lectures.org][here]].
 
 *Note. The schedule below points to the old slides from 2019. These will be updated incrementally for 2020 at which points these links will change to simply ''Slides''.* 
 
 ** Phase 1 (Imperative Programming)
-| Date  | Contents                                                                                                                  | Achievements                  | fab:slideshare  |
-|-------+---------------------------------------------------------------------------------------------------------------------------+-------------------------------+-----------------|
-|       |                                                                                                                           |                               |       <c>       |
-| 1/9   | Grundläggande datatyper, deklaration, uttryck och satser. Funktioner. Enkel I/O. Enkel  stränghantering.                  | [[aua:1][A1]] ([[aua:13][F13]], [[aua:15][G15]])                 | [[file:misc/w1-2.pdf][Old slides]] [[https://github.com/TobiasWrigstad/ioopm19/tree/master/lectures/f01-04#extramaterial][Code]] |
-| 4/9   | Poster och unioner. Typnamnsdefinitioner. Funktionspekare. Separatkompilering och headerfiler.                            | [[aua:3][A3]], [[aua:9][D9]], [[aua:15][G15]], [[aua:16][G16]], ([[aua:22][I22]]), [[aua:30][K30]]. |      -''-       |
-| 7/9   | Dynamisk minnesallokering. Pekare.                                                                                        | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:27][J27]], [[aua:38][M38]]       |      -''-       |
-| 10/9  | Introduktion till resten av kursen. Skillnad mellan funktionell och imperativ programmering. SIMPLE. Det agila upplägget. | [[aua:7][C7]]                            |   -''- (p160)   |
-| 14/9  | Stack och heap, länkade strukturer, pekare 1/2.                                                                           | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:36][M36]]            |   [[file:misc/w3.pdf][Old slides]]    |
-| 17/9  | Stack och heap, länkade strukturer, pekare 2/2.                                                                           | [[aua:27][J27]], [[aua:37][M37]], [[aua:39][M39]]                 |      -''-       |
-| 21/9  | Introduction to testing with CUnit                                                                                        | [[aua:18][G18]], [[aua:49][Q49]], [[aua:50][Q50]]                 |   [[file:misc/w4.pdf][Old slides]]    |
-| 24/9  | Automatisering (Make, scripting) och optimering.                                                                          | [[aua:55][T55]], [[aua:57][U57]], [[aua:58][V58]], [[aua:45][P45]]            |      -''-       |
-| 28/9  | Design & metodologi. Hur strukturerar man? Top-down, bottom-up. Lagertänkande.                                            | [[aua:41][N41]]                           |   [[file:misc/w5.pdf][Old slides]]    |
-| 1/10  | Modularisering, separatkompilering, coupling & cohesion.                                                                  | TBA                           |      -''-       |
-| 5/10  | Defensiv programmering. Läsbar kod.                                                                                       | [[aua:22][I22]], [[aua:45][P45]]                      |   [[file:misc/w6.pdf][Old slides]]    |
-| 8/10  | Preprocessorn. Bitmanipulering.                                                                                           | [[aua:42][O42]], [[aua:43][O43]], [[aua:44][O44]]                 |      -''-       |
-| 12/10 | /Backup/ (Terminalen)                                                                                                     | [[aua:58][V58]]                           |      Demo       |
-| 15/10 | Prepping for code exam                                                                                                    |                               |       N/A       |
+| Date  | Contents                                                                                                                  | Achievements                  | fab:slideshare |
+|-------+---------------------------------------------------------------------------------------------------------------------------+-------------------------------+----------------|
+|       |                                                                                                                           |                               |      <c>       |
+| 1/9   | Grundläggande datatyper, deklaration, uttryck och satser. Funktioner. Enkel I/O. Enkel  stränghantering.                  | [[aua:1][A1]] ([[aua:13][F13]], [[aua:15][G15]])                 |  [[file:misc/lecture1.pdf][2020 slides]]   |
+| 4/9   | Poster och unioner. Typnamnsdefinitioner. Funktionspekare. Separatkompilering och headerfiler.                            | [[aua:3][A3]], [[aua:9][D9]], [[aua:15][G15]], [[aua:16][G16]], ([[aua:22][I22]]), [[aua:30][K30]]. |  [[file:misc/lecture2.pdf][2020 slides]]   |
+| 7/9   | Dynamisk minnesallokering. Pekare.                                                                                        | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:27][J27]], [[aua:38][M38]]       |  [[file:misc/lecture3.pdf][2020 slides]]   |
+| 10/9  | Introduktion till resten av kursen. Skillnad mellan funktionell och imperativ programmering. SIMPLE. Det agila upplägget. | [[aua:7][C7]]                            |   [[file:misc/w1-2.pdf][Old slides]]   |
+| 14/9  | Stack och heap, länkade strukturer, pekare 1/2.                                                                           | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:36][M36]]            |   [[file:misc/w3.pdf][Old slides]]   |
+| 17/9  | Stack och heap, länkade strukturer, pekare 2/2.                                                                           | [[aua:27][J27]], [[aua:37][M37]], [[aua:39][M39]]                 |      -''-      |
+| 21/9  | Introduction to testing with CUnit                                                                                        | [[aua:18][G18]], [[aua:49][Q49]], [[aua:50][Q50]]                 |   [[file:misc/w4.pdf][Old slides]]   |
+| 24/9  | Automatisering (Make, scripting) och optimering.                                                                          | [[aua:55][T55]], [[aua:57][U57]], [[aua:58][V58]], [[aua:45][P45]]            |      -''-      |
+| 28/9  | Design & metodologi. Hur strukturerar man? Top-down, bottom-up. Lagertänkande.                                            | [[aua:41][N41]]                           |   [[file:misc/w5.pdf][Old slides]]   |
+| 1/10  | Modularisering, separatkompilering, coupling & cohesion.                                                                  | TBA                           |      -''-      |
+| 5/10  | Defensiv programmering. Läsbar kod.                                                                                       | [[aua:22][I22]], [[aua:45][P45]]                      |   [[file:misc/w6.pdf][Old slides]]   |
+| 8/10  | Preprocessorn. Bitmanipulering.                                                                                           | [[aua:42][O42]], [[aua:43][O43]], [[aua:44][O44]]                 |      -''-      |
+| 12/10 | /Backup/ (Terminalen)                                                                                                     | [[aua:58][V58]]                           |      Demo      |
+| 15/10 | Prepping for code exam                                                                                                    |                               |      N/A       |
 
 ** Phase 2 (Object-Oriented Programming) <<phase2lectures>>
 | Date  | Contents                                                                                                                   | Achivements                                                | fab:slideshare   |
@@ -158,7 +164,6 @@ Deadlines and important dates in chronological order. Read [[./about.org::*Deadl
 | 14--16/1 2021 | [[./projects/projects.org][Project]] (Hard)             | Deadline is 24 h before seminars              |
 | 15/1 2020     | [[http://auportal.herokuapp.com/achievements/7][C7]] deadline                |                                               |
 | 15--17/1 2021 | [[./projects/projects.org][Project]] Seminars           | *Might happen on-campus!*                     |
-
 
 * Exercises, Assignments and Projects
 Note that assignments mostly act as drivers to learn concepts and produce evidence for demonstrating mastery of achivements.

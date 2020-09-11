@@ -68,7 +68,7 @@ other courses:
      addition to the work you do in the labs.]]
 
 * Att redovisa under en labb
-För att redovisa under en labb använder du [[http://auportal.herokuapp.com/][AU-portalen]]. Under
+För att redovisa under en labb använder du [[./auportal.org][AU-portalen]]. Under
 "Demonstrate Goal" kan du välja vilka mål du vill redovisa. När du
 skickat in din ansökan om att redovisa syns den i vårt system. Då
 ser du också en Zoom-länk som du kan trycka på för att starta ett

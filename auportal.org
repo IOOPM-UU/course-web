@@ -1,6 +1,11 @@
 #+title: AUPortal
 #+include: "./setup.org"
 
+
+#+begin_important
+Link to AUPortal: https://ioopm.course.it.uu.se
+#+end_important
+
 * Introduction to the AU Portal Software
 
 A normal year, we take close to 2000 oral demonstrations during
@@ -63,7 +68,7 @@ The profile picture is used by the teachers on this course in two ways:
    reasonably certain you are who you claim to be :) 
 
 
-*** Who can see whos profile picture?
+*** Who can see whose profile picture?
 
 1. You can see your own picture, but not those of other students
 2. You can see the profile picture of all teachers 
@@ -180,9 +185,10 @@ descriptions of the achievements.
 
 ** Code Space
 
-In this tab we have collected all your login information to set up
-and access Cloud 9. Click on the pink button to get information
-about how to setup. 
+In the code space tab (computer icon) we have collected all your
+login information to set up and access Cloud 9. Click on the
+computer icon and then the pink button to get information about
+how to setup.
 
 
 ** Link to GitHub
@@ -195,6 +201,12 @@ us to access this name, we send an invite to you to join the
 IOOPM-UU organisation on GitHub and link your account to the
 private repository where you are required to host your code during
 this course.
+
+These steps are all automated, and may take up to a 1 minute to
+complete. Move the mouse over the GitHub icon to see when the help
+text changes from "link to GitHub" to a name of your GitHub repo
+(=first.last.1234=). Once that is done, you can click the link and
+get to your repo.
 
 
 * Join the Fun!

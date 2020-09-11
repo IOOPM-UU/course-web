@@ -545,12 +545,15 @@ Puh. Vi ses på seminarierna!
 
 * Nutshell Summaries of the two Projects
 
-# #+begin_note
-# Note that the project specifications are subject to change at any moment.
-# #+end_note
+#+begin_danger
+Below are the project specifications used in 2018 and 2019 (and in
+some cases before). We may completely change these during 2020.
+The project specifications will be locked down at the latest
+November 25.
+#+end_danger
 
 If nothing else is stated, then the projects are required to work
-on Linux X86 64 bit, Ubuntu 16.04 (which is what the department
+on Linux X86 64 bit, Ubuntu 18.04 (which is what the department
 provides). Note that developing on Windows or macOS and deploying
 on Linux is very very brittle in C. In those cases, use a virtual
 Linux environment for testing.

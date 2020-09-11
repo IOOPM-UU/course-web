@@ -43,11 +43,31 @@ number in the AU Portal software when you login for the first time.
 
 * How to Start A Zoom Meeting for A Demonstration or Help Request
 
-#+NAME: fig_zoom_1
+#+NAME: fig_zoom_6
 #+ATTR_HTML: :width 75%
 #+CAPTION: Always use the link from the AU Portal software to ensure that all participants share the same meeting ID
 [[./images/zoom6.png]]
 
 
-#+include:
- "./footer.org"
+* How to disable passwords and waiting rooms
+
+Open your profile by following the instructions above to get to
+your Zoom number. Then, click the settings button in the browser.
+
+#+NAME: fig_zoom_7
+#+ATTR_HTML: :width 75%
+#+CAPTION: In your profile, access Settings
+[[./images/zoom-passcode1.png]]
+
+Then turn off your passcodes and your waiting room. You can enable
+these for individual meetings in the future if you want, so don't
+worry.
+
+#+NAME: fig_zoom_8
+#+ATTR_HTML: :width 75%
+#+CAPTION: Turn off passcodes (both) and waiting room
+[[./images/zoom-passcode2.png]]
+
+
+
+#+include: "./footer.org"

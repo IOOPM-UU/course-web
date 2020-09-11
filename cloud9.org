@@ -1,8 +1,165 @@
 #+title: Using Cloud 9 on IOOPM 
 #+include: "./setup.org"
 
-- Bjud in assistent
-- Dela länken över Zooms chat
-- Om du störs över denna obefintliga integration är du välkommen att bygga vidare på mjukvaran 
+
+#+begin_important
+*WHAT IS MY UU USERNAME?* If you don't know your username -- don't
+fret! We can figure it out. If your UU email is
+=sam.chalpin.1234@student.uu.se=, then take the two first letters
+from =sam=, the two first from =chalpin= and the four digits at
+the end to form =sach1234=. Easy as proverbial pie!
+
+*It turns out* that if you have changed your name since coming to
+UU, this scheme only works with your old (first) name. So if your 
+last name was Batman before changing to Chalpin, try =saba1234= 
+instead.
+#+end_important
+
+* Setup: using ssh (only once)
+
+Ssh -- Secure SHell -- is a wonderful program that allows you to
+open a terminal session on another machine and execute commands.
+It is such a standard appliance that it comes preinstalled in
+macOS and Windows (verified on Windows 10), and most linux
+distributions depending on configuration.
+
+To run ssh, you need to first open a terminal on your local
+machine. On macOS, there is a program called Terminal in The
+=/Applications/Utilities= folder (=/Program/Verktyg/= in Swedish)
+that you can run. On Windows, you can click on the Start Meny,
+then simply start typing =cmd.exe= and you should be able to
+launch the terminal. If you are on Linux, we suspect you are
+already there.
+
+Let's say your UU username is =sach1234=, you should be able to
+login like this:
+
+#+begin_src bash
+$ ssh sach1234@trygger.it.uu.se     # <-- this command runs on your local machine
+password: ********
+... some stuff appears ...
+
+$ whoami                            # <-- this command runs on trygger!                                
+sach1234 
+#+end_src
+
+To allow Cloud 9 to connect to your account, you need to add a key
+in a file called =~/.ssh/authorized_keys=. When the course is
+over, you can remove this key if you like (it will contain the
+word Amazon, so will probably be easy to find). 
+
+To install the key, follow the instructions from the AU portal.
+You will look something like this:
+
+#+begin_example
+ssh sach1234@trygger.it.uu.se "mkdir -p ~/.ssh; curl https://ioopm.course.it.uu.se/api/getAWSKey2?username=sach1234 >> ~/.ssh/authorized_keys"
+#+end_example
+
+Simply copy this command (verify you didn't lose a character in
+either end!) and paste it into your terminal. When you run this,
+some stuff will be printed that you can ignore (the progress bar
+for downloading the key), and then you are all set.
+
+#+begin_src bash
+$ ssh sach1234@trygger.it.uu.se "mkdir -p ~/.ssh; curl https://ioopm.course.it.uu.se/api/getAWSKey2?username=sach1234 >> ~/.ssh/authorized_keys"
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                               Dload  Upload   Total   Spent    Left  Speed
+0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
+#+end_src
+
+#+begin_center
+*[[mark:NOW YOU ARE ALL DONE!]]*
+#+end_center
+
+If you want to verify that everything worked, you can do this: 
+
+#+begin_src bash
+$ ssh sach1234@trygger.it.uu.se "cat ~/.ssh/authorized_keys"
+#+end_src
+
+This will print the contents of your =authorized_keys= file, which
+should look something like this:
+
+#+begin_example
+ssh-rsa AAAAB3NzaC1yc2EAAasdfAAACCCFFFFDDdEHks1A4dDBp6YBI73qq2c/Xe+4w1T
+kgvFwIO7/YECy9ev6RLXIL6dcLnD16MJHkAfSwwcRTMb/W46f0MkkLfqSNe2A1zB5YIbZCd
+MUuI9I0jYyOwEZdrJ5WY85Bg7c6jsNY8pF5kfdKDJ1BWK9CZk0Qm3TsNNsMbNSQcmcvx4Ah
+rLyjG0iES2FbwZ46m4zy0cuzLnGVzT8O3nizT/XQ5Za3+oiPqFpsszi/lirwnRoposJUHhY
+hK9yV57iEPTmQvgg5AfwITyQdjLhdRUqzQ8TsFc+LtebETe/QOqd4TlUUzK5Os0jNMquo6z
+jr/5eqxGHnVpY0bjJq6ItJsqdkI5Oaq3cmnJYgLm7EPCLBUAYTQZyk7nKr2n9CI+iOvuYzX
+UNJ3Ywu+YB40PS+9QLPLgSzBXF4CieAvqMNzZ2TzgqnKSEPLp1LT21qtbz7UjoISZOlstxG
+yd9Hsh0GcXkClEtNrSeJ3CJXaHbydvdMLjVPtLOmHd1rgo9HJ10O/m8LUTK8PHvETkFoBYu
+5aTNcL8olIB2r/qH53Q4HvT3hj2h9rC2xoSv/mzx4qsDQRilNinGBthGpTrHuRLLrdiwcD5
+5iHNQfykAyJxTxbQwVr2KJLjihPVdhFE0E1JkC9akidUb27ewpbNe5K+B6XqZmI4u7zq6gV
+bCdNGXGMv57Q== username+060148586416@cloud9.amazon.com
+#+end_example
+
+If you don't see any printout -- you should try the steps above again, 
+and check carefully that you did not accidentally made a mistake while
+copying. 
+
+* How to Invite Someone into Your Cloud  
+
+# - Bjud in assistent
+# - Dela länken över Zooms chat
+# - Om du störs över denna obefintliga integration är du välkommen att bygga vidare på mjukvaran 
+
+** Step 1: Click Share
+#+NAME: fig_cloud9_1
+#+ATTR_HTML: :width 75%
+#+CAPTION: Click Share
+[[./images/cloud9-invite1.png]]
+
+** Step 2: Enter username of the person you want to invite
+
+Note that we have randomized usernames for Cloud 9 so you cannot
+guess. You need to confer with each other.
+
+#+NAME: fig_cloud9_2
+#+ATTR_HTML: :width 75%
+#+CAPTION: Enter username -- keep read/write permissions on unless there is a need to restrict someone
+[[./images/cloud9-invite2.png]]
+
+#+NAME: fig_cloud9_3
+#+ATTR_HTML: :width 75%
+#+CAPTION: Enter username, then click OK
+[[./images/cloud9-invite3.png]]
+
+** Boom! We're done.
+#+NAME: fig_cloud9_4
+#+ATTR_HTML: :width 75%
+#+CAPTION: Click Share
+[[./images/cloud9-invite4.png]]
+
+
+
 
 #+include: "./footer.org"
+* Changing your backend server 
+
+If you for some reason have trouble logging in to your chosen
+server, you can change it for another. In the panel where you
+start your IDE, you can click *edit* and change the host for
+something else. Please do not do this unless instructed to by the
+teachers as we have taken care to load-balance all Cloud 9
+instances across the servers at IT. 
+
+#+NAME: fig_change_host_1
+#+ATTR_HTML: :width 75%
+#+CAPTION: Click edit on your chosen instance
+[[./images/cloud9-change1.png]]
+
+#+NAME: fig_change_host_2
+#+ATTR_HTML: :width 75%
+#+CAPTION: Change the host name for something else
+[[./images/cloud9-change2.png]]
+
+
+
+If instructed to change servers, we will give you new suitable
+host names.
+
+
+
+#+include: "./footer.org"
+

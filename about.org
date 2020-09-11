@@ -150,7 +150,7 @@ Demonstrations take place
 # in 1515, 1549 and (for students with laptops also 1245), 
 during the lab sessions, excluding bootstrap
 labs (where you will be demonstrating lab tasks instead). You
-request to demonstrate through the [[http://auportal.herokuapp.com/][AU Portal]] where you can choose
+request to demonstrate through the [[./auportal.org][AU Portal]] where you can choose
 which achievements you wish to demonstrate.
 
 After requesting to demonstrate, there will be a waiting period

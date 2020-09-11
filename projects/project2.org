@@ -1,6 +1,13 @@
 #+title: Project 2
 #+include: "../setup.org" 
 
+#+begin_danger
+Below is a project specifications used in previous instalments of
+this course. We may completely change this during 2020. The
+project specifications will be locked down at the latest
+November 25.
+#+end_danger
+
 * Inledning
 
 Uppgiften går ut på att utveckla ett bibliotek, för enkelhets

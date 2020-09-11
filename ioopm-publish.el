@@ -28,7 +28,7 @@
  :export (lambda (path desc backend)
            (cond
             ((eq 'html backend)
-             (format "<i class=\"fas fa-trophy\"></i> <a href=\"http://auportal.herokuapp.com/achievements/%s\">%s</i></a>" path desc))))
+             (format "<i class=\"fas fa-trophy\"></i> <a href=\"http://wrigstad.com/ioopm20/achievements.html#%s\">%s</i></a>" path desc))))
  :face '(:foreground "DarkGoldenrod3"))
 
 (org-link-set-parameters
