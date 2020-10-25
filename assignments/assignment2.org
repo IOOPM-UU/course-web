@@ -7,6 +7,29 @@
 *Hard deadline*: End of Week 44
 #+end_important
 
+#+begin_note
+This assignments builds on the previous one. 
+When you form a new pair, one of you will bring
+their old assignment 1 code with them to the new pair. 
+
+There are several reasons for this all rooted in how
+useful and insightful it is to live with code you've
+written yourself for a "long while", and respectively,
+how insightful it is to see someone else's implementation
+of the same specification. 
+
+It usually forces you to reflect on readability, what is good
+naming, what is "obvious" or intuitive, etc. Plus you'll get to
+experience that you get better, when you look at code you wrote
+"ages ago" and immediately can see improvements or better ways to
+do it.
+
+Thus, one of you will be the expert on the implementation of the
+library that you can use to do most of the heavy lifting in this
+assignment. The other will ask questions and poke at differences
+with the hashtable code he or she knows from before. 
+#+end_note
+
 * Simple Webstore Backend
 In Assignment 2, we are going to put the data structures we
 implemented in Assignment 1 to use as we build a small program
@@ -357,10 +380,10 @@ This assignment reuses components from earlier in the course:
 
 You are doing Assigment 2 in a team of two people. As a starting
 point of this work, you need to pick components 1--3 above from 3
-*discrete* sources from within the same group. For example, let
-Alice, Bob and Cecil be members of the same group, and Alice and
-Bob work together on Assignment 2. In the start of their work, 
-Alice and Bob compile the following: 
+*discrete* sources from within the same group. For example, let's
+say Alice and Bob works together on Assignment 2. On assignment 1,
+Bob worked with Cecil. In the start of their work, Alice and Bob
+compile the following:
 
 1. Hash table comes from Alice's Assignment 1
 2. Linked list comes from Cecil's Assignment 1

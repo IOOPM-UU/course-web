@@ -1,0 +1,94 @@
+#+title: Kodprov i IOOPM 2020
+#+include: "./setup.org"
+
+#+begin_important
+Vi ÄR OFANTLIGT ledsna för att denna information kommer ut så sent. 
+Vi har jobbat otroligt mycket för att kunna göra kodprovet överhuvudtaget,
+med sådan plötslig vändning. Vi skall göra vad vi kan för att kompensera
+er, efter att vi pustat ut själva efter att ha sprungit som galningar.
+**Eftersom många kommer att läsa denna information först på provet 
+har vi valt att utöka skrivtiden med en timme.**
+#+end_important
+
+* För dig som vill veta varför provet går digitalt
+(Just detta kan du läsa efter kodprovet om du vill!) 
+
+Tanken (och planen) var att hålla kodprovet som ett fysiskt prov. Den främsta anledningen till det var klagomål från flera håll om dålig rättssäkerhet vid digitala tentor. En konsekvens av det problemet är att vi behöver lägga betydligt mer tid, vår och er, för att säkra proven än vid en fysisk examination. Ett annat problem är att även gamla studenter på kursen behöver kunna skriva kodprovet, och vi har svårt att garantera att alla har tillgång till en likvärdig och bra miljö att skriva provet i. Kodprovet ska verifiera att du kan programmera, inte konfigurera en dator med webbkamera för programvaruutveckling.
+
+På grund av det försämrade lokala smittoläget under veckorna 42 och 43 insåg vi att det skulle vara oförsvarbart att hålla provet på plats, även med de åtgärder vi vidtagit för att begränsa smittspridningen. Vi uppfattar det också som i direkt strid med de lokala riktlinjerna som började gälla för Uppsala län från och med tisdag den 20:e oktober. Därför beslutade vi att göra kodprovet digitalt. 
+
+* Möjlighet till muntlig examination istället för prov
+Om du väljer att inte dyka upp till kodprovet räknas det som att du har ångrat ditt val att göra ett skriftligt kodprov (förutsatt att du till att börja med kunde göra det muntliga provet).
+
+Om du skrivit inlupp 1 under årets kurs tror vi att du kommer att uppleva muntan som mindre stressig än kodprovet -- färre osäkerhetsfaktorer än att skriva ny kod på utsatt tid. Men vad som är bäst för dig bestämmer du själv! 
+
+Muntan sker i form av en stickprovskontroll av koden från inlupp 1 och sker över Zoom på samma sätt som en redovisning, men skillnaden att examinatorn styr och ställer frågor och efterfrågar ändringar eller alternativa lösningar. 
+
+* Tekniska verktyg som krävs för provet
+Om du väljer att göra kodprovet så kommer du att skriva på din egen dator. Har du arbetat i Cloud9 under kursen så kan du göra det nu också. Om du inte har Cloud9 eller om du föredrar en annan lösning så får du använda den. Du kommer bara att kunna skriva antingen Java eller C-delen av provet, en speciell begränsning i år som vi blivit tvingade att ta till av effektivitetsskäl. Vi kommer heller inte att ge rest i år; ditt prov är antingen godkänt eller inte godkänt.
+
+Det enklaste sättet att ha en konfiguration som fungerar för kodprovet är att använda Cloud9 eller Unix-servrarna på universitetet, t.ex. “ssh foba1234@trygger.it.uu.se” och sedan “emacs -nw fil”. Du kan ha flera parallella ssh-sessioner igång om du vill. 
+
+Om du vill köra lokalt på din egen dator behöver du verktyg enligt nedanstående. Du kan enkelt installera dessa genom att använda den Vagrant-fil som vi rekommenderar i instruktionerna.
+
+* Du behöver ha följande för att kunna skriva kodprovet (förutom Zoom och en webbläsare):
+
+Kör du på Cloud9 eller institutionens maskiner finns detta och du behöver inte bry dig. 
+
+Båda kodprov kräver
+- Make (för inlämning)
+- ZIP (för att packa upp provet och packa ihop en inlämning)
+- Curl för att ladda ned provet (eller använd en webbläsare) 
+- Sh
+
+Javaprovet kräver
+- Java 8 eller högre (t.ex OpenJDK) 
+
+C-provet kräver
+- GCC eller clang
+- Valgrind
+- Gdb
+
+* Under provet
+Ditt prov börjar med att du ansluter på utsatt tid till rätt Zoom-session som vi utlyst per mejl. I sessionen får du en länk till instruktioner och en zip-fil som innehåller ditt individuella kodprov. Analogt med en vanlig tenta kommer vi att öppna zoom-rummet igen för frågor en timme från att skrivtiden börjat. Du kan då ansluta igen och ställa och få svar på dina frågor genom att räcka upp handen med handuppräckningsfunktionen.
+
+Tänk på att det inte är tillåtet att ge eller få hjälp av klasskamrater under provet. Det är inte heller tillåtet att googla, använda Stack Overflow el. dyl. Däremot har du tillgång till manualsidor för C och javadoc för Java.
+
+* Inlämning av provet
+När du skrivit klart kör du kommandot make handin i samma mapp som uppgiften och följer instruktionerna som anges i uppgiften. Det genererar en zip-fil med ditt prov som du ska ladda upp på Studentportalen här https://studentportalen.uu.se/portal/portal/uusp/student/filearea?uusp.portalpage=true&toolAttachmentId=728866&toolMode=studentUse. Om du inte är registrerad kan du som en sista utväg mejla din kod till ioopm@it.uu.se.
+
+Efter att du har lämnat in ditt prov ställer du dig i redovisningskön på AU-portalen (https://ioopm.course.it.uu.se) och väljer motsvarande mål för redovisning (“CEC - C/Imperative Code Exam” eller ”JEC - Java/OO Code Exam”). Stäng inte din kod eftersom du kommer att behöva svara på frågor om koden.
+
+Viktigt: om du är en tidigare student eller inte har redovisat något mål förut kommer du att behöva visa legitimation när du redovisar. Se till att du har din legitimation till hands.
+
+Din skrivtid slutar räknas när du lämnar in första gången. Om du gör flera inlämningar i filarean räknas den sista av dem som är inom skrivtiden.
+
+När du kommer först i kön kommer en assistent eller lärare att be dig att svara på några enkla frågor om din kod. Vi gör det för att vi ska vara säkra på att det är du som skrivit den. Assistenterna kommer inte att rätta ditt prov och kan inte godkänna eller underkänna dig. Presentationen kommer att ta mellan fem och femton minuter. 
+
+Din presentation kommer att spelas in så att vi kan kontrollera den i efterhand. När du har presenterat får du ett inlämnings-ID som du ska lägga till i din kod i en kommentar på första raden. Vi gör det för att se till att den kod du visar assistenten är den kod du lämnat in. Sedan ska du köra =make handin_final= för att göra en ny zip-fil. Lämna in den på samma sätt som den första. 
+
+#+begin_center
+Efter det är du klar! Bra jobbat!
+#+end_center
+
+Om du inte lämnar in en sista gång med ditt inlämnings-ID så kommer din inlämning att räknas som en blank inlämning. Det enda sättet att göra en giltig inlämning är alltså att lämna in, redovisa, och lämna in igen med ett redovisnings-ID.
+
+Av princip kommer bara godkända resultat att rapporteras i Ladok. Analogt med hur redovisning av mål fungerar så tycker vi att det är ointressant hur många försök du gjort eller när du klarar av något, bara att du gjort det.
+
+Rättningen kommer att göras av huvudlärarna på kursen efter att provet är klart. Inspelningen av din redovisning används bara om vi behöver reda ut oklarheter.
+
+Efter att rättningen är avslutad kommer vi att anslå resultat dels på AU-portalen och i Ladok. 
+
+Om du har förlängd skrivtid kommer den att gälla som vanligt och läggs på i slutet av skrivtiden.
+
+* Kolla det här innan kodprovet (“Pre-flight checklist”)
+- Du har ett konto och kan logga in på AU-portalen (https://ioopm.course.it.uu.se/)
+- Du är inloggad på Zoom
+- Du har någon typ av giltig fotolegitimation
+- Om du tänker skriva på IT’s servrar via SSH måste du kunna logga in på dem över SSH (ssh abcd123@tussilago.it.uu.se)
+- Du kan köra =make handin= på den plattform du använder (den fungerar redan på Unix-servrarna och på Cloud9)
+- Du har en webbkamera
+- Du har en stabil uppkoppling där du kommer att jobba med provet
+
+
+#+include: "./footer.org"

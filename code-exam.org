@@ -25,16 +25,22 @@ on-campus, just like described below.*
 
 * What is a Coding Exam?
 
+#+begin_important
+The code exam in 2020 will be held physically on campus, according to schedule. 
+If the pressure on spaces for the coding exam is too high, then we will switch
+to a new schedule with 3 slots in the day instead of the normal 2. 
+#+end_important
+
 A coding exam is an individual exam that runs in the normal
 computer halls. You have to pass *two* coding exams on this
 course, one imperative and one object-oriented in the programming
 languages that the course uses.
 
-#+begin_note
-It is not yet clear in 2020 how the code exams will run. This will 
-ultimately depend on the number of students on the course, the
-available computer halls, etc. We will now in September 2020.
-#+end_note
+# #+begin_note
+# It is not yet clear in 2020 how the code exams will run. This will 
+# ultimately depend on the number of students on the course, the
+# available computer halls, etc. We will now in September 2020.
+# #+end_note
 
 Coding exams are given multiple times during the course (e.g., 4
 times in 2018) and each exam has two programming tasks -- one
@@ -90,9 +96,9 @@ kodprovet har hårda tidsgränser.
 Below are some recent coding exams.
 
 |       Date | Files     | Instructions and/or Postmortem | Note   |
-| 2017-10-26 | [[http://wrigstad.com/ioopm/agoster.zip][available]] | [[http://wrigstad.com/ioopm/2017/kodprov-okt-17.html][available]]                      |        |
-| 2017-12-08 | [[http://wrigstad.com/ioopm/entrekod.zip][available]] | [[http://wrigstad.com/ioopm/2017/kodprov-dec-08.html][available]]                      | Only C |
-| 2017-12-18 | [[http://wrigstad.com/ioopm/sorsele-fm.zip][available]] | [[http://wrigstad.com/ioopm/2017/kodprov-dec-18.html][available]]                      |        |
+| 2017-10-26 | [[http://wrigstad.com/ioopm/agoster.zip][available]] | [[http://wrigstad.com/ioopm17/2017/kodprov-okt-17.html][available]]                      |        |
+| 2017-12-08 | [[http://wrigstad.com/ioopm/entrekod.zip][available]] | [[http://wrigstad.com/ioopm17/2017/kodprov-dec-08.html][available]]                      | Only C |
+| 2017-12-18 | [[http://wrigstad.com/ioopm/sorsele-fm.zip][available]] | [[http://wrigstad.com/ioopm17/2017/kodprov-dec-18.html][available]]                      |        |
 | 2018-04-02 | [[http://wrigstad.com/ioopm/bridget.zip][available]] |                                |        |
 | 2018-08-30 | [[http://wrigstad.com/ioopm/mandel.zip][available]] | [[./exams/2018-08-30.org][available]]                      |        |
 | 2018-10-24 | [[http://wrigstad.com/ioopm/byzantin.zip][available]] | [[./exams/2018-10-24.org][available]]                      |        |
@@ -100,12 +106,15 @@ Below are some recent coding exams.
 | 2018-12-19 | [[http://wrigstad.com/ioopm/patata.zip][available]] | [[./exams/2018-12-19.org][available]]                      |        |
 | 2019-01-14 | [[http://wrigstad.com/ioopm/bergamott.zip][available]] | [[./exams/2019-01-14.org][available]]                      |        |
 
-In 2016, I was asked on Piazza to record a screencast that
-demonstrated what doing a code exam could be like. This was a
-great idea, but the question was asked the night before the 
-exam, and hence [[http://user.it.uu.se/~writo649/java.mp4][this recording]] is a little rough (to the point
-of being a bit wrong in the end, but it serves the purpose to
-show what writing a code exam can be like). 
+** Screencast Example of Solving a Coding Exam
+Here is a screencast recording from 2020-10-12 that solves the
+exam from 2019-01-14. *Because I could not get Studium to scale my recording to anything legible, you most likely want to look at the 1:1 resolution [[http://user.it.uu.se/~writo649/kodprov-190114.mp4][here]].*
+
+#+begin_center
+#+BEGIN_EXPORT html
+<iframe width="560px" height="320px" allowfullscreen="true" src="https://uppsala.instructuremedia.com/embed/a447b015-895a-4363-9bd0-c8bd94e77164" frameborder="0"></iframe>
+#+END_EXPORT
+#+end_center
 
 * Frequently Asked Questions
 

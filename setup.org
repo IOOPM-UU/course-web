@@ -19,13 +19,13 @@
 #+HTML_HEAD: <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css" integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE" crossorigin="anonymous">
 #+HTML_HEAD: <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css" integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6" crossorigin="anonymous">
 
-#+begin_danger
-The course web pages are being updated for 2020. This is a *big*
-change given the move to digital teaching. As long as this note
-remains on this page, any information *is subject to change* and
-broken links, etc. are to be expected. Please be restrictive in
-reporting any errors for now.
-#+end_danger
+# #+begin_danger
+# The course web pages are being updated for 2020. This is a *big*
+# change given the move to digital teaching. As long as this note
+# remains on this page, any information *is subject to change* and
+# broken links, etc. are to be expected. Please be restrictive in
+# reporting any errors for now.
+# #+end_danger
 
 # #+begin_note
 # I am in the process of translating the material for this course

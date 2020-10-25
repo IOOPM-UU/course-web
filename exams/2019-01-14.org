@@ -8,7 +8,7 @@
 1. =cd= (detta tar dig till din hemkatalog)
 2. =mkdir kodprov190114=
 3. =cd kodprov190114=
-4. =curl http://wrigstad.com/ioopm/bergamott.zip=
+4. =curl --output k.zip http://wrigstad.com/ioopm/bergamott.zip=
 5. =unzip k.zip=
 
 Nu har du fått ett antal filer och kataloger:

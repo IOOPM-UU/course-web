@@ -15,6 +15,7 @@ last name was Batman before changing to Chalpin, try =saba1234=
 instead.
 #+end_important
 
+
 * Setup: using ssh (only once)
 
 Ssh -- Secure SHell -- is a wonderful program that allows you to
@@ -132,9 +133,6 @@ guess. You need to confer with each other.
 [[./images/cloud9-invite4.png]]
 
 
-
-
-#+include: "./footer.org"
 * Changing your backend server 
 
 If you for some reason have trouble logging in to your chosen
@@ -160,6 +158,51 @@ If instructed to change servers, we will give you new suitable
 host names.
 
 
+* Installing Necessary Tools in your New Cloud9 
+
+#+begin_important
+Starting 2020-09-16, we provide a second Cloud9 instance which is
+backed on separate servers. With this setup, every student has a
+dedicated computational resource which should be less sensitive to
+the actions of others. Hopefully this solves the problems that
+some of you have been experiencing.
+#+end_important
+
+In the AWS management console where you normally go to start your 
+Cloud9 IDE, there will be a second Cloud9 instance whose name ends
+in *-aws*. 
+
+*The first time* you start this *-aws* server up, you will need to
+go to the terminal in Cloud9 and run the following *two* commands to
+install the course's tools:
+
+** Command 1: Make space
+To make space, you should run the following command to uninstall unnecesary programs:
+#+begin_src bash
+sudo yum remove -y docker mysql55 perl mercurial-python27 ruby20-libs perl-Encode php56 php56-common aws-apitools-elb golang subversion php-pear
+#+end_src
+
+** Command 2: Install tools
+To install the tools needed for the course, run the following command:
+#+begin_src bash
+sudo yum install -y zsh htop valgrind clang6.0-tools-extra.x86_64 lldb.x86_64 doxygen-latex.x86_64 CUnit.x86_64 CUnit-devel.x86_64 http://downloads.sourceforge.net/ltp/lcov-1.14-1.noarch.rpm
+#+end_src
+
+We will update this page with instructions for installing Java
+1.8. Right now, Java 1.7 is installed which is even older than
+Java 1.8. If you have problems with Java 1.7 (there is no reason
+to expect you would), before these instructions are issued, please
+use the first Cloud9 IDE running on the IT department ThinLinc
+servers (e.g. =atterbom.it.uu.se= etc.) for the time being.
+
+*Note that you will need to re-invite people to your new instance.*
+
+#+begin_important
+*Under no circumstances* may you change settings for your instance,
+such as changing how many minutes before the instance is suspended
+until next activity. Failure to comply with these rules will lead to
+permanent suspension of your Cloud9 account. 
+#+end_important
 
 #+include: "./footer.org"
 

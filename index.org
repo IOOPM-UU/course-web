@@ -1,4 +1,3 @@
-
 #+title: Imperative & Object-Oriented Programming Methodology
 #+include: "./setup.org"
 
@@ -103,14 +102,14 @@ given live and recorded for posterity. Recorded lectures appear [[./lectures.org
 | 1/9   | Grundläggande datatyper, deklaration, uttryck och satser. Funktioner. Enkel I/O. Enkel  stränghantering.                  | [[aua:1][A1]] ([[aua:13][F13]], [[aua:15][G15]])                 |  [[file:misc/lecture1.pdf][2020 slides]]   |
 | 4/9   | Poster och unioner. Typnamnsdefinitioner. Funktionspekare. Separatkompilering och headerfiler.                            | [[aua:3][A3]], [[aua:9][D9]], [[aua:15][G15]], [[aua:16][G16]], ([[aua:22][I22]]), [[aua:30][K30]]. |  [[file:misc/lecture2.pdf][2020 slides]]   |
 | 7/9   | Dynamisk minnesallokering. Pekare.                                                                                        | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:27][J27]], [[aua:38][M38]]       |  [[file:misc/lecture3.pdf][2020 slides]]   |
-| 10/9  | Introduktion till resten av kursen. Skillnad mellan funktionell och imperativ programmering. SIMPLE. Det agila upplägget. | [[aua:7][C7]]                            |   [[file:misc/w1-2.pdf][Old slides]]   |
-| 14/9  | Stack och heap, länkade strukturer, pekare 1/2.                                                                           | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:36][M36]]            |   [[file:misc/w3.pdf][Old slides]]   |
-| 17/9  | Stack och heap, länkade strukturer, pekare 2/2.                                                                           | [[aua:27][J27]], [[aua:37][M37]], [[aua:39][M39]]                 |      -''-      |
-| 21/9  | Introduction to testing with CUnit                                                                                        | [[aua:18][G18]], [[aua:49][Q49]], [[aua:50][Q50]]                 |   [[file:misc/w4.pdf][Old slides]]   |
-| 24/9  | Automatisering (Make, scripting) och optimering.                                                                          | [[aua:55][T55]], [[aua:57][U57]], [[aua:58][V58]], [[aua:45][P45]]            |      -''-      |
-| 28/9  | Design & metodologi. Hur strukturerar man? Top-down, bottom-up. Lagertänkande.                                            | [[aua:41][N41]]                           |   [[file:misc/w5.pdf][Old slides]]   |
-| 1/10  | Modularisering, separatkompilering, coupling & cohesion.                                                                  | TBA                           |      -''-      |
-| 5/10  | Defensiv programmering. Läsbar kod.                                                                                       | [[aua:22][I22]], [[aua:45][P45]]                      |   [[file:misc/w6.pdf][Old slides]]   |
+| 10/9  | Introduktion till resten av kursen. Skillnad mellan funktionell och imperativ programmering. SIMPLE. Det agila upplägget. | [[aua:7][C7]]                            |  [[file:misc/lecture4.pdf][2020 slides]]   |
+| 14/9  | Stack och heap, länkade strukturer, pekare 1/2.                                                                           | [[aua:10][E10]], [[aua:20][H20]], [[aua:26][J26]], [[aua:36][M36]]            |  [[file:misc/lecture5.pdf][2020 slides]]   |
+| 17/9  | Stack och heap, länkade strukturer, pekare 2/2.                                                                           | [[aua:27][J27]], [[aua:37][M37]], [[aua:39][M39]]                 |  [[file:misc/lecture6.pdf][2020 slides]]   |
+| 21/9  | Introduction to testing with CUnit                                                                                        | [[aua:18][G18]], [[aua:49][Q49]], [[aua:50][Q50]]                 |  [[file:misc/lecture7.pdf][2020 slides]]   |
+| 24/9  | Design & metodologi. Hur strukturerar man? Top-down, bottom-up. Lagertänkande.                                            | [[aua:41][N41]]                           |  [[file:misc/lecture8.pdf][2020 slides]]   |
+| 28/9  | Automatisering (Make, scripting) och optimering.                                                                          | [[aua:55][T55]], [[aua:57][U57]], [[aua:58][V58]], [[aua:45][P45]]            |  [[file:misc/lecture9.pdf][2020 slides]]   |
+| 1/10  | Modularisering, separatkompilering, coupling & cohesion.                                                                  | TBA                           |  [[file:misc/lecture10.pdf][2020 slides]]   |
+| 5/10  | Defensiv programmering. Läsbar kod.                                                                                       | [[aua:22][I22]], [[aua:45][P45]]                      |  [[file:misc/lecture11.pdf][2020 slides]]   |
 | 8/10  | Preprocessorn. Bitmanipulering.                                                                                           | [[aua:42][O42]], [[aua:43][O43]], [[aua:44][O44]]                 |      -''-      |
 | 12/10 | /Backup/ (Terminalen)                                                                                                     | [[aua:58][V58]]                           |      Demo      |
 | 15/10 | Prepping for code exam                                                                                                    |                               |      N/A       |

@@ -160,7 +160,7 @@ defined more than once.].
  * defines. Doxygens tags are words preceeded by either a backslash @\
  * or by an at symbol @@.
  *
- * @see http://wrigstad.com/ioopm19/assignments/assignment1.html
+ * @see http://wrigstad.com/ioopm/assignments/assignment1.html
  */
 
 /// @brief Create a new hash table
@@ -4147,3 +4147,67 @@ presentations, or add your name to the help list.
 # Explain the key hotkeys
 # TODO: add fixmee to course emacs package
 # first insert listing could use an animation that shows how the interation works
+
+* Addendum 2020-10-05: Documentation of Assignments
+
+When we talk about documentation in the assignments, we are referring
+to three different kinds of documentation:
+
+1. Documentation in the header files -- as exemplified in the assignment text.
+2. Documentation in the .c files as code comments
+3. External documentation in the README.md file
+
+
+** Documentation in the header files
+
+Sometimes you make changes to how a function works, or you make
+assumptions that need to be communicated to the user. These things
+should be reflected in the documentation in the header files. For
+example, if you do not allow NULL as a value in your hash table,
+then this needs to be documented in the header file in the insert
+function for example. The target audience for these comments are
+the users of your functions, plus future maintainers of you code
+that need to understand what the functions are supposed to do.
+
+Design decision necessary to understand how to use the stuff
+you've built should go here -- like how error handling is done,
+etc. and whether the hashtable owns its data or not. 
+
+
+** Documentation in the ~.c~ files as code comments
+
+Sometimes you need to comment on things, for example you put
+=TODO=:s, =FIXME=:s or other explanations about why a particular
+design choice etc. These things are also part of the
+documentation, but the target audience is a future you, or someone
+else who might be tasked with maintaining or extending this code
+in the future.
+
+(Note that in Java, there are no separate header files meaning the
+header file documentation will be interleaved with the
+implementation code, or if you use an Java =Interface= to factor
+this out.)
+
+
+** Documentation in the =README.md= file
+
+The =README.md= should in the very least contain information about
+how to compile the code, run the tests, and run the program(s).
+Sometimes some major thing has changed because some design
+decision you took, and this needs to be reflected here. If you
+make a deal with a teacher about some shortcut, it too goes here. 
+
+The target audience for this information is the teachers of this
+course.
+
+Also quickly outline design decisions you took. This can be a very
+brief bullet list as long as it is clear, e.g.: 
+
+- Errors are handled by ...
+- The hash table does not take ownership of the data of its keys and values
+- ...
+
+This bullet list overlaps a little with the information in the
+header files, but this version is more terse, and the target
+audience is another.
+

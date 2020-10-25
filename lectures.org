@@ -33,7 +33,6 @@ lecture.)
 
 [[./misc/lecture2.pdf][Slide set]]
 
-
 * Lecture 3 -- Pointers and dynamic memory management
 
 - Memory 
@@ -50,7 +49,6 @@ lecture.)
 #+end_center
 
 [[./misc/lecture3.pdf][Slide set]]
-
 
 * Lecture 4 -- Hur kursen fungerar, mål, redovisningar, projektarbete, etc., etc. 
 
@@ -69,7 +67,103 @@ lecture.)
 #+END_EXPORT
 #+end_center
 
+* Lecture 5 -- Dynamic memory management, pointers, linked data structures
+#+begin_center
+#+BEGIN_EXPORT html
+<iframe width="560px" height="320px" allowfullscreen="true" src="https://uppsala.instructuremedia.com/embed/94d857f4-f6b1-4360-969b-3faac7c3137d" frameborder="0"></iframe>
+#+END_EXPORT
+#+end_center
+
+[[./misc/lecture5.pdf][Slide set]]
+
+* Lecture 6 -- End of linked structures series
+#+begin_center
+#+BEGIN_EXPORT html
+<iframe width="560px" height="320px" allowfullscreen="true" src="https://uppsala.instructuremedia.com/embed/50ede90c-b5bf-41d0-84b4-8aeb38d8f370" frameborder="0"></iframe>
+#+END_EXPORT
+#+end_center
+
+[[./misc/lecture6.pdf][Slide set]]
+
+* Lecture 7 -- Introduction to Software Testing
+** Regular Lecture
+#+begin_center
+#+BEGIN_EXPORT html
+<iframe width="560px" height="320px" allowfullscreen="true" src="https://uppsala.instructuremedia.com/embed/8e69cf34-9a4a-4fbf-99b9-52e259ed8823" frameborder="0"></iframe>
+#+END_EXPORT
+#+end_center
+
+** Bonus Material (that did not fit the original lecture slot)
+Instead of recording the bonus material, I fleshed out the slides instead to be more self-contained (bonus material covers from "coverage" onwards).
+
+[[./misc/lecture7.pdf][Slide set]] 
+
+* Lecture 8 -- Design and abstraction, bottom-up and top-down
+#+begin_center
+#+BEGIN_EXPORT html
+<iframe width="560px" height="320px" allowfullscreen="true" src="https://uppsala.instructuremedia.com/embed/f670846a-ea75-4bd1-bc52-4d972fcab5dc" frameborder="0"></iframe>
+#+END_EXPORT
+#+end_center
+
+[[./misc/lecture8.pdf][Slide set]] (bonus material covers slides 61--72)
+
+* Lecture 9 -- Automatisering, profilering och optimering
+
+#+begin_center
+#+BEGIN_EXPORT html
+Coming soon
+#+END_EXPORT
+#+end_center
+
+[[./misc/lecture9.pdf][Slide set]] 
+
+* Lecture 10 -- Abstraktion, modularisering och informationsgömning
+
+#+begin_center
+#+BEGIN_EXPORT html
+<iframe width="560px" height="320px" allowfullscreen="true" src="https://uppsala.instructuremedia.com/embed/bf68fc11-b711-4ec9-80a6-5af633229e19" frameborder="0"></iframe>
+#+END_EXPORT
+#+end_center
+
+[[./misc/lecture10.pdf][Slide set]] 
+
+* Lecture 11 -- Skriva bra kod och Defensiv programmering
+
+#+begin_center
+#+BEGIN_EXPORT html
+<iframe width="560px" height="320px" allowfullscreen="true" src="https://uppsala.instructuremedia.com/embed/bfeab066-b411-4ac4-ba63-2ce5393cd3b5" frameborder="0"></iframe>
+#+END_EXPORT
+#+end_center
+
+[[./misc/lecture11.pdf][Slide set]] 
+
+* Lecture 12 -- Bitmanipulering och preprocessorn
+
+#+begin_center
+#+BEGIN_EXPORT html
+<iframe width="560px" height="320px" allowfullscreen="true" src="https://uppsala.instructuremedia.com/embed/aca81391-6a43-48f6-bb32-e0231b352477" frameborder="0"></iframe>
+#+END_EXPORT
+#+end_center
+
+
+
+
+* Screencasts 
+** Linked lists
+
+I apologise in advance for the high resolution of this video. I
+hope it is possible to view anyway, but most certainly not on a
+small screen. In the, I will try to avoid making this mistake
+again in the future.
+
+#+begin_center
+#+BEGIN_EXPORT html
+<iframe width="560px" height="320px" allowfullscreen="true" src="https://uppsala.instructuremedia.com/embed/b6bec9e8-91c7-46f9-95eb-be45067db861" frameborder="0"></iframe>
+#+END_EXPORT
+#+end_center
+
+
+[[./misc/screencasts/list.c][The code written during the screencast]]. 
 
 #+include: "./footer.org"
-
 
