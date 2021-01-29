@@ -1076,6 +1076,14 @@ function gcd(a, b)
 end
 #+END_EXAMPLE
 
+#+BEGIN_EXAMPLE
+function fib(n)
+    n-1 = a
+    n-2 = b
+    if n <= 1 {n} else { fib(a) + fib(b) }
+end 
+#+END_EXAMPLE
+
 * Finishing the Assignment
 1. Go over your backlog of [[../simple.org::cheat][cheats]] and [[../simple.org::dodge][dodges]] and see which ones
    need taking care of. *Ideally this stack should be empty.*
