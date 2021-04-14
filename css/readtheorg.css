@@ -834,7 +834,7 @@ hr{
     margin-bottom:0.809em}
 
 ul.nav li a:not(.active) + ul li {
-    display: none;
+    display: block;
 }
 
 ul.nav li a:not(.active) + ul li a:not(.active) + ul li {
